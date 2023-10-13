@@ -583,6 +583,26 @@ __all__ = [
         level_idxs2line_idx = pd.Series(
             np.arange(len(index)), index=index, name=&quot;lines_idx&quot;
         )
+
+        # Check for duplicate indices
+        if level_idxs2line_idx.index.duplicated().any():
+            logger.warn(
+                &quot;Duplicate indices in level_idxs2line_idx. &quot;
+                &quot;Dropping duplicates. &quot;
+                &quot;This is an issue with the atomic data &amp; carsus. &quot;
+                &quot;Once fixed upstream, this warning will be removed. &quot;
+                &quot;This will raise an error in the future instead. &quot;
+                &quot;See https://github.com/tardis-sn/carsus/issues/384&quot;
+            )
+            # This is necessary since pd.DataFrame.drop_duplicates()
+            # does not remove duplicates if the data is different
+            # and only the index is duplicated. See the example given
+            # in the pandas documentation:
+            # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html
+            level_idxs2line_idx = level_idxs2line_idx[
+                ~level_idxs2line_idx.index.duplicated()
+            ]
+
         return level_idxs2line_idx</div></div>
 
 
@@ -984,7 +1004,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Oct 2023.
+      <span class="lastupdated">Last updated on 13 Oct 2023.
       </span></p>
   </div>
 
