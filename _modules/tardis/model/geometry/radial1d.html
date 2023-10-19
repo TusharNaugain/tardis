@@ -118,9 +118,10 @@
 from numba.experimental import jitclass
 import numpy as np
 from astropy import units as u
+import warnings
 
 
-<div class="viewcode-block" id="Radial1DGeometry"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.Radial1DGeometry">[docs]</a>class Radial1DGeometry:
+<div class="viewcode-block" id="HomologousRadial1DGeometry"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry">[docs]</a>class HomologousRadial1DGeometry:
     &quot;&quot;&quot;
     Holds information about model geometry for radial 1D models.
 
@@ -137,18 +138,133 @@ from astropy import units as u
         Volume in each shell
     &quot;&quot;&quot;
 
-    def __init__(self, r_inner, r_outer, v_inner, v_outer):
-        self.r_inner = r_inner
-        self.r_outer = r_outer
+    def __init__(
+        self,
+        v_inner,
+        v_outer,
+        v_inner_boundary,
+        v_outer_boundary,
+        time_explosion,
+    ):
+        self.time_explosion = time_explosion
+
+        # ensuring that the cells are continuous
+        assert np.allclose(v_inner[1:], v_outer[:-1])
+
+        assert &quot;velocity&quot; in v_inner.unit.physical_type
+        assert &quot;velocity&quot; in v_outer.unit.physical_type
+
         self.v_inner = v_inner
         self.v_outer = v_outer
+
+        # ensuring that the boundaries are within the simulation area
+
+        if v_inner_boundary is None:
+            self.v_inner_boundary = self.v_inner[0]
+        elif v_inner_boundary &lt; 0:
+            warnings.warn(
+                &quot;v_inner_boundary &lt; 0, assuming default value&quot;,
+                DeprecationWarning,
+            )
+            self.v_inner_boundary = self.v_inner[0]
+        else:
+            self.v_inner_boundary = v_inner_boundary
+
+        if v_outer_boundary is None:
+            self.v_outer_boundary = self.v_outer[-1]
+        elif v_outer_boundary &lt; 0:
+            warnings.warn(
+                &quot;v_outer_boundary &lt; 0, assuming default value&quot;,
+                DeprecationWarning,
+            )
+            self.v_outer_boundary = self.v_outer[-1]
+        else:
+            self.v_outer_boundary = v_outer_boundary
+
+        assert self.v_inner_boundary &lt; self.v_outer_boundary
+        if self.v_inner_boundary &lt; self.v_inner[0]:
+            warnings.warn(
+                &quot;Requesting inner boundary below inner shell. Extrapolating the inner cell&quot;
+            )
+
+        if self.v_outer_boundary &gt; self.v_outer[-1]:
+            warnings.warn(
+                &quot;Requesting inner boundary below inner shell. Extrapolating the inner cell&quot;
+            )
+
+    @property
+    def v_inner_boundary_index(self):
+        return np.clip(
+            np.searchsorted(self.v_inner, self.v_inner_boundary, side=&quot;right&quot;)
+            - 1,
+            0,
+            None,
+        )
+
+    @property
+    def v_outer_boundary_index(self):
+        return np.clip(
+            np.searchsorted(self.v_outer, self.v_outer_boundary, side=&quot;left&quot;)
+            + 1,
+            None,
+            len(self.v_outer),
+        )
+
+    @property
+    def v_inner_active(self):
+        v_inner_active = self.v_inner[
+            self.v_inner_boundary_index : self.v_outer_boundary_index
+        ].copy()
+        v_inner_active[0] = self.v_inner_boundary
+        return v_inner_active
+
+    @property
+    def v_outer_active(self):
+        v_outer_active = self.v_outer[
+            self.v_inner_boundary_index : self.v_outer_boundary_index
+        ].copy()
+        v_outer_active[-1] = self.v_outer_boundary
+        return v_outer_active
+
+    @property
+    def r_inner(self):
+        return (self.v_inner * self.time_explosion).cgs
+
+    @property
+    def r_inner_active(self):
+        return (self.v_inner_active * self.time_explosion).cgs
+
+    @property
+    def r_outer(self):
+        return (self.v_outer * self.time_explosion).cgs
+
+    @property
+    def r_outer_active(self):
+        return (self.v_outer_active * self.time_explosion).cgs
 
     @property
     def volume(self):
         &quot;&quot;&quot;Volume in shell computed from r_outer and r_inner&quot;&quot;&quot;
         return (4.0 / 3) * np.pi * (self.r_outer**3 - self.r_inner**3)
 
-<div class="viewcode-block" id="Radial1DGeometry.to_numba"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.Radial1DGeometry.to_numba">[docs]</a>    def to_numba(self):
+    @property
+    def volume_active(self):
+        &quot;&quot;&quot;Volume in shell computed from r_outer and r_inner&quot;&quot;&quot;
+        return (
+            (4.0 / 3)
+            * np.pi
+            * (self.r_outer_active**3 - self.r_inner_active**3)
+        )
+
+    @property
+    def no_of_shells(self):
+        return len(self.r_inner)
+
+    @property
+    def no_of_shells_active(self):
+        return len(self.r_inner_active)
+
+<div class="viewcode-block" id="HomologousRadial1DGeometry.to_numba"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry.to_numba">[docs]</a>    def to_numba(self):
         &quot;&quot;&quot;
         Returns a new NumbaRadial1DGeometry object
 
@@ -158,10 +274,10 @@ from astropy import units as u
             Numba version of Radial1DGeometry with properties in cgs units
         &quot;&quot;&quot;
         return NumbaRadial1DGeometry(
-            self.r_inner.to(u.cm).value,
-            self.r_outer.to(u.cm).value,
-            self.v_inner.to(u.cm / u.s).value,
-            self.v_outer.to(u.cm / u.s).value,
+            self.r_inner_active.to(u.cm).value,
+            self.r_outer_active.to(u.cm).value,
+            self.v_inner_active.to(u.cm / u.s).value,
+            self.v_outer_active.to(u.cm / u.s).value,
         )</div></div>
 
 
@@ -200,7 +316,7 @@ class NumbaRadial1DGeometry(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 18 Oct 2023.
+      <span class="lastupdated">Last updated on 19 Oct 2023.
       </span></p>
   </div>
 

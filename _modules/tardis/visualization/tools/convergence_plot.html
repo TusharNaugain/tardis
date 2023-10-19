@@ -426,10 +426,12 @@ from astropy import units as u
 <div class="viewcode-block" id="ConvergencePlots.update_plasma_plots"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.convergence_plot.html#tardis.visualization.tools.convergence_plot.ConvergencePlots.update_plasma_plots">[docs]</a>    def update_plasma_plots(self):
         &quot;&quot;&quot;Update plasma convergence plots every iteration.&quot;&quot;&quot;
         # convert velocity to km/s
-        x = self.iterable_data[&quot;velocity&quot;].to(u.km / u.s).value.tolist()
+        velocity_km_s = (
+            self.iterable_data[&quot;velocity&quot;].to(u.km / u.s).value.tolist()
+        )
 
         # add luminosity data in hover data in plasma plots
-        customdata = len(x) * [
+        customdata = len(velocity_km_s) * [
             &quot;&lt;br&gt;&quot;
             + &quot;Emitted Luminosity: &quot;
             + f&#39;{self.value_data[&quot;Emitted&quot;][-1]:.4g}&#39;
@@ -443,7 +445,7 @@ from astropy import units as u
 
         # add a radiation temperature vs shell velocity trace to the plasma plot
         self.plasma_plot.add_scatter(
-            x=x,
+            x=velocity_km_s,
             y=self.iterable_data[&quot;t_rad&quot;],
             line_color=self.plasma_colorscale[self.current_iteration - 1],
             row=1,
@@ -457,7 +459,7 @@ from astropy import units as u
 
         # add a dilution factor vs shell velocity trace to the plasma plot
         self.plasma_plot.add_scatter(
-            x=x,
+            x=velocity_km_s,
             y=self.iterable_data[&quot;w&quot;],
             line_color=self.plasma_colorscale[self.current_iteration - 1],
             row=1,
@@ -564,7 +566,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 18 Oct 2023.
+      <span class="lastupdated">Last updated on 19 Oct 2023.
       </span></p>
   </div>
 
