@@ -56,7 +56,6 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-with-lockfiles">Install with lockfiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-from-package">Install from package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-update">Environment update</a></li>
 </ul>
 </li>
@@ -163,6 +162,13 @@ $ conda activate tardis
 <ol class="arabic" start="3">
 <li><ol class="loweralpha">
 <li><p>Non-developers can install the latest release from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> with the <code class="docutils literal notranslate"><span class="pre">--no-deps</span></code> flag,</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently the conda forge installation doesn’t work. It’s recommended to install from the specific releases using pip-</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/tardis-sn/tardis.git&#64;{tag}</span></code></p>
+<p>For example-</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/tardis-sn/tardis.git&#64;release-2023.09.17</span></code></p>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ conda install tardis-sn --channel conda-forge --no-deps
 </pre></div>
 </div>
@@ -200,15 +206,6 @@ $ python setup.py develop
 <p>From now on, just activate the <code class="docutils literal notranslate"><span class="pre">tardis</span></code> environment before working with the TARDIS package.</p>
 <p>You have successfully installed TARDIS! 🎉 Please refer to <a class="reference internal" href="quickstart.html"><span class="doc">Quickstart for TARDIS</span></a>
 to start running simulations.</p>
-</section>
-<section id="install-from-package">
-<h2>Install from package<a class="headerlink" href="#install-from-package" title="Permalink to this heading">¶</a></h2>
-<p>It’s also possible to install TARDIS by pulling the <a class="reference external" href="https://anaconda.org/conda-forge/tardis-sn">conda-forge package</a>
-into a clean environment. However, we still encourage using lockfiles to ensure
-reproducibility of scientific results.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ conda create --name tardis-forge tardis-sn --channel conda-forge
-</pre></div>
-</div>
 </section>
 <section id="environment-update">
 <h2>Environment update<a class="headerlink" href="#environment-update" title="Permalink to this heading">¶</a></h2>
