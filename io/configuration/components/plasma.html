@@ -70,6 +70,7 @@
 <li class="toctree-l3"><a class="reference internal" href="atomic/atomic_data.html">Atomic Data</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Plasma Configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#nlte">NLTE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nlte-ionization">NLTE Ionization</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="models/index.html">Models</a></li>
@@ -171,6 +172,15 @@ causes problems with the code (so <span class="math notranslate nohighlight">\(J
 This is useful for debugging with <a class="reference internal" href="../../../resources/zreferences.html#term-Chianti"><span class="xref std std-term">chianti</span></a> for example. Furthermore, one can enable ‘classical_nebular’ to set all
 <span class="math notranslate nohighlight">\(\beta_\textrm{Sobolev}\)</span> to 1. Both options are used for checking with other codes and should not be enabled in
 normal operations.</p>
+</section>
+<section id="nlte-ionization">
+<h2>NLTE Ionization<a class="headerlink" href="#nlte-ionization" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plasma</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">nlte_ionization_species</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">H I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">H II</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He II</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>This option allows the user to specify which species should be included in the NLTE ionization treatment. Note that the
+species must be present in the continuum interaction species as well.</p>
 </section>
 </section>
 
