@@ -119,10 +119,12 @@
 from radioactivedecay import Nuclide, Inventory
 from radioactivedecay.utils import Z_to_elem
 from astropy import units as u
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 <div class="viewcode-block" id="IsotopeAbundances"><a class="viewcode-back" href="../../../api/tardis.io.decay.html#tardis.io.decay.IsotopeAbundances">[docs]</a>class IsotopeAbundances(pd.DataFrame):
-
     _metadata = [&quot;time_0&quot;]
 
     def __init__(self, *args, **kwargs):
@@ -209,9 +211,18 @@ from astropy import units as u
         t_second = (
             u.Quantity(t, u.day).to(u.s).value - self.time_0.to(u.s).value
         )
+        logger.info(f&quot;Decaying abundances for {t_second} seconds&quot;)
+        if t_second &lt; 0:
+            logger.warning(
+                f&quot;Decay time {t_second} is negative. This could indicate a miss-specified input model.&quot;
+                f&quot; A negative decay time can potentially lead to negative abundances.&quot;
+            )
         decayed_inventories = [item.decay(t_second) for item in inventories]
         df = IsotopeAbundances.from_inventories(decayed_inventories)
         df.sort_index(inplace=True)
+        assert (
+            df.ge(0.0).all().all()
+        ), &quot;Negative abundances detected. Please make sure your input abundances are correct.&quot;
         return df</div>
 
 <div class="viewcode-block" id="IsotopeAbundances.as_atoms"><a class="viewcode-back" href="../../../api/tardis.io.decay.html#tardis.io.decay.IsotopeAbundances.as_atoms">[docs]</a>    def as_atoms(self):
