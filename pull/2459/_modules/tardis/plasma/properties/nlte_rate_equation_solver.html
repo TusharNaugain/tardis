@@ -128,7 +128,7 @@ __all__ = [
 
 
 <div class="viewcode-block" id="NLTERateEquationSolver"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.nlte_rate_equation_solver.html#tardis.plasma.properties.nlte_rate_equation_solver.NLTERateEquationSolver">[docs]</a>class NLTERateEquationSolver(ProcessingPlasmaProperty):
-    outputs = (&quot;ion_number_density_nlte&quot;, &quot;electron_densities_nlte&quot;)
+    outputs = (&quot;ion_number_density&quot;, &quot;electron_densities&quot;)
 
 <div class="viewcode-block" id="NLTERateEquationSolver.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.nlte_rate_equation_solver.html#tardis.plasma.properties.nlte_rate_equation_solver.NLTERateEquationSolver.calculate">[docs]</a>    def calculate(
         self,
@@ -227,6 +227,10 @@ __all__ = [
                 number_density[shell],
                 initial_electron_densities[shell],
             )
+            # All first guess values have to be positive
+            assert (
+                np.greater_equal(first_guess, 0.0).all()
+            ).all(), &quot;First guess for NLTE solver has negative values, something went wrong.&quot;
             solution = root(
                 self.population_objective_function,
                 first_guess,
@@ -708,7 +712,7 @@ __all__ = [
         &quot;&quot;&quot;
         first_guess = pd.Series(0.0, index=rate_matrix_index)
         for atomic_number in atomic_numbers:
-            first_guess.loc[(atomic_number, 1)][0] = number_density.loc[
+            first_guess.loc[(atomic_number, 1)].iloc[0] = number_density.loc[
                 atomic_number
             ]
         # TODO: After the first iteration, the new guess can be the old solution.
@@ -1053,7 +1057,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 01 Nov 2023.
+      <span class="lastupdated">Last updated on 06 Nov 2023.
       </span></p>
   </div>
 
