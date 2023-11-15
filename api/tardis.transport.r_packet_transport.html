@@ -144,67 +144,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-tardis.transport.r_packet_transport">
-<span id="tardis-transport-r-packet-transport-module"></span><h1>tardis.transport.r_packet_transport module<a class="headerlink" href="#module-tardis.transport.r_packet_transport" title="Permalink to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.r_packet_transport.move_packet_across_shell_boundary">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.r_packet_transport.</span></span><span class="sig-name descname"><span class="pre">move_packet_across_shell_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_shell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_shells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/r_packet_transport.html#move_packet_across_shell_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.r_packet_transport.move_packet_across_shell_boundary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move packet across shell boundary - realizing if we are still in the simulation or have
-moved out through the inner boundary or outer boundary and updating packet
-status.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>distance to move to shell boundary</p>
-</dd>
-<dt><strong>delta_shell</strong><span class="classifier">int</span></dt><dd><p>is +1 if moving outward or -1 if moving inward</p>
-</dd>
-<dt><strong>no_of_shells</strong><span class="classifier">int</span></dt><dd><p>number of shells in TARDIS simulation</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.r_packet_transport.move_r_packet">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.r_packet_transport.</span></span><span class="sig-name descname"><span class="pre">move_r_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_estimator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/r_packet_transport.html#move_r_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.r_packet_transport.move_r_packet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move packet a distance and recalculate the new angle mu</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>r_packet</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.r_packet.RPacket</span></dt><dd><p>r_packet objects</p>
-</dd>
-<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>time since explosion in s</p>
-</dd>
-<dt><strong>numba_estimator</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.numba_interface.NumbaEstimator</span></dt><dd><p>Estimators object</p>
-</dd>
-<dt><strong>distance</strong><span class="classifier">float</span></dt><dd><p>distance in cm</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.r_packet_transport.trace_packet">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.r_packet_transport.</span></span><span class="sig-name descname"><span class="pre">trace_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_radial_1d_geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_continuum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">escat_prob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/r_packet_transport.html#trace_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.r_packet_transport.trace_packet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Traces the RPacket through the ejecta and stops when an interaction happens (heart of the calculation)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>r_packet</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.r_packet.RPacket</span></dt><dd></dd>
-<dt><strong>numba_radial_1d_geometry</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.numba_interface.NumbaRadial1DGeometry</span></dt><dd></dd>
-<dt><strong>numba_model</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.numba_interface.NumbaModel</span></dt><dd></dd>
-<dt><strong>opacity_state</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.numba_interface.OpacityState</span></dt><dd></dd>
-<dt><strong>estimators</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.numba_interface.Estimators</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"></dd>
-</dl>
-</dd></dl>
-
+  <section id="tardis-transport-r-packet-transport-module">
+<h1>tardis.transport.r_packet_transport module<a class="headerlink" href="#tardis-transport-r-packet-transport-module" title="Permalink to this heading">¶</a></h1>
 </section>
 
 
@@ -219,7 +160,7 @@ status.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Nov 2023.
+      <span class="lastupdated">Last updated on 15 Nov 2023.
       </span></p>
   </div>
 
