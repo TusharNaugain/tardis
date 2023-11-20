@@ -210,6 +210,12 @@ logger = logging.getLogger(__name__)
         index: atomic_number, ion_number, level_number_lower, level_number_upper
         columns: A_ul[1/s], nu0[Hz], alpha, beta, gamma
 
+    decay_radiation_data : pandas.DataFrame
+    A dataframe containing the *decay radiation data* with:
+        index: Isotope names
+        columns: atomic_number, element, Rad energy, Rad intensity decay mode.
+        Curated from nndc
+
     Attributes
     ----------
     prepared : bool
@@ -225,6 +231,7 @@ logger = logging.getLogger(__name__)
     atomic_number2symbol : OrderedDict
     photoionization_data : pandas.DataFrame
     two_photon_data : pandas.DataFrame
+    decay_radiation_data : pandas.DataFrame
 
     Methods
     -------
@@ -256,6 +263,7 @@ logger = logging.getLogger(__name__)
         &quot;yg_data&quot;,
         &quot;two_photon_data&quot;,
         &quot;linelist&quot;,
+        &quot;decay_radiation_data&quot;,
     ]
 
     # List of tuples of the related dataframes.
@@ -392,6 +400,7 @@ logger = logging.getLogger(__name__)
         yg_data=None,
         two_photon_data=None,
         linelist=None,
+        decay_radiation_data=None,
     ):
         self.prepared = False
 
@@ -454,6 +463,8 @@ logger = logging.getLogger(__name__)
         if linelist is not None:
             self.linelist = linelist
 
+        if decay_radiation_data is not None:
+            self.decay_radiation_data = decay_radiation_data
         self._check_related()
 
         self.symbol2atomic_number = OrderedDict(
@@ -794,7 +805,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Nov 2023.
+      <span class="lastupdated">Last updated on 20 Nov 2023.
       </span></p>
   </div>
 
