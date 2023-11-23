@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tardis.model.parse_input &mdash; tardis</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href="../../../_static/tardis.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            tardis
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/intro/index.html">Physics Walkthrough Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/setup/index.html">Setting Up the Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/development/index.html">Developer Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/tools/index.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/in_progress/index.html">Features In-Progress</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/credits.html">Credits &amp; Publication Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/research_done_using_TARDIS/research_papers.html">Papers Using TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/code_comparison/index.html">Code Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/zreferences.html">References and Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tardis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tardis.model.parse_input</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tardis.model.parse_input</h1><div class="highlight"><pre>
+<span></span>import logging
+import os
+
+from astropy import units as u
+from tardis.io.model.readers.csvy import parse_csv_abundances
+from tardis.model.matter.decay import IsotopeAbundances
+from tardis.model.matter.composition import Composition
+import numpy as np
+import pandas as pd
+from tardis.io.model.parse_density_configuration import (
+    calculate_density_after_time,
+    parse_config_v1_density,
+    parse_csvy_density,
+)
+from tardis.io.model.readers.base import read_abundances_file, read_density_file
+from tardis.io.model.readers.generic_readers import read_uniform_abundances
+from tardis.model.geometry.radial1d import HomologousRadial1DGeometry
+from tardis.util.base import quantity_linspace
+
+logger = logging.getLogger(__name__)
+
+
+<div class="viewcode-block" id="parse_structure_config"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_structure_config">[docs]</a>def parse_structure_config(config, time_explosion, enable_homology=True):
+    &quot;&quot;&quot;
+    Parse the structure configuration data.
+
+    Parameters
+    ----------
+    config : object
+        The configuration data.
+    time_explosion : float
+        The time of the explosion.
+    enable_homology : bool, optional
+        Whether to enable homology (default is True).
+
+    Returns
+    -------
+    electron_densities : object
+        The parsed electron densities.
+    temperature : object
+        The parsed temperature.
+    geometry : object
+        The parsed geometry.
+    density : object
+        The parsed density.
+
+    Raises
+    ------
+    NotImplementedError
+        If the structure configuration type is not supported.
+
+    Notes
+    -----
+    This function parses the structure configuration data and returns the parsed electron
+    densities, temperature, geometry, and density. The structure configuration can be of
+    type &#39;specific&#39; or &#39;file&#39;. If it is of type &#39;specific&#39;, the velocity and density are
+    parsed from the configuration. If it is of type &#39;file&#39;, the velocity and density are
+    read from a file. The parsed data is used to create a homologous radial 1D geometry object.
+    &quot;&quot;&quot;
+
+    electron_densities = None
+    temperature = None
+    structure_config = config.model.structure
+    if structure_config.type == &quot;specific&quot;:
+        velocity = quantity_linspace(
+            structure_config.velocity.start,
+            structure_config.velocity.stop,
+            structure_config.velocity.num + 1,
+        ).cgs
+        density = parse_config_v1_density(config)
+
+    elif structure_config.type == &quot;file&quot;:
+        if os.path.isabs(structure_config.filename):
+            structure_config_fname = structure_config.filename
+        else:
+            structure_config_fname = os.path.join(
+                config.config_dirname, structure_config.filename
+            )
+
+        (
+            time_0,
+            velocity,
+            density_0,
+            electron_densities,
+            temperature,
+        ) = read_density_file(structure_config_fname, structure_config.filetype)
+        density_0 = density_0.insert(0, 0)
+
+        density = calculate_density_after_time(
+            density_0, time_0, time_explosion
+        )
+
+    else:
+        raise NotImplementedError
+
+    # Note: This is the number of shells *without* taking in mind the
+    #       v boundaries.
+    if len(density) == len(velocity):
+        logger.warning(
+            &quot;Number of density points larger than number of shells. Assuming inner point irrelevant&quot;
+        )
+        density = density[1:]
+    geometry = HomologousRadial1DGeometry(
+        velocity[:-1],  # r_inner
+        velocity[1:],  # r_outer
+        v_inner_boundary=structure_config.get(&quot;v_inner_boundary&quot;, None),
+        v_outer_boundary=structure_config.get(&quot;v_outer_boundary&quot;, None),
+        time_explosion=time_explosion,
+    )
+    return electron_densities, temperature, geometry, density</div>
+
+
+<div class="viewcode-block" id="parse_csvy_geometry"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_geometry">[docs]</a>def parse_csvy_geometry(
+    config, csvy_model_config, csvy_model_data, time_explosion
+):
+    &quot;&quot;&quot;
+    Parse the geometry data from a CSVY model.
+
+    Parameters
+    ----------
+    config : object
+        The configuration data.
+    csvy_model_config : object
+        The configuration data of the CSVY model.
+    csvy_model_data : object
+        The data of the CSVY model.
+    time_explosion : float
+        The time of the explosion.
+
+    Returns
+    -------
+    geometry : object
+        The parsed geometry.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function parses the geometry data from a CSVY model. It extracts the velocity
+    information from the CSVY model configuration or data. The parsed velocity data is
+    used to create a homologous radial 1D geometry object, which is returned.
+    &quot;&quot;&quot;
+    if hasattr(config, &quot;model&quot;):
+        if hasattr(config.model, &quot;v_inner_boundary&quot;):
+            v_boundary_inner = config.model.v_inner_boundary
+        else:
+            v_boundary_inner = None
+
+        if hasattr(config.model, &quot;v_outer_boundary&quot;):
+            v_boundary_outer = config.model.v_outer_boundary
+        else:
+            v_boundary_outer = None
+    else:
+        v_boundary_inner = None
+        v_boundary_outer = None
+
+    if hasattr(csvy_model_config, &quot;velocity&quot;):
+        velocity = quantity_linspace(
+            csvy_model_config.velocity.start,
+            csvy_model_config.velocity.stop,
+            csvy_model_config.velocity.num + 1,
+        ).cgs
+    else:
+        velocity_field_index = [
+            field[&quot;name&quot;] for field in csvy_model_config.datatype.fields
+        ].index(&quot;velocity&quot;)
+        velocity_unit = u.Unit(
+            csvy_model_config.datatype.fields[velocity_field_index][&quot;unit&quot;]
+        )
+        velocity = csvy_model_data[&quot;velocity&quot;].values * velocity_unit
+        velocity = velocity.to(&quot;cm/s&quot;)
+
+    geometry = HomologousRadial1DGeometry(
+        velocity[:-1],  # r_inner
+        velocity[1:],  # r_outer
+        v_inner_boundary=v_boundary_inner,
+        v_outer_boundary=v_boundary_outer,
+        time_explosion=time_explosion,
+    )
+    return geometry</div>
+
+
+<div class="viewcode-block" id="parse_abundance_config"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_config">[docs]</a>def parse_abundance_config(config, geometry, time_explosion):
+    &quot;&quot;&quot;
+    Parse the abundance configuration data.
+
+    Parameters
+    ----------
+    config : object
+        The configuration data.
+    geometry : object
+        The geometry of the model.
+    time_explosion : float
+        The time of the explosion.
+
+    Returns
+    -------
+    nuclide_mass_fraction : object
+        The parsed nuclide mass fraction.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function parses the abundance configuration data and returns the parsed nuclide
+    mass fraction. The abundance configuration can be of type &#39;uniform&#39; or &#39;file&#39;. If it
+    is of type &#39;uniform&#39;, the abundance and isotope abundance are read using the
+    &#39;read_uniform_abundances&#39; function. If it is of type &#39;file&#39;, the abundance and
+    isotope abundance are read from a file using the &#39;read_abundances_file&#39; function.
+    The parsed data is then processed to replace NaN values with 0.0, remove rows with
+    zero sum, and normalize the data if necessary. The resulting nuclide mass fraction
+    is returned.
+    &quot;&quot;&quot;
+
+    abundances_section = config.model.abundances
+    isotope_abundance = pd.DataFrame()
+
+    if abundances_section.type == &quot;uniform&quot;:
+        abundance, isotope_abundance = read_uniform_abundances(
+            abundances_section, geometry.no_of_shells
+        )
+
+    elif abundances_section.type == &quot;file&quot;:
+        if os.path.isabs(abundances_section.filename):
+            abundances_fname = abundances_section.filename
+        else:
+            abundances_fname = os.path.join(
+                config.config_dirname, abundances_section.filename
+            )
+
+        index, abundance, isotope_abundance = read_abundances_file(
+            abundances_fname, abundances_section.filetype
+        )
+
+    abundance = abundance.replace(np.nan, 0.0)
+    abundance = abundance[abundance.sum(axis=1) &gt; 0]
+
+    norm_factor = abundance.sum(axis=0) + isotope_abundance.sum(axis=0)
+
+    if np.any(np.abs(norm_factor - 1) &gt; 1e-12):
+        logger.warning(
+            &quot;Abundances have not been normalized to 1.&quot; &quot; - normalizing&quot;
+        )
+        abundance /= norm_factor
+        isotope_abundance /= norm_factor
+
+    isotope_abundance = IsotopeAbundances(isotope_abundance).decay(
+        time_explosion
+    )
+
+    nuclide_mass_fraction = convert_to_nuclide_mass_fraction(
+        isotope_abundance, abundance
+    )
+    return nuclide_mass_fraction</div>
+
+
+<div class="viewcode-block" id="convert_to_nuclide_mass_fraction"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.convert_to_nuclide_mass_fraction">[docs]</a>def convert_to_nuclide_mass_fraction(isotope_mass_fraction, mass_fraction):
+    &quot;&quot;&quot;
+    Convert the abundance and isotope abundance data to nuclide mass fraction.
+
+    Parameters
+    ----------
+    isotope_abundance : pandas.DataFrame
+        The isotope abundance data.
+    abundance : pandas.DataFrame
+        The abundance data.
+
+    Returns
+    -------
+    nuclide_mass_fraction : pandas.DataFrame
+        The converted nuclide mass fraction.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function converts the abundance and isotope abundance data to nuclide mass fraction.
+    If the abundance data is not None, it is converted to nuclide mass fraction by mapping
+    the abundance index to nuclide indices using the &#39;convert_element2nuclide_index&#39; function.
+    The resulting abundance data is then concatenated with the isotope abundance data to
+    obtain the final nuclide mass fraction.
+    &quot;&quot;&quot;
+
+    nuclide_mass_fraction = pd.DataFrame()
+    if mass_fraction is not None:
+        mass_fraction.index = Composition.convert_element2nuclide_index(
+            mass_fraction.index
+        )
+        nuclide_mass_fraction = mass_fraction
+    else:
+        nuclide_mass_fraction = pd.DataFrame()
+
+    if isotope_mass_fraction is not None:
+        nuclide_mass_fraction = pd.concat(
+            [nuclide_mass_fraction, isotope_mass_fraction]
+        )
+    return nuclide_mass_fraction</div>
+
+
+<div class="viewcode-block" id="parse_composition_csvy"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_composition_csvy">[docs]</a>def parse_composition_csvy(
+    atom_data, csvy_model_config, csvy_model_data, time_explosion, geometry
+):
+    &quot;&quot;&quot;
+    Parse the composition data from a CSVY model.
+
+    Parameters
+    ----------
+    atom_data : object
+        The atom data used for parsing.
+    csvy_model_config : object
+        The configuration data of the CSVY model.
+    csvy_model_data : object
+        The data of the CSVY model.
+    time_explosion : float
+        The time of the explosion.
+    geometry : object
+        The geometry of the model.
+
+    Returns
+    -------
+    density : object
+        The parsed density data.
+    abundance : object
+        The parsed abundance data.
+    isotope_abundance : object
+        The parsed isotope abundance data.
+    elemental_mass : object
+        The elemental mass data.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function parses the composition data from a CSVY model. It calls the &#39;parse_density_csvy&#39;
+    function to parse the density data, and the &#39;parse_abundance_csvy&#39; function to parse the abundance
+    and isotope abundance data. The parsed data is returned as density, abundance, isotope_abundance,
+    and elemental_mass.
+    &quot;&quot;&quot;
+
+    density = parse_density_csvy(
+        csvy_model_config, csvy_model_data, time_explosion
+    )
+
+    nuclide_mass_fraction = parse_abundance_csvy(
+        csvy_model_config, csvy_model_data, geometry, time_explosion
+    )
+    return Composition(
+        density, nuclide_mass_fraction, atom_data.atom_data.mass.copy()
+    )</div>
+
+
+<div class="viewcode-block" id="parse_abundance_csvy"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_csvy">[docs]</a>def parse_abundance_csvy(
+    csvy_model_config, csvy_model_data, geometry, time_explosion
+):
+    &quot;&quot;&quot;
+    Parse the abundance data from a CSVY model.
+
+    Parameters
+    ----------
+    csvy_model_config : object
+        The configuration data of the CSVY model.
+    csvy_model_data : object
+        The data of the CSVY model.
+    geometry : object
+        The geometry of the model.
+
+    Returns
+    -------
+    abundance : pd.DataFrame
+        The parsed abundance data.
+    isotope_abundance : pandas.DataFrame
+        The parsed isotope abundance data.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function parses the abundance data from a CSVY model. If the CSVY model
+    configuration contains an &#39;abundance&#39; attribute, it uses the &#39;read_uniform_abundances&#39;
+    function to parse the abundance and isotope abundance data. Otherwise, it uses the
+    &#39;parse_csv_abundances&#39; function to parse the data. The parsed data is then processed
+    to replace NaN values with 0.0, remove rows with zero sum, and normalize the data
+    if necessary. The resulting abundance and isotope abundance arrays are returned.
+    &quot;&quot;&quot;
+
+    if hasattr(csvy_model_config, &quot;abundance&quot;):
+        abundances_section = csvy_model_config.abundance
+        mass_fraction, isotope_mass_fraction = read_uniform_abundances(
+            abundances_section, geometry.no_of_shells
+        )
+    else:
+        index, mass_fraction, isotope_mass_fraction = parse_csv_abundances(
+            csvy_model_data
+        )
+        mass_fraction = mass_fraction.loc[:, 1:]
+        mass_fraction.columns = np.arange(mass_fraction.shape[1])
+        isotope_mass_fraction = isotope_mass_fraction.loc[:, 1:]
+        isotope_mass_fraction.columns = np.arange(
+            isotope_mass_fraction.shape[1]
+        )
+
+    mass_fraction = mass_fraction.replace(np.nan, 0.0)
+    mass_fraction = mass_fraction[mass_fraction.sum(axis=1) &gt; 0]
+    isotope_mass_fraction = isotope_mass_fraction.replace(np.nan, 0.0)
+    isotope_mass_fraction = isotope_mass_fraction[
+        isotope_mass_fraction.sum(axis=1) &gt; 0
+    ]
+    norm_factor = mass_fraction.sum(axis=0) + isotope_mass_fraction.sum(axis=0)
+
+    if np.any(np.abs(norm_factor - 1) &gt; 1e-12):
+        logger.warning(
+            &quot;Abundances have not been normalized to 1.&quot; &quot; - normalizing&quot;
+        )
+        mass_fraction /= norm_factor
+        isotope_mass_fraction /= norm_factor
+
+    isotope_mass_fraction = IsotopeAbundances(
+        isotope_mass_fraction, time_0=csvy_model_config.model_isotope_time_0
+    ).decay(time_explosion)
+    return convert_to_nuclide_mass_fraction(
+        isotope_mass_fraction, mass_fraction
+    )</div>
+
+
+<div class="viewcode-block" id="parse_density_csvy"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_density_csvy">[docs]</a>def parse_density_csvy(csvy_model_config, csvy_model_data, time_explosion):
+    &quot;&quot;&quot;
+    Parse the density data from a CSVY model.
+
+    Parameters
+    ----------
+    csvy_model_config : object
+        The configuration data of the CSVY model.
+    csvy_model_data : object
+        The data of the CSVY model.
+    time_explosion : float
+        The time of the explosion.
+
+    Returns
+    -------
+    density : object
+        The parsed density data.
+
+    Raises
+    ------
+    None.
+
+    Notes
+    -----
+    This function parses the density data from a CSVY model. If the CSVY model configuration
+    contains a &#39;density&#39; attribute, it uses the &#39;parse_csvy_density&#39; function to parse the
+    density data. Otherwise, it calculates the density data using the &#39;calculate_density_after_time&#39;
+    function. The parsed density data is returned.
+    &quot;&quot;&quot;
+
+    if hasattr(csvy_model_config, &quot;density&quot;):
+        density = parse_csvy_density(csvy_model_config, time_explosion)
+    else:
+        time_0 = csvy_model_config.model_density_time_0
+        density_field_index = [
+            field[&quot;name&quot;] for field in csvy_model_config.datatype.fields
+        ].index(&quot;density&quot;)
+        density_unit = u.Unit(
+            csvy_model_config.datatype.fields[density_field_index][&quot;unit&quot;]
+        )
+        density_0 = csvy_model_data[&quot;density&quot;].values * density_unit
+        density_0 = density_0.to(&quot;g/cm^3&quot;)[1:]
+        density_0 = density_0.insert(0, 0)
+        density = calculate_density_after_time(
+            density_0, time_0, time_explosion
+        )
+
+    return density</div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 23 Nov 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
