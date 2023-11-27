@@ -69,6 +69,7 @@
 <li class="toctree-l3"><a class="reference internal" href="supernova.html">Supernova Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="atomic/atomic_data.html">Atomic Data</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Plasma Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#continuum-interaction">Continuum Interaction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nlte">NLTE</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nlte-ionization">NLTE Ionization</a></li>
 </ul>
@@ -150,9 +151,9 @@ There are currently two <code class="docutils literal notranslate"><span class="
 ionization equilibrium and level population calculations (see <a class="reference internal" href="../../../physics/setup/plasma/index.html#plasma"><span class="std std-ref">Plasma</span></a> for more information).
 The radiative rates describe how to calculate the <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span> needed for the <a class="reference internal" href="../../../physics/setup/plasma/nlte.html#nlte"><span class="std std-ref">NLTE treatment</span></a> calculations and
 <a class="reference internal" href="../../../physics/setup/plasma/macroatom.html#macroatom"><span class="std std-ref">Macro Atom</span></a> calculations. There are three options for <code class="docutils literal notranslate"><span class="pre">radiative_rates_type</span></code>:</p>
-<p>1) <code class="docutils literal notranslate"><span class="pre">lte</span></code>, in which
+<p>1) <code class="docutils literal notranslate"><span class="pre">blackbody</span></code>, in which
 <span class="math notranslate nohighlight">\(J_\textrm{blue} = \textrm{Blackbody}(T_\textrm{rad})\)</span></p>
-<p>2) <code class="docutils literal notranslate"><span class="pre">nebular</span></code> in which
+<p>2) <code class="docutils literal notranslate"><span class="pre">dilute-blackbody</span></code> in which
 <span class="math notranslate nohighlight">\(J_\textrm{blue} = W \times \textrm{Blackbody}(T_\textrm{rad})\)</span></p>
 <p>3) <code class="docutils literal notranslate"><span class="pre">detailed</span></code> in which the <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span>
 are calculated using an estimator (this is described in <a class="reference internal" href="../../../physics/montecarlo/estimators.html"><span class="doc">Volume-Based Estimators</span></a>).</p>
@@ -161,6 +162,23 @@ are calculated using an estimator (this is described in <a class="reference inte
 version of <code class="docutils literal notranslate"><span class="pre">macroatom</span></code> in which only downward transitions are allowed (see <a class="reference internal" href="../../../physics/montecarlo/lineinteraction.html#lineinteraction"><span class="std std-ref">Line Interaction Treatments</span></a>).</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">w_epsilon</span></code> describes the dilution factor to use to calculate <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span> that are 0, which
 causes problems with the code (so <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span> are set to a very small number).</p>
+<section id="continuum-interaction">
+<h2>Continuum Interaction<a class="headerlink" href="#continuum-interaction" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plasma</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">link_t_rad_t_electron</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">continuum_interaction</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">species</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">H I</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">H II</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">He I</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">He II</span>
+<span class="w">        </span><span class="nt">enable_adiabatic_cooling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre></div>
+</div>
+<p>This will add continuum interactions for all specified species. Setting <span class="math notranslate nohighlight">\(T_\textrm{rad} = T_\textrm{electron}\)</span> through
+<code class="docutils literal notranslate"><span class="pre">link_t_rad_t_electron:</span> <span class="pre">1.0</span></code> is recommended to enforce LTE (unless the simulation uses NLTE treatment).
+<code class="docutils literal notranslate"><span class="pre">enable_adiabatic_cooling</span></code> enables adiabatic cooling.</p>
+</section>
 <section id="nlte">
 <h2>NLTE<a class="headerlink" href="#nlte" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nlte</span><span class="p">:</span>
@@ -196,7 +214,7 @@ species must be present in the continuum interaction species as well.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 26 Nov 2023.
+      <span class="lastupdated">Last updated on 27 Nov 2023.
       </span></p>
   </div>
 
