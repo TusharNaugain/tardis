@@ -115,8 +115,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.atom_data.atom_web_download</h1><div class="highlight"><pre>
-<span></span>import os
-import logging
+<span></span>import logging
 
 from tardis.io.util import get_internal_data_path, download_from_url
 from tardis.io.configuration.config_internal import get_data_dir
@@ -138,7 +137,7 @@ logger = logging.getLogger(__name__)
     return yaml.load(open(atomic_repo_fname), Loader=yaml.CLoader)</div>
 
 
-<div class="viewcode-block" id="download_atom_data"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.atom_web_download.html#tardis.io.atom_data.atom_web_download.download_atom_data">[docs]</a>def download_atom_data(atomic_data_name=None):
+<div class="viewcode-block" id="download_atom_data"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.atom_web_download.html#tardis.io.atom_data.atom_web_download.download_atom_data">[docs]</a>def download_atom_data(atomic_data_name=None, force_download=False):
     &quot;&quot;&quot;
     Download the atomic data from the repository
 
@@ -146,6 +145,9 @@ logger = logging.getLogger(__name__)
     ----------
     atomic_data_name : str
         if None
+
+    force_download : bool
+        if True, force download even if file exists
 
     Returns
     -------
@@ -159,13 +161,19 @@ logger = logging.getLogger(__name__)
     if atomic_data_name not in atomic_repo:
         raise ValueError(f&quot;Atomic Data name {atomic_data_name} not known&quot;)
 
-    dst_dir = os.path.join(get_data_dir(), f&quot;{atomic_data_name}.h5&quot;)
+    dst_fname = get_data_dir() / f&quot;{atomic_data_name}.h5&quot;
+
+    if dst_fname.exists() and not force_download:
+        logger.warning(
+            f&quot;Atomic Data {atomic_data_name} already exists in {dst_fname}. Will not download - override with force_download=True.&quot;
+        )
+        return
     src_url = atomic_repo[atomic_data_name][&quot;url&quot;]
     mirrors = tuple(atomic_repo[atomic_data_name][&quot;mirrors&quot;])
     checksum = atomic_repo[atomic_data_name][&quot;md5&quot;]
 
-    logger.info(f&quot;Downloading atomic data from {src_url} to {dst_dir}&quot;)
-    download_from_url(src_url, dst_dir, checksum, mirrors)</div>
+    logger.info(f&quot;Downloading atomic data from {src_url} to {dst_fname}&quot;)
+    download_from_url(src_url, dst_fname, checksum, mirrors)</div>
 </pre></div>
 
            </div>
@@ -176,7 +184,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 27 Nov 2023.
+      <span class="lastupdated">Last updated on 29 Nov 2023.
       </span></p>
   </div>
 
