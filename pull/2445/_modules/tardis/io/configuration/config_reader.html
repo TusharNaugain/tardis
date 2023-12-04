@@ -115,17 +115,18 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.configuration.config_reader</h1><div class="highlight"><pre>
-<span></span>import os
+<span></span>import copy
 import logging
-import copy
+import os
 import pprint
-import yaml
+
 import pandas as pd
+import yaml
 from astropy import units as u
 
 from tardis.io.configuration import config_validator
-from tardis.io.util import YAMLLoader, yaml_load_file, HDFWriterMixin
 from tardis.io.model.readers.csvy import load_yaml_from_csvy
+from tardis.io.util import HDFWriterMixin, YAMLLoader, yaml_load_file
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -165,7 +166,7 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         try:
             yaml_dict = yaml_load_file(fname)
-        except IOError as e:
+        except OSError as e:
             logger.critical(f&quot;No config file named: {fname}&quot;)
             raise e
 
@@ -185,7 +186,6 @@ logger = logging.getLogger(__name__)
         -------
         `tardis.config_reader.Configuration`
         &quot;&quot;&quot;
-
         return cls(config_validator.validate_dict(config_dict))</div>
 
     def __init__(self, value=None):
@@ -280,7 +280,6 @@ logger = logging.getLogger(__name__)
         value :
             value to set the parameter with it
         &quot;&quot;&quot;
-
         config_item_path = config_item_string.split(&quot;.&quot;)
         if len(config_item_path) == 1:
             self[config_item_path[0]] = value
@@ -332,7 +331,7 @@ logger = logging.getLogger(__name__)
             yaml_dict = yaml_load_file(
                 fname, loader=kwargs.pop(&quot;loader&quot;, YAMLLoader)
             )
-        except IOError as e:
+        except OSError as e:
             logger.critical(f&quot;No config file named: {fname}&quot;)
             raise e
 
@@ -362,7 +361,6 @@ logger = logging.getLogger(__name__)
         -------
         `tardis.config_reader.Configuration`
         &quot;&quot;&quot;
-
         if validate:
             validated_config_dict = config_validator.validate_dict(config_dict)
         else:
@@ -461,10 +459,8 @@ logger = logging.getLogger(__name__)
 
         Parameters
         ----------
-
         model_section : dict
         &quot;&quot;&quot;
-
         if model_section[&quot;structure&quot;][&quot;type&quot;] == &quot;specific&quot;:
             start_velocity = model_section[&quot;structure&quot;][&quot;velocity&quot;][&quot;start&quot;]
             stop_velocity = model_section[&quot;structure&quot;][&quot;velocity&quot;][&quot;stop&quot;]
@@ -524,10 +520,8 @@ logger = logging.getLogger(__name__)
 
         Parameters
         ----------
-
         montecarlo_section : dict
         &quot;&quot;&quot;
-
         if montecarlo_section[&quot;convergence_strategy&quot;][&quot;type&quot;] == &quot;damped&quot;:
             montecarlo_section[
                 &quot;convergence_strategy&quot;
@@ -540,9 +534,7 @@ logger = logging.getLogger(__name__)
                 &quot;you need to implement your specific convergence treatment&quot;
             )
         else:
-            raise ValueError(
-                &#39;convergence_strategy is not &quot;damped&quot; &#39; &#39;or &quot;custom&quot;&#39;
-            )</div>
+            raise ValueError(&#39;convergence_strategy is not &quot;damped&quot; or &quot;custom&quot;&#39;)</div>
 
 <div class="viewcode-block" id="Configuration.parse_convergence_section"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.parse_convergence_section">[docs]</a>    @staticmethod
     def parse_convergence_section(convergence_section_dict):
@@ -554,7 +546,6 @@ logger = logging.getLogger(__name__)
         convergence_section_dict : dict
             dictionary
         &quot;&quot;&quot;
-
         convergence_parameters = [&quot;damping_constant&quot;, &quot;threshold&quot;]
 
         for convergence_variable in [&quot;t_inner&quot;, &quot;t_rad&quot;, &quot;w&quot;]:
@@ -625,7 +616,7 @@ yaml.add_representer(Configuration, cns_representer)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

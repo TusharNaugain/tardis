@@ -148,12 +148,12 @@
   <section id="module-tardis.model.matter.decay">
 <span id="tardis-model-matter-decay-module"></span><h1>tardis.model.matter.decay module<a class="headerlink" href="#module-tardis.model.matter.decay" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.model.matter.decay.</span></span><span class="sig-name descname"><span class="pre">IsotopeAbundances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.0.dev0+694.g1c606d5f01)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.model.matter.decay.</span></span><span class="sig-name descname"><span class="pre">IsotopicMassFraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.0.dev0+782.g7c6d26f632)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.as_atoms">
-<span class="sig-name descname"><span class="pre">as_atoms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.as_atoms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.as_atoms" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.as_atoms">
+<span class="sig-name descname"><span class="pre">as_atoms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.as_atoms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.as_atoms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge Isotope dataframe according to atomic number</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -166,8 +166,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.decay">
-<span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.decay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.decay" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.decay">
+<span class="sig-name descname"><span class="pre">decay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.decay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.decay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decay the Model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -186,18 +186,18 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.from_inventories">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_inventories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inventories</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.from_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.from_inventories" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.from_inventories">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_inventories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inventories</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.from_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.from_inventories" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.id_to_tuple">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id_to_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.id_to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.id_to_tuple" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.id_to_tuple">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id_to_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.id_to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.id_to_tuple" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.merge">
-<span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.merge" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.merge">
+<span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.merge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge Isotope dataframe with abundance passed as parameter</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -217,8 +217,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopeAbundances.to_inventories">
-<span class="sig-name descname"><span class="pre">to_inventories</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopeAbundances.to_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopeAbundances.to_inventories" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.matter.decay.IsotopicMassFraction.to_inventories">
+<span class="sig-name descname"><span class="pre">to_inventories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shell_masses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/matter/decay.html#IsotopicMassFraction.to_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.matter.decay.IsotopicMassFraction.to_inventories" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert DataFrame to a list of inventories interpreting the MultiIndex as
 atomic_number and mass_number</p>
 <dl class="field-list simple">
@@ -247,7 +247,7 @@ atomic_number and mass_number</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

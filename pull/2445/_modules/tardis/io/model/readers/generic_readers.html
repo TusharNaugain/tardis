@@ -251,7 +251,7 @@ from tardis.util.base import parse_quantity
     )
 
     for element_symbol_string in abundances_section:
-        if element_symbol_string == &quot;type&quot;:
+        if element_symbol_string in [&quot;type&quot;, &quot;model_isotope_time_0&quot;]:
             continue
         try:
             if element_symbol_string in Z_DICT.values():
@@ -283,7 +283,7 @@ from tardis.util.base import parse_quantity
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

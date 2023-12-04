@@ -115,16 +115,17 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.matter.decay</h1><div class="highlight"><pre>
-<span></span>import pandas as pd
-from radioactivedecay import Nuclide, Inventory
-from radioactivedecay.utils import Z_to_elem
+<span></span>import logging
+
+import pandas as pd
 from astropy import units as u
-import logging
+from radioactivedecay import Inventory, Nuclide
+from radioactivedecay.utils import Z_to_elem
 
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="IsotopeAbundances"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances">[docs]</a>class IsotopeAbundances(pd.DataFrame):
+<div class="viewcode-block" id="IsotopicMassFraction"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction">[docs]</a>class IsotopicMassFraction(pd.DataFrame):
     _metadata = [&quot;time_0&quot;]
 
     def __init__(self, *args, **kwargs):
@@ -133,21 +134,21 @@ logger = logging.getLogger(__name__)
             kwargs.pop(&quot;time_0&quot;)
         else:
             time_0 = 0 * u.d
-        super(IsotopeAbundances, self).__init__(*args, **kwargs)
+        super(IsotopicMassFraction, self).__init__(*args, **kwargs)
         self.time_0 = time_0
 
     @property
     def _constructor(self):
-        return IsotopeAbundances
+        return IsotopicMassFraction
 
     def _update_inventory(self):
         self.comp_dicts = [dict() for i in range(len(self.columns))]
-        for (atomic_number, mass_number), abundances in self.iterrows():
+        for (atomic_number, mass_number), mass_fractions in self.iterrows():
             nuclear_symbol = f&quot;{Z_to_elem(atomic_number)}{mass_number}&quot;
             for i in range(len(self.columns)):
-                self.comp_dicts[i][nuclear_symbol] = abundances[i]
+                self.comp_dicts[i][nuclear_symbol] = mass_fractions[i]
 
-<div class="viewcode-block" id="IsotopeAbundances.from_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.from_inventories">[docs]</a>    @classmethod
+<div class="viewcode-block" id="IsotopicMassFraction.from_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.from_inventories">[docs]</a>    @classmethod
     def from_inventories(cls, inventories):
         multi_index_tuples = set([])
         for inventory in inventories:
@@ -169,12 +170,12 @@ logger = logging.getLogger(__name__)
 
         return cls(abundances)</div>
 
-<div class="viewcode-block" id="IsotopeAbundances.id_to_tuple"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.id_to_tuple">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="IsotopicMassFraction.id_to_tuple"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.id_to_tuple">[docs]</a>    @staticmethod
     def id_to_tuple(atomic_id):
         nuclide = Nuclide(atomic_id)
         return nuclide.Z, nuclide.A</div>
 
-<div class="viewcode-block" id="IsotopeAbundances.to_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.to_inventories">[docs]</a>    def to_inventories(self):
+<div class="viewcode-block" id="IsotopicMassFraction.to_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.to_inventories">[docs]</a>    def to_inventories(self, shell_masses=None):
         &quot;&quot;&quot;
         Convert DataFrame to a list of inventories interpreting the MultiIndex as
         atomic_number and mass_number
@@ -184,15 +185,19 @@ logger = logging.getLogger(__name__)
         list
             list of radioactivedecay Inventories
         &quot;&quot;&quot;
-
         comp_dicts = [dict() for i in range(len(self.columns))]
         for (atomic_number, mass_number), abundances in self.iterrows():
             nuclear_symbol = f&quot;{Z_to_elem(atomic_number)}{mass_number}&quot;
             for i in range(len(self.columns)):
-                comp_dicts[i][nuclear_symbol] = abundances[i]
+                if shell_masses is None:
+                    comp_dicts[i][nuclear_symbol] = abundances[i]
+                else:
+                    comp_dicts[i][nuclear_symbol] = (
+                        abundances[i] * shell_masses[i].to(u.g).value
+                    )
         return [Inventory(comp_dict, &quot;g&quot;) for comp_dict in comp_dicts]</div>
 
-<div class="viewcode-block" id="IsotopeAbundances.decay"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.decay">[docs]</a>    def decay(self, t):
+<div class="viewcode-block" id="IsotopicMassFraction.decay"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.decay">[docs]</a>    def decay(self, t):
         &quot;&quot;&quot;
         Decay the Model
 
@@ -206,7 +211,6 @@ logger = logging.getLogger(__name__)
         pandas.DataFrame
             Decayed abundances
         &quot;&quot;&quot;
-
         inventories = self.to_inventories()
         t_second = (
             u.Quantity(t, u.day).to(u.s).value - self.time_0.to(u.s).value
@@ -218,14 +222,14 @@ logger = logging.getLogger(__name__)
                 f&quot; A negative decay time can potentially lead to negative abundances.&quot;
             )
         decayed_inventories = [item.decay(t_second) for item in inventories]
-        df = IsotopeAbundances.from_inventories(decayed_inventories)
+        df = IsotopicMassFraction.from_inventories(decayed_inventories)
         df.sort_index(inplace=True)
         assert (
             df.ge(0.0).all().all()
         ), &quot;Negative abundances detected. Please make sure your input abundances are correct.&quot;
         return df</div>
 
-<div class="viewcode-block" id="IsotopeAbundances.as_atoms"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.as_atoms">[docs]</a>    def as_atoms(self):
+<div class="viewcode-block" id="IsotopicMassFraction.as_atoms"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.as_atoms">[docs]</a>    def as_atoms(self):
         &quot;&quot;&quot;
         Merge Isotope dataframe according to atomic number
 
@@ -234,10 +238,9 @@ logger = logging.getLogger(__name__)
         pandas.DataFrame
             Merged isotope abundances
         &quot;&quot;&quot;
-
         return self.groupby(&quot;atomic_number&quot;).sum()</div>
 
-<div class="viewcode-block" id="IsotopeAbundances.merge"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopeAbundances.merge">[docs]</a>    def merge(self, other, normalize=True):
+<div class="viewcode-block" id="IsotopicMassFraction.merge"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.merge">[docs]</a>    def merge(self, other, normalize=True):
         &quot;&quot;&quot;
         Merge Isotope dataframe with abundance passed as parameter
 
@@ -272,7 +275,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

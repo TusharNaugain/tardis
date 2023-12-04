@@ -115,36 +115,36 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.simulation.base</h1><div class="highlight"><pre>
-<span></span>import time
-import os
-import logging
+<span></span>import logging
+import time
+from collections import OrderedDict
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-import tardis
 from astropy import units as u
-from tardis import constants as const
-from collections import OrderedDict
-from tardis import model
-
-from tardis.montecarlo.base import MontecarloTransport
-from tardis.model import SimulationState
-from tardis.plasma.standard_plasmas import assemble_plasma
-from tardis.io.util import HDFWriterMixin
-from tardis.io.configuration.config_reader import ConfigurationError
-from tardis.io.atom_data.base import AtomData
-from tardis.util.base import is_notebook
-from tardis.montecarlo import montecarlo_configuration as mc_config_module
-from tardis.visualization import ConvergencePlots
 from IPython.display import display
+
+import tardis
+from tardis import constants as const
+from tardis.io.atom_data.base import AtomData
+from tardis.io.configuration.config_reader import ConfigurationError
+from tardis.io.util import HDFWriterMixin
+from tardis.model import SimulationState
+from tardis.montecarlo import montecarlo_configuration as mc_config_module
+from tardis.montecarlo.base import MontecarloTransport
 from tardis.montecarlo.montecarlo_numba.r_packet import (
     rpacket_trackers_to_dataframe,
 )
+from tardis.plasma.standard_plasmas import assemble_plasma
+from tardis.util.base import is_notebook
+from tardis.visualization import ConvergencePlots
 
 # Adding logging support
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="PlasmaStateStorerMixin"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin">[docs]</a>class PlasmaStateStorerMixin(object):
+<div class="viewcode-block" id="PlasmaStateStorerMixin"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin">[docs]</a>class PlasmaStateStorerMixin:
     &quot;&quot;&quot;Mixin class to provide the capability to the simulation object of
     storing plasma information and the inner boundary temperature during each
     MC iteration.
@@ -544,7 +544,6 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         run the simulation
         &quot;&quot;&quot;
-
         start_time = time.time()
         while self.iterations_executed &lt; self.iterations - 1:
             self.store_plasma_state(
@@ -629,7 +628,6 @@ logger = logging.getLogger(__name__)
         Returns
         -------
         &quot;&quot;&quot;
-
         plasma_state_log = pd.DataFrame(
             index=np.arange(len(t_rad)),
             columns=[&quot;t_rad&quot;, &quot;next_t_rad&quot;, &quot;w&quot;, &quot;next_w&quot;],
@@ -660,11 +658,11 @@ logger = logging.getLogger(__name__)
         else:
             output_df = &quot;&quot;
             plasma_output = plasma_state_log.iloc[::log_sampling].to_string(
-                float_format=lambda x: &quot;{:.3g}&quot;.format(x),
+                float_format=lambda x: f&quot;{x:.3g}&quot;,
                 justify=&quot;center&quot;,
             )
             for value in plasma_output.split(&quot;\n&quot;):
-                output_df = output_df + &quot;\t{}\n&quot;.format(value)
+                output_df = output_df + f&quot;\t{value}\n&quot;
             logger.info(&quot;\n\tPlasma stratification:&quot;)
             logger.info(f&quot;\n{output_df}&quot;)
 
@@ -762,12 +760,13 @@ logger = logging.getLogger(__name__)
         atom_data = kwargs.get(&quot;atom_data&quot;, None)
         if atom_data is None:
             if &quot;atom_data&quot; in config:
-                if os.path.isabs(config.atom_data):
+                if Path(config.atom_data).is_absolute():
                     atom_data_fname = config.atom_data
                 else:
-                    atom_data_fname = os.path.join(
-                        config.config_dirname, config.atom_data
+                    atom_data_fname = (
+                        Path(config.config_dirname) / config.atom_data
                     )
+
             else:
                 raise ValueError(
                     &quot;No atom_data option found in the configuration.&quot;
@@ -874,7 +873,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

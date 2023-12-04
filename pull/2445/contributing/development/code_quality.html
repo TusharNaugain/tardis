@@ -89,6 +89,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Code Quality Guidelines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#code-style-conventions">Code Style Conventions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#black">Black</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ruff">Ruff</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
 </ul>
 </li>
@@ -160,6 +161,27 @@
 <p>If your code doesn’t follow the Black code style, then the Black-check action on your PR will fail.</p>
 </div>
 </section>
+<section id="ruff">
+<h3>Ruff<a class="headerlink" href="#ruff" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://docs.astral.sh/ruff/">Ruff</a> is a code linter and formatter that checks for common mistakes and automatically fixes them. It is currently not installed in the TARDIS conda environment, so you will have to install it manually:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge ruff
+</pre></div>
+</div>
+<p>To run Ruff, use the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ruff check &lt;source_file_or_directory&gt; # Lints the code
+ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable errors
+</pre></div>
+</div>
+<p>Currently, Ruff is not integrated with the TARDIS CI and is not a requirement for merging a PR. However, it is recommended to run Ruff on your code before commiting it to ensure that new code already follows these rules.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We adopt the linting rules utilized by astropy. Permanent rules are defined in the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, non-permanent rules are defined in the <code class="docutils literal notranslate"><span class="pre">.ruff.toml</span></code> file. If you want to add a new rule, please add it to the <code class="docutils literal notranslate"><span class="pre">.ruff.toml</span></code> file. If you want to add a permanent rule, please open a PR to the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ruff can also be used for formatting code, but for now we recommend using Black for this purpose as the CI is configured to run Black on all PRs.</p>
+</div>
+</section>
 <section id="naming-conventions">
 <h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">¶</a></h3>
 <p>While Black automatically conforms your code to a majority of the PEP 8 style guide (like whitespace usage, string quotes, code layout, etc.), your code still needs to conform to the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/#naming-conventions">PEP 8 naming conventions</a>. The main things to keep in mind are:</p>
@@ -171,7 +193,7 @@
 </section>
 </section>
 <section id="docstrings">
-<span id="id2"></span><h2>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this heading">¶</a></h2>
+<span id="id3"></span><h2>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this heading">¶</a></h2>
 <p>A docstring (short for documentation string) is a string that describes a module’s, function’s, class’s, or method’s definition. The docstring is a special attribute of the object (<code class="docutils literal notranslate"><span class="pre">object.__doc__</span></code>) and, for consistency, is surrounded by triple double quotes. Besides helping others understand what your code does, docstrings are used by Sphinx to auto-generate <a class="reference external" href="https://tardis-sn.github.io/tardis/api/modules.html">API documentation</a>.</p>
 <p>At TARDIS, we follow the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">Numpy docstring format</a> - please go through this format guide before writing docstrings. The following is an example of a properly formatted docstring from the <a class="reference external" href="https://github.com/tardis-sn/tardis/blob/master/tardis/io/model_reader.py">model_reader</a> module of TARDIS:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_density_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">filetype</span><span class="p">):</span>
@@ -247,7 +269,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

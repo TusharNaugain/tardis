@@ -115,40 +115,30 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.base</h1><div class="highlight"><pre>
-<span></span>import os
-
+<span></span>import logging
+import os
 from pathlib import Path
-import logging
+
 import numpy as np
-import pandas as pd
 from astropy import units as u
+
 from tardis import constants
-import radioactivedecay as rd
-from radioactivedecay.utils import Z_DICT
+from tardis.io.configuration.config_reader import Configuration
+from tardis.io.configuration.config_validator import validate_dict
+from tardis.io.model.readers.csvy import (
+    load_csvy,
+)
+from tardis.io.util import HDFWriterMixin
+from tardis.model.matter.composition import Composition
 from tardis.model.parse_input import (
     parse_abundance_config,
     parse_composition_csvy,
     parse_csvy_geometry,
     parse_structure_config,
 )
-from tardis.model.matter.composition import Composition
-from tardis.util.base import is_valid_nuclide_or_elem
-
-
 from tardis.montecarlo.packet_source import BlackBodySimpleSource
-
 from tardis.radiation_field.base import MonteCarloRadiationFieldState
-
-
-from tardis.io.model.readers.csvy import (
-    load_csvy,
-)
-
-
-from tardis.io.configuration.config_validator import validate_dict
-from tardis.io.configuration.config_reader import Configuration
-from tardis.io.util import HDFWriterMixin
-
+from tardis.util.base import is_valid_nuclide_or_elem
 
 logger = logging.getLogger(__name__)
 
@@ -247,7 +237,7 @@ SCHEMA_DIR = (
                 )
             else:
                 raise ValueError(
-                    &quot;Both t_inner and luminosity_requested cannot &quot; &quot;be None.&quot;
+                    &quot;Both t_inner and luminosity_requested cannot be None.&quot;
                 )
         else:
             self.blackbody_packet_source.temperature = t_inner
@@ -443,7 +433,6 @@ SCHEMA_DIR = (
         )
 
         # using atom_data.mass.copy() to ensure that the original atom_data is not modified
-        # sep
         composition = Composition(
             density, nuclide_mass_fraction, atom_data.atom_data.mass.copy()
         )
@@ -586,9 +575,6 @@ SCHEMA_DIR = (
             t_radiative = (
                 np.ones(geometry.no_of_shells) * config.plasma.initial_t_rad
             )
-            t_radiative = (
-                np.ones(geometry.no_of_shells) * config.plasma.initial_t_rad
-            )
         else:
             t_radiative = None
 
@@ -619,7 +605,7 @@ SCHEMA_DIR = (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 
