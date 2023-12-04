@@ -145,70 +145,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-tardis.transport.geometry.calculate_distances">
-<span id="tardis-transport-geometry-calculate-distances-module"></span><h1>tardis.transport.geometry.calculate_distances module<a class="headerlink" href="#module-tardis.transport.geometry.calculate_distances" title="Permalink to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.geometry.calculate_distances.calculate_distance_boundary">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.geometry.calculate_distances.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_outer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/geometry/calculate_distances.html#calculate_distance_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.geometry.calculate_distances.calculate_distance_boundary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate distance to shell boundary in cm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>r</strong><span class="classifier">float</span></dt><dd><p>radial coordinate of the RPacket</p>
-</dd>
-<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>cosine of the direction of movement</p>
-</dd>
-<dt><strong>r_inner</strong><span class="classifier">float</span></dt><dd><p>inner radius of current shell</p>
-</dd>
-<dt><strong>r_outer</strong><span class="classifier">float</span></dt><dd><p>outer radius of current shell</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.geometry.calculate_distances.calculate_distance_electron">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.geometry.calculate_distances.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_electron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">electron_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/geometry/calculate_distances.html#calculate_distance_electron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.geometry.calculate_distances.calculate_distance_electron" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate distance to Thomson Scattering</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>electron_density</strong><span class="classifier">float</span></dt><dd></dd>
-<dt><strong>tau_event</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.geometry.calculate_distances.calculate_distance_line">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.geometry.calculate_distances.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comov_nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_last_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/geometry/calculate_distances.html#calculate_distance_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.geometry.calculate_distances.calculate_distance_line" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate distance until RPacket is in resonance with the next line</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>r_packet</strong><span class="classifier">tardis.montecarlo.montecarlo_numba.r_packet.RPacket</span></dt><dd></dd>
-<dt><strong>comov_nu</strong><span class="classifier">float</span></dt><dd><p>comoving frequency at the CURRENT position of the RPacket</p>
-</dd>
-<dt><strong>is_last_line</strong><span class="classifier">bool</span></dt><dd><p>return MISS_DISTANCE if at the end of the line list</p>
-</dd>
-<dt><strong>nu_line</strong><span class="classifier">float</span></dt><dd><p>line to check the distance to</p>
-</dd>
-<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>time since explosion in seconds</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"></dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.transport.geometry.calculate_distances.calculate_distance_line_full_relativity">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.geometry.calculate_distances.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_line_full_relativity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/geometry/calculate_distances.html#calculate_distance_line_full_relativity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.geometry.calculate_distances.calculate_distance_line_full_relativity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+  <section id="tardis-transport-geometry-calculate-distances-module">
+<h1>tardis.transport.geometry.calculate_distances module<a class="headerlink" href="#tardis-transport-geometry-calculate-distances-module" title="Permalink to this heading">¶</a></h1>
 </section>
 
 
@@ -223,7 +161,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

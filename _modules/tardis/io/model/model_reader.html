@@ -399,7 +399,7 @@ logger = logging.getLogger(__name__)
     return new_transport</div>
 
 
-<div class="viewcode-block" id="model_to_dict"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.model_to_dict">[docs]</a>def model_to_dict(model):
+<div class="viewcode-block" id="simulation_state_to_dict"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.simulation_state_to_dict">[docs]</a>def simulation_state_to_dict(model):
     &quot;&quot;&quot;
     Retrieves all the data from a SimulationState object and returns a dictionary.
 
@@ -412,7 +412,7 @@ logger = logging.getLogger(__name__)
     model_dict : dict
     isotope_abundance : dict
     &quot;&quot;&quot;
-    model_dict = {
+    simulation_state_dict = {
         &quot;velocity_cgs&quot;: model.velocity.cgs,
         &quot;abundance&quot;: model.abundance,
         &quot;time_explosion_cgs&quot;: model.time_explosion.cgs,
@@ -427,13 +427,14 @@ logger = logging.getLogger(__name__)
         &quot;density_cgs&quot;: model.density.cgs,
     }
 
-    for key, value in model_dict.items():
+    for key, value in simulation_state_dict.items():
         if hasattr(value, &quot;unit&quot;):
-            model_dict[key] = [value.cgs.value, value.cgs.unit.to_string()]
+            simulation_state_dict[key] = [
+                value.cgs.value,
+                value.cgs.unit.to_string(),
+            ]
 
-    isotope_abundance = model.raw_isotope_abundance.__dict__
-
-    return model_dict, isotope_abundance</div>
+    return simulation_state_dict</div>
 
 
 <div class="viewcode-block" id="model_from_hdf"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.model_from_hdf">[docs]</a>def model_from_hdf(fname):
@@ -516,7 +517,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

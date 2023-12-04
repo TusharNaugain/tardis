@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.model.parse_input module" href="tardis.model.parse_input.html" />
-    <link rel="prev" title="tardis.model.geometry.radial1d module" href="tardis.model.geometry.radial1d.html" />
+    <link rel="prev" title="tardis.model.matter.decay module" href="tardis.model.matter.decay.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -147,82 +147,6 @@
   <section id="module-tardis.model.base">
 <span id="tardis-model-base-module"></span><h1>tardis.model.base module<a class="headerlink" href="#module-tardis.model.base" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="tardis.model.base.Composition">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.model.base.</span></span><span class="sig-name descname"><span class="pre">Composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elemental_mass_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomic_mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomic_mass_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Unit('g')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/base.html#Composition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.base.Composition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Holds information about model composition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>density</strong><span class="classifier">astropy.units.quantity.Quantity</span></dt><dd><p>An array of densities for each shell.</p>
-</dd>
-<dt><strong>isotopic_mass_fraction</strong><span class="classifier">pd.DataFrame</span></dt><dd></dd>
-<dt><strong>atomic_mass</strong><span class="classifier">pd.DataFrame</span></dt><dd></dd>
-<dt><strong>atomic_mass_unit: astropy.units.Unit</strong></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Attributes</dt>
-<dd class="field-even"><dl class="simple">
-<dt><a class="reference internal" href="#tardis.model.base.Composition.atomic_mass" title="tardis.model.base.Composition.atomic_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atomic_mass</span></code></a><span class="classifier">pd.DataFrame</span></dt><dd><p>Atomic mass of elements in each shell</p>
-</dd>
-<dt><a class="reference internal" href="#tardis.model.base.Composition.elemental_number_density" title="tardis.model.base.Composition.elemental_number_density"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elemental_number_density</span></code></a><span class="classifier">pd.DataFrame</span></dt><dd><p>Elemental Number Density computed using the formula: (elemental_mass_fraction * density) / atomic mass</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.model.base.Composition.atomic_mass">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_mass</span></span><a class="headerlink" href="#tardis.model.base.Composition.atomic_mass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Atomic mass of elements in each shell</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.model.base.Composition.elemental_number_density">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elemental_number_density</span></span><a class="headerlink" href="#tardis.model.base.Composition.elemental_number_density" title="Permalink to this definition">¶</a></dt>
-<dd><p>Elemental Number Density computed using the formula: (elemental_mass_fraction * density) / atomic mass</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tardis.model.base.ModelState">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.model.base.</span></span><span class="sig-name descname"><span class="pre">ModelState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/base.html#ModelState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.base.ModelState" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Holds information about model geometry for radial 1D models.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>composition</strong><span class="classifier">tardis.model.Composition</span></dt><dd></dd>
-<dt><strong>geometry</strong><span class="classifier">tardis.model.geometry.radial1d.Radial1DGeometry</span></dt><dd></dd>
-<dt><strong>time_explosion</strong><span class="classifier">astropy.units.quantity.Quantity</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Attributes</dt>
-<dd class="field-even"><dl class="simple">
-<dt><a class="reference internal" href="#tardis.model.base.ModelState.mass" title="tardis.model.base.ModelState.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a><span class="classifier">pd.DataFrame</span></dt><dd><p>Mass calculated using the formula:</p>
-</dd>
-<dt><a class="reference internal" href="#tardis.model.base.ModelState.number" title="tardis.model.base.ModelState.number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number</span></code></a><span class="classifier">pd.DataFrame</span></dt><dd><p>Number calculated using the formula:</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.model.base.ModelState.mass">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#tardis.model.base.ModelState.mass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mass calculated using the formula:
-mass_fraction * density * volume</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.model.base.ModelState.number">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number</span></span><a class="headerlink" href="#tardis.model.base.ModelState.number" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number calculated using the formula:
-mass / atomic_mass</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="tardis.model.base.SimulationState">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.model.base.</span></span><span class="sig-name descname"><span class="pre">SimulationState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/base.html#SimulationState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.base.SimulationState" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.io.util.html#tardis.io.util.HDFWriterMixin" title="tardis.io.util.HDFWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">HDFWriterMixin</span></code></a></p>
@@ -295,7 +219,7 @@ dilution factor.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.model.base.SimulationState.from_config">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/base.html#SimulationState.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.base.SimulationState.from_config" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/base.html#SimulationState.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.base.SimulationState.from_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new SimulationState instance from a Configuration object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -434,7 +358,7 @@ dilution factor.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.model.geometry.radial1d.html" class="btn btn-neutral float-left" title="tardis.model.geometry.radial1d module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.model.matter.decay.html" class="btn btn-neutral float-left" title="tardis.model.matter.decay module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.model.parse_input.html" class="btn btn-neutral float-right" title="tardis.model.parse_input module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -442,7 +366,7 @@ dilution factor.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

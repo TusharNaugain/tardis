@@ -115,7 +115,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.hdf</h1><div class="highlight"><pre>
-<span></span>from tardis.io.model.model_reader import model_to_dict
+<span></span>from tardis.io.model.model_reader import simulation_state_to_dict
 
 
 import h5py
@@ -134,7 +134,7 @@ import h5py
         model_group = f.require_group(&quot;model&quot;)
         model_group.clear()
 
-        model_dict, isotope_abundance = model_to_dict(model)
+        model_dict = simulation_state_to_dict(model)
 
         for key, value in model_dict.items():
             if key.endswith(&quot;_cgs&quot;):
@@ -152,7 +152,7 @@ import h5py
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

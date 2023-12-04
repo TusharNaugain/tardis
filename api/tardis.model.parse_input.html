@@ -147,19 +147,268 @@
   <section id="module-tardis.model.parse_input">
 <span id="tardis-model-parse-input-module"></span><h1>tardis.model.parse_input module<a class="headerlink" href="#module-tardis.model.parse_input" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.model.parse_input.parse_abundance_section">
-<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_abundance_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_abundance_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_abundance_section" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="tardis.model.parse_input.convert_to_nuclide_mass_fraction">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">convert_to_nuclide_mass_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isotopic_mass_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_fraction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#convert_to_nuclide_mass_fraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.convert_to_nuclide_mass_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the abundance and isotope abundance data to nuclide mass fraction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>isotope_abundance</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The isotope abundance data.</p>
+</dd>
+<dt><strong>abundance</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The abundance data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>nuclide_mass_fraction</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The converted nuclide mass fraction.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function converts the abundance and isotope abundance data to nuclide mass fraction.
+If the abundance data is not None, it is converted to nuclide mass fraction by mapping
+the abundance index to nuclide indices using the ‘convert_element2nuclide_index’ function.
+The resulting abundance data is then concatenated with the isotope abundance data to
+obtain the final nuclide mass fraction.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_abundance_config">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_abundance_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_abundance_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_abundance_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the abundance configuration data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">object</span></dt><dd><p>The configuration data.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">object</span></dt><dd><p>The geometry of the model.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of the explosion.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>nuclide_mass_fraction</strong><span class="classifier">object</span></dt><dd><p>The parsed nuclide mass fraction.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the abundance configuration data and returns the parsed nuclide
+mass fraction. The abundance configuration can be of type ‘uniform’ or ‘file’. If it
+is of type ‘uniform’, the abundance and isotope abundance are read using the
+‘read_uniform_abundances’ function. If it is of type ‘file’, the abundance and
+isotope abundance are read from a file using the ‘read_abundances_file’ function.
+The parsed data is then processed to replace NaN values with 0.0, remove rows with
+zero sum, and normalize the data if necessary. The resulting nuclide mass fraction
+is returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_abundance_csvy">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_abundance_csvy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_abundance_csvy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_abundance_csvy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the abundance data from a CSVY model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>csvy_model_config</strong><span class="classifier">object</span></dt><dd><p>The configuration data of the CSVY model.</p>
+</dd>
+<dt><strong>csvy_model_data</strong><span class="classifier">object</span></dt><dd><p>The data of the CSVY model.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">object</span></dt><dd><p>The geometry of the model.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>abundance</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>The parsed abundance data.</p>
+</dd>
+<dt><strong>isotope_abundance</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The parsed isotope abundance data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the abundance data from a CSVY model. If the CSVY model
+configuration contains an ‘abundance’ attribute, it uses the ‘read_uniform_abundances’
+function to parse the abundance and isotope abundance data. Otherwise, it uses the
+‘parse_csv_abundances’ function to parse the data. The parsed data is then processed
+to replace NaN values with 0.0, remove rows with zero sum, and normalize the data
+if necessary. The resulting abundance and isotope abundance arrays are returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_composition_csvy">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_composition_csvy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_composition_csvy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_composition_csvy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the composition data from a CSVY model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>atom_data</strong><span class="classifier">object</span></dt><dd><p>The atom data used for parsing.</p>
+</dd>
+<dt><strong>csvy_model_config</strong><span class="classifier">object</span></dt><dd><p>The configuration data of the CSVY model.</p>
+</dd>
+<dt><strong>csvy_model_data</strong><span class="classifier">object</span></dt><dd><p>The data of the CSVY model.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of the explosion.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">object</span></dt><dd><p>The geometry of the model.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>density</strong><span class="classifier">object</span></dt><dd><p>The parsed density data.</p>
+</dd>
+<dt><strong>abundance</strong><span class="classifier">object</span></dt><dd><p>The parsed abundance data.</p>
+</dd>
+<dt><strong>isotope_abundance</strong><span class="classifier">object</span></dt><dd><p>The parsed isotope abundance data.</p>
+</dd>
+<dt><strong>elemental_mass</strong><span class="classifier">object</span></dt><dd><p>The elemental mass data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the composition data from a CSVY model. It calls the ‘parse_density_csvy’
+function to parse the density data, and the ‘parse_abundance_csvy’ function to parse the abundance
+and isotope abundance data. The parsed data is returned as density, abundance, isotope_abundance,
+and elemental_mass.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.parse_csvy_geometry">
 <span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_csvy_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_csvy_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_csvy_geometry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parse the geometry data from a CSVY model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">object</span></dt><dd><p>The configuration data.</p>
+</dd>
+<dt><strong>csvy_model_config</strong><span class="classifier">object</span></dt><dd><p>The configuration data of the CSVY model.</p>
+</dd>
+<dt><strong>csvy_model_data</strong><span class="classifier">object</span></dt><dd><p>The data of the CSVY model.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of the explosion.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>geometry</strong><span class="classifier">object</span></dt><dd><p>The parsed geometry.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the geometry data from a CSVY model. It extracts the velocity
+information from the CSVY model configuration or data. The parsed velocity data is
+used to create a homologous radial 1D geometry object, which is returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_density_csvy">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_density_csvy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_density_csvy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_density_csvy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the density data from a CSVY model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>csvy_model_config</strong><span class="classifier">object</span></dt><dd><p>The configuration data of the CSVY model.</p>
+</dd>
+<dt><strong>csvy_model_data</strong><span class="classifier">object</span></dt><dd><p>The data of the CSVY model.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of the explosion.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>density</strong><span class="classifier">object</span></dt><dd><p>The parsed density data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the density data from a CSVY model. If the CSVY model configuration
+contains a ‘density’ attribute, it uses the ‘parse_csvy_density’ function to parse the
+density data. Otherwise, it calculates the density data using the ‘calculate_density_after_time’
+function. The parsed density data is returned.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.parse_structure_config">
 <span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_structure_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_homology</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_structure_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_structure_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parse the structure configuration data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">object</span></dt><dd><p>The configuration data.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of the explosion.</p>
+</dd>
+<dt><strong>enable_homology</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to enable homology (default is True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>electron_densities</strong><span class="classifier">object</span></dt><dd><p>The parsed electron densities.</p>
+</dd>
+<dt><strong>temperature</strong><span class="classifier">object</span></dt><dd><p>The parsed temperature.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">object</span></dt><dd><p>The parsed geometry.</p>
+</dd>
+<dt><strong>density</strong><span class="classifier">object</span></dt><dd><p>The parsed density.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>NotImplementedError</dt><dd><p>If the structure configuration type is not supported.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function parses the structure configuration data and returns the parsed electron
+densities, temperature, geometry, and density. The structure configuration can be of
+type ‘specific’ or ‘file’. If it is of type ‘specific’, the velocity and density are
+parsed from the configuration. If it is of type ‘file’, the velocity and density are
+read from a file. The parsed data is used to create a homologous radial 1D geometry object.</p>
+</dd></dl>
 
 </section>
 
@@ -175,7 +424,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

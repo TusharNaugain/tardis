@@ -117,9 +117,10 @@
   <h1>Source code for tardis.io.atom_data.atom_web_download</h1><div class="highlight"><pre>
 <span></span>import logging
 
-from tardis.io.util import get_internal_data_path, download_from_url
-from tardis.io.configuration.config_internal import get_data_dir
 import yaml
+
+from tardis.io.configuration.config_internal import get_data_dir
+from tardis.io.util import download_from_url, get_internal_data_path
 
 logger = logging.getLogger(__name__)
 
@@ -132,7 +133,6 @@ logger = logging.getLogger(__name__)
     -------
         : dict
     &quot;&quot;&quot;
-
     atomic_repo_fname = get_internal_data_path(&quot;atomic_data_repo.yml&quot;)
     return yaml.load(open(atomic_repo_fname), Loader=yaml.CLoader)</div>
 
@@ -184,7 +184,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

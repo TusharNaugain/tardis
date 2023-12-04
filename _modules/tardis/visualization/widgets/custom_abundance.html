@@ -136,6 +136,7 @@ from tardis.io.model.parse_density_configuration import (
     calculate_power_law_density,
     calculate_exponential_density,
 )
+from tardis.io.atom_data.base import AtomData
 from tardis.io.configuration.config_validator import validate_dict
 from tardis.io.model.readers.csvy import load_csvy
 from tardis.io.model.readers.csvy import (
@@ -299,7 +300,7 @@ YAML_DELIMITER = &quot;---&quot;
         )</div>
 
 <div class="viewcode-block" id="CustomAbundanceWidgetData.from_yml"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_yml">[docs]</a>    @classmethod
-    def from_yml(cls, fpath):
+    def from_yml(cls, fpath, atom_data=None):
         &quot;&quot;&quot;Create a new CustomAbundanceWidgetData instance with data
         from YAML file.
 
@@ -313,22 +314,29 @@ YAML_DELIMITER = &quot;---&quot;
         CustomAbundanceWidgetData
         &quot;&quot;&quot;
         config = Configuration.from_yaml(fpath)
-
+        if atom_data is None:
+            atom_data = AtomData.from_hdf(config.atom_data)
         if hasattr(config, &quot;csvy_model&quot;):
-            model = SimulationState.from_csvy(config)
+            simulation_state = SimulationState.from_csvy(
+                config, atom_data=atom_data
+            )
         else:
-            model = SimulationState.from_config(config)
+            simulation_state = SimulationState.from_config(
+                config, atom_data=atom_data
+            )
 
-        velocity = model.velocity
-        density_t_0 = model.time_explosion
-        density = model.density
-        abundance = model.raw_abundance
-        isotope_abundance = model.raw_isotope_abundance
+        velocity = simulation_state.velocity
+        density_t_0 = simulation_state.time_explosion
+        density = simulation_state.density
+        abundance = simulation_state.abundance
+        isotopic_mass_fraction = (
+            simulation_state.composition.isotopic_mass_fraction
+        )
 
         # Combine elements and isotopes to one DataFrame
         abundance[&quot;mass_number&quot;] = &quot;&quot;
         abundance.set_index(&quot;mass_number&quot;, append=True, inplace=True)
-        abundance = pd.concat([abundance, isotope_abundance])
+        abundance = pd.concat([abundance, isotopic_mass_fraction])
         abundance.sort_index(inplace=True)
 
         return cls(
@@ -1941,7 +1949,7 @@ YAML_DELIMITER = &quot;---&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 

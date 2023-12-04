@@ -151,7 +151,7 @@ from tardis.util.base import (
 
 
 <div class="viewcode-block" id="montecarlo_radial1d"><a class="viewcode-back" href="../../../../api/tardis.montecarlo.montecarlo_numba.base.html#tardis.montecarlo.montecarlo_numba.base.montecarlo_radial1d">[docs]</a>def montecarlo_radial1d(
-    model,
+    simulation_state,
     plasma,
     iteration,
     no_of_packets,
@@ -167,9 +167,9 @@ from tardis.util.base import (
         transport._output_nu,
         transport._output_energy,
     )
-    numba_radial_1d_geometry = model.model_state.geometry.to_numba()
+    numba_radial_1d_geometry = simulation_state.geometry.to_numba()
     numba_model = NumbaModel(
-        model.model_state.time_explosion.to(&quot;s&quot;).value,
+        simulation_state.time_explosion.to(&quot;s&quot;).value,
     )
     opacity_state = opacity_state_initialize(
         plasma, transport.line_interaction_type
@@ -528,7 +528,7 @@ def montecarlo_main_loop(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Nov 2023.
+      <span class="lastupdated">Last updated on 04 Dec 2023.
       </span></p>
   </div>
 
