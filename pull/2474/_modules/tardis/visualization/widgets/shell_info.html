@@ -179,7 +179,10 @@ import ipywidgets as ipw
             simulation model
         &quot;&quot;&quot;
         shells_temp_w = pd.DataFrame(
-            {&quot;Rad. Temp.&quot;: self.t_radiative, &quot;W&quot;: self.dilution_factor}
+            {
+                &quot;Rad. Temp.&quot;: self.t_radiative,
+                &quot;Dilution Factor&quot;: self.dilution_factor,
+            }
         )
         shells_temp_w.index = range(
             1, len(self.t_radiative) + 1
@@ -643,7 +646,7 @@ import ipywidgets as ipw
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+      <span class="lastupdated">Last updated on 10 Dec 2023.
       </span></p>
   </div>
 

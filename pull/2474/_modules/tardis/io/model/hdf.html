@@ -121,7 +121,7 @@
 import h5py
 
 
-<div class="viewcode-block" id="store_model_to_hdf"><a class="viewcode-back" href="../../../../api/tardis.io.model.hdf.html#tardis.io.model.hdf.store_model_to_hdf">[docs]</a>def store_model_to_hdf(model, fname):
+<div class="viewcode-block" id="store_simulation_state_to_hdf"><a class="viewcode-back" href="../../../../api/tardis.io.model.hdf.html#tardis.io.model.hdf.store_simulation_state_to_hdf">[docs]</a>def store_simulation_state_to_hdf(simulation_state, fname):
     &quot;&quot;&quot;
     Stores data from SimulationState object into a hdf file.
 
@@ -131,17 +131,19 @@ import h5py
     filename : str
     &quot;&quot;&quot;
     with h5py.File(fname, &quot;a&quot;) as f:
-        model_group = f.require_group(&quot;model&quot;)
-        model_group.clear()
+        simulation_state_group = f.require_group(&quot;simulation_state&quot;)
+        simulation_state_group.clear()
 
-        model_dict = simulation_state_to_dict(model)
+        simulation_state_dict = simulation_state_to_dict(simulation_state)
 
-        for key, value in model_dict.items():
+        for key, value in simulation_state_dict.items():
             if key.endswith(&quot;_cgs&quot;):
-                model_group.create_dataset(key, data=value[0])
-                model_group.create_dataset(key + &quot;_unit&quot;, data=value[1])
+                simulation_state_group.create_dataset(key, data=value[0])
+                simulation_state_group.create_dataset(
+                    key + &quot;_unit&quot;, data=value[1]
+                )
             else:
-                model_group.create_dataset(key, data=value)</div>
+                simulation_state_group.create_dataset(key, data=value)</div>
 </pre></div>
 
            </div>
@@ -152,7 +154,7 @@ import h5py
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+      <span class="lastupdated">Last updated on 10 Dec 2023.
       </span></p>
   </div>
 
