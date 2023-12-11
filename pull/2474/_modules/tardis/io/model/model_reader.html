@@ -115,7 +115,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.model_reader</h1><div class="highlight"><pre>
-<span></span># reading different model files
+<span></span>import logging
+
+import h5py
+from astropy import units as u
 
 from tardis.io.configuration.config_reader import ConfigurationNameSpace
 from tardis.montecarlo.base import MontecarloTransport
@@ -123,11 +126,6 @@ from tardis.montecarlo.packet_source import (
     BlackBodySimpleSource,
     BlackBodySimpleSourceRelativistic,
 )
-from tardis.io.model.density import calculate_density_after_time
-from astropy import units as u
-import h5py
-
-import logging
 
 # Adding logging support
 logger = logging.getLogger(__name__)
@@ -148,7 +146,6 @@ logger = logging.getLogger(__name__)
     v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
-
     transport_dict = {
         &quot;Edotlu_estimator&quot;: transport.Edotlu_estimator,
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
@@ -221,7 +218,6 @@ logger = logging.getLogger(__name__)
     transport : tardis.montecarlo.MontecarloTransport
     filename : str
     &quot;&quot;&quot;
-
     with h5py.File(fname, &quot;a&quot;) as f:
         transport_group = f.require_group(&quot;transport&quot;)
         transport_group.clear()
@@ -272,7 +268,6 @@ logger = logging.getLogger(__name__)
     -------
     new_transport : tardis.montecarlo.MontecarloTransport
     &quot;&quot;&quot;
-
     d = {}
 
     # Loading data from hdf file
@@ -444,7 +439,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 10 Dec 2023.
+      <span class="lastupdated">Last updated on 11 Dec 2023.
       </span></p>
   </div>
 
