@@ -117,24 +117,24 @@
   <h1>Source code for tardis.io.model_reader</h1><div class="highlight"><pre>
 <span></span># reading different model files
 
+import logging
+import warnings
+
+import h5py
+import numpy as np
+import pandas as pd
+from astropy import units as u
+from numpy import recfromtxt
+from radioactivedecay import Nuclide
+from radioactivedecay.utils import Z_DICT, elem_to_Z
+
 from tardis.io.configuration.config_reader import ConfigurationNameSpace
 from tardis.montecarlo.base import MontecarloTransport
 from tardis.montecarlo.packet_source import (
     BlackBodySimpleSource,
     BlackBodySimpleSourceRelativistic,
 )
-from tardis.util.base import parse_quantity, is_valid_nuclide_or_elem
-
-import warnings
-import numpy as np
-from numpy import recfromtxt, genfromtxt
-import pandas as pd
-from astropy import units as u
-from radioactivedecay import Nuclide
-from radioactivedecay.utils import Z_DICT, elem_to_Z
-import h5py
-
-import logging
+from tardis.util.base import is_valid_nuclide_or_elem, parse_quantity
 
 # Adding logging support
 logger = logging.getLogger(__name__)
@@ -192,7 +192,7 @@ logger = logging.getLogger(__name__)
     if invalid_volume_mask.sum() &gt; 0:
         message = &quot;\n&quot;.join(
             [
-                f&quot;cell {i:d}: v_inner {v_inner_i:s}, v_outer &quot; f&quot;{v_outer_i:s}&quot;
+                f&quot;cell {i:d}: v_inner {v_inner_i:s}, v_outer {v_outer_i:s}&quot;
                 for i, v_inner_i, v_outer_i in zip(
                     np.arange(len(v_outer))[invalid_volume_mask],
                     v_inner[invalid_volume_mask],
@@ -233,7 +233,6 @@ logger = logging.getLogger(__name__)
     outer_boundary_index : int
         index of the outer shell, default None
     &quot;&quot;&quot;
-
     file_parsers = {
         &quot;simple_ascii&quot;: read_simple_ascii_abundances,
         &quot;artis&quot;: read_simple_ascii_abundances,
@@ -332,7 +331,6 @@ logger = logging.getLogger(__name__)
     data : pandas.DataFrame
         data frame containing index, velocity (in km/s) and density
     &quot;&quot;&quot;
-
     with open(fname) as fh:
         time_of_model_string = fh.readline().strip()
         time_of_model = parse_quantity(time_of_model_string)
@@ -370,7 +368,6 @@ logger = logging.getLogger(__name__)
     data : pandas.DataFrame
         data frame containing index, velocity (in km/s) and density
     &quot;&quot;&quot;
-
     with open(fname) as fh:
         for i, line in enumerate(open(fname)):
             if i == 0:
@@ -506,7 +503,6 @@ logger = logging.getLogger(__name__)
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
     warnings.warn(
         &quot;The current CMFGEN model parser is deprecated&quot;, DeprecationWarning
     )
@@ -531,7 +527,6 @@ logger = logging.getLogger(__name__)
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
     return read_csv_isotope_abundances(
         fname, delimiter=delimiter, skip_columns=0, skip_rows=[1]
     )</div>
@@ -575,7 +570,6 @@ logger = logging.getLogger(__name__)
     abundances : pandas.DataFrame
     isotope_abundance : pandas.MultiIndex
     &quot;&quot;&quot;
-
     df = pd.read_csv(
         fname, comment=&quot;#&quot;, sep=delimiter, skiprows=skip_rows, index_col=0
     )
@@ -623,7 +617,6 @@ logger = logging.getLogger(__name__)
     abundances : pandas.DataFrame
     isotope_abundance : pandas.MultiIndex
     &quot;&quot;&quot;
-
     abundance_col_names = [
         name for name in csvy_data.columns if is_valid_nuclide_or_elem(name)
     ]
@@ -674,7 +667,6 @@ logger = logging.getLogger(__name__)
     v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
-
     transport_dict = {
         &quot;Edotlu_estimator&quot;: transport.Edotlu_estimator,
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
@@ -747,7 +739,6 @@ logger = logging.getLogger(__name__)
     transport : tardis.montecarlo.MontecarloTransport
     filename : str
     &quot;&quot;&quot;
-
     with h5py.File(fname, &quot;a&quot;) as f:
         transport_group = f.require_group(&quot;transport&quot;)
         transport_group.clear()
@@ -798,7 +789,6 @@ logger = logging.getLogger(__name__)
     -------
     new_transport : tardis.montecarlo.MontecarloTransport
     &quot;&quot;&quot;
-
     d = {}
 
     # Loading data from hdf file
@@ -983,75 +973,6 @@ logger = logging.getLogger(__name__)
                 model_group.create_dataset(key + &quot;_unit&quot;, data=value[1])
             else:
                 model_group.create_dataset(key, data=value)</div>
-
-
-<div class="viewcode-block" id="model_from_hdf"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.model_from_hdf">[docs]</a>def model_from_hdf(fname):
-    &quot;&quot;&quot;
-    Creates a SimulationState object using data stored in a hdf file.
-
-    Parameters
-    ----------
-    fname : str
-
-    Returns
-    -------
-    new_model : tardis.model.SimulationState
-    &quot;&quot;&quot;
-
-    from tardis.model import SimulationState
-
-    d = {}
-
-    # Loading data from hdf file
-    with h5py.File(fname, &quot;r&quot;) as f:
-        model_group = f[&quot;model&quot;]
-        for key, value in model_group.items():
-            if not key.endswith(&quot;_unit&quot;):
-                if type(value) == h5py._hl.dataset.Dataset:
-                    if isinstance(value[()], bytes):
-                        d[key] = value[()].decode(&quot;utf-8&quot;)
-                    else:
-                        d[key] = value[()]
-                else:
-                    data_inner = {}
-                    for key_inner, value_inner in value.items():
-                        if isinstance(value_inner[()], bytes):
-                            data_inner[key] = value_inner[()].decode(&quot;utf-8&quot;)
-                        else:
-                            data_inner[key] = value_inner[()]
-                        data_inner[key_inner] = value_inner[()]
-                    d[key] = data_inner
-
-        for key, value in model_group.items():
-            if key.endswith(&quot;_unit&quot;):
-                d[key[:-5]] = [d[key[:-5]], value[()]]
-
-    # Converting cgs data to astropy quantities
-    for key, value in d.items():
-        if key.endswith(&quot;_cgs&quot;):
-            d[key] = u.Quantity(value[0], unit=u.Unit(value[1].decode(&quot;utf-8&quot;)))
-
-    homologous_density = HomologousDensity(
-        d[&quot;homologous_density&quot;][&quot;density_0&quot;], d[&quot;homologous_density&quot;][&quot;time_0&quot;]
-    )
-
-    new_model = SimulationState(
-        velocity=d[&quot;velocity_cgs&quot;],
-        homologous_density=homologous_density,
-        abundance=d[&quot;abundance&quot;],
-        isotope_abundance=None,
-        time_explosion=d[&quot;time_explosion_cgs&quot;],
-        t_inner=d[&quot;t_inner_cgs&quot;],
-        t_radiative=d[&quot;t_radiative_cgs&quot;],
-        dilution_factor=d[&quot;dilution_factor&quot;],
-        v_boundary_inner=d[&quot;v_boundary_inner_cgs&quot;],
-        v_boundary_outer=d[&quot;v_boundary_outer_cgs&quot;],
-    )
-
-    new_model.t_rad = d[&quot;t_rad_cgs&quot;]
-    new_model.w = d[&quot;w&quot;]
-
-    return new_model</div>
 </pre></div>
 
            </div>
@@ -1061,8 +982,8 @@ logger = logging.getLogger(__name__)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

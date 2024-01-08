@@ -262,7 +262,6 @@ def numba_formal_integral(
                 nu_end = nu_ends[i]
                 nu_end_idx = nu_ends_idxs[i]
                 for _ in range(max(nu_end_idx - pline, 0)):
-
                     # calculate e-scattering optical depth to next resonance point
                     zend = (
                         model.time_explosion
@@ -398,7 +397,6 @@ def numba_formal_integral(
     &quot;&quot;&quot;
 
     def __init__(self, model, plasma, transport, points=1000):
-
         self.model = model
         self.transport = transport
         self.points = points
@@ -535,7 +533,7 @@ def numba_formal_integral(
         Numpy array containing ( 1 - exp(-tau_ul) ) S_ul ordered by wavelength of the transition u -&gt; l
         &quot;&quot;&quot;
 
-        model = self.model
+        simulation_state = self.model
         transport = self.transport
 
         # macro_ref = self.atomic_data.macro_atom_references
@@ -544,7 +542,7 @@ def numba_formal_integral(
         macro_data = self.original_plasma.macro_atom_data
 
         no_lvls = len(self.levels_index)
-        no_shells = len(model.w)
+        no_shells = len(simulation_state.dilution_factor)
 
         if transport.line_interaction_type == &quot;macroatom&quot;:
             internal_jump_mask = (macro_data.transition_type &gt;= 0).values
@@ -556,7 +554,9 @@ def numba_formal_integral(
             source_level_idx = ma_int_data.source_level_idx.values
             destination_level_idx = ma_int_data.destination_level_idx.values
 
-        Edotlu_norm_factor = 1 / (transport.time_of_simulation * model.volume)
+        Edotlu_norm_factor = 1 / (
+            transport.time_of_simulation * simulation_state.volume
+        )
         exptau = 1 - np.exp(-self.original_plasma.tau_sobolevs)
         Edotlu = Edotlu_norm_factor * exptau * transport.Edotlu_estimator
 
@@ -565,8 +565,13 @@ def numba_formal_integral(
         Jbluelu_norm_factor = (
             (
                 const.c.cgs
-                * model.time_explosion
-                / (4 * np.pi * transport.time_of_simulation * model.volume)
+                * simulation_state.time_explosion
+                / (
+                    4
+                    * np.pi
+                    * transport.time_of_simulation
+                    * simulation_state.volume
+                )
             )
             .to(&quot;1/(cm^2 s)&quot;)
             .value
@@ -612,7 +617,7 @@ def numba_formal_integral(
             (self.atomic_data.macro_atom_data.transition_type == -1).values
         ]
         q_ul = tmp.set_index(transitions_index)
-        t = model.time_explosion.value
+        t = simulation_state.time_explosion.value
         lines = self.atomic_data.lines.set_index(&quot;line_id&quot;)
         wave = lines.wavelength_cm.loc[
             transitions.transition_line_id
@@ -907,8 +912,8 @@ def calculate_p_values(R_max, N):
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

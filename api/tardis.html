@@ -219,7 +219,6 @@
 <li class="toctree-l2"><a class="reference internal" href="tardis.io.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model_reader.html">tardis.io.model_reader module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model_reader.html#tardis.io.model_reader.ConfigurationError"><code class="docutils literal notranslate"><span class="pre">ConfigurationError</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model_reader.html#tardis.io.model_reader.model_from_hdf"><code class="docutils literal notranslate"><span class="pre">model_from_hdf()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model_reader.html#tardis.io.model_reader.model_to_dict"><code class="docutils literal notranslate"><span class="pre">model_to_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model_reader.html#tardis.io.model_reader.parse_csv_abundances"><code class="docutils literal notranslate"><span class="pre">parse_csv_abundances()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model_reader.html#tardis.io.model_reader.read_abundances_file"><code class="docutils literal notranslate"><span class="pre">read_abundances_file()</span></code></a></li>
@@ -277,13 +276,22 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.parse_input.html">tardis.model.parse_input module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_geometric_dilution_factor"><code class="docutils literal notranslate"><span class="pre">calculate_geometric_dilution_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_t_radiative_from_t_inner"><code class="docutils literal notranslate"><span class="pre">calculate_t_radiative_from_t_inner()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.convert_to_nuclide_mass_fraction"><code class="docutils literal notranslate"><span class="pre">convert_to_nuclide_mass_fraction()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_config"><code class="docutils literal notranslate"><span class="pre">parse_abundance_config()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_csvy"><code class="docutils literal notranslate"><span class="pre">parse_abundance_csvy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_composition_csvy"><code class="docutils literal notranslate"><span class="pre">parse_composition_csvy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_composition"><code class="docutils literal notranslate"><span class="pre">parse_csvy_composition()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_geometry"><code class="docutils literal notranslate"><span class="pre">parse_csvy_geometry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_radiation_field_state"><code class="docutils literal notranslate"><span class="pre">parse_csvy_radiation_field_state()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_density_csvy"><code class="docutils literal notranslate"><span class="pre">parse_density_csvy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_packet_source"><code class="docutils literal notranslate"><span class="pre">parse_packet_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_radiation_field_state"><code class="docutils literal notranslate"><span class="pre">parse_radiation_field_state()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_structure_config"><code class="docutils literal notranslate"><span class="pre">parse_structure_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.model.radiation_field_state.html">tardis.model.radiation_field_state module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteThermalRadiationFieldState"><code class="docutils literal notranslate"><span class="pre">DiluteThermalRadiationFieldState</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -421,19 +429,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_CMF_to_LF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_CMF_to_LF()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_LF_to_CMF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_LF_to_CMF()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy_full_relativity"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_partial_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_partial_relativity()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.r_packet_transport.html">tardis.transport.r_packet_transport module</a></li>
 </ul>
 </li>
@@ -467,12 +463,6 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.base.html#tardis.util.base.species_tuple_to_string"><code class="docutils literal notranslate"><span class="pre">species_tuple_to_string()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.base.html#tardis.util.base.update_iterations_pbar"><code class="docutils literal notranslate"><span class="pre">update_iterations_pbar()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.base.html#tardis.util.base.update_packet_pbar"><code class="docutils literal notranslate"><span class="pre">update_packet_pbar()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.util.syrupy_extensions.html">tardis.util.syrupy_extensions module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.util.syrupy_extensions.html#tardis.util.syrupy_extensions.NumpySnapshotExtenstion"><code class="docutils literal notranslate"><span class="pre">NumpySnapshotExtenstion</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.util.syrupy_extensions.html#tardis.util.syrupy_extensions.PandasSnapshotExtenstion"><code class="docutils literal notranslate"><span class="pre">PandasSnapshotExtenstion</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.util.syrupy_extensions.html#tardis.util.syrupy_extensions.SingleFileSanitizedNames"><code class="docutils literal notranslate"><span class="pre">SingleFileSanitizedNames</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -565,8 +555,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

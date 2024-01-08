@@ -115,7 +115,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.model_reader</h1><div class="highlight"><pre>
-<span></span># reading different model files
+<span></span>import logging
+
+import h5py
+from astropy import units as u
 
 from tardis.io.configuration.config_reader import ConfigurationNameSpace
 from tardis.montecarlo.base import MontecarloTransport
@@ -123,11 +126,6 @@ from tardis.montecarlo.packet_source import (
     BlackBodySimpleSource,
     BlackBodySimpleSourceRelativistic,
 )
-from tardis.io.model.density import calculate_density_after_time
-from astropy import units as u
-import h5py
-
-import logging
 
 # Adding logging support
 logger = logging.getLogger(__name__)
@@ -148,7 +146,6 @@ logger = logging.getLogger(__name__)
     v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
-
     transport_dict = {
         &quot;Edotlu_estimator&quot;: transport.Edotlu_estimator,
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
@@ -221,7 +218,6 @@ logger = logging.getLogger(__name__)
     transport : tardis.montecarlo.MontecarloTransport
     filename : str
     &quot;&quot;&quot;
-
     with h5py.File(fname, &quot;a&quot;) as f:
         transport_group = f.require_group(&quot;transport&quot;)
         transport_group.clear()
@@ -272,7 +268,6 @@ logger = logging.getLogger(__name__)
     -------
     new_transport : tardis.montecarlo.MontecarloTransport
     &quot;&quot;&quot;
-
     d = {}
 
     # Loading data from hdf file
@@ -399,7 +394,7 @@ logger = logging.getLogger(__name__)
     return new_transport</div>
 
 
-<div class="viewcode-block" id="simulation_state_to_dict"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.simulation_state_to_dict">[docs]</a>def simulation_state_to_dict(model):
+<div class="viewcode-block" id="simulation_state_to_dict"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.simulation_state_to_dict">[docs]</a>def simulation_state_to_dict(simulation_state):
     &quot;&quot;&quot;
     Retrieves all the data from a SimulationState object and returns a dictionary.
 
@@ -413,18 +408,17 @@ logger = logging.getLogger(__name__)
     isotope_abundance : dict
     &quot;&quot;&quot;
     simulation_state_dict = {
-        &quot;velocity_cgs&quot;: model.velocity.cgs,
-        &quot;abundance&quot;: model.abundance,
-        &quot;time_explosion_cgs&quot;: model.time_explosion.cgs,
-        &quot;t_inner_cgs&quot;: model.t_inner.cgs,
-        &quot;t_radiative_cgs&quot;: model.t_radiative.cgs,
-        &quot;dilution_factor&quot;: model.dilution_factor,
-        &quot;v_boundary_inner_cgs&quot;: model.v_boundary_inner.cgs,
-        &quot;v_boundary_outer_cgs&quot;: model.v_boundary_outer.cgs,
-        &quot;w&quot;: model.w,
-        &quot;t_rad_cgs&quot;: model.t_rad.cgs,
-        &quot;r_inner_cgs&quot;: model.r_inner.cgs,
-        &quot;density_cgs&quot;: model.density.cgs,
+        &quot;velocity_cgs&quot;: simulation_state.velocity.cgs,
+        &quot;abundance&quot;: simulation_state.abundance,
+        &quot;time_explosion_cgs&quot;: simulation_state.time_explosion.cgs,
+        &quot;t_inner_cgs&quot;: simulation_state.t_inner.cgs,
+        &quot;t_radiative_cgs&quot;: simulation_state.t_radiative.cgs,
+        &quot;dilution_factor&quot;: simulation_state.dilution_factor,
+        &quot;v_boundary_inner_cgs&quot;: simulation_state.v_boundary_inner.cgs,
+        &quot;v_boundary_outer_cgs&quot;: simulation_state.v_boundary_outer.cgs,
+        &quot;dilution_factor&quot;: simulation_state.dilution_factor,
+        &quot;r_inner_cgs&quot;: simulation_state.r_inner.cgs,
+        &quot;density_cgs&quot;: simulation_state.density.cgs,
     }
 
     for key, value in simulation_state_dict.items():
@@ -435,78 +429,6 @@ logger = logging.getLogger(__name__)
             ]
 
     return simulation_state_dict</div>
-
-
-<div class="viewcode-block" id="model_from_hdf"><a class="viewcode-back" href="../../../../api/tardis.io.model.model_reader.html#tardis.io.model.model_reader.model_from_hdf">[docs]</a>def model_from_hdf(fname):
-    &quot;&quot;&quot;
-    Creates a SimulationState object using data stored in a hdf file.
-
-    Parameters
-    ----------
-    fname : str
-
-    Returns
-    -------
-    new_model : tardis.model.SimulationState
-    &quot;&quot;&quot;
-
-    from tardis.model import SimulationState
-
-    d = {}
-
-    # Loading data from hdf file
-    with h5py.File(fname, &quot;r&quot;) as f:
-        model_group = f[&quot;model&quot;]
-        for key, value in model_group.items():
-            if not key.endswith(&quot;_unit&quot;):
-                if type(value) == h5py._hl.dataset.Dataset:
-                    if isinstance(value[()], bytes):
-                        d[key] = value[()].decode(&quot;utf-8&quot;)
-                    else:
-                        d[key] = value[()]
-                else:
-                    data_inner = {}
-                    for key_inner, value_inner in value.items():
-                        if isinstance(value_inner[()], bytes):
-                            data_inner[key] = value_inner[()].decode(&quot;utf-8&quot;)
-                        else:
-                            data_inner[key] = value_inner[()]
-                        data_inner[key_inner] = value_inner[()]
-                    d[key] = data_inner
-
-        for key, value in model_group.items():
-            if key.endswith(&quot;_unit&quot;):
-                d[key[:-5]] = [d[key[:-5]], value[()]]
-
-    # Converting cgs data to astropy quantities
-    for key, value in d.items():
-        if key.endswith(&quot;_cgs&quot;):
-            d[key] = u.Quantity(value[0], unit=u.Unit(value[1].decode(&quot;utf-8&quot;)))
-
-    homologous_density = calculate_density_after_time(
-        d[&quot;homologous_density&quot;][&quot;density_0&quot;],
-        d[&quot;homologous_density&quot;][&quot;time_0&quot;],
-        d[&quot;time_explosion_cgs&quot;],
-    )
-
-    new_model = SimulationState(
-        velocity=d[&quot;velocity_cgs&quot;],
-        density=homologous_density,
-        abundance=d[&quot;abundance&quot;],
-        isotope_abundance=None,
-        time_explosion=d[&quot;time_explosion_cgs&quot;],
-        elemental_mass=None,
-        t_inner=d[&quot;t_inner_cgs&quot;],
-        t_radiative=d[&quot;t_radiative_cgs&quot;],
-        dilution_factor=d[&quot;dilution_factor&quot;],
-        v_boundary_inner=d[&quot;v_boundary_inner_cgs&quot;],
-        v_boundary_outer=d[&quot;v_boundary_outer_cgs&quot;],
-    )
-
-    new_model.t_rad = d[&quot;t_rad_cgs&quot;]
-    new_model.w = d[&quot;w&quot;]
-
-    return new_model</div>
 </pre></div>
 
            </div>
@@ -516,8 +438,8 @@ logger = logging.getLogger(__name__)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

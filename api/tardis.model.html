@@ -187,6 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tardis.model.base.html">tardis.model.base module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState"><code class="docutils literal notranslate"><span class="pre">SimulationState</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.abundance"><code class="docutils literal notranslate"><span class="pre">SimulationState.abundance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.blackbody_packet_source"><code class="docutils literal notranslate"><span class="pre">SimulationState.blackbody_packet_source</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.density"><code class="docutils literal notranslate"><span class="pre">SimulationState.density</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.dilution_factor"><code class="docutils literal notranslate"><span class="pre">SimulationState.dilution_factor</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.from_config"><code class="docutils literal notranslate"><span class="pre">SimulationState.from_config()</span></code></a></li>
@@ -200,7 +201,6 @@
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.r_outer"><code class="docutils literal notranslate"><span class="pre">SimulationState.r_outer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.radius"><code class="docutils literal notranslate"><span class="pre">SimulationState.radius</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.t_inner"><code class="docutils literal notranslate"><span class="pre">SimulationState.t_inner</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.t_rad"><code class="docutils literal notranslate"><span class="pre">SimulationState.t_rad</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.t_radiative"><code class="docutils literal notranslate"><span class="pre">SimulationState.t_radiative</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.v_boundary_inner"><code class="docutils literal notranslate"><span class="pre">SimulationState.v_boundary_inner</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.v_boundary_outer"><code class="docutils literal notranslate"><span class="pre">SimulationState.v_boundary_outer</span></code></a></li>
@@ -209,19 +209,27 @@
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.v_outer"><code class="docutils literal notranslate"><span class="pre">SimulationState.v_outer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.velocity"><code class="docutils literal notranslate"><span class="pre">SimulationState.velocity</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.volume"><code class="docutils literal notranslate"><span class="pre">SimulationState.volume</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.model.base.html#tardis.model.base.SimulationState.w"><code class="docutils literal notranslate"><span class="pre">SimulationState.w</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.model.parse_input.html">tardis.model.parse_input module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_geometric_dilution_factor"><code class="docutils literal notranslate"><span class="pre">calculate_geometric_dilution_factor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_t_radiative_from_t_inner"><code class="docutils literal notranslate"><span class="pre">calculate_t_radiative_from_t_inner()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.convert_to_nuclide_mass_fraction"><code class="docutils literal notranslate"><span class="pre">convert_to_nuclide_mass_fraction()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_config"><code class="docutils literal notranslate"><span class="pre">parse_abundance_config()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_csvy"><code class="docutils literal notranslate"><span class="pre">parse_abundance_csvy()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_composition_csvy"><code class="docutils literal notranslate"><span class="pre">parse_composition_csvy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_composition"><code class="docutils literal notranslate"><span class="pre">parse_csvy_composition()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_geometry"><code class="docutils literal notranslate"><span class="pre">parse_csvy_geometry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_radiation_field_state"><code class="docutils literal notranslate"><span class="pre">parse_csvy_radiation_field_state()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_density_csvy"><code class="docutils literal notranslate"><span class="pre">parse_density_csvy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_packet_source"><code class="docutils literal notranslate"><span class="pre">parse_packet_source()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_radiation_field_state"><code class="docutils literal notranslate"><span class="pre">parse_radiation_field_state()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_structure_config"><code class="docutils literal notranslate"><span class="pre">parse_structure_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.model.radiation_field_state.html">tardis.model.radiation_field_state module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteThermalRadiationFieldState"><code class="docutils literal notranslate"><span class="pre">DiluteThermalRadiationFieldState</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -247,8 +255,8 @@ factor of the model used in the simulation.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

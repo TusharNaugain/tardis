@@ -25,7 +25,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.montecarlo package" href="tardis.montecarlo.html" />
+    <link rel="next" title="tardis.model.radiation_field_state module" href="tardis.model.radiation_field_state.html" />
     <link rel="prev" title="tardis.model.base module" href="tardis.model.base.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -147,6 +147,33 @@
   <section id="module-tardis.model.parse_input">
 <span id="tardis-model-parse-input-module"></span><h1>tardis.model.parse_input module<a class="headerlink" href="#module-tardis.model.parse_input" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.calculate_geometric_dilution_factor">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">calculate_geometric_dilution_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#calculate_geometric_dilution_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.calculate_geometric_dilution_factor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.calculate_t_radiative_from_t_inner">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">calculate_t_radiative_from_t_inner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#calculate_t_radiative_from_t_inner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.calculate_t_radiative_from_t_inner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the radiative temperature based on the inner temperature and the geometry of the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd><p>The geometry object.</p>
+</dd>
+<dt><strong>packet_source</strong><span class="classifier">PacketSource</span></dt><dd><p>The packet source object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Quantity</dt><dd><p>The calculated radiative temperature.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.convert_to_nuclide_mass_fraction">
 <span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">convert_to_nuclide_mass_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isotopic_mass_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_fraction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#convert_to_nuclide_mass_fraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.convert_to_nuclide_mass_fraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert the abundance and isotope abundance data to nuclide mass fraction.</p>
@@ -256,8 +283,8 @@ if necessary. The resulting abundance and isotope abundance arrays are returned.
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.model.parse_input.parse_composition_csvy">
-<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_composition_csvy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_composition_csvy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_composition_csvy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_csvy_composition">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_csvy_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_csvy_composition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_csvy_composition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the composition data from a CSVY model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -335,6 +362,11 @@ used to create a homologous radial 1D geometry object, which is returned.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_csvy_radiation_field_state">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_csvy_radiation_field_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_csvy_radiation_field_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_csvy_radiation_field_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.parse_density_csvy">
 <span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_density_csvy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csvy_model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csvy_model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_density_csvy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_density_csvy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the density data from a CSVY model.</p>
@@ -366,6 +398,68 @@ used to create a homologous radial 1D geometry object, which is returned.</p>
 contains a ‘density’ attribute, it uses the ‘parse_csvy_density’ function to parse the
 density data. Otherwise, it calculates the density data using the ‘calculate_density_after_time’
 function. The parsed density data is returned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_packet_source">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_packet_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the packet source based on the given configuration and geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">Config</span></dt><dd><p>The configuration object containing the supernova and plasma settings.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd><p>The geometry object containing the inner radius information.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>packet_source</strong><span class="classifier">BlackBodySimpleSource</span></dt><dd><p>The packet source object based on the configuration and geometry.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If both t_inner and luminosity_requested are None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.parse_radiation_field_state">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_radiation_field_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_radiative</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilution_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_radiation_field_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_radiation_field_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the radiation field state based on the provided configuration, radiative temperature, geometry, dilution factor, and packet source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">Config</span></dt><dd><p>The configuration object.</p>
+</dd>
+<dt><strong>t_radiative</strong><span class="classifier">{None, Quantity}, optional</span></dt><dd><p>The radiative temperature. If None, it is calculated based on the initial_t_rad value in the plasma configuration.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd><p>The geometry object.</p>
+</dd>
+<dt><strong>dilution_factor</strong><span class="classifier">{None, ndarray}, optional</span></dt><dd><p>The dilution factor. If None, it is calculated based on the geometry.</p>
+</dd>
+<dt><strong>packet_source</strong><span class="classifier">{None, PacketSource}, optional</span></dt><dd><p>The packet source object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DiluteThermalRadiationFieldState</dt><dd><p>The parsed radiation field state.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>AssertionError</dt><dd><p>If the length of t_radiative or dilution_factor is not compatible with the geometry.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -417,14 +511,14 @@ read from a file. The parsed data is used to create a homologous radial 1D geome
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.model.base.html" class="btn btn-neutral float-left" title="tardis.model.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.montecarlo.html" class="btn btn-neutral float-right" title="tardis.montecarlo package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.model.radiation_field_state.html" class="btn btn-neutral float-right" title="tardis.model.radiation_field_state module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 

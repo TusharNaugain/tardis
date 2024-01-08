@@ -406,8 +406,8 @@ logger = logging.getLogger(__name__)
         )
 
         converged = self._get_convergence_status(
-            self.simulation_state.t_rad,
-            self.simulation_state.w,
+            self.simulation_state.t_radiative,
+            self.simulation_state.dilution_factor,
             self.simulation_state.t_inner,
             estimated_t_rad,
             estimated_w,
@@ -416,13 +416,13 @@ logger = logging.getLogger(__name__)
 
         # calculate_next_plasma_state equivalent
         # FIXME: Should convergence strategy have its own class?
-        next_t_rad = self.damped_converge(
-            self.simulation_state.t_rad,
+        next_t_radiative = self.damped_converge(
+            self.simulation_state.t_radiative,
             estimated_t_rad,
             self.convergence_strategy.t_rad.damping_constant,
         )
-        next_w = self.damped_converge(
-            self.simulation_state.w,
+        next_dilution_factor = self.damped_converge(
+            self.simulation_state.dilution_factor,
             estimated_w,
             self.convergence_strategy.w.damping_constant,
         )
@@ -445,11 +445,13 @@ logger = logging.getLogger(__name__)
             )
             self.convergence_plots.fetch_data(
                 name=&quot;t_rad&quot;,
-                value=self.simulation_state.t_rad,
+                value=self.simulation_state.t_radiative,
                 item_type=&quot;iterable&quot;,
             )
             self.convergence_plots.fetch_data(
-                name=&quot;w&quot;, value=self.simulation_state.w, item_type=&quot;iterable&quot;
+                name=&quot;w&quot;,
+                value=self.simulation_state.dilution_factor,
+                item_type=&quot;iterable&quot;,
             )
             self.convergence_plots.fetch_data(
                 name=&quot;velocity&quot;,
@@ -458,15 +460,15 @@ logger = logging.getLogger(__name__)
             )
 
         self.log_plasma_state(
-            self.simulation_state.t_rad,
-            self.simulation_state.w,
+            self.simulation_state.t_radiative,
+            self.simulation_state.dilution_factor,
             self.simulation_state.t_inner,
-            next_t_rad,
-            next_w,
+            next_t_radiative,
+            next_dilution_factor,
             next_t_inner,
         )
-        self.simulation_state.t_rad = next_t_rad
-        self.simulation_state.w = next_w
+        self.simulation_state.t_radiative = next_t_radiative
+        self.simulation_state.dilution_factor = next_dilution_factor
         self.simulation_state.blackbody_packet_source.temperature = next_t_inner
 
         # model.calculate_j_blues() equivalent
@@ -476,7 +478,8 @@ logger = logging.getLogger(__name__)
             self.plasma.store_previous_properties()
 
         update_properties = dict(
-            t_rad=self.simulation_state.t_rad, w=self.simulation_state.w
+            t_rad=self.simulation_state.t_radiative,
+            w=self.simulation_state.dilution_factor,
         )
         # A check to see if the plasma is set with JBluesDetailed, in which
         # case it needs some extra kwargs.
@@ -548,8 +551,8 @@ logger = logging.getLogger(__name__)
         while self.iterations_executed &lt; self.iterations - 1:
             self.store_plasma_state(
                 self.iterations_executed,
-                self.simulation_state.w,
-                self.simulation_state.t_rad,
+                self.simulation_state.dilution_factor,
+                self.simulation_state.t_radiative,
                 self.plasma.electron_densities,
                 self.simulation_state.t_inner,
             )
@@ -573,8 +576,8 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         self.store_plasma_state(
             self.iterations_executed,
-            self.simulation_state.w,
-            self.simulation_state.t_rad,
+            self.simulation_state.dilution_factor,
+            self.simulation_state.t_radiative,
             self.plasma.electron_densities,
             self.simulation_state.t_inner,
         )
@@ -602,10 +605,10 @@ logger = logging.getLogger(__name__)
 <div class="viewcode-block" id="Simulation.log_plasma_state"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.log_plasma_state">[docs]</a>    def log_plasma_state(
         self,
         t_rad,
-        w,
+        dilution_factor,
         t_inner,
         next_t_rad,
-        next_w,
+        next_dilution_factor,
         next_t_inner,
         log_sampling=5,
     ):
@@ -634,8 +637,8 @@ logger = logging.getLogger(__name__)
         )
         plasma_state_log[&quot;t_rad&quot;] = t_rad
         plasma_state_log[&quot;next_t_rad&quot;] = next_t_rad
-        plasma_state_log[&quot;w&quot;] = w
-        plasma_state_log[&quot;next_w&quot;] = next_w
+        plasma_state_log[&quot;w&quot;] = dilution_factor
+        plasma_state_log[&quot;next_w&quot;] = next_dilution_factor
         plasma_state_log.columns.name = &quot;Shell No.&quot;
 
         if is_notebook():
@@ -872,8 +875,8 @@ logger = logging.getLogger(__name__)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Jan 2024.
       </span></p>
   </div>
 
