@@ -334,7 +334,12 @@ from astropy import units as u
         xis_prod = np.prod(xis[1:], 0)
         x = ne.evaluate(&quot;-log(xis_prod)/l&quot;)
 
-        return x * (const.k_B.cgs.value * self.temperature.value) / const.h.cgs.value</div>
+        if isinstance(self.temperature, u.Quantity):
+            temperature = self.temperature.value
+        else:
+            temperature = self.temperature
+
+        return x * (const.k_B.cgs.value * temperature) / const.h.cgs.value</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
