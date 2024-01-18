@@ -131,15 +131,15 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
 
 
 <div class="viewcode-block" id="LastLineInteraction"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction">[docs]</a>class LastLineInteraction(object):
-<div class="viewcode-block" id="LastLineInteraction.from_model"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_model">[docs]</a>    @classmethod
-    def from_model(cls, model, packet_filter_mode=&quot;packet_out_nu&quot;):
+<div class="viewcode-block" id="LastLineInteraction.from_simulation"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation">[docs]</a>    @classmethod
+    def from_simulation(cls, simulation, packet_filter_mode=&quot;packet_out_nu&quot;):
         return cls(
-            model.transport.last_line_interaction_in_id,
-            model.transport.last_line_interaction_out_id,
-            model.transport.last_line_interaction_shell_id,
-            model.transport.output_nu,
-            model.transport.last_interaction_in_nu,
-            model.plasma.atomic_data.lines,
+            simulation.transport.last_line_interaction_in_id,
+            simulation.transport.last_line_interaction_out_id,
+            simulation.transport.last_line_interaction_shell_id,
+            simulation.transport.transport_state.packet_collection.output_nus,
+            simulation.transport.last_interaction_in_nu,
+            simulation.plasma.atomic_data.lines,
             packet_filter_mode,
         )</div>
 
@@ -620,7 +620,7 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

@@ -207,6 +207,36 @@ obtain the final nuclide mass fraction.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="tardis.model.parse_input.initialize_packet_source">
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">initialize_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#initialize_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.initialize_packet_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the packet source based on config and geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">Config</span></dt><dd><p>The configuration object containing the supernova and plasma settings.</p>
+</dd>
+<dt><strong>geometry</strong><span class="classifier">Geometry</span></dt><dd><p>The geometry object containing the inner radius information.</p>
+</dd>
+<dt><strong>packet_source</strong><span class="classifier">BasePacketSource</span></dt><dd><p>The packet source object based on the configuration and geometry.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>packet_source</strong><span class="classifier">BasePacketSource</span></dt><dd><p>The packet source object based on the configuration and geometry.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If both t_inner and luminosity_requested are None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.parse_abundance_config">
 <span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_abundance_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_abundance_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_abundance_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the abundance configuration data.</p>
@@ -419,12 +449,6 @@ function. The parsed density data is returned.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>If both t_inner and luminosity_requested are None.</p>
-</dd>
-</dl>
-</dd>
 </dl>
 </dd></dl>
 
@@ -518,7 +542,7 @@ read from a file. The parsed data is used to create a homologous radial 1D geome
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

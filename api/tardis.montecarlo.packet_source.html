@@ -28,7 +28,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.montecarlo.spectrum module" href="tardis.montecarlo.spectrum.html" />
-    <link rel="prev" title="tardis.montecarlo.montecarlo_configuration module" href="tardis.montecarlo.montecarlo_configuration.html" />
+    <link rel="prev" title="tardis.montecarlo.montecarlo_state module" href="tardis.montecarlo.montecarlo_state.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -169,6 +169,24 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity">
+<span class="sig-name descname"><span class="pre">calculate_radfield_luminosity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.calculate_radfield_luminosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate inner luminosity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model</strong><span class="classifier">model.SimulationState</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>astropy.units.Quantity</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BasePacketSource.create_packet_energies">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_packet_energies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.create_packet_energies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.create_packet_energies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -189,13 +207,8 @@
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BasePacketSource.create_packet_seeds">
-<span class="sig-name descname"><span class="pre">create_packet_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.create_packet_seeds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.create_packet_seeds" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BasePacketSource.create_packets">
-<span class="sig-name descname"><span class="pre">create_packets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.create_packets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.create_packets" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">create_packets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.create_packets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.create_packets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate packet properties as arrays</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,11 +231,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BasePacketSource.set_state_from_model">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_state_from_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BasePacketSource.set_state_from_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BasePacketSource.set_state_from_model" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -373,15 +381,9 @@ Finally, the packet frequency is given by
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSource.from_model">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSource.from_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSource.from_model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSource.from_simulation_state">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSource.from_simulation_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSource.from_simulation_state" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSource.set_state_from_model">
-<span class="sig-name descname"><span class="pre">set_state_from_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSource.set_state_from_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSource.set_state_from_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set state of packet source (correct state should be ensured before creating packets)</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSource.set_temperature_from_luminosity">
@@ -491,15 +493,9 @@ on which the packets are initialized is not comoving with the material.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_model">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSourceRelativistic.from_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_simulation_state">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSourceRelativistic.from_simulation_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_simulation_state" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.set_state_from_model">
-<span class="sig-name descname"><span class="pre">set_state_from_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/packet_source.html#BlackBodySimpleSourceRelativistic.set_state_from_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.set_state_from_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set state of packet source (correct state should be ensured before creating packets)</p>
-</dd></dl>
 
 </dd></dl>
 
@@ -509,7 +505,7 @@ on which the packets are initialized is not comoving with the material.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.montecarlo.montecarlo_configuration.html" class="btn btn-neutral float-left" title="tardis.montecarlo.montecarlo_configuration module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.montecarlo.montecarlo_state.html" class="btn btn-neutral float-left" title="tardis.montecarlo.montecarlo_state module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.montecarlo.spectrum.html" class="btn btn-neutral float-right" title="tardis.montecarlo.spectrum module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -517,7 +513,7 @@ on which the packets are initialized is not comoving with the material.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

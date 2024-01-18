@@ -129,7 +129,7 @@ from radioactivedecay import Nuclide
 from radioactivedecay.utils import Z_DICT, elem_to_Z
 
 from tardis.io.configuration.config_reader import ConfigurationNameSpace
-from tardis.montecarlo.base import MontecarloTransport
+from tardis.montecarlo.base import MonteCarloTransportSolver
 from tardis.montecarlo.packet_source import (
     BlackBodySimpleSource,
     BlackBodySimpleSourceRelativistic,
@@ -843,7 +843,7 @@ logger = logging.getLogger(__name__)
     )
 
     # Creating a transport object and storing data
-    new_transport = MontecarloTransport(
+    new_transport = MonteCarloTransportSolver(
         spectrum_frequency=d[&quot;spectrum_frequency_cgs&quot;],
         virtual_spectrum_spawn_range=d[&quot;virtual_spectrum_spawn_range&quot;],
         disable_electron_scattering=d[&quot;disable_electron_scattering&quot;],
@@ -856,7 +856,7 @@ logger = logging.getLogger(__name__)
         spectrum_method=d[&quot;spectrum_method&quot;],
         packet_source=d[&quot;packet_source&quot;],
         nthreads=d[&quot;nthreads&quot;],
-        virtual_packet_logging=d[&quot;virt_logging&quot;],
+        enable_virtual_packet_logging=d[&quot;virt_logging&quot;],
         use_gpu=d[&quot;use_gpu&quot;],
     )
 
@@ -983,7 +983,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

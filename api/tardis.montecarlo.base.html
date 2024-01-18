@@ -22,8 +22,6 @@
         <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -149,136 +147,14 @@
   <section id="module-tardis.montecarlo.base">
 <span id="tardis-montecarlo-base-module"></span><h1>tardis.montecarlo.base module<a class="headerlink" href="#module-tardis.montecarlo.base" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.montecarlo.base.</span></span><span class="sig-name descname"><span class="pre">MontecarloTransport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.montecarlo.base.</span></span><span class="sig-name descname"><span class="pre">MonteCarloTransportSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MonteCarloTransportSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.io.util.html#tardis.io.util.HDFWriterMixin" title="tardis.io.util.HDFWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">HDFWriterMixin</span></code></a></p>
 <p>This class is designed as an interface between the Python part and the
 montecarlo C-part</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_emitted_luminosity">
-<span class="sig-name descname"><span class="pre">calculate_emitted_luminosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">luminosity_nu_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_nu_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_emitted_luminosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_emitted_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate emitted luminosity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>luminosity_nu_start</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-<dt><strong>luminosity_nu_end</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>astropy.units.Quantity</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_f_lambda">
-<span class="sig-name descname"><span class="pre">calculate_f_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_f_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_f_lambda" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_f_nu">
-<span class="sig-name descname"><span class="pre">calculate_f_nu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_f_nu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_f_nu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_luminosity_inner">
-<span class="sig-name descname"><span class="pre">calculate_luminosity_inner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_luminosity_inner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_luminosity_inner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate inner luminosity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>model</strong><span class="classifier">model.SimulationState</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>astropy.units.Quantity</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_radiationfield_properties">
-<span class="sig-name descname"><span class="pre">calculate_radiationfield_properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_radiationfield_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_radiationfield_properties" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate an updated radiation field from the :math:
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">bar{nu}_textrm{estimator}</span></code> and <span class="math notranslate nohighlight">\(\J_\textrm{estimator}\)</span>
-calculated in the montecarlo simulation.
-The details of the calculation can be found in the documentation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>nubar_estimator</strong><span class="classifier">np.ndarray (float)</span></dt><dd></dd>
-<dt><strong>j_estimator</strong><span class="classifier">np.ndarray (float)</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>t_rad</strong><span class="classifier">astropy.units.Quantity (float)</span></dt><dd></dd>
-<dt><strong>w</strong><span class="classifier">numpy.ndarray (float)</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_reabsorbed_luminosity">
-<span class="sig-name descname"><span class="pre">calculate_reabsorbed_luminosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">luminosity_nu_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_nu_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_reabsorbed_luminosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_reabsorbed_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate reabsorbed luminosity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>luminosity_nu_start</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-<dt><strong>luminosity_nu_end</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>astropy.units.Quantity</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.calculate_time_of_simulation">
-<span class="sig-name descname"><span class="pre">calculate_time_of_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.calculate_time_of_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.calculate_time_of_simulation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate time of montecarlo simulation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>model</strong><span class="classifier">model.SimulationState</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>float</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.emitted_packet_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">emitted_packet_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.emitted_packet_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.emitted_packet_mask">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">emitted_packet_mask</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.emitted_packet_mask" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.emitted_packet_nu">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">emitted_packet_nu</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.emitted_packet_nu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.from_config">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">virtual_packet_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.from_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.from_config">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_virtual_packet_logging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MonteCarloTransportSolver.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.from_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new MontecarloTransport instance from a Configuration object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -296,73 +172,28 @@ The details of the calculation can be found in the documentation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.get_line_interaction_id">
-<span class="sig-name descname"><span class="pre">get_line_interaction_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.get_line_interaction_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.get_line_interaction_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.get_line_interaction_id">
+<span class="sig-name descname"><span class="pre">get_line_interaction_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MonteCarloTransportSolver.get_line_interaction_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.get_line_interaction_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.hdf_name">
-<span class="sig-name descname"><span class="pre">hdf_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'transport'</span></em><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.hdf_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.hdf_name">
+<span class="sig-name descname"><span class="pre">hdf_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'transport'</span></em><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.hdf_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.hdf_properties">
-<span class="sig-name descname"><span class="pre">hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['output_nu',</span> <span class="pre">'output_energy',</span> <span class="pre">'nu_bar_estimator',</span> <span class="pre">'j_estimator',</span> <span class="pre">'montecarlo_virtual_luminosity',</span> <span class="pre">'last_interaction_in_nu',</span> <span class="pre">'last_interaction_type',</span> <span class="pre">'last_line_interaction_in_id',</span> <span class="pre">'last_line_interaction_out_id',</span> <span class="pre">'last_line_interaction_shell_id',</span> <span class="pre">'packet_luminosity',</span> <span class="pre">'spectrum',</span> <span class="pre">'spectrum_virtual',</span> <span class="pre">'spectrum_reabsorbed',</span> <span class="pre">'time_of_simulation',</span> <span class="pre">'emitted_packet_mask']</span></em><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.hdf_properties" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.integrator">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">integrator</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.integrator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.hdf_properties">
+<span class="sig-name descname"><span class="pre">hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['transport_state',</span> <span class="pre">'last_interaction_in_nu',</span> <span class="pre">'last_interaction_type',</span> <span class="pre">'last_line_interaction_in_id',</span> <span class="pre">'last_line_interaction_out_id',</span> <span class="pre">'last_line_interaction_shell_id']</span></em><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.hdf_properties" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.legacy_return">
-<span class="sig-name descname"><span class="pre">legacy_return</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.legacy_return"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.legacy_return" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.montecarlo_emitted_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">montecarlo_emitted_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.montecarlo_emitted_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.montecarlo_reabsorbed_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">montecarlo_reabsorbed_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.montecarlo_reabsorbed_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.montecarlo_virtual_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">montecarlo_virtual_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.montecarlo_virtual_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.output_energy">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_energy</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.output_energy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.output_nu">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_nu</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.output_nu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.packet_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">packet_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.packet_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.reabsorbed_packet_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reabsorbed_packet_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.reabsorbed_packet_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.reabsorbed_packet_nu">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reabsorbed_packet_nu</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.reabsorbed_packet_nu" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.legacy_return">
+<span class="sig-name descname"><span class="pre">legacy_return</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MonteCarloTransportSolver.legacy_return"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.legacy_return" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_virtual_packets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MontecarloTransport.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_virtual_packets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/base.html#MonteCarloTransportSolver.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the montecarlo calculation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -383,54 +214,9 @@ The details of the calculation can be found in the documentation.</p>
 </dl>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.spectrum">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spectrum</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.spectrum" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.spectrum_integrated">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spectrum_integrated</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.spectrum_integrated" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.spectrum_reabsorbed">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spectrum_reabsorbed</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.spectrum_reabsorbed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.spectrum_virtual">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spectrum_virtual</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.spectrum_virtual" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.t_rad_estimator_constant">
-<span class="sig-name descname"><span class="pre">t_rad_estimator_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.2523371456060662e-11</span></em><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.t_rad_estimator_constant" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.virtual_packet_energy">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">virtual_packet_energy</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.virtual_packet_energy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.virtual_packet_luminosity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">virtual_packet_luminosity</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.virtual_packet_luminosity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.virtual_packet_nu">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">virtual_packet_nu</span></span><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.virtual_packet_nu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.vpacket_hdf_properties">
-<span class="sig-name descname"><span class="pre">vpacket_hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['virt_packet_nus',</span> <span class="pre">'virt_packet_energies',</span> <span class="pre">'virt_packet_initial_rs',</span> <span class="pre">'virt_packet_initial_mus',</span> <span class="pre">'virt_packet_last_interaction_in_nu',</span> <span class="pre">'virt_packet_last_interaction_type',</span> <span class="pre">'virt_packet_last_line_interaction_in_id',</span> <span class="pre">'virt_packet_last_line_interaction_out_id',</span> <span class="pre">'virt_packet_last_line_interaction_shell_id']</span></em><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.vpacket_hdf_properties" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.montecarlo.base.MontecarloTransport.w_estimator_constant">
-<span class="sig-name descname"><span class="pre">w_estimator_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4408.881331783647</span></em><a class="headerlink" href="#tardis.montecarlo.base.MontecarloTransport.w_estimator_constant" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.montecarlo.base.MonteCarloTransportSolver.vpacket_hdf_properties">
+<span class="sig-name descname"><span class="pre">vpacket_hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['virt_packet_nus',</span> <span class="pre">'virt_packet_energies',</span> <span class="pre">'virt_packet_initial_rs',</span> <span class="pre">'virt_packet_initial_mus',</span> <span class="pre">'virt_packet_last_interaction_in_nu',</span> <span class="pre">'virt_packet_last_interaction_type',</span> <span class="pre">'virt_packet_last_line_interaction_in_id',</span> <span class="pre">'virt_packet_last_line_interaction_out_id',</span> <span class="pre">'virt_packet_last_line_interaction_shell_id']</span></em><a class="headerlink" href="#tardis.montecarlo.base.MonteCarloTransportSolver.vpacket_hdf_properties" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -449,7 +235,7 @@ The details of the calculation can be found in the documentation.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

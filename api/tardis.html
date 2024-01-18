@@ -279,6 +279,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_geometric_dilution_factor"><code class="docutils literal notranslate"><span class="pre">calculate_geometric_dilution_factor()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.calculate_t_radiative_from_t_inner"><code class="docutils literal notranslate"><span class="pre">calculate_t_radiative_from_t_inner()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.convert_to_nuclide_mass_fraction"><code class="docutils literal notranslate"><span class="pre">convert_to_nuclide_mass_fraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.initialize_packet_source"><code class="docutils literal notranslate"><span class="pre">initialize_packet_source()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_config"><code class="docutils literal notranslate"><span class="pre">parse_abundance_config()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_abundance_csvy"><code class="docutils literal notranslate"><span class="pre">parse_abundance_csvy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_composition"><code class="docutils literal notranslate"><span class="pre">parse_csvy_composition()</span></code></a></li>
@@ -310,10 +311,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.montecarlo.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.base.html">tardis.montecarlo.base module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.base.html#tardis.montecarlo.base.MontecarloTransport"><code class="docutils literal notranslate"><span class="pre">MontecarloTransport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.base.html#tardis.montecarlo.base.MonteCarloTransportSolver"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportSolver</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.montecarlo_configuration.html">tardis.montecarlo.montecarlo_configuration module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.montecarlo_state.html">tardis.montecarlo.montecarlo_state module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.montecarlo_state.html#tardis.montecarlo.montecarlo_state.MonteCarloTransportState"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.packet_source.html">tardis.montecarlo.packet_source module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource"><code class="docutils literal notranslate"><span class="pre">BasePacketSource</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource"><code class="docutils literal notranslate"><span class="pre">BlackBodySimpleSource</span></code></a></li>
@@ -505,7 +510,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tardis.analysis.html">tardis.analysis module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.atomic_number"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.atomic_number</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.from_model"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.from_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.from_simulation()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.ion_number"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.ion_number</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.plot_wave_in_out"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.plot_wave_in_out()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.analysis.html#tardis.analysis.LastLineInteraction.set_ion"><code class="docutils literal notranslate"><span class="pre">LastLineInteraction.set_ion()</span></code></a></li>
@@ -556,7 +561,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

@@ -305,6 +305,7 @@ numba_geometry_spec = [
     (&quot;r_outer&quot;, float64[:]),
     (&quot;v_inner&quot;, float64[:]),
     (&quot;v_outer&quot;, float64[:]),
+    (&quot;volume&quot;, float64[:]),
 ]
 
 
@@ -320,11 +321,13 @@ class NumbaRadial1DGeometry(object):
         r_outer : numpy.ndarray
         v_inner : numpy.ndarray
         v_outer : numpy.ndarray
+        volume : numpy.ndarray
         &quot;&quot;&quot;
         self.r_inner = r_inner
         self.r_outer = r_outer
         self.v_inner = v_inner
-        self.v_outer = v_outer</div>
+        self.v_outer = v_outer
+        self.volume = (4 / 3) * np.pi * (self.r_outer**3 - self.r_inner**3)</div>
 </pre></div>
 
            </div>
@@ -335,7 +338,7 @@ class NumbaRadial1DGeometry(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 

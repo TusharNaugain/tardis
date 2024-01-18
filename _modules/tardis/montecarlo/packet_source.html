@@ -123,6 +123,9 @@ from tardis import constants as const
 from tardis.montecarlo import (
     montecarlo_configuration as montecarlo_configuration,
 )
+from tardis.montecarlo.montecarlo_numba.packet_collections import (
+    PacketCollection,
+)
 
 from astropy import units as u
 
@@ -157,20 +160,6 @@ from astropy import units as u
     def _reseed(self, seed):
         self.rng = np.random.default_rng(seed=seed)
 
-<div class="viewcode-block" id="BasePacketSource.create_packet_seeds"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.create_packet_seeds">[docs]</a>    def create_packet_seeds(self, no_of_packets, seed_offset):
-        # the iteration (passed as seed_offset) is added each time to preserve randomness
-        # across different simulations with the same temperature,
-        # for example. We seed the random module instead of the numpy module
-        # because we call random.sample, which references a different internal
-        # state than in the numpy.random module.
-        self._reseed(self.base_seed + seed_offset)
-        seeds = self.rng.choice(self.MAX_SEED_VAL, no_of_packets, replace=True)
-        return seeds</div>
-
-<div class="viewcode-block" id="BasePacketSource.set_state_from_model"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.set_state_from_model">[docs]</a>    @abc.abstractmethod
-    def set_state_from_model(self, model):
-        pass</div>
-
 <div class="viewcode-block" id="BasePacketSource.create_packet_radii"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.create_packet_radii">[docs]</a>    @abc.abstractmethod
     def create_packet_radii(self, no_of_packets, *args, **kwargs):
         pass</div>
@@ -187,7 +176,7 @@ from astropy import units as u
     def create_packet_energies(self, no_of_packets, *args, **kwargs):
         pass</div>
 
-<div class="viewcode-block" id="BasePacketSource.create_packets"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.create_packets">[docs]</a>    def create_packets(self, no_of_packets, *args, **kwargs):
+<div class="viewcode-block" id="BasePacketSource.create_packets"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.create_packets">[docs]</a>    def create_packets(self, no_of_packets, seed_offset=0, *args, **kwargs):
         &quot;&quot;&quot;Generate packet properties as arrays
 
         Parameters
@@ -206,12 +195,50 @@ from astropy import units as u
         array
             Packet energies
         &quot;&quot;&quot;
+        # the iteration (passed as seed_offset) is added each time to preserve randomness
+        # across different simulations with the same temperature,
+        # for example. We seed the random module instead of the numpy module
+        # because we call random.sample, which references a different internal
+        # state than in the numpy.random module.
+        self._reseed(self.base_seed + seed_offset)
+        packet_seeds = self.rng.choice(
+            self.MAX_SEED_VAL, no_of_packets, replace=True
+        )
+
         radii = self.create_packet_radii(no_of_packets, *args, **kwargs)
         nus = self.create_packet_nus(no_of_packets, *args, **kwargs)
         mus = self.create_packet_mus(no_of_packets, *args, **kwargs)
         energies = self.create_packet_energies(no_of_packets, *args, **kwargs)
+        # Check if all arrays have the same length
+        assert (
+            len(radii) == len(nus) == len(mus) == len(energies) == no_of_packets
+        )
+        radiation_field_luminosity = (
+            self.calculate_radfield_luminosity().to(u.erg / u.s).value
+        )
+        return PacketCollection(
+            radii, nus, mus, energies, packet_seeds, radiation_field_luminosity
+        )</div>
 
-        return radii, nus, mus, energies</div></div>
+<div class="viewcode-block" id="BasePacketSource.calculate_radfield_luminosity"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity">[docs]</a>    def calculate_radfield_luminosity(self):
+        &quot;&quot;&quot;
+        Calculate inner luminosity.
+
+        Parameters
+        ----------
+        model : model.SimulationState
+
+        Returns
+        -------
+        astropy.units.Quantity
+        &quot;&quot;&quot;
+        return (
+            4
+            * np.pi
+            * const.sigma_sb.cgs
+            * self.radius**2
+            * self.temperature**4
+        ).to(&quot;erg/s&quot;)</div></div>
 
 
 <div class="viewcode-block" id="BlackBodySimpleSource"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource">[docs]</a>class BlackBodySimpleSource(BasePacketSource):
@@ -231,21 +258,19 @@ from astropy import units as u
         Secondary seed for global numpy rng (Deprecated: Legacy reasons only)
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="BlackBodySimpleSource.from_model"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.from_model">[docs]</a>    @classmethod
-    def from_model(cls, model, *args, **kwargs):
-        return cls(model.r_inner[0], model.t_inner.value, *args, **kwargs)</div>
+<div class="viewcode-block" id="BlackBodySimpleSource.from_simulation_state"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.from_simulation_state">[docs]</a>    @classmethod
+    def from_simulation_state(cls, simulation_state, *args, **kwargs):
+        return cls(
+            simulation_state.r_inner[0],
+            simulation_state.t_inner.value,
+            *args,
+            **kwargs,
+        )</div>
 
     def __init__(self, radius=None, temperature=None, **kwargs):
         self.radius = radius
         self.temperature = temperature
         super().__init__(**kwargs)
-
-<div class="viewcode-block" id="BlackBodySimpleSource.set_state_from_model"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.set_state_from_model">[docs]</a>    def set_state_from_model(self, simulation_state):
-        &quot;&quot;&quot;
-        Set state of packet source (correct state should be ensured before creating packets)
-        &quot;&quot;&quot;
-        self.radius = simulation_state.r_inner[0]
-        self.temperature = simulation_state.t_inner.value</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packets"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packets">[docs]</a>    def create_packets(self, no_of_packets, *args, **kwargs):
         if self.radius is None or self.temperature is None:
@@ -309,7 +334,12 @@ from astropy import units as u
         xis_prod = np.prod(xis[1:], 0)
         x = ne.evaluate(&quot;-log(xis_prod)/l&quot;)
 
-        return x * (const.k_B.cgs.value * self.temperature) / const.h.cgs.value</div>
+        if isinstance(self.temperature, u.Quantity):
+            temperature = self.temperature.value
+        else:
+            temperature = self.temperature
+
+        return x * (const.k_B.cgs.value * temperature) / const.h.cgs.value</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
@@ -385,12 +415,12 @@ from astropy import units as u
         Secondary seed for global numpy rng (Deprecated: Legacy reasons only)
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.from_model"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_model">[docs]</a>    @classmethod
-    def from_model(cls, model, *args, **kwargs):
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.from_simulation_state"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_simulation_state">[docs]</a>    @classmethod
+    def from_simulation_state(cls, simulation_state, *args, **kwargs):
         return cls(
-            model.time_explosion,
-            model.r_inner[0],
-            model.t_inner.value,
+            simulation_state.time_explosion,
+            simulation_state.r_inner[0],
+            simulation_state.t_inner.value,
             *args,
             **kwargs,
         )</div>
@@ -398,13 +428,6 @@ from astropy import units as u
     def __init__(self, time_explosion=None, **kwargs):
         self.time_explosion = time_explosion
         super().__init__(**kwargs)
-
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.set_state_from_model"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.set_state_from_model">[docs]</a>    def set_state_from_model(self, model):
-        &quot;&quot;&quot;
-        Set state of packet source (correct state should be ensured before creating packets)
-        &quot;&quot;&quot;
-        self.time_explosion = model.time_explosion
-        super().set_state_from_model(model)</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packets"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packets">[docs]</a>    def create_packets(self, no_of_packets):
         &quot;&quot;&quot;Generate relativistic black-body packet properties as arrays
@@ -487,7 +510,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jan 2024.
+      <span class="lastupdated">Last updated on 18 Jan 2024.
       </span></p>
   </div>
 
