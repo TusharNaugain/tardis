@@ -120,25 +120,26 @@ Code to analyse the model.
 &quot;&quot;&quot;
 
 import re
-import os
 
-from astropy import units as u
-from tardis import constants
 import numpy as np
 import pandas as pd
+from astropy import units as u
+
+from tardis import constants
 
 INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in model&quot;
 
 
-<div class="viewcode-block" id="LastLineInteraction"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction">[docs]</a>class LastLineInteraction(object):
+<div class="viewcode-block" id="LastLineInteraction"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction">[docs]</a>class LastLineInteraction:
 <div class="viewcode-block" id="LastLineInteraction.from_simulation"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation">[docs]</a>    @classmethod
     def from_simulation(cls, simulation, packet_filter_mode=&quot;packet_out_nu&quot;):
+        transport_state = simulation.transport.transport_state
         return cls(
-            simulation.transport.last_line_interaction_in_id,
-            simulation.transport.last_line_interaction_out_id,
-            simulation.transport.last_line_interaction_shell_id,
-            simulation.transport.transport_state.packet_collection.output_nus,
-            simulation.transport.last_interaction_in_nu,
+            transport_state.last_line_interaction_in_id,
+            transport_state.last_line_interaction_out_id,
+            transport_state.last_line_interaction_shell_id,
+            transport_state.packet_collection.output_nus,
+            transport_state.last_interaction_in_nu,
             simulation.plasma.atomic_data.lines,
             packet_filter_mode,
         )</div>
@@ -377,7 +378,7 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         fig.canvas.mpl_connect(&quot;on_press&quot;, onpress)</div></div>
 
 
-<div class="viewcode-block" id="TARDISHistory"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory">[docs]</a>class TARDISHistory(object):
+<div class="viewcode-block" id="TARDISHistory"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory">[docs]</a>class TARDISHistory:
     &quot;&quot;&quot;
     Records the history of the model
     &quot;&quot;&quot;

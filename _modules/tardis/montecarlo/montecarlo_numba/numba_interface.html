@@ -121,7 +121,6 @@ from numba import float64, int64
 from numba.experimental import jitclass
 import numpy as np
 
-from astropy import units as u
 from tardis import constants as const
 
 from tardis.montecarlo import (
@@ -268,7 +267,7 @@ class OpacityState(object):
     tau_sobolev = np.ascontiguousarray(
         plasma.tau_sobolevs.values.copy(), dtype=np.float64
     )
-    if montecarlo_configuration.disable_line_scattering:
+    if montecarlo_configuration.DISABLE_LINE_SCATTERING:
         tau_sobolev *= 0
 
     if line_interaction_type == &quot;scatter&quot;:
@@ -494,43 +493,6 @@ class RPacketTracker(object):
         self.interaction_type = self.interaction_type[: self.num_interactions]</div>
 
 
-<div class="viewcode-block" id="configuration_initialize"><a class="viewcode-back" href="../../../../api/tardis.montecarlo.montecarlo_numba.numba_interface.html#tardis.montecarlo.montecarlo_numba.numba_interface.configuration_initialize">[docs]</a>def configuration_initialize(transport, number_of_vpackets):
-    if transport.line_interaction_type == &quot;macroatom&quot;:
-        montecarlo_configuration.line_interaction_type = (
-            LineInteractionType.MACROATOM
-        )
-    elif transport.line_interaction_type == &quot;downbranch&quot;:
-        montecarlo_configuration.line_interaction_type = (
-            LineInteractionType.DOWNBRANCH
-        )
-    elif transport.line_interaction_type == &quot;scatter&quot;:
-        montecarlo_configuration.line_interaction_type = (
-            LineInteractionType.SCATTER
-        )
-    else:
-        raise ValueError(
-            f&#39;Line interaction type must be one of &quot;macroatom&quot;,&#39;
-            f&#39;&quot;downbranch&quot;, or &quot;scatter&quot; but is &#39;
-            f&quot;{transport.line_interaction_type}&quot;
-        )
-    montecarlo_configuration.number_of_vpackets = number_of_vpackets
-    montecarlo_configuration.temporary_v_packet_bins = number_of_vpackets
-    montecarlo_configuration.full_relativity = transport.enable_full_relativity
-    montecarlo_configuration.montecarlo_seed = transport.packet_source.base_seed
-    montecarlo_configuration.v_packet_spawn_start_frequency = (
-        transport.virtual_spectrum_spawn_range.end.to(
-            u.Hz, equivalencies=u.spectral()
-        ).value
-    )
-    montecarlo_configuration.v_packet_spawn_end_frequency = (
-        transport.virtual_spectrum_spawn_range.start.to(
-            u.Hz, equivalencies=u.spectral()
-        ).value
-    )
-    montecarlo_configuration.VPACKET_LOGGING = transport.virt_logging</div>
-
-
-# class TrackRPacket(object):
 <div class="viewcode-block" id="LineInteractionType"><a class="viewcode-back" href="../../../../api/tardis.montecarlo.montecarlo_numba.numba_interface.html#tardis.montecarlo.montecarlo_numba.numba_interface.LineInteractionType">[docs]</a>class LineInteractionType(IntEnum):
     SCATTER = 0
     DOWNBRANCH = 1

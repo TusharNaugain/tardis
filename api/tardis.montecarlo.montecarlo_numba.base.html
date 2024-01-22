@@ -149,33 +149,35 @@
 <span id="tardis-montecarlo-montecarlo-numba-base-module"></span><h1>tardis.montecarlo.montecarlo_numba.base module<a class="headerlink" href="#module-tardis.montecarlo.montecarlo_numba.base" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.montecarlo.montecarlo_numba.base.montecarlo_main_loop">
-<span class="sig-prename descclassname"><span class="pre">tardis.montecarlo.montecarlo_numba.base.</span></span><span class="sig-name descname"><span class="pre">montecarlo_main_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_radial_1d_geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_vpackets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">virtual_packet_logging</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/montecarlo_numba/base.html#montecarlo_main_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.montecarlo_numba.base.montecarlo_main_loop" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.montecarlo.montecarlo_numba.base.</span></span><span class="sig-name descname"><span class="pre">montecarlo_main_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_vpackets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_virtual_packet_logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/montecarlo_numba/base.html#montecarlo_main_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.montecarlo_numba.base.montecarlo_main_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the main loop of the MonteCarlo routine that generates packets
 and sends them through the ejecta.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>packet_collection</strong><span class="classifier">PacketCollection</span></dt><dd></dd>
-<dt><strong>numba_radial_1d_geometry</strong><span class="classifier">NumbaRadial1DGeometry</span></dt><dd></dd>
+<dt><strong>packet_collection</strong><span class="classifier">PacketCollection</span></dt><dd><p>Real packet collection</p>
+</dd>
+<dt><strong>geometry_state</strong><span class="classifier">GeometryState</span></dt><dd><p>Simulation geometry</p>
+</dd>
 <dt><strong>numba_model</strong><span class="classifier">NumbaModel</span></dt><dd></dd>
 <dt><strong>opacity_state</strong><span class="classifier">OpacityState</span></dt><dd></dd>
-<dt><strong>estimators</strong><span class="classifier">NumbaEstimators</span></dt><dd></dd>
-<dt><strong>spectrum_frequency</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>frequency binspas</p>
+<dt><strong>estimators</strong><span class="classifier">Estimators</span></dt><dd></dd>
+<dt><strong>spectrum_frequency</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Frequency bins</p>
 </dd>
 <dt><strong>number_of_vpackets</strong><span class="classifier">int</span></dt><dd><p>VPackets released per interaction</p>
 </dd>
-<dt><strong>packet_seeds</strong><span class="classifier">numpy.array</span></dt><dd></dd>
-<dt><strong>virtual_packet_logging</strong><span class="classifier">bool</span></dt><dd><p>Option to enable virtual packet logging.</p>
+<dt><strong>iteration</strong><span class="classifier">int</span></dt><dd><p>Current iteration number</p>
+</dd>
+<dt><strong>show_progress_bars</strong><span class="classifier">bool</span></dt><dd><p>Display progress bars</p>
+</dd>
+<dt><strong>total_iterations</strong><span class="classifier">int</span></dt><dd><p>Maximum number of iterations</p>
+</dd>
+<dt><strong>enable_virtual_packet_logging</strong><span class="classifier">bool</span></dt><dd><p>Enable virtual packet tracking</p>
 </dd>
 </dl>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.montecarlo.montecarlo_numba.base.montecarlo_radial1d">
-<span class="sig-prename descclassname"><span class="pre">tardis.montecarlo.montecarlo_numba.base.</span></span><span class="sig-name descname"><span class="pre">montecarlo_radial1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/montecarlo/montecarlo_numba/base.html#montecarlo_radial1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.montecarlo.montecarlo_numba.base.montecarlo_radial1d" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </section>
 
