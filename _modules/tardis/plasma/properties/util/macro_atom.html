@@ -115,10 +115,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.properties.util.macro_atom</h1><div class="highlight"><pre>
-<span></span>from numba import njit
-from tardis.montecarlo.montecarlo_numba import njit_dict
-import numpy as np
+<span></span>import numpy as np
+from numba import njit
+
 from tardis import constants as const
+from tardis.montecarlo.montecarlo_numba import njit_dict
 
 h_cgs = const.h.cgs.value
 c = const.c.to(&quot;cm/s&quot;).value
@@ -145,7 +146,6 @@ def calculate_transition_probabilities(
     transition_type, lines_idx, and block_references must be int-type arrays
     beta_sobolev, j_blues,stimulated_emission_factor, and transition_probabilities must be 2D array
     &quot;&quot;&quot;
-
     norm_factor = np.zeros(transition_probabilities.shape[1])
 
     for i in range(transition_probabilities.shape[0]):
@@ -174,7 +174,7 @@ def calculate_transition_probabilities(
                 else:
                     norm_factor[k] = 1.0
             for j in range(block_references[i], block_references[i + 1]):
-                for k in range(0, transition_probabilities.shape[1]):
+                for k in range(transition_probabilities.shape[1]):
                     transition_probabilities[j, k] *= norm_factor[k]</div>
 </pre></div>
 
@@ -186,7 +186,7 @@ def calculate_transition_probabilities(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

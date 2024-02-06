@@ -565,7 +565,7 @@ def numba_formal_integral(
         Edotlu = (
             Edotlu_norm_factor
             * exptau
-            * montecarlo_transport_state.estimators.Edotlu_estimator
+            * montecarlo_transport_state.radfield_mc_estimators.Edotlu_estimator
         )
 
         # The following may be achieved by calling the appropriate plasma
@@ -587,7 +587,7 @@ def numba_formal_integral(
         # Jbluelu should already by in the correct order, i.e. by wavelength of
         # the transition l-&gt;u
         Jbluelu = (
-            transport.transport_state.estimators.j_blue_estimator
+            transport.transport_state.radfield_mc_estimators.j_blue_estimator
             * Jbluelu_norm_factor
         )
 
@@ -934,7 +934,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

@@ -275,7 +275,7 @@ Curated from nndc</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_atom_data">
-<span class="sig-name descname"><span class="pre">prepare_atom_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_atomic_numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scatter'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlte_species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_atom_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_atom_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">prepare_atom_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_atomic_numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlte_species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">continuum_interaction_species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_atom_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_atom_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepares the atom data to set the lines, levels and if requested macro
 atom data.  This function mainly cuts the <code class="xref py py-obj docutils literal notranslate"><span class="pre">levels</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">lines</span></code> by
 discarding any data that is not needed (any data for atoms that are not
@@ -291,6 +291,25 @@ needed</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_continuum_interaction_data">
+<span class="sig-name descname"><span class="pre">prepare_continuum_interaction_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">continuum_interaction_species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_continuum_interaction_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_continuum_interaction_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares the atom data for the continuum interaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>continuum_interaction</strong><span class="classifier">ContinuumInteraction</span></dt><dd><p>The continuum interaction object</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_macro_atom_data">
+<span class="sig-name descname"><span class="pre">prepare_macro_atom_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_lower2level_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_upper2level_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_macro_atom_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_macro_atom_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.related_groups">
@@ -338,7 +357,7 @@ the desired temperatures.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

@@ -116,30 +116,29 @@
              
   <h1>Source code for tardis.plasma.properties.atomic</h1><div class="highlight"><pre>
 <span></span>import logging
+from collections import Counter as counter
 
 import numpy as np
 import pandas as pd
-from numba import njit
-from scipy.special import exp1
-from scipy.interpolate import PchipInterpolator
-from collections import Counter as counter
 import radioactivedecay as rd
-from tardis import constants as const
+from numba import njit
+from scipy.interpolate import PchipInterpolator
+from scipy.special import exp1
 
-from tardis.plasma.properties.base import (
-    ProcessingPlasmaProperty,
-    HiddenPlasmaProperty,
-    BaseAtomicDataProperty,
-)
+from tardis import constants as const
 from tardis.plasma.exceptions import IncompleteAtomicData
+from tardis.plasma.properties.base import (
+    BaseAtomicDataProperty,
+    HiddenPlasmaProperty,
+    ProcessingPlasmaProperty,
+)
 from tardis.plasma.properties.continuum_processes import (
-    get_ground_state_multi_index,
-    K_B,
-    BETA_COLL,
-    H,
     A0,
+    BETA_COLL,
+    K_B,
     M_E,
-    C,
+    H,
+    get_ground_state_multi_index,
 )
 
 logger = logging.getLogger(__name__)
@@ -576,8 +575,8 @@ __all__ = [
 <div class="viewcode-block" id="LevelIdxs2LineIdx.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.LevelIdxs2LineIdx.calculate">[docs]</a>    def calculate(self, atomic_data):
         index = pd.MultiIndex.from_arrays(
             [
-                atomic_data.lines_upper2level_idx,
-                atomic_data.lines_lower2level_idx,
+                atomic_data.lines_upper2macro_reference_idx,
+                atomic_data.lines_lower2macro_reference_idx,
             ],
             names=[&quot;source_level_idx&quot;, &quot;destination_level_idx&quot;],
         )
@@ -587,7 +586,7 @@ __all__ = [
 
         # Check for duplicate indices
         if level_idxs2line_idx.index.duplicated().any():
-            logger.warn(
+            logger.warning(
                 &quot;Duplicate indices in level_idxs2line_idx. &quot;
                 &quot;Dropping duplicates. &quot;
                 &quot;This is an issue with the atomic data &amp; carsus. &quot;
@@ -738,7 +737,7 @@ __all__ = [
         ionization_data = ionization_data[mask]
         counts = ionization_data.groupby(level=&quot;atomic_number&quot;).count()
 
-        if np.alltrue(counts.index == counts):
+        if np.all(counts.index == counts):
             return ionization_data
         else:
             raise IncompleteAtomicData(
@@ -769,7 +768,7 @@ __all__ = [
         zeta_data_check = counter(zeta_data.atomic_number.values)
         keys = np.array(list(zeta_data_check.keys()))
         values = np.array(zeta_data_check.values())
-        if np.alltrue(keys + 1 == values) and keys:
+        if np.all(keys + 1 == values) and keys:
             return zeta_data
         else:
             #            raise IncompleteAtomicData(&#39;zeta data&#39;)
@@ -783,7 +782,7 @@ __all__ = [
                     if (atom, ion) not in zeta_data.index:
                         missing_ions.append((atom, ion))
                     updated_index.append([atom, ion])
-            logger.warn(
+            logger.warning(
                 f&quot;Zeta_data missing - replaced with 1s. Missing ions: {missing_ions}&quot;
             )
             updated_index = np.array(updated_index)
@@ -1005,7 +1004,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

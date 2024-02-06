@@ -115,14 +115,15 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.radiation_field_state</h1><div class="highlight"><pre>
-<span></span>from tardis.montecarlo.montecarlo_numba.numba_interface import OpacityState
-
-
-import numpy as np
+<span></span>import numpy as np
 from astropy import units as u
 
+from tardis.util.base import intensity_black_body
 
-<div class="viewcode-block" id="DiluteThermalRadiationFieldState"><a class="viewcode-back" href="../../../api/tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteThermalRadiationFieldState">[docs]</a>class DiluteThermalRadiationFieldState:
+from typing import Union
+
+
+<div class="viewcode-block" id="DiluteBlackBodyRadiationFieldState"><a class="viewcode-back" href="../../../api/tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState">[docs]</a>class DiluteBlackBodyRadiationFieldState:
     &quot;&quot;&quot;
     Represents the state of a dilute thermal radiation field.
 
@@ -146,7 +147,25 @@ from astropy import units as u
         assert np.all(t_radiative &gt; 0 * u.K)
         assert np.all(dilution_factor &gt; 0)
         self.t_radiative = t_radiative
-        self.dilution_factor = dilution_factor</div>
+        self.dilution_factor = dilution_factor
+
+<div class="viewcode-block" id="DiluteBlackBodyRadiationFieldState.calculate_mean_intensity"><a class="viewcode-back" href="../../../api/tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState.calculate_mean_intensity">[docs]</a>    def calculate_mean_intensity(self, nu: Union[u.Quantity, np.ndarray]):
+        &quot;&quot;&quot;
+        Calculate the intensity of the radiation field at a given frequency.
+
+        Parameters
+        ----------
+        nu : u.Quantity
+            Frequency at which the intensity is to be calculated
+
+        Returns
+        -------
+        intensity : u.Quantity
+            Intensity of the radiation field at the given frequency
+        &quot;&quot;&quot;
+        return self.dilution_factor * intensity_black_body(
+            nu[np.newaxis].T, self.t_radiative
+        )</div></div>
 </pre></div>
 
            </div>
@@ -157,7 +176,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

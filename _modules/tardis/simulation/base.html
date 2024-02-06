@@ -486,7 +486,7 @@ logger = logging.getLogger(__name__)
         # A check to see if the plasma is set with JBluesDetailed, in which
         # case it needs some extra kwargs.
 
-        estimators = self.transport.transport_state.estimators
+        estimators = self.transport.transport_state.radfield_mc_estimators
         if &quot;j_blue_estimator&quot; in self.plasma.outputs_dict:
             update_properties.update(
                 t_inner=next_t_inner,
@@ -893,7 +893,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

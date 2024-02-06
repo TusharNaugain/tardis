@@ -25,7 +25,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.montecarlo.montecarlo_numba package" href="tardis.montecarlo.montecarlo_numba.html" />
+    <link rel="next" title="tardis.montecarlo.estimators package" href="tardis.montecarlo.estimators.html" />
     <link rel="prev" title="tardis.model.radiation_field_state module" href="tardis.model.radiation_field_state.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -149,6 +149,36 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="tardis.montecarlo.estimators.html">tardis.montecarlo.estimators package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.montecarlo.estimators.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.estimators.continuum_radfield_properties.html">tardis.montecarlo.estimators.continuum_radfield_properties module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.continuum_radfield_properties.html#tardis.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties"><code class="docutils literal notranslate"><span class="pre">ContinuumProperties</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.continuum_radfield_properties.html#tardis.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver"><code class="docutils literal notranslate"><span class="pre">DiluteBlackBodyContinuumPropertiesSolver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.continuum_radfield_properties.html#tardis.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver"><code class="docutils literal notranslate"><span class="pre">MCContinuumPropertiesSolver</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.estimators.dilute_blackbody_properties.html">tardis.montecarlo.estimators.dilute_blackbody_properties module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.dilute_blackbody_properties.html#tardis.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver"><code class="docutils literal notranslate"><span class="pre">MCDiluteBlackBodyRadFieldSolver</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html">tardis.montecarlo.estimators.radfield_mc_estimators module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html#tardis.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators"><code class="docutils literal notranslate"><span class="pre">RadiationFieldMCEstimators</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html#tardis.montecarlo.estimators.radfield_mc_estimators.initialize_estimator_statistics"><code class="docutils literal notranslate"><span class="pre">initialize_estimator_statistics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html#tardis.montecarlo.estimators.radfield_mc_estimators.update_base_estimators"><code class="docutils literal notranslate"><span class="pre">update_base_estimators()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html#tardis.montecarlo.estimators.radfield_mc_estimators.update_bound_free_estimators"><code class="docutils literal notranslate"><span class="pre">update_bound_free_estimators()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.radfield_mc_estimators.html#tardis.montecarlo.estimators.radfield_mc_estimators.update_line_estimators"><code class="docutils literal notranslate"><span class="pre">update_line_estimators()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.estimators.util.html">tardis.montecarlo.estimators.util module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.util.html#tardis.montecarlo.estimators.util.bound_free_estimator_array2frame"><code class="docutils literal notranslate"><span class="pre">bound_free_estimator_array2frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.estimators.util.html#tardis.montecarlo.estimators.util.integrate_array_by_blocks"><code class="docutils literal notranslate"><span class="pre">integrate_array_by_blocks()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.montecarlo.estimators.html#module-tardis.montecarlo.estimators">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.montecarlo.montecarlo_numba.html">tardis.montecarlo.montecarlo_numba package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.montecarlo.montecarlo_numba.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.montecarlo.montecarlo_numba.base.html">tardis.montecarlo.montecarlo_numba.base module</a><ul>
@@ -415,14 +445,14 @@ properties and with the last iteration, the spectrum is determined.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.model.radiation_field_state.html" class="btn btn-neutral float-left" title="tardis.model.radiation_field_state module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.montecarlo.montecarlo_numba.html" class="btn btn-neutral float-right" title="tardis.montecarlo.montecarlo_numba package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.montecarlo.estimators.html" class="btn btn-neutral float-right" title="tardis.montecarlo.estimators package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 

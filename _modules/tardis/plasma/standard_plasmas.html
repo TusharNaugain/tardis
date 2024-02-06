@@ -206,6 +206,7 @@ logger = logging.getLogger(__name__)
     atom_data.prepare_atom_data(
         simulation_state.abundance.index,
         line_interaction_type=config.plasma.line_interaction_type,
+        continuum_interaction_species=continuum_interaction_species,
         nlte_species=nlte_species,
     )
 
@@ -247,7 +248,7 @@ logger = logging.getLogger(__name__)
 
     plasma_modules = basic_inputs + basic_properties
     property_kwargs = {}
-    if config.plasma.continuum_interaction.species:
+    if len(config.plasma.continuum_interaction.species) &gt; 0:
         line_interaction_type = config.plasma.line_interaction_type
         if line_interaction_type != &quot;macroatom&quot;:
             raise PlasmaConfigError(
@@ -444,7 +445,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jan 2024.
+      <span class="lastupdated">Last updated on 06 Feb 2024.
       </span></p>
   </div>
 
