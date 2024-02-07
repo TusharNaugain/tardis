@@ -399,7 +399,7 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         (
             estimated_t_rad,
-            estimated_w,
+            estimated_dilution_factor,
         ) = self.transport.transport_state.calculate_radiationfield_properties()
         estimated_t_inner = self.estimate_t_inner(
             self.simulation_state.t_inner,
@@ -412,7 +412,7 @@ logger = logging.getLogger(__name__)
             self.simulation_state.dilution_factor,
             self.simulation_state.t_inner,
             estimated_t_rad,
-            estimated_w,
+            estimated_dilution_factor,
             estimated_t_inner,
         )
 
@@ -425,7 +425,7 @@ logger = logging.getLogger(__name__)
         )
         next_dilution_factor = self.damped_converge(
             self.simulation_state.dilution_factor,
-            estimated_w,
+            estimated_dilution_factor,
             self.convergence_strategy.w.damping_constant,
         )
         if (
@@ -893,7 +893,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Feb 2024.
+      <span class="lastupdated">Last updated on 07 Feb 2024.
       </span></p>
   </div>
 

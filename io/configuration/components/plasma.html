@@ -195,10 +195,26 @@ normal operations.</p>
 <h2>NLTE Ionization<a class="headerlink" href="#nlte-ionization" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plasma</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">nlte_ionization_species</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">H I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">H II</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He II</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">nlte_solver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
 </pre></div>
 </div>
 <p>This option allows the user to specify which species should be included in the NLTE ionization treatment. Note that the
-species must be present in the continuum interaction species as well.</p>
+species must be present in the continuum interaction species as well.
+Here, <code class="docutils literal notranslate"><span class="pre">nlte_solver</span></code> can be set to <code class="docutils literal notranslate"><span class="pre">root</span></code> or <code class="docutils literal notranslate"><span class="pre">lu</span></code>. <code class="docutils literal notranslate"><span class="pre">root</span></code> is the default and uses a root solver to calculate the
+NLTE populations. <code class="docutils literal notranslate"><span class="pre">lu</span></code> uses an iterative LU decomposition scheme to calculate the NLTE populations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">lu</span></code> iterates over the solutions up to a set tolerance. This tolerance is currently hard-coded to 1e-3. This
+can be changed in the code by changing the <code class="docutils literal notranslate"><span class="pre">NLTE_POPULATION_SOLVER_TOLERANCE</span></code> constant in <code class="docutils literal notranslate"><span class="pre">tardis/plasma/properties/nlte_rate_equation_solver.py</span></code>.
+Furthermore, the maximum number of iterations is set to 1000. This can be changed in the code by changing the <code class="docutils literal notranslate"><span class="pre">NLTE_POPULATION_SOLVER_MAX_ITERATIONS</span></code>
+constant in <code class="docutils literal notranslate"><span class="pre">tardis/plasma/properties/nlte_rate_equation_solver.py</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">lu</span></code> is generally faster than <code class="docutils literal notranslate"><span class="pre">root</span></code> but does not solve explicitly for the electron density. Therefore, it is
+not recommended to use <code class="docutils literal notranslate"><span class="pre">lu</span></code> for simulations where the electron density is important (e.g. for simulations where
+NLTE excitation is important).</p>
+</div>
 </section>
 </section>
 
@@ -214,7 +230,7 @@ species must be present in the continuum interaction species as well.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Feb 2024.
+      <span class="lastupdated">Last updated on 07 Feb 2024.
       </span></p>
   </div>
 
