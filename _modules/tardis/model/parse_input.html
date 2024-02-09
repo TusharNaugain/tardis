@@ -685,13 +685,12 @@ logger = logging.getLogger(__name__)
 
     if dilution_factor is None:
         dilution_factor = calculate_geometric_dilution_factor(geometry)
-    elif len(dilution_factor) != geometry.no_of_shells:
-        dilution_factor = dilution_factor[
-            geometry.v_inner_boundary_index : geometry.v_outer_boundary_index
-        ]
-        assert len(dilution_factor) == geometry.no_of_shells
 
-    return DiluteBlackBodyRadiationFieldState(t_radiative, dilution_factor)</div>
+    assert len(dilution_factor) == geometry.no_of_shells
+
+    return DiluteBlackBodyRadiationFieldState(
+        t_radiative, dilution_factor, geometry
+    )</div>
 
 
 <div class="viewcode-block" id="initialize_packet_source"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.initialize_packet_source">[docs]</a>def initialize_packet_source(config, geometry, packet_source):
@@ -727,13 +726,13 @@ logger = logging.getLogger(__name__)
 
     luminosity_requested = config.supernova.luminosity_requested
     if config.plasma.initial_t_inner &gt; 0.0 * u.K:
-        packet_source.radius = geometry.r_inner[0]
+        packet_source.radius = geometry.r_inner_active[0]
         packet_source.temperature = config.plasma.initial_t_inner
 
     elif (config.plasma.initial_t_inner &lt; 0.0 * u.K) and (
         luminosity_requested is not None
     ):
-        packet_source.radius = geometry.r_inner[0]
+        packet_source.radius = geometry.r_inner_active[0]
         packet_source.set_temperature_from_luminosity(luminosity_requested)
     else:
         raise ValueError(
@@ -791,9 +790,6 @@ logger = logging.getLogger(__name__)
         t_radiative = (
             np.ones(geometry.no_of_shells) * config.plasma.initial_t_rad
         )
-        t_radiative = (
-            np.ones(geometry.no_of_shells) * config.plasma.initial_t_rad
-        )
     else:
         t_radiative = calculate_t_radiative_from_t_inner(
             geometry, packet_source
@@ -806,7 +802,9 @@ logger = logging.getLogger(__name__)
     else:
         dilution_factor = calculate_geometric_dilution_factor(geometry)
 
-    return DiluteBlackBodyRadiationFieldState(t_radiative, dilution_factor)</div>
+    return DiluteBlackBodyRadiationFieldState(
+        t_radiative, dilution_factor, geometry
+    )</div>
 
 
 <div class="viewcode-block" id="calculate_t_radiative_from_t_inner"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.calculate_t_radiative_from_t_inner">[docs]</a>def calculate_t_radiative_from_t_inner(geometry, packet_source):
@@ -837,7 +835,13 @@ logger = logging.getLogger(__name__)
     return 0.5 * (
         1
         - np.sqrt(
-            1 - (geometry.r_inner[0] ** 2 / geometry.r_middle**2).to(1).value
+            1
+            - (
+                geometry.r_inner[geometry.v_inner_boundary_index] ** 2
+                / geometry.r_middle**2
+            )
+            .to(1)
+            .value
         )
     )</div>
 </pre></div>
@@ -850,7 +854,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 07 Feb 2024.
+      <span class="lastupdated">Last updated on 09 Feb 2024.
       </span></p>
   </div>
 

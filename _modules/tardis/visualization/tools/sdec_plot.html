@@ -282,7 +282,7 @@ logger = logging.getLogger(__name__)
             &quot;line_id&quot;
         )
         transport_state = sim.transport.transport_state
-        r_inner = sim.simulation_state.geometry.r_inner
+        r_inner = sim.simulation_state.geometry.r_inner_active
         t_inner = sim.simulation_state.packet_source.temperature
         time_of_simulation = (
             transport_state.packet_collection.time_of_simulation * u.s
@@ -2028,7 +2028,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 07 Feb 2024.
+      <span class="lastupdated">Last updated on 09 Feb 2024.
       </span></p>
   </div>
 
