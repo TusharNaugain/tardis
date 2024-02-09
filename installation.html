@@ -146,7 +146,7 @@ this method by following the steps described below.</p>
 the following command while replacing <code class="docutils literal notranslate"><span class="pre">{platform}</span></code> with <code class="docutils literal notranslate"><span class="pre">linux</span></code> or <code class="docutils literal notranslate"><span class="pre">osx</span></code> as appropriate.</p></li>
 </ol>
 <blockquote>
-<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ wget -q https://github.com/tardis-sn/tardis/releases/latest/download/conda-{platform}-64.lock
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ wget -q https://github.com/tardis-sn/tardis/blob/master/conda-{platform}-64.lock
 </pre></div>
 </div>
 </div></blockquote>
@@ -161,23 +161,7 @@ $ conda activate tardis
 </div></blockquote>
 <ol class="arabic" start="3">
 <li><ol class="loweralpha">
-<li><p>Non-developers can install the latest release from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> with the <code class="docutils literal notranslate"><span class="pre">--no-deps</span></code> flag,</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Currently the conda forge installation doesn’t work. It’s recommended to install from the specific releases using pip-</p>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/tardis-sn/tardis.git&#64;{tag}</span></code></p>
-<p>For example-</p>
-<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/tardis-sn/tardis.git&#64;release-2023.09.17</span></code></p>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ conda install tardis-sn --channel conda-forge --no-deps
-</pre></div>
-</div>
-<p>or trying the most recent, unreleased changes from upstream.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/tardis-sn/tardis.git@master
-</pre></div>
-</div>
-</li>
-<li><p>Instead, developers should <a class="reference external" href="https://github.com/tardis-sn/tardis/fork">fork the repository</a>, configure
+<li><p>Developers should <a class="reference external" href="https://github.com/tardis-sn/tardis/fork">fork the repository</a>, configure
 GitHub to <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">work with SSH keys</a>,
 set up the <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-for-a-fork">upstream remote</a>,
 and install the package in development mode.</p>
@@ -195,6 +179,24 @@ $ python setup.py develop
 </div>
 </li>
 </ol>
+<blockquote>
+<div><ol class="loweralpha simple" start="2">
+<li><p>Non-developers can install from specific releases using pip-</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/tardis-sn/tardis.git@{tag}
+</pre></div>
+</div>
+<p>For example-</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/tardis-sn/tardis.git@release-latest
+</pre></div>
+</div>
+<p>or trying the most recent, unreleased changes from upstream.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/tardis-sn/tardis.git@master
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
 </li>
 <li><p>Once finished working, you can deactivate your environment.</p></li>
 </ol>
@@ -210,7 +212,8 @@ to start running simulations.</p>
 <section id="environment-update">
 <h2>Environment update<a class="headerlink" href="#environment-update" title="Permalink to this heading">¶</a></h2>
 <p>To update the environment after a new release, download the latest lockfile and run <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span></code>.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ conda update --name tardis --file conda-{platform}-64.lock
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ wget -q https://github.com/tardis-sn/tardis/releases/latest/download/conda-{platform}-64.lock
+$ conda update --name tardis --file conda-{platform}-64.lock
 </pre></div>
 </div>
 <div class="admonition note">
