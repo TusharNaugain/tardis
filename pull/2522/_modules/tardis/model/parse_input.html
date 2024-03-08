@@ -117,7 +117,6 @@
   <h1>Source code for tardis.model.parse_input</h1><div class="highlight"><pre>
 <span></span>import logging
 import os
-import warnings
 
 import numpy as np
 import pandas as pd
@@ -797,10 +796,10 @@ logger = logging.getLogger(__name__)
         )
 
     if np.any(t_radiative &lt; 1000 * u.K):
-        warnings.warn(
+        logging.critical(
             &quot;Radiative temperature is too low in some of the shells, temperatures below 1000K &quot;
             f&quot;(e.g., T_rad = {t_radiative[np.argmin(t_radiative)]} in shell {np.argmin(t_radiative)} in your model) &quot;
-            &quot;are not accurately handled by Tardis.&quot;,
+            &quot;are not accurately handled by TARDIS.&quot;,
         )
 
     if hasattr(csvy_model_data, &quot;columns&quot;) and (
@@ -862,7 +861,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Feb 2024.
+      <span class="lastupdated">Last updated on 08 Mar 2024.
       </span></p>
   </div>
 
