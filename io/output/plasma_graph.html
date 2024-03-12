@@ -64,34 +64,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization Tools &amp; Widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Additional Outputs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Additional Outputs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="physical_quantities.html">Accessing Physical Quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_iterations.html">Access information about individual iterations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="to_hdf.html">Storing Simulations to HDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpacket_logging.html">Virtual Packet Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="progress_bars.html">Progress Bars for Simulation Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpacket_tracking.html">Tracking the Properties of Real Packets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generating the Plasma Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Displaying-the-Graph-Within-A-Jupyter-Notebook">Displaying the Graph Within A Jupyter Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Saving-the-Graph-Onto-a-.tex-File">Saving the Graph Onto a .tex File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Default-Plasma-Graph">Default Plasma Graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-Different-Scale">Plasma Graph with Different Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-No-Equations">Plasma Graph with No Equations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-Inputted-Arguments">Plasma Graph with Inputted Arguments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../physics/intro/index.html">Physics Walkthrough Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../physics/setup/index.html">Setting Up the Simulation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../physics/setup/setup_example.html">Setup Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../physics/setup/model.html">Model</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../physics/setup/plasma/index.html">Plasma</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../physics/setup/plasma/index.html#properties-inputs-and-outputs">Properties, Inputs and Outputs</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../../physics/setup/plasma/index.html#the-plasma-graph">The Plasma Graph</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Generating the Plasma Graph</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../physics/setup/plasma/index.html#updating-the-plasma">Updating the Plasma</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../physics/setup/plasma/index.html#plasma-calculations">Plasma Calculations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../physics/setup/plasma/index.html#sobolev-optical-depth">Sobolev optical depth</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../physics/setup/plasma/index.html#macro-atom-line-interaction-treatment">Macro Atom Line Interaction Treatment</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/setup/index.html">Setting Up the Simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../physics/spectrum/index.html">Spectrum Generation</a></li>
@@ -205,24 +209,24 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "663a2293fa394179b9621228a830015c"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0b0c98a5c8784ff2ad4892046b7e9a4e"}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7a6259ea51c0456fb1faac88757f526a"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "48680651c5c24f49a566d30b2357057e"}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/tmp/ipykernel_2155/3520658749.py:7: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+/tmp/ipykernel_3573/3520658749.py:7: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
   from IPython.core.display import Image, display
 </pre></div></div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -230,6 +234,14 @@ what options can be inputted to display the graph in a preferred method. To star
 <span class="n">download_atom_data</span><span class="p">(</span><span class="s1">&#39;kurucz_cd23_chianti_H_He&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/tardis-data/kurucz_cd23_chianti_H_He.h5. Will not download - override with force_download=True.
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -277,13 +289,13 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "5e8dd7c51bae42b29c5294489f9b9760"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4c25896f091d472e8c3d196348d18185"}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "65847c9c3c4b4563aa10dec0420fc6cc"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e9ed338801424a29906e310920634df5"}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
@@ -307,44 +319,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_5e145">
+<table id="T_04acb">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_5e145_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_5e145_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_5e145_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_5e145_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_04acb_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_04acb_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_04acb_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_04acb_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_5e145_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_5e145_row0_col0" class="data row0 col0" >9.93e+03 K</td>
-      <td id="T_5e145_row0_col1" class="data row0 col1" >1.01e+04 K</td>
-      <td id="T_5e145_row0_col2" class="data row0 col2" >0.4</td>
-      <td id="T_5e145_row0_col3" class="data row0 col3" >0.507</td>
+      <th id="T_04acb_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_04acb_row0_col0" class="data row0 col0" >9.93e+03 K</td>
+      <td id="T_04acb_row0_col1" class="data row0 col1" >1.01e+04 K</td>
+      <td id="T_04acb_row0_col2" class="data row0 col2" >0.4</td>
+      <td id="T_04acb_row0_col3" class="data row0 col3" >0.507</td>
     </tr>
     <tr>
-      <th id="T_5e145_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_5e145_row1_col0" class="data row1 col0" >9.85e+03 K</td>
-      <td id="T_5e145_row1_col1" class="data row1 col1" >1.02e+04 K</td>
-      <td id="T_5e145_row1_col2" class="data row1 col2" >0.211</td>
-      <td id="T_5e145_row1_col3" class="data row1 col3" >0.197</td>
+      <th id="T_04acb_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_04acb_row1_col0" class="data row1 col0" >9.85e+03 K</td>
+      <td id="T_04acb_row1_col1" class="data row1 col1" >1.02e+04 K</td>
+      <td id="T_04acb_row1_col2" class="data row1 col2" >0.211</td>
+      <td id="T_04acb_row1_col3" class="data row1 col3" >0.197</td>
     </tr>
     <tr>
-      <th id="T_5e145_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_5e145_row2_col0" class="data row2 col0" >9.78e+03 K</td>
-      <td id="T_5e145_row2_col1" class="data row2 col1" >1.01e+04 K</td>
-      <td id="T_5e145_row2_col2" class="data row2 col2" >0.143</td>
-      <td id="T_5e145_row2_col3" class="data row2 col3" >0.117</td>
+      <th id="T_04acb_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_04acb_row2_col0" class="data row2 col0" >9.78e+03 K</td>
+      <td id="T_04acb_row2_col1" class="data row2 col1" >1.01e+04 K</td>
+      <td id="T_04acb_row2_col2" class="data row2 col2" >0.143</td>
+      <td id="T_04acb_row2_col3" class="data row2 col3" >0.117</td>
     </tr>
     <tr>
-      <th id="T_5e145_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_5e145_row3_col0" class="data row3 col0" >9.71e+03 K</td>
-      <td id="T_5e145_row3_col1" class="data row3 col1" >9.87e+03 K</td>
-      <td id="T_5e145_row3_col2" class="data row3 col2" >0.105</td>
-      <td id="T_5e145_row3_col3" class="data row3 col3" >0.0869</td>
+      <th id="T_04acb_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_04acb_row3_col0" class="data row3 col0" >9.71e+03 K</td>
+      <td id="T_04acb_row3_col1" class="data row3 col1" >9.87e+03 K</td>
+      <td id="T_04acb_row3_col2" class="data row3 col2" >0.105</td>
+      <td id="T_04acb_row3_col3" class="data row3 col3" >0.0869</td>
     </tr>
   </tbody>
 </table></div>
@@ -383,44 +395,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_816e3">
+<table id="T_f40e9">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_816e3_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_816e3_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_816e3_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_816e3_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_f40e9_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_f40e9_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_f40e9_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_f40e9_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_816e3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_816e3_row0_col0" class="data row0 col0" >1.01e+04 K</td>
-      <td id="T_816e3_row0_col1" class="data row0 col1" >1.08e+04 K</td>
-      <td id="T_816e3_row0_col2" class="data row0 col2" >0.507</td>
-      <td id="T_816e3_row0_col3" class="data row0 col3" >0.525</td>
+      <th id="T_f40e9_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_f40e9_row0_col0" class="data row0 col0" >1.01e+04 K</td>
+      <td id="T_f40e9_row0_col1" class="data row0 col1" >1.08e+04 K</td>
+      <td id="T_f40e9_row0_col2" class="data row0 col2" >0.507</td>
+      <td id="T_f40e9_row0_col3" class="data row0 col3" >0.525</td>
     </tr>
     <tr>
-      <th id="T_816e3_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_816e3_row1_col0" class="data row1 col0" >1.02e+04 K</td>
-      <td id="T_816e3_row1_col1" class="data row1 col1" >1.1e+04 K</td>
-      <td id="T_816e3_row1_col2" class="data row1 col2" >0.197</td>
-      <td id="T_816e3_row1_col3" class="data row1 col3" >0.203</td>
+      <th id="T_f40e9_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_f40e9_row1_col0" class="data row1 col0" >1.02e+04 K</td>
+      <td id="T_f40e9_row1_col1" class="data row1 col1" >1.1e+04 K</td>
+      <td id="T_f40e9_row1_col2" class="data row1 col2" >0.197</td>
+      <td id="T_f40e9_row1_col3" class="data row1 col3" >0.203</td>
     </tr>
     <tr>
-      <th id="T_816e3_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_816e3_row2_col0" class="data row2 col0" >1.01e+04 K</td>
-      <td id="T_816e3_row2_col1" class="data row2 col1" >1.08e+04 K</td>
-      <td id="T_816e3_row2_col2" class="data row2 col2" >0.117</td>
-      <td id="T_816e3_row2_col3" class="data row2 col3" >0.125</td>
+      <th id="T_f40e9_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_f40e9_row2_col0" class="data row2 col0" >1.01e+04 K</td>
+      <td id="T_f40e9_row2_col1" class="data row2 col1" >1.08e+04 K</td>
+      <td id="T_f40e9_row2_col2" class="data row2 col2" >0.117</td>
+      <td id="T_f40e9_row2_col3" class="data row2 col3" >0.125</td>
     </tr>
     <tr>
-      <th id="T_816e3_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_816e3_row3_col0" class="data row3 col0" >9.87e+03 K</td>
-      <td id="T_816e3_row3_col1" class="data row3 col1" >1.05e+04 K</td>
-      <td id="T_816e3_row3_col2" class="data row3 col2" >0.0869</td>
-      <td id="T_816e3_row3_col3" class="data row3 col3" >0.0933</td>
+      <th id="T_f40e9_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_f40e9_row3_col0" class="data row3 col0" >9.87e+03 K</td>
+      <td id="T_f40e9_row3_col1" class="data row3 col1" >1.05e+04 K</td>
+      <td id="T_f40e9_row3_col2" class="data row3 col2" >0.0869</td>
+      <td id="T_f40e9_row3_col3" class="data row3 col3" >0.0933</td>
     </tr>
   </tbody>
 </table></div>
@@ -459,44 +471,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_1deba">
+<table id="T_858b0">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_1deba_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_1deba_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_1deba_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_1deba_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_858b0_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_858b0_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_858b0_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_858b0_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_1deba_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_1deba_row0_col0" class="data row0 col0" >1.08e+04 K</td>
-      <td id="T_1deba_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_1deba_row0_col2" class="data row0 col2" >0.525</td>
-      <td id="T_1deba_row0_col3" class="data row0 col3" >0.483</td>
+      <th id="T_858b0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_858b0_row0_col0" class="data row0 col0" >1.08e+04 K</td>
+      <td id="T_858b0_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_858b0_row0_col2" class="data row0 col2" >0.525</td>
+      <td id="T_858b0_row0_col3" class="data row0 col3" >0.483</td>
     </tr>
     <tr>
-      <th id="T_1deba_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_1deba_row1_col0" class="data row1 col0" >1.1e+04 K</td>
-      <td id="T_1deba_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_1deba_row1_col2" class="data row1 col2" >0.203</td>
-      <td id="T_1deba_row1_col3" class="data row1 col3" >0.189</td>
+      <th id="T_858b0_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_858b0_row1_col0" class="data row1 col0" >1.1e+04 K</td>
+      <td id="T_858b0_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_858b0_row1_col2" class="data row1 col2" >0.203</td>
+      <td id="T_858b0_row1_col3" class="data row1 col3" >0.189</td>
     </tr>
     <tr>
-      <th id="T_1deba_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_1deba_row2_col0" class="data row2 col0" >1.08e+04 K</td>
-      <td id="T_1deba_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_1deba_row2_col2" class="data row2 col2" >0.125</td>
-      <td id="T_1deba_row2_col3" class="data row2 col3" >0.118</td>
+      <th id="T_858b0_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_858b0_row2_col0" class="data row2 col0" >1.08e+04 K</td>
+      <td id="T_858b0_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_858b0_row2_col2" class="data row2 col2" >0.125</td>
+      <td id="T_858b0_row2_col3" class="data row2 col3" >0.118</td>
     </tr>
     <tr>
-      <th id="T_1deba_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_1deba_row3_col0" class="data row3 col0" >1.05e+04 K</td>
-      <td id="T_1deba_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_1deba_row3_col2" class="data row3 col2" >0.0933</td>
-      <td id="T_1deba_row3_col3" class="data row3 col3" >0.0895</td>
+      <th id="T_858b0_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_858b0_row3_col0" class="data row3 col0" >1.05e+04 K</td>
+      <td id="T_858b0_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_858b0_row3_col2" class="data row3 col2" >0.0933</td>
+      <td id="T_858b0_row3_col3" class="data row3 col3" >0.0895</td>
     </tr>
   </tbody>
 </table></div>
@@ -535,44 +547,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_d62ad">
+<table id="T_97a9e">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_d62ad_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_d62ad_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_d62ad_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_d62ad_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_97a9e_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_97a9e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_97a9e_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_97a9e_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_d62ad_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_d62ad_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_d62ad_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_d62ad_row0_col2" class="data row0 col2" >0.483</td>
-      <td id="T_d62ad_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_97a9e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_97a9e_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_97a9e_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_97a9e_row0_col2" class="data row0 col2" >0.483</td>
+      <td id="T_97a9e_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_d62ad_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_d62ad_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_d62ad_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_d62ad_row1_col2" class="data row1 col2" >0.189</td>
-      <td id="T_d62ad_row1_col3" class="data row1 col3" >0.182</td>
+      <th id="T_97a9e_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_97a9e_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_97a9e_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_97a9e_row1_col2" class="data row1 col2" >0.189</td>
+      <td id="T_97a9e_row1_col3" class="data row1 col3" >0.182</td>
     </tr>
     <tr>
-      <th id="T_d62ad_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_d62ad_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_d62ad_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_d62ad_row2_col2" class="data row2 col2" >0.118</td>
-      <td id="T_d62ad_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_97a9e_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_97a9e_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_97a9e_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_97a9e_row2_col2" class="data row2 col2" >0.118</td>
+      <td id="T_97a9e_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_d62ad_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_d62ad_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_d62ad_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_d62ad_row3_col2" class="data row3 col2" >0.0895</td>
-      <td id="T_d62ad_row3_col3" class="data row3 col3" >0.0861</td>
+      <th id="T_97a9e_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_97a9e_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_97a9e_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_97a9e_row3_col2" class="data row3 col2" >0.0895</td>
+      <td id="T_97a9e_row3_col3" class="data row3 col3" >0.0861</td>
     </tr>
   </tbody>
 </table></div>
@@ -613,44 +625,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_366e8">
+<table id="T_8a8ae">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_366e8_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_366e8_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_366e8_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_366e8_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_8a8ae_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_8a8ae_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_8a8ae_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_8a8ae_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_366e8_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_366e8_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_366e8_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_366e8_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_366e8_row0_col3" class="data row0 col3" >0.479</td>
+      <th id="T_8a8ae_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8a8ae_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_8a8ae_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_8a8ae_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_8a8ae_row0_col3" class="data row0 col3" >0.479</td>
     </tr>
     <tr>
-      <th id="T_366e8_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_366e8_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_366e8_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_366e8_row1_col2" class="data row1 col2" >0.182</td>
-      <td id="T_366e8_row1_col3" class="data row1 col3" >0.178</td>
+      <th id="T_8a8ae_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_8a8ae_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_8a8ae_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_8a8ae_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_8a8ae_row1_col3" class="data row1 col3" >0.178</td>
     </tr>
     <tr>
-      <th id="T_366e8_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_366e8_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_366e8_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_366e8_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_366e8_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_8a8ae_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_8a8ae_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_8a8ae_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_8a8ae_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_8a8ae_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_366e8_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_366e8_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_366e8_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_366e8_row3_col2" class="data row3 col2" >0.0861</td>
-      <td id="T_366e8_row3_col3" class="data row3 col3" >0.0839</td>
+      <th id="T_8a8ae_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_8a8ae_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_8a8ae_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_8a8ae_row3_col2" class="data row3 col2" >0.0861</td>
+      <td id="T_8a8ae_row3_col3" class="data row3 col3" >0.0839</td>
     </tr>
   </tbody>
 </table></div>
@@ -691,44 +703,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_7b6ad">
+<table id="T_94e99">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_7b6ad_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_7b6ad_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_7b6ad_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_7b6ad_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_94e99_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_94e99_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_94e99_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_94e99_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_7b6ad_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_7b6ad_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_7b6ad_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_7b6ad_row0_col2" class="data row0 col2" >0.479</td>
-      <td id="T_7b6ad_row0_col3" class="data row0 col3" >0.47</td>
+      <th id="T_94e99_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_94e99_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_94e99_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_94e99_row0_col2" class="data row0 col2" >0.479</td>
+      <td id="T_94e99_row0_col3" class="data row0 col3" >0.47</td>
     </tr>
     <tr>
-      <th id="T_7b6ad_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_7b6ad_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_7b6ad_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_7b6ad_row1_col2" class="data row1 col2" >0.178</td>
-      <td id="T_7b6ad_row1_col3" class="data row1 col3" >0.185</td>
+      <th id="T_94e99_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_94e99_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_94e99_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_94e99_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_94e99_row1_col3" class="data row1 col3" >0.185</td>
     </tr>
     <tr>
-      <th id="T_7b6ad_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_7b6ad_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_7b6ad_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_7b6ad_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_7b6ad_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_94e99_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_94e99_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_94e99_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_94e99_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_94e99_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_7b6ad_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_7b6ad_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_7b6ad_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_7b6ad_row3_col2" class="data row3 col2" >0.0839</td>
-      <td id="T_7b6ad_row3_col3" class="data row3 col3" >0.0856</td>
+      <th id="T_94e99_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_94e99_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_94e99_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_94e99_row3_col2" class="data row3 col2" >0.0839</td>
+      <td id="T_94e99_row3_col3" class="data row3 col3" >0.0856</td>
     </tr>
   </tbody>
 </table></div>
@@ -769,44 +781,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_61461">
+<table id="T_e03a0">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_61461_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_61461_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_61461_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_61461_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_e03a0_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_e03a0_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_e03a0_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_e03a0_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_61461_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_61461_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_61461_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_61461_row0_col2" class="data row0 col2" >0.47</td>
-      <td id="T_61461_row0_col3" class="data row0 col3" >0.47</td>
+      <th id="T_e03a0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e03a0_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_e03a0_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_e03a0_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_e03a0_row0_col3" class="data row0 col3" >0.47</td>
     </tr>
     <tr>
-      <th id="T_61461_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_61461_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_61461_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_61461_row1_col2" class="data row1 col2" >0.185</td>
-      <td id="T_61461_row1_col3" class="data row1 col3" >0.178</td>
+      <th id="T_e03a0_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_e03a0_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_e03a0_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_e03a0_row1_col2" class="data row1 col2" >0.185</td>
+      <td id="T_e03a0_row1_col3" class="data row1 col3" >0.178</td>
     </tr>
     <tr>
-      <th id="T_61461_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_61461_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_61461_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_61461_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_61461_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_e03a0_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_e03a0_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_e03a0_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_e03a0_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_e03a0_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_61461_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_61461_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_61461_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_61461_row3_col2" class="data row3 col2" >0.0856</td>
-      <td id="T_61461_row3_col3" class="data row3 col3" >0.086</td>
+      <th id="T_e03a0_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_e03a0_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_e03a0_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_e03a0_row3_col2" class="data row3 col2" >0.0856</td>
+      <td id="T_e03a0_row3_col3" class="data row3 col3" >0.086</td>
     </tr>
   </tbody>
 </table></div>
@@ -847,44 +859,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_28e16">
+<table id="T_5c7d9">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_28e16_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_28e16_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_28e16_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_28e16_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_5c7d9_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_5c7d9_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_5c7d9_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_5c7d9_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_28e16_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_28e16_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_28e16_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_28e16_row0_col2" class="data row0 col2" >0.47</td>
-      <td id="T_28e16_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_5c7d9_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_5c7d9_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_5c7d9_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_5c7d9_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_5c7d9_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_28e16_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_28e16_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_28e16_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_28e16_row1_col2" class="data row1 col2" >0.178</td>
-      <td id="T_28e16_row1_col3" class="data row1 col3" >0.175</td>
+      <th id="T_5c7d9_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_5c7d9_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_5c7d9_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_5c7d9_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_5c7d9_row1_col3" class="data row1 col3" >0.175</td>
     </tr>
     <tr>
-      <th id="T_28e16_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_28e16_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_28e16_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_28e16_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_28e16_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_5c7d9_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_5c7d9_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_5c7d9_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_5c7d9_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_5c7d9_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_28e16_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_28e16_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_28e16_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_28e16_row3_col2" class="data row3 col2" >0.086</td>
-      <td id="T_28e16_row3_col3" class="data row3 col3" >0.084</td>
+      <th id="T_5c7d9_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_5c7d9_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_5c7d9_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_5c7d9_row3_col2" class="data row3 col2" >0.086</td>
+      <td id="T_5c7d9_row3_col3" class="data row3 col3" >0.084</td>
     </tr>
   </tbody>
 </table></div>
@@ -925,44 +937,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_8b08a">
+<table id="T_c2824">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_8b08a_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_8b08a_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_8b08a_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_8b08a_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_c2824_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_c2824_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_c2824_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_c2824_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_8b08a_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_8b08a_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_8b08a_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_8b08a_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_8b08a_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_c2824_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c2824_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_c2824_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_c2824_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_c2824_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_8b08a_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_8b08a_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_8b08a_row1_col1" class="data row1 col1" >1.15e+04 K</td>
-      <td id="T_8b08a_row1_col2" class="data row1 col2" >0.175</td>
-      <td id="T_8b08a_row1_col3" class="data row1 col3" >0.17</td>
+      <th id="T_c2824_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_c2824_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_c2824_row1_col1" class="data row1 col1" >1.15e+04 K</td>
+      <td id="T_c2824_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_c2824_row1_col3" class="data row1 col3" >0.17</td>
     </tr>
     <tr>
-      <th id="T_8b08a_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_8b08a_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_8b08a_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_8b08a_row2_col2" class="data row2 col2" >0.111</td>
-      <td id="T_8b08a_row2_col3" class="data row2 col3" >0.109</td>
+      <th id="T_c2824_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_c2824_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_c2824_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_c2824_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_c2824_row2_col3" class="data row2 col3" >0.109</td>
     </tr>
     <tr>
-      <th id="T_8b08a_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_8b08a_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_8b08a_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_8b08a_row3_col2" class="data row3 col2" >0.084</td>
-      <td id="T_8b08a_row3_col3" class="data row3 col3" >0.0822</td>
+      <th id="T_c2824_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_c2824_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_c2824_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_c2824_row3_col2" class="data row3 col2" >0.084</td>
+      <td id="T_c2824_row3_col3" class="data row3 col3" >0.0822</td>
     </tr>
   </tbody>
 </table></div>
@@ -1001,44 +1013,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_34174">
+<table id="T_52e99">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_34174_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_34174_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_34174_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_34174_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_52e99_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_52e99_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_52e99_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_52e99_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_34174_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_34174_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_34174_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_34174_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_34174_row0_col3" class="data row0 col3" >0.475</td>
+      <th id="T_52e99_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_52e99_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_52e99_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_52e99_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_52e99_row0_col3" class="data row0 col3" >0.475</td>
     </tr>
     <tr>
-      <th id="T_34174_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_34174_row1_col0" class="data row1 col0" >1.15e+04 K</td>
-      <td id="T_34174_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_34174_row1_col2" class="data row1 col2" >0.17</td>
-      <td id="T_34174_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_52e99_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_52e99_row1_col0" class="data row1 col0" >1.15e+04 K</td>
+      <td id="T_52e99_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_52e99_row1_col2" class="data row1 col2" >0.17</td>
+      <td id="T_52e99_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_34174_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_34174_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_34174_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_34174_row2_col2" class="data row2 col2" >0.109</td>
-      <td id="T_34174_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_52e99_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_52e99_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_52e99_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_52e99_row2_col2" class="data row2 col2" >0.109</td>
+      <td id="T_52e99_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_34174_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_34174_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_34174_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_34174_row3_col2" class="data row3 col2" >0.0822</td>
-      <td id="T_34174_row3_col3" class="data row3 col3" >0.0878</td>
+      <th id="T_52e99_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_52e99_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_52e99_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_52e99_row3_col2" class="data row3 col2" >0.0822</td>
+      <td id="T_52e99_row3_col3" class="data row3 col3" >0.0878</td>
     </tr>
   </tbody>
 </table></div>
@@ -1079,44 +1091,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_36c1a">
+<table id="T_51935">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_36c1a_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_36c1a_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_36c1a_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_36c1a_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_51935_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_51935_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_51935_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_51935_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_36c1a_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_36c1a_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_36c1a_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_36c1a_row0_col2" class="data row0 col2" >0.475</td>
-      <td id="T_36c1a_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_51935_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_51935_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_51935_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_51935_row0_col2" class="data row0 col2" >0.475</td>
+      <td id="T_51935_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_36c1a_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_36c1a_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_36c1a_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_36c1a_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_36c1a_row1_col3" class="data row1 col3" >0.184</td>
+      <th id="T_51935_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_51935_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_51935_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_51935_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_51935_row1_col3" class="data row1 col3" >0.184</td>
     </tr>
     <tr>
-      <th id="T_36c1a_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_36c1a_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_36c1a_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_36c1a_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_36c1a_row2_col3" class="data row2 col3" >0.114</td>
+      <th id="T_51935_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_51935_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_51935_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_51935_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_51935_row2_col3" class="data row2 col3" >0.114</td>
     </tr>
     <tr>
-      <th id="T_36c1a_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_36c1a_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_36c1a_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_36c1a_row3_col2" class="data row3 col2" >0.0878</td>
-      <td id="T_36c1a_row3_col3" class="data row3 col3" >0.0859</td>
+      <th id="T_51935_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_51935_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_51935_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_51935_row3_col2" class="data row3 col2" >0.0878</td>
+      <td id="T_51935_row3_col3" class="data row3 col3" >0.0859</td>
     </tr>
   </tbody>
 </table></div>
@@ -1155,44 +1167,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_8bf6b">
+<table id="T_8ca97">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_8bf6b_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_8bf6b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_8bf6b_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_8bf6b_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_8ca97_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_8ca97_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_8ca97_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_8ca97_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_8bf6b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_8bf6b_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_8bf6b_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_8bf6b_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_8bf6b_row0_col3" class="data row0 col3" >0.467</td>
+      <th id="T_8ca97_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8ca97_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_8ca97_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_8ca97_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_8ca97_row0_col3" class="data row0 col3" >0.467</td>
     </tr>
     <tr>
-      <th id="T_8bf6b_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_8bf6b_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_8bf6b_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_8bf6b_row1_col2" class="data row1 col2" >0.184</td>
-      <td id="T_8bf6b_row1_col3" class="data row1 col3" >0.176</td>
+      <th id="T_8ca97_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_8ca97_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_8ca97_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_8ca97_row1_col2" class="data row1 col2" >0.184</td>
+      <td id="T_8ca97_row1_col3" class="data row1 col3" >0.176</td>
     </tr>
     <tr>
-      <th id="T_8bf6b_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_8bf6b_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_8bf6b_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_8bf6b_row2_col2" class="data row2 col2" >0.114</td>
-      <td id="T_8bf6b_row2_col3" class="data row2 col3" >0.11</td>
+      <th id="T_8ca97_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_8ca97_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_8ca97_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_8ca97_row2_col2" class="data row2 col2" >0.114</td>
+      <td id="T_8ca97_row2_col3" class="data row2 col3" >0.11</td>
     </tr>
     <tr>
-      <th id="T_8bf6b_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_8bf6b_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_8bf6b_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_8bf6b_row3_col2" class="data row3 col2" >0.0859</td>
-      <td id="T_8bf6b_row3_col3" class="data row3 col3" >0.0821</td>
+      <th id="T_8ca97_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_8ca97_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_8ca97_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_8ca97_row3_col2" class="data row3 col2" >0.0859</td>
+      <td id="T_8ca97_row3_col3" class="data row3 col3" >0.0821</td>
     </tr>
   </tbody>
 </table></div>
@@ -1233,44 +1245,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_710bd">
+<table id="T_28be9">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_710bd_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_710bd_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_710bd_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_710bd_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_28be9_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_28be9_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_28be9_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_28be9_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_710bd_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_710bd_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_710bd_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_710bd_row0_col2" class="data row0 col2" >0.467</td>
-      <td id="T_710bd_row0_col3" class="data row0 col3" >0.466</td>
+      <th id="T_28be9_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_28be9_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_28be9_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_28be9_row0_col2" class="data row0 col2" >0.467</td>
+      <td id="T_28be9_row0_col3" class="data row0 col3" >0.466</td>
     </tr>
     <tr>
-      <th id="T_710bd_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_710bd_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_710bd_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_710bd_row1_col2" class="data row1 col2" >0.176</td>
-      <td id="T_710bd_row1_col3" class="data row1 col3" >0.18</td>
+      <th id="T_28be9_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_28be9_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_28be9_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_28be9_row1_col2" class="data row1 col2" >0.176</td>
+      <td id="T_28be9_row1_col3" class="data row1 col3" >0.18</td>
     </tr>
     <tr>
-      <th id="T_710bd_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_710bd_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_710bd_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_710bd_row2_col2" class="data row2 col2" >0.11</td>
-      <td id="T_710bd_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_28be9_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_28be9_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_28be9_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_28be9_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_28be9_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_710bd_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_710bd_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_710bd_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_710bd_row3_col2" class="data row3 col2" >0.0821</td>
-      <td id="T_710bd_row3_col3" class="data row3 col3" >0.0841</td>
+      <th id="T_28be9_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_28be9_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_28be9_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_28be9_row3_col2" class="data row3 col2" >0.0821</td>
+      <td id="T_28be9_row3_col3" class="data row3 col3" >0.0841</td>
     </tr>
   </tbody>
 </table></div>
@@ -1311,44 +1323,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_51a8b">
+<table id="T_c4f03">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_51a8b_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_51a8b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_51a8b_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_51a8b_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_c4f03_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_c4f03_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_c4f03_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_c4f03_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_51a8b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_51a8b_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_51a8b_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_51a8b_row0_col2" class="data row0 col2" >0.466</td>
-      <td id="T_51a8b_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_c4f03_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c4f03_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_c4f03_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_c4f03_row0_col2" class="data row0 col2" >0.466</td>
+      <td id="T_c4f03_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_51a8b_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_51a8b_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_51a8b_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_51a8b_row1_col2" class="data row1 col2" >0.18</td>
-      <td id="T_51a8b_row1_col3" class="data row1 col3" >0.182</td>
+      <th id="T_c4f03_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_c4f03_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_c4f03_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_c4f03_row1_col2" class="data row1 col2" >0.18</td>
+      <td id="T_c4f03_row1_col3" class="data row1 col3" >0.182</td>
     </tr>
     <tr>
-      <th id="T_51a8b_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_51a8b_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_51a8b_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_51a8b_row2_col2" class="data row2 col2" >0.111</td>
-      <td id="T_51a8b_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_c4f03_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_c4f03_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_c4f03_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_c4f03_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_c4f03_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_51a8b_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_51a8b_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_51a8b_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_51a8b_row3_col2" class="data row3 col2" >0.0841</td>
-      <td id="T_51a8b_row3_col3" class="data row3 col3" >0.0854</td>
+      <th id="T_c4f03_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_c4f03_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_c4f03_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_c4f03_row3_col2" class="data row3 col2" >0.0841</td>
+      <td id="T_c4f03_row3_col3" class="data row3 col3" >0.0854</td>
     </tr>
   </tbody>
 </table></div>
@@ -1389,44 +1401,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_9e464">
+<table id="T_9cebc">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_9e464_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_9e464_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_9e464_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_9e464_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_9cebc_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_9cebc_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_9cebc_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_9cebc_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_9e464_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_9e464_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_9e464_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_9e464_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_9e464_row0_col3" class="data row0 col3" >0.484</td>
+      <th id="T_9cebc_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9cebc_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_9cebc_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_9cebc_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_9cebc_row0_col3" class="data row0 col3" >0.484</td>
     </tr>
     <tr>
-      <th id="T_9e464_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_9e464_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_9e464_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_9e464_row1_col2" class="data row1 col2" >0.182</td>
-      <td id="T_9e464_row1_col3" class="data row1 col3" >0.181</td>
+      <th id="T_9cebc_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_9cebc_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_9cebc_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_9cebc_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_9cebc_row1_col3" class="data row1 col3" >0.181</td>
     </tr>
     <tr>
-      <th id="T_9e464_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_9e464_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_9e464_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_9e464_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_9e464_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_9cebc_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_9cebc_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_9cebc_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_9cebc_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_9cebc_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_9e464_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_9e464_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_9e464_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_9e464_row3_col2" class="data row3 col2" >0.0854</td>
-      <td id="T_9e464_row3_col3" class="data row3 col3" >0.0858</td>
+      <th id="T_9cebc_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_9cebc_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_9cebc_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_9cebc_row3_col2" class="data row3 col2" >0.0854</td>
+      <td id="T_9cebc_row3_col3" class="data row3 col3" >0.0858</td>
     </tr>
   </tbody>
 </table></div>
@@ -1467,44 +1479,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_7d83e">
+<table id="T_776e8">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_7d83e_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_7d83e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_7d83e_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_7d83e_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_776e8_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_776e8_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_776e8_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_776e8_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_7d83e_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_7d83e_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_7d83e_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_7d83e_row0_col2" class="data row0 col2" >0.484</td>
-      <td id="T_7d83e_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_776e8_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_776e8_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_776e8_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_776e8_row0_col2" class="data row0 col2" >0.484</td>
+      <td id="T_776e8_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_7d83e_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_7d83e_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_7d83e_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_7d83e_row1_col2" class="data row1 col2" >0.181</td>
-      <td id="T_7d83e_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_776e8_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_776e8_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_776e8_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_776e8_row1_col2" class="data row1 col2" >0.181</td>
+      <td id="T_776e8_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_7d83e_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_7d83e_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_7d83e_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_7d83e_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_7d83e_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_776e8_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_776e8_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_776e8_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_776e8_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_776e8_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_7d83e_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_7d83e_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_7d83e_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_7d83e_row3_col2" class="data row3 col2" >0.0858</td>
-      <td id="T_7d83e_row3_col3" class="data row3 col3" >0.0858</td>
+      <th id="T_776e8_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_776e8_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_776e8_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_776e8_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_776e8_row3_col3" class="data row3 col3" >0.0858</td>
     </tr>
   </tbody>
 </table></div>
@@ -1543,44 +1555,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_311b3">
+<table id="T_67d63">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_311b3_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_311b3_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_311b3_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_311b3_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_67d63_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_67d63_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_67d63_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_67d63_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_311b3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_311b3_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_311b3_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_311b3_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_311b3_row0_col3" class="data row0 col3" >0.468</td>
+      <th id="T_67d63_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_67d63_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_67d63_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_67d63_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_67d63_row0_col3" class="data row0 col3" >0.468</td>
     </tr>
     <tr>
-      <th id="T_311b3_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_311b3_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_311b3_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_311b3_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_311b3_row1_col3" class="data row1 col3" >0.175</td>
+      <th id="T_67d63_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_67d63_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_67d63_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_67d63_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_67d63_row1_col3" class="data row1 col3" >0.175</td>
     </tr>
     <tr>
-      <th id="T_311b3_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_311b3_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_311b3_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_311b3_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_311b3_row2_col3" class="data row2 col3" >0.11</td>
+      <th id="T_67d63_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_67d63_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_67d63_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_67d63_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_67d63_row2_col3" class="data row2 col3" >0.11</td>
     </tr>
     <tr>
-      <th id="T_311b3_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_311b3_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_311b3_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_311b3_row3_col2" class="data row3 col2" >0.0858</td>
-      <td id="T_311b3_row3_col3" class="data row3 col3" >0.0816</td>
+      <th id="T_67d63_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_67d63_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_67d63_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_67d63_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_67d63_row3_col3" class="data row3 col3" >0.0816</td>
     </tr>
   </tbody>
 </table></div>
@@ -1621,44 +1633,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_62c1f">
+<table id="T_b73e2">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_62c1f_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_62c1f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_62c1f_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_62c1f_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_b73e2_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_b73e2_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_b73e2_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_b73e2_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_62c1f_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_62c1f_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_62c1f_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_62c1f_row0_col2" class="data row0 col2" >0.468</td>
-      <td id="T_62c1f_row0_col3" class="data row0 col3" >0.464</td>
+      <th id="T_b73e2_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b73e2_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_b73e2_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_b73e2_row0_col2" class="data row0 col2" >0.468</td>
+      <td id="T_b73e2_row0_col3" class="data row0 col3" >0.464</td>
     </tr>
     <tr>
-      <th id="T_62c1f_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_62c1f_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_62c1f_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_62c1f_row1_col2" class="data row1 col2" >0.175</td>
-      <td id="T_62c1f_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_b73e2_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_b73e2_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_b73e2_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_b73e2_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_b73e2_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_62c1f_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_62c1f_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_62c1f_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_62c1f_row2_col2" class="data row2 col2" >0.11</td>
-      <td id="T_62c1f_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_b73e2_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_b73e2_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_b73e2_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_b73e2_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_b73e2_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_62c1f_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_62c1f_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_62c1f_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_62c1f_row3_col2" class="data row3 col2" >0.0816</td>
-      <td id="T_62c1f_row3_col3" class="data row3 col3" >0.0848</td>
+      <th id="T_b73e2_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_b73e2_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_b73e2_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_b73e2_row3_col2" class="data row3 col2" >0.0816</td>
+      <td id="T_b73e2_row3_col3" class="data row3 col3" >0.0848</td>
     </tr>
   </tbody>
 </table></div>
@@ -1699,44 +1711,44 @@ what options can be inputted to display the graph in a preferred method. To star
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_e8926">
+<table id="T_86c93">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_e8926_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_e8926_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_e8926_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_e8926_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_86c93_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_86c93_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_86c93_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_86c93_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_e8926_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_e8926_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_e8926_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_e8926_row0_col2" class="data row0 col2" >0.464</td>
-      <td id="T_e8926_row0_col3" class="data row0 col3" >0.466</td>
+      <th id="T_86c93_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_86c93_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_86c93_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_86c93_row0_col2" class="data row0 col2" >0.464</td>
+      <td id="T_86c93_row0_col3" class="data row0 col3" >0.466</td>
     </tr>
     <tr>
-      <th id="T_e8926_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_e8926_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_e8926_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_e8926_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_e8926_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_86c93_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_86c93_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_86c93_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_86c93_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_86c93_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_e8926_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_e8926_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_e8926_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_e8926_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_e8926_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_86c93_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_86c93_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_86c93_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_86c93_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_86c93_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_e8926_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_e8926_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_e8926_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_e8926_row3_col2" class="data row3 col2" >0.0848</td>
-      <td id="T_e8926_row3_col3" class="data row3 col3" >0.0853</td>
+      <th id="T_86c93_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_86c93_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_86c93_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_86c93_row3_col2" class="data row3 col2" >0.0848</td>
+      <td id="T_86c93_row3_col3" class="data row3 col3" >0.0853</td>
     </tr>
   </tbody>
 </table></div>
@@ -1758,7 +1770,7 @@ what options can be inputted to display the graph in a preferred method. To star
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Simulation finished in 19 iterations
-        Simulation took 59.73 s
+        Simulation took 69.15 s
  (<span class="ansi-bold">base.py</span>:469)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
@@ -2144,7 +2156,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 </div>
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"b6bc302b8adb4b61872765f4a5872cf0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "2c6f267f8c714b36b53ce2f31ad4a6b3": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "8e75bacb8d8943999814df9087a66a97": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b6bc302b8adb4b61872765f4a5872cf0", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_2c6f267f8c714b36b53ce2f31ad4a6b3", "value": 0.0}}, "b63c3f2aea9547dcb14c61be3d4b8e37": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8356116f73db40a3a6bf089b8c70454c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "27b9446f615d41068c5f823d7c38026a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b63c3f2aea9547dcb14c61be3d4b8e37", "placeholder": "\u200b", "style": "IPY_MODEL_8356116f73db40a3a6bf089b8c70454c", "value": "Iterations:"}}, "f1e315eead24437cad6beeea6399a2a5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4910fb4ae9304b55aae3420fadf36abb": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d5cdb681a70f49a5b6cd2a019b163fcf": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f1e315eead24437cad6beeea6399a2a5", "placeholder": "\u200b", "style": "IPY_MODEL_4910fb4ae9304b55aae3420fadf36abb", "value": "0/? [00:00&lt;?, ?it/s]"}}, "febb28bf9da94415997a905b21e63981": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "663a2293fa394179b9621228a830015c": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_27b9446f615d41068c5f823d7c38026a", "IPY_MODEL_8e75bacb8d8943999814df9087a66a97", "IPY_MODEL_d5cdb681a70f49a5b6cd2a019b163fcf"], "layout": "IPY_MODEL_febb28bf9da94415997a905b21e63981"}}, "ab4232719889439aaef80c8c55972aea": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "ef1fa922181845afa31870e50c44818b": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "4972fc8801d34ea9a3d0f34769dfd3d3": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ab4232719889439aaef80c8c55972aea", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_ef1fa922181845afa31870e50c44818b", "value": 0.0}}, "3b331143dcb34439b4e5de37a94687a6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "56991e5c7e974bfb870fff03184c5e4c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "3599953e21ce4368b056013d552cbe75": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3b331143dcb34439b4e5de37a94687a6", "placeholder": "\u200b", "style": "IPY_MODEL_56991e5c7e974bfb870fff03184c5e4c", "value": "Packets:   "}}, "2a21dfd6ae324bfdbfbcde9644c6fca0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "dc1c6f2867d04232905c3a394c949a7f": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "567c8fdf14d6486ca3b95c90cf068c6e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2a21dfd6ae324bfdbfbcde9644c6fca0", "placeholder": "\u200b", "style": "IPY_MODEL_dc1c6f2867d04232905c3a394c949a7f", "value": "0/? [00:00&lt;?, ?it/s]"}}, "183a4a116fdf498c803147d53a5ba829": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7a6259ea51c0456fb1faac88757f526a": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_3599953e21ce4368b056013d552cbe75", "IPY_MODEL_4972fc8801d34ea9a3d0f34769dfd3d3", "IPY_MODEL_567c8fdf14d6486ca3b95c90cf068c6e"], "layout": "IPY_MODEL_183a4a116fdf498c803147d53a5ba829"}}, "23525bd64d1f43d5bd606a1152801800": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "dfa43ffddd5f4a1f87fe45c8b2bead00": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_23525bd64d1f43d5bd606a1152801800", "msg_id": "", "outputs": []}}, "7ce4c22cd40141f9bacdf6d9d358462d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a4b2bf9feca6470c8c72d92a9341ab1f": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_7ce4c22cd40141f9bacdf6d9d358462d", "msg_id": "", "outputs": []}}, "d8c4d63f1513446380d869bb24645c2f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "cc2c5b7bbc59417bbeae58084995cd58": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "e588824e9ea94371a7d6bc5b9b732bd9": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d8c4d63f1513446380d869bb24645c2f", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_cc2c5b7bbc59417bbeae58084995cd58", "value": 20.0}}, "69299724d5c9443cac6c7b7416b0d040": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "5d4729bb21664f63af0568d79f3b9eb7": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "1ffeb38f140b4dd2901b6b13168397e4": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_69299724d5c9443cac6c7b7416b0d040", "placeholder": "\u200b", "style": "IPY_MODEL_5d4729bb21664f63af0568d79f3b9eb7", "value": "Iterations:"}}, "76603cddae42451c8adf0c7ae59d78ee": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "30ffc386421b4415a94fc395a62d1dd0": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "985bc08d84054cb4864ec584a4aa50b3": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_76603cddae42451c8adf0c7ae59d78ee", "placeholder": "\u200b", "style": "IPY_MODEL_30ffc386421b4415a94fc395a62d1dd0", "value": "20/20 [00:16&lt;00:00,  2.25s/it]"}}, "8957bb22f04d481b989f7cae5f832520": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5e8dd7c51bae42b29c5294489f9b9760": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1ffeb38f140b4dd2901b6b13168397e4", "IPY_MODEL_e588824e9ea94371a7d6bc5b9b732bd9", "IPY_MODEL_985bc08d84054cb4864ec584a4aa50b3"], "layout": "IPY_MODEL_8957bb22f04d481b989f7cae5f832520"}}, "2aad5406f54d42aab858419ffe0d49ae": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "875bc81548c64fc4859fd70ab0149008": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "737f1df7beb0484b940f6678cac7273f": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2aad5406f54d42aab858419ffe0d49ae", "max": 100000.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_875bc81548c64fc4859fd70ab0149008", "value": 100000.0}}, "df036fa1ac914a2fba0bc656c94bad5a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "26f20b01d5964f46985a4ff32d565e82": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2345588032ca497fa20e20f66918d53b": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_df036fa1ac914a2fba0bc656c94bad5a", "placeholder": "\u200b", "style": "IPY_MODEL_26f20b01d5964f46985a4ff32d565e82", "value": "Packets:   "}}, "1095a7be29ce43338f353eb31f7a9cf7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e5ae4539197f4ca1be0c10d3d4a760cc": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f3576c0ab70e4e52b8b55f8d5552d980": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1095a7be29ce43338f353eb31f7a9cf7", "placeholder": "\u200b", "style": "IPY_MODEL_e5ae4539197f4ca1be0c10d3d4a760cc", "value": "100000/100000 [00:06&lt;00:00, 14823.52it/s]"}}, "5bee9e2636d7402eab1b72a1f9ad3dbb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "65847c9c3c4b4563aa10dec0420fc6cc": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_2345588032ca497fa20e20f66918d53b", "IPY_MODEL_737f1df7beb0484b940f6678cac7273f", "IPY_MODEL_f3576c0ab70e4e52b8b55f8d5552d980"], "layout": "IPY_MODEL_5bee9e2636d7402eab1b72a1f9ad3dbb"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"f33ecdca8cc346bb95565059efbd6853": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "ab11590cd61d4d05ab28d8185141e6d5": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "302aa007e13f4a9ab40e4c6561a1b07a": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f33ecdca8cc346bb95565059efbd6853", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_ab11590cd61d4d05ab28d8185141e6d5", "value": 0.0}}, "2c4134db7d25414b8a11a3b7a3dccb1a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "451ee8a4d4b14667acaecb9f368f5469": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b8b741e2e35f400eb57de08fa2d8ecd3": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2c4134db7d25414b8a11a3b7a3dccb1a", "placeholder": "\u200b", "style": "IPY_MODEL_451ee8a4d4b14667acaecb9f368f5469", "value": "Iterations:"}}, "ad6cb2b7e1e2478ea667866f4364125b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cb7bd4bcf0b942b5a641de9688a6cc7a": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b4f84b78fe4445a1be5a2a675f975679": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ad6cb2b7e1e2478ea667866f4364125b", "placeholder": "\u200b", "style": "IPY_MODEL_cb7bd4bcf0b942b5a641de9688a6cc7a", "value": "0/? [00:00&lt;?, ?it/s]"}}, "6652c8791bdf4711b588869117f3174b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0b0c98a5c8784ff2ad4892046b7e9a4e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b8b741e2e35f400eb57de08fa2d8ecd3", "IPY_MODEL_302aa007e13f4a9ab40e4c6561a1b07a", "IPY_MODEL_b4f84b78fe4445a1be5a2a675f975679"], "layout": "IPY_MODEL_6652c8791bdf4711b588869117f3174b"}}, "192da398c50a4ec9bdbb498cd772e8d7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "75895f1496d7410db9ada690daf47697": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "529beedac45d4d4e900ef87bfeabb327": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_192da398c50a4ec9bdbb498cd772e8d7", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_75895f1496d7410db9ada690daf47697", "value": 0.0}}, "35ed51c5762b417eaee4bde8faad58b9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c696fb65ace345fdbff4c32a40bafc33": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dc543879b12f41e792556d2f46df6d7c": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_35ed51c5762b417eaee4bde8faad58b9", "placeholder": "\u200b", "style": "IPY_MODEL_c696fb65ace345fdbff4c32a40bafc33", "value": "Packets:   "}}, "ebf3c25417a74f4893776ec691154f00": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "545d8d3fde6f46f683cb0e483c06c472": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a8328e337ea1420b938d1b2f6a9b1ffc": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ebf3c25417a74f4893776ec691154f00", "placeholder": "\u200b", "style": "IPY_MODEL_545d8d3fde6f46f683cb0e483c06c472", "value": "0/? [00:00&lt;?, ?it/s]"}}, "ff21a974d5f14182a1e84eb0b011f241": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "48680651c5c24f49a566d30b2357057e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_dc543879b12f41e792556d2f46df6d7c", "IPY_MODEL_529beedac45d4d4e900ef87bfeabb327", "IPY_MODEL_a8328e337ea1420b938d1b2f6a9b1ffc"], "layout": "IPY_MODEL_ff21a974d5f14182a1e84eb0b011f241"}}, "8e60148ed0cd4f7394a920e8e258ad3a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e21a743d3279418fa117591c2e8d0a15": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_8e60148ed0cd4f7394a920e8e258ad3a", "msg_id": "", "outputs": []}}, "758df40b2f4f48b3822ceb85e160723d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b1f7b4da5e7e4583960b5120ced57311": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_758df40b2f4f48b3822ceb85e160723d", "msg_id": "", "outputs": []}}, "ca881f042f19459e91d2a8d82a6cfea2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "bc349eaeed794679989eed863d5caa20": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "f2ef5baedb5f46278947883a17a6de94": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ca881f042f19459e91d2a8d82a6cfea2", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_bc349eaeed794679989eed863d5caa20", "value": 20.0}}, "9fb0c85f8d9146c0ae642668797f0eb8": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "264701e204dc4eaf90aba7202773619a": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f102b3aa59d042c8a14c4d0e8df7ae49": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_9fb0c85f8d9146c0ae642668797f0eb8", "placeholder": "\u200b", "style": "IPY_MODEL_264701e204dc4eaf90aba7202773619a", "value": "Iterations:"}}, "d141dcf14189409fa1998b3506cf93ea": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b5b683dac82c409aa975da67cd68fec5": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6e33fb1764e1488f95bf039b989bb258": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d141dcf14189409fa1998b3506cf93ea", "placeholder": "\u200b", "style": "IPY_MODEL_b5b683dac82c409aa975da67cd68fec5", "value": "20/20 [00:17&lt;00:00,  2.22s/it]"}}, "01b4e3ceb11a43d8bef7781d48d03dce": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4c25896f091d472e8c3d196348d18185": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_f102b3aa59d042c8a14c4d0e8df7ae49", "IPY_MODEL_f2ef5baedb5f46278947883a17a6de94", "IPY_MODEL_6e33fb1764e1488f95bf039b989bb258"], "layout": "IPY_MODEL_01b4e3ceb11a43d8bef7781d48d03dce"}}, "c427a13e09094a459d1c3d61c40caf01": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "be76332ab727442b834cb0168aaabe30": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "04c0d1261c624122805d99054864bfb9": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_c427a13e09094a459d1c3d61c40caf01", "max": 100000.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_be76332ab727442b834cb0168aaabe30", "value": 100000.0}}, "419e996eb2ce43c0825f6cbe5b3724a1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "7b15512d508e4dcdb5bc092ca0049e19": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a1b57f9b4ccc4260943c933609289abe": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_419e996eb2ce43c0825f6cbe5b3724a1", "placeholder": "\u200b", "style": "IPY_MODEL_7b15512d508e4dcdb5bc092ca0049e19", "value": "Packets:   "}}, "2b14837c40564a5aadfe9c96b9f140a2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "df2f3ccd85234e799d8f8859348a3011": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "12c8b1e4ac4d4e20acf691f45af2adf7": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2b14837c40564a5aadfe9c96b9f140a2", "placeholder": "\u200b", "style": "IPY_MODEL_df2f3ccd85234e799d8f8859348a3011", "value": "100000/100000 [00:05&lt;00:00, 21239.66it/s]"}}, "3a74f70886f74e47b16c887f5568d68e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e9ed338801424a29906e310920634df5": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_a1b57f9b4ccc4260943c933609289abe", "IPY_MODEL_04c0d1261c624122805d99054864bfb9", "IPY_MODEL_12c8b1e4ac4d4e20acf691f45af2adf7"], "layout": "IPY_MODEL_3a74f70886f74e47b16c887f5568d68e"}}}, "version_major": 2, "version_minor": 0}
 </script></section>
 </section>
 </section>
