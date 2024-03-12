@@ -482,9 +482,7 @@ from tardis.montecarlo.estimators.dilute_blackbody_properties import (
     @property
     def virt_packet_last_interaction_in_nu(self):
         try:
-            return u.Quantity(
-                self.vpacket_tracker.last_interaction_in_nu, u.Hz
-            )
+            return u.Quantity(self.vpacket_tracker.last_interaction_in_nu, u.Hz)
         except AttributeError:
             warnings.warn(
                 &quot;MontecarloTransport.virt_packet_last_interaction_in_nu:&quot;
@@ -560,7 +558,7 @@ from tardis.montecarlo.estimators.dilute_blackbody_properties import (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 11 Mar 2024.
+      <span class="lastupdated">Last updated on 12 Mar 2024.
       </span></p>
   </div>
 
