@@ -117,6 +117,7 @@
   <h1>Source code for tardis.io.atom_data.util</h1><div class="highlight"><pre>
 <span></span>import os
 import logging
+from pathlib import Path
 
 from tardis.io.configuration.config_internal import get_data_dir
 from tardis.io.atom_data.atom_web_download import (
@@ -142,19 +143,21 @@ logger = logging.getLogger(__name__)
         resolved fpath
     &quot;&quot;&quot;
 
+    fname = Path(fname)
     if os.path.exists(fname):
         return fname
 
-    fpath = os.path.join(os.path.join(get_data_dir(), fname))
+    fname = Path(fname.stem).with_suffix(&quot;.h5&quot;)
+    fpath = Path(os.path.join(get_data_dir(), fname))
     if os.path.exists(fpath):
         logger.info(
             f&quot;\n\tAtom Data {fname} not found in local path.\n\tExists in TARDIS Data repo {fpath}&quot;
         )
         return fpath
 
-    atom_data_name = fname.with_suffix(&quot;&quot;)
+    atom_data_name = fname.stem
     atom_repo_config = get_atomic_repo_config()
-    if str(atom_data_name) in atom_repo_config:
+    if atom_data_name in atom_repo_config:
         raise IOError(
             f&quot;Atom Data {fname} not found in path or in TARDIS data repo - it is available as download:\n&quot;
             f&quot;from tardis.io.atom_data.util import download_atom_data\n&quot;
@@ -175,7 +178,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 18 Mar 2024.
+      <span class="lastupdated">Last updated on 19 Mar 2024.
       </span></p>
   </div>
 
