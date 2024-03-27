@@ -240,7 +240,7 @@ from astropy import units as u
         return (
             4
             * np.pi
-            * const.sigma_sb.cgs
+            * const.sigma_sb
             * self.radius**2
             * self.temperature**4
         ).to(&quot;erg/s&quot;)</div></div>
@@ -296,7 +296,7 @@ from astropy import units as u
         Radii for packets
             numpy.ndarray
         &quot;&quot;&quot;
-        return np.ones(no_of_packets) * self.radius</div>
+        return np.ones(no_of_packets) * self.radius.cgs</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_nus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_nus">[docs]</a>    def create_packet_nus(self, no_of_packets, l_samples=1000):
         &quot;&quot;&quot;
@@ -339,7 +339,7 @@ from astropy import units as u
         xis_prod = np.prod(xis[1:], 0)
         x = ne.evaluate(&quot;-log(xis_prod)/l&quot;)
 
-        return x * (const.k_B.cgs * self.temperature) / const.h.cgs</div>
+        return (x * (const.k_B * self.temperature) / const.h).cgs</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
@@ -403,11 +403,11 @@ from astropy import units as u
 
     Parameters
     ----------
-    time_explosion : float 64
+    time_explosion : astropy.units.Quantity
         Time elapsed since explosion
-    radius : float64
+    radius : astropy.units.Quantity
         Initial packet radius
-    temperature : float
+    temperature : astropy.units.Quantity
         Absolute Temperature.
     base_seed : int
         Base Seed for random number generator
@@ -510,7 +510,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 11 Mar 2024.
+      <span class="lastupdated">Last updated on 27 Mar 2024.
       </span></p>
   </div>
 
