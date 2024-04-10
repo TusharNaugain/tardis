@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -127,7 +127,11 @@ from plotly.callbacks import BoxSelector
 import ipywidgets as ipw
 
 from tardis.analysis import LastLineInteraction
-from tardis.util.base import species_tuple_to_string, species_string_to_tuple
+from tardis.util.base import (
+    species_tuple_to_string,
+    species_string_to_tuple,
+    is_notebook,
+)
 from tardis.visualization.widgets.util import (
     create_table_widget,
     TableSummaryLabel,
@@ -785,71 +789,74 @@ from tardis.visualization import plot_util as pu
         ipywidgets.Box
             Line info widget containing all component widgets
         &quot;&quot;&quot;
-        # Set widths of widgets
-        self.species_interactions_table.layout.width = &quot;350px&quot;
-        self.last_line_counts_table.layout.width = &quot;450px&quot;
-        self.total_packets_label.update_and_resize(0)
-        self.group_mode_dropdown.layout.width = &quot;auto&quot;
+        if not is_notebook():
+            print(&quot;Please use a notebook to display the widget&quot;)
+        else:
+            # Set widths of widgets
+            self.species_interactions_table.layout.width = &quot;350px&quot;
+            self.last_line_counts_table.layout.width = &quot;450px&quot;
+            self.total_packets_label.update_and_resize(0)
+            self.group_mode_dropdown.layout.width = &quot;auto&quot;
 
-        # Attach event listeners to widgets
-        spectrum_trace = self.figure_widget.data[0]
-        spectrum_trace.on_selection(self._spectrum_selection_handler)
-        self.filter_mode_buttons.observe(
-            self._filter_mode_toggle_handler, names=&quot;index&quot;
-        )
-        self.species_interactions_table.on(
-            &quot;selection_changed&quot;, self._species_intrctn_selection_handler
-        )
-        self.group_mode_dropdown.observe(
-            self._group_mode_dropdown_handler, names=&quot;index&quot;
-        )
+            # Attach event listeners to widgets
+            spectrum_trace = self.figure_widget.data[0]
+            spectrum_trace.on_selection(self._spectrum_selection_handler)
+            self.filter_mode_buttons.observe(
+                self._filter_mode_toggle_handler, names=&quot;index&quot;
+            )
+            self.species_interactions_table.on(
+                &quot;selection_changed&quot;, self._species_intrctn_selection_handler
+            )
+            self.group_mode_dropdown.observe(
+                self._group_mode_dropdown_handler, names=&quot;index&quot;
+            )
 
-        selection_box_symbol = (
-            &quot;&lt;span style=&#39;display: inline-block; &quot;
-            f&quot;background-color: {self.COLORS[&#39;selection_area&#39;]}; &quot;
-            f&quot;border: 1px solid {self.COLORS[&#39;selection_border&#39;]}; &quot;
-            &quot;width: 0.8em; height: 1.2em; vertical-align: middle;&#39;&gt;&lt;/span&gt;&quot;
-        )
+            selection_box_symbol = (
+                &quot;&lt;span style=&#39;display: inline-block; &quot;
+                f&quot;background-color: {self.COLORS[&#39;selection_area&#39;]}; &quot;
+                f&quot;border: 1px solid {self.COLORS[&#39;selection_border&#39;]}; &quot;
+                &quot;width: 0.8em; height: 1.2em; vertical-align: middle;&#39;&gt;&lt;/span&gt;&quot;
+            )
 
-        table_container_left = ipw.VBox(
-            [
-                self.ui_control_description(
-                    &quot;Filter selected wavelength range &quot;
-                    f&quot;( {selection_box_symbol} ) by&quot;
-                ),
-                self.filter_mode_buttons,
-                self.species_interactions_table,
-            ],
-            layout=dict(margin=&quot;0px 15px&quot;),
-        )
-
-        table_container_right = ipw.VBox(
-            [
-                self.ui_control_description(&quot;Group packet counts by&quot;),
-                self.group_mode_dropdown,
-                self.last_line_counts_table,
-                self.total_packets_label.widget,
-            ],
-            layout=dict(margin=&quot;0px 15px&quot;),
-        )
-
-        return ipw.VBox(
-            [
-                self.figure_widget,
-                ipw.Box(
-                    [
-                        table_container_left,
-                        table_container_right,
-                    ],
-                    layout=dict(
-                        display=&quot;flex&quot;,
-                        align_items=&quot;flex-start&quot;,
-                        justify_content=&quot;center&quot;,
-                        height=&quot;420px&quot;,
+            table_container_left = ipw.VBox(
+                [
+                    self.ui_control_description(
+                        &quot;Filter selected wavelength range &quot;
+                        f&quot;( {selection_box_symbol} ) by&quot;
                     ),
-                ),
-            ]
-        )</div></div>
+                    self.filter_mode_buttons,
+                    self.species_interactions_table,
+                ],
+                layout=dict(margin=&quot;0px 15px&quot;),
+            )
+
+            table_container_right = ipw.VBox(
+                [
+                    self.ui_control_description(&quot;Group packet counts by&quot;),
+                    self.group_mode_dropdown,
+                    self.last_line_counts_table,
+                    self.total_packets_label.widget,
+                ],
+                layout=dict(margin=&quot;0px 15px&quot;),
+            )
+
+            return ipw.VBox(
+                [
+                    self.figure_widget,
+                    ipw.Box(
+                        [
+                            table_container_left,
+                            table_container_right,
+                        ],
+                        layout=dict(
+                            display=&quot;flex&quot;,
+                            align_items=&quot;flex-start&quot;,
+                            justify_content=&quot;center&quot;,
+                            height=&quot;420px&quot;,
+                        ),
+                    ),
+                ]
+            )</div></div>
 </pre></div>
 
            </div>
@@ -860,7 +867,7 @@ from tardis.visualization import plot_util as pu
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Feb 2024.
+      <span class="lastupdated">Last updated on 10 Apr 2024.
       </span></p>
   </div>
 

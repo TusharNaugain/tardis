@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -129,7 +129,11 @@ from pathlib import Path
 
 import tardis
 from tardis.io.model.readers.generic_readers import read_uniform_abundances
-from tardis.util.base import quantity_linspace, is_valid_nuclide_or_elem
+from tardis.util.base import (
+    quantity_linspace,
+    is_valid_nuclide_or_elem,
+    is_notebook,
+)
 from tardis.io.configuration.config_reader import Configuration
 from tardis.model import SimulationState
 from tardis.io.model.parse_density_configuration import (
@@ -1401,109 +1405,114 @@ YAML_DELIMITER = &quot;---&quot;
         ipywidgets.widgets.widget_box.VBox
             A box that contains all the widgets in the GUI.
         &quot;&quot;&quot;
-        # --------------Combine widget components--------------
-        self.box_editor = ipw.HBox(
-            [
-                ipw.VBox(self.input_items),
-                ipw.VBox(self.checks, layout=ipw.Layout(margin=&quot;0 0 0 10px&quot;)),
-            ]
-        )
+        if not is_notebook():
+            print(&quot;Please use a notebook to display the widget&quot;)
+        else:
+            # --------------Combine widget components--------------
+            self.box_editor = ipw.HBox(
+                [
+                    ipw.VBox(self.input_items),
+                    ipw.VBox(
+                        self.checks, layout=ipw.Layout(margin=&quot;0 0 0 10px&quot;)
+                    ),
+                ]
+            )
 
-        box_add_shell = ipw.HBox(
-            [
-                self.input_v_start,
-                self.input_v_end,
-                self.btn_add_shell,
-                self.overwrite_warning,
-            ],
-            layout=ipw.Layout(margin=&quot;0 0 0 50px&quot;),
-        )
+            box_add_shell = ipw.HBox(
+                [
+                    self.input_v_start,
+                    self.input_v_end,
+                    self.btn_add_shell,
+                    self.overwrite_warning,
+                ],
+                layout=ipw.Layout(margin=&quot;0 0 0 50px&quot;),
+            )
 
-        box_head = ipw.HBox(
-            [self.dpd_shell_no, self.btn_prev, self.btn_next, box_add_shell]
-        )
+            box_head = ipw.HBox(
+                [self.dpd_shell_no, self.btn_prev, self.btn_next, box_add_shell]
+            )
 
-        box_add_element = ipw.HBox(
-            [self.input_symb, self.btn_add_element, self.symb_warning],
-            layout=ipw.Layout(margin=&quot;0 0 0 80px&quot;),
-        )
+            box_add_element = ipw.HBox(
+                [self.input_symb, self.btn_add_element, self.symb_warning],
+                layout=ipw.Layout(margin=&quot;0 0 0 80px&quot;),
+            )
 
-        help_note = ipw.HTML(
-            value=&quot;&lt;p style=&#39;text-indent: 40px&#39;&gt;* Select a checkbox &quot;
-            &quot;to lock the abundance of corresponding element. &lt;/p&gt;&quot;
-            &quot;&lt;p style=&#39;text-indent: 40px&#39;&gt; On clicking the &#39;Normalize&#39; &quot;
-            &quot;button, the locked abundance(s) will &lt;b&gt;not be normalized&lt;/b&gt;.&quot;
-            &quot; &lt;/p&gt;&quot;,
-            indent=True,
-        )
+            help_note = ipw.HTML(
+                value=&quot;&lt;p style=&#39;text-indent: 40px&#39;&gt;* Select a checkbox &quot;
+                &quot;to lock the abundance of corresponding element. &lt;/p&gt;&quot;
+                &quot;&lt;p style=&#39;text-indent: 40px&#39;&gt; On clicking the &#39;Normalize&#39; &quot;
+                &quot;button, the locked abundance(s) will &lt;b&gt;not be normalized&lt;/b&gt;.&quot;
+                &quot; &lt;/p&gt;&quot;,
+                indent=True,
+            )
 
-        self.abundance_note = ipw.HTML(
-            description=&quot;(The following abundances are for the innermost &quot;
-            &quot;shell in selected range.)&quot;,
-            layout=ipw.Layout(visibility=&quot;hidden&quot;),
-            style={&quot;description_width&quot;: &quot;initial&quot;},
-        )
+            self.abundance_note = ipw.HTML(
+                description=&quot;(The following abundances are for the innermost &quot;
+                &quot;shell in selected range.)&quot;,
+                layout=ipw.Layout(visibility=&quot;hidden&quot;),
+                style={&quot;description_width&quot;: &quot;initial&quot;},
+            )
 
-        box_norm = ipw.HBox([self.btn_norm, self.norm_warning])
+            box_norm = ipw.HBox([self.btn_norm, self.norm_warning])
 
-        box_apply = ipw.VBox(
-            [
-                ipw.Label(value=&quot;Apply abundance(s) to:&quot;),
-                self.rbs_single_apply,
-                ipw.HBox(
-                    [
-                        self.rbs_multi_apply,
-                        self.irs_shell_range,
-                        self.abundance_note,
-                    ]
-                ),
-            ],
-            layout=ipw.Layout(margin=&quot;0 0 15px 50px&quot;),
-        )
+            box_apply = ipw.VBox(
+                [
+                    ipw.Label(value=&quot;Apply abundance(s) to:&quot;),
+                    self.rbs_single_apply,
+                    ipw.HBox(
+                        [
+                            self.rbs_multi_apply,
+                            self.irs_shell_range,
+                            self.abundance_note,
+                        ]
+                    ),
+                ],
+                layout=ipw.Layout(margin=&quot;0 0 15px 50px&quot;),
+            )
 
-        box_features = ipw.VBox([box_norm, help_note])
-        box_abundance = ipw.VBox(
-            [
-                box_apply,
-                ipw.HBox([self.box_editor, box_features]),
-                box_add_element,
-            ]
-        )
-        box_density = self.density_editor.display()
+            box_features = ipw.VBox([box_norm, help_note])
+            box_abundance = ipw.VBox(
+                [
+                    box_apply,
+                    ipw.HBox([self.box_editor, box_features]),
+                    box_add_element,
+                ]
+            )
+            box_density = self.density_editor.display()
 
-        main_tab = ipw.Tab([box_abundance, box_density])
-        main_tab.set_title(0, &quot;Edit Abundance&quot;)
-        main_tab.set_title(1, &quot;Edit Density&quot;)
+            main_tab = ipw.Tab([box_abundance, box_density])
+            main_tab.set_title(0, &quot;Edit Abundance&quot;)
+            main_tab.set_title(1, &quot;Edit Density&quot;)
 
-        hint = ipw.HTML(
-            value=&quot;&lt;b&gt;&lt;font size=&#39;3&#39;&gt;Save model as file: &lt;/font&gt;&lt;/b&gt;&quot;
-        )
-        box_output = ipw.VBox(
-            [
-                hint,
-                self.input_i_time_0,
-                ipw.HBox(
-                    [self.input_path, self.btn_output, self.ckb_overwrite]
-                ),
-            ]
-        )
+            hint = ipw.HTML(
+                value=&quot;&lt;b&gt;&lt;font size=&#39;3&#39;&gt;Save model as file: &lt;/font&gt;&lt;/b&gt;&quot;
+            )
+            box_output = ipw.VBox(
+                [
+                    hint,
+                    self.input_i_time_0,
+                    ipw.HBox(
+                        [self.input_path, self.btn_output, self.ckb_overwrite]
+                    ),
+                ]
+            )
 
-        # Initialize the widget and plot colormap
-        self.plot_cmap = cmap
-        self.update_line_color()
-        self.read_abundance()
-        self.density_editor.read_density()
+            # Initialize the widget and plot colormap
+            self.plot_cmap = cmap
+            self.update_line_color()
+            self.read_abundance()
+            self.density_editor.read_density()
 
-        return ipw.VBox(
-            [
-                self.tbs_scale,
-                self.fig,
-                box_head,
-                main_tab,
-                box_output,
-                self.error_view,
-            ]
-        )</div>
+            return ipw.VBox(
+                [
+                    self.tbs_scale,
+                    self.fig,
+                    box_head,
+                    main_tab,
+                    box_output,
+                    self.error_view,
+                ]
+            )</div>
 
 <div class="viewcode-block" id="CustomAbundanceWidget.to_csvy"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.to_csvy">[docs]</a>    @error_view.capture(clear_output=True)
     def to_csvy(self, path, overwrite):
@@ -1949,7 +1958,7 @@ YAML_DELIMITER = &quot;---&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Feb 2024.
+      <span class="lastupdated">Last updated on 10 Apr 2024.
       </span></p>
   </div>
 

@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -120,6 +120,7 @@ from tardis.io.atom_data.atom_web_download import download_atom_data
 from tardis.util.base import (
     atomic_number2element_symbol,
     species_tuple_to_string,
+    is_notebook,
 )
 
 from tardis.visualization.widgets.util import create_table_widget
@@ -555,53 +556,56 @@ import ipywidgets as ipw
         ipywidgets.Box
             Shell info widget containing all component widgets
         &quot;&quot;&quot;
-        # CSS properties of the layout of shell info tables container
-        tables_container_layout = dict(
-            display=&quot;flex&quot;,
-            align_items=&quot;flex-start&quot;,
-            justify_content=&quot;space-between&quot;,
-        )
-        tables_container_layout.update(layout_kwargs)
+        if not is_notebook():
+            print(&quot;Please use a notebook to display the widget&quot;)
+        else:
+            # CSS properties of the layout of shell info tables container
+            tables_container_layout = dict(
+                display=&quot;flex&quot;,
+                align_items=&quot;flex-start&quot;,
+                justify_content=&quot;space-between&quot;,
+            )
+            tables_container_layout.update(layout_kwargs)
 
-        # Setting tables&#39; widths
-        self.shells_table.layout.width = shells_table_width
-        self.element_count_table.layout.width = element_count_table_width
-        self.ion_count_table.layout.width = ion_count_table_width
-        self.level_count_table.layout.width = level_count_table_width
+            # Setting tables&#39; widths
+            self.shells_table.layout.width = shells_table_width
+            self.element_count_table.layout.width = element_count_table_width
+            self.ion_count_table.layout.width = ion_count_table_width
+            self.level_count_table.layout.width = level_count_table_width
 
-        # Attach event listeners to table widgets
-        self.shells_table.on(
-            &quot;selection_changed&quot;, self.update_element_count_table
-        )
-        self.element_count_table.on(
-            &quot;selection_changed&quot;, self.update_ion_count_table
-        )
-        self.ion_count_table.on(
-            &quot;selection_changed&quot;, self.update_level_count_table
-        )
+            # Attach event listeners to table widgets
+            self.shells_table.on(
+                &quot;selection_changed&quot;, self.update_element_count_table
+            )
+            self.element_count_table.on(
+                &quot;selection_changed&quot;, self.update_ion_count_table
+            )
+            self.ion_count_table.on(
+                &quot;selection_changed&quot;, self.update_level_count_table
+            )
 
-        # Putting all table widgets in a container styled with tables_container_layout
-        shell_info_tables_container = ipw.Box(
-            [
-                self.shells_table,
-                self.element_count_table,
-                self.ion_count_table,
-                self.level_count_table,
-            ],
-            layout=ipw.Layout(**tables_container_layout),
-        )
-        self.shells_table.change_selection([1])
+            # Putting all table widgets in a container styled with tables_container_layout
+            shell_info_tables_container = ipw.Box(
+                [
+                    self.shells_table,
+                    self.element_count_table,
+                    self.ion_count_table,
+                    self.level_count_table,
+                ],
+                layout=ipw.Layout(**tables_container_layout),
+            )
+            self.shells_table.change_selection([1])
 
-        # Notes text explaining how to interpret tables widgets&#39; data
-        text = ipw.HTML(
-            &quot;&lt;b&gt;Frac. Ab.&lt;/b&gt; denotes &lt;i&gt;Fractional Abundances&lt;/i&gt; (i.e all &quot;
-            &quot;values sum to 1)&lt;br&gt;&lt;b&gt;W&lt;/b&gt; denotes &lt;i&gt;Dilution Factor&lt;/i&gt; and &quot;
-            &quot;&lt;b&gt;Rad. Temp.&lt;/b&gt; is &lt;i&gt;Radiative Temperature (in K)&lt;/i&gt;&quot;
-        )
+            # Notes text explaining how to interpret tables widgets&#39; data
+            text = ipw.HTML(
+                &quot;&lt;b&gt;Frac. Ab.&lt;/b&gt; denotes &lt;i&gt;Fractional Abundances&lt;/i&gt; (i.e all &quot;
+                &quot;values sum to 1)&lt;br&gt;&lt;b&gt;W&lt;/b&gt; denotes &lt;i&gt;Dilution Factor&lt;/i&gt; and &quot;
+                &quot;&lt;b&gt;Rad. Temp.&lt;/b&gt; is &lt;i&gt;Radiative Temperature (in K)&lt;/i&gt;&quot;
+            )
 
-        # Put text horizontally before shell info container
-        shell_info_widget = ipw.VBox([text, shell_info_tables_container])
-        return shell_info_widget</div></div>
+            # Put text horizontally before shell info container
+            shell_info_widget = ipw.VBox([text, shell_info_tables_container])
+            return shell_info_widget</div></div>
 
 
 <div class="viewcode-block" id="shell_info_from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_simulation">[docs]</a>def shell_info_from_simulation(sim_model):
@@ -646,7 +650,7 @@ import ipywidgets as ipw
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Feb 2024.
+      <span class="lastupdated">Last updated on 10 Apr 2024.
       </span></p>
   </div>
 

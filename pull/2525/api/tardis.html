@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">tardis package</a><ul>
@@ -96,7 +97,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -158,10 +158,12 @@
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.GXPacket.html">tardis.energy_input.GXPacket module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.energy_source.html">tardis.energy_input.energy_source module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_packet_loop.html">tardis.energy_input.gamma_packet_loop module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_ray_channel.html">tardis.energy_input.gamma_ray_channel module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_ray_estimators.html">tardis.energy_input.gamma_ray_estimators module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_ray_grid.html">tardis.energy_input.gamma_ray_grid module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_ray_interactions.html">tardis.energy_input.gamma_ray_interactions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.gamma_ray_transport.html">tardis.energy_input.gamma_ray_transport module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.main_gamma_ray_loop.html">tardis.energy_input.main_gamma_ray_loop module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.nuclear_energy_source.html">tardis.energy_input.nuclear_energy_source module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.samplers.html">tardis.energy_input.samplers module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.energy_input.util.html">tardis.energy_input.util module</a></li>
@@ -443,8 +445,25 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.r_packet_transport.html">tardis.transport.r_packet_transport module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_CMF_to_LF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_CMF_to_LF()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_LF_to_CMF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_LF_to_CMF()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy_full_relativity"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy_full_relativity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_full_relativity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_partial_relativity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_full_relativity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_partial_relativity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.r_packet_transport.html">tardis.transport.r_packet_transport module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.move_packet_across_shell_boundary"><code class="docutils literal notranslate"><span class="pre">move_packet_across_shell_boundary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.move_r_packet"><code class="docutils literal notranslate"><span class="pre">move_r_packet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.trace_packet"><code class="docutils literal notranslate"><span class="pre">trace_packet()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#module-tardis.transport">Module contents</a></li>
@@ -570,7 +589,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Feb 2024.
+      <span class="lastupdated">Last updated on 10 Apr 2024.
       </span></p>
   </div>
 
