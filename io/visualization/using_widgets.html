@@ -73,6 +73,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#custom-abundance-widget">Custom Abundance Widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shell-info-widget">Shell Info Widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#line-info-widget">Line Info Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#energy-level-diagram">Energy Level Diagram</a></li>
 </ul>
 </li>
 </ul>
@@ -266,6 +267,30 @@ spectrum.</p>
 </section>
 </section>
 </section>
+<section id="energy-level-diagram">
+<h2>Energy Level Diagram<a class="headerlink" href="#energy-level-diagram" title="Permalink to this heading">¶</a></h2>
+<p>This widget lets you visualize the last line interactions</p>
+<img alt="Demo of Energy Level Diagram" src="../../_images/energy_level_widget_demo.gif" />
+<p>By selecting an ion on the widget, you can see its energy level diagram, which
+also shows information about the last line interactions experienced by packets
+in the simulation.</p>
+<p>The y-axis of the plot represents energy while the horizontal lines show
+discrete energy levels. The thickness of each line represents the level
+population, with thicker lines representing a greater population than the thin lines.</p>
+<p>Arrows represent the line interactions experienced by packets. Upwards arrows
+show excitation from lower energy levels to higher levels and downward arrows
+show de-excitation from higher energy levels to lower levels. The thickness of
+each arrow represents the number of packets that underwent that interaction,
+with thicker lines representing more packets than the thin lines.
+The wavelength of the transition is given by the color.</p>
+<p>You can select the range on which to filter the wavelength using the slider.
+You can also select the model shell by which to filter the last line interactions
+and the level populations. If no shell is selected, then all the last line
+interactions are plotted and the level populations are averaged across all shells
+in the simulation. You can also set the maximum number of levels to show on the plot.</p>
+<p>Lastly, you can also set the scale of the y-axis: Linear or Log.</p>
+<img alt="Demo of using options" src="../../_images/energy_level_widget_options.gif" />
+</section>
 </section>
 
 
@@ -280,7 +305,7 @@ spectrum.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 11 Apr 2024.
+      <span class="lastupdated">Last updated on 12 Apr 2024.
       </span></p>
   </div>
 
