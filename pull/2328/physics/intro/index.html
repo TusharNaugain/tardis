@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Light, Matter, and How They Interact" href="light_and_matter.html" />
-    <link rel="prev" title="Running TARDIS Model Grids" href="../../io/grid/TardisGridTutorial.html" />
+    <link rel="prev" title="Progress Bars for Simulation Run" href="../../io/output/progress_bars.html" />
     <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
 </ul>
@@ -67,7 +68,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul class="current">
@@ -129,7 +129,7 @@
 <section id="how-tardis-works">
 <h2>How TARDIS Works<a class="headerlink" href="#how-tardis-works" title="Permalink to this heading">¶</a></h2>
 <p>The goal of TARDIS is, given input information about a supernova, to determine (i) properties of the plasma making up the supernova and (ii) the spectrum of light that is emitted from the supernova.</p>
-<p>The physics of TARDIS is in four major parts, which are summarized here and in the diagram below. First, the TARDIS simulation is set up (<a class="reference internal" href="../setup/index.html"><span class="doc">Setting Up the Simulation</span></a>) from a TARDIS configuration (see <a class="reference internal" href="../../io/configuration/read_configuration.html"><span class="doc">here</span></a> for how the configuration is created). This involves the creation of the supernova model and the initial conditions of the supernova’s plasma, as well as initializing the Monte Carlo transport. Next is the Monte Carlo Iteration (<a class="reference internal" href="../montecarlo/index.html"><span class="doc">Monte Carlo Iteration</span></a>) where the heart of TARDIS takes place; packets of light are sent through the supernova and tracked as they interact with matter. Next, TARDIS uses information from the Monte Carlo iteration to update properties of the plasma to eventually find the correct plasma state (<a class="reference internal" href="../update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>). This process of doing a Monte Carlo iteration and then updating the plasma is repeated for a specified number of times or until certain aspects of the plasma state converge (as is also discussed in <a class="reference internal" href="../update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>). After that, data generated in the Monte Carlo simulation is used to synthesize the output spectrum of the supernova (<a class="reference internal" href="../spectrum/index.html"><span class="doc">Spectrum Generation</span></a>).</p>
+<p>The physics of TARDIS is in four major parts, which are summarized here and in the diagram below. First, the TARDIS simulation is set up (<a class="reference internal" href="../setup/index.html"><span class="doc">Setting Up the Simulation</span></a>) from a TARDIS configuration (see <span class="xref std std-doc">here</span> for how the configuration is created). This involves the creation of the supernova model and the initial conditions of the supernova’s plasma, as well as initializing the Monte Carlo transport. Next is the Monte Carlo Iteration (<a class="reference internal" href="../montecarlo/index.html"><span class="doc">Monte Carlo Iteration</span></a>) where the heart of TARDIS takes place; packets of light are sent through the supernova and tracked as they interact with matter. Next, TARDIS uses information from the Monte Carlo iteration to update properties of the plasma to eventually find the correct plasma state (<a class="reference internal" href="../update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>). This process of doing a Monte Carlo iteration and then updating the plasma is repeated for a specified number of times or until certain aspects of the plasma state converge (as is also discussed in <a class="reference internal" href="../update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>). After that, data generated in the Monte Carlo simulation is used to synthesize the output spectrum of the supernova (<a class="reference internal" href="../spectrum/index.html"><span class="doc">Spectrum Generation</span></a>).</p>
 <p>In the diagram, each physics step is shown in a box with the name of the step (bolded and underlined) along with the method that triggers the step (italicized) and the major components of the step. The reading of the configuration and the overall iterative process (comprising the Monte Carlo Iteration step and Updating Plasma and Convergence step) are also shown, again with the methods triggering these processes in italics.</p>
 <div class="graphviz"><object data="../../_images/graphviz-1f931cfc3d273b416332d555cba00339beff3fd1.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph {
@@ -154,7 +154,7 @@
 </section>
 <section id="background-material">
 <h2>Background Material<a class="headerlink" href="#background-material" title="Permalink to this heading">¶</a></h2>
-<p>TARDIS is home to an incredibly diverse, multidiciplinary team. As such, we believe that it is important to make an understanding of the physics of TARDIS accessible to all, from students just getting started with physics and astronomy to expert researchers. The following pages are designed to give an overview of the basic physics that TARDIS relies upon to new students or anyone else in need of a refresher!</p>
+<p>TARDIS is home to an incredibly diverse, multidisciplinary team. As such, we believe that it is important to make an understanding of the physics of TARDIS accessible to all, from students just getting started with physics and astronomy to expert researchers. The following pages are designed to give an overview of the basic physics that TARDIS relies upon to new students or anyone else in need of a refresher!</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="light_and_matter.html">Light, Matter, and How They Interact</a><ul>
@@ -178,7 +178,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../io/grid/TardisGridTutorial.html" class="btn btn-neutral float-left" title="Running TARDIS Model Grids" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../io/output/progress_bars.html" class="btn btn-neutral float-left" title="Progress Bars for Simulation Run" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="light_and_matter.html" class="btn btn-neutral float-right" title="Light, Matter, and How They Interact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -186,7 +186,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Mar 2024.
+      <span class="lastupdated">Last updated on 12 Apr 2024.
       </span></p>
   </div>
 

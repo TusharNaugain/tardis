@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -205,17 +205,17 @@ from astropy import units as u
             self.MAX_SEED_VAL, no_of_packets, replace=True
         )
 
-        radii = self.create_packet_radii(no_of_packets, *args, **kwargs)
-        nus = self.create_packet_nus(no_of_packets, *args, **kwargs)
+        radii = self.create_packet_radii(no_of_packets, *args, **kwargs).value
+        nus = self.create_packet_nus(no_of_packets, *args, **kwargs).value
         mus = self.create_packet_mus(no_of_packets, *args, **kwargs)
-        energies = self.create_packet_energies(no_of_packets, *args, **kwargs)
+        energies = self.create_packet_energies(
+            no_of_packets, *args, **kwargs
+        ).value
         # Check if all arrays have the same length
         assert (
             len(radii) == len(nus) == len(mus) == len(energies) == no_of_packets
         )
-        radiation_field_luminosity = (
-            self.calculate_radfield_luminosity().to(u.erg / u.s).value
-        )
+        radiation_field_luminosity = self.calculate_radfield_luminosity().value
         return PacketCollection(
             radii,
             nus,
@@ -240,7 +240,7 @@ from astropy import units as u
         return (
             4
             * np.pi
-            * const.sigma_sb.cgs
+            * const.sigma_sb
             * self.radius**2
             * self.temperature**4
         ).to(&quot;erg/s&quot;)</div></div>
@@ -253,9 +253,9 @@ from astropy import units as u
 
     Parameters
     ----------
-    radius : float64
+    radius : astropy.units.Quantity
         Initial packet radius
-    temperature : float
+    temperature : astropy.units.Quantity
         Absolute Temperature.
     base_seed : int
         Base Seed for random number generator
@@ -267,7 +267,7 @@ from astropy import units as u
     def from_simulation_state(cls, simulation_state, *args, **kwargs):
         return cls(
             simulation_state.r_inner[0],
-            simulation_state.t_inner.value,
+            simulation_state.t_inner,
             *args,
             **kwargs,
         )</div>
@@ -296,7 +296,7 @@ from astropy import units as u
         Radii for packets
             numpy.ndarray
         &quot;&quot;&quot;
-        return np.ones(no_of_packets) * self.radius</div>
+        return np.ones(no_of_packets) * self.radius.cgs</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_nus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_nus">[docs]</a>    def create_packet_nus(self, no_of_packets, l_samples=1000):
         &quot;&quot;&quot;
@@ -339,12 +339,7 @@ from astropy import units as u
         xis_prod = np.prod(xis[1:], 0)
         x = ne.evaluate(&quot;-log(xis_prod)/l&quot;)
 
-        if isinstance(self.temperature, u.Quantity):
-            temperature = self.temperature.value
-        else:
-            temperature = self.temperature
-
-        return x * (const.k_B.cgs.value * temperature) / const.h.cgs.value</div>
+        return (x * (const.k_B * self.temperature) / const.h).cgs</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
@@ -383,7 +378,7 @@ from astropy import units as u
         energies for packets
             numpy.ndarray
         &quot;&quot;&quot;
-        return np.ones(no_of_packets) / no_of_packets</div>
+        return np.ones(no_of_packets) / no_of_packets * u.erg</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSource.set_temperature_from_luminosity"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSource.set_temperature_from_luminosity">[docs]</a>    def set_temperature_from_luminosity(self, luminosity: u.Quantity):
         &quot;&quot;&quot;
@@ -408,11 +403,11 @@ from astropy import units as u
 
     Parameters
     ----------
-    time_explosion : float 64
+    time_explosion : astropy.units.Quantity
         Time elapsed since explosion
-    radius : float64
+    radius : astropy.units.Quantity
         Initial packet radius
-    temperature : float
+    temperature : astropy.units.Quantity
         Absolute Temperature.
     base_seed : int
         Base Seed for random number generator
@@ -425,7 +420,7 @@ from astropy import units as u
         return cls(
             simulation_state.time_explosion,
             simulation_state.r_inner[0],
-            simulation_state.t_inner.value,
+            simulation_state.t_inner,
             *args,
             **kwargs,
         )</div>
@@ -455,7 +450,7 @@ from astropy import units as u
         &quot;&quot;&quot;
         if self.radius is None or self.time_explosion is None:
             raise ValueError(&quot;Black body Radius or Time of Explosion isn&#39;t set&quot;)
-        self.beta = ((self.radius / self.time_explosion) / const.c).to(&quot;&quot;)
+        self.beta = (self.radius / self.time_explosion) / const.c
         return super().create_packets(no_of_packets)</div>
 
 <div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packet_mus"><a class="viewcode-back" href="../../../api/tardis.montecarlo.packet_source.html#tardis.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
@@ -504,7 +499,7 @@ from astropy import units as u
         # are calculated as ratios of packet energies and the time of simulation.
         # Thus, we can absorb the factor gamma in the packet energies, which is
         # more convenient.
-        return energies * static_inner_boundary2cmf_factor / gamma</div></div>
+        return energies * static_inner_boundary2cmf_factor / gamma * u.erg</div></div>
 </pre></div>
 
            </div>
@@ -515,7 +510,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Mar 2024.
+      <span class="lastupdated">Last updated on 12 Apr 2024.
       </span></p>
   </div>
 

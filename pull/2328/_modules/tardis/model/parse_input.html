@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -361,6 +361,9 @@ logger = logging.getLogger(__name__)
     nuclide_mass_fraction : object
         The parsed nuclide mass fraction.
 
+    raw_isotope_abundance : object
+        The parsed raw isotope abundance. This is the isotope abundance data before decay.
+
     Raises
     ------
     None.
@@ -409,6 +412,7 @@ logger = logging.getLogger(__name__)
         isotope_abundance /= norm_factor
     # The next line is if the abundances are given via dict
     # and not gone through the schema validator
+    raw_isotope_abundance = isotope_abundance
     model_isotope_time_0 = config.model.abundances.get(
         &quot;model_isotope_time_0&quot;, 0.0 * u.day
     )
@@ -419,7 +423,7 @@ logger = logging.getLogger(__name__)
     nuclide_mass_fraction = convert_to_nuclide_mass_fraction(
         isotope_abundance, abundance
     )
-    return nuclide_mass_fraction</div>
+    return nuclide_mass_fraction, raw_isotope_abundance</div>
 
 
 <div class="viewcode-block" id="convert_to_nuclide_mass_fraction"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.convert_to_nuclide_mass_fraction">[docs]</a>def convert_to_nuclide_mass_fraction(isotopic_mass_fraction, mass_fraction):
@@ -511,11 +515,14 @@ logger = logging.getLogger(__name__)
         csvy_model_config, csvy_model_data, time_explosion
     )
 
-    nuclide_mass_fraction = parse_abundance_csvy(
+    nuclide_mass_fraction, raw_isotope_mass_fraction = parse_abundance_csvy(
         csvy_model_config, csvy_model_data, geometry, time_explosion
     )
     return Composition(
-        density, nuclide_mass_fraction, atom_data.atom_data.mass.copy()
+        density,
+        nuclide_mass_fraction,
+        raw_isotope_mass_fraction,
+        atom_data.atom_data.mass.copy(),
     )</div>
 
 
@@ -584,11 +591,14 @@ logger = logging.getLogger(__name__)
         )
         mass_fraction /= norm_factor
         isotope_mass_fraction /= norm_factor
+
+    raw_isotope_mass_fraction = isotope_mass_fraction
     isotope_mass_fraction = IsotopicMassFraction(
         isotope_mass_fraction, time_0=csvy_model_config.model_isotope_time_0
     ).decay(time_explosion)
-    return convert_to_nuclide_mass_fraction(
-        isotope_mass_fraction, mass_fraction
+    return (
+        convert_to_nuclide_mass_fraction(isotope_mass_fraction, mass_fraction),
+        raw_isotope_mass_fraction,
     )</div>
 
 
@@ -861,7 +871,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Mar 2024.
+      <span class="lastupdated">Last updated on 12 Apr 2024.
       </span></p>
   </div>
 

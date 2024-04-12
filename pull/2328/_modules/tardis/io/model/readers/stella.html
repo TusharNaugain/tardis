@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -138,8 +138,7 @@ HEADER_RE_STR = [
     (&quot;\s+total mass\s+(\d+\.\d+E[+-]\d+)\s+\d+\.\d+E[+-]\d+&quot;, &quot;total_mass&quot;),
 ]
 
-DATA_START_ROW = 6
-
+DATA_START_ROW = 5
 COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
 
 
@@ -163,15 +162,15 @@ COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
         for i, line in enumerate(fh):
             if i &lt; len(HEADER_RE_STR):
                 header_re_match = header_re[i].match(line)
-
                 metadata[HEADER_RE_STR[i][1]] = header_re_match.group(1)
-            if line.strip().startswith(&quot;mass of cell&quot;):
-                column_names_raw = re.split(r&quot;\s{3,}&quot;, line.strip())
-                break
-        else:
-            raise ValueError(
-                &#39;&quot;mass of cell&quot; is required in the Stella input file to infer columns&#39;
-            )
+            elif i == DATA_START_ROW:
+                if &quot;mass of cell&quot; in line:
+                    column_names_raw = re.split(r&quot;\s{3,}&quot;, line.strip())
+                    break
+                else:
+                    raise ValueError(
+                        &#39;&quot;mass of cell&quot; is required in the Stella input file to infer columns&#39;
+                    )
 
         metadata[&quot;t_max&quot;] = float(metadata[&quot;t_max&quot;]) * u.day
         metadata[&quot;zones&quot;] = int(metadata[&quot;zones&quot;])
@@ -188,10 +187,12 @@ COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
         else:
             column_name = column_name.lower().replace(&quot; &quot;, &quot;_&quot;)
         column_names.append(column_name)
+    # +1 because there is a missing line between columns
+    # and the actual data
     data = pd.read_csv(
         fname,
         delim_whitespace=True,
-        skiprows=DATA_START_ROW,
+        skiprows=DATA_START_ROW + 1,
         header=None,
         index_col=0,
     )
@@ -207,7 +208,7 @@ COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Mar 2024.
+      <span class="lastupdated">Last updated on 12 Apr 2024.
       </span></p>
   </div>
 
