@@ -488,9 +488,9 @@ from astropy import units as u
             self.t_inner_luminosities_plot.data[0].y = self.value_data[
                 &quot;t_inner&quot;
             ]
-            self.t_inner_luminosities_plot.data[0].hovertemplate = (
-                &quot;&lt;b&gt;%{y:.3f}&lt;/b&gt; at X = %{x:,.0f}&lt;extra&gt;Inner Boundary Temperature&lt;/extra&gt;&quot;  # trace name in extra tag to avoid new lines in hoverdata
-            )
+            self.t_inner_luminosities_plot.data[
+                0
+            ].hovertemplate = &quot;&lt;b&gt;%{y:.3f}&lt;/b&gt; at X = %{x:,.0f}&lt;extra&gt;Inner Boundary Temperature&lt;/extra&gt;&quot;  # trace name in extra tag to avoid new lines in hoverdata
 
             # the next three for emitted, absorbed and requested luminosities
             for index, luminosity in zip(range(1, 4), self.luminosities):
@@ -512,9 +512,9 @@ from astropy import units as u
 
             self.t_inner_luminosities_plot.data[4].x = x
             self.t_inner_luminosities_plot.data[4].y = y
-            self.t_inner_luminosities_plot.data[4].hovertemplate = (
-                &quot;&lt;b&gt;%{y:.2f}%&lt;/b&gt; at X = %{x:,.0f}&quot;
-            )</div>
+            self.t_inner_luminosities_plot.data[
+                4
+            ].hovertemplate = &quot;&lt;b&gt;%{y:.2f}%&lt;/b&gt; at X = %{x:,.0f}&quot;</div>
 
 <div class="viewcode-block" id="ConvergencePlots.update"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.convergence_plot.html#tardis.visualization.tools.convergence_plot.ConvergencePlots.update">[docs]</a>    def update(self, export_convergence_plots=False, last=False):
         &quot;&quot;&quot;
@@ -573,7 +573,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 07 Apr 2024.
+      <span class="lastupdated">Last updated on 15 Apr 2024.
       </span></p>
   </div>
 
