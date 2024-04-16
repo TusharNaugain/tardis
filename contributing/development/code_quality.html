@@ -90,6 +90,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-style-conventions">Code Style Conventions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#black">Black</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ruff">Ruff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-commit-optional">Pre-commit (Optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
 </ul>
 </li>
@@ -182,6 +183,19 @@ ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable 
 <p>Ruff can also be used for formatting code, but for now we recommend using Black for this purpose as the CI is configured to run Black on all PRs.</p>
 </div>
 </section>
+<section id="pre-commit-optional">
+<h3>Pre-commit (Optional)<a class="headerlink" href="#pre-commit-optional" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://pre-commit.com/">Pre-commit</a> hooks are tools that help enforce quality standards by running checks on your code before you commit. If you choose to use pre-commit on your local machine, please follow these steps:</p>
+<p>Install pre-commit by running:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install pre-commit
+</pre></div>
+</div>
+<p>Set up the pre-commit hooks with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pre-commit install
+</pre></div>
+</div>
+<p>This needs to be done only once per repository. The pre-commit hooks will now automatically run on each commit to ensure your changes meet our code quality standards.</p>
+</section>
 <section id="naming-conventions">
 <h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">¶</a></h3>
 <p>While Black automatically conforms your code to a majority of the PEP 8 style guide (like whitespace usage, string quotes, code layout, etc.), your code still needs to conform to the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/#naming-conventions">PEP 8 naming conventions</a>. The main things to keep in mind are:</p>
@@ -269,7 +283,7 @@ ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Apr 2024.
+      <span class="lastupdated">Last updated on 16 Apr 2024.
       </span></p>
   </div>
 
