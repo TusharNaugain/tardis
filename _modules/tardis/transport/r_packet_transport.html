@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -118,21 +118,19 @@
 <span></span>import numpy as np
 from numba import njit
 
-from tardis.montecarlo import montecarlo_configuration
 from tardis.montecarlo.montecarlo_numba import njit_dict_no_parallel
 from tardis.transport.geometry.calculate_distances import (
     calculate_distance_boundary,
     calculate_distance_electron,
     calculate_distance_line,
 )
-from tardis.montecarlo.montecarlo_numba.estimators import (
+from tardis.montecarlo.estimators.radfield_estimator_calcs import (
     update_line_estimators,
-    set_estimators,
+    update_base_estimators,
 )
 from tardis.transport.frame_transformations import (
     get_doppler_factor,
 )
-import tardis.montecarlo.montecarlo_numba.numba_config as nc
 from tardis.montecarlo.montecarlo_numba.opacities import calculate_tau_electron
 from tardis.montecarlo.montecarlo_numba.r_packet import (
     InteractionType,
@@ -149,6 +147,9 @@ def trace_packet(
     estimators,
     chi_continuum,
     escat_prob,
+    continuum_processes_enabled,
+    enable_full_relativity,
+    disable_line_scattering,
 ):
     &quot;&quot;&quot;
     Traces the RPacket through the ejecta and stops when an interaction happens (heart of the calculation)
@@ -182,7 +183,10 @@ def trace_packet(
 
     # Calculating doppler factor
     doppler_factor = get_doppler_factor(
-        r_packet.r, r_packet.mu, numba_model.time_explosion
+        r_packet.r,
+        r_packet.mu,
+        numba_model.time_explosion,
+        enable_full_relativity,
     )
     comov_nu = r_packet.nu * doppler_factor
 
@@ -212,6 +216,7 @@ def trace_packet(
             is_last_line,
             nu_line,
             numba_model.time_explosion,
+            enable_full_relativity,
         )
 
         # calculating the tau continuum of how far the trace has progressed
@@ -228,7 +233,7 @@ def trace_packet(
                 r_packet.next_line_id = cur_line_id
                 break
             elif distance == distance_continuum:
-                if not montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
+                if not continuum_processes_enabled:
                     interaction_type = InteractionType.ESCATTERING
                 else:
                     zrand = np.random.random()
@@ -249,12 +254,10 @@ def trace_packet(
             cur_line_id,
             distance_trace,
             numba_model.time_explosion,
+            enable_full_relativity,
         )
 
-        if (
-            tau_trace_combined &gt; tau_event
-            and not montecarlo_configuration.disable_line_scattering
-        ):
+        if tau_trace_combined &gt; tau_event and not disable_line_scattering:
             interaction_type = InteractionType.LINE  # Line
             r_packet.last_interaction_in_nu = r_packet.nu
             r_packet.last_line_interaction_in_id = cur_line_id
@@ -280,7 +283,7 @@ def trace_packet(
             cur_line_id += 1
         if distance_continuum &lt; distance_boundary:
             distance = distance_continuum
-            if not montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
+            if not continuum_processes_enabled:
                 interaction_type = InteractionType.ESCATTERING
             else:
                 zrand = np.random.random()
@@ -296,7 +299,9 @@ def trace_packet(
 
 
 <div class="viewcode-block" id="move_r_packet"><a class="viewcode-back" href="../../../api/tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.move_r_packet">[docs]</a>@njit(**njit_dict_no_parallel)
-def move_r_packet(r_packet, distance, time_explosion, numba_estimator):
+def move_r_packet(
+    r_packet, distance, time_explosion, numba_estimator, enable_full_relativity
+):
     &quot;&quot;&quot;
     Move packet a distance and recalculate the new angle mu
 
@@ -312,7 +317,9 @@ def move_r_packet(r_packet, distance, time_explosion, numba_estimator):
         distance in cm
     &quot;&quot;&quot;
 
-    doppler_factor = get_doppler_factor(r_packet.r, r_packet.mu, time_explosion)
+    doppler_factor = get_doppler_factor(
+        r_packet.r, r_packet.mu, time_explosion, enable_full_relativity
+    )
 
     r = r_packet.r
     if distance &gt; 0.0:
@@ -326,10 +333,10 @@ def move_r_packet(r_packet, distance, time_explosion, numba_estimator):
         comov_energy = r_packet.energy * doppler_factor
 
         # Account for length contraction
-        if nc.ENABLE_FULL_RELATIVITY:
+        if enable_full_relativity:
             distance *= doppler_factor
 
-        set_estimators(
+        update_base_estimators(
             r_packet, distance, numba_estimator, comov_nu, comov_energy
         )</div>
 
@@ -369,8 +376,8 @@ def move_packet_across_shell_boundary(packet, delta_shell, no_of_shells):
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Nov 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 19 Apr 2024.
       </span></p>
   </div>
 

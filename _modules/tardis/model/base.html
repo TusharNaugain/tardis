@@ -352,7 +352,7 @@ SCHEMA_DIR = (
         return self.geometry.no_of_shells
 
 <div class="viewcode-block" id="SimulationState.from_config"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_config">[docs]</a>    @classmethod
-    def from_config(cls, config, atom_data):
+    def from_config(cls, config, atom_data, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
 
@@ -386,7 +386,9 @@ SCHEMA_DIR = (
             atom_data.atom_data.mass.copy(),
         )
 
-        packet_source = parse_packet_source(config, geometry)
+        packet_source = parse_packet_source(
+            config, geometry, legacy_mode_enabled
+        )
         radiation_field_state = parse_radiation_field_state(
             config,
             t_radiative,
@@ -405,7 +407,7 @@ SCHEMA_DIR = (
         )</div>
 
 <div class="viewcode-block" id="SimulationState.from_csvy"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_csvy">[docs]</a>    @classmethod
-    def from_csvy(cls, config, atom_data=None):
+    def from_csvy(cls, config, atom_data=None, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
 
@@ -483,7 +485,9 @@ SCHEMA_DIR = (
             geometry,
         )
 
-        packet_source = parse_packet_source(config, geometry)
+        packet_source = parse_packet_source(
+            config, geometry, legacy_mode_enabled
+        )
 
         radiation_field_state = parse_csvy_radiation_field_state(
             config, csvy_model_config, csvy_model_data, geometry, packet_source
@@ -507,7 +511,7 @@ SCHEMA_DIR = (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 17 Apr 2024.
+      <span class="lastupdated">Last updated on 19 Apr 2024.
       </span></p>
   </div>
 

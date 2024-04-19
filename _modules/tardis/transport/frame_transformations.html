@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -123,16 +123,15 @@ from tardis.montecarlo.montecarlo_numba import (
     njit_dict_no_parallel,
 )
 
-from tardis.montecarlo.montecarlo_numba import numba_config as nc
 from tardis.montecarlo.montecarlo_numba.numba_config import C_SPEED_OF_LIGHT
 
 
 <div class="viewcode-block" id="get_doppler_factor"><a class="viewcode-back" href="../../../api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor">[docs]</a>@njit(**njit_dict_no_parallel)
-def get_doppler_factor(r, mu, time_explosion):
+def get_doppler_factor(r, mu, time_explosion, enable_full_relativity):
     inv_c = 1 / C_SPEED_OF_LIGHT
     inv_t = 1 / time_explosion
     beta = r * inv_t * inv_c
-    if not nc.ENABLE_FULL_RELATIVITY:
+    if not enable_full_relativity:
         return get_doppler_factor_partial_relativity(mu, beta)
     else:
         return get_doppler_factor_full_relativity(mu, beta)</div>
@@ -149,7 +148,7 @@ def get_doppler_factor_full_relativity(mu, beta):
 
 
 <div class="viewcode-block" id="get_inverse_doppler_factor"><a class="viewcode-back" href="../../../api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor">[docs]</a>@njit(**njit_dict_no_parallel)
-def get_inverse_doppler_factor(r, mu, time_explosion):
+def get_inverse_doppler_factor(r, mu, time_explosion, enable_full_relativity):
     &quot;&quot;&quot;
     Calculate doppler factor for frame transformation
 
@@ -162,7 +161,7 @@ def get_inverse_doppler_factor(r, mu, time_explosion):
     inv_c = 1 / C_SPEED_OF_LIGHT
     inv_t = 1 / time_explosion
     beta = r * inv_t * inv_c
-    if not nc.ENABLE_FULL_RELATIVITY:
+    if not enable_full_relativity:
         return get_inverse_doppler_factor_partial_relativity(mu, beta)
     else:
         return get_inverse_doppler_factor_full_relativity(mu, beta)</div>
@@ -225,8 +224,8 @@ def angle_aberration_LF_to_CMF(r_packet, time_explosion, mu):
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2013-2023, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 04 Dec 2023.
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 19 Apr 2024.
       </span></p>
   </div>
 
