@@ -133,11 +133,13 @@ from tardis.montecarlo.estimators.dilute_blackbody_properties import (
         &quot;output_energy&quot;,
         &quot;nu_bar_estimator&quot;,
         &quot;j_estimator&quot;,
+        &quot;j_blue_estimator&quot;,
         &quot;montecarlo_virtual_luminosity&quot;,
         &quot;packet_luminosity&quot;,
         &quot;spectrum&quot;,
         &quot;spectrum_virtual&quot;,
         &quot;spectrum_reabsorbed&quot;,
+        &quot;spectrum_integrated&quot;,
         &quot;time_of_simulation&quot;,
         &quot;emitted_packet_mask&quot;,
         &quot;last_interaction_type&quot;,
@@ -238,6 +240,10 @@ from tardis.montecarlo.estimators.dilute_blackbody_properties import (
     @property
     def j_estimator(self):
         return self.radfield_mc_estimators.j_estimator
+
+    @property
+    def j_blue_estimator(self):
+        return self.radfield_mc_estimators.j_blue_estimator
 
     @property
     def time_of_simulation(self):
@@ -558,7 +564,7 @@ from tardis.montecarlo.estimators.dilute_blackbody_properties import (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Apr 2024.
+      <span class="lastupdated">Last updated on 22 Apr 2024.
       </span></p>
   </div>
 
