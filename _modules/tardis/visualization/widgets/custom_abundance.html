@@ -398,8 +398,10 @@ YAML_DELIMITER = &quot;---&quot;
         -------
         CustomAbundanceWidgetData
         &quot;&quot;&quot;
-        abundance = sim.simulation_state.raw_abundance.copy()
-        isotope_abundance = sim.simulation_state.raw_isotope_abundance.copy()
+        abundance = sim.simulation_state.abundance.copy()
+        isotope_abundance = (
+            sim.simulation_state.composition.raw_isotope_abundance.copy()
+        )
 
         # integrate element and isotope to one DataFrame
         abundance[&quot;mass_number&quot;] = &quot;&quot;
@@ -1958,7 +1960,7 @@ YAML_DELIMITER = &quot;---&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Apr 2024.
+      <span class="lastupdated">Last updated on 24 Apr 2024.
       </span></p>
   </div>
 
