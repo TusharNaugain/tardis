@@ -144,8 +144,126 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tardis-energy-input-samplers-module">
-<h1>tardis.energy_input.samplers module<a class="headerlink" href="#tardis-energy-input-samplers-module" title="Permalink to this heading">¶</a></h1>
+  <section id="module-tardis.energy_input.samplers">
+<span id="tardis-energy-input-samplers-module"></span><h1>tardis.energy_input.samplers module<a class="headerlink" href="#module-tardis.energy_input.samplers" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.samplers.create_energy_cdf">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.samplers.</span></span><span class="sig-name descname"><span class="pre">create_energy_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/samplers.html#create_energy_cdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.samplers.create_energy_cdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a CDF of given intensities</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energy</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>Array of energies</p>
+</dd>
+<dt><strong>intensity</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>Array of intensities</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>One-dimensional Numpy Array, dtype float</dt><dd><p>Sorted energy array</p>
+</dd>
+<dt>One-dimensional Numpy Array, dtype float</dt><dd><p>CDF where each index corresponds to the energy in
+the sorted array</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.samplers.sample_decay_time">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.samplers.</span></span><span class="sig-name descname"><span class="pre">sample_decay_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_time_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_time_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/samplers.html#sample_decay_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.samplers.sample_decay_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples the decay time from the mean lifetime
+of the isotopes (needs restructuring for more isotopes)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>start_tau</strong><span class="classifier">float64</span></dt><dd><p>Initial isotope mean lifetime</p>
+</dd>
+<dt><strong>end_tau</strong><span class="classifier">float64, optional</span></dt><dd><p>Ending mean lifetime, by default 0 for single decays</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float64</dt><dd><p>Sampled decay time</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.samplers.sample_energy">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.samplers.</span></span><span class="sig-name descname"><span class="pre">sample_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/samplers.html#sample_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.samplers.sample_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples energy from energy and intensity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energy</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>Array of energies</p>
+</dd>
+<dt><strong>intensity</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>Array of intensities</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Energy</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.samplers.sample_energy_distribution">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.samplers.</span></span><span class="sig-name descname"><span class="pre">sample_energy_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_sorted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/samplers.html#sample_energy_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.samplers.sample_energy_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly samples a CDF of energies</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energy_sorted</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>Sorted energy array</p>
+</dd>
+<dt><strong>cdf</strong><span class="classifier">One-dimensional Numpy Array, dtype float</span></dt><dd><p>CDF</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Sampled energy</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.samplers.sample_mass">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.samplers.</span></span><span class="sig-name descname"><span class="pre">sample_mass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">masses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_radius</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/samplers.html#sample_mass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.samplers.sample_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples location weighted by mass</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>masses</strong><span class="classifier">array</span></dt><dd><p>Shell masses</p>
+</dd>
+<dt><strong>inner_radius</strong><span class="classifier">array</span></dt><dd><p>Inner radii</p>
+</dd>
+<dt><strong>outer_radius</strong><span class="classifier">array</span></dt><dd><p>Outer radii</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Sampled radius</p>
+</dd>
+<dt>int</dt><dd><p>Sampled shell index</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

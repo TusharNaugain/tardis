@@ -144,8 +144,74 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tardis-energy-input-gamma-ray-grid-module">
-<h1>tardis.energy_input.gamma_ray_grid module<a class="headerlink" href="#tardis-energy-input-gamma-ray-grid-module" title="Permalink to this heading">¶</a></h1>
+  <section id="module-tardis.energy_input.gamma_ray_grid">
+<span id="tardis-energy-input-gamma-ray-grid-module"></span><h1>tardis.energy_input.gamma_ray_grid module<a class="headerlink" href="#module-tardis.energy_input.gamma_ray_grid" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_grid.calculate_distance_radial">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_grid.</span></span><span class="sig-name descname"><span class="pre">calculate_distance_radial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">photon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_outer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_grid.html#calculate_distance_radial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_grid.calculate_distance_radial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates 3D distance to shell from gamma ray position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>photon</strong><span class="classifier">GXPhoton object</span></dt><dd></dd>
+<dt><strong>r_inner</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>r_outer</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_grid.distance_trace">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_grid.</span></span><span class="sig-name descname"><span class="pre">distance_trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">photon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_opacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_grid.html#distance_trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_grid.distance_trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traces distance traveled by gamma ray and finds distance to
+next interaction and boundary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>photon</strong><span class="classifier">GXPhoton object</span></dt><dd></dd>
+<dt><strong>inner_velocity</strong><span class="classifier">One dimensional Numpy array, dtype float</span></dt><dd></dd>
+<dt><strong>outer_velocity</strong><span class="classifier">One dimensional Numpy array, dtype float</span></dt><dd></dd>
+<dt><strong>total_opacity</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>current_time</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>next_time</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>distance_interaction</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>distance_boundary</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>distance_time</strong><span class="classifier">float</span></dt><dd></dd>
+<dt><strong>shell_change</strong><span class="classifier">int</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_grid.move_packet">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_grid.</span></span><span class="sig-name descname"><span class="pre">move_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_grid.html#move_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_grid.move_packet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves packet a distance along its direction vector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packet</strong><span class="classifier">GXPacket object</span></dt><dd></dd>
+<dt><strong>distance</strong><span class="classifier">float</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>packet</strong><span class="classifier">GXPacket object</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

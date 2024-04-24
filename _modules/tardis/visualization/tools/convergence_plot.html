@@ -116,9 +116,11 @@
              
   <h1>Source code for tardis.visualization.tools.convergence_plot</h1><div class="highlight"><pre>
 <span></span>&quot;&quot;&quot;Convergence Plots to see the convergence of the simulation in real time.&quot;&quot;&quot;
+
 from collections import defaultdict
 import matplotlib.cm as cm
 import matplotlib.colors as clr
+import numpy as np
 import plotly.graph_objects as go
 from IPython.display import display
 import matplotlib as mpl
@@ -447,8 +449,11 @@ from astropy import units as u
         # add a radiation temperature vs shell velocity trace to the plasma plot
         self.plasma_plot.add_scatter(
             x=velocity_km_s,
-            y=self.iterable_data[&quot;t_rad&quot;],
+            y=np.append(
+                self.iterable_data[&quot;t_rad&quot;], self.iterable_data[&quot;t_rad&quot;][-1:]
+            ),
             line_color=self.plasma_colorscale[self.current_iteration - 1],
+            line_shape=&quot;hv&quot;,
             row=1,
             col=1,
             name=self.current_iteration,
@@ -461,8 +466,9 @@ from astropy import units as u
         # add a dilution factor vs shell velocity trace to the plasma plot
         self.plasma_plot.add_scatter(
             x=velocity_km_s,
-            y=self.iterable_data[&quot;w&quot;],
+            y=np.append(self.iterable_data[&quot;w&quot;], self.iterable_data[&quot;w&quot;][-1:]),
             line_color=self.plasma_colorscale[self.current_iteration - 1],
+            line_shape=&quot;hv&quot;,
             row=1,
             col=2,
             legendgroup=f&quot;group-{self.current_iteration}&quot;,
