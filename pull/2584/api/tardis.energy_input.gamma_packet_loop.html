@@ -144,8 +144,88 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tardis-energy-input-gamma-packet-loop-module">
-<h1>tardis.energy_input.gamma_packet_loop module<a class="headerlink" href="#tardis-energy-input-gamma-packet-loop-module" title="Permalink to this heading">¶</a></h1>
+  <section id="module-tardis.energy_input.gamma_packet_loop">
+<span id="tardis-energy-input-gamma-packet-loop-module"></span><h1>tardis.energy_input.gamma_packet_loop module<a class="headerlink" href="#module-tardis.energy_input.gamma_packet_loop" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.gamma_packet_loop.gamma_packet_loop">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_packet_loop.</span></span><span class="sig-name descname"><span class="pre">gamma_packet_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grey_opacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photoabsorption_opacity_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pair_creation_opacity_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_number_density_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_density_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_volume_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iron_group_fraction_per_shell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effective_time_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_df_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_plot_df_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packets_info_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_packet_loop.html#gamma_packet_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_packet_loop.gamma_packet_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagates packets through the simulation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packets</strong><span class="classifier">list</span></dt><dd><p>List of GXPacket objects</p>
+</dd>
+<dt><strong>grey_opacity</strong><span class="classifier">float</span></dt><dd><p>Grey opacity value in cm^2/g</p>
+</dd>
+<dt><strong>electron_number_density_time</strong><span class="classifier">array float64</span></dt><dd><p>Electron number densities with time</p>
+</dd>
+<dt><strong>mass_density_time</strong><span class="classifier">array float64</span></dt><dd><p>Mass densities with time</p>
+</dd>
+<dt><strong>inv_volume_time</strong><span class="classifier">array float64</span></dt><dd><p>Inverse volumes with time</p>
+</dd>
+<dt><strong>iron_group_fraction_per_shell</strong><span class="classifier">array float64</span></dt><dd><p>Iron group fraction per shell</p>
+</dd>
+<dt><strong>inner_velocities</strong><span class="classifier">array float64</span></dt><dd><p>Inner velocities of the shells</p>
+</dd>
+<dt><strong>outer_velocities</strong><span class="classifier">array float64</span></dt><dd><p>Inner velocities of the shells</p>
+</dd>
+<dt><strong>times</strong><span class="classifier">array float64</span></dt><dd><p>Simulation time steps</p>
+</dd>
+<dt><strong>dt_array</strong><span class="classifier">array float64</span></dt><dd><p>Simulation delta-time steps</p>
+</dd>
+<dt><strong>effective_time_array</strong><span class="classifier">array float64</span></dt><dd><p>Simulation middle time steps</p>
+</dd>
+<dt><strong>energy_bins</strong><span class="classifier">array float64</span></dt><dd><p>Bins for escaping gamma-rays</p>
+</dd>
+<dt><strong>energy_df_rows</strong><span class="classifier">array float64</span></dt><dd><p>Energy output</p>
+</dd>
+<dt><strong>energy_plot_df_rows</strong><span class="classifier">array float64</span></dt><dd><p>Energy output for plotting</p>
+</dd>
+<dt><strong>energy_out</strong><span class="classifier">array float64</span></dt><dd><p>Escaped energy array</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array float64</dt><dd><p>Energy output</p>
+</dd>
+<dt>array float64</dt><dd><p>Energy output for plotting</p>
+</dd>
+<dt>array float64</dt><dd><p>Escaped energy array</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>Packet time index less than zero</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.energy_input.gamma_packet_loop.process_packet_path">
+<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_packet_loop.</span></span><span class="sig-name descname"><span class="pre">process_packet_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_packet_loop.html#process_packet_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_packet_loop.process_packet_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the packet through interactions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packet</strong><span class="classifier">GXPacket</span></dt><dd><p>Packet for processing</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>GXPacket</dt><dd><p>Packet after processing</p>
+</dd>
+<dt>float</dt><dd><p>Energy injected into the ejecta</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -160,7 +240,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Apr 2024.
+      <span class="lastupdated">Last updated on 06 May 2024.
       </span></p>
   </div>
 

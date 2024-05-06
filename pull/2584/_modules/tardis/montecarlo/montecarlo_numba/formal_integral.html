@@ -128,9 +128,6 @@ from numba.experimental import jitclass
 
 
 from tardis.montecarlo.montecarlo_numba.numba_config import SIGMA_THOMSON
-from tardis.montecarlo import (
-    montecarlo_configuration as montecarlo_configuration,
-)
 from tardis.montecarlo.montecarlo_numba import njit_dict, njit_dict_no_parallel
 from tardis.montecarlo.montecarlo_numba.numba_interface import (
     opacity_state_initialize,
@@ -401,9 +398,16 @@ def numba_formal_integral(
         self.simulation_state = simulation_state
         self.transport = transport
         self.points = points
+        if transport:
+            self.montecarlo_configuration = (
+                self.transport.montecarlo_configuration
+            )
         if plasma:
             self.plasma = opacity_state_initialize(
-                plasma, transport.line_interaction_type
+                plasma,
+                transport.line_interaction_type,
+                self.montecarlo_configuration.DISABLE_LINE_SCATTERING,
+                self.montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED,
             )
             self.atomic_data = plasma.atomic_data
             self.original_plasma = plasma
@@ -426,7 +430,10 @@ def numba_formal_integral(
             self.simulation_state.time_explosion.cgs.value,
         )
         self.opacity_state = opacity_state_initialize(
-            self.original_plasma, self.transport.line_interaction_type
+            self.original_plasma,
+            self.transport.line_interaction_type,
+            self.montecarlo_configuration.DISABLE_LINE_SCATTERING,
+            self.montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED,
         )
         if self.transport.use_gpu:
             self.integrator = CudaFormalIntegrator(
@@ -478,7 +485,7 @@ def numba_formal_integral(
                 &#39;and line_interaction_type == &quot;macroatom&quot;&#39;
             )
 
-        if montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
+        if self.montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
             return raise_or_return(
                 &quot;The FormalIntegrator currently does not work for &quot;
                 &quot;continuum interactions.&quot;
@@ -934,7 +941,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Apr 2024.
+      <span class="lastupdated">Last updated on 06 May 2024.
       </span></p>
   </div>
 

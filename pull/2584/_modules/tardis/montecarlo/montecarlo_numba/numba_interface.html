@@ -123,9 +123,6 @@ import numpy as np
 
 from tardis import constants as const
 
-from tardis.montecarlo import (
-    montecarlo_configuration as montecarlo_configuration,
-)
 
 C_SPEED_OF_LIGHT = const.c.to(&quot;cm/s&quot;).value
 
@@ -251,7 +248,12 @@ class OpacityState(object):
         self.k_packet_idx = k_packet_idx</div>
 
 
-<div class="viewcode-block" id="opacity_state_initialize"><a class="viewcode-back" href="../../../../api/tardis.montecarlo.montecarlo_numba.numba_interface.html#tardis.montecarlo.montecarlo_numba.numba_interface.opacity_state_initialize">[docs]</a>def opacity_state_initialize(plasma, line_interaction_type):
+<div class="viewcode-block" id="opacity_state_initialize"><a class="viewcode-back" href="../../../../api/tardis.montecarlo.montecarlo_numba.numba_interface.html#tardis.montecarlo.montecarlo_numba.numba_interface.opacity_state_initialize">[docs]</a>def opacity_state_initialize(
+    plasma,
+    line_interaction_type,
+    disable_line_scattering,
+    continuum_processes_enabled,
+):
     &quot;&quot;&quot;
     Initialize the OpacityState object and copy over the data over from TARDIS Plasma
 
@@ -267,7 +269,7 @@ class OpacityState(object):
     tau_sobolev = np.ascontiguousarray(
         plasma.tau_sobolevs.values.copy(), dtype=np.float64
     )
-    if montecarlo_configuration.DISABLE_LINE_SCATTERING:
+    if disable_line_scattering:
         tau_sobolev *= 0
 
     if line_interaction_type == &quot;scatter&quot;:
@@ -290,7 +292,7 @@ class OpacityState(object):
         )
         # TODO: Fix setting of block references for non-continuum mode
 
-        if montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
+        if continuum_processes_enabled:
             macro_block_references = plasma.macro_block_references
         else:
             macro_block_references = plasma.atomic_data.macro_atom_references[
@@ -303,7 +305,7 @@ class OpacityState(object):
             &quot;destination_level_idx&quot;
         ].values
         transition_line_id = plasma.macro_atom_data[&quot;lines_idx&quot;].values
-    if montecarlo_configuration.CONTINUUM_PROCESSES_ENABLED:
+    if continuum_processes_enabled:
         bf_threshold_list_nu = plasma.nu_i.loc[
             plasma.level2continuum_idx.index
         ].values
@@ -429,8 +431,8 @@ class RPacketTracker(object):
             Internal counter for the interactions that a particular RPacket undergoes
     &quot;&quot;&quot;
 
-    def __init__(self):
-        self.length = montecarlo_configuration.INITIAL_TRACKING_ARRAY_LENGTH
+    def __init__(self, length):
+        self.length = length
         self.seed = np.int64(0)
         self.index = np.int64(0)
         self.status = np.empty(self.length, dtype=np.int64)
@@ -507,7 +509,7 @@ class RPacketTracker(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Apr 2024.
+      <span class="lastupdated">Last updated on 06 May 2024.
       </span></p>
   </div>
 
