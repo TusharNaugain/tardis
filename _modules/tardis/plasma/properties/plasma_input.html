@@ -115,15 +115,18 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.properties.plasma_input</h1><div class="highlight"><pre>
-<span></span>from tardis.plasma.properties.base import Input, ArrayInput, DataFrameInput
+<span></span>from tardis.plasma.properties.base import (
+    ArrayInput,
+    Input,
+)
 
 __all__ = [
     &quot;TRadiative&quot;,
     &quot;DilutionFactor&quot;,
     &quot;AtomicData&quot;,
     &quot;Abundance&quot;,
+    &quot;NumberDensity&quot;,
     &quot;IsotopeAbundance&quot;,
-    &quot;Density&quot;,
     &quot;TimeExplosion&quot;,
     &quot;JBlueEstimator&quot;,
     &quot;LinkTRadTElectron&quot;,
@@ -191,18 +194,6 @@ __all__ = [
     &quot;&quot;&quot;
 
     outputs = (&quot;isotope_abundance&quot;,)</div>
-
-
-<div class="viewcode-block" id="Density"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.Density">[docs]</a>class Density(ArrayInput):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    density : Numpy array, dtype float
-      Total density values
-    &quot;&quot;&quot;
-
-    outputs = (&quot;density&quot;,)
-    latex_name = (r&quot;\rho&quot;,)</div>
 
 
 <div class="viewcode-block" id="TimeExplosion"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TimeExplosion">[docs]</a>class TimeExplosion(Input):
@@ -277,6 +268,18 @@ __all__ = [
 <div class="viewcode-block" id="NLTEExcitationSpecies"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.NLTEExcitationSpecies">[docs]</a>class NLTEExcitationSpecies(Input):
 
     outputs = (&quot;nlte_excitation_species&quot;,)</div>
+
+
+<div class="viewcode-block" id="NumberDensity"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.NumberDensity">[docs]</a>class NumberDensity(Input):
+    &quot;&quot;&quot;
+    Attributes
+    ----------
+    number_density : Pandas DataFrame, dtype float
+                     Indexed by atomic number, columns corresponding to zones
+    &quot;&quot;&quot;
+
+    outputs = (&quot;number_density&quot;,)
+    latex_name = (&quot;N_{i}&quot;,)</div>
 </pre></div>
 
            </div>
@@ -287,7 +290,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 May 2024.
+      <span class="lastupdated">Last updated on 23 May 2024.
       </span></p>
   </div>
 
