@@ -127,6 +127,24 @@ from tardis import constants as const
 C_SPEED_OF_LIGHT = const.c.to(&quot;cm/s&quot;).value
 
 
+numba_model_spec = [
+    (&quot;time_explosion&quot;, float64),
+]
+
+
+<div class="viewcode-block" id="NumbaModel"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.NumbaModel">[docs]</a>@jitclass(numba_model_spec)
+class NumbaModel(object):
+    def __init__(self, time_explosion):
+        &quot;&quot;&quot;
+        Model for the Numba mode
+
+        Parameters
+        ----------
+        time_explosion : float
+        &quot;&quot;&quot;
+        self.time_explosion = time_explosion</div>
+
+
 opacity_state_spec = [
     (&quot;electron_density&quot;, float64[:]),
     (&quot;t_electrons&quot;, float64[:]),
@@ -491,7 +509,7 @@ class RPacketTracker(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

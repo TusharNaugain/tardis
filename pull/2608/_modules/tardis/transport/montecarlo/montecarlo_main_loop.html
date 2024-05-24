@@ -122,6 +122,7 @@ from numba.typed import List
 
 from tardis.transport.montecarlo import njit_dict
 from tardis.transport.montecarlo.numba_interface import (
+    NumbaModel,
     RPacketTracker,
 )
 from tardis.transport.montecarlo.packet_collections import (
@@ -143,7 +144,7 @@ from tardis.util.base import update_packet_pbar
 def montecarlo_main_loop(
     packet_collection,
     geometry_state,
-    time_explosion,
+    numba_model,
     opacity_state,
     montecarlo_configuration,
     estimators,
@@ -152,6 +153,7 @@ def montecarlo_main_loop(
     iteration,
     show_progress_bars,
     total_iterations,
+    enable_virtual_packet_logging,
 ):
     &quot;&quot;&quot;This is the main loop of the MonteCarlo routine that generates packets
     and sends them through the ejecta.
@@ -163,8 +165,7 @@ def montecarlo_main_loop(
         Real packet collection
     geometry_state : GeometryState
         Simulation geometry
-    time_explosion : float
-        Time in seconds
+    numba_model : NumbaModel
     opacity_state : OpacityState
     estimators : Estimators
     spectrum_frequency :  astropy.units.Quantity
@@ -177,6 +178,8 @@ def montecarlo_main_loop(
         Display progress bars
     total_iterations : int
         Maximum number of iterations
+    enable_virtual_packet_logging : bool
+        Enable virtual packet tracking
     &quot;&quot;&quot;
     no_of_packets = len(packet_collection.initial_nus)
 
@@ -253,7 +256,7 @@ def montecarlo_main_loop(
         loop = single_packet_loop(
             r_packet,
             geometry_state,
-            time_explosion,
+            numba_model,
             opacity_state,
             local_estimators,
             vpacket_collection,
@@ -287,7 +290,7 @@ def montecarlo_main_loop(
     for sub_estimator in estimator_list:
         estimators.increment(sub_estimator)
 
-    if montecarlo_configuration.ENABLE_VPACKET_TRACKING:
+    if enable_virtual_packet_logging:
         vpacket_tracker = consolidate_vpacket_tracker(
             vpacket_collections,
             spectrum_frequency,
@@ -324,7 +327,7 @@ def montecarlo_main_loop(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

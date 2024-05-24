@@ -333,9 +333,9 @@ def cuda_formal_integral(
     with CUDA.
     &quot;&quot;&quot;
 
-    def __init__(self, geometry, time_explosion, plasma, points=1000):
+    def __init__(self, geometry, model, plasma, points=1000):
         self.geometry = geometry
-        self.time_explosion = time_explosion
+        self.model = model
         self.plasma = plasma
         self.points = points
 
@@ -381,7 +381,7 @@ def cuda_formal_integral(
         cuda_formal_integral[blocks_per_grid, THREADS_PER_BLOCK](
             self.geometry.r_inner,
             self.geometry.r_outer,
-            self.time_explosion,
+            self.model.time_explosion,
             self.plasma.line_list_nu,
             iT.value,
             inu.value,
@@ -639,7 +639,7 @@ def intensity_black_body_cuda(nu, temperature):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

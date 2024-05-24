@@ -166,13 +166,13 @@ Uses: <a class="reference external" href="https://en.wikipedia.org/wiki/Quartic_
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.nonhomologous_grid.tau_sobolev_factor">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.nonhomologous_grid.</span></span><span class="sig-name descname"><span class="pre">tau_sobolev_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/nonhomologous_grid.html#tau_sobolev_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.nonhomologous_grid.tau_sobolev_factor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.nonhomologous_grid.</span></span><span class="sig-name descname"><span class="pre">tau_sobolev_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/nonhomologous_grid.html#tau_sobolev_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.nonhomologous_grid.tau_sobolev_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>The angle and velocity dependent Tau Sobolev factor component. Is called when ENABLE_NONHOMOLOGOUS_EXPANSION is set to True.</p>
 <p>Note: to get Tau Sobolev, this needs to be multiplied by tau_sobolevs found from plasma
 Parameters
 ———-
 r_packet: RPacket
-geometry: Geometry</p>
+numba_model: NumbaModel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
@@ -184,13 +184,13 @@ geometry: Geometry</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.nonhomologous_grid.velocity_dvdr">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.nonhomologous_grid.</span></span><span class="sig-name descname"><span class="pre">velocity_dvdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/nonhomologous_grid.html#velocity_dvdr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.nonhomologous_grid.velocity_dvdr" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.nonhomologous_grid.</span></span><span class="sig-name descname"><span class="pre">velocity_dvdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numba_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/nonhomologous_grid.html#velocity_dvdr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.nonhomologous_grid.velocity_dvdr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Velocity at radius r and dv/dr of current shell</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>r_packet: RPacket</strong></dt><dd></dd>
-<dt><strong>geometry: Geometry</strong></dt><dd></dd>
+<dt><strong>numba_model: NumbaModel</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -216,7 +216,7 @@ geometry: Geometry</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

@@ -664,6 +664,7 @@ logger = logging.getLogger(__name__)
     -------
     transport_dict : dict
     integrator_settings : dict
+    v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
     transport_dict = {
@@ -671,6 +672,8 @@ logger = logging.getLogger(__name__)
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
         &quot;disable_electron_scattering&quot;: transport.disable_electron_scattering,
         &quot;enable_full_relativity&quot;: transport.enable_full_relativity,
+        &quot;enable_reflective_inner_boundary&quot;: transport.enable_reflective_inner_boundary,
+        &quot;inner_boundary_albedo&quot;: transport.inner_boundary_albedo,
         &quot;input_energy&quot;: transport.input_energy,
         &quot;input_mu&quot;: transport.input_mu,
         &quot;input_nu&quot;: transport.input_nu,
@@ -716,11 +719,13 @@ logger = logging.getLogger(__name__)
             transport_dict[key] = [value.cgs.value, value.unit.to_string()]
 
     integrator_settings = transport.integrator_settings
+    v_packet_settings = transport.v_packet_settings
     virtual_spectrum_spawn_range = transport.virtual_spectrum_spawn_range
 
     return (
         transport_dict,
         integrator_settings,
+        v_packet_settings,
         virtual_spectrum_spawn_range,
     )</div>
 
@@ -741,6 +746,7 @@ logger = logging.getLogger(__name__)
         (
             transport_data,
             integrator_settings,
+            v_packet_settings,
             virtual_spectrum_spawn_range,
         ) = transport_to_dict(transport)
 
@@ -757,6 +763,12 @@ logger = logging.getLogger(__name__)
         )
         for key, value in integrator_settings.items():
             integrator_settings_group.create_dataset(key, data=value)
+
+        v_packet_settings_group = transport_group.create_group(
+            &quot;v_packet_settings&quot;
+        )
+        for key, value in v_packet_settings.items():
+            v_packet_settings_group.create_dataset(key, data=value)
 
         virtual_spectrum_spawn_range_group = transport_group.create_group(
             &quot;virtual_spectrum_spawn_range&quot;
@@ -825,6 +837,7 @@ logger = logging.getLogger(__name__)
 
     # Converting dictionaries to ConfigurationNameSpace
     d[&quot;integrator_settings&quot;] = ConfigurationNameSpace(d[&quot;integrator_settings&quot;])
+    d[&quot;v_packet_settings&quot;] = ConfigurationNameSpace(d[&quot;v_packet_settings&quot;])
     d[&quot;virtual_spectrum_spawn_range&quot;] = ConfigurationNameSpace(
         d[&quot;virtual_spectrum_spawn_range&quot;]
     )
@@ -834,9 +847,12 @@ logger = logging.getLogger(__name__)
         spectrum_frequency=d[&quot;spectrum_frequency_cgs&quot;],
         virtual_spectrum_spawn_range=d[&quot;virtual_spectrum_spawn_range&quot;],
         disable_electron_scattering=d[&quot;disable_electron_scattering&quot;],
+        enable_reflective_inner_boundary=d[&quot;enable_reflective_inner_boundary&quot;],
         enable_full_relativity=d[&quot;enable_full_relativity&quot;],
+        inner_boundary_albedo=d[&quot;inner_boundary_albedo&quot;],
         line_interaction_type=d[&quot;line_interaction_type&quot;],
         integrator_settings=d[&quot;integrator_settings&quot;],
+        v_packet_settings=d[&quot;v_packet_settings&quot;],
         spectrum_method=d[&quot;spectrum_method&quot;],
         packet_source=d[&quot;packet_source&quot;],
         nthreads=d[&quot;nthreads&quot;],
@@ -968,7 +984,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

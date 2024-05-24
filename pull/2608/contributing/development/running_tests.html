@@ -90,7 +90,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#running-syrupy-tests">Running Syrupy Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generating-plasma-reference">Generating Plasma Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-integration-tests">Running the Integration Tests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-dokuwiki-report">Setting up the DokuWiki report</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
@@ -218,25 +217,6 @@ or generate new ones.</p>
 <p>Both of these require a configuration file for the integration tests:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">atom_data_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/projects/tardis/integration/&quot;</span>
 
-<span class="c1"># This section holds information about mechanism of saving the HTML</span>
-<span class="c1"># report of the tests.</span>
-<span class="c1"># &quot;save_mode&quot; is mandatory: It can be either &quot;local&quot; or &quot;remote&quot;.</span>
-<span class="nt">report</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">save_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;local&quot;</span>
-
-<span class="w">  </span><span class="c1"># This section contains credentials for dokuwiki instance.</span>
-<span class="w">  </span><span class="c1"># It is mandatory if &quot;save_mode&quot; is &quot;remote&quot;, else can be removed.</span>
-<span class="w">  </span><span class="nt">dokuwiki</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://opensupernova.org/~karandesai96/integration/&quot;</span>
-<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;private&quot;</span>
-<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;private&quot;</span>
-
-<span class="w">  </span><span class="c1"># If &quot;save_mode&quot; is &quot;local&quot;, a sub directory will be made in this</span>
-<span class="w">  </span><span class="c1"># directory according to commit hash (shortened), and it will contain</span>
-<span class="w">  </span><span class="c1"># the complete report content.</span>
-<span class="w">  </span><span class="nt">reportpath</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/projects/tardis/integration&quot;</span>
-
-
 <span class="c1"># Path to directory where reference HDF files will be generated and</span>
 <span class="c1"># saved during the test run. Use &quot;--generate-reference&quot; flag in command</span>
 <span class="c1"># line args for the purpose, for other cases this will denote path</span>
@@ -271,20 +251,6 @@ needed is:</p>
 </pre></div>
 </div>
 </section>
-<section id="setting-up-the-dokuwiki-report">
-<h2>Setting up the DokuWiki report<a class="headerlink" href="#setting-up-the-dokuwiki-report" title="Permalink to this heading">¶</a></h2>
-<p>A normal <a class="reference external" href="https://www.dokuwiki.org/dokuwiki">DokuWiki</a> installation is performed on the required server. Before the
-connection works one is requires to set the option remote access in the
-settings. If this is not done the <code class="docutils literal notranslate"><span class="pre">dokuwiki</span></code> python plugin will not connect
-with the warning <code class="docutils literal notranslate"><span class="pre">DokuWikiError:</span> <span class="pre">syntax</span> <span class="pre">error:</span> <span class="pre">line</span> <span class="pre">1,</span> <span class="pre">column</span> <span class="pre">0</span></code>. One also
-has to enable this for users (<code class="docutils literal notranslate"><span class="pre">remoteuser</span></code> option) otherwise the error:
-<code class="docutils literal notranslate"><span class="pre">ProtocolError</span> <span class="pre">for</span> <span class="pre">xmlrpc.php?p=xxxxxx&amp;u=tardistester:</span> <span class="pre">403</span> <span class="pre">Forbidden</span></code>
-will appear.</p>
-<p>Another important configuration option is to enable embedded html <code class="docutils literal notranslate"><span class="pre">htmlok</span></code>;
-otherwise, it won’t show nice html page reports.</p>
-<p>Finally, one has to call the <code class="xref py py-obj docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code> with the <code class="docutils literal notranslate"><span class="pre">--remote-data</span></code>
-option to allow posting to an external DokuWiki server.</p>
-</section>
 </section>
 
 
@@ -299,7 +265,7 @@ option to allow posting to an external DokuWiki server.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

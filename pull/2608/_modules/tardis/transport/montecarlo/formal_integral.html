@@ -131,13 +131,14 @@ from tardis.transport.montecarlo.numba_config import SIGMA_THOMSON
 from tardis.transport.montecarlo import njit_dict, njit_dict_no_parallel
 from tardis.transport.montecarlo.numba_interface import (
     opacity_state_initialize,
+    NumbaModel,
     OpacityState,
 )
 from tardis.transport.montecarlo.formal_integral_cuda import (
     CudaFormalIntegrator,
 )
 
-from tardis.spectrum import TARDISSpectrum
+from tardis.transport.montecarlo.spectrum import TARDISSpectrum
 
 C_INV = 3.33564e-11
 M_PI = np.arccos(-1)
@@ -152,7 +153,7 @@ H_CGS = 6.62606957e-27
 <div class="viewcode-block" id="numba_formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.numba_formal_integral">[docs]</a>@njit(**njit_dict)
 def numba_formal_integral(
     geometry,
-    time_explosion,
+    model,
     plasma,
     iT,
     inu,
@@ -165,6 +166,8 @@ def numba_formal_integral(
     N,
 ):
     &quot;&quot;&quot;
+    model, plasma, and estimator are the numba variants
+
     Returns
     -------
     L : float64 array
@@ -223,7 +226,7 @@ def numba_formal_integral(
 
             # initialize z intersections for p values
             size_z = populate_z(
-                geometry, time_explosion, p, z, shell_id
+                geometry, model, p, z, shell_id
             )  # check returns
             # initialize I_nu
             if p &lt;= R_ph:
@@ -237,7 +240,7 @@ def numba_formal_integral(
             idx_nu_start = line_search(plasma.line_list_nu, nu_start, size_line)
             offset = shell_id[0] * size_line
             # start tracking accumulated e-scattering optical depth
-            zstart = time_explosion / C_INV * (1.0 - z[0])
+            zstart = model.time_explosion / C_INV * (1.0 - z[0])
             # Initialize &quot;pointers&quot;
             pline = int(idx_nu_start)
             pexp_tau = int(offset + idx_nu_start)
@@ -259,7 +262,7 @@ def numba_formal_integral(
                 for _ in range(max(nu_end_idx - pline, 0)):
                     # calculate e-scattering optical depth to next resonance point
                     zend = (
-                        time_explosion
+                        model.time_explosion
                         / C_INV
                         * (1.0 - line_list_nu[pline] / nu)
                     )  # check
@@ -301,7 +304,9 @@ def numba_formal_integral(
                 # calculate e-scattering optical depth to grid cell boundary
 
                 Jkkp = 0.5 * (Jred_lu[pJred_lu] + Jblue_lu[pJblue_lu])
-                zend = time_explosion / C_INV * (1.0 - nu_end / nu)  # check
+                zend = (
+                    model.time_explosion / C_INV * (1.0 - nu_end / nu)
+                )  # check
                 escat_contrib += (
                     (zend - zstart) * escat_op * (Jkkp - I_nu[p_idx])
                 )
@@ -333,9 +338,9 @@ def numba_formal_integral(
     with numba.
     &quot;&quot;&quot;
 
-    def __init__(self, geometry, time_explosion, plasma, points=1000):
+    def __init__(self, geometry, model, plasma, points=1000):
         self.geometry = geometry
-        self.time_explosion = time_explosion
+        self.model = model
         self.plasma = plasma
         self.points = points
 
@@ -356,7 +361,7 @@ def numba_formal_integral(
         &quot;&quot;&quot;
         return numba_formal_integral(
             self.geometry,
-            self.time_explosion,
+            self.model,
             self.plasma,
             iT,
             inu,
@@ -421,6 +426,9 @@ def numba_formal_integral(
             self.transport.r_outer_i
             / self.simulation_state.time_explosion.to(&quot;s&quot;).value,
         )
+        self.numba_model = NumbaModel(
+            self.simulation_state.time_explosion.cgs.value,
+        )
         self.opacity_state = opacity_state_initialize(
             self.original_plasma,
             self.transport.line_interaction_type,
@@ -430,14 +438,14 @@ def numba_formal_integral(
         if self.transport.use_gpu:
             self.integrator = CudaFormalIntegrator(
                 self.numba_radial_1d_geometry,
-                self.simulation_state.time_explosion.cgs.value,
+                self.numba_model,
                 self.opacity_state,
                 self.points,
             )
         else:
             self.integrator = NumbaFormalIntegrator(
                 self.numba_radial_1d_geometry,
-                self.simulation_state.time_explosion.cgs.value,
+                self.numba_model,
                 self.opacity_state,
                 self.points,
             )</div>
@@ -770,7 +778,7 @@ def numba_formal_integral(
 
 
 <div class="viewcode-block" id="populate_z"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.populate_z">[docs]</a>@njit(**njit_dict_no_parallel)
-def populate_z(geometry, time_explosion, p, oz, oshell_id):
+def populate_z(geometry, model, p, oz, oshell_id):
     &quot;&quot;&quot;Calculate p line intersections
 
     This function calculates the intersection points of the p-line with
@@ -785,7 +793,7 @@ def populate_z(geometry, time_explosion, p, oz, oshell_id):
     # abbreviations
     r = geometry.r_outer
     N = len(geometry.r_inner)  # check
-    inv_t = 1 / time_explosion
+    inv_t = 1 / model.time_explosion
     z = 0
     offset = N
 
@@ -933,7 +941,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 
