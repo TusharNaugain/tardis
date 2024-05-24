@@ -129,8 +129,6 @@ logger = logging.getLogger(__name__)
 __all__ = [
     &quot;BetaRadiation&quot;,
     &quot;GElectron&quot;,
-    &quot;NumberDensity&quot;,
-    &quot;IsotopeNumberDensity&quot;,
     &quot;SelectedAtoms&quot;,
     &quot;ElectronTemperature&quot;,
     &quot;BetaElectron&quot;,
@@ -194,64 +192,6 @@ __all__ = [
 
 <div class="viewcode-block" id="ThermalGElectron.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron.calculate">[docs]</a>    def calculate(self, beta_electron):
         return super(ThermalGElectron, self).calculate(beta_electron)</div></div>
-
-
-<div class="viewcode-block" id="NumberDensity"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.NumberDensity">[docs]</a>class NumberDensity(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    number_density : Pandas DataFrame, dtype float
-                     Indexed by atomic number, columns corresponding to zones
-    &quot;&quot;&quot;
-
-    outputs = (&quot;number_density&quot;,)
-    latex_name = (&quot;N_{i}&quot;,)
-
-<div class="viewcode-block" id="NumberDensity.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.NumberDensity.calculate">[docs]</a>    @staticmethod
-    def calculate(atomic_mass, abundance, density):
-        number_densities = abundance * density
-        return number_densities.div(atomic_mass.loc[abundance.index], axis=0)</div></div>
-
-
-<div class="viewcode-block" id="IsotopeNumberDensity"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.IsotopeNumberDensity">[docs]</a>class IsotopeNumberDensity(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Calculate the atom number density based on isotope mass.
-
-    Attributes
-    ----------
-    isotope_number_density : Pandas DataFrame, dtype float
-                     Indexed by atomic number, columns corresponding to zones
-    &quot;&quot;&quot;
-
-    outputs = (&quot;isotope_number_density&quot;,)
-    latex_name = (&quot;N_{i}&quot;,)
-
-<div class="viewcode-block" id="IsotopeNumberDensity.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.IsotopeNumberDensity.calculate">[docs]</a>    @staticmethod
-    def calculate(isotope_mass, isotope_abundance, density):
-        &quot;&quot;&quot;
-        Calculate the atom number density based on isotope mass.
-
-        Parameters
-        ----------
-        isotope_mass : pandas.DataFrame
-            Masses of isotopes.
-        isotope_abundance : pandas.DataFrame
-            Fractional abundance of isotopes.
-        density : pandas.DataFrame
-            Density of each shell.
-
-        Returns
-        -------
-        pandas.DataFrame
-            Indexed by atomic number, columns corresponding to zones.
-        &quot;&quot;&quot;
-        number_densities = isotope_abundance * density
-        isotope_number_density_array = (
-            number_densities.to_numpy() / isotope_mass.to_numpy()
-        )
-        return pd.DataFrame(
-            isotope_number_density_array, index=isotope_abundance.index
-        )</div></div>
 
 
 <div class="viewcode-block" id="SelectedAtoms"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.SelectedAtoms">[docs]</a>class SelectedAtoms(ProcessingPlasmaProperty):
@@ -328,7 +268,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

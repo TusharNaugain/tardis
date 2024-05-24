@@ -191,7 +191,11 @@ COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
     # and the actual data
     data = pd.read_csv(
         fname,
-        delim_whitespace=True,
+        # The argument `delim_whitespace` was changed to `sep`
+        #   because the first one is deprecated since version 2.2.0.
+        #   The regular expression means: the separation is one or
+        #   more spaces together (simple space, tabs, new lines).
+        sep=r&quot;\s+&quot;,
         skiprows=DATA_START_ROW + 1,
         header=None,
         index_col=0,
@@ -208,7 +212,7 @@ COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 

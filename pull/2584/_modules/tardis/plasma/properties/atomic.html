@@ -148,8 +148,6 @@ __all__ = [
     &quot;Lines&quot;,
     &quot;LinesLowerLevelIndex&quot;,
     &quot;LinesUpperLevelIndex&quot;,
-    &quot;AtomicMass&quot;,
-    &quot;IsotopeMass&quot;,
     &quot;IonizationData&quot;,
     &quot;ZetaData&quot;,
     &quot;NLTEData&quot;,
@@ -193,8 +191,6 @@ __all__ = [
         return levels[levels.index.isin(selected_atoms, level=&quot;atomic_number&quot;)]
 
     def _set_index(self, levels):
-        # levels = levels.set_index([&#39;atomic_number&#39;, &#39;ion_number&#39;,
-        #                          &#39;level_number&#39;])
         return (
             levels.index,
             levels[&quot;energy&quot;],
@@ -658,69 +654,6 @@ __all__ = [
         return level_idxs2transition_idx</div></div>
 
 
-<div class="viewcode-block" id="AtomicMass"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.AtomicMass">[docs]</a>class AtomicMass(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    atomic_mass : pandas.Series
-        Atomic masses of the elements used. Indexed by atomic number.
-    &quot;&quot;&quot;
-
-    outputs = (&quot;atomic_mass&quot;,)
-
-<div class="viewcode-block" id="AtomicMass.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.AtomicMass.calculate">[docs]</a>    def calculate(self, atomic_data, selected_atoms):
-        if getattr(self, self.outputs[0]) is not None:
-            return (getattr(self, self.outputs[0]),)
-        else:
-            return atomic_data.atom_data.loc[selected_atoms].mass</div></div>
-
-
-<div class="viewcode-block" id="IsotopeMass"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.IsotopeMass">[docs]</a>class IsotopeMass(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    isotope_mass : pandas.Series
-        Masses of the isotopes used. Indexed by isotope name e.g. &#39;Ni56&#39;.
-    &quot;&quot;&quot;
-
-    outputs = (&quot;isotope_mass&quot;,)
-
-<div class="viewcode-block" id="IsotopeMass.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.IsotopeMass.calculate">[docs]</a>    def calculate(self, isotope_abundance):
-        &quot;&quot;&quot;
-        Determine mass of each isotope.
-
-        Parameters
-        ----------
-        isotope_abundance : pandas.DataFrame
-            Fractional abundance of isotopes.
-
-        Returns
-        -------
-        pandas.DataFrame
-            Masses of the isotopes used. Indexed by isotope name e.g. &#39;Ni56&#39;.
-        &quot;&quot;&quot;
-        if getattr(self, self.outputs[0]) is not None:
-            return (getattr(self, self.outputs[0]),)
-        else:
-            if isotope_abundance.empty:
-                return None
-            isotope_mass_dict = {}
-            for Z, A in isotope_abundance.index:
-                element_name = rd.utils.Z_to_elem(Z)
-                isotope_name = element_name + str(A)
-
-                isotope_mass_dict[(Z, A)] = rd.Nuclide(isotope_name).atomic_mass
-
-            isotope_mass_df = pd.DataFrame.from_dict(
-                isotope_mass_dict, orient=&quot;index&quot;, columns=[&quot;mass&quot;]
-            )
-            isotope_mass_df.index = pd.MultiIndex.from_tuples(
-                isotope_mass_df.index
-            )
-            isotope_mass_df.index.names = [&quot;atomic_number&quot;, &quot;mass_number&quot;]
-            return isotope_mass_df / const.N_A</div></div>
-
-
 <div class="viewcode-block" id="IonizationData"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.IonizationData">[docs]</a>class IonizationData(BaseAtomicDataProperty):
     &quot;&quot;&quot;
     Attributes
@@ -1004,7 +937,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 May 2024.
+      <span class="lastupdated">Last updated on 24 May 2024.
       </span></p>
   </div>
 
