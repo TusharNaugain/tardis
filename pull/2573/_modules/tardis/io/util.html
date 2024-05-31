@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -359,7 +359,7 @@ YAMLLoader.add_constructor(
                     path_or_buf, complevel=complevel, complib=complib
                 )
             except TypeError as e:
-                if e.message == &quot;Expected bytes, got HDFStore&quot;:
+                if str(e) == &quot;Expected bytes, got HDFStore&quot;:
                     # when path_or_buf is an HDFStore buffer instead
                     logger.debug(
                         &quot;Expected bytes, got HDFStore. Changing path to HDF buffer&quot;
@@ -545,7 +545,7 @@ def download_from_url(url, dst, checksum, src=None, retries=3):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Apr 2024.
+      <span class="lastupdated">Last updated on 31 May 2024.
       </span></p>
   </div>
 

@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="tardis.html">tardis package</a><ul class="current">
@@ -66,7 +67,6 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.html">tardis.montecarlo package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -91,7 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -200,30 +199,6 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.ContinuumInteractionSpecies.outputs">
 <span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('continuum_interaction_species',)</span></em><a class="headerlink" href="#tardis.plasma.properties.plasma_input.ContinuumInteractionSpecies.outputs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.Density">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.properties.plasma_input.</span></span><span class="sig-name descname"><span class="pre">Density</span></span><a class="reference internal" href="../_modules/tardis/plasma/properties/plasma_input.html#Density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.properties.plasma_input.Density" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.ArrayInput" title="tardis.plasma.properties.base.ArrayInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayInput</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>density</strong><span class="classifier">Numpy array, dtype float</span></dt><dd><p>Total density values</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.Density.latex_name">
-<span class="sig-name descname"><span class="pre">latex_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('\\rho',)</span></em><a class="headerlink" href="#tardis.plasma.properties.plasma_input.Density.latex_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.Density.outputs">
-<span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('density',)</span></em><a class="headerlink" href="#tardis.plasma.properties.plasma_input.Density.outputs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -354,6 +329,30 @@ Default is 0.9.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.NumberDensity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.properties.plasma_input.</span></span><span class="sig-name descname"><span class="pre">NumberDensity</span></span><a class="reference internal" href="../_modules/tardis/plasma/properties/plasma_input.html#NumberDensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.properties.plasma_input.NumberDensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input" title="tardis.plasma.properties.base.Input"><code class="xref py py-class docutils literal notranslate"><span class="pre">Input</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>number_density</strong><span class="classifier">Pandas DataFrame, dtype float</span></dt><dd><p>Indexed by atomic number, columns corresponding to zones</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.NumberDensity.latex_name">
+<span class="sig-name descname"><span class="pre">latex_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('N_{i}',)</span></em><a class="headerlink" href="#tardis.plasma.properties.plasma_input.NumberDensity.latex_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.NumberDensity.outputs">
+<span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('number_density',)</span></em><a class="headerlink" href="#tardis.plasma.properties.plasma_input.NumberDensity.outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="tardis.plasma.properties.plasma_input.RInner">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.properties.plasma_input.</span></span><span class="sig-name descname"><span class="pre">RInner</span></span><a class="reference internal" href="../_modules/tardis/plasma/properties/plasma_input.html#RInner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.properties.plasma_input.RInner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input" title="tardis.plasma.properties.base.Input"><code class="xref py py-class docutils literal notranslate"><span class="pre">Input</span></code></a></p>
@@ -447,7 +446,7 @@ Default is 0.9.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Apr 2024.
+      <span class="lastupdated">Last updated on 31 May 2024.
       </span></p>
   </div>
 

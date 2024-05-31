@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -398,8 +398,10 @@ YAML_DELIMITER = &quot;---&quot;
         -------
         CustomAbundanceWidgetData
         &quot;&quot;&quot;
-        abundance = sim.simulation_state.raw_abundance.copy()
-        isotope_abundance = sim.simulation_state.raw_isotope_abundance.copy()
+        abundance = sim.simulation_state.abundance.copy()
+        isotope_abundance = (
+            sim.simulation_state.composition.raw_isotope_abundance.copy()
+        )
 
         # integrate element and isotope to one DataFrame
         abundance[&quot;mass_number&quot;] = &quot;&quot;
@@ -1958,7 +1960,7 @@ YAML_DELIMITER = &quot;---&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Apr 2024.
+      <span class="lastupdated">Last updated on 31 May 2024.
       </span></p>
   </div>
 

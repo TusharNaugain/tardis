@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
@@ -64,7 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -137,7 +137,7 @@ from tardis.model.matter.decay import IsotopicMassFraction
 from tardis.model.radiation_field_state import (
     DiluteBlackBodyRadiationFieldState,
 )
-from tardis.montecarlo.packet_source import (
+from tardis.transport.montecarlo.packet_source import (
     BlackBodySimpleSource,
     BlackBodySimpleSourceRelativistic,
 )
@@ -147,42 +147,6 @@ logger = logging.getLogger(__name__)
 
 
 <div class="viewcode-block" id="parse_structure_config"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_structure_config">[docs]</a>def parse_structure_config(config, time_explosion, enable_homology=True):
-    &quot;&quot;&quot;
-    Parse the structure configuration data.
-
-    Parameters
-    ----------
-    config : object
-        The configuration data.
-    time_explosion : float
-        The time of the explosion.
-    enable_homology : bool, optional
-        Whether to enable homology (default is True).
-
-    Returns
-    -------
-    electron_densities : object
-        The parsed electron densities.
-    temperature : object
-        The parsed temperature.
-    geometry : object
-        The parsed geometry.
-    density : object
-        The parsed density.
-
-    Raises
-    ------
-    NotImplementedError
-        If the structure configuration type is not supported.
-
-    Notes
-    -----
-    This function parses the structure configuration data and returns the parsed electron
-    densities, temperature, geometry, and density. The structure configuration can be of
-    type &#39;specific&#39; or &#39;file&#39;. If it is of type &#39;specific&#39;, the velocity and density are
-    parsed from the configuration. If it is of type &#39;file&#39;, the velocity and density are
-    read from a file. The parsed data is used to create a homologous radial 1D geometry object.
-    &quot;&quot;&quot;
     &quot;&quot;&quot;
     Parse the structure configuration data.
 
@@ -262,8 +226,8 @@ logger = logging.getLogger(__name__)
         )
         density = density[1:]
     geometry = HomologousRadial1DGeometry(
-        velocity[:-1],  # r_inner
-        velocity[1:],  # r_outer
+        velocity[:-1],  # v_inner
+        velocity[1:],  # v_outer
         v_inner_boundary=structure_config.get(&quot;v_inner_boundary&quot;, None),
         v_outer_boundary=structure_config.get(&quot;v_outer_boundary&quot;, None),
         time_explosion=time_explosion,
@@ -334,8 +298,8 @@ logger = logging.getLogger(__name__)
         velocity = velocity.to(&quot;cm/s&quot;)
 
     geometry = HomologousRadial1DGeometry(
-        velocity[:-1],  # r_inner
-        velocity[1:],  # r_outer
+        velocity[:-1],  # v_inner
+        velocity[1:],  # v_outer
         v_inner_boundary=v_boundary_inner,
         v_outer_boundary=v_boundary_outer,
         time_explosion=time_explosion,
@@ -703,7 +667,9 @@ logger = logging.getLogger(__name__)
     )</div>
 
 
-<div class="viewcode-block" id="initialize_packet_source"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.initialize_packet_source">[docs]</a>def initialize_packet_source(config, geometry, packet_source):
+<div class="viewcode-block" id="initialize_packet_source"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.initialize_packet_source">[docs]</a>def initialize_packet_source(
+    config, geometry, packet_source, legacy_mode_enabled
+):
     &quot;&quot;&quot;
     Initialize the packet source based on config and geometry
 
@@ -730,9 +696,13 @@ logger = logging.getLogger(__name__)
         packet_source = BlackBodySimpleSourceRelativistic(
             base_seed=config.montecarlo.seed,
             time_explosion=config.supernova.time_explosion,
+            legacy_mode_enabled=legacy_mode_enabled,
         )
     else:
-        packet_source = BlackBodySimpleSource(base_seed=config.montecarlo.seed)
+        packet_source = BlackBodySimpleSource(
+            base_seed=config.montecarlo.seed,
+            legacy_mode_enabled=legacy_mode_enabled,
+        )
 
     luminosity_requested = config.supernova.luminosity_requested
     if config.plasma.initial_t_inner &gt; 0.0 * u.K:
@@ -752,7 +722,7 @@ logger = logging.getLogger(__name__)
     return packet_source</div>
 
 
-<div class="viewcode-block" id="parse_packet_source"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_packet_source">[docs]</a>def parse_packet_source(config, geometry):
+<div class="viewcode-block" id="parse_packet_source"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_packet_source">[docs]</a>def parse_packet_source(config, geometry, legacy_mode_enabled):
     &quot;&quot;&quot;
     Parse the packet source based on the given configuration and geometry.
 
@@ -772,11 +742,17 @@ logger = logging.getLogger(__name__)
         packet_source = BlackBodySimpleSourceRelativistic(
             base_seed=config.montecarlo.seed,
             time_explosion=config.supernova.time_explosion,
+            legacy_mode_enabled=legacy_mode_enabled,
         )
     else:
-        packet_source = BlackBodySimpleSource(base_seed=config.montecarlo.seed)
+        packet_source = BlackBodySimpleSource(
+            base_seed=config.montecarlo.seed,
+            legacy_mode_enabled=legacy_mode_enabled,
+        )
 
-    return initialize_packet_source(config, geometry, packet_source)</div>
+    return initialize_packet_source(
+        config, geometry, packet_source, legacy_mode_enabled
+    )</div>
 
 
 <div class="viewcode-block" id="parse_csvy_radiation_field_state"><a class="viewcode-back" href="../../../api/tardis.model.parse_input.html#tardis.model.parse_input.parse_csvy_radiation_field_state">[docs]</a>def parse_csvy_radiation_field_state(
@@ -871,7 +847,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Apr 2024.
+      <span class="lastupdated">Last updated on 31 May 2024.
       </span></p>
   </div>
 
