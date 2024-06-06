@@ -126,7 +126,7 @@ import pandas as pd
 from astropy import units as u
 from numpy import recfromtxt
 from radioactivedecay import Nuclide
-from radioactivedecay.utils import Z_DICT, elem_to_Z
+from radioactivedecay.utils import Z_DICT, elem_to_Z, NuclideStrError
 
 from tardis.io.configuration.config_reader import ConfigurationNameSpace
 from tardis.transport.montecarlo.base import MonteCarloTransportSolver
@@ -286,7 +286,10 @@ logger = logging.getLogger(__name__)
     )
 
     for element_symbol_string in abundances_section:
-        if element_symbol_string == &quot;type&quot;:
+        if (
+            element_symbol_string == &quot;type&quot;
+            or element_symbol_string == &quot;model_isotope_time_0&quot;
+        ):
             continue
         try:
             if element_symbol_string in Z_DICT.values():
@@ -302,7 +305,7 @@ logger = logging.getLogger(__name__)
                     abundances_section[element_symbol_string]
                 )
 
-        except RuntimeError as err:
+        except NuclideStrError as err:
             raise RuntimeError(
                 f&quot;Abundances are not defined properly in config file : {err.args}&quot;
             )
@@ -984,7 +987,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 06 Jun 2024.
       </span></p>
   </div>
 
