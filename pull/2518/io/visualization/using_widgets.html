@@ -25,8 +25,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Generating Custom Abundance Widget" href="abundance_widget.html" />
-    <link rel="prev" title="Montecarlo Packet Visualization" href="montecarlo_packet_visualization.html" />
+    <link rel="next" title="How to Generate Custom Abundance Widget" href="how_to_abundance_widget.html" />
+    <link rel="prev" title="Montecarlo Packet Visualization" href="tutorial_montecarlo_packet_visualization.html" />
     <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -57,11 +57,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../optional/index.html">Optional Inputs</a></li>
@@ -72,16 +74,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#custom-abundance-widget">Custom Abundance Widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shell-info-widget">Shell Info Widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#line-info-widget">Line Info Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#energy-level-diagram">Energy Level Diagram</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="abundance_widget.html">Generating Custom Abundance Widget</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generating_widgets.html">Generating Data Exploration Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_abundance_widget.html">Generating Custom Abundance Widget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_generating_widgets.html">Generating Data Exploration Widgets</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -136,8 +138,8 @@
 <h1>Using TARDIS Widgets<a class="headerlink" href="#using-tardis-widgets" title="Permalink to this heading">¶</a></h1>
 <p>This page describes what each TARDIS Widget has to offer and how you can make
 the best use of it. If you’re looking for the code to generate widgets, head
-over to <a class="reference external" href="abundance_widget">Generating Custom Abundance Widget</a> section or
-<a class="reference external" href="generating_widgets">Generating Data Exploration Widgets</a> section to see the
+over to <a class="reference external" href="how_to_abundance_widget">Generating Custom Abundance Widget</a> section or
+<a class="reference external" href="how_to_generating_widgets">Generating Data Exploration Widgets</a> section to see the
 notebook in action.</p>
 <p>Currently, TARDIS supports the following widgets:</p>
 <section id="custom-abundance-widget">
@@ -268,21 +270,45 @@ spectrum.</p>
 </section>
 </section>
 </section>
+<section id="energy-level-diagram">
+<h2>Energy Level Diagram<a class="headerlink" href="#energy-level-diagram" title="Permalink to this heading">¶</a></h2>
+<p>This widget lets you visualize the last line interactions</p>
+<img alt="Demo of Energy Level Diagram" src="../../_images/energy_level_widget_demo.gif" />
+<p>By selecting an ion on the widget, you can see its energy level diagram, which
+also shows information about the last line interactions experienced by packets
+in the simulation.</p>
+<p>The y-axis of the plot represents energy while the horizontal lines show
+discrete energy levels. The thickness of each line represents the level
+population, with thicker lines representing a greater population than the thin lines.</p>
+<p>Arrows represent the line interactions experienced by packets. Upwards arrows
+show excitation from lower energy levels to higher levels and downward arrows
+show de-excitation from higher energy levels to lower levels. The thickness of
+each arrow represents the number of packets that underwent that interaction,
+with thicker lines representing more packets than the thin lines.
+The wavelength of the transition is given by the color.</p>
+<p>You can select the range on which to filter the wavelength using the slider.
+You can also select the model shell by which to filter the last line interactions
+and the level populations. If no shell is selected, then all the last line
+interactions are plotted and the level populations are averaged across all shells
+in the simulation. You can also set the maximum number of levels to show on the plot.</p>
+<p>Lastly, you can also set the scale of the y-axis: Linear or Log.</p>
+<img alt="Demo of using options" src="../../_images/energy_level_widget_options.gif" />
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="montecarlo_packet_visualization.html" class="btn btn-neutral float-left" title="Montecarlo Packet Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="abundance_widget.html" class="btn btn-neutral float-right" title="Generating Custom Abundance Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tutorial_montecarlo_packet_visualization.html" class="btn btn-neutral float-left" title="Montecarlo Packet Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="how_to_abundance_widget.html" class="btn btn-neutral float-right" title="How to Generate Custom Abundance Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Mar 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="tardis.html">tardis package</a><ul class="current">
@@ -66,7 +67,6 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.montecarlo.html">tardis.montecarlo package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -86,12 +86,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -208,7 +208,7 @@ obtain the final nuclide mass fraction.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.initialize_packet_source">
-<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">initialize_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#initialize_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.initialize_packet_source" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">initialize_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy_mode_enabled</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#initialize_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.initialize_packet_source" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the packet source based on config and geometry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -254,6 +254,8 @@ obtain the final nuclide mass fraction.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>nuclide_mass_fraction</strong><span class="classifier">object</span></dt><dd><p>The parsed nuclide mass fraction.</p>
+</dd>
+<dt><strong>raw_isotope_abundance</strong><span class="classifier">object</span></dt><dd><p>The parsed raw isotope abundance. This is the isotope abundance data before decay.</p>
 </dd>
 </dl>
 </dd>
@@ -432,7 +434,7 @@ function. The parsed density data is returned.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.model.parse_input.parse_packet_source">
-<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_packet_source" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.model.parse_input.</span></span><span class="sig-name descname"><span class="pre">parse_packet_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy_mode_enabled</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/model/parse_input.html#parse_packet_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.model.parse_input.parse_packet_source" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the packet source based on the given configuration and geometry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -542,7 +544,7 @@ read from a file. The parsed data is used to create a homologous radial 1D geome
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Mar 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

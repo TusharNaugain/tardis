@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Developer FAQ" href="developer_faq.html" />
-    <link rel="prev" title="Running tests" href="running_tests.html" />
+    <link rel="prev" title="Benchmarks" href="benchmarks.html" />
     <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -57,17 +57,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -86,10 +87,12 @@
 <li class="toctree-l2"><a class="reference internal" href="git_workflow.html#preparation-and-working-with-git">Preparation and Working with Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documentation_guidelines.html">Documentation Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running_tests.html">Running tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Code Quality Guidelines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#code-style-conventions">Code Style Conventions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#black">Black</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ruff">Ruff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-commit-optional">Pre-commit (Optional)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
 </ul>
 </li>
@@ -182,6 +185,19 @@ ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable 
 <p>Ruff can also be used for formatting code, but for now we recommend using Black for this purpose as the CI is configured to run Black on all PRs.</p>
 </div>
 </section>
+<section id="pre-commit-optional">
+<h3>Pre-commit (Optional)<a class="headerlink" href="#pre-commit-optional" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://pre-commit.com/">Pre-commit</a> hooks are tools that help enforce quality standards by running checks on your code before you commit. If you choose to use pre-commit on your local machine, please follow these steps:</p>
+<p>Install pre-commit by running:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install pre-commit
+</pre></div>
+</div>
+<p>Set up the pre-commit hooks with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pre-commit install
+</pre></div>
+</div>
+<p>This needs to be done only once per repository. The pre-commit hooks will now automatically run on each commit to ensure your changes meet our code quality standards.</p>
+</section>
 <section id="naming-conventions">
 <h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">¶</a></h3>
 <p>While Black automatically conforms your code to a majority of the PEP 8 style guide (like whitespace usage, string quotes, code layout, etc.), your code still needs to conform to the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/#naming-conventions">PEP 8 naming conventions</a>. The main things to keep in mind are:</p>
@@ -261,7 +277,7 @@ ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="running_tests.html" class="btn btn-neutral float-left" title="Running tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="benchmarks.html" class="btn btn-neutral float-left" title="Benchmarks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="developer_faq.html" class="btn btn-neutral float-right" title="Developer FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -269,7 +285,7 @@ ruff check &lt;source_file_or_directory&gt; --fix # Lints and fixes any fixable 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Mar 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

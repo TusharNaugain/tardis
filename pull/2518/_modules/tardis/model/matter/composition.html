@@ -54,17 +54,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -170,6 +171,7 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
     density : astropy.units.quantity.Quantity
         An array of densities for each shell.
     isotopic_mass_fraction : pd.DataFrame
+    raw_isotope_abundance : pd.DataFrame
     atomic_mass : pd.DataFrame
     atomic_mass_unit: astropy.units.Unit
 
@@ -185,6 +187,7 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
         self,
         density,
         nuclide_mass_fraction,
+        raw_isotope_abundance,
         element_masses,
         element_masses_unit=u.g,
     ):
@@ -204,6 +207,7 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
         isotope_masses = self.assemble_isotope_masses()
 
         self.nuclide_masses = pd.concat([self.nuclide_masses, isotope_masses])
+        self.raw_isotope_abundance = raw_isotope_abundance
 
 <div class="viewcode-block" id="Composition.assemble_isotope_masses"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.assemble_isotope_masses">[docs]</a>    def assemble_isotope_masses(self):
         isotope_mass_df = pd.Series(
@@ -371,7 +375,7 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Mar 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

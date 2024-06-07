@@ -54,17 +54,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../io/grid/TardisGridTutorial.html">Running TARDIS Model Grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
 <ul>
@@ -139,7 +140,7 @@ from tardis.model.parse_input import (
     parse_structure_config,
     parse_packet_source,
 )
-from tardis.montecarlo.packet_source import BlackBodySimpleSource
+from tardis.transport.montecarlo.packet_source import BlackBodySimpleSource
 from tardis.model.radiation_field_state import (
     DiluteBlackBodyRadiationFieldState,
 )
@@ -279,6 +280,45 @@ SCHEMA_DIR = (
             )
 
     @property
+    def elemental_number_density(self):
+        elemental_number_density = (
+            (
+                self.composition.elemental_mass_fraction
+                * self.composition.density
+            )
+            .divide(self.composition.element_masses, axis=0)
+            .dropna()
+        )
+        elemental_number_density = elemental_number_density.iloc[
+            :,
+            self.geometry.v_inner_boundary_index : self.geometry.v_outer_boundary_index,
+        ]
+        elemental_number_density.columns = range(
+            len(elemental_number_density.columns)
+        )
+        return elemental_number_density
+
+    @property
+    def isotopic_number_density(self):
+        isotopic_number_density = (
+            self.composition.isotopic_mass_fraction * self.composition.density
+        ).divide(
+            self.composition.isotope_masses.loc[
+                self.composition.isotopic_mass_fraction.index
+            ]
+            * u.u.to(u.g),
+            axis=0,
+        )
+        isotopic_number_density = isotopic_number_density.iloc[
+            :,
+            self.geometry.v_inner_boundary_index : self.geometry.v_outer_boundary_index,
+        ]
+        isotopic_number_density.columns = range(
+            len(isotopic_number_density.columns)
+        )
+        return isotopic_number_density
+
+    @property
     def radius(self):
         return self.time_explosion * self.velocity
 
@@ -352,7 +392,7 @@ SCHEMA_DIR = (
         return self.geometry.no_of_shells
 
 <div class="viewcode-block" id="SimulationState.from_config"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_config">[docs]</a>    @classmethod
-    def from_config(cls, config, atom_data):
+    def from_config(cls, config, atom_data, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
 
@@ -374,16 +414,21 @@ SCHEMA_DIR = (
             density,
         ) = parse_structure_config(config, time_explosion)
 
-        nuclide_mass_fraction = parse_abundance_config(
+        nuclide_mass_fraction, raw_isotope_abundance = parse_abundance_config(
             config, geometry, time_explosion
         )
 
         # using atom_data.mass.copy() to ensure that the original atom_data is not modified
         composition = Composition(
-            density, nuclide_mass_fraction, atom_data.atom_data.mass.copy()
+            density,
+            nuclide_mass_fraction,
+            raw_isotope_abundance,
+            atom_data.atom_data.mass.copy(),
         )
 
-        packet_source = parse_packet_source(config, geometry)
+        packet_source = parse_packet_source(
+            config, geometry, legacy_mode_enabled
+        )
         radiation_field_state = parse_radiation_field_state(
             config,
             t_radiative,
@@ -402,7 +447,7 @@ SCHEMA_DIR = (
         )</div>
 
 <div class="viewcode-block" id="SimulationState.from_csvy"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_csvy">[docs]</a>    @classmethod
-    def from_csvy(cls, config, atom_data=None):
+    def from_csvy(cls, config, atom_data=None, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
 
@@ -480,7 +525,9 @@ SCHEMA_DIR = (
             geometry,
         )
 
-        packet_source = parse_packet_source(config, geometry)
+        packet_source = parse_packet_source(
+            config, geometry, legacy_mode_enabled
+        )
 
         radiation_field_state = parse_csvy_radiation_field_state(
             config, csvy_model_config, csvy_model_data, geometry, packet_source
@@ -504,7 +551,7 @@ SCHEMA_DIR = (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Mar 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 
