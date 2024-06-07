@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../_static/documentation_options.js?v=48c1e2e9"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -705,7 +705,6 @@ def transport_to_dict(transport):
     -------
     transport_dict : dict
     integrator_settings : dict
-    v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
     transport_dict = {
@@ -713,8 +712,6 @@ def transport_to_dict(transport):
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
         &quot;disable_electron_scattering&quot;: transport.disable_electron_scattering,
         &quot;enable_full_relativity&quot;: transport.enable_full_relativity,
-        &quot;enable_reflective_inner_boundary&quot;: transport.enable_reflective_inner_boundary,
-        &quot;inner_boundary_albedo&quot;: transport.inner_boundary_albedo,
         &quot;input_energy&quot;: transport.input_energy,
         &quot;input_mu&quot;: transport.input_mu,
         &quot;input_nu&quot;: transport.input_nu,
@@ -760,13 +757,11 @@ def transport_to_dict(transport):
             transport_dict[key] = [value.cgs.value, value.unit.to_string()]
 
     integrator_settings = transport.integrator_settings
-    v_packet_settings = transport.v_packet_settings
     virtual_spectrum_spawn_range = transport.virtual_spectrum_spawn_range
 
     return (
         transport_dict,
         integrator_settings,
-        v_packet_settings,
         virtual_spectrum_spawn_range,
     )</div>
 
@@ -790,7 +785,6 @@ def store_transport_to_hdf(transport, fname):
         (
             transport_data,
             integrator_settings,
-            v_packet_settings,
             virtual_spectrum_spawn_range,
         ) = transport_to_dict(transport)
 
@@ -807,12 +801,6 @@ def store_transport_to_hdf(transport, fname):
         )
         for key, value in integrator_settings.items():
             integrator_settings_group.create_dataset(key, data=value)
-
-        v_packet_settings_group = transport_group.create_group(
-            &quot;v_packet_settings&quot;
-        )
-        for key, value in v_packet_settings.items():
-            v_packet_settings_group.create_dataset(key, data=value)
 
         virtual_spectrum_spawn_range_group = transport_group.create_group(
             &quot;virtual_spectrum_spawn_range&quot;
@@ -884,7 +872,6 @@ def transport_from_hdf(fname):
 
     # Converting dictionaries to ConfigurationNameSpace
     d[&quot;integrator_settings&quot;] = ConfigurationNameSpace(d[&quot;integrator_settings&quot;])
-    d[&quot;v_packet_settings&quot;] = ConfigurationNameSpace(d[&quot;v_packet_settings&quot;])
     d[&quot;virtual_spectrum_spawn_range&quot;] = ConfigurationNameSpace(
         d[&quot;virtual_spectrum_spawn_range&quot;]
     )
@@ -894,12 +881,9 @@ def transport_from_hdf(fname):
         spectrum_frequency=d[&quot;spectrum_frequency_cgs&quot;],
         virtual_spectrum_spawn_range=d[&quot;virtual_spectrum_spawn_range&quot;],
         disable_electron_scattering=d[&quot;disable_electron_scattering&quot;],
-        enable_reflective_inner_boundary=d[&quot;enable_reflective_inner_boundary&quot;],
         enable_full_relativity=d[&quot;enable_full_relativity&quot;],
-        inner_boundary_albedo=d[&quot;inner_boundary_albedo&quot;],
         line_interaction_type=d[&quot;line_interaction_type&quot;],
         integrator_settings=d[&quot;integrator_settings&quot;],
-        v_packet_settings=d[&quot;v_packet_settings&quot;],
         spectrum_method=d[&quot;spectrum_method&quot;],
         packet_source=d[&quot;packet_source&quot;],
         nthreads=d[&quot;nthreads&quot;],
