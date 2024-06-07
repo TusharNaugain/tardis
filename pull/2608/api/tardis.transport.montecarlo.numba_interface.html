@@ -86,6 +86,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
@@ -168,25 +169,6 @@
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.NumbaModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.numba_interface.</span></span><span class="sig-name descname"><span class="pre">NumbaModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/numba_interface.html#NumbaModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.NumbaModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.numba_interface.NumbaModel" title="tardis.transport.montecarlo.numba_interface.NumbaModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumbaModel</span></code></a></p>
-<p>Model for the Numba mode</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.NumbaModel.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.NumbaModel#7f12d6406090&lt;time_explosion:float64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.NumbaModel.class_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.OpacityState">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.numba_interface.</span></span><span class="sig-name descname"><span class="pre">OpacityState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/numba_interface.html#OpacityState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.OpacityState" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.numba_interface.OpacityState" title="tardis.transport.montecarlo.numba_interface.OpacityState"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpacityState</span></code></a></p>
@@ -210,47 +192,7 @@
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.OpacityState.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.OpacityState#7f12d6405e10&lt;electron_density:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),t_electrons:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),line_list_nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),tau_sobolev:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),transition_probabilities:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),line2macro_level_upper:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),macro_block_references:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),transition_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),destination_level_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),transition_line_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),bf_threshold_list_nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),p_fb_deactivation:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_nu_threshold_mins:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),photo_ion_nu_threshold_maxs:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),photo_ion_block_references:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),chi_bf:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),x_sect:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),phot_nus:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),ff_opacity_factor:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),emissivities:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_activation_idx:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),k_packet_idx:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.OpacityState.class_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.RPacketTracker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.numba_interface.</span></span><span class="sig-name descname"><span class="pre">RPacketTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/numba_interface.html#RPacketTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.RPacketTracker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.numba_interface.RPacketTracker" title="tardis.transport.montecarlo.numba_interface.RPacketTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPacketTracker</span></code></a></p>
-<p>Numba JITCLASS for storing the information for each interaction a RPacket instance undergoes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>length</strong><span class="classifier">int</span></dt><dd><p>Length of the initial array that is instantiated</p>
-</dd>
-<dt><strong>seed</strong><span class="classifier">int</span></dt><dd><p>Seed for each RPacket</p>
-</dd>
-<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
-</dd>
-<dt><strong>status</strong><span class="classifier">int</span></dt><dd><p>Current status of the RPacket as per interactions</p>
-</dd>
-<dt><strong>r</strong><span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
-</dd>
-<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Luminosity of the RPacket</p>
-</dd>
-<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Cosine of the angle made by the direction of movement of the RPacket from its original direction</p>
-</dd>
-<dt><strong>energy</strong><span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket at a particular shell</p>
-</dd>
-<dt><strong>shell_id</strong><span class="classifier">int</span></dt><dd><p>Current Shell No in which the RPacket is present</p>
-</dd>
-<dt><strong>interaction_type: int</strong></dt><dd><p>Type of interaction the rpacket undergoes</p>
-</dd>
-<dt><strong>num_interactions</strong><span class="classifier">int</span></dt><dd><p>Internal counter for the interactions that a particular RPacket undergoes</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.transport.montecarlo.numba_interface.RPacketTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f12d6412d10&lt;length:int64,seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.RPacketTracker.class_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.OpacityState#7fdfd454f490&lt;electron_density:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),t_electrons:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),line_list_nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),tau_sobolev:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),transition_probabilities:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),line2macro_level_upper:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),macro_block_references:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),transition_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),destination_level_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),transition_line_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),bf_threshold_list_nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),p_fb_deactivation:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_nu_threshold_mins:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),photo_ion_nu_threshold_maxs:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),photo_ion_block_references:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),chi_bf:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),x_sect:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),phot_nus:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),ff_opacity_factor:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),emissivities:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_activation_idx:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),k_packet_idx:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.numba_interface.OpacityState.class_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -283,7 +225,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 May 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 
