@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.numba_interface &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -133,7 +132,9 @@ numba_model_spec = [
 ]
 
 
-<div class="viewcode-block" id="NumbaModel"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.NumbaModel">[docs]</a>@jitclass(numba_model_spec)
+<div class="viewcode-block" id="NumbaModel">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.NumbaModel">[docs]</a>
+@jitclass(numba_model_spec)
 class NumbaModel(object):
     def __init__(self, time_explosion):
         &quot;&quot;&quot;
@@ -144,6 +145,7 @@ class NumbaModel(object):
         time_explosion : float
         &quot;&quot;&quot;
         self.time_explosion = time_explosion</div>
+
 
 
 opacity_state_spec = [
@@ -172,7 +174,9 @@ opacity_state_spec = [
 ]
 
 
-<div class="viewcode-block" id="OpacityState"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.OpacityState">[docs]</a>@jitclass(opacity_state_spec)
+<div class="viewcode-block" id="OpacityState">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.OpacityState">[docs]</a>
+@jitclass(opacity_state_spec)
 class OpacityState(object):
     def __init__(
         self,
@@ -249,7 +253,10 @@ class OpacityState(object):
         self.k_packet_idx = k_packet_idx</div>
 
 
-<div class="viewcode-block" id="opacity_state_initialize"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.opacity_state_initialize">[docs]</a>def opacity_state_initialize(
+
+<div class="viewcode-block" id="opacity_state_initialize">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.opacity_state_initialize">[docs]</a>
+def opacity_state_initialize(
     plasma,
     line_interaction_type,
     disable_line_scattering,
@@ -386,10 +393,14 @@ class OpacityState(object):
     )</div>
 
 
-<div class="viewcode-block" id="LineInteractionType"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.LineInteractionType">[docs]</a>class LineInteractionType(IntEnum):
+
+<div class="viewcode-block" id="LineInteractionType">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.LineInteractionType">[docs]</a>
+class LineInteractionType(IntEnum):
     SCATTER = 0
     DOWNBRANCH = 1
     MACROATOM = 2</div>
+
 </pre></div>
 
            </div>
@@ -400,7 +411,7 @@ class OpacityState(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

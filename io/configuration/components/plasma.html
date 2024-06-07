@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plasma Configuration &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -143,7 +142,7 @@
            <div itemprop="articleBody">
              
   <section id="plasma-configuration">
-<span id="plasma-config"></span><h1>Plasma Configuration<a class="headerlink" href="#plasma-configuration" title="Permalink to this heading">¶</a></h1>
+<span id="plasma-config"></span><h1>Plasma Configuration<a class="headerlink" href="#plasma-configuration" title="Link to this heading">¶</a></h1>
 <p>The plasma configuration gives TARDIS the necessary information to calculate the plasma state (see <a class="reference internal" href="../../../physics/setup/plasma/index.html#plasma"><span class="std std-ref">Plasma</span></a>):</p>
 <p><code class="docutils literal notranslate"><span class="pre">inital_t_inner</span></code> is initial temperature (will be updated for most modes of TARDIS — see convergence section) of the black-body on the inner
 boundary. <code class="docutils literal notranslate"><span class="pre">initial_t_rad</span></code> is the initial radiation temperature (will be updated for most modes of TARDIS - see convergence section). For debugging purposes and to compare to
@@ -164,7 +163,7 @@ version of <code class="docutils literal notranslate"><span class="pre">macroato
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">w_epsilon</span></code> describes the dilution factor to use to calculate <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span> that are 0, which
 causes problems with the code (so <span class="math notranslate nohighlight">\(J_\textrm{blue}\)</span> are set to a very small number).</p>
 <section id="continuum-interaction">
-<h2>Continuum Interaction<a class="headerlink" href="#continuum-interaction" title="Permalink to this heading">¶</a></h2>
+<h2>Continuum Interaction<a class="headerlink" href="#continuum-interaction" title="Link to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plasma</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">link_t_rad_t_electron</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="w">    </span><span class="nt">continuum_interaction</span><span class="p">:</span>
@@ -181,7 +180,7 @@ causes problems with the code (so <span class="math notranslate nohighlight">\(J
 <code class="docutils literal notranslate"><span class="pre">enable_adiabatic_cooling</span></code> enables adiabatic cooling.</p>
 </section>
 <section id="nlte">
-<h2>NLTE<a class="headerlink" href="#nlte" title="Permalink to this heading">¶</a></h2>
+<h2>NLTE<a class="headerlink" href="#nlte" title="Link to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nlte</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">coronal_approximation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="w">    </span><span class="nt">classical_nebular</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
@@ -193,7 +192,7 @@ This is useful for debugging with <a class="reference internal" href="../../../r
 normal operations.</p>
 </section>
 <section id="nlte-ionization">
-<h2>NLTE Ionization<a class="headerlink" href="#nlte-ionization" title="Permalink to this heading">¶</a></h2>
+<h2>NLTE Ionization<a class="headerlink" href="#nlte-ionization" title="Link to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plasma</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">nlte_ionization_species</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">H I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">H II</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He I</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">He II</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">nlte_solver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -231,7 +230,7 @@ NLTE excitation is important).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

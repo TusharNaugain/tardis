@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.readers.cmfgen &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -127,7 +126,9 @@ from astropy import units as u
 import warnings
 
 
-<div class="viewcode-block" id="read_cmfgen_density"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_density">[docs]</a>def read_cmfgen_density(fname: str):
+<div class="viewcode-block" id="read_cmfgen_density">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_density">[docs]</a>
+def read_cmfgen_density(fname: str):
     &quot;&quot;&quot;
     Reading a density file of the following structure (example; lines starting with a hash will be ignored):
     The first density describes the mean density in the center of the model and is not used.
@@ -187,7 +188,10 @@ import warnings
     )</div>
 
 
-<div class="viewcode-block" id="read_cmfgen_composition"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_composition">[docs]</a>def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
+
+<div class="viewcode-block" id="read_cmfgen_composition">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_composition">[docs]</a>
+def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
     &quot;&quot;&quot;Read composition from a CMFGEN model file
 
     The CMFGEN file format contains information about the ejecta state in the
@@ -207,6 +211,7 @@ import warnings
     return read_csv_isotope_abundances(
         fname, delimiter=delimiter, skip_columns=4, skip_rows=[0, 2, 3]
     )</div>
+
 </pre></div>
 
            </div>
@@ -217,7 +222,7 @@ import warnings
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

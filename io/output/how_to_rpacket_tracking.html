@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Track the Properties of Real Packets &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -177,7 +176,7 @@
 <div class="admonition note">
 <p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/io/output/how_to_rpacket_tracking.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
 </div><section id="How-to-Track-the-Properties-of-Real-Packets">
-<h1>How to Track the Properties of Real Packets<a class="headerlink" href="#How-to-Track-the-Properties-of-Real-Packets" title="Permalink to this heading">¶</a></h1>
+<h1>How to Track the Properties of Real Packets<a class="headerlink" href="#How-to-Track-the-Properties-of-Real-Packets" title="Link to this heading">¶</a></h1>
 <p><strong>TARDIS</strong> has the functionality to track the properties of the <em>RPackets</em> that are generated when running the Simulation. The <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code> can track all the interactions a packet undergoes &amp; thus keeps a track of the various properties, a packet may have.Currently, the <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code> tracks the properties of all the rpackets in the <em>Last Iteration of the Simulation</em>. It generates a <code class="docutils literal notranslate"><span class="pre">List</span></code> that contains the individual instances of <code class="docutils literal notranslate"><span class="pre">RPacketCollection</span></code>{<code class="docutils literal notranslate"><span class="pre">Numba</span> <span class="pre">JITClass</span></code>}, for
 storing all the interaction properties as listed below.</p>
 <html><body><p>The properties that are tracked are as follows :</p>
@@ -192,7 +191,7 @@ storing all the interaction properties as listed below.</p>
 </li><li><p>interaction_type - Last Interaction type of the packet</p>
 </li></ol></body></html><p>The data can be obtained in two ways i.e. <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code> and <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code>. The <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code> stores all the data for the interaction of the packets in a <code class="docutils literal notranslate"><span class="pre">list</span></code>, so it needs to accessed with a <code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">index</span></code> for each property for a particular <code class="docutils literal notranslate"><span class="pre">rpacket</span></code>. <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code> stores the data in a dataframe. Examples for the same are shown as follows.</p>
 <section id="How-to-Setup-the-Tracking-for-the-RPackets?">
-<h2>How to Setup the Tracking for the RPackets?<a class="headerlink" href="#How-to-Setup-the-Tracking-for-the-RPackets?" title="Permalink to this heading">¶</a></h2>
+<h2>How to Setup the Tracking for the RPackets?<a class="headerlink" href="#How-to-Setup-the-Tracking-for-the-RPackets?" title="Link to this heading">¶</a></h2>
 <p><strong>TARDIS</strong>’ <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code> is configured via the <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file. This functionality of tracking the packets is turned <strong>off</strong>, by default. This is due to that fact that using this property, may slow down the execution time for the Simulation. An example configuration can be seen below for setting up the <em>tracking</em>:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">...</span>
 <span class="nt">montecarlo</span><span class="p">:</span>
@@ -216,7 +215,7 @@ storing all the interaction properties as listed below.</p>
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/home/runner/micromamba/envs/tardis/lib/python3.11/site-packages/setuptools_scm/git.py:162: UserWarning: &#34;/home/runner/work/tardis/tardis&#34; is shallow and may cause errors
+/home/runner/micromamba/envs/tardis/lib/python3.12/site-packages/setuptools_scm/git.py:167: UserWarning: &#34;/home/runner/work/tardis/tardis&#34; is shallow and may cause errors
   warnings.warn(f&#39;&#34;{wd.path}&#34; is shallow and may cause errors&#39;)
 </pre></div></div>
 </div>
@@ -224,13 +223,13 @@ storing all the interaction properties as listed below.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1cda306b9a434634a86f45992475ada2"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4b954dd9ed8a47398968d30520689f4e"}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cfaad209f22c4b8abb48afb77b55cddc"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d45d7aac3f5d4aa19dcf7220e36b1881"}</script></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -346,14 +345,18 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 1 of 20 (<span class="ansi-bold">base.py</span>:395)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/transport/montecarlo/montecarlo_main_loop.py:132: NumbaTypeSafetyWarning: <span class="ansi-bold">unsafe cast from uint64 to int64. Precision may be lost.</span>
+  vpacket_collection = vpacket_collections[i]
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Luminosity emitted   = 7.942e+42 erg / s
@@ -371,44 +374,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_a9548">
+<table id="T_4306d">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_a9548_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_a9548_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_a9548_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_a9548_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_4306d_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_4306d_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_4306d_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_4306d_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_a9548_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_a9548_row0_col0" class="data row0 col0" >9.93e+03 K</td>
-      <td id="T_a9548_row0_col1" class="data row0 col1" >1.01e+04 K</td>
-      <td id="T_a9548_row0_col2" class="data row0 col2" >0.4</td>
-      <td id="T_a9548_row0_col3" class="data row0 col3" >0.507</td>
+      <th id="T_4306d_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_4306d_row0_col0" class="data row0 col0" >9.93e+03 K</td>
+      <td id="T_4306d_row0_col1" class="data row0 col1" >1.01e+04 K</td>
+      <td id="T_4306d_row0_col2" class="data row0 col2" >0.4</td>
+      <td id="T_4306d_row0_col3" class="data row0 col3" >0.507</td>
     </tr>
     <tr>
-      <th id="T_a9548_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_a9548_row1_col0" class="data row1 col0" >9.85e+03 K</td>
-      <td id="T_a9548_row1_col1" class="data row1 col1" >1.02e+04 K</td>
-      <td id="T_a9548_row1_col2" class="data row1 col2" >0.211</td>
-      <td id="T_a9548_row1_col3" class="data row1 col3" >0.197</td>
+      <th id="T_4306d_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_4306d_row1_col0" class="data row1 col0" >9.85e+03 K</td>
+      <td id="T_4306d_row1_col1" class="data row1 col1" >1.02e+04 K</td>
+      <td id="T_4306d_row1_col2" class="data row1 col2" >0.211</td>
+      <td id="T_4306d_row1_col3" class="data row1 col3" >0.197</td>
     </tr>
     <tr>
-      <th id="T_a9548_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_a9548_row2_col0" class="data row2 col0" >9.78e+03 K</td>
-      <td id="T_a9548_row2_col1" class="data row2 col1" >1.01e+04 K</td>
-      <td id="T_a9548_row2_col2" class="data row2 col2" >0.143</td>
-      <td id="T_a9548_row2_col3" class="data row2 col3" >0.117</td>
+      <th id="T_4306d_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_4306d_row2_col0" class="data row2 col0" >9.78e+03 K</td>
+      <td id="T_4306d_row2_col1" class="data row2 col1" >1.01e+04 K</td>
+      <td id="T_4306d_row2_col2" class="data row2 col2" >0.143</td>
+      <td id="T_4306d_row2_col3" class="data row2 col3" >0.117</td>
     </tr>
     <tr>
-      <th id="T_a9548_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_a9548_row3_col0" class="data row3 col0" >9.71e+03 K</td>
-      <td id="T_a9548_row3_col1" class="data row3 col1" >9.87e+03 K</td>
-      <td id="T_a9548_row3_col2" class="data row3 col2" >0.105</td>
-      <td id="T_a9548_row3_col3" class="data row3 col3" >0.0869</td>
+      <th id="T_4306d_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_4306d_row3_col0" class="data row3 col0" >9.71e+03 K</td>
+      <td id="T_4306d_row3_col1" class="data row3 col1" >9.87e+03 K</td>
+      <td id="T_4306d_row3_col2" class="data row3 col2" >0.105</td>
+      <td id="T_4306d_row3_col3" class="data row3 col3" >0.0869</td>
     </tr>
   </tbody>
 </table></div>
@@ -426,7 +429,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 2 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -447,44 +450,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_fba47">
+<table id="T_db4cd">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_fba47_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_fba47_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_fba47_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_fba47_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_db4cd_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_db4cd_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_db4cd_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_db4cd_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fba47_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fba47_row0_col0" class="data row0 col0" >1.01e+04 K</td>
-      <td id="T_fba47_row0_col1" class="data row0 col1" >1.08e+04 K</td>
-      <td id="T_fba47_row0_col2" class="data row0 col2" >0.507</td>
-      <td id="T_fba47_row0_col3" class="data row0 col3" >0.525</td>
+      <th id="T_db4cd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_db4cd_row0_col0" class="data row0 col0" >1.01e+04 K</td>
+      <td id="T_db4cd_row0_col1" class="data row0 col1" >1.08e+04 K</td>
+      <td id="T_db4cd_row0_col2" class="data row0 col2" >0.507</td>
+      <td id="T_db4cd_row0_col3" class="data row0 col3" >0.525</td>
     </tr>
     <tr>
-      <th id="T_fba47_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_fba47_row1_col0" class="data row1 col0" >1.02e+04 K</td>
-      <td id="T_fba47_row1_col1" class="data row1 col1" >1.1e+04 K</td>
-      <td id="T_fba47_row1_col2" class="data row1 col2" >0.197</td>
-      <td id="T_fba47_row1_col3" class="data row1 col3" >0.203</td>
+      <th id="T_db4cd_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_db4cd_row1_col0" class="data row1 col0" >1.02e+04 K</td>
+      <td id="T_db4cd_row1_col1" class="data row1 col1" >1.1e+04 K</td>
+      <td id="T_db4cd_row1_col2" class="data row1 col2" >0.197</td>
+      <td id="T_db4cd_row1_col3" class="data row1 col3" >0.203</td>
     </tr>
     <tr>
-      <th id="T_fba47_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_fba47_row2_col0" class="data row2 col0" >1.01e+04 K</td>
-      <td id="T_fba47_row2_col1" class="data row2 col1" >1.08e+04 K</td>
-      <td id="T_fba47_row2_col2" class="data row2 col2" >0.117</td>
-      <td id="T_fba47_row2_col3" class="data row2 col3" >0.125</td>
+      <th id="T_db4cd_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_db4cd_row2_col0" class="data row2 col0" >1.01e+04 K</td>
+      <td id="T_db4cd_row2_col1" class="data row2 col1" >1.08e+04 K</td>
+      <td id="T_db4cd_row2_col2" class="data row2 col2" >0.117</td>
+      <td id="T_db4cd_row2_col3" class="data row2 col3" >0.125</td>
     </tr>
     <tr>
-      <th id="T_fba47_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_fba47_row3_col0" class="data row3 col0" >9.87e+03 K</td>
-      <td id="T_fba47_row3_col1" class="data row3 col1" >1.05e+04 K</td>
-      <td id="T_fba47_row3_col2" class="data row3 col2" >0.0869</td>
-      <td id="T_fba47_row3_col3" class="data row3 col3" >0.0933</td>
+      <th id="T_db4cd_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_db4cd_row3_col0" class="data row3 col0" >9.87e+03 K</td>
+      <td id="T_db4cd_row3_col1" class="data row3 col1" >1.05e+04 K</td>
+      <td id="T_db4cd_row3_col2" class="data row3 col2" >0.0869</td>
+      <td id="T_db4cd_row3_col3" class="data row3 col3" >0.0933</td>
     </tr>
   </tbody>
 </table></div>
@@ -502,7 +505,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 3 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -523,44 +526,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_53bff">
+<table id="T_3cc1b">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_53bff_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_53bff_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_53bff_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_53bff_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_3cc1b_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_3cc1b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_3cc1b_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_3cc1b_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_53bff_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_53bff_row0_col0" class="data row0 col0" >1.08e+04 K</td>
-      <td id="T_53bff_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_53bff_row0_col2" class="data row0 col2" >0.525</td>
-      <td id="T_53bff_row0_col3" class="data row0 col3" >0.483</td>
+      <th id="T_3cc1b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_3cc1b_row0_col0" class="data row0 col0" >1.08e+04 K</td>
+      <td id="T_3cc1b_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_3cc1b_row0_col2" class="data row0 col2" >0.525</td>
+      <td id="T_3cc1b_row0_col3" class="data row0 col3" >0.483</td>
     </tr>
     <tr>
-      <th id="T_53bff_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_53bff_row1_col0" class="data row1 col0" >1.1e+04 K</td>
-      <td id="T_53bff_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_53bff_row1_col2" class="data row1 col2" >0.203</td>
-      <td id="T_53bff_row1_col3" class="data row1 col3" >0.189</td>
+      <th id="T_3cc1b_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_3cc1b_row1_col0" class="data row1 col0" >1.1e+04 K</td>
+      <td id="T_3cc1b_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_3cc1b_row1_col2" class="data row1 col2" >0.203</td>
+      <td id="T_3cc1b_row1_col3" class="data row1 col3" >0.189</td>
     </tr>
     <tr>
-      <th id="T_53bff_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_53bff_row2_col0" class="data row2 col0" >1.08e+04 K</td>
-      <td id="T_53bff_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_53bff_row2_col2" class="data row2 col2" >0.125</td>
-      <td id="T_53bff_row2_col3" class="data row2 col3" >0.118</td>
+      <th id="T_3cc1b_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_3cc1b_row2_col0" class="data row2 col0" >1.08e+04 K</td>
+      <td id="T_3cc1b_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_3cc1b_row2_col2" class="data row2 col2" >0.125</td>
+      <td id="T_3cc1b_row2_col3" class="data row2 col3" >0.118</td>
     </tr>
     <tr>
-      <th id="T_53bff_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_53bff_row3_col0" class="data row3 col0" >1.05e+04 K</td>
-      <td id="T_53bff_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_53bff_row3_col2" class="data row3 col2" >0.0933</td>
-      <td id="T_53bff_row3_col3" class="data row3 col3" >0.0895</td>
+      <th id="T_3cc1b_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_3cc1b_row3_col0" class="data row3 col0" >1.05e+04 K</td>
+      <td id="T_3cc1b_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_3cc1b_row3_col2" class="data row3 col2" >0.0933</td>
+      <td id="T_3cc1b_row3_col3" class="data row3 col3" >0.0895</td>
     </tr>
   </tbody>
 </table></div>
@@ -578,7 +581,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 4 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -599,44 +602,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_0f13e">
+<table id="T_bc502">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_0f13e_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_0f13e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_0f13e_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_0f13e_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_bc502_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_bc502_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_bc502_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_bc502_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_0f13e_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_0f13e_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_0f13e_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_0f13e_row0_col2" class="data row0 col2" >0.483</td>
-      <td id="T_0f13e_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_bc502_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_bc502_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_bc502_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_bc502_row0_col2" class="data row0 col2" >0.483</td>
+      <td id="T_bc502_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_0f13e_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_0f13e_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_0f13e_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_0f13e_row1_col2" class="data row1 col2" >0.189</td>
-      <td id="T_0f13e_row1_col3" class="data row1 col3" >0.182</td>
+      <th id="T_bc502_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_bc502_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_bc502_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_bc502_row1_col2" class="data row1 col2" >0.189</td>
+      <td id="T_bc502_row1_col3" class="data row1 col3" >0.182</td>
     </tr>
     <tr>
-      <th id="T_0f13e_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_0f13e_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_0f13e_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_0f13e_row2_col2" class="data row2 col2" >0.118</td>
-      <td id="T_0f13e_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_bc502_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_bc502_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_bc502_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_bc502_row2_col2" class="data row2 col2" >0.118</td>
+      <td id="T_bc502_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_0f13e_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_0f13e_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_0f13e_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_0f13e_row3_col2" class="data row3 col2" >0.0895</td>
-      <td id="T_0f13e_row3_col3" class="data row3 col3" >0.0861</td>
+      <th id="T_bc502_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_bc502_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_bc502_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_bc502_row3_col2" class="data row3 col2" >0.0895</td>
+      <td id="T_bc502_row3_col3" class="data row3 col3" >0.0861</td>
     </tr>
   </tbody>
 </table></div>
@@ -654,7 +657,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 5 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -677,44 +680,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_fd900">
+<table id="T_6c288">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_fd900_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_fd900_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_fd900_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_fd900_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_6c288_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_6c288_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_6c288_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_6c288_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fd900_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fd900_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_fd900_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_fd900_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_fd900_row0_col3" class="data row0 col3" >0.479</td>
+      <th id="T_6c288_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_6c288_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_6c288_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_6c288_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_6c288_row0_col3" class="data row0 col3" >0.479</td>
     </tr>
     <tr>
-      <th id="T_fd900_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_fd900_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_fd900_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_fd900_row1_col2" class="data row1 col2" >0.182</td>
-      <td id="T_fd900_row1_col3" class="data row1 col3" >0.178</td>
+      <th id="T_6c288_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_6c288_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_6c288_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_6c288_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_6c288_row1_col3" class="data row1 col3" >0.178</td>
     </tr>
     <tr>
-      <th id="T_fd900_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_fd900_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_fd900_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_fd900_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_fd900_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_6c288_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_6c288_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_6c288_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_6c288_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_6c288_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_fd900_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_fd900_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_fd900_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_fd900_row3_col2" class="data row3 col2" >0.0861</td>
-      <td id="T_fd900_row3_col3" class="data row3 col3" >0.0839</td>
+      <th id="T_6c288_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_6c288_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_6c288_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_6c288_row3_col2" class="data row3 col2" >0.0861</td>
+      <td id="T_6c288_row3_col3" class="data row3 col3" >0.0839</td>
     </tr>
   </tbody>
 </table></div>
@@ -732,7 +735,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 6 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -755,44 +758,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_cab1b">
+<table id="T_7c97f">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_cab1b_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_cab1b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_cab1b_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_cab1b_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_7c97f_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_7c97f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_7c97f_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_7c97f_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_cab1b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_cab1b_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_cab1b_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_cab1b_row0_col2" class="data row0 col2" >0.479</td>
-      <td id="T_cab1b_row0_col3" class="data row0 col3" >0.47</td>
+      <th id="T_7c97f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_7c97f_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_7c97f_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_7c97f_row0_col2" class="data row0 col2" >0.479</td>
+      <td id="T_7c97f_row0_col3" class="data row0 col3" >0.47</td>
     </tr>
     <tr>
-      <th id="T_cab1b_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_cab1b_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_cab1b_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_cab1b_row1_col2" class="data row1 col2" >0.178</td>
-      <td id="T_cab1b_row1_col3" class="data row1 col3" >0.185</td>
+      <th id="T_7c97f_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_7c97f_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_7c97f_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_7c97f_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_7c97f_row1_col3" class="data row1 col3" >0.185</td>
     </tr>
     <tr>
-      <th id="T_cab1b_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_cab1b_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_cab1b_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_cab1b_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_cab1b_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_7c97f_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_7c97f_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_7c97f_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_7c97f_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_7c97f_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_cab1b_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_cab1b_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_cab1b_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_cab1b_row3_col2" class="data row3 col2" >0.0839</td>
-      <td id="T_cab1b_row3_col3" class="data row3 col3" >0.0856</td>
+      <th id="T_7c97f_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_7c97f_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_7c97f_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_7c97f_row3_col2" class="data row3 col2" >0.0839</td>
+      <td id="T_7c97f_row3_col3" class="data row3 col3" >0.0856</td>
     </tr>
   </tbody>
 </table></div>
@@ -810,7 +813,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 7 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -833,44 +836,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_f7d37">
+<table id="T_5f5ad">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_f7d37_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_f7d37_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_f7d37_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_f7d37_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_5f5ad_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_5f5ad_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_5f5ad_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_5f5ad_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f7d37_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f7d37_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_f7d37_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_f7d37_row0_col2" class="data row0 col2" >0.47</td>
-      <td id="T_f7d37_row0_col3" class="data row0 col3" >0.47</td>
+      <th id="T_5f5ad_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_5f5ad_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_5f5ad_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_5f5ad_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_5f5ad_row0_col3" class="data row0 col3" >0.47</td>
     </tr>
     <tr>
-      <th id="T_f7d37_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_f7d37_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_f7d37_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_f7d37_row1_col2" class="data row1 col2" >0.185</td>
-      <td id="T_f7d37_row1_col3" class="data row1 col3" >0.178</td>
+      <th id="T_5f5ad_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_5f5ad_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_5f5ad_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_5f5ad_row1_col2" class="data row1 col2" >0.185</td>
+      <td id="T_5f5ad_row1_col3" class="data row1 col3" >0.178</td>
     </tr>
     <tr>
-      <th id="T_f7d37_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_f7d37_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_f7d37_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_f7d37_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_f7d37_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_5f5ad_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_5f5ad_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_5f5ad_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_5f5ad_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_5f5ad_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_f7d37_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_f7d37_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_f7d37_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_f7d37_row3_col2" class="data row3 col2" >0.0856</td>
-      <td id="T_f7d37_row3_col3" class="data row3 col3" >0.086</td>
+      <th id="T_5f5ad_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_5f5ad_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_5f5ad_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_5f5ad_row3_col2" class="data row3 col2" >0.0856</td>
+      <td id="T_5f5ad_row3_col3" class="data row3 col3" >0.086</td>
     </tr>
   </tbody>
 </table></div>
@@ -888,7 +891,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 8 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -911,44 +914,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_52cb3">
+<table id="T_9f83f">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_52cb3_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_52cb3_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_52cb3_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_52cb3_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_9f83f_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_9f83f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_9f83f_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_9f83f_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_52cb3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_52cb3_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_52cb3_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_52cb3_row0_col2" class="data row0 col2" >0.47</td>
-      <td id="T_52cb3_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_9f83f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9f83f_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_9f83f_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_9f83f_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_9f83f_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_52cb3_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_52cb3_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_52cb3_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_52cb3_row1_col2" class="data row1 col2" >0.178</td>
-      <td id="T_52cb3_row1_col3" class="data row1 col3" >0.175</td>
+      <th id="T_9f83f_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_9f83f_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_9f83f_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_9f83f_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_9f83f_row1_col3" class="data row1 col3" >0.175</td>
     </tr>
     <tr>
-      <th id="T_52cb3_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_52cb3_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_52cb3_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_52cb3_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_52cb3_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_9f83f_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_9f83f_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_9f83f_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_9f83f_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_9f83f_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_52cb3_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_52cb3_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_52cb3_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_52cb3_row3_col2" class="data row3 col2" >0.086</td>
-      <td id="T_52cb3_row3_col3" class="data row3 col3" >0.084</td>
+      <th id="T_9f83f_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_9f83f_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_9f83f_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_9f83f_row3_col2" class="data row3 col2" >0.086</td>
+      <td id="T_9f83f_row3_col3" class="data row3 col3" >0.084</td>
     </tr>
   </tbody>
 </table></div>
@@ -966,7 +969,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 9 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -989,44 +992,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_d838e">
+<table id="T_eb3f4">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_d838e_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_d838e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_d838e_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_d838e_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_eb3f4_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_eb3f4_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_eb3f4_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_eb3f4_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_d838e_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_d838e_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_d838e_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_d838e_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_d838e_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_eb3f4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_eb3f4_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_eb3f4_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_eb3f4_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_eb3f4_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_d838e_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_d838e_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_d838e_row1_col1" class="data row1 col1" >1.15e+04 K</td>
-      <td id="T_d838e_row1_col2" class="data row1 col2" >0.175</td>
-      <td id="T_d838e_row1_col3" class="data row1 col3" >0.17</td>
+      <th id="T_eb3f4_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_eb3f4_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_eb3f4_row1_col1" class="data row1 col1" >1.15e+04 K</td>
+      <td id="T_eb3f4_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_eb3f4_row1_col3" class="data row1 col3" >0.17</td>
     </tr>
     <tr>
-      <th id="T_d838e_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_d838e_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_d838e_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_d838e_row2_col2" class="data row2 col2" >0.111</td>
-      <td id="T_d838e_row2_col3" class="data row2 col3" >0.109</td>
+      <th id="T_eb3f4_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_eb3f4_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_eb3f4_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_eb3f4_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_eb3f4_row2_col3" class="data row2 col3" >0.109</td>
     </tr>
     <tr>
-      <th id="T_d838e_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_d838e_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_d838e_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_d838e_row3_col2" class="data row3 col2" >0.084</td>
-      <td id="T_d838e_row3_col3" class="data row3 col3" >0.0822</td>
+      <th id="T_eb3f4_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_eb3f4_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_eb3f4_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_eb3f4_row3_col2" class="data row3 col2" >0.084</td>
+      <td id="T_eb3f4_row3_col3" class="data row3 col3" >0.0822</td>
     </tr>
   </tbody>
 </table></div>
@@ -1044,7 +1047,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 10 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1065,44 +1068,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_b7616">
+<table id="T_23cbf">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_b7616_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_b7616_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_b7616_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_b7616_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_23cbf_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_23cbf_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_23cbf_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_23cbf_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_b7616_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_b7616_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_b7616_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_b7616_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_b7616_row0_col3" class="data row0 col3" >0.475</td>
+      <th id="T_23cbf_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_23cbf_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_23cbf_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_23cbf_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_23cbf_row0_col3" class="data row0 col3" >0.475</td>
     </tr>
     <tr>
-      <th id="T_b7616_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_b7616_row1_col0" class="data row1 col0" >1.15e+04 K</td>
-      <td id="T_b7616_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_b7616_row1_col2" class="data row1 col2" >0.17</td>
-      <td id="T_b7616_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_23cbf_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_23cbf_row1_col0" class="data row1 col0" >1.15e+04 K</td>
+      <td id="T_23cbf_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_23cbf_row1_col2" class="data row1 col2" >0.17</td>
+      <td id="T_23cbf_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_b7616_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_b7616_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_b7616_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_b7616_row2_col2" class="data row2 col2" >0.109</td>
-      <td id="T_b7616_row2_col3" class="data row2 col3" >0.112</td>
+      <th id="T_23cbf_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_23cbf_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_23cbf_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_23cbf_row2_col2" class="data row2 col2" >0.109</td>
+      <td id="T_23cbf_row2_col3" class="data row2 col3" >0.112</td>
     </tr>
     <tr>
-      <th id="T_b7616_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_b7616_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_b7616_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_b7616_row3_col2" class="data row3 col2" >0.0822</td>
-      <td id="T_b7616_row3_col3" class="data row3 col3" >0.0878</td>
+      <th id="T_23cbf_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_23cbf_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_23cbf_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_23cbf_row3_col2" class="data row3 col2" >0.0822</td>
+      <td id="T_23cbf_row3_col3" class="data row3 col3" >0.0878</td>
     </tr>
   </tbody>
 </table></div>
@@ -1120,7 +1123,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 11 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1143,44 +1146,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_3bb72">
+<table id="T_a5696">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_3bb72_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_3bb72_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_3bb72_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_3bb72_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_a5696_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_a5696_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_a5696_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_a5696_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_3bb72_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_3bb72_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_3bb72_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_3bb72_row0_col2" class="data row0 col2" >0.475</td>
-      <td id="T_3bb72_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_a5696_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a5696_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_a5696_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_a5696_row0_col2" class="data row0 col2" >0.475</td>
+      <td id="T_a5696_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_3bb72_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_3bb72_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_3bb72_row1_col1" class="data row1 col1" >1.12e+04 K</td>
-      <td id="T_3bb72_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_3bb72_row1_col3" class="data row1 col3" >0.184</td>
+      <th id="T_a5696_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_a5696_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_a5696_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_a5696_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_a5696_row1_col3" class="data row1 col3" >0.184</td>
     </tr>
     <tr>
-      <th id="T_3bb72_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_3bb72_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_3bb72_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_3bb72_row2_col2" class="data row2 col2" >0.112</td>
-      <td id="T_3bb72_row2_col3" class="data row2 col3" >0.114</td>
+      <th id="T_a5696_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_a5696_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_a5696_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_a5696_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_a5696_row2_col3" class="data row2 col3" >0.114</td>
     </tr>
     <tr>
-      <th id="T_3bb72_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_3bb72_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_3bb72_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_3bb72_row3_col2" class="data row3 col2" >0.0878</td>
-      <td id="T_3bb72_row3_col3" class="data row3 col3" >0.0859</td>
+      <th id="T_a5696_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_a5696_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_a5696_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_a5696_row3_col2" class="data row3 col2" >0.0878</td>
+      <td id="T_a5696_row3_col3" class="data row3 col3" >0.0859</td>
     </tr>
   </tbody>
 </table></div>
@@ -1198,7 +1201,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 12 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1219,44 +1222,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_4bb30">
+<table id="T_7e49e">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_4bb30_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_4bb30_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_4bb30_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_4bb30_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_7e49e_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_7e49e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_7e49e_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_7e49e_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_4bb30_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_4bb30_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_4bb30_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_4bb30_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_4bb30_row0_col3" class="data row0 col3" >0.467</td>
+      <th id="T_7e49e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_7e49e_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_7e49e_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_7e49e_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_7e49e_row0_col3" class="data row0 col3" >0.467</td>
     </tr>
     <tr>
-      <th id="T_4bb30_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_4bb30_row1_col0" class="data row1 col0" >1.12e+04 K</td>
-      <td id="T_4bb30_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_4bb30_row1_col2" class="data row1 col2" >0.184</td>
-      <td id="T_4bb30_row1_col3" class="data row1 col3" >0.176</td>
+      <th id="T_7e49e_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_7e49e_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_7e49e_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_7e49e_row1_col2" class="data row1 col2" >0.184</td>
+      <td id="T_7e49e_row1_col3" class="data row1 col3" >0.176</td>
     </tr>
     <tr>
-      <th id="T_4bb30_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_4bb30_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_4bb30_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_4bb30_row2_col2" class="data row2 col2" >0.114</td>
-      <td id="T_4bb30_row2_col3" class="data row2 col3" >0.11</td>
+      <th id="T_7e49e_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_7e49e_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_7e49e_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_7e49e_row2_col2" class="data row2 col2" >0.114</td>
+      <td id="T_7e49e_row2_col3" class="data row2 col3" >0.11</td>
     </tr>
     <tr>
-      <th id="T_4bb30_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_4bb30_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_4bb30_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_4bb30_row3_col2" class="data row3 col2" >0.0859</td>
-      <td id="T_4bb30_row3_col3" class="data row3 col3" >0.0821</td>
+      <th id="T_7e49e_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_7e49e_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_7e49e_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_7e49e_row3_col2" class="data row3 col2" >0.0859</td>
+      <td id="T_7e49e_row3_col3" class="data row3 col3" >0.0821</td>
     </tr>
   </tbody>
 </table></div>
@@ -1274,7 +1277,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 13 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1297,44 +1300,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_4a73f">
+<table id="T_93167">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_4a73f_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_4a73f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_4a73f_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_4a73f_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_93167_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_93167_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_93167_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_93167_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_4a73f_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_4a73f_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_4a73f_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_4a73f_row0_col2" class="data row0 col2" >0.467</td>
-      <td id="T_4a73f_row0_col3" class="data row0 col3" >0.466</td>
+      <th id="T_93167_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_93167_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_93167_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_93167_row0_col2" class="data row0 col2" >0.467</td>
+      <td id="T_93167_row0_col3" class="data row0 col3" >0.466</td>
     </tr>
     <tr>
-      <th id="T_4a73f_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_4a73f_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_4a73f_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_4a73f_row1_col2" class="data row1 col2" >0.176</td>
-      <td id="T_4a73f_row1_col3" class="data row1 col3" >0.18</td>
+      <th id="T_93167_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_93167_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_93167_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_93167_row1_col2" class="data row1 col2" >0.176</td>
+      <td id="T_93167_row1_col3" class="data row1 col3" >0.18</td>
     </tr>
     <tr>
-      <th id="T_4a73f_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_4a73f_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_4a73f_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_4a73f_row2_col2" class="data row2 col2" >0.11</td>
-      <td id="T_4a73f_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_93167_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_93167_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_93167_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_93167_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_93167_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_4a73f_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_4a73f_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_4a73f_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_4a73f_row3_col2" class="data row3 col2" >0.0821</td>
-      <td id="T_4a73f_row3_col3" class="data row3 col3" >0.0841</td>
+      <th id="T_93167_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_93167_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_93167_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_93167_row3_col2" class="data row3 col2" >0.0821</td>
+      <td id="T_93167_row3_col3" class="data row3 col3" >0.0841</td>
     </tr>
   </tbody>
 </table></div>
@@ -1352,7 +1355,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 14 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1375,44 +1378,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_f3abb">
+<table id="T_bf872">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_f3abb_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_f3abb_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_f3abb_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_f3abb_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_bf872_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_bf872_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_bf872_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_bf872_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f3abb_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f3abb_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_f3abb_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_f3abb_row0_col2" class="data row0 col2" >0.466</td>
-      <td id="T_f3abb_row0_col3" class="data row0 col3" >0.469</td>
+      <th id="T_bf872_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_bf872_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_bf872_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_bf872_row0_col2" class="data row0 col2" >0.466</td>
+      <td id="T_bf872_row0_col3" class="data row0 col3" >0.469</td>
     </tr>
     <tr>
-      <th id="T_f3abb_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_f3abb_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_f3abb_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_f3abb_row1_col2" class="data row1 col2" >0.18</td>
-      <td id="T_f3abb_row1_col3" class="data row1 col3" >0.182</td>
+      <th id="T_bf872_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_bf872_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_bf872_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_bf872_row1_col2" class="data row1 col2" >0.18</td>
+      <td id="T_bf872_row1_col3" class="data row1 col3" >0.182</td>
     </tr>
     <tr>
-      <th id="T_f3abb_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_f3abb_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_f3abb_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_f3abb_row2_col2" class="data row2 col2" >0.111</td>
-      <td id="T_f3abb_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_bf872_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_bf872_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_bf872_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_bf872_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_bf872_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_f3abb_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_f3abb_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_f3abb_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_f3abb_row3_col2" class="data row3 col2" >0.0841</td>
-      <td id="T_f3abb_row3_col3" class="data row3 col3" >0.0854</td>
+      <th id="T_bf872_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_bf872_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_bf872_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_bf872_row3_col2" class="data row3 col2" >0.0841</td>
+      <td id="T_bf872_row3_col3" class="data row3 col3" >0.0854</td>
     </tr>
   </tbody>
 </table></div>
@@ -1430,7 +1433,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 15 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1453,44 +1456,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_f899c">
+<table id="T_e10ef">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_f899c_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_f899c_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_f899c_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_f899c_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_e10ef_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_e10ef_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_e10ef_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_e10ef_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f899c_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f899c_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_f899c_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_f899c_row0_col2" class="data row0 col2" >0.469</td>
-      <td id="T_f899c_row0_col3" class="data row0 col3" >0.484</td>
+      <th id="T_e10ef_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e10ef_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_e10ef_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_e10ef_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_e10ef_row0_col3" class="data row0 col3" >0.484</td>
     </tr>
     <tr>
-      <th id="T_f899c_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_f899c_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_f899c_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_f899c_row1_col2" class="data row1 col2" >0.182</td>
-      <td id="T_f899c_row1_col3" class="data row1 col3" >0.181</td>
+      <th id="T_e10ef_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_e10ef_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_e10ef_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_e10ef_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_e10ef_row1_col3" class="data row1 col3" >0.181</td>
     </tr>
     <tr>
-      <th id="T_f899c_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_f899c_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_f899c_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_f899c_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_f899c_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_e10ef_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_e10ef_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_e10ef_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_e10ef_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_e10ef_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_f899c_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_f899c_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_f899c_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_f899c_row3_col2" class="data row3 col2" >0.0854</td>
-      <td id="T_f899c_row3_col3" class="data row3 col3" >0.0858</td>
+      <th id="T_e10ef_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_e10ef_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_e10ef_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_e10ef_row3_col2" class="data row3 col2" >0.0854</td>
+      <td id="T_e10ef_row3_col3" class="data row3 col3" >0.0858</td>
     </tr>
   </tbody>
 </table></div>
@@ -1508,7 +1511,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 16 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1531,44 +1534,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_88ea4">
+<table id="T_c1436">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_88ea4_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_88ea4_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_88ea4_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_88ea4_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_c1436_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_c1436_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_c1436_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_c1436_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_88ea4_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_88ea4_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_88ea4_row0_col1" class="data row0 col1" >1.1e+04 K</td>
-      <td id="T_88ea4_row0_col2" class="data row0 col2" >0.484</td>
-      <td id="T_88ea4_row0_col3" class="data row0 col3" >0.472</td>
+      <th id="T_c1436_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c1436_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_c1436_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_c1436_row0_col2" class="data row0 col2" >0.484</td>
+      <td id="T_c1436_row0_col3" class="data row0 col3" >0.472</td>
     </tr>
     <tr>
-      <th id="T_88ea4_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_88ea4_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_88ea4_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_88ea4_row1_col2" class="data row1 col2" >0.181</td>
-      <td id="T_88ea4_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_c1436_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_c1436_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_c1436_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_c1436_row1_col2" class="data row1 col2" >0.181</td>
+      <td id="T_c1436_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_88ea4_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_88ea4_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_88ea4_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_88ea4_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_88ea4_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_c1436_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_c1436_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_c1436_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_c1436_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_c1436_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_88ea4_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_88ea4_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_88ea4_row3_col1" class="data row3 col1" >1.06e+04 K</td>
-      <td id="T_88ea4_row3_col2" class="data row3 col2" >0.0858</td>
-      <td id="T_88ea4_row3_col3" class="data row3 col3" >0.0858</td>
+      <th id="T_c1436_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_c1436_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_c1436_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_c1436_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_c1436_row3_col3" class="data row3 col3" >0.0858</td>
     </tr>
   </tbody>
 </table></div>
@@ -1586,7 +1589,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 17 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1607,44 +1610,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_cd06b">
+<table id="T_5c4cd">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_cd06b_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_cd06b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_cd06b_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_cd06b_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_5c4cd_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_5c4cd_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_5c4cd_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_5c4cd_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_cd06b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_cd06b_row0_col0" class="data row0 col0" >1.1e+04 K</td>
-      <td id="T_cd06b_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_cd06b_row0_col2" class="data row0 col2" >0.472</td>
-      <td id="T_cd06b_row0_col3" class="data row0 col3" >0.468</td>
+      <th id="T_5c4cd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_5c4cd_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_5c4cd_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_5c4cd_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_5c4cd_row0_col3" class="data row0 col3" >0.468</td>
     </tr>
     <tr>
-      <th id="T_cd06b_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_cd06b_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_cd06b_row1_col1" class="data row1 col1" >1.14e+04 K</td>
-      <td id="T_cd06b_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_cd06b_row1_col3" class="data row1 col3" >0.175</td>
+      <th id="T_5c4cd_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_5c4cd_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_5c4cd_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_5c4cd_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_5c4cd_row1_col3" class="data row1 col3" >0.175</td>
     </tr>
     <tr>
-      <th id="T_cd06b_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_cd06b_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_cd06b_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_cd06b_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_cd06b_row2_col3" class="data row2 col3" >0.11</td>
+      <th id="T_5c4cd_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_5c4cd_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_5c4cd_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_5c4cd_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_5c4cd_row2_col3" class="data row2 col3" >0.11</td>
     </tr>
     <tr>
-      <th id="T_cd06b_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_cd06b_row3_col0" class="data row3 col0" >1.06e+04 K</td>
-      <td id="T_cd06b_row3_col1" class="data row3 col1" >1.08e+04 K</td>
-      <td id="T_cd06b_row3_col2" class="data row3 col2" >0.0858</td>
-      <td id="T_cd06b_row3_col3" class="data row3 col3" >0.0816</td>
+      <th id="T_5c4cd_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_5c4cd_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_5c4cd_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_5c4cd_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_5c4cd_row3_col3" class="data row3 col3" >0.0816</td>
     </tr>
   </tbody>
 </table></div>
@@ -1662,7 +1665,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 18 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1685,44 +1688,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_8ff65">
+<table id="T_abd07">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_8ff65_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_8ff65_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_8ff65_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_8ff65_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_abd07_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_abd07_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_abd07_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_abd07_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_8ff65_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_8ff65_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_8ff65_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_8ff65_row0_col2" class="data row0 col2" >0.468</td>
-      <td id="T_8ff65_row0_col3" class="data row0 col3" >0.464</td>
+      <th id="T_abd07_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_abd07_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_abd07_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_abd07_row0_col2" class="data row0 col2" >0.468</td>
+      <td id="T_abd07_row0_col3" class="data row0 col3" >0.464</td>
     </tr>
     <tr>
-      <th id="T_8ff65_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_8ff65_row1_col0" class="data row1 col0" >1.14e+04 K</td>
-      <td id="T_8ff65_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_8ff65_row1_col2" class="data row1 col2" >0.175</td>
-      <td id="T_8ff65_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_abd07_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_abd07_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_abd07_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_abd07_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_abd07_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_8ff65_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_8ff65_row2_col0" class="data row2 col0" >1.11e+04 K</td>
-      <td id="T_8ff65_row2_col1" class="data row2 col1" >1.1e+04 K</td>
-      <td id="T_8ff65_row2_col2" class="data row2 col2" >0.11</td>
-      <td id="T_8ff65_row2_col3" class="data row2 col3" >0.113</td>
+      <th id="T_abd07_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_abd07_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_abd07_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_abd07_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_abd07_row2_col3" class="data row2 col3" >0.113</td>
     </tr>
     <tr>
-      <th id="T_8ff65_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_8ff65_row3_col0" class="data row3 col0" >1.08e+04 K</td>
-      <td id="T_8ff65_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_8ff65_row3_col2" class="data row3 col2" >0.0816</td>
-      <td id="T_8ff65_row3_col3" class="data row3 col3" >0.0848</td>
+      <th id="T_abd07_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_abd07_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_abd07_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_abd07_row3_col2" class="data row3 col2" >0.0816</td>
+      <td id="T_abd07_row3_col3" class="data row3 col3" >0.0848</td>
     </tr>
   </tbody>
 </table></div>
@@ -1740,7 +1743,7 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Starting iteration 19 of 20 (<span class="ansi-bold">base.py</span>:395)
@@ -1763,44 +1766,44 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 <div class="output_area rendered_html docutils container">
 <style type="text/css">
 </style>
-<table id="T_0c26d">
+<table id="T_eec0b">
   <thead>
     <tr>
       <th class="index_name level0" >Shell No.</th>
-      <th id="T_0c26d_level0_col0" class="col_heading level0 col0" >t_rad</th>
-      <th id="T_0c26d_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
-      <th id="T_0c26d_level0_col2" class="col_heading level0 col2" >w</th>
-      <th id="T_0c26d_level0_col3" class="col_heading level0 col3" >next_w</th>
+      <th id="T_eec0b_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_eec0b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_eec0b_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_eec0b_level0_col3" class="col_heading level0 col3" >next_w</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_0c26d_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_0c26d_row0_col0" class="data row0 col0" >1.11e+04 K</td>
-      <td id="T_0c26d_row0_col1" class="data row0 col1" >1.11e+04 K</td>
-      <td id="T_0c26d_row0_col2" class="data row0 col2" >0.464</td>
-      <td id="T_0c26d_row0_col3" class="data row0 col3" >0.466</td>
+      <th id="T_eec0b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_eec0b_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_eec0b_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_eec0b_row0_col2" class="data row0 col2" >0.464</td>
+      <td id="T_eec0b_row0_col3" class="data row0 col3" >0.466</td>
     </tr>
     <tr>
-      <th id="T_0c26d_level0_row1" class="row_heading level0 row1" >5</th>
-      <td id="T_0c26d_row1_col0" class="data row1 col0" >1.13e+04 K</td>
-      <td id="T_0c26d_row1_col1" class="data row1 col1" >1.13e+04 K</td>
-      <td id="T_0c26d_row1_col2" class="data row1 col2" >0.177</td>
-      <td id="T_0c26d_row1_col3" class="data row1 col3" >0.177</td>
+      <th id="T_eec0b_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_eec0b_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_eec0b_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_eec0b_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_eec0b_row1_col3" class="data row1 col3" >0.177</td>
     </tr>
     <tr>
-      <th id="T_0c26d_level0_row2" class="row_heading level0 row2" >10</th>
-      <td id="T_0c26d_row2_col0" class="data row2 col0" >1.1e+04 K</td>
-      <td id="T_0c26d_row2_col1" class="data row2 col1" >1.11e+04 K</td>
-      <td id="T_0c26d_row2_col2" class="data row2 col2" >0.113</td>
-      <td id="T_0c26d_row2_col3" class="data row2 col3" >0.111</td>
+      <th id="T_eec0b_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_eec0b_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_eec0b_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_eec0b_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_eec0b_row2_col3" class="data row2 col3" >0.111</td>
     </tr>
     <tr>
-      <th id="T_0c26d_level0_row3" class="row_heading level0 row3" >15</th>
-      <td id="T_0c26d_row3_col0" class="data row3 col0" >1.07e+04 K</td>
-      <td id="T_0c26d_row3_col1" class="data row3 col1" >1.07e+04 K</td>
-      <td id="T_0c26d_row3_col2" class="data row3 col2" >0.0848</td>
-      <td id="T_0c26d_row3_col3" class="data row3 col3" >0.0853</td>
+      <th id="T_eec0b_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_eec0b_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_eec0b_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_eec0b_row3_col2" class="data row3 col2" >0.0848</td>
+      <td id="T_eec0b_row3_col3" class="data row3 col3" >0.0853</td>
     </tr>
   </tbody>
 </table></div>
@@ -1818,11 +1821,11 @@ Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/ta
 [<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
         /home/runner/work/tardis/tardis/tardis/plasma/properties/radiative_properties.py:93: RuntimeWarning: invalid value encountered in divide
   (g_lower * n_upper) / (g_upper * n_lower)
- (<span class="ansi-bold">warnings.py</span>:109)
+ (<span class="ansi-bold">warnings.py</span>:110)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
         Simulation finished in 19 iterations
-        Simulation took 71.42 s
+        Simulation took 78.80 s
  (<span class="ansi-bold">base.py</span>:473)
 [<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
 
@@ -1886,10 +1889,10 @@ numba.typed.typedlist.List
 </pre></div></div>
 </div>
 <section id="Accessing-properties-through-rpacket_tracker">
-<h3>Accessing properties through <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code><a class="headerlink" href="#Accessing-properties-through-rpacket_tracker" title="Permalink to this heading">¶</a></h3>
+<h3>Accessing properties through <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code><a class="headerlink" href="#Accessing-properties-through-rpacket_tracker" title="Link to this heading">¶</a></h3>
 <p>To access these different properties, we may consider the following examples for the <code class="docutils literal notranslate"><span class="pre">rpacket_tracker</span></code>: In this Example, we are trying to access the properties of the packet at index <code class="docutils literal notranslate"><span class="pre">10</span></code>.In a similar way, we can check for any property for any packet in the range of packets for the last iteration.</p>
 <section id="Accessing-the-index-property-for-the-packet-with-index-=-10-:">
-<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">index</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-index-property-for-the-packet-with-index-=-10-:" title="Permalink to this heading">¶</a></h4>
+<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">index</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-index-property-for-the-packet-with-index-=-10-:" title="Link to this heading">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -1909,7 +1912,7 @@ numba.typed.typedlist.List
 </div>
 </section>
 <section id="Accessing-the-seed-property-for-the-packet-with-index-=-10-:">
-<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">seed</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-seed-property-for-the-packet-with-index-=-10-:" title="Permalink to this heading">¶</a></h4>
+<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">seed</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-seed-property-for-the-packet-with-index-=-10-:" title="Link to this heading">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -1929,7 +1932,7 @@ numba.typed.typedlist.List
 </div>
 </section>
 <section id="Accessing-the-status-property-for-the-packet-with-index-=-10-:">
-<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">status</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-status-property-for-the-packet-with-index-=-10-:" title="Permalink to this heading">¶</a></h4>
+<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">status</span></code> property for the packet with index = 10 :<a class="headerlink" href="#Accessing-the-status-property-for-the-packet-with-index-=-10-:" title="Link to this heading">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
@@ -1980,7 +1983,7 @@ is used to compute the size and expand the array such that the properties are ab
 </section>
 </section>
 <section id="Accessing-properties-with-rpacket_tracker_df">
-<h3>Accessing properties with <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code><a class="headerlink" href="#Accessing-properties-with-rpacket_tracker_df" title="Permalink to this heading">¶</a></h3>
+<h3>Accessing properties with <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code><a class="headerlink" href="#Accessing-properties-with-rpacket_tracker_df" title="Link to this heading">¶</a></h3>
 <p>Also, the <code class="docutils literal notranslate"><span class="pre">tracked</span></code> properties can be accessed via the <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">sim.transport</span></code> object.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -2199,7 +2202,7 @@ pandas.core.frame.DataFrame
 </div>
 <p>To access these different properties in the dataframe, we may consider the following examples for the <code class="docutils literal notranslate"><span class="pre">rpacket_tracker_df</span></code>: In this Example, we are trying to access the properties of the packet at index <code class="docutils literal notranslate"><span class="pre">10</span></code>.In a similar way, we can check for any property for any packet in the range of packets for the last iteration.</p>
 <section id="Accessing-all-the-properties-for-the-packet-with-index-=-10:">
-<h4>Accessing all the properties for the packet with index = 10:<a class="headerlink" href="#Accessing-all-the-properties-for-the-packet-with-index-=-10:" title="Permalink to this heading">¶</a></h4>
+<h4>Accessing all the properties for the packet with index = 10:<a class="headerlink" href="#Accessing-all-the-properties-for-the-packet-with-index-=-10:" title="Link to this heading">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
@@ -2842,7 +2845,7 @@ pandas.core.frame.DataFrame
 </div>
 </section>
 <section id="Accessing-the-energy-property-for-the-packet-with-index-=-10:">
-<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">energy</span></code> property for the packet with index = 10:<a class="headerlink" href="#Accessing-the-energy-property-for-the-packet-with-index-=-10:" title="Permalink to this heading">¶</a></h4>
+<h4>Accessing the <code class="docutils literal notranslate"><span class="pre">energy</span></code> property for the packet with index = 10:<a class="headerlink" href="#Accessing-the-energy-property-for-the-packet-with-index-=-10:" title="Link to this heading">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
@@ -2951,7 +2954,7 @@ Name: energy, dtype: float64
 </div>
 <p>Thus, all other properties (<code class="docutils literal notranslate"><span class="pre">status</span></code>, <code class="docutils literal notranslate"><span class="pre">seed</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">nu</span></code>, <code class="docutils literal notranslate"><span class="pre">mu</span></code>, <code class="docutils literal notranslate"><span class="pre">shell_id</span></code>,<code class="docutils literal notranslate"><span class="pre">interaction_type</span></code>) can be accessed accordingly.</p>
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"82a71905d7eb441d8198b0d38cf766ee": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "f31cc3358bcb4cb4a151ebf6bc5ee359": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "c019f467ce084ea9acabf709cf0e1a8a": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_82a71905d7eb441d8198b0d38cf766ee", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_f31cc3358bcb4cb4a151ebf6bc5ee359", "value": 1.0}}, "15145d4f6c0a41849dcfa1b776f68847": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "51a1a46b727c47348d4479b45840e63f": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "9fbe622d85944373bf42b99539cce26c": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_15145d4f6c0a41849dcfa1b776f68847", "placeholder": "\u200b", "style": "IPY_MODEL_51a1a46b727c47348d4479b45840e63f", "value": "Iterations:"}}, "7332ee98d3dd485296fd5aaa27abb27a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cca433a5a78c4d34bfa858192064f065": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6183c129a4bf4921a211ca2a9b3eca62": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_7332ee98d3dd485296fd5aaa27abb27a", "placeholder": "\u200b", "style": "IPY_MODEL_cca433a5a78c4d34bfa858192064f065", "value": "20/? [01:19&lt;00:00,  2.39s/it]"}}, "7541b66fa89c4b4d9cdadc660b3c387a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1cda306b9a434634a86f45992475ada2": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_9fbe622d85944373bf42b99539cce26c", "IPY_MODEL_c019f467ce084ea9acabf709cf0e1a8a", "IPY_MODEL_6183c129a4bf4921a211ca2a9b3eca62"], "layout": "IPY_MODEL_7541b66fa89c4b4d9cdadc660b3c387a"}}, "e5f1b244e05d444b8d14ccebf96887ef": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "2c882dc3b77043c094d978039954c998": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "26e125f1bacd4acab319b5b3d3e99dc8": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e5f1b244e05d444b8d14ccebf96887ef", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_2c882dc3b77043c094d978039954c998", "value": 0.0}}, "8fb8124b1ee64b19b0ef6388010bb555": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2ccb459238e242b898a97437f73f73ac": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b0d8df026fd8488db778bdd9ee0b021f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8fb8124b1ee64b19b0ef6388010bb555", "placeholder": "\u200b", "style": "IPY_MODEL_2ccb459238e242b898a97437f73f73ac", "value": "Packets:   "}}, "1326a21b67f5443b9f2cecb8fe00ecf9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "712bdf43d8e6495f8587ad824dbcf46e": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dbc23a15600746c9a3b5979617493af7": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1326a21b67f5443b9f2cecb8fe00ecf9", "placeholder": "\u200b", "style": "IPY_MODEL_712bdf43d8e6495f8587ad824dbcf46e", "value": "0/? [01:19&lt;?, ?it/s]"}}, "045ca4eda41c484fb9e0fbca16c66d57": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cfaad209f22c4b8abb48afb77b55cddc": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b0d8df026fd8488db778bdd9ee0b021f", "IPY_MODEL_26e125f1bacd4acab319b5b3d3e99dc8", "IPY_MODEL_dbc23a15600746c9a3b5979617493af7"], "layout": "IPY_MODEL_045ca4eda41c484fb9e0fbca16c66d57"}}, "3a9df2b824f740098635fe37c7edddca": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3456e950d65542008ef2e01a61e170b8": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_3a9df2b824f740098635fe37c7edddca", "msg_id": "", "outputs": []}}, "8817657832fd476fa7ea1d41643b5b72": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "302a6a4e1e3245e1ad64eac7860e9bc4": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_8817657832fd476fa7ea1d41643b5b72", "msg_id": "", "outputs": []}}}, "version_major": 2, "version_minor": 0}
+{"state": {"1125f986c30b42debab3256a1a31804f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "14ed29b9648a46008bf3b019870dad75": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "40f8e88d17cf448d87d1f0273c4f3503": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1125f986c30b42debab3256a1a31804f", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_14ed29b9648a46008bf3b019870dad75", "value": 1.0}}, "2d4f42c1e9134ae78c8c0593805f41d1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b7483ee8c8ab4f2392ed444b84ebbdcc": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f91f98766c4d433d86a1db207b2c674c": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2d4f42c1e9134ae78c8c0593805f41d1", "placeholder": "\u200b", "style": "IPY_MODEL_b7483ee8c8ab4f2392ed444b84ebbdcc", "value": "Iterations:"}}, "523d45dd9f8641d5bfc01318c0c2bc38": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d87c1af4ea4949b3a5e2ba488bc9e632": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "cff2a6a4cb3f42e5a016eb6abb4b222a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_523d45dd9f8641d5bfc01318c0c2bc38", "placeholder": "\u200b", "style": "IPY_MODEL_d87c1af4ea4949b3a5e2ba488bc9e632", "value": "20/?\u2007[01:28&lt;00:00,\u2007\u20072.52s/it]"}}, "4be48c86c667432f93b11450a1800321": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4b954dd9ed8a47398968d30520689f4e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_f91f98766c4d433d86a1db207b2c674c", "IPY_MODEL_40f8e88d17cf448d87d1f0273c4f3503", "IPY_MODEL_cff2a6a4cb3f42e5a016eb6abb4b222a"], "layout": "IPY_MODEL_4be48c86c667432f93b11450a1800321"}}, "f28c6cee86dd488b944107b8c7b39771": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "8e202f1925384c2098d17d93a60a47f0": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "eba39f12783546fe83194e7a54d7c07f": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f28c6cee86dd488b944107b8c7b39771", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_8e202f1925384c2098d17d93a60a47f0", "value": 0.0}}, "5069ec3c076d457c92dcef6a3861ea8e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4c063976fa8248bf8c36ed6cb98952ce": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4af9380620cb459d9b13047b6108bb16": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_5069ec3c076d457c92dcef6a3861ea8e", "placeholder": "\u200b", "style": "IPY_MODEL_4c063976fa8248bf8c36ed6cb98952ce", "value": "Packets:\u2007\u2007\u2007"}}, "ca9fd2b6c2134ee1a6bb91ba3b462d27": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4898aa1e18304d1b8f4f1060b82a05cb": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d59c47f9ab2e4e92bd168c4458438686": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ca9fd2b6c2134ee1a6bb91ba3b462d27", "placeholder": "\u200b", "style": "IPY_MODEL_4898aa1e18304d1b8f4f1060b82a05cb", "value": "0/?\u2007[01:28&lt;?,\u2007?it/s]"}}, "e9e00403da934c9b82730f7b5c97f5a0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d45d7aac3f5d4aa19dcf7220e36b1881": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_4af9380620cb459d9b13047b6108bb16", "IPY_MODEL_eba39f12783546fe83194e7a54d7c07f", "IPY_MODEL_d59c47f9ab2e4e92bd168c4458438686"], "layout": "IPY_MODEL_e9e00403da934c9b82730f7b5c97f5a0"}}, "9ef53df67a5f4a4bac618610fa11f31d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e89d60e434e446079b8ca13c3c028f14": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_9ef53df67a5f4a4bac618610fa11f31d", "msg_id": "", "outputs": []}}, "eb000f2f031a4f1baaa168f496709ff1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e299c506d34f4c9cb5da1e58489a03e4": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_eb000f2f031a4f1baaa168f496709ff1", "msg_id": "", "outputs": []}}}, "version_major": 2, "version_minor": 0}
 </script></section>
 </section>
 </section>
@@ -2969,7 +2972,7 @@ Name: energy, dtype: float64
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.formal_integral module &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -146,16 +145,16 @@
            <div itemprop="articleBody">
              
   <section id="module-tardis.transport.montecarlo.formal_integral">
-<span id="tardis-transport-montecarlo-formal-integral-module"></span><h1>tardis.transport.montecarlo.formal_integral module<a class="headerlink" href="#module-tardis.transport.montecarlo.formal_integral" title="Permalink to this heading">¶</a></h1>
+<span id="tardis-transport-montecarlo-formal-integral-module"></span><h1>tardis.transport.montecarlo.formal_integral module<a class="headerlink" href="#module-tardis.transport.montecarlo.formal_integral" title="Link to this heading">¶</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.BoundsError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">BoundsError</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#BoundsError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.BoundsError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">BoundsError</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#BoundsError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.BoundsError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">FormalIntegrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">FormalIntegrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class containing the formal integrator.</p>
 <p>If there is a NVIDIA CUDA GPU available,
@@ -165,7 +164,7 @@ choose the first one that it sees. You can
 read more about selecting different GPUs on
 Numba’s CUDA documentation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>model</strong><span class="classifier">tardis.model.SimulationState</span></dt><dd></dd>
 <dt><strong>plasma</strong><span class="classifier">tardis.plasma.BasePlasma</span></dt><dd></dd>
@@ -176,12 +175,12 @@ Numba’s CUDA documentation.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.calculate_spectrum">
-<span class="sig-name descname"><span class="pre">calculate_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate_shells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raises</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.calculate_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.calculate_spectrum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolate_shells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raises</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.calculate_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.calculate_spectrum" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.check">
-<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raises</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raises</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.check" title="Link to this definition">¶</a></dt>
 <dd><p>A method that determines if the formal integral can be performed with
 the current configuration settings</p>
 <p>The function returns False if the configuration conflicts with the
@@ -191,36 +190,36 @@ IntegrationError is raised instead</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.formal_integral">
-<span class="sig-name descname"><span class="pre">formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.formal_integral" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.formal_integral" title="Link to this definition">¶</a></dt>
 <dd><p>Do the formal integral with the numba
 routines</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects">
-<span class="sig-name descname"><span class="pre">generate_numba_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.generate_numba_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_numba_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.generate_numba_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects" title="Link to this definition">¶</a></dt>
 <dd><p>instantiate the numba interface objects
 needed for computing the formal integral</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.interpolate_integrator_quantities">
-<span class="sig-name descname"><span class="pre">interpolate_integrator_quantities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jredlu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jbluelu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_dot_u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.interpolate_integrator_quantities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.interpolate_integrator_quantities" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">interpolate_integrator_quantities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jredlu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jbluelu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_dot_u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.interpolate_integrator_quantities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.interpolate_integrator_quantities" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.FormalIntegrator.make_source_function">
-<span class="sig-name descname"><span class="pre">make_source_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.make_source_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.make_source_function" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">make_source_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#FormalIntegrator.make_source_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.FormalIntegrator.make_source_function" title="Link to this definition">¶</a></dt>
 <dd><p>Calculates the source function using the line absorption rate estimator <code class="xref py py-obj docutils literal notranslate"><span class="pre">Edotlu_estimator</span></code></p>
 <p>Formally it calculates the expression ( 1 - exp(-tau_ul) ) S_ul but this product is what we need later,
 so there is no need to factor out the source function explicitly.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>model</strong><span class="classifier">tardis.model.SimulationState</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>Numpy array containing ( 1 - exp(-tau_ul) ) S_ul ordered by wavelength of the transition u -&gt; l</dt><dd></dd>
 </dl>
@@ -232,19 +231,19 @@ so there is no need to factor out the source function explicitly.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.IntegrationError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">IntegrationError</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#IntegrationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.IntegrationError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">IntegrationError</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#IntegrationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.IntegrationError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">NumbaFormalIntegrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#NumbaFormalIntegrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">NumbaFormalIntegrator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#NumbaFormalIntegrator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Helper class for performing the formal integral
 with numba.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator.formal_integral">
-<span class="sig-name descname"><span class="pre">formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jred_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jblue_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#NumbaFormalIntegrator.formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator.formal_integral" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jred_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jblue_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#NumbaFormalIntegrator.formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator.formal_integral" title="Link to this definition">¶</a></dt>
 <dd><p>Simple wrapper for the numba implementation of the formal integral</p>
 </dd></dl>
 
@@ -252,26 +251,26 @@ with numba.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.calculate_p_values">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">calculate_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#calculate_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.calculate_p_values" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">calculate_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#calculate_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.calculate_p_values" title="Link to this definition">¶</a></dt>
 <dd><p>This can probably be replaced with a simpler function</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.calculate_z">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">calculate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#calculate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.calculate_z" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">calculate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#calculate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.calculate_z" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate distance to p line</p>
 <p>Calculate half of the length of the p-line inside a shell
 of radius r in terms of unit length (c * t_exp).
 If shell and p-line do not intersect, return 0.</p>
 <dl class="simple">
 <dt>Inputs:</dt><dd><dl class="field-list simple">
-<dt class="field-odd">r</dt>
+<dt class="field-odd">r<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(double) radius of the shell</p>
 </dd>
-<dt class="field-even">p</dt>
+<dt class="field-even">p<span class="colon">:</span></dt>
 <dd class="field-even"><p>(double) distance of the p-line to the center of the supernova</p>
 </dd>
-<dt class="field-odd">inv_t</dt>
+<dt class="field-odd">inv_t<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(double) inverse time_explosio is needed to norm to unit-length</p>
 </dd>
 </dl>
@@ -281,10 +280,10 @@ If shell and p-line do not intersect, return 0.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.intensity_black_body">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">intensity_black_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#intensity_black_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.intensity_black_body" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">intensity_black_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#intensity_black_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.intensity_black_body" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the blackbody intensity.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nu</strong><span class="classifier">float64</span></dt><dd><p>frequency</p>
 </dd>
@@ -292,7 +291,7 @@ If shell and p-line do not intersect, return 0.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float64</dt><dd></dd>
 </dl>
@@ -302,17 +301,17 @@ If shell and p-line do not intersect, return 0.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.line_search">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">line_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_insert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_lines</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#line_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.line_search" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">line_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_insert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_lines</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#line_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.line_search" title="Link to this definition">¶</a></dt>
 <dd><p>Insert a value in to an array of line frequencies</p>
 <dl class="simple">
 <dt>Inputs:</dt><dd><dl class="field-list simple">
-<dt class="field-odd">nu</dt>
+<dt class="field-odd">nu<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(array) line frequencies</p>
 </dd>
-<dt class="field-even">nu_insert</dt>
+<dt class="field-even">nu_insert<span class="colon">:</span></dt>
 <dd class="field-even"><p>(int) value of nu key</p>
 </dd>
-<dt class="field-odd">number_of_lines</dt>
+<dt class="field-odd">number_of_lines<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(int) number of lines in the line list</p>
 </dd>
 </dl>
@@ -330,10 +329,10 @@ If shell and p-line do not intersect, return 0.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.numba_formal_integral">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">numba_formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jred_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jblue_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#numba_formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.numba_formal_integral" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">numba_formal_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inu_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att_S_ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jred_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jblue_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#numba_formal_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.numba_formal_integral" title="Link to this definition">¶</a></dt>
 <dd><p>model, plasma, and estimator are the numba variants</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>L</strong><span class="classifier">float64 array</span></dt><dd><p>integrated luminosities</p>
 </dd>
@@ -347,20 +346,20 @@ frequency x p-ray grid</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.populate_z">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">populate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oshell_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#populate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.populate_z" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">populate_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oshell_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#populate_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.populate_z" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate p line intersections</p>
 <p>This function calculates the intersection points of the p-line with
 each shell</p>
 <dl class="simple">
 <dt>Inputs:</dt><dd><dl class="field-list simple">
-<dt class="field-odd">p</dt>
+<dt class="field-odd">p<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(double) distance of the integration line to the center</p>
 </dd>
-<dt class="field-even">oz</dt>
+<dt class="field-even">oz<span class="colon">:</span></dt>
 <dd class="field-even"><p>(array of doubles) will be set with z values. the array is truncated
 by the value <code class="xref py py-obj docutils literal notranslate"><span class="pre">1</span></code>.</p>
 </dd>
-<dt class="field-odd">oshell_id</dt>
+<dt class="field-odd">oshell_id<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(int64) will be set with the corresponding shell_ids</p>
 </dd>
 </dl>
@@ -370,20 +369,20 @@ by the value <code class="xref py py-obj docutils literal notranslate"><span cla
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.reverse_binary_search">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">reverse_binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_insert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#reverse_binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.reverse_binary_search" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">reverse_binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_insert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#reverse_binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.reverse_binary_search" title="Link to this definition">¶</a></dt>
 <dd><p>Look for a place to insert a value in an inversely sorted float array.</p>
 <dl class="simple">
 <dt>Inputs:</dt><dd><dl class="field-list simple">
-<dt class="field-odd">x</dt>
+<dt class="field-odd">x<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(array) an inversely (largest to lowest) sorted float array</p>
 </dd>
-<dt class="field-even">x_insert</dt>
+<dt class="field-even">x_insert<span class="colon">:</span></dt>
 <dd class="field-even"><p>(value) a value to insert</p>
 </dd>
-<dt class="field-odd">imin</dt>
+<dt class="field-odd">imin<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(int) lower bound</p>
 </dd>
-<dt class="field-even">imax</dt>
+<dt class="field-even">imax<span class="colon">:</span></dt>
 <dd class="field-even"><p>(int) upper bound</p>
 </dd>
 </dl>
@@ -395,7 +394,7 @@ by the value <code class="xref py py-obj docutils literal notranslate"><span cla
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.formal_integral.trapezoid_integration">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">trapezoid_integration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#trapezoid_integration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.trapezoid_integration" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.formal_integral.</span></span><span class="sig-name descname"><span class="pre">trapezoid_integration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/formal_integral.html#trapezoid_integration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.formal_integral.trapezoid_integration" title="Link to this definition">¶</a></dt>
 <dd><p>in the future, let’s just replace
 this with the numpy trapz
 since it is numba compatable</p>
@@ -415,7 +414,7 @@ since it is numba compatable</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

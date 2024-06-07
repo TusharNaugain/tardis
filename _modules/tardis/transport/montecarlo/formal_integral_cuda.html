@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.formal_integral_cuda &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -130,7 +129,9 @@ KB_CGS = 1.3806488e-16
 H_CGS = 6.62606957e-27
 
 
-<div class="viewcode-block" id="cuda_formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.cuda_formal_integral">[docs]</a>@cuda.jit
+<div class="viewcode-block" id="cuda_formal_integral">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.cuda_formal_integral">[docs]</a>
+@cuda.jit
 def cuda_formal_integral(
     r_inner,
     r_outer,
@@ -328,7 +329,10 @@ def cuda_formal_integral(
     )</div>
 
 
-<div class="viewcode-block" id="CudaFormalIntegrator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.CudaFormalIntegrator">[docs]</a>class CudaFormalIntegrator(object):
+
+<div class="viewcode-block" id="CudaFormalIntegrator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.CudaFormalIntegrator">[docs]</a>
+class CudaFormalIntegrator(object):
     &quot;&quot;&quot;
     Helper class for performing the formal integral
     with CUDA.
@@ -340,7 +344,9 @@ def cuda_formal_integral(
         self.plasma = plasma
         self.points = points
 
-<div class="viewcode-block" id="CudaFormalIntegrator.formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.CudaFormalIntegrator.formal_integral">[docs]</a>    def formal_integral(
+<div class="viewcode-block" id="CudaFormalIntegrator.formal_integral">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.CudaFormalIntegrator.formal_integral">[docs]</a>
+    def formal_integral(
         self,
         iT,
         inu,
@@ -401,10 +407,14 @@ def cuda_formal_integral(
             shell_id,
         )
 
-        return L, I_nu</div></div>
+        return L, I_nu</div>
+</div>
 
 
-<div class="viewcode-block" id="populate_z_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.populate_z_cuda">[docs]</a>@cuda.jit(device=True)
+
+<div class="viewcode-block" id="populate_z_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.populate_z_cuda">[docs]</a>
+@cuda.jit(device=True)
 def populate_z_cuda(r_inner, r_outer, time_explosion, p, oz, oshell_id):
     &quot;&quot;&quot;
     Calculate p line intersections
@@ -460,7 +470,10 @@ def populate_z_cuda(r_inner, r_outer, time_explosion, p, oz, oshell_id):
         return 2 * (N - offset)</div>
 
 
-<div class="viewcode-block" id="calculate_z_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.calculate_z_cuda">[docs]</a>@cuda.jit(device=True)
+
+<div class="viewcode-block" id="calculate_z_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.calculate_z_cuda">[docs]</a>
+@cuda.jit(device=True)
 def calculate_z_cuda(r, p, inv_t):
     &quot;&quot;&quot;
     Calculate distance to p line
@@ -488,7 +501,10 @@ def calculate_z_cuda(r, p, inv_t):
         return 0.0</div>
 
 
-<div class="viewcode-block" id="BoundsError"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.BoundsError">[docs]</a>class BoundsError(IndexError):
+
+<div class="viewcode-block" id="BoundsError">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.BoundsError">[docs]</a>
+class BoundsError(IndexError):
     &quot;&quot;&quot;
     Used to check bounds in reverse
     binary search
@@ -497,7 +513,10 @@ def calculate_z_cuda(r, p, inv_t):
     pass</div>
 
 
-<div class="viewcode-block" id="line_search_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.line_search_cuda">[docs]</a>@cuda.jit(device=True)
+
+<div class="viewcode-block" id="line_search_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.line_search_cuda">[docs]</a>
+@cuda.jit(device=True)
 def line_search_cuda(nu, nu_insert, number_of_lines):
     &quot;&quot;&quot;
     Insert a value in to an array of line frequencies
@@ -527,8 +546,11 @@ def line_search_cuda(nu, nu_insert, number_of_lines):
     return result</div>
 
 
+
 # Credit for this computation is https://github.com/numba/numba/blob/3fd158f79a12ac5276bc5a72c2404464487c91f0/numba/np/arraymath.py#L3542
-<div class="viewcode-block" id="reverse_binary_search_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.reverse_binary_search_cuda">[docs]</a>@cuda.jit(device=True)
+<div class="viewcode-block" id="reverse_binary_search_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.reverse_binary_search_cuda">[docs]</a>
+@cuda.jit(device=True)
 def reverse_binary_search_cuda(x, x_insert, imin, imax):
     &quot;&quot;&quot;
     Find indicies where elements should be inserted
@@ -572,7 +594,10 @@ def reverse_binary_search_cuda(x, x_insert, imin, imax):
     return len(x) - 1 - lo</div>
 
 
-<div class="viewcode-block" id="trapezoid_integration_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.trapezoid_integration_cuda">[docs]</a>@cuda.jit(device=True)
+
+<div class="viewcode-block" id="trapezoid_integration_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.trapezoid_integration_cuda">[docs]</a>
+@cuda.jit(device=True)
 def trapezoid_integration_cuda(arr, dx):
     &quot;&quot;&quot;
     Computes the approximation of the
@@ -592,7 +617,10 @@ def trapezoid_integration_cuda(arr, dx):
     return result * (dx / 2.0)</div>
 
 
-<div class="viewcode-block" id="intensity_black_body_cuda"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.intensity_black_body_cuda">[docs]</a>@cuda.jit(device=True)
+
+<div class="viewcode-block" id="intensity_black_body_cuda">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.intensity_black_body_cuda">[docs]</a>
+@cuda.jit(device=True)
 def intensity_black_body_cuda(nu, temperature):
     &quot;&quot;&quot;
     Calculate the blackbody intensity.
@@ -615,7 +643,10 @@ def intensity_black_body_cuda(nu, temperature):
     return coefficient * nu * nu * nu / (math.exp(H_CGS * nu * beta_rad) - 1)</div>
 
 
-<div class="viewcode-block" id="calculate_p_values"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.calculate_p_values">[docs]</a>def calculate_p_values(R_max, N):
+
+<div class="viewcode-block" id="calculate_p_values">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.calculate_p_values">[docs]</a>
+def calculate_p_values(R_max, N):
     &quot;&quot;&quot;
     Calculates the p values of N
 
@@ -630,6 +661,7 @@ def intensity_black_body_cuda(nu, temperature):
     &quot;&quot;&quot;
 
     return np.arange(N).astype(np.float64) * R_max / (N - 1)</div>
+
 </pre></div>
 
            </div>
@@ -640,7 +672,7 @@ def intensity_black_body_cuda(nu, temperature):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

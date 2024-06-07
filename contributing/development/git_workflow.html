@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>General Workflow to add a new feature &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -158,7 +157,7 @@
            <div itemprop="articleBody">
              
   <section id="general-workflow-to-add-a-new-feature">
-<span id="development-workflow"></span><h1>General Workflow to add a new feature<a class="headerlink" href="#general-workflow-to-add-a-new-feature" title="Permalink to this heading">¶</a></h1>
+<span id="development-workflow"></span><h1>General Workflow to add a new feature<a class="headerlink" href="#general-workflow-to-add-a-new-feature" title="Link to this heading">¶</a></h1>
 <p>In TARDIS, we aim to stick to a test driven development. This uses the testing
 framework extensively, starting with a test that shows this feature lacking via
 the implementation of the feature until the merging of the code to the main
@@ -181,11 +180,11 @@ already existing feature, and that is great! (unlikely)</p></li>
 </ul>
 </section>
 <section id="preparation-and-working-with-git">
-<h1>Preparation and Working with Git<a class="headerlink" href="#preparation-and-working-with-git" title="Permalink to this heading">¶</a></h1>
+<h1>Preparation and Working with Git<a class="headerlink" href="#preparation-and-working-with-git" title="Link to this heading">¶</a></h1>
 <p>In this document, we refer to the TARDIS <code class="docutils literal notranslate"><span class="pre">master</span></code> branch as the <em>trunk</em>. The first step is to setup up a python environment. We recommend using
 Anaconda for this purpose; refer to our <a class="reference internal" href="../../installation.html"><span class="doc">Installation guide</span></a> which covers this topic.</p>
 <section id="creating-a-fork">
-<span id="forking"></span><h2>Creating a fork<a class="headerlink" href="#creating-a-fork" title="Permalink to this heading">¶</a></h2>
+<span id="forking"></span><h2>Creating a fork<a class="headerlink" href="#creating-a-fork" title="Link to this heading">¶</a></h2>
 <p>You need to do this only once for each package you want to contribute to. The
 instructions here are very similar to the instructions at
 <a class="reference external" href="https://help.github.com/fork-a-repo/">https://help.github.com/fork-a-repo/</a> — please see that page for more
@@ -193,13 +192,13 @@ details. We’re repeating some of it here just to give the specifics for the
 <a class="reference external" href="http://tardis.readthedocs.org">TARDIS</a> project, and to suggest some default names.</p>
 </section>
 <section id="set-up-and-configure-a-github-account">
-<h2>Set up and configure a GitHub account<a class="headerlink" href="#set-up-and-configure-a-github-account" title="Permalink to this heading">¶</a></h2>
+<h2>Set up and configure a GitHub account<a class="headerlink" href="#set-up-and-configure-a-github-account" title="Link to this heading">¶</a></h2>
 <p>If you don’t have a GitHub account, go to the <a class="reference external" href="http://github.com">GitHub</a> page and make one.</p>
 <p>You then need to configure your account to allow write access — see
 the <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys">Generating SSH keys</a> help on <a class="reference external" href="http://help.github.com">GitHub Help</a>.</p>
 </section>
 <section id="create-your-own-fork-of-a-repository">
-<h2>Create your own fork of a repository<a class="headerlink" href="#create-your-own-fork-of-a-repository" title="Permalink to this heading">¶</a></h2>
+<h2>Create your own fork of a repository<a class="headerlink" href="#create-your-own-fork-of-a-repository" title="Link to this heading">¶</a></h2>
 <p>The following example shows how to fork the core <code class="docutils literal notranslate"><span class="pre">Astropy</span></code> repository, but
 the same applies to other packages:</p>
 <ol class="arabic">
@@ -214,9 +213,9 @@ of <a class="reference external" href="http://tardis.readthedocs.org">TARDIS</a>
 </ol>
 </section>
 <section id="setting-up-the-fork-to-work-on">
-<h2>Setting up the fork to work on<a class="headerlink" href="#setting-up-the-fork-to-work-on" title="Permalink to this heading">¶</a></h2>
+<h2>Setting up the fork to work on<a class="headerlink" href="#setting-up-the-fork-to-work-on" title="Link to this heading">¶</a></h2>
 <section id="overview">
-<span id="linking-to-upstream"></span><h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h3>
+<span id="linking-to-upstream"></span><h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h3>
 <p>This is done using:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:your-user-name/tardis.git
 cd tardis
@@ -225,7 +224,7 @@ git remote add upstream git://github.com/tardis-sn/tardis.git
 </div>
 </section>
 <section id="in-detail">
-<h3>In detail<a class="headerlink" href="#in-detail" title="Permalink to this heading">¶</a></h3>
+<h3>In detail<a class="headerlink" href="#in-detail" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Clone your fork to the local computer:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:your-user-name/tardis.git
@@ -277,7 +276,7 @@ origin     git@github.com:your-user-name/tardis.git (push)
 </section>
 </section>
 <section id="installing-tardis-in-develop-mode">
-<h2>Installing TARDIS in develop mode<a class="headerlink" href="#installing-tardis-in-develop-mode" title="Permalink to this heading">¶</a></h2>
+<h2>Installing TARDIS in develop mode<a class="headerlink" href="#installing-tardis-in-develop-mode" title="Link to this heading">¶</a></h2>
 <p>TARDIS is designed so that it can generally be used directly out of the source
 tree by using <code class="docutils literal notranslate"><span class="pre">import</span></code> when running Python in the source of an
 TARDIS repository clone.</p>
@@ -295,7 +294,7 @@ interpreter and <code class="docutils literal notranslate"><span class="pre">imp
 </ol>
 </section>
 <section id="workflow-summary">
-<h2>Workflow summary<a class="headerlink" href="#workflow-summary" title="Permalink to this heading">¶</a></h2>
+<h2>Workflow summary<a class="headerlink" href="#workflow-summary" title="Link to this heading">¶</a></h2>
 <p>This section gives a summary of the workflow to follow once you have
 successfully forked the repository. The details for each of these steps are
 given in the following sections.</p>
@@ -326,12 +325,12 @@ see what you’ve done and why you did it.</p>
 <p>See <a class="reference external" href="http://www.mail-archive.com/dri-devel&#64;lists.sourceforge.net/msg39091.html">linux git workflow</a> and <a class="reference external" href="http://mail.scipy.org/pipermail/ipython-dev/2010-October/006746.html">ipython git workflow</a> for some explanation.</p>
 </section>
 <section id="deleting-your-master-branch">
-<h2>Deleting your master branch<a class="headerlink" href="#deleting-your-master-branch" title="Permalink to this heading">¶</a></h2>
+<h2>Deleting your master branch<a class="headerlink" href="#deleting-your-master-branch" title="Link to this heading">¶</a></h2>
 <p>It may sound strange, but deleting your own <code class="docutils literal notranslate"><span class="pre">master</span></code> branch can help reduce
 confusion about which branch you are on.</p>
 </section>
 <section id="updating-the-mirror-of-trunk">
-<span id="update-mirror-trunk"></span><h2>Updating the mirror of trunk<a class="headerlink" href="#updating-the-mirror-of-trunk" title="Permalink to this heading">¶</a></h2>
+<span id="update-mirror-trunk"></span><h2>Updating the mirror of trunk<a class="headerlink" href="#updating-the-mirror-of-trunk" title="Link to this heading">¶</a></h2>
 <p>From time to time, you should fetch the upstream (trunk) changes from GitHub:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git fetch upstream
 </pre></div>
@@ -342,7 +341,7 @@ point to the right commit. For example, ‘trunk’ is the branch referred to by
 you last checked, <code class="docutils literal notranslate"><span class="pre">upstream/master</span></code> will change after you do the fetch.</p>
 </section>
 <section id="making-a-new-feature-branch">
-<span id="make-feature-branch"></span><h2>Making a new feature branch<a class="headerlink" href="#making-a-new-feature-branch" title="Permalink to this heading">¶</a></h2>
+<span id="make-feature-branch"></span><h2>Making a new feature branch<a class="headerlink" href="#making-a-new-feature-branch" title="Link to this heading">¶</a></h2>
 <p>When you are ready to make some changes to the code, you should start a new
 branch. Branches that are for a collection of related edits are often called
 ‘feature branches’.</p>
@@ -376,9 +375,9 @@ push up to your own repo on GitHub with:</p>
 <code class="docutils literal notranslate"><span class="pre">my-new-feature</span></code> branch in the GitHub repo.</p>
 </section>
 <section id="the-editing-workflow">
-<span id="edit-flow"></span><h2>The editing workflow<a class="headerlink" href="#the-editing-workflow" title="Permalink to this heading">¶</a></h2>
+<span id="edit-flow"></span><h2>The editing workflow<a class="headerlink" href="#the-editing-workflow" title="Link to this heading">¶</a></h2>
 <section id="id1">
-<h3>Overview<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3>Overview<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <p>Make changes, test, and:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git add my_new_file
 git commit -m &#39;NF - some message&#39;
@@ -387,7 +386,7 @@ git push
 </div>
 </section>
 <section id="in-more-detail">
-<h3>In more detail<a class="headerlink" href="#in-more-detail" title="Permalink to this heading">¶</a></h3>
+<h3>In more detail<a class="headerlink" href="#in-more-detail" title="Link to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Make some changes</p></li>
 <li><p>Once you are a bit further along, test your changes do not lead to
@@ -444,7 +443,7 @@ commit</a> manual page might also be useful.</p>
 </section>
 </section>
 <section id="asking-for-your-changes-to-be-reviewed-and-or-merged">
-<h2>Asking for your changes to be reviewed and/or merged<a class="headerlink" href="#asking-for-your-changes-to-be-reviewed-and-or-merged" title="Permalink to this heading">¶</a></h2>
+<h2>Asking for your changes to be reviewed and/or merged<a class="headerlink" href="#asking-for-your-changes-to-be-reviewed-and-or-merged" title="Link to this heading">¶</a></h2>
 <p>When you are ready to ask for someone to review your code and consider a merge:</p>
 <ol class="arabic">
 <li><p>Go to the URL of your forked repo, e.g.,
@@ -467,14 +466,14 @@ code review.</p>
 <p>The TARDIS documentation features interactive notebooks that run varius aspects of the code, as well as API documentation. To make sure that these notebooks remain up-to-date with the code, and that your docstrings are correctly incorporated into the API documentation, we ask that you build the documentation for your pull request following the instructions <a class="reference internal" href="documentation_guidelines.html#doc-preview"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="making-sure-your-pull-request-stays-up-to-date">
-<span id="using-virtualenv"></span><h2>Making sure your Pull Request stays up-to-date<a class="headerlink" href="#making-sure-your-pull-request-stays-up-to-date" title="Permalink to this heading">¶</a></h2>
+<span id="using-virtualenv"></span><h2>Making sure your Pull Request stays up-to-date<a class="headerlink" href="#making-sure-your-pull-request-stays-up-to-date" title="Link to this heading">¶</a></h2>
 <p>More often then not it will take a few days until a Pull Request is
 merged as the community gives feedback and/or you add new fixes. Often during this
 time, other pull requests are merged and the master branch evolves further.
 To make sure that your changes are still working on the new master, you want to
 <em>rebase</em> your branch on top of the evolved master.</p>
 <section id="rebasing-on-trunk">
-<span id="rebase-on-trunk"></span><h3>Rebasing on trunk<a class="headerlink" href="#rebasing-on-trunk" title="Permalink to this heading">¶</a></h3>
+<span id="rebase-on-trunk"></span><h3>Rebasing on trunk<a class="headerlink" href="#rebasing-on-trunk" title="Link to this heading">¶</a></h3>
 <p>Let’s say you thought of some work you’d like to do. You
 <a class="reference internal" href="#update-mirror-trunk"><span class="std std-ref">Updating the mirror of trunk</span></a> and <a class="reference internal" href="#make-feature-branch"><span class="std std-ref">Making a new feature branch</span></a> called
 <code class="docutils literal notranslate"><span class="pre">cool-feature</span></code>. At this stage trunk is at some commit, let’s call it E. Now,
@@ -545,7 +544,7 @@ to force push to the main Astropy repo (typically called <code class="docutils l
 this would re-write commit history and thus cause problems for all others.</p>
 </section>
 <section id="recovering-from-mess-ups">
-<span id="recovering-from-mess-up"></span><h3>Recovering from mess-ups<a class="headerlink" href="#recovering-from-mess-ups" title="Permalink to this heading">¶</a></h3>
+<span id="recovering-from-mess-up"></span><h3>Recovering from mess-ups<a class="headerlink" href="#recovering-from-mess-ups" title="Link to this heading">¶</a></h3>
 <p>Sometimes, you mess up merges or rebases. Luckily, in git it is relatively
 straightforward to recover from such mistakes.</p>
 <p>If you mess up during a rebase:</p>
@@ -573,7 +572,7 @@ git reset --hard cool-feature@{2}
 </section>
 </section>
 <section id="reviewing-and-helping-others-with-pull-requests">
-<span id="reviewing-and-helping-with-pr"></span><h2>Reviewing and helping others with Pull Requests<a class="headerlink" href="#reviewing-and-helping-others-with-pull-requests" title="Permalink to this heading">¶</a></h2>
+<span id="reviewing-and-helping-with-pr"></span><h2>Reviewing and helping others with Pull Requests<a class="headerlink" href="#reviewing-and-helping-others-with-pull-requests" title="Link to this heading">¶</a></h2>
 <p>GitHub offers an extensive array of tools to comment on Pull Requests (line-based, normal forum-like discussion, etc.). This system is described here in
 detail <a class="reference external" href="https://help.github.com/articles/using-pull-requests">https://help.github.com/articles/using-pull-requests</a>.</p>
 <p>However, it is sometimes easier to just add a few changes yourself to quickly
@@ -639,7 +638,7 @@ implement your work.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

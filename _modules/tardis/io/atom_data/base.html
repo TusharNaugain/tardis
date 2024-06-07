@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.atom_data.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -132,18 +131,26 @@ from tardis.plasma.properties.continuum_processes import (
 )
 
 
-<div class="viewcode-block" id="AtomDataNotPreparedError"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomDataNotPreparedError">[docs]</a>class AtomDataNotPreparedError(Exception):
+<div class="viewcode-block" id="AtomDataNotPreparedError">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomDataNotPreparedError">[docs]</a>
+class AtomDataNotPreparedError(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="AtomDataMissingError"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomDataMissingError">[docs]</a>class AtomDataMissingError(Exception):
+
+<div class="viewcode-block" id="AtomDataMissingError">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomDataMissingError">[docs]</a>
+class AtomDataMissingError(Exception):
     pass</div>
+
 
 
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="AtomData"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData">[docs]</a>class AtomData:
+<div class="viewcode-block" id="AtomData">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData">[docs]</a>
+class AtomData:
     &quot;&quot;&quot;
     Class for storing atomic data
 
@@ -275,7 +282,9 @@ logger = logging.getLogger(__name__)
         (&quot;collision_data&quot;, &quot;collision_data_temperatures&quot;),
     ]
 
-<div class="viewcode-block" id="AtomData.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.from_hdf">[docs]</a>    @classmethod
+<div class="viewcode-block" id="AtomData.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, fname=None):
         &quot;&quot;&quot;
         Function to read the atom data from a TARDIS atom HDF Store
@@ -385,6 +394,7 @@ logger = logging.getLogger(__name__)
 
         return atom_data</div>
 
+
     def __init__(
         self,
         atom_data,
@@ -488,7 +498,9 @@ logger = logging.getLogger(__name__)
                     f&#39;were not given: {&quot;, &quot;.join(check_list)}&#39;
                 )
 
-<div class="viewcode-block" id="AtomData.prepare_atom_data"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_atom_data">[docs]</a>    def prepare_atom_data(
+<div class="viewcode-block" id="AtomData.prepare_atom_data">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_atom_data">[docs]</a>
+    def prepare_atom_data(
         self,
         selected_atomic_numbers,
         line_interaction_type,
@@ -568,7 +580,10 @@ logger = logging.getLogger(__name__)
 
         self.nlte_data = NLTEData(self, nlte_species)</div>
 
-<div class="viewcode-block" id="AtomData.prepare_continuum_interaction_data"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_continuum_interaction_data">[docs]</a>    def prepare_continuum_interaction_data(self, continuum_interaction_species):
+
+<div class="viewcode-block" id="AtomData.prepare_continuum_interaction_data">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_continuum_interaction_data">[docs]</a>
+    def prepare_continuum_interaction_data(self, continuum_interaction_species):
         &quot;&quot;&quot;
         Prepares the atom data for the continuum interaction
 
@@ -628,7 +643,10 @@ logger = logging.getLogger(__name__)
             [&quot;source_level_idx&quot;, &quot;destination_level_idx&quot;]
         )</div>
 
-<div class="viewcode-block" id="AtomData.prepare_macro_atom_data"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_macro_atom_data">[docs]</a>    def prepare_macro_atom_data(
+
+<div class="viewcode-block" id="AtomData.prepare_macro_atom_data">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.prepare_macro_atom_data">[docs]</a>
+    def prepare_macro_atom_data(
         self,
         line_interaction_type,
         tmp_lines_lower2level_idx,
@@ -752,6 +770,7 @@ logger = logging.getLogger(__name__)
                     self.selected_atomic_numbers, level=0
                 )</div>
 
+
     def _check_selected_atomic_numbers(self):
         selected_atomic_numbers = self.selected_atomic_numbers
         available_atomic_numbers = np.unique(
@@ -773,7 +792,10 @@ logger = logging.getLogger(__name__)
         return f&quot;&lt;Atomic Data UUID={self.uuid1} MD5={self.md5} Lines={self.lines.line_id.count():d} Levels={self.levels.energy.count():d}&gt;&quot;</div>
 
 
-<div class="viewcode-block" id="NLTEData"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.NLTEData">[docs]</a>class NLTEData:
+
+<div class="viewcode-block" id="NLTEData">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.NLTEData">[docs]</a>
+class NLTEData:
     def __init__(self, atom_data, nlte_species):
         self.atom_data = atom_data
         self.lines = atom_data.lines.reset_index()
@@ -856,7 +878,9 @@ logger = logging.getLogger(__name__)
 
             self.g_ratio_matrices[species] = g_ratio_matrix
 
-<div class="viewcode-block" id="NLTEData.get_collision_matrix"><a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.NLTEData.get_collision_matrix">[docs]</a>    def get_collision_matrix(self, species, t_electrons):
+<div class="viewcode-block" id="NLTEData.get_collision_matrix">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.NLTEData.get_collision_matrix">[docs]</a>
+    def get_collision_matrix(self, species, t_electrons):
         &quot;&quot;&quot;
         Creat collision matrix by interpolating the C_ul values for
         the desired temperatures.
@@ -879,7 +903,9 @@ logger = logging.getLogger(__name__)
                 (no_of_levels, no_of_levels, 1)
             )
         )
-        return c_ul_matrix + c_lu_matrix.transpose(1, 0, 2)</div></div>
+        return c_ul_matrix + c_lu_matrix.transpose(1, 0, 2)</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -890,7 +916,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

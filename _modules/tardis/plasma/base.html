@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -131,7 +130,9 @@ from tardis.io.util import PlasmaWriterMixin
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="BasePlasma"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma">[docs]</a>class BasePlasma(PlasmaWriterMixin):
+<div class="viewcode-block" id="BasePlasma">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma">[docs]</a>
+class BasePlasma(PlasmaWriterMixin):
 
     outputs_dict = {}
     hdf_name = &quot;plasma&quot;
@@ -171,8 +172,11 @@ logger = logging.getLogger(__name__)
     def plasma_properties_dict(self):
         return {item.name: item for item in self.plasma_properties}
 
-<div class="viewcode-block" id="BasePlasma.get_value"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.get_value">[docs]</a>    def get_value(self, item):
+<div class="viewcode-block" id="BasePlasma.get_value">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.get_value">[docs]</a>
+    def get_value(self, item):
         return getattr(self.outputs_dict[item], item)</div>
+
 
     def _build_graph(self):
         &quot;&quot;&quot;
@@ -280,14 +284,19 @@ logger = logging.getLogger(__name__)
                 plasma_property_objects.append(current_property_object)
         return plasma_property_objects
 
-<div class="viewcode-block" id="BasePlasma.store_previous_properties"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.store_previous_properties">[docs]</a>    def store_previous_properties(self):
+<div class="viewcode-block" id="BasePlasma.store_previous_properties">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.store_previous_properties">[docs]</a>
+    def store_previous_properties(self):
         for property in self.previous_iteration_properties:
             p = property.outputs[0]
             self.outputs_dict[p].set_value(
                 self.get_value(re.sub(r&quot;^previous_&quot;, &quot;&quot;, p))
             )</div>
 
-<div class="viewcode-block" id="BasePlasma.update"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.update">[docs]</a>    def update(self, **kwargs):
+
+<div class="viewcode-block" id="BasePlasma.update">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.update">[docs]</a>
+    def update(self, **kwargs):
         for key in kwargs:
             if key not in self.outputs_dict:
                 raise PlasmaMissingModule(
@@ -298,7 +307,10 @@ logger = logging.getLogger(__name__)
         for module_name in self._resolve_update_list(kwargs.keys()):
             self.plasma_properties_dict[module_name].update()</div>
 
-<div class="viewcode-block" id="BasePlasma.freeze"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.freeze">[docs]</a>    def freeze(self, *args):
+
+<div class="viewcode-block" id="BasePlasma.freeze">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.freeze">[docs]</a>
+    def freeze(self, *args):
         &quot;&quot;&quot;
         Freeze plama properties.
 
@@ -323,7 +335,10 @@ logger = logging.getLogger(__name__)
                 )
             self.outputs_dict[key].frozen = True</div>
 
-<div class="viewcode-block" id="BasePlasma.thaw"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.thaw">[docs]</a>    def thaw(self, *args):
+
+<div class="viewcode-block" id="BasePlasma.thaw">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.thaw">[docs]</a>
+    def thaw(self, *args):
         &quot;&quot;&quot;
         Thaw plama properties.
 
@@ -346,6 +361,7 @@ logger = logging.getLogger(__name__)
                     &quot; that is unavailable&quot;.format(key)
                 )
             self.outputs_dict[key].frozen = False</div>
+
 
     def _update_module_type_str(self):
         for node in self.graph:
@@ -386,7 +402,9 @@ logger = logging.getLogger(__name__)
 
         return descendants_ob
 
-<div class="viewcode-block" id="BasePlasma.write_to_dot"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.write_to_dot">[docs]</a>    def write_to_dot(self, fname, args=None, latex_label=True):
+<div class="viewcode-block" id="BasePlasma.write_to_dot">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.write_to_dot">[docs]</a>
+    def write_to_dot(self, fname, args=None, latex_label=True):
         &quot;&quot;&quot;
         This method takes the NetworkX Graph generated from the _build_graph
         method, converts it into a DOT code, and saves it to a file
@@ -469,7 +487,10 @@ logger = logging.getLogger(__name__)
                 lines = &quot;&quot;.join(lines)
                 f.write(lines)</div>
 
-<div class="viewcode-block" id="BasePlasma.write_to_tex"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.write_to_tex">[docs]</a>    def write_to_tex(self, fname_graph, scale=0.5, args=None, latex_label=True):
+
+<div class="viewcode-block" id="BasePlasma.write_to_tex">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.write_to_tex">[docs]</a>
+    def write_to_tex(self, fname_graph, scale=0.5, args=None, latex_label=True):
         &quot;&quot;&quot;
         This method takes the NetworkX Graph generated from the _build_graph
         method, converts it into a LaTeX friendly format,
@@ -534,7 +555,10 @@ logger = logging.getLogger(__name__)
                 end=&quot;&quot;,
             )</div>
 
-<div class="viewcode-block" id="BasePlasma.remove_hidden_properties"><a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.remove_hidden_properties">[docs]</a>    def remove_hidden_properties(self, print_graph):
+
+<div class="viewcode-block" id="BasePlasma.remove_hidden_properties">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.BasePlasma.remove_hidden_properties">[docs]</a>
+    def remove_hidden_properties(self, print_graph):
         for item in self.plasma_properties_dict.values():
             module = self.plasma_properties_dict[item.name].__class__
             if issubclass(module, HiddenPlasmaProperty):
@@ -563,7 +587,9 @@ logger = logging.getLogger(__name__)
                                 label=label,
                             )
                 print_graph.remove_node(str(item.name))
-        return print_graph</div></div>
+        return print_graph</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -574,7 +600,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

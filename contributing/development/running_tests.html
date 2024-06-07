@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Running tests &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -137,7 +136,7 @@
            <div itemprop="articleBody">
              
   <section id="running-tests">
-<span id="id1"></span><h1>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Running tests<a class="headerlink" href="#running-tests" title="Link to this heading">¶</a></h1>
 <p>There are two basic categories of tests in TARDIS: 1) the unit
 tests, and 2) the integration tests. Unit tests check the outputs of individual functions,
 while the integration tests check entire runs for different setups of TARDIS.</p>
@@ -147,7 +146,7 @@ every few days on a dedicated server.</p>
 <p>All of them are based on the excellent <code class="docutils literal notranslate"><span class="pre">astropy-setup-helpers</span></code> package and
 <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a>.</p>
 <section id="running-the-unit-tests">
-<h2>Running the Unit Tests<a class="headerlink" href="#running-the-unit-tests" title="Permalink to this heading">¶</a></h2>
+<h2>Running the Unit Tests<a class="headerlink" href="#running-the-unit-tests" title="Link to this heading">¶</a></h2>
 <p>This is very straightforward to run on your own machine. For very simple unit
 tests, you can run this with:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>tardis
@@ -191,7 +190,7 @@ Cache can also be found under the “Management” Section under “Actions” t
 </div>
 </section>
 <section id="running-syrupy-tests">
-<h2>Running Syrupy Tests<a class="headerlink" href="#running-syrupy-tests" title="Permalink to this heading">¶</a></h2>
+<h2>Running Syrupy Tests<a class="headerlink" href="#running-syrupy-tests" title="Link to this heading">¶</a></h2>
 <p>The tests module is currently being restructured to use <a class="reference external" href="https://github.com/tophat/syrupy">Syrupy</a>.
 These tests generate individual HDF(for Pandas) and <code class="docutils literal notranslate"><span class="pre">.npy</span></code> or <code class="docutils literal notranslate"><span class="pre">.npz</span></code> (for NumPy) files(or snapshots) for each test case.
 For other objects, the plugin serialises them and saves them as <code class="docutils literal notranslate"><span class="pre">.ambr</span></code> files. There is a custom extension in the
@@ -202,7 +201,7 @@ You however need to provide the location to your snapshot directory using the <c
 The snapshots are also saved in <a class="reference external" href="https://github.com/tardis-sn/tardis-regressions">tardis-sn/tardis-regressions</a>.</p>
 </section>
 <section id="generating-plasma-reference">
-<h2>Generating Plasma Reference<a class="headerlink" href="#generating-plasma-reference" title="Permalink to this heading">¶</a></h2>
+<h2>Generating Plasma Reference<a class="headerlink" href="#generating-plasma-reference" title="Link to this heading">¶</a></h2>
 <p>You can generate Plasma Reference by the following command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>-rs<span class="w"> </span>tardis/plasma/tests/test_complete_plasmas.py
 --tardis-refdata<span class="o">=</span><span class="s2">&quot;/path/to/tardis-refdata/&quot;</span><span class="w"> </span>--generate-reference
@@ -210,7 +209,7 @@ The snapshots are also saved in <a class="reference external" href="https://gith
 </div>
 </section>
 <section id="running-the-integration-tests">
-<h2>Running the Integration Tests<a class="headerlink" href="#running-the-integration-tests" title="Permalink to this heading">¶</a></h2>
+<h2>Running the Integration Tests<a class="headerlink" href="#running-the-integration-tests" title="Link to this heading">¶</a></h2>
 <p>These tests require reference files against which the results of the various
 tardis runs are tested. So you first need to either download the current
 reference files (<a class="reference external" href="https://github.com/tardis-sn/tardis-refdata">here</a>)
@@ -266,7 +265,7 @@ needed is:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

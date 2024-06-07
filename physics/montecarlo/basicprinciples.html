@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monte Carlo Radiative Transfer - Basic Principles &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -136,7 +135,7 @@
            <div itemprop="articleBody">
              
   <section id="monte-carlo-radiative-transfer-basic-principles">
-<span id="montecarlo-basics"></span><h1>Monte Carlo Radiative Transfer - Basic Principles<a class="headerlink" href="#monte-carlo-radiative-transfer-basic-principles" title="Permalink to this heading">¶</a></h1>
+<span id="montecarlo-basics"></span><h1>Monte Carlo Radiative Transfer - Basic Principles<a class="headerlink" href="#monte-carlo-radiative-transfer-basic-principles" title="Link to this heading">¶</a></h1>
 <p>Radiative transfer describes how electromagnetic radiation (light) propagates through a medium. Since there are
 a large number of light-matter interactions that have the possibility of affecting the light propagation, solving
 the radiative transfer problem is in most astrophysical cases only possible by means of numerical calculations.
@@ -152,7 +151,7 @@ conclusions about the propagation of light through the ejecta as a whole (see <a
 used to determine the actual steady-state plasma properties (see <a class="reference internal" href="../update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>) and the
 emitted spectrum (see <a class="reference internal" href="../spectrum/index.html#spectrum"><span class="std std-ref">Spectrum Generation</span></a>).</p>
 <section id="random-sampling-basics">
-<span id="randomsampling"></span><h2>Random Sampling Basics<a class="headerlink" href="#random-sampling-basics" title="Permalink to this heading">¶</a></h2>
+<span id="randomsampling"></span><h2>Random Sampling Basics<a class="headerlink" href="#random-sampling-basics" title="Link to this heading">¶</a></h2>
 <p>Both the initialization of these photons and their propagation through the ejecta are modeled through
 probabilistic processes. This involves assigning probabilities to the occurrence of certain events or properties.
 For example, during isotropic scattering, finding a photon scattering into any given direction is equally likely.
@@ -166,7 +165,7 @@ just implies finding a mapping between the probability distribution governing th
 physical process and the one underlying the Random Number Generator. This
 process is typically referred to as random sampling.</p>
 <section id="inverse-transformation-method">
-<h3>Inverse transformation method<a class="headerlink" href="#inverse-transformation-method" title="Permalink to this heading">¶</a></h3>
+<h3>Inverse transformation method<a class="headerlink" href="#inverse-transformation-method" title="Link to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is a very superficial and sloppy description of Random sampling. More
@@ -201,11 +200,11 @@ sampled. If this is not possible, other sampling methods, such as von-Neumann
 rejection sampling techniques, have to be used.</p>
 </section>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
 <p>A few examples are provided to illustrate the random sampling process using the
 inverse transformation technique.</p>
 <section id="isotropic-scattering">
-<h4>Isotropic Scattering<a class="headerlink" href="#isotropic-scattering" title="Permalink to this heading">¶</a></h4>
+<h4>Isotropic Scattering<a class="headerlink" href="#isotropic-scattering" title="Link to this heading">¶</a></h4>
 <p>Consider the case of an isotropic scattering.
 Here, all scattering angles are equally likely. Thus, the corresponding
 (normalized) probability density and the cumulative distribution function are given by</p>
@@ -217,7 +216,7 @@ f(\mu) &amp;= \frac{1}{2} (\mu + 1).\end{split}\]</div>
 \[\mu = 2 z - 1.\]</div>
 </section>
 <section id="next-interaction-location">
-<h4>Next Interaction Location<a class="headerlink" href="#next-interaction-location" title="Permalink to this heading">¶</a></h4>
+<h4>Next Interaction Location<a class="headerlink" href="#next-interaction-location" title="Link to this heading">¶</a></h4>
 <p>The probability of a photon interacting after covering an optical depth
 <span class="math notranslate nohighlight">\(\tau\)</span> is given by (see <a class="reference internal" href="propagation.html#propagation"><span class="std std-ref">Packet Propagation</span></a>)</p>
 <div class="math notranslate nohighlight">
@@ -246,7 +245,7 @@ f(\tau) &amp;= 1 - \exp(-\tau).\end{split}\]</div>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

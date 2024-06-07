@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.widgets.grotrian &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -136,7 +135,9 @@ import ipywidgets as ipw
 ANGSTROM_SYMBOL = &quot;\u212B&quot;
 
 
-<div class="viewcode-block" id="is_zero_defined"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.is_zero_defined">[docs]</a>def is_zero_defined(transform):
+<div class="viewcode-block" id="is_zero_defined">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.is_zero_defined">[docs]</a>
+def is_zero_defined(transform):
     &quot;&quot;&quot;
     Utility function to decide if a certain transform is defined at zero
 
@@ -154,7 +155,10 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
     return False</div>
 
 
-<div class="viewcode-block" id="standardize"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.standardize">[docs]</a>def standardize(
+
+<div class="viewcode-block" id="standardize">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.standardize">[docs]</a>
+def standardize(
     values,
     transform=lambda x: x,
     min_value=None,
@@ -236,7 +240,10 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
     return transformed_values</div>
 
 
-<div class="viewcode-block" id="GrotrianPlot"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot">[docs]</a>class GrotrianPlot:
+
+<div class="viewcode-block" id="GrotrianPlot">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot">[docs]</a>
+class GrotrianPlot:
     &quot;&quot;&quot;
     Class for the Grotrian Diagram
 
@@ -301,7 +308,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
     FILTER_MODES_DESC = (&quot;Emitted Wavelength&quot;, &quot;Absorbed Wavelength&quot;)
     Y_SCALE_OPTION = {&quot;Linear&quot;: (lambda x: x), &quot;Log&quot;: np.log}
 
-<div class="viewcode-block" id="GrotrianPlot.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="GrotrianPlot.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim, **kwargs):
         &quot;&quot;&quot;
         Creates a GrotrianPlot object from a Simulation object
@@ -333,6 +342,7 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
             line_interaction_analysis=line_interaction_analysis,
             **kwargs,
         )</div>
+
 
     def __init__(
         self,
@@ -405,12 +415,15 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
         self._max_wavelength = value
         self._compute_transitions()
 
-<div class="viewcode-block" id="GrotrianPlot.reset_selected_plot_wavelength_range"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.reset_selected_plot_wavelength_range">[docs]</a>    def reset_selected_plot_wavelength_range(self):
+<div class="viewcode-block" id="GrotrianPlot.reset_selected_plot_wavelength_range">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.reset_selected_plot_wavelength_range">[docs]</a>
+    def reset_selected_plot_wavelength_range(self):
         &quot;&quot;&quot;
         Resets the wavelength range of the selected plot
         &quot;&quot;&quot;
         self.min_wavelength = None
         self.max_wavelength = None</div>
+
 
     @property
     def max_levels(self):
@@ -458,7 +471,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
             raise ValueError(&quot;Atomic number is not set&quot;)
         return self._atomic_number
 
-<div class="viewcode-block" id="GrotrianPlot.set_ion"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.set_ion">[docs]</a>    def set_ion(self, atomic_number, ion_number):
+<div class="viewcode-block" id="GrotrianPlot.set_ion">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.set_ion">[docs]</a>
+    def set_ion(self, atomic_number, ion_number):
         &quot;&quot;&quot;
         Sets the atomic number and ion number
         &quot;&quot;&quot;
@@ -480,6 +495,7 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
 
         # Reset any custom wavelengths if user changes ion
         self.reset_selected_plot_wavelength_range()  # Also computes transition lines so we don&#39;t need to call it &quot;_compute_transitions()&quot; explicitly</div>
+
 
     @property
     def ion_number(self):
@@ -1012,7 +1028,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
             col=2,
         )
 
-<div class="viewcode-block" id="GrotrianPlot.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.display">[docs]</a>    def display(self):
+<div class="viewcode-block" id="GrotrianPlot.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianPlot.display">[docs]</a>
+    def display(self):
         &quot;&quot;&quot;
         Function to draw the plot and the reference scales (calls other draw methods independently)
         &quot;&quot;&quot;
@@ -1094,10 +1112,14 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
             self._draw_transition_width_scale()
             self._draw_transition_color_scale()
 
-        return self.fig</div></div>
+        return self.fig</div>
+</div>
 
 
-<div class="viewcode-block" id="GrotrianWidget"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget">[docs]</a>class GrotrianWidget:
+
+<div class="viewcode-block" id="GrotrianWidget">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget">[docs]</a>
+class GrotrianWidget:
     &quot;&quot;&quot;
     A wrapper class for the Grotrian Diagram, containing the Grotrian Plot and the IpyWidgets
 
@@ -1109,7 +1131,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
         Number of shells in the sim.simulation_state.v_inner
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="GrotrianWidget.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="GrotrianWidget.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim, **kwargs):
         &quot;&quot;&quot;
         Creates a GrotrianWidget object from a Simulation object
@@ -1127,6 +1151,7 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
         plot = GrotrianPlot.from_simulation(sim, **kwargs)
         num_shells = len(sim.simulation_state.v_inner)
         return cls(plot, num_shells, **kwargs)</div>
+
 
     def __init__(self, plot, num_shells, **kwargs):
         self.plot = plot
@@ -1306,7 +1331,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
             self.wavelength_range_selector.max,
         ]
 
-<div class="viewcode-block" id="GrotrianWidget.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget.display">[docs]</a>    def display(self):
+<div class="viewcode-block" id="GrotrianWidget.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.grotrian.html#tardis.visualization.widgets.grotrian.GrotrianWidget.display">[docs]</a>
+    def display(self):
         &quot;&quot;&quot;
         Function to render the Grotrian Widget containing the plot and IpyWidgets together
         &quot;&quot;&quot;
@@ -1326,7 +1353,9 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
                 fig,
             ]
         )
-        return self.fig</div></div>
+        return self.fig</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -1337,7 +1366,7 @@ ANGSTROM_SYMBOL = &quot;\u212B&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 

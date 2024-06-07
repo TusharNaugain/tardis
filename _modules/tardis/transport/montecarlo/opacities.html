@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.opacities &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ba325f89"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -145,7 +144,9 @@ FF_OPAC_CONST = (
 )  # See Eq. 6.1.8 in http://personal.psu.edu/rbc3/A534/lec6.pdf
 
 
-<div class="viewcode-block" id="kappa_calculation"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.kappa_calculation">[docs]</a>@njit(**njit_dict_no_parallel)
+<div class="viewcode-block" id="kappa_calculation">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.kappa_calculation">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def kappa_calculation(energy):
     &quot;&quot;&quot;
     Calculates kappa for various other calculations
@@ -164,7 +165,10 @@ def kappa_calculation(energy):
     return energy / ELECTRON_MASS_ENERGY_KEV</div>
 
 
-<div class="viewcode-block" id="chi_electron_calculator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_electron_calculator">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="chi_electron_calculator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_electron_calculator">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def chi_electron_calculator(opacity_state, nu, shell):
     &quot;&quot;&quot;
     Calculate chi for Thomson scattering
@@ -185,7 +189,10 @@ def chi_electron_calculator(opacity_state, nu, shell):
     return opacity_state.electron_density[shell] * SIGMA_THOMSON</div>
 
 
-<div class="viewcode-block" id="calculate_tau_electron"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.calculate_tau_electron">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_tau_electron">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.calculate_tau_electron">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_tau_electron(electron_density, distance):
     &quot;&quot;&quot;
     Calculate tau for Thomson scattering
@@ -203,7 +210,10 @@ def calculate_tau_electron(electron_density, distance):
     return electron_density * SIGMA_THOMSON * distance</div>
 
 
-<div class="viewcode-block" id="get_current_bound_free_continua"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.get_current_bound_free_continua">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_current_bound_free_continua">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.get_current_bound_free_continua">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_current_bound_free_continua(opacity_state, nu):
     &quot;&quot;&quot;
     Determine bound-free continua for which absorption is possible.
@@ -225,7 +235,10 @@ def get_current_bound_free_continua(opacity_state, nu):
     return current_continua</div>
 
 
-<div class="viewcode-block" id="chi_bf_interpolator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_bf_interpolator">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="chi_bf_interpolator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_bf_interpolator">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def chi_bf_interpolator(opacity_state, nu, shell):
     &quot;&quot;&quot;
     Interpolate the bound-free opacity.
@@ -297,7 +310,10 @@ def chi_bf_interpolator(opacity_state, nu, shell):
     )</div>
 
 
-<div class="viewcode-block" id="chi_ff_calculator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_ff_calculator">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="chi_ff_calculator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_ff_calculator">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def chi_ff_calculator(opacity_state, nu, shell):
     &quot;&quot;&quot;
     Attributes
@@ -322,7 +338,10 @@ def chi_ff_calculator(opacity_state, nu, shell):
     return chi_ff</div>
 
 
-<div class="viewcode-block" id="chi_continuum_calculator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_continuum_calculator">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="chi_continuum_calculator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.chi_continuum_calculator">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def chi_continuum_calculator(opacity_state, nu, shell):
     &quot;&quot;&quot;
     Attributes
@@ -364,7 +383,10 @@ def chi_continuum_calculator(opacity_state, nu, shell):
     )</div>
 
 
-<div class="viewcode-block" id="compton_opacity_partial"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.compton_opacity_partial">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="compton_opacity_partial">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.compton_opacity_partial">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def compton_opacity_partial(energy, fraction):
     &quot;&quot;&quot;Partial Compton scattering opacity, from artis file
     gamma.cc
@@ -394,7 +416,10 @@ def compton_opacity_partial(energy, fraction):
     return 3.0 * SIGMA_T * (term_1 + term_2 + term_3) / (8 * energy)</div>
 
 
-<div class="viewcode-block" id="compton_opacity_calculation"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.compton_opacity_calculation">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="compton_opacity_calculation">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.compton_opacity_calculation">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def compton_opacity_calculation(energy, electron_density):
     &quot;&quot;&quot;Calculate the Compton scattering opacity for a given energy
     (Rybicki &amp; Lightman, 1979)
@@ -437,7 +462,10 @@ def compton_opacity_calculation(energy, electron_density):
     return electron_density * sigma_KN</div>
 
 
-<div class="viewcode-block" id="photoabsorption_opacity_calculation"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.photoabsorption_opacity_calculation">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="photoabsorption_opacity_calculation">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.photoabsorption_opacity_calculation">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def photoabsorption_opacity_calculation(
     energy, ejecta_density, iron_group_fraction
 ):
@@ -478,7 +506,10 @@ def photoabsorption_opacity_calculation(
     return si_opacity + fe_opacity</div>
 
 
-<div class="viewcode-block" id="photoabsorption_opacity_calculation_kasen"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.photoabsorption_opacity_calculation_kasen">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="photoabsorption_opacity_calculation_kasen">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.photoabsorption_opacity_calculation_kasen">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def photoabsorption_opacity_calculation_kasen(
     energy, number_density, proton_count
 ):
@@ -510,7 +541,10 @@ def photoabsorption_opacity_calculation_kasen(
     )</div>
 
 
-<div class="viewcode-block" id="pair_creation_opacity_calculation"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.pair_creation_opacity_calculation">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="pair_creation_opacity_calculation">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.pair_creation_opacity_calculation">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def pair_creation_opacity_calculation(
     energy, ejecta_density, iron_group_fraction
 ):
@@ -556,7 +590,10 @@ def pair_creation_opacity_calculation(
     return opacity</div>
 
 
-<div class="viewcode-block" id="pair_creation_opacity_artis"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.pair_creation_opacity_artis">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="pair_creation_opacity_artis">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.opacities.html#tardis.transport.montecarlo.opacities.pair_creation_opacity_artis">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def pair_creation_opacity_artis(energy, ejecta_density, iron_group_fraction):
     &quot;&quot;&quot;Calculates pair creation opacity for a given energy
     Approximate treatment from Ambwani &amp; Sutherland (1988)
@@ -596,6 +633,7 @@ def pair_creation_opacity_artis(energy, ejecta_density, iron_group_fraction):
         opacity = 0
 
     return opacity</div>
+
 </pre></div>
 
            </div>
@@ -606,7 +644,7 @@ def pair_creation_opacity_artis(energy, ejecta_density, iron_group_fraction):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 07 Jun 2024.
       </span></p>
   </div>
 
