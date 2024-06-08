@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monte Carlo Configuration &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -142,7 +141,7 @@
            <div itemprop="articleBody">
              
   <section id="monte-carlo-configuration">
-<span id="montecarlo-config"></span><h1>Monte Carlo Configuration<a class="headerlink" href="#monte-carlo-configuration" title="Permalink to this heading">¶</a></h1>
+<span id="montecarlo-config"></span><h1>Monte Carlo Configuration<a class="headerlink" href="#monte-carlo-configuration" title="Link to this heading">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">montecarlo</span></code> section describes the parameters for the Monte Carlo radiation transport and convergence criteria:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">seed</span></code> parameter seeds the random number generator first for the creation of the packets
 (<span class="math notranslate nohighlight">\(\nu\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span>) and then the interactions in the actual Monte Carlo process.
@@ -154,17 +153,17 @@ use the Virtual Packet formalism. Increasing this number drastically increases c
 The <code class="docutils literal notranslate"><span class="pre">iterations</span></code> parameter describes the maximum number of Monte Carlo loops executed in a simulation before it ends. Convergence criteria can be used to make the simulation stop
 sooner when the convergence threshold has been reached (see <a class="reference internal" href="../../../physics/update_and_conv/update_and_conv.html"><span class="doc">Updating Plasma and Convergence</span></a>).</p>
 <section id="convergence-strategy">
-<span id="conv-config"></span><h2>Convergence Strategy<a class="headerlink" href="#convergence-strategy" title="Permalink to this heading">¶</a></h2>
+<span id="conv-config"></span><h2>Convergence Strategy<a class="headerlink" href="#convergence-strategy" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">convergence_criteria</span></code> section has a <code class="docutils literal notranslate"><span class="pre">type</span></code> keyword. Currently, one type is allowed: <code class="docutils literal notranslate"><span class="pre">damped</span></code>.
 All convergence criteria can be specified separately for the three variables for which convergence can be checked
 (<code class="docutils literal notranslate"><span class="pre">t_inner</span></code>, <code class="docutils literal notranslate"><span class="pre">t_rad</span></code>, <code class="docutils literal notranslate"><span class="pre">ws</span></code>) by specifying subsections in the <code class="docutils literal notranslate"><span class="pre">convergence_criteria</span></code> of the same name. These then
 override the defaults. Two more schemas are presented that further explain the <code class="docutils literal notranslate"><span class="pre">damped</span></code> and
 <code class="docutils literal notranslate"><span class="pre">custom</span></code> convergence strategies:</p>
-<p><code class="docutils literal notranslate"><span class="pre">damped</span></code> only has one parameter <code class="docutils literal notranslate"><span class="pre">damping-constant</span></code> and does not check for convergence. This can be used to fix the
+<p id="damped-config"><code class="docutils literal notranslate"><span class="pre">damped</span></code> only has one parameter <code class="docutils literal notranslate"><span class="pre">damping-constant</span></code> and does not check for convergence. This can be used to fix the
 temperature of the inner boundary.</p>
 </section>
 <section id="parallel-execution-with-numba">
-<span id="parallelization"></span><h2>Parallel Execution with Numba<a class="headerlink" href="#parallel-execution-with-numba" title="Permalink to this heading">¶</a></h2>
+<span id="parallelization"></span><h2>Parallel Execution with Numba<a class="headerlink" href="#parallel-execution-with-numba" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">montecarlo</span></code> section of the Configuration file accepts the parameter <code class="docutils literal notranslate"><span class="pre">nthreads</span></code> which sets the number of
 threads to be used for parallelisation. Setting the value of the parameter between 1 and the environment variable
 <code class="docutils literal notranslate"><span class="pre">NUMBA_NUM_THREADS</span></code> (which is, by default, the number of CPU cores on your system) will automatically invoke Numba
@@ -184,7 +183,7 @@ to parallelise the code. (See <a class="reference internal" href="../index.html#
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

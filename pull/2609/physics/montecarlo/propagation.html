@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Packet Propagation &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -142,7 +141,7 @@
            <div itemprop="articleBody">
              
   <section id="packet-propagation">
-<span id="propagation"></span><h1>Packet Propagation<a class="headerlink" href="#packet-propagation" title="Permalink to this heading">¶</a></h1>
+<span id="propagation"></span><h1>Packet Propagation<a class="headerlink" href="#packet-propagation" title="Link to this heading">¶</a></h1>
 <p>The bulk of a Monte Carlo Radiative Transfer calculation is spent on
 determining the propagation history of the different packets. After a packet is
 initialized (see <a class="reference internal" href="initialization.html"><span class="doc">Energy Packet Initialization</span></a>), it is launched and may then perform interactions with the
@@ -153,7 +152,7 @@ spectrum, the main product of a TARDIS calculation. The different spectral
 features are simply a combined product of the changes in the packet properties
 induced in the radiation-matter interactions.</p>
 <section id="propagation-in-a-spherical-domain">
-<span id="spherical-domain"></span><h2>Propagation in a Spherical Domain<a class="headerlink" href="#propagation-in-a-spherical-domain" title="Permalink to this heading">¶</a></h2>
+<span id="spherical-domain"></span><h2>Propagation in a Spherical Domain<a class="headerlink" href="#propagation-in-a-spherical-domain" title="Link to this heading">¶</a></h2>
 <p>Once the initial packet properties are assigned, the propagation process
 commences. Without interacting, a packet, like a photon, will propagate on a
 straight trajectory.</p>
@@ -176,7 +175,7 @@ at</p>
 \[\mu_f = \frac{l + r_i \mu_i}{r_f}.\]</div>
 </section>
 <section id="supernova-expansion">
-<h2>Supernova Expansion<a class="headerlink" href="#supernova-expansion" title="Permalink to this heading">¶</a></h2>
+<h2>Supernova Expansion<a class="headerlink" href="#supernova-expansion" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This section is a summary of part of <a class="reference internal" href="../setup/model.html"><span class="doc">Model</span></a> which is included here for easy reference. For a complete
@@ -198,7 +197,7 @@ the boundaries (both of the computational domain and of the cells) do not change
 <a class="reference internal image-reference" href="../../_images/expansion_animation.gif"><img alt="../../_images/expansion_animation.gif" src="../../_images/expansion_animation.gif" style="width: 500px;" /></a>
 </section>
 <section id="reference-frames">
-<span id="referenceframes"></span><h2>Reference Frames<a class="headerlink" href="#reference-frames" title="Permalink to this heading">¶</a></h2>
+<span id="referenceframes"></span><h2>Reference Frames<a class="headerlink" href="#reference-frames" title="Link to this heading">¶</a></h2>
 <p>Because ejecta in the supernova is moving, TARDIS must take reference frames into account.</p>
 <p>In TARDIS, two reference frames are of particular importance: the lab frame and the co-moving frame. In the lab
 frame, the center of the supernova is at rest; for example, the animation above is shown in the lab frame.
@@ -220,14 +219,14 @@ is known as the doppler factor. In the nonrelativistic limit (as <span class="ma
 supernova (<span class="math notranslate nohighlight">\(\mu&lt;0\)</span>) it is blue-shifted (<span class="math notranslate nohighlight">\(\nu_\mathrm{co-moving}&gt;\nu_\mathrm{lab}\)</span>).</p>
 </section>
 <section id="numerical-and-physical-events">
-<h2>Numerical and Physical Events<a class="headerlink" href="#numerical-and-physical-events" title="Permalink to this heading">¶</a></h2>
+<h2>Numerical and Physical Events<a class="headerlink" href="#numerical-and-physical-events" title="Link to this heading">¶</a></h2>
 <p>While a packet is propagating through the computational domain, TARDIS calculates the distance the packet will
 propagate until it (i) crosses into a new cell and (ii) interacts with the plasma in the ejecta. If the former
 distance is shorter, the packet will be moved into the new cell (and the plasma properties will be recalculated), and
 if the latter distance is shorter, the packet will be moved to the location of the interaction, and the interaction
 will be performed.</p>
 <section id="distance-to-next-cell">
-<h3>Distance to Next Cell<a class="headerlink" href="#distance-to-next-cell" title="Permalink to this heading">¶</a></h3>
+<h3>Distance to Next Cell<a class="headerlink" href="#distance-to-next-cell" title="Link to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this documentation, and in TARDIS as a whole, the subscripts “inner” and “outer” refer respectively to the
@@ -258,7 +257,7 @@ boundary, the plasma properties are recalculated, and the propagation direction 
 <span class="math notranslate nohighlight">\(\mu_f = \frac{l + r_i \mu_i}{r_f}\)</span>).</p>
 </section>
 <section id="physical-interactions">
-<span id="id2"></span><h3>Physical Interactions<a class="headerlink" href="#physical-interactions" title="Permalink to this heading">¶</a></h3>
+<span id="id2"></span><h3>Physical Interactions<a class="headerlink" href="#physical-interactions" title="Link to this heading">¶</a></h3>
 <p>As a packet propagates through the computational domain, physical radiation-matter interactions can trigger changes
 in the packet properties. The probability that a photon/packet will interact with matter is characterized by its
 optical depth <span class="math notranslate nohighlight">\(\tau\)</span>; the probability that a packet will have interacted after going through an optical depth
@@ -321,7 +320,7 @@ optical depth <span class="math notranslate nohighlight">\(\tau_\mathrm{Sobolev}
 <span class="math notranslate nohighlight">\(1-e^{-\tau_\mathrm{Sobolev}}\)</span> that the packet interacts with the atomic line.</p>
 </section>
 <section id="distance-to-next-event">
-<h3>Distance to Next Event<a class="headerlink" href="#distance-to-next-event" title="Permalink to this heading">¶</a></h3>
+<h3>Distance to Next Event<a class="headerlink" href="#distance-to-next-event" title="Link to this heading">¶</a></h3>
 <p>With these assumptions, the accumulation of optical depth along a packet’s trajectory currently proceeds according
 to the following scheme (which was originally introduced by <span id="id3">[<a class="reference internal" href="../../resources/zreferences.html#id14" title="P. A. Mazzali and L. B. Lucy. The application of Monte Carlo methods to the synthesis of early-time supernovae spectra. Astronomy and Astrophysics, 279:447-456, November 1993.">MazzaliLucy93</a>]</span>):
 given the current lab-frame frequency of the packet, the distance to the next
@@ -355,7 +354,7 @@ the plasma properties will be updated, and the accumulation of optical depth wil
 </div>
 </section>
 <section id="performing-an-interaction">
-<h3>Performing an Interaction<a class="headerlink" href="#performing-an-interaction" title="Permalink to this heading">¶</a></h3>
+<h3>Performing an Interaction<a class="headerlink" href="#performing-an-interaction" title="Link to this heading">¶</a></h3>
 <p>When a physical interaction occurs, whether it is a Thomson scattering or a line interaction, the packet is moved to
 the interaction location and a new propagation direction is assigned. Since this process is isotropic, the new
 direction is sampled according to (see <a class="reference internal" href="basicprinciples.html#randomsampling"><span class="std std-ref">Random Sampling</span></a>)</p>
@@ -382,7 +381,7 @@ speed of <span class="math notranslate nohighlight">\(1.1 \times 10^4\)</span> k
 </section>
 </section>
 <section id="implementation-main-propagation-loop">
-<h2>Implementation: Main Propagation Loop<a class="headerlink" href="#implementation-main-propagation-loop" title="Permalink to this heading">¶</a></h2>
+<h2>Implementation: Main Propagation Loop<a class="headerlink" href="#implementation-main-propagation-loop" title="Link to this heading">¶</a></h2>
 <p>In summary of the concepts outlined above, the main Monte Carlo process within
 TARDIS consists of successively processing all packets with represent the
 radiation field emitted by the photosphere in the following way:</p>
@@ -464,7 +463,7 @@ radiation field emitted by the photosphere in the following way:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

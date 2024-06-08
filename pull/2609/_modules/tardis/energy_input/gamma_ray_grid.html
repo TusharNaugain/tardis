@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.energy_input.gamma_ray_grid &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -127,7 +126,9 @@ from tardis.energy_input.util import (
 )
 
 
-<div class="viewcode-block" id="calculate_distance_radial"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.calculate_distance_radial">[docs]</a>@njit(**njit_dict_no_parallel)
+<div class="viewcode-block" id="calculate_distance_radial">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.calculate_distance_radial">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_distance_radial(photon, r_inner, r_outer):
     &quot;&quot;&quot;
     Calculates 3D distance to shell from gamma ray position
@@ -190,7 +191,10 @@ def calculate_distance_radial(photon, r_inner, r_outer):
     return shortest, shell_change</div>
 
 
-<div class="viewcode-block" id="distance_trace"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.distance_trace">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="distance_trace">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.distance_trace">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def distance_trace(
     photon,
     inner_velocity,
@@ -230,7 +234,10 @@ def distance_trace(
     return distance_interaction, distance_boundary, distance_time, shell_change</div>
 
 
-<div class="viewcode-block" id="move_packet"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.move_packet">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="move_packet">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_grid.html#tardis.energy_input.gamma_ray_grid.move_packet">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def move_packet(packet, distance):
     &quot;&quot;&quot;
     Moves packet a distance along its direction vector
@@ -260,6 +267,7 @@ def move_packet(packet, distance):
     packet.energy_cmf = packet.energy_rf * doppler_factor
 
     return packet</div>
+
 </pre></div>
 
            </div>
@@ -270,7 +278,7 @@ def move_packet(packet, distance):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

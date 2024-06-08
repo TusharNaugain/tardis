@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.simulation.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -135,6 +134,7 @@ from tardis.model import SimulationState
 from tardis.model.parse_input import initialize_packet_source
 from tardis.transport.montecarlo.base import MonteCarloTransportSolver
 from tardis.plasma.standard_plasmas import assemble_plasma
+from tardis.simulation.convergence import ConvergenceSolver
 from tardis.util.base import is_notebook
 from tardis.visualization import ConvergencePlots
 
@@ -142,7 +142,9 @@ from tardis.visualization import ConvergencePlots
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="PlasmaStateStorerMixin"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin">[docs]</a>class PlasmaStateStorerMixin:
+<div class="viewcode-block" id="PlasmaStateStorerMixin">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin">[docs]</a>
+class PlasmaStateStorerMixin:
     &quot;&quot;&quot;Mixin class to provide the capability to the simulation object of
     storing plasma information and the inner boundary temperature during each
     MC iteration.
@@ -160,7 +162,9 @@ logger = logging.getLogger(__name__)
         )
         self.iterations_t_inner = np.zeros(iterations) * u.K
 
-<div class="viewcode-block" id="PlasmaStateStorerMixin.store_plasma_state"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin.store_plasma_state">[docs]</a>    def store_plasma_state(self, i, w, t_rad, electron_densities, t_inner):
+<div class="viewcode-block" id="PlasmaStateStorerMixin.store_plasma_state">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin.store_plasma_state">[docs]</a>
+    def store_plasma_state(self, i, w, t_rad, electron_densities, t_inner):
         &quot;&quot;&quot;Store current plasma information and inner boundary temperature
         used in iterated i.
 
@@ -182,7 +186,10 @@ logger = logging.getLogger(__name__)
         self.iterations_electron_densities[i, :] = electron_densities.values
         self.iterations_t_inner[i] = t_inner</div>
 
-<div class="viewcode-block" id="PlasmaStateStorerMixin.reshape_plasma_state_store"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin.reshape_plasma_state_store">[docs]</a>    def reshape_plasma_state_store(self, executed_iterations):
+
+<div class="viewcode-block" id="PlasmaStateStorerMixin.reshape_plasma_state_store">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.PlasmaStateStorerMixin.reshape_plasma_state_store">[docs]</a>
+    def reshape_plasma_state_store(self, executed_iterations):
         &quot;&quot;&quot;Reshapes the storage arrays in case convergence was reached before
         all specified iterations were executed.
 
@@ -200,10 +207,14 @@ logger = logging.getLogger(__name__)
         ]
         self.iterations_t_inner = self.iterations_t_inner[
             : executed_iterations + 1
-        ]</div></div>
+        ]</div>
+</div>
 
 
-<div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation">[docs]</a>class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
+
+<div class="viewcode-block" id="Simulation">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation">[docs]</a>
+class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
     &quot;&quot;&quot;A composite object containing all the required information for a
     simulation.
 
@@ -270,21 +281,21 @@ logger = logging.getLogger(__name__)
         self.show_progress_bars = show_progress_bars
         self.version = tardis.__version__
 
-        if convergence_strategy.type in (&quot;damped&quot;):
-            self.convergence_strategy = convergence_strategy
-            self.converged = False
-            self.consecutive_converges_count = 0
-        elif convergence_strategy.type in (&quot;custom&quot;):
-            raise NotImplementedError(
-                &quot;Convergence strategy type is custom; &quot;
-                &quot;you need to implement your specific treatment!&quot;
-            )
-        else:
-            raise ValueError(
-                f&quot;Convergence strategy type is &quot;
-                f&quot;not damped or custom &quot;
-                f&quot;- input is {convergence_strategy.type}&quot;
-            )
+        # Convergence
+        self.convergence_strategy = convergence_strategy
+        self.converged = False
+        self.consecutive_converges_count = 0
+
+        # Convergence solvers
+        self.t_rad_convergence_solver = ConvergenceSolver(
+            self.convergence_strategy.t_rad
+        )
+        self.w_convergence_solver = ConvergenceSolver(
+            self.convergence_strategy.w
+        )
+        self.t_inner_convergence_solver = ConvergenceSolver(
+            self.convergence_strategy.t_inner
+        )
 
         if show_convergence_plots:
             if not is_notebook():
@@ -318,7 +329,9 @@ logger = logging.getLogger(__name__)
             not self.plasma.continuum_interaction_species.empty
         )
 
-<div class="viewcode-block" id="Simulation.estimate_t_inner"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.estimate_t_inner">[docs]</a>    def estimate_t_inner(
+<div class="viewcode-block" id="Simulation.estimate_t_inner">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.estimate_t_inner">[docs]</a>
+    def estimate_t_inner(
         self, input_t_inner, luminosity_requested, t_inner_update_exponent=-0.5
     ):
         emitted_luminosity = (
@@ -333,48 +346,26 @@ logger = logging.getLogger(__name__)
 
         return input_t_inner * luminosity_ratios**t_inner_update_exponent</div>
 
-<div class="viewcode-block" id="Simulation.damped_converge"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.damped_converge">[docs]</a>    @staticmethod
-    def damped_converge(value, estimated_value, damping_factor):
-        # FIXME: Should convergence strategy have its own class containing this
-        # as a method
-        return value + damping_factor * (estimated_value - value)</div>
 
     def _get_convergence_status(
         self, t_rad, w, t_inner, estimated_t_rad, estimated_w, estimated_t_inner
     ):
-        # FIXME: Move the convergence checking in its own class.
-        no_of_shells = self.simulation_state.no_of_shells
-
-        convergence_t_rad = (
-            abs(t_rad - estimated_t_rad) / estimated_t_rad
-        ).value
-        convergence_w = abs(w - estimated_w) / estimated_w
-        convergence_t_inner = (
-            abs(t_inner - estimated_t_inner) / estimated_t_inner
-        ).value
-
-        fraction_t_rad_converged = (
-            np.count_nonzero(
-                convergence_t_rad &lt; self.convergence_strategy.t_rad.threshold
-            )
-            / no_of_shells
+        t_rad_converged = self.t_rad_convergence_solver.get_convergence_status(
+            t_rad.value,
+            estimated_t_rad.value,
+            self.simulation_state.no_of_shells,
         )
 
-        t_rad_converged = (
-            fraction_t_rad_converged &gt; self.convergence_strategy.fraction
+        w_converged = self.w_convergence_solver.get_convergence_status(
+            w, estimated_w, self.simulation_state.no_of_shells
         )
-
-        fraction_w_converged = (
-            np.count_nonzero(
-                convergence_w &lt; self.convergence_strategy.w.threshold
-            )
-            / no_of_shells
-        )
-
-        w_converged = fraction_w_converged &gt; self.convergence_strategy.fraction
 
         t_inner_converged = (
-            convergence_t_inner &lt; self.convergence_strategy.t_inner.threshold
+            self.t_inner_convergence_solver.get_convergence_status(
+                t_inner.value,
+                estimated_t_inner.value,
+                1,
+            )
         )
 
         if np.all([t_rad_converged, w_converged, t_inner_converged]):
@@ -392,7 +383,9 @@ logger = logging.getLogger(__name__)
             self.consecutive_converges_count = 0
             return False
 
-<div class="viewcode-block" id="Simulation.advance_state"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.advance_state">[docs]</a>    def advance_state(self):
+<div class="viewcode-block" id="Simulation.advance_state">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.advance_state">[docs]</a>
+    def advance_state(self):
         &quot;&quot;&quot;
         Advances the state of the model and the plasma for the next
         iteration of the simulation. Returns True if the convergence criteria
@@ -422,24 +415,20 @@ logger = logging.getLogger(__name__)
         )
 
         # calculate_next_plasma_state equivalent
-        # FIXME: Should convergence strategy have its own class?
-        next_t_radiative = self.damped_converge(
+        next_t_radiative = self.t_rad_convergence_solver.converge(
             self.simulation_state.t_radiative,
             estimated_t_rad,
-            self.convergence_strategy.t_rad.damping_constant,
         )
-        next_dilution_factor = self.damped_converge(
+        next_dilution_factor = self.w_convergence_solver.converge(
             self.simulation_state.dilution_factor,
             estimated_dilution_factor,
-            self.convergence_strategy.w.damping_constant,
         )
         if (
             self.iterations_executed + 1
         ) % self.convergence_strategy.lock_t_inner_cycles == 0:
-            next_t_inner = self.damped_converge(
+            next_t_inner = self.t_inner_convergence_solver.converge(
                 self.simulation_state.t_inner,
                 estimated_t_inner,
-                self.convergence_strategy.t_inner.damping_constant,
             )
         else:
             next_t_inner = self.simulation_state.t_inner
@@ -509,7 +498,10 @@ logger = logging.getLogger(__name__)
 
         return converged</div>
 
-<div class="viewcode-block" id="Simulation.iterate"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.iterate">[docs]</a>    def iterate(self, no_of_packets, no_of_virtual_packets=0):
+
+<div class="viewcode-block" id="Simulation.iterate">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.iterate">[docs]</a>
+    def iterate(self, no_of_packets, no_of_virtual_packets=0):
         logger.info(
             f&quot;\n\tStarting iteration {(self.iterations_executed + 1):d} of {self.iterations:d}&quot;
         )
@@ -566,7 +558,10 @@ logger = logging.getLogger(__name__)
         self.log_run_results(emitted_luminosity, reabsorbed_luminosity)
         self.iterations_executed += 1</div>
 
-<div class="viewcode-block" id="Simulation.run_convergence"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.run_convergence">[docs]</a>    def run_convergence(self):
+
+<div class="viewcode-block" id="Simulation.run_convergence">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.run_convergence">[docs]</a>
+    def run_convergence(self):
         &quot;&quot;&quot;
         run the simulation
         &quot;&quot;&quot;
@@ -593,7 +588,10 @@ logger = logging.getLogger(__name__)
             f&quot;\n\tSimulation took {(time.time() - start_time):.2f} s\n&quot;
         )</div>
 
-<div class="viewcode-block" id="Simulation.run_final"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.run_final">[docs]</a>    def run_final(self):
+
+<div class="viewcode-block" id="Simulation.run_final">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.run_final">[docs]</a>
+    def run_final(self):
         &quot;&quot;&quot;
         run the last iteration of the simulation
         &quot;&quot;&quot;
@@ -620,7 +618,10 @@ logger = logging.getLogger(__name__)
 
         self._call_back()</div>
 
-<div class="viewcode-block" id="Simulation.log_plasma_state"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.log_plasma_state">[docs]</a>    def log_plasma_state(
+
+<div class="viewcode-block" id="Simulation.log_plasma_state">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.log_plasma_state">[docs]</a>
+    def log_plasma_state(
         self,
         t_rad,
         dilution_factor,
@@ -691,18 +692,24 @@ logger = logging.getLogger(__name__)
             f&quot;\n\tCurrent t_inner = {t_inner:.3f}\n\tExpected t_inner for next iteration = {next_t_inner:.3f}\n&quot;
         )</div>
 
-<div class="viewcode-block" id="Simulation.log_run_results"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.log_run_results">[docs]</a>    def log_run_results(self, emitted_luminosity, absorbed_luminosity):
+
+<div class="viewcode-block" id="Simulation.log_run_results">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.log_run_results">[docs]</a>
+    def log_run_results(self, emitted_luminosity, absorbed_luminosity):
         logger.info(
             f&quot;\n\tLuminosity emitted   = {emitted_luminosity:.3e}\n&quot;
             f&quot;\tLuminosity absorbed  = {absorbed_luminosity:.3e}\n&quot;
             f&quot;\tLuminosity requested = {self.luminosity_requested:.3e}\n&quot;
         )</div>
 
+
     def _call_back(self):
         for cb, args in self._callbacks.values():
             cb(self, *args)
 
-<div class="viewcode-block" id="Simulation.add_callback"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.add_callback">[docs]</a>    def add_callback(self, cb_func, *args):
+<div class="viewcode-block" id="Simulation.add_callback">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.add_callback">[docs]</a>
+    def add_callback(self, cb_func, *args):
         &quot;&quot;&quot;
         Add a function which will be called
         after every iteration.
@@ -728,7 +735,10 @@ logger = logging.getLogger(__name__)
         self._cb_next_id += 1
         return cb_id</div>
 
-<div class="viewcode-block" id="Simulation.remove_callback"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.remove_callback">[docs]</a>    def remove_callback(self, id):
+
+<div class="viewcode-block" id="Simulation.remove_callback">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.remove_callback">[docs]</a>
+    def remove_callback(self, id):
         &quot;&quot;&quot;
         Remove the callback with a specific ID (which was returned by
         add_callback)
@@ -749,7 +759,10 @@ logger = logging.getLogger(__name__)
             logger.debug(f&quot;Call Back was not found in {self._callbacks.keys()}&quot;)
             return False</div>
 
-<div class="viewcode-block" id="Simulation.from_config"><a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.from_config">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="Simulation.from_config">
+<a class="viewcode-back" href="../../../api/tardis.simulation.base.html#tardis.simulation.base.Simulation.from_config">[docs]</a>
+    @classmethod
     def from_config(
         cls,
         config,
@@ -895,7 +908,9 @@ logger = logging.getLogger(__name__)
             convergence_strategy=config.montecarlo.convergence_strategy,
             convergence_plots_kwargs=convergence_plots_kwargs,
             show_progress_bars=show_progress_bars,
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -906,7 +921,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

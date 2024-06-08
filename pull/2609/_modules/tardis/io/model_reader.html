@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model_reader &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -141,11 +140,16 @@ from tardis.util.base import is_valid_nuclide_or_elem, parse_quantity
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="ConfigurationError"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.ConfigurationError">[docs]</a>class ConfigurationError(Exception):
+<div class="viewcode-block" id="ConfigurationError">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.ConfigurationError">[docs]</a>
+class ConfigurationError(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="read_density_file"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_density_file">[docs]</a>def read_density_file(filename, filetype):
+
+<div class="viewcode-block" id="read_density_file">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_density_file">[docs]</a>
+def read_density_file(filename, filetype):
     &quot;&quot;&quot;
     read different density file formats
 
@@ -214,7 +218,10 @@ logger = logging.getLogger(__name__)
     )</div>
 
 
-<div class="viewcode-block" id="read_abundances_file"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_abundances_file">[docs]</a>def read_abundances_file(
+
+<div class="viewcode-block" id="read_abundances_file">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_abundances_file">[docs]</a>
+def read_abundances_file(
     abundance_filename,
     abundance_filetype,
     inner_boundary_index=None,
@@ -261,7 +268,10 @@ logger = logging.getLogger(__name__)
     return index, abundances, isotope_abundance</div>
 
 
-<div class="viewcode-block" id="read_uniform_abundances"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_uniform_abundances">[docs]</a>def read_uniform_abundances(abundances_section, no_of_shells):
+
+<div class="viewcode-block" id="read_uniform_abundances">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_uniform_abundances">[docs]</a>
+def read_uniform_abundances(abundances_section, no_of_shells):
     &quot;&quot;&quot;
     Parameters
     ----------
@@ -314,7 +324,10 @@ logger = logging.getLogger(__name__)
     return abundance, isotope_abundance</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_density"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_simple_ascii_density">[docs]</a>def read_simple_ascii_density(fname):
+
+<div class="viewcode-block" id="read_simple_ascii_density">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_simple_ascii_density">[docs]</a>
+def read_simple_ascii_density(fname):
     &quot;&quot;&quot;
     Reading a density file of the following structure (example; lines starting with a hash will be ignored):
     The first density describes the mean density in the center of the model and is not used.
@@ -351,7 +364,10 @@ logger = logging.getLogger(__name__)
     return time_of_model, velocity, mean_density</div>
 
 
-<div class="viewcode-block" id="read_artis_density"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_artis_density">[docs]</a>def read_artis_density(fname):
+
+<div class="viewcode-block" id="read_artis_density">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_artis_density">[docs]</a>
+def read_artis_density(fname):
     &quot;&quot;&quot;
     Reading a density file of the following structure (example; lines starting with a hash will be ignored):
     The first density describes the mean density in the center of the model and is not used.
@@ -406,7 +422,10 @@ logger = logging.getLogger(__name__)
     return time_of_model, velocity, mean_density</div>
 
 
-<div class="viewcode-block" id="read_cmfgen_density"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_cmfgen_density">[docs]</a>def read_cmfgen_density(fname):
+
+<div class="viewcode-block" id="read_cmfgen_density">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_cmfgen_density">[docs]</a>
+def read_cmfgen_density(fname):
     &quot;&quot;&quot;
     Reading a density file of the following structure (example; lines starting with a hash will be ignored):
     The first density describes the mean density in the center of the model and is not used.
@@ -466,7 +485,10 @@ logger = logging.getLogger(__name__)
     )</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_abundances"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_simple_ascii_abundances">[docs]</a>def read_simple_ascii_abundances(fname):
+
+<div class="viewcode-block" id="read_simple_ascii_abundances">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_simple_ascii_abundances">[docs]</a>
+def read_simple_ascii_abundances(fname):
     &quot;&quot;&quot;
     Reading an abundance file of the following structure (example; lines starting with hash will be ignored):
     The first line of abundances describe the abundances in the center of the model and are not used.
@@ -495,7 +517,10 @@ logger = logging.getLogger(__name__)
     return index, abundances</div>
 
 
-<div class="viewcode-block" id="read_cmfgen_composition"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_cmfgen_composition">[docs]</a>def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
+
+<div class="viewcode-block" id="read_cmfgen_composition">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_cmfgen_composition">[docs]</a>
+def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
     &quot;&quot;&quot;Read composition from a CMFGEN model file
 
     The CMFGEN file format contains information about the ejecta state in the
@@ -516,7 +541,10 @@ logger = logging.getLogger(__name__)
     )</div>
 
 
-<div class="viewcode-block" id="read_csv_composition"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_csv_composition">[docs]</a>def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
+
+<div class="viewcode-block" id="read_csv_composition">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_csv_composition">[docs]</a>
+def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
     &quot;&quot;&quot;Read composition from a simple CSV file
 
     The CSV file can contain specific isotopes or elemental abundances in the
@@ -536,7 +564,10 @@ logger = logging.getLogger(__name__)
     )</div>
 
 
-<div class="viewcode-block" id="read_csv_isotope_abundances"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_csv_isotope_abundances">[docs]</a>def read_csv_isotope_abundances(
+
+<div class="viewcode-block" id="read_csv_isotope_abundances">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.read_csv_isotope_abundances">[docs]</a>
+def read_csv_isotope_abundances(
     fname, delimiter=r&quot;\s+&quot;, skip_columns=0, skip_rows=[1]
 ):
     &quot;&quot;&quot;
@@ -607,7 +638,10 @@ logger = logging.getLogger(__name__)
     return abundance.index, abundance, isotope_abundance</div>
 
 
-<div class="viewcode-block" id="parse_csv_abundances"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.parse_csv_abundances">[docs]</a>def parse_csv_abundances(csvy_data):
+
+<div class="viewcode-block" id="parse_csv_abundances">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.parse_csv_abundances">[docs]</a>
+def parse_csv_abundances(csvy_data):
     &quot;&quot;&quot;
     A parser for the csv data part of a csvy model file. This function filters out columns that are not abundances.
 
@@ -656,7 +690,10 @@ logger = logging.getLogger(__name__)
     return abundance.index, abundance, isotope_abundance</div>
 
 
-<div class="viewcode-block" id="transport_to_dict"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.transport_to_dict">[docs]</a>def transport_to_dict(transport):
+
+<div class="viewcode-block" id="transport_to_dict">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.transport_to_dict">[docs]</a>
+def transport_to_dict(transport):
     &quot;&quot;&quot;
     Retrieves all the data from a transport object and returns a dictionary.
 
@@ -668,7 +705,6 @@ logger = logging.getLogger(__name__)
     -------
     transport_dict : dict
     integrator_settings : dict
-    v_packet_settings : dict
     virtual_spectrum_spawn_range : dict
     &quot;&quot;&quot;
     transport_dict = {
@@ -676,8 +712,6 @@ logger = logging.getLogger(__name__)
         &quot;bf_heating_estimator&quot;: transport.bf_heating_estimator,
         &quot;disable_electron_scattering&quot;: transport.disable_electron_scattering,
         &quot;enable_full_relativity&quot;: transport.enable_full_relativity,
-        &quot;enable_reflective_inner_boundary&quot;: transport.enable_reflective_inner_boundary,
-        &quot;inner_boundary_albedo&quot;: transport.inner_boundary_albedo,
         &quot;input_energy&quot;: transport.input_energy,
         &quot;input_mu&quot;: transport.input_mu,
         &quot;input_nu&quot;: transport.input_nu,
@@ -723,18 +757,19 @@ logger = logging.getLogger(__name__)
             transport_dict[key] = [value.cgs.value, value.unit.to_string()]
 
     integrator_settings = transport.integrator_settings
-    v_packet_settings = transport.v_packet_settings
     virtual_spectrum_spawn_range = transport.virtual_spectrum_spawn_range
 
     return (
         transport_dict,
         integrator_settings,
-        v_packet_settings,
         virtual_spectrum_spawn_range,
     )</div>
 
 
-<div class="viewcode-block" id="store_transport_to_hdf"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.store_transport_to_hdf">[docs]</a>def store_transport_to_hdf(transport, fname):
+
+<div class="viewcode-block" id="store_transport_to_hdf">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.store_transport_to_hdf">[docs]</a>
+def store_transport_to_hdf(transport, fname):
     &quot;&quot;&quot;
     Stores data from MontecarloTransport object into a hdf file.
 
@@ -750,7 +785,6 @@ logger = logging.getLogger(__name__)
         (
             transport_data,
             integrator_settings,
-            v_packet_settings,
             virtual_spectrum_spawn_range,
         ) = transport_to_dict(transport)
 
@@ -768,12 +802,6 @@ logger = logging.getLogger(__name__)
         for key, value in integrator_settings.items():
             integrator_settings_group.create_dataset(key, data=value)
 
-        v_packet_settings_group = transport_group.create_group(
-            &quot;v_packet_settings&quot;
-        )
-        for key, value in v_packet_settings.items():
-            v_packet_settings_group.create_dataset(key, data=value)
-
         virtual_spectrum_spawn_range_group = transport_group.create_group(
             &quot;virtual_spectrum_spawn_range&quot;
         )
@@ -781,7 +809,10 @@ logger = logging.getLogger(__name__)
             virtual_spectrum_spawn_range_group.create_dataset(key, data=value)</div>
 
 
-<div class="viewcode-block" id="transport_from_hdf"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.transport_from_hdf">[docs]</a>def transport_from_hdf(fname):
+
+<div class="viewcode-block" id="transport_from_hdf">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.transport_from_hdf">[docs]</a>
+def transport_from_hdf(fname):
     &quot;&quot;&quot;
     Creates a MontecarloTransport object using data stored in a hdf file.
 
@@ -841,7 +872,6 @@ logger = logging.getLogger(__name__)
 
     # Converting dictionaries to ConfigurationNameSpace
     d[&quot;integrator_settings&quot;] = ConfigurationNameSpace(d[&quot;integrator_settings&quot;])
-    d[&quot;v_packet_settings&quot;] = ConfigurationNameSpace(d[&quot;v_packet_settings&quot;])
     d[&quot;virtual_spectrum_spawn_range&quot;] = ConfigurationNameSpace(
         d[&quot;virtual_spectrum_spawn_range&quot;]
     )
@@ -851,12 +881,9 @@ logger = logging.getLogger(__name__)
         spectrum_frequency=d[&quot;spectrum_frequency_cgs&quot;],
         virtual_spectrum_spawn_range=d[&quot;virtual_spectrum_spawn_range&quot;],
         disable_electron_scattering=d[&quot;disable_electron_scattering&quot;],
-        enable_reflective_inner_boundary=d[&quot;enable_reflective_inner_boundary&quot;],
         enable_full_relativity=d[&quot;enable_full_relativity&quot;],
-        inner_boundary_albedo=d[&quot;inner_boundary_albedo&quot;],
         line_interaction_type=d[&quot;line_interaction_type&quot;],
         integrator_settings=d[&quot;integrator_settings&quot;],
-        v_packet_settings=d[&quot;v_packet_settings&quot;],
         spectrum_method=d[&quot;spectrum_method&quot;],
         packet_source=d[&quot;packet_source&quot;],
         nthreads=d[&quot;nthreads&quot;],
@@ -920,7 +947,10 @@ logger = logging.getLogger(__name__)
     return new_transport</div>
 
 
-<div class="viewcode-block" id="model_to_dict"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.model_to_dict">[docs]</a>def model_to_dict(model):
+
+<div class="viewcode-block" id="model_to_dict">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.model_to_dict">[docs]</a>
+def model_to_dict(model):
     &quot;&quot;&quot;
     Retrieves all the data from a SimulationState object and returns a dictionary.
 
@@ -957,7 +987,10 @@ logger = logging.getLogger(__name__)
     return model_dict, isotope_abundance</div>
 
 
-<div class="viewcode-block" id="store_model_to_hdf"><a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.store_model_to_hdf">[docs]</a>def store_model_to_hdf(model, fname):
+
+<div class="viewcode-block" id="store_model_to_hdf">
+<a class="viewcode-back" href="../../../api/tardis.io.model_reader.html#tardis.io.model_reader.store_model_to_hdf">[docs]</a>
+def store_model_to_hdf(model, fname):
     &quot;&quot;&quot;
     Stores data from SimulationState object into a hdf file.
 
@@ -978,6 +1011,7 @@ logger = logging.getLogger(__name__)
                 model_group.create_dataset(key + &quot;_unit&quot;, data=value[1])
             else:
                 model_group.create_dataset(key, data=value)</div>
+
 </pre></div>
 
            </div>
@@ -988,7 +1022,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

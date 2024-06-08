@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.packet_source &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -128,7 +127,9 @@ from tardis.io.util import HDFWriterMixin
 from astropy import units as u
 
 
-<div class="viewcode-block" id="BasePacketSource"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource">[docs]</a>class BasePacketSource(abc.ABC):
+<div class="viewcode-block" id="BasePacketSource">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource">[docs]</a>
+class BasePacketSource(abc.ABC):
     &quot;&quot;&quot;
     Abstract base packet source
 
@@ -158,23 +159,37 @@ from astropy import units as u
     def _reseed(self, seed):
         self.rng = np.random.default_rng(seed=seed)
 
-<div class="viewcode-block" id="BasePacketSource.create_packet_radii"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_radii">[docs]</a>    @abc.abstractmethod
+<div class="viewcode-block" id="BasePacketSource.create_packet_radii">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_radii">[docs]</a>
+    @abc.abstractmethod
     def create_packet_radii(self, no_of_packets, *args, **kwargs):
         pass</div>
 
-<div class="viewcode-block" id="BasePacketSource.create_packet_nus"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_nus">[docs]</a>    @abc.abstractmethod
+
+<div class="viewcode-block" id="BasePacketSource.create_packet_nus">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_nus">[docs]</a>
+    @abc.abstractmethod
     def create_packet_nus(self, no_of_packets, *args, **kwargs):
         pass</div>
 
-<div class="viewcode-block" id="BasePacketSource.create_packet_mus"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_mus">[docs]</a>    @abc.abstractmethod
+
+<div class="viewcode-block" id="BasePacketSource.create_packet_mus">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_mus">[docs]</a>
+    @abc.abstractmethod
     def create_packet_mus(self, no_of_packets, *args, **kwargs):
         pass</div>
 
-<div class="viewcode-block" id="BasePacketSource.create_packet_energies"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_energies">[docs]</a>    @abc.abstractmethod
+
+<div class="viewcode-block" id="BasePacketSource.create_packet_energies">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packet_energies">[docs]</a>
+    @abc.abstractmethod
     def create_packet_energies(self, no_of_packets, *args, **kwargs):
         pass</div>
 
-<div class="viewcode-block" id="BasePacketSource.create_packets"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packets">[docs]</a>    def create_packets(self, no_of_packets, seed_offset=0, *args, **kwargs):
+
+<div class="viewcode-block" id="BasePacketSource.create_packets">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.create_packets">[docs]</a>
+    def create_packets(self, no_of_packets, seed_offset=0, *args, **kwargs):
         &quot;&quot;&quot;Generate packet properties as arrays
 
         Parameters
@@ -223,7 +238,10 @@ from astropy import units as u
             radiation_field_luminosity,
         )</div>
 
-<div class="viewcode-block" id="BasePacketSource.calculate_radfield_luminosity"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity">[docs]</a>    def calculate_radfield_luminosity(self):
+
+<div class="viewcode-block" id="BasePacketSource.calculate_radfield_luminosity">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity">[docs]</a>
+    def calculate_radfield_luminosity(self):
         &quot;&quot;&quot;
         Calculate inner luminosity.
 
@@ -241,10 +259,14 @@ from astropy import units as u
             * const.sigma_sb
             * self.radius**2
             * self.temperature**4
-        ).to(&quot;erg/s&quot;)</div></div>
+        ).to(&quot;erg/s&quot;)</div>
+</div>
 
 
-<div class="viewcode-block" id="BlackBodySimpleSource"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource">[docs]</a>class BlackBodySimpleSource(BasePacketSource, HDFWriterMixin):
+
+<div class="viewcode-block" id="BlackBodySimpleSource">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource">[docs]</a>
+class BlackBodySimpleSource(BasePacketSource, HDFWriterMixin):
     &quot;&quot;&quot;
     Simple packet source that generates Blackbody packets for the Montecarlo
     part.
@@ -264,7 +286,9 @@ from astropy import units as u
     hdf_properties = [&quot;radius&quot;, &quot;temperature&quot;, &quot;base_seed&quot;]
     hdf_name = &quot;black_body_simple_source&quot;
 
-<div class="viewcode-block" id="BlackBodySimpleSource.from_simulation_state"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.from_simulation_state">[docs]</a>    @classmethod
+<div class="viewcode-block" id="BlackBodySimpleSource.from_simulation_state">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.from_simulation_state">[docs]</a>
+    @classmethod
     def from_simulation_state(cls, simulation_state, *args, **kwargs):
         return cls(
             simulation_state.r_inner[0],
@@ -273,17 +297,23 @@ from astropy import units as u
             **kwargs,
         )</div>
 
+
     def __init__(self, radius=None, temperature=None, **kwargs):
         self.radius = radius
         self.temperature = temperature
         super().__init__(**kwargs)
 
-<div class="viewcode-block" id="BlackBodySimpleSource.create_packets"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packets">[docs]</a>    def create_packets(self, no_of_packets, *args, **kwargs):
+<div class="viewcode-block" id="BlackBodySimpleSource.create_packets">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packets">[docs]</a>
+    def create_packets(self, no_of_packets, *args, **kwargs):
         if self.radius is None or self.temperature is None:
             raise ValueError(&quot;Black body Radius or Temperature isn&#39;t set&quot;)
         return super().create_packets(no_of_packets, *args, **kwargs)</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_radii"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_radii">[docs]</a>    def create_packet_radii(self, no_of_packets):
+
+<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_radii">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_radii">[docs]</a>
+    def create_packet_radii(self, no_of_packets):
         &quot;&quot;&quot;
         Create packet radii
 
@@ -299,7 +329,10 @@ from astropy import units as u
         &quot;&quot;&quot;
         return np.ones(no_of_packets) * self.radius.cgs</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_nus"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_nus">[docs]</a>    def create_packet_nus(self, no_of_packets, l_samples=1000):
+
+<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_nus">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_nus">[docs]</a>
+    def create_packet_nus(self, no_of_packets, l_samples=1000):
         &quot;&quot;&quot;
         Create packet :math:`\\nu` distributed using the algorithm described in
         Bjorkman &amp; Wood 2001 (page 4) which references
@@ -342,7 +375,10 @@ from astropy import units as u
 
         return (x * (const.k_B * self.temperature) / const.h).cgs</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
+
+<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_mus">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_mus">[docs]</a>
+    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
         Create zero-limb-darkening packet :math:`\mu` distributed
         according to :math:`\\mu=\\sqrt{z}, z \isin [0, 1]`
@@ -364,7 +400,10 @@ from astropy import units as u
         else:
             return np.sqrt(self.rng.random(no_of_packets))</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_energies"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_energies">[docs]</a>    def create_packet_energies(self, no_of_packets):
+
+<div class="viewcode-block" id="BlackBodySimpleSource.create_packet_energies">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.create_packet_energies">[docs]</a>
+    def create_packet_energies(self, no_of_packets):
         &quot;&quot;&quot;
         Uniformly distribute energy in arbitrary units where the ensemble of
         packets has energy of 1.
@@ -381,7 +420,10 @@ from astropy import units as u
         &quot;&quot;&quot;
         return np.ones(no_of_packets) / no_of_packets * u.erg</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSource.set_temperature_from_luminosity"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.set_temperature_from_luminosity">[docs]</a>    def set_temperature_from_luminosity(self, luminosity: u.Quantity):
+
+<div class="viewcode-block" id="BlackBodySimpleSource.set_temperature_from_luminosity">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSource.set_temperature_from_luminosity">[docs]</a>
+    def set_temperature_from_luminosity(self, luminosity: u.Quantity):
         &quot;&quot;&quot;
         Set blackbody packet source temperature from luminosity
 
@@ -394,10 +436,14 @@ from astropy import units as u
         self.temperature = (
             (luminosity / (4 * np.pi * self.radius**2 * const.sigma_sb))
             ** 0.25
-        ).to(&quot;K&quot;)</div></div>
+        ).to(&quot;K&quot;)</div>
+</div>
 
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic">[docs]</a>class BlackBodySimpleSourceRelativistic(BlackBodySimpleSource, HDFWriterMixin):
+
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic">[docs]</a>
+class BlackBodySimpleSourceRelativistic(BlackBodySimpleSource, HDFWriterMixin):
     &quot;&quot;&quot;
     Simple packet source that generates Blackbody packets for the Montecarlo
     part.
@@ -418,7 +464,9 @@ from astropy import units as u
 
     hdf_properties = [&quot;time_explosion&quot;, &quot;radius&quot;, &quot;temperature&quot;, &quot;base_seed&quot;]
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.from_simulation_state"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_simulation_state">[docs]</a>    @classmethod
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.from_simulation_state">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.from_simulation_state">[docs]</a>
+    @classmethod
     def from_simulation_state(cls, simulation_state, *args, **kwargs):
         return cls(
             simulation_state.time_explosion,
@@ -428,11 +476,14 @@ from astropy import units as u
             **kwargs,
         )</div>
 
+
     def __init__(self, time_explosion=None, **kwargs):
         self.time_explosion = time_explosion
         super().__init__(**kwargs)
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packets"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packets">[docs]</a>    def create_packets(self, no_of_packets):
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packets">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packets">[docs]</a>
+    def create_packets(self, no_of_packets):
         &quot;&quot;&quot;Generate relativistic black-body packet properties as arrays
 
         Parameters
@@ -456,7 +507,10 @@ from astropy import units as u
         self.beta = (self.radius / self.time_explosion) / const.c
         return super().create_packets(no_of_packets)</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packet_mus"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packet_mus">[docs]</a>    def create_packet_mus(self, no_of_packets):
+
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packet_mus">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packet_mus">[docs]</a>
+    def create_packet_mus(self, no_of_packets):
         &quot;&quot;&quot;
         Create zero-limb-darkening packet :math:`\mu^\prime` distributed
         according to :math:`\\mu^\\prime=2 \\frac{\\mu^\\prime + \\beta}{2 \\beta + 1}`.
@@ -477,7 +531,10 @@ from astropy import units as u
         beta = self.beta
         return -beta + np.sqrt(beta**2 + 2 * beta * z + z)</div>
 
-<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packet_energies"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packet_energies">[docs]</a>    def create_packet_energies(self, no_of_packets):
+
+<div class="viewcode-block" id="BlackBodySimpleSourceRelativistic.create_packet_energies">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BlackBodySimpleSourceRelativistic.create_packet_energies">[docs]</a>
+    def create_packet_energies(self, no_of_packets):
         &quot;&quot;&quot;
         Uniformly distribute energy in arbitrary units where the ensemble of
         packets has energy of 1 multiplied by relativistic correction factors.
@@ -502,7 +559,9 @@ from astropy import units as u
         # are calculated as ratios of packet energies and the time of simulation.
         # Thus, we can absorb the factor gamma in the packet energies, which is
         # more convenient.
-        return energies * static_inner_boundary2cmf_factor / gamma * u.erg</div></div>
+        return energies * static_inner_boundary2cmf_factor / gamma * u.erg</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -513,7 +572,7 @@ from astropy import units as u
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

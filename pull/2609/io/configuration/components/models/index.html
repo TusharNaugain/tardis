@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Models &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -143,7 +142,7 @@
            <div itemprop="articleBody">
              
   <section id="models">
-<span id="model-csvy-and-config"></span><h1>Models<a class="headerlink" href="#models" title="Permalink to this heading">¶</a></h1>
+<span id="model-csvy-and-config"></span><h1>Models<a class="headerlink" href="#models" title="Link to this heading">¶</a></h1>
 <p>TARDIS requires a model of the ejecta in order to run a simulation. A model typically includes information
 for the velocity shell structure, density, and abundances. <strong>See</strong> <a class="reference internal" href="../../../../physics/setup/model.html"><span class="doc">Model</span></a> <strong>for more information on the
 TARDIS model</strong>. TARDIS offers two ways of specifying the model: either directly in the configuration YAML file
@@ -151,7 +150,7 @@ or separately in a CSVY file. See <a class="reference external" href="https://cs
 <p>TARDIS has several built-in models for the shell structure, density, and abundance. If only these are being used,
 we recommend using the YAML configuration method. For creating a custom model (which will be discussed below), we
 recommend using the CSVY method.</p>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#model-configuration" id="id2">Model Configuration</a></p>
 <ul>
@@ -173,9 +172,9 @@ recommend using the CSVY method.</p>
 </ul>
 </li>
 </ul>
-</div>
+</nav>
 <section id="model-configuration">
-<span id="model-config"></span><h2><a class="toc-backref" href="#id2">Model Configuration</a><a class="headerlink" href="#model-configuration" title="Permalink to this heading">¶</a></h2>
+<span id="model-config"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Model Configuration</a><a class="headerlink" href="#model-configuration" title="Link to this heading">¶</a></h2>
 <p>The following schema shows how the model section of the YAML configuration is set up:</p>
 <p>Several examples are shown in the following sections; additionally, see <a class="reference internal" href="../../example.html#tardis-example"><span class="std std-ref">TARDIS Example Configuration</span></a> to see
 an example model configuration section within the full TARDIS configuration. This configuration allows
@@ -189,7 +188,7 @@ they are recorded in the same file (see below). Therefore, if you wish to use a 
 structure you must also use a built-in density profile, and vice versa.</p>
 </div>
 <section id="custom-model-configurations">
-<h3><a class="toc-backref" href="#id3">Custom Model Configurations</a><a class="headerlink" href="#custom-model-configurations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Custom Model Configurations</a><a class="headerlink" href="#custom-model-configurations" title="Link to this heading">¶</a></h3>
 <p>The following two sections demonstrate how to specify custom structures and abundances in the
 model configuration.</p>
 <p>For example:</p>
@@ -227,7 +226,7 @@ would entail, see:</p>
 </div>
 </section>
 <section id="custom-model-tutorial">
-<h3><a class="toc-backref" href="#id4">Custom Model Tutorial</a><a class="headerlink" href="#custom-model-tutorial" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Custom Model Tutorial</a><a class="headerlink" href="#custom-model-tutorial" title="Link to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Custom_TARDIS_Model_Tutorial.html">How to run TARDIS with a custom ejecta model</a><ul>
@@ -244,7 +243,7 @@ would entail, see:</p>
 </div>
 </section>
 <section id="model-converters">
-<span id="converters"></span><h3><a class="toc-backref" href="#id5">Model Converters</a><a class="headerlink" href="#model-converters" title="Permalink to this heading">¶</a></h3>
+<span id="converters"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Model Converters</a><a class="headerlink" href="#model-converters" title="Link to this heading">¶</a></h3>
 <p>There are a variety of formats for models from other codes
 (both hydro and radiative transfer) that can be converted to TARDIS input files.
 Here we aim to provide converters for the most commonly used file formats.</p>
@@ -265,10 +264,10 @@ Here we aim to provide converters for the most commonly used file formats.</p>
 </section>
 </section>
 <section id="built-in-structure-density-and-abundance">
-<h2><a class="toc-backref" href="#id6">Built-in Structure, Density, and Abundance</a><a class="headerlink" href="#built-in-structure-density-and-abundance" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Built-in Structure, Density, and Abundance</a><a class="headerlink" href="#built-in-structure-density-and-abundance" title="Link to this heading">¶</a></h2>
 <p>TARDIS’s built-in models for structure, density, and abundance are described in the following sections:</p>
 <section id="structure">
-<h3><a class="toc-backref" href="#id7">Structure</a><a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Structure</a><a class="headerlink" href="#structure" title="Link to this heading">¶</a></h3>
 <p>When using the built-in structure functionality, the code requires two sections (<code class="docutils literal notranslate"><span class="pre">velocities</span></code> and <code class="docutils literal notranslate"><span class="pre">densities</span></code>) and a
 parameter <code class="docutils literal notranslate"><span class="pre">no_of_shells</span></code>. <code class="docutils literal notranslate"><span class="pre">no_of_shells</span></code> is the requested number of shells for a model. See
 <a class="reference internal" href="../../../../physics/setup/model.html#Shell-Structure"><span class="std std-ref">Shell Structure</span></a> for more information.</p>
@@ -286,7 +285,7 @@ parameter <code class="docutils literal notranslate"><span class="pre">no_of_she
 </div>
 </section>
 <section id="density">
-<h3><a class="toc-backref" href="#id8">Density</a><a class="headerlink" href="#density" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Density</a><a class="headerlink" href="#density" title="Link to this heading">¶</a></h3>
 <p>In the <code class="docutils literal notranslate"><span class="pre">densities</span></code> section of the specific structure, the <code class="docutils literal notranslate"><span class="pre">type</span></code> parameter decides on the parameters.
 The physics of these density models is further discussed in <a class="reference internal" href="../../../../physics/setup/model.html"><span class="doc">Model</span></a>.</p>
 <p>For example:</p>
@@ -337,7 +336,7 @@ The physics of these density models is further discussed in <a class="reference 
 <p>For more information, see <a class="reference internal" href="../../../../physics/setup/model.html#Uniform-Density"><span class="std std-ref">Uniform Density</span></a>.</p>
 </section>
 <section id="abundance">
-<h3><a class="toc-backref" href="#id9">Abundance</a><a class="headerlink" href="#abundance" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Abundance</a><a class="headerlink" href="#abundance" title="Link to this heading">¶</a></h3>
 <p>This section can be used to configure uniform abundances for all shells, by giving the atom or isotope name
 and a relative abundance fraction. If it does not add up to 1, TARDIS will warn – but normalize the numbers.</p>
 <p>For example:</p>
@@ -355,7 +354,7 @@ and a relative abundance fraction. If it does not add up to 1, TARDIS will warn 
 </section>
 </section>
 <section id="csvy-model">
-<span id="csvy-models"></span><h2><a class="toc-backref" href="#id10">CSVY Model</a><a class="headerlink" href="#csvy-model" title="Permalink to this heading">¶</a></h2>
+<span id="csvy-models"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">CSVY Model</a><a class="headerlink" href="#csvy-model" title="Link to this heading">¶</a></h2>
 <p>TARDIS allows users to use a CSVY file to input information about the model. To do this, instead of a
 <code class="docutils literal notranslate"><span class="pre">model</span></code> section, one includes <code class="docutils literal notranslate"><span class="pre">csvy_model:</span> <span class="pre">&lt;file</span> <span class="pre">path</span> <span class="pre">to</span> <span class="pre">CSVY</span> <span class="pre">file&gt;</span></code> in the main TARDIS configuration
 file.</p>
@@ -426,7 +425,7 @@ To prevent these quantities from being changed, you must set the damping constan
 Configuration</span></a> in the Monte Carlo section of the configuration file.</p>
 </div>
 <section id="csvy-model-tutorial">
-<h3><a class="toc-backref" href="#id11">CSVY Model Tutorial</a><a class="headerlink" href="#csvy-model-tutorial" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">CSVY Model Tutorial</a><a class="headerlink" href="#csvy-model-tutorial" title="Link to this heading">¶</a></h3>
 <p>Coming soon!</p>
 </section>
 </section>
@@ -444,7 +443,7 @@ Configuration</span></a> in the Monte Carlo section of the configuration file.</
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

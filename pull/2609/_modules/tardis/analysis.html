@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.analysis &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -131,8 +130,12 @@ from tardis import constants
 INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in model&quot;
 
 
-<div class="viewcode-block" id="LastLineInteraction"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction">[docs]</a>class LastLineInteraction:
-<div class="viewcode-block" id="LastLineInteraction.from_simulation"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="LastLineInteraction">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction">[docs]</a>
+class LastLineInteraction:
+<div class="viewcode-block" id="LastLineInteraction.from_simulation">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, simulation, packet_filter_mode=&quot;packet_out_nu&quot;):
         transport_state = simulation.transport.transport_state
         return cls(
@@ -144,6 +147,7 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             simulation.plasma.atomic_data.lines,
             packet_filter_mode,
         )</div>
+
 
     def __init__(
         self,
@@ -229,7 +233,9 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             self._ion_number = old_ion_number
             raise ValueError(INVALID_ION_ERROR_MSG)
 
-<div class="viewcode-block" id="LastLineInteraction.set_ion"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.set_ion">[docs]</a>    def set_ion(self, atomic_number, ion_number):
+<div class="viewcode-block" id="LastLineInteraction.set_ion">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.set_ion">[docs]</a>
+    def set_ion(self, atomic_number, ion_number):
         old_atomic_number = self._atomic_number
         old_ion_number = self._ion_number
         try:
@@ -240,6 +246,7 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             self._atomic_number = old_atomic_number
             self._ion_number = old_ion_number
             raise ValueError(INVALID_ION_ERROR_MSG)</div>
+
 
     @property
     def shell(self):
@@ -255,7 +262,9 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             self._shell = old_shell
             raise ValueError(&quot;Invalid shell number&quot;)
 
-<div class="viewcode-block" id="LastLineInteraction.update_last_interaction_filter"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.update_last_interaction_filter">[docs]</a>    def update_last_interaction_filter(self):
+<div class="viewcode-block" id="LastLineInteraction.update_last_interaction_filter">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.update_last_interaction_filter">[docs]</a>
+    def update_last_interaction_filter(self):
         if self.packet_filter_mode == &quot;packet_out_nu&quot;:
             packet_filter = (
                 self.last_line_interaction_out_angstrom &gt; self.wavelength_start
@@ -341,7 +350,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             by=&quot;count&quot;, ascending=False, inplace=True
         )</div>
 
-<div class="viewcode-block" id="LastLineInteraction.plot_wave_in_out"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.plot_wave_in_out">[docs]</a>    def plot_wave_in_out(self, fig, do_clf=True, plot_resonance=True):
+
+<div class="viewcode-block" id="LastLineInteraction.plot_wave_in_out">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.LastLineInteraction.plot_wave_in_out">[docs]</a>
+    def plot_wave_in_out(self, fig, do_clf=True, plot_resonance=True):
         if do_clf:
             fig.clf()
         ax = fig.add_subplot(111)
@@ -376,10 +388,14 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             pass
 
         fig.canvas.mpl_connect(&quot;pick_event&quot;, onpick)
-        fig.canvas.mpl_connect(&quot;on_press&quot;, onpress)</div></div>
+        fig.canvas.mpl_connect(&quot;on_press&quot;, onpress)</div>
+</div>
 
 
-<div class="viewcode-block" id="TARDISHistory"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory">[docs]</a>class TARDISHistory:
+
+<div class="viewcode-block" id="TARDISHistory">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory">[docs]</a>
+class TARDISHistory:
     &quot;&quot;&quot;
     Records the history of the model
     &quot;&quot;&quot;
@@ -404,14 +420,19 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         self.levels = None
         self.lines = None
 
-<div class="viewcode-block" id="TARDISHistory.load_atom_data"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_atom_data">[docs]</a>    def load_atom_data(self):
+<div class="viewcode-block" id="TARDISHistory.load_atom_data">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_atom_data">[docs]</a>
+    def load_atom_data(self):
         if self.levels is None or self.lines is None:
             hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
             self.levels = hdf_store[&quot;atom_data/levels&quot;]
             self.lines = hdf_store[&quot;atom_data/lines&quot;]
             hdf_store.close()</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_t_inner"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_t_inner">[docs]</a>    def load_t_inner(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_t_inner">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_t_inner">[docs]</a>
+    def load_t_inner(self, iterations=None):
         t_inners = []
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
 
@@ -431,7 +452,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         t_inners = np.array(t_inners)
         return t_inners</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_t_rads"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_t_rads">[docs]</a>    def load_t_rads(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_t_rads">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_t_rads">[docs]</a>
+    def load_t_rads(self, iterations=None):
         t_rads_dict = {}
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
 
@@ -450,7 +474,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         hdf_store.close()
         return t_rads</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_ws"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_ws">[docs]</a>    def load_ws(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_ws">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_ws">[docs]</a>
+    def load_ws(self, iterations=None):
         ws_dict = {}
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
 
@@ -468,7 +495,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
 
         return pd.DataFrame(ws_dict)</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_level_populations"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_level_populations">[docs]</a>    def load_level_populations(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_level_populations">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_level_populations">[docs]</a>
+    def load_level_populations(self, iterations=None):
         level_populations_dict = {}
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
         is_scalar = False
@@ -492,7 +522,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         else:
             return pd.Panel(level_populations_dict)</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_jblues"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_jblues">[docs]</a>    def load_jblues(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_jblues">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_jblues">[docs]</a>
+    def load_jblues(self, iterations=None):
         jblues_dict = {}
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
         is_scalar = False
@@ -514,7 +547,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         else:
             return pd.Panel(jblues_dict)</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_ion_populations"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_ion_populations">[docs]</a>    def load_ion_populations(self, iterations=None):
+
+<div class="viewcode-block" id="TARDISHistory.load_ion_populations">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_ion_populations">[docs]</a>
+    def load_ion_populations(self, iterations=None):
         ion_populations_dict = {}
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
 
@@ -539,7 +575,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         else:
             return pd.Panel(ion_populations_dict)</div>
 
-<div class="viewcode-block" id="TARDISHistory.load_spectrum"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_spectrum">[docs]</a>    def load_spectrum(self, iteration, spectrum_keyword=&quot;luminosity_density&quot;):
+
+<div class="viewcode-block" id="TARDISHistory.load_spectrum">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_spectrum">[docs]</a>
+    def load_spectrum(self, iteration, spectrum_keyword=&quot;luminosity_density&quot;):
         hdf_store = pd.HDFStore(self.hdf5_fname, &quot;r&quot;)
 
         spectrum = hdf_store[
@@ -548,7 +587,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
         hdf_store.close()
         return spectrum</div>
 
-<div class="viewcode-block" id="TARDISHistory.calculate_relative_lte_level_populations"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.calculate_relative_lte_level_populations">[docs]</a>    def calculate_relative_lte_level_populations(self, species, iteration=-1):
+
+<div class="viewcode-block" id="TARDISHistory.calculate_relative_lte_level_populations">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.calculate_relative_lte_level_populations">[docs]</a>
+    def calculate_relative_lte_level_populations(self, species, iteration=-1):
         self.load_atom_data()
         t_rads = self.load_t_rads(iteration)
         beta_rads = 1 / (constants.k_B.cgs.value * t_rads.values[:, 0])
@@ -564,7 +606,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             relative_lte_level_populations, index=species_levels.index
         )</div>
 
-<div class="viewcode-block" id="TARDISHistory.calculate_departure_coefficients"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.calculate_departure_coefficients">[docs]</a>    def calculate_departure_coefficients(self, species, iteration=-1):
+
+<div class="viewcode-block" id="TARDISHistory.calculate_departure_coefficients">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.calculate_departure_coefficients">[docs]</a>
+    def calculate_departure_coefficients(self, species, iteration=-1):
         self.load_atom_data()
         t_rads = self.load_t_rads(iteration)
         beta_rads = 1 / (constants.k_B.cgs.value * t_rads.values[:, 0])
@@ -583,7 +628,10 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
 
         return pd.DataFrame(departure_coefficient, index=species_levels.index)</div>
 
-<div class="viewcode-block" id="TARDISHistory.get_last_line_interaction"><a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.get_last_line_interaction">[docs]</a>    def get_last_line_interaction(self, iteration=-1):
+
+<div class="viewcode-block" id="TARDISHistory.get_last_line_interaction">
+<a class="viewcode-back" href="../../api/tardis.analysis.html#tardis.analysis.TARDISHistory.get_last_line_interaction">[docs]</a>
+    def get_last_line_interaction(self, iteration=-1):
         iteration = self.iterations[iteration]
         self.load_atom_data()
 
@@ -611,7 +659,9 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
             last_line_interaction_shell_id,
             montecarlo_nu,
             self.lines,
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -622,7 +672,7 @@ INVALID_ION_ERROR_MSG = &quot;Atomic number, ion_number pair not present in mode
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

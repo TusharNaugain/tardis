@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.parse_density_configuration &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -128,7 +127,9 @@ from tardis.util.base import quantity_linspace
 from typing import Tuple
 
 
-<div class="viewcode-block" id="parse_density_section"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_density_section">[docs]</a>def parse_density_section(
+<div class="viewcode-block" id="parse_density_section">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_density_section">[docs]</a>
+def parse_density_section(
     density_configuration: ConfigurationNameSpace,
     v_middle: u.Quantity,
     time_explosion: u.Quantity,
@@ -186,7 +187,10 @@ from typing import Tuple
     return density_0, time_0</div>
 
 
-<div class="viewcode-block" id="parse_config_v1_density"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_config_v1_density">[docs]</a>def parse_config_v1_density(config: Configuration) -&gt; u.Quantity:
+
+<div class="viewcode-block" id="parse_config_v1_density">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_config_v1_density">[docs]</a>
+def parse_config_v1_density(config: Configuration) -&gt; u.Quantity:
     &quot;&quot;&quot;
     Parse the configuration file and produce a density at
     time_explosion.
@@ -216,7 +220,10 @@ from typing import Tuple
     return calculate_density_after_time(density_0, time_0, time_explosion)</div>
 
 
-<div class="viewcode-block" id="parse_csvy_density"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_csvy_density">[docs]</a>def parse_csvy_density(
+
+<div class="viewcode-block" id="parse_csvy_density">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_csvy_density">[docs]</a>
+def parse_csvy_density(
     csvy_model_config: Configuration, time_explosion: u.Quantity
 ) -&gt; u.Quantity:
     &quot;&quot;&quot;
@@ -259,7 +266,10 @@ from typing import Tuple
     return calculate_density_after_time(density_0, time_0, time_explosion)</div>
 
 
-<div class="viewcode-block" id="calculate_power_law_density"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_power_law_density">[docs]</a>def calculate_power_law_density(
+
+<div class="viewcode-block" id="calculate_power_law_density">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_power_law_density">[docs]</a>
+def calculate_power_law_density(
     velocities: u.Quantity,
     velocity_0: u.Quantity,
     rho_0: u.Quantity,
@@ -290,7 +300,10 @@ from typing import Tuple
     return densities</div>
 
 
-<div class="viewcode-block" id="calculate_exponential_density"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_exponential_density">[docs]</a>def calculate_exponential_density(
+
+<div class="viewcode-block" id="calculate_exponential_density">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_exponential_density">[docs]</a>
+def calculate_exponential_density(
     velocities: u.Quantity, velocity_0: u.Quantity, rho_0: u.Quantity
 ) -&gt; u.Quantity:
     &quot;&quot;&quot;
@@ -315,7 +328,10 @@ from typing import Tuple
     return densities</div>
 
 
-<div class="viewcode-block" id="calculate_density_after_time"><a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_density_after_time">[docs]</a>def calculate_density_after_time(
+
+<div class="viewcode-block" id="calculate_density_after_time">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_density_after_time">[docs]</a>
+def calculate_density_after_time(
     densities: u.Quantity, time_0: u.Quantity, time_explosion: u.Quantity
 ) -&gt; u.Quantity:
     &quot;&quot;&quot;
@@ -338,6 +354,7 @@ from typing import Tuple
     &quot;&quot;&quot;
 
     return (densities * (time_explosion / time_0) ** -3).to(u.g / (u.cm**3))</div>
+
 </pre></div>
 
            </div>
@@ -348,7 +365,7 @@ from typing import Tuple
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

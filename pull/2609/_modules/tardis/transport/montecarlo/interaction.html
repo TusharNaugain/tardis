@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.interaction &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -142,7 +141,9 @@ K_B = const.k_B.cgs.value
 H = const.h.cgs.value
 
 
-<div class="viewcode-block" id="determine_bf_macro_activation_idx"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.determine_bf_macro_activation_idx">[docs]</a>@njit(**njit_dict_no_parallel)
+<div class="viewcode-block" id="determine_bf_macro_activation_idx">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.determine_bf_macro_activation_idx">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def determine_bf_macro_activation_idx(
     opacity_state, nu, chi_bf_contributions, active_continua
 ):
@@ -183,7 +184,10 @@ def determine_bf_macro_activation_idx(
     return destination_level_idx</div>
 
 
-<div class="viewcode-block" id="determine_continuum_macro_activation_idx"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.determine_continuum_macro_activation_idx">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="determine_continuum_macro_activation_idx">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.determine_continuum_macro_activation_idx">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def determine_continuum_macro_activation_idx(
     opacity_state, nu, chi_bf, chi_ff, chi_bf_contributions, active_continua
 ):
@@ -221,7 +225,10 @@ def determine_continuum_macro_activation_idx(
     return destination_level_idx</div>
 
 
-<div class="viewcode-block" id="sample_nu_free_free"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.sample_nu_free_free">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="sample_nu_free_free">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.sample_nu_free_free">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def sample_nu_free_free(opacity_state, shell):
     &quot;&quot;&quot;
     Attributes
@@ -235,7 +242,10 @@ def sample_nu_free_free(opacity_state, shell):
     return -K_B * temperature / H * np.log(zrand)</div>
 
 
-<div class="viewcode-block" id="sample_nu_free_bound"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.sample_nu_free_bound">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="sample_nu_free_bound">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.sample_nu_free_bound">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def sample_nu_free_bound(opacity_state, shell, continuum_id):
     &quot;&quot;&quot;
     Attributes
@@ -256,7 +266,10 @@ def sample_nu_free_bound(opacity_state, shell, continuum_id):
     )</div>
 
 
-<div class="viewcode-block" id="continuum_event"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.continuum_event">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="continuum_event">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.continuum_event">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def continuum_event(
     r_packet,
     time_explosion,
@@ -312,7 +325,10 @@ def continuum_event(
     )</div>
 
 
-<div class="viewcode-block" id="macro_atom_event"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.macro_atom_event">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="macro_atom_event">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.macro_atom_event">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def macro_atom_event(
     destination_level_idx,
     r_packet,
@@ -380,7 +396,10 @@ def macro_atom_event(
         raise Exception(&quot;No Interaction Found!&quot;)</div>
 
 
-<div class="viewcode-block" id="bf_cooling"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.bf_cooling">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="bf_cooling">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.bf_cooling">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def bf_cooling(r_packet, time_explosion, opacity_state, enable_full_relativity):
     &quot;&quot;&quot;
     Bound-Free Cooling - Determine and run bf emission from cooling
@@ -410,7 +429,10 @@ def bf_cooling(r_packet, time_explosion, opacity_state, enable_full_relativity):
     )</div>
 
 
-<div class="viewcode-block" id="adiabatic_cooling"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.adiabatic_cooling">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="adiabatic_cooling">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.adiabatic_cooling">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def adiabatic_cooling(r_packet):
     &quot;&quot;&quot;
     Adiabatic cooling - equivalent to destruction of the packet
@@ -422,7 +444,10 @@ def adiabatic_cooling(r_packet):
     r_packet.status = PacketStatus.ADIABATIC_COOLING</div>
 
 
-<div class="viewcode-block" id="get_current_line_id"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.get_current_line_id">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_current_line_id">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.get_current_line_id">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_current_line_id(nu, line_list):
     &quot;&quot;&quot;
     Get the line id corresponding to a frequency nu in a line list
@@ -441,7 +466,10 @@ def get_current_line_id(nu, line_list):
     return line_id</div>
 
 
-<div class="viewcode-block" id="free_free_emission"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.free_free_emission">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="free_free_emission">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.free_free_emission">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def free_free_emission(
     r_packet, time_explosion, opacity_state, enable_full_relativity
 ):
@@ -468,7 +496,10 @@ def free_free_emission(
         )</div>
 
 
-<div class="viewcode-block" id="bound_free_emission"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.bound_free_emission">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="bound_free_emission">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.bound_free_emission">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def bound_free_emission(
     r_packet,
     time_explosion,
@@ -503,7 +534,10 @@ def bound_free_emission(
         )</div>
 
 
-<div class="viewcode-block" id="thomson_scatter"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.thomson_scatter">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="thomson_scatter">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.thomson_scatter">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def thomson_scatter(r_packet, time_explosion, enable_full_relativity):
     &quot;&quot;&quot;
     Thomson scattering — no longer line scattering
@@ -539,7 +573,10 @@ def thomson_scatter(r_packet, time_explosion, enable_full_relativity):
     )</div>
 
 
-<div class="viewcode-block" id="line_scatter"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.line_scatter">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="line_scatter">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.line_scatter">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def line_scatter(
     r_packet,
     time_explosion,
@@ -594,7 +631,10 @@ def line_scatter(
         )</div>
 
 
-<div class="viewcode-block" id="line_emission"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.line_emission">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="line_emission">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.line_emission">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def line_emission(
     r_packet,
     emission_line_id,
@@ -630,6 +670,7 @@ def line_emission(
         r_packet.mu = angle_aberration_CMF_to_LF(
             r_packet, time_explosion, r_packet.mu
         )</div>
+
 </pre></div>
 
            </div>
@@ -640,7 +681,7 @@ def line_emission(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

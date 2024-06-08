@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.continuum_processes &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -348,7 +347,9 @@ class IndexSetterMixin:
         return p
 
 
-<div class="viewcode-block" id="SpontRecombRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombRateCoeff">[docs]</a>class SpontRecombRateCoeff(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="SpontRecombRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombRateCoeff">[docs]</a>
+class SpontRecombRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -359,7 +360,9 @@ class IndexSetterMixin:
     outputs = (&quot;alpha_sp&quot;,)
     latex_name = (r&quot;\alpha^{\textrm{sp}}&quot;,)
 
-<div class="viewcode-block" id="SpontRecombRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombRateCoeff.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="SpontRecombRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombRateCoeff.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         t_electrons,
@@ -378,10 +381,14 @@ class IndexSetterMixin:
             alpha_sp, nu, photo_ion_block_references
         )
         alpha_sp = pd.DataFrame(alpha_sp, index=photo_ion_index)
-        return alpha_sp * phi_ik.loc[alpha_sp.index]</div></div>
+        return alpha_sp * phi_ik.loc[alpha_sp.index]</div>
+</div>
 
 
-<div class="viewcode-block" id="SpontRecombCoolingRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombCoolingRateCoeff">[docs]</a>class SpontRecombCoolingRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="SpontRecombCoolingRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombCoolingRateCoeff">[docs]</a>
+class SpontRecombCoolingRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -393,7 +400,9 @@ class IndexSetterMixin:
     outputs = (&quot;c_fb_sp&quot;,)
     latex_name = (r&quot;c^{\textrm{sp}}_{\textrm{fb}}&quot;,)
 
-<div class="viewcode-block" id="SpontRecombCoolingRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombCoolingRateCoeff.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="SpontRecombCoolingRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombCoolingRateCoeff.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         t_electrons,
@@ -413,10 +422,14 @@ class IndexSetterMixin:
             alpha_sp, nu, photo_ion_block_references
         )
         alpha_sp = pd.DataFrame(alpha_sp, index=photo_ion_index)
-        return alpha_sp * phi_ik.loc[alpha_sp.index]</div></div>
+        return alpha_sp * phi_ik.loc[alpha_sp.index]</div>
+</div>
 
 
-<div class="viewcode-block" id="FreeBoundEmissionCDF"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundEmissionCDF">[docs]</a>class FreeBoundEmissionCDF(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="FreeBoundEmissionCDF">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundEmissionCDF">[docs]</a>
+class FreeBoundEmissionCDF(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -431,7 +444,9 @@ class IndexSetterMixin:
     outputs = (&quot;fb_emission_cdf&quot;,)
     latex_name = (r&quot;P(\nu_{bf, emission}) \leq \nu)&quot;,)
 
-<div class="viewcode-block" id="FreeBoundEmissionCDF.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundEmissionCDF.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="FreeBoundEmissionCDF.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundEmissionCDF.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         t_electrons,
@@ -453,10 +468,14 @@ class IndexSetterMixin:
         fb_emission_cdf = pd.DataFrame(
             alpha_sp_E, index=photo_ion_cross_sections.index
         )
-        return fb_emission_cdf</div></div>
+        return fb_emission_cdf</div>
+</div>
 
 
-<div class="viewcode-block" id="PhotoIonRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff">[docs]</a>class PhotoIonRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="PhotoIonRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff">[docs]</a>
+class PhotoIonRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -467,7 +486,9 @@ class IndexSetterMixin:
     outputs = (&quot;gamma&quot;,)
     latex_name = (r&quot;\gamma&quot;,)
 
-<div class="viewcode-block" id="PhotoIonRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="PhotoIonRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         gamma_estimator,
@@ -495,7 +516,10 @@ class IndexSetterMixin:
 
         return gamma</div>
 
-<div class="viewcode-block" id="PhotoIonRateCoeff.calculate_from_dilute_bb"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff.calculate_from_dilute_bb">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="PhotoIonRateCoeff.calculate_from_dilute_bb">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff.calculate_from_dilute_bb">[docs]</a>
+    @staticmethod
     def calculate_from_dilute_bb(
         photo_ion_cross_sections,
         photo_ion_block_references,
@@ -513,10 +537,14 @@ class IndexSetterMixin:
             gamma.values, nu.values, photo_ion_block_references
         )
         gamma = pd.DataFrame(gamma, index=photo_ion_index)
-        return gamma</div></div>
+        return gamma</div>
+</div>
 
 
-<div class="viewcode-block" id="StimRecombRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff">[docs]</a>class StimRecombRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="StimRecombRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff">[docs]</a>
+class StimRecombRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -527,7 +555,9 @@ class IndexSetterMixin:
     outputs = (&quot;alpha_stim&quot;,)
     latex_name = (r&quot;\alpha^{\textrm{stim}}&quot;,)
 
-<div class="viewcode-block" id="StimRecombRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="StimRecombRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         alpha_stim_estimator,
@@ -560,7 +590,10 @@ class IndexSetterMixin:
         alpha_stim *= phi_ik.loc[alpha_stim.index]
         return alpha_stim</div>
 
-<div class="viewcode-block" id="StimRecombRateCoeff.calculate_from_dilute_bb"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff.calculate_from_dilute_bb">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="StimRecombRateCoeff.calculate_from_dilute_bb">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff.calculate_from_dilute_bb">[docs]</a>
+    @staticmethod
     def calculate_from_dilute_bb(
         photo_ion_cross_sections,
         photo_ion_block_references,
@@ -581,10 +614,14 @@ class IndexSetterMixin:
             alpha_stim.values, nu.values, photo_ion_block_references
         )
         alpha_stim = pd.DataFrame(alpha_stim, index=photo_ion_index)
-        return alpha_stim</div></div>
+        return alpha_stim</div>
+</div>
 
 
-<div class="viewcode-block" id="RawRecombTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawRecombTransProbs">[docs]</a>class RawRecombTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
+
+<div class="viewcode-block" id="RawRecombTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawRecombTransProbs">[docs]</a>
+class RawRecombTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -597,7 +634,9 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;p_recomb&quot;,)
     latex_name = (r&quot;p^{\textrm{recomb}}&quot;,)
 
-<div class="viewcode-block" id="RawRecombTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawRecombTransProbs.calculate">[docs]</a>    def calculate(self, alpha_sp, nu_i, energy_i, photo_ion_idx):
+<div class="viewcode-block" id="RawRecombTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawRecombTransProbs.calculate">[docs]</a>
+    def calculate(self, alpha_sp, nu_i, energy_i, photo_ion_idx):
         p_recomb_deactivation = alpha_sp.multiply(nu_i, axis=0) * H
         p_recomb_deactivation = self.set_index(
             p_recomb_deactivation, photo_ion_idx, transition_type=-1
@@ -608,10 +647,14 @@ class IndexSetterMixin:
             p_recomb_internal, photo_ion_idx, transition_type=0
         )
         p_recomb = pd.concat([p_recomb_deactivation, p_recomb_internal])
-        return p_recomb</div></div>
+        return p_recomb</div>
+</div>
 
 
-<div class="viewcode-block" id="RawPhotoIonTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawPhotoIonTransProbs">[docs]</a>class RawPhotoIonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
+
+<div class="viewcode-block" id="RawPhotoIonTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawPhotoIonTransProbs">[docs]</a>
+class RawPhotoIonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -624,13 +667,19 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;p_photo_ion&quot;,)
     latex_name = (r&quot;p^{\textrm{photo_ion}}&quot;,)
 
-<div class="viewcode-block" id="RawPhotoIonTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawPhotoIonTransProbs.calculate">[docs]</a>    def calculate(self, gamma_corr, energy_i, photo_ion_idx):
+<div class="viewcode-block" id="RawPhotoIonTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawPhotoIonTransProbs.calculate">[docs]</a>
+    def calculate(self, gamma_corr, energy_i, photo_ion_idx):
         p_photo_ion = gamma_corr.multiply(energy_i, axis=0)
         p_photo_ion = self.set_index(p_photo_ion, photo_ion_idx, reverse=False)
-        return p_photo_ion</div></div>
+        return p_photo_ion</div>
+</div>
 
 
-<div class="viewcode-block" id="CorrPhotoIonRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CorrPhotoIonRateCoeff">[docs]</a>class CorrPhotoIonRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="CorrPhotoIonRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CorrPhotoIonRateCoeff">[docs]</a>
+class CorrPhotoIonRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -642,7 +691,9 @@ class IndexSetterMixin:
     outputs = (&quot;gamma_corr&quot;,)
     latex_name = (r&quot;\gamma_\mathrm{corr}&quot;,)
 
-<div class="viewcode-block" id="CorrPhotoIonRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CorrPhotoIonRateCoeff.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="CorrPhotoIonRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CorrPhotoIonRateCoeff.calculate">[docs]</a>
+    def calculate(
         self,
         gamma,
         alpha_stim,
@@ -661,19 +712,29 @@ class IndexSetterMixin:
             raise PlasmaException(
                 &quot;Negative values in CorrPhotoIonRateCoeff.  Try raising the number of montecarlo packets.&quot;
             )
-        return gamma_corr</div></div>
+        return gamma_corr</div>
+</div>
 
 
-<div class="viewcode-block" id="PhotoIonEstimatorsNormFactor"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonEstimatorsNormFactor">[docs]</a>class PhotoIonEstimatorsNormFactor(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="PhotoIonEstimatorsNormFactor">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonEstimatorsNormFactor">[docs]</a>
+class PhotoIonEstimatorsNormFactor(ProcessingPlasmaProperty):
     outputs = (&quot;photo_ion_norm_factor&quot;,)
     latex_name = (r&quot;\frac{1}{t_\textrm{simulation volume h}}&quot;,)
 
-<div class="viewcode-block" id="PhotoIonEstimatorsNormFactor.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonEstimatorsNormFactor.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="PhotoIonEstimatorsNormFactor.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonEstimatorsNormFactor.calculate">[docs]</a>
+    @staticmethod
     def calculate(time_simulation, volume):
-        return (time_simulation * volume * H) ** -1</div></div>
+        return (time_simulation * volume * H) ** -1</div>
+</div>
 
 
-<div class="viewcode-block" id="PhotoIonRateCoeffEstimator"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeffEstimator">[docs]</a>class PhotoIonRateCoeffEstimator(Input):
+
+<div class="viewcode-block" id="PhotoIonRateCoeffEstimator">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeffEstimator">[docs]</a>
+class PhotoIonRateCoeffEstimator(Input):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -686,7 +747,10 @@ class IndexSetterMixin:
     latex_name = (r&quot;\gamma_\textrm{estim}&quot;,)</div>
 
 
-<div class="viewcode-block" id="StimRecombRateCoeffEstimator"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeffEstimator">[docs]</a>class StimRecombRateCoeffEstimator(Input):
+
+<div class="viewcode-block" id="StimRecombRateCoeffEstimator">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeffEstimator">[docs]</a>
+class StimRecombRateCoeffEstimator(Input):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -699,7 +763,10 @@ class IndexSetterMixin:
     latex_name = (r&quot;\alpha^{\textrm{stim}}_\textrm{estim}&quot;,)</div>
 
 
-<div class="viewcode-block" id="StimRecombCoolingRateCoeffEstimator"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombCoolingRateCoeffEstimator">[docs]</a>class StimRecombCoolingRateCoeffEstimator(Input):
+
+<div class="viewcode-block" id="StimRecombCoolingRateCoeffEstimator">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombCoolingRateCoeffEstimator">[docs]</a>
+class StimRecombCoolingRateCoeffEstimator(Input):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -711,7 +778,10 @@ class IndexSetterMixin:
     outputs = (&quot;stim_recomb_cooling_coeff_estimator&quot;,)</div>
 
 
-<div class="viewcode-block" id="BfHeatingRateCoeffEstimator"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BfHeatingRateCoeffEstimator">[docs]</a>class BfHeatingRateCoeffEstimator(Input):
+
+<div class="viewcode-block" id="BfHeatingRateCoeffEstimator">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BfHeatingRateCoeffEstimator">[docs]</a>
+class BfHeatingRateCoeffEstimator(Input):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -724,7 +794,10 @@ class IndexSetterMixin:
     latex_name = (r&quot;h_\textrm{bf}_\textrm{estim}&quot;,)</div>
 
 
-<div class="viewcode-block" id="CollExcRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollExcRateCoeff">[docs]</a>class CollExcRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="CollExcRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollExcRateCoeff">[docs]</a>
+class CollExcRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -735,7 +808,9 @@ class IndexSetterMixin:
     outputs = (&quot;coll_exc_coeff&quot;,)
     latex_name = (&quot;c_{lu}&quot;,)
 
-<div class="viewcode-block" id="CollExcRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollExcRateCoeff.calculate">[docs]</a>    def calculate(self, yg_interp, yg_index, t_electrons, delta_E_yg):
+<div class="viewcode-block" id="CollExcRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollExcRateCoeff.calculate">[docs]</a>
+    def calculate(self, yg_interp, yg_index, t_electrons, delta_E_yg):
         yg = yg_interp(t_electrons)
         boltzmann_factor = np.exp(
             -delta_E_yg.values[np.newaxis].T / (t_electrons * K_B)
@@ -743,10 +818,14 @@ class IndexSetterMixin:
         q_ij = (
             BETA_COLL / np.sqrt(t_electrons) * yg * boltzmann_factor
         )  # see formula A2 in Przybilla, Butler 2004 - Apj 609, 1181
-        return pd.DataFrame(q_ij, index=yg_index)</div></div>
+        return pd.DataFrame(q_ij, index=yg_index)</div>
+</div>
 
 
-<div class="viewcode-block" id="CollDeexcRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollDeexcRateCoeff">[docs]</a>class CollDeexcRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="CollDeexcRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollDeexcRateCoeff">[docs]</a>
+class CollDeexcRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -757,7 +836,9 @@ class IndexSetterMixin:
     outputs = (&quot;coll_deexc_coeff&quot;,)
     latex_name = (&quot;c_{ul}&quot;,)
 
-<div class="viewcode-block" id="CollDeexcRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollDeexcRateCoeff.calculate">[docs]</a>    def calculate(self, thermal_lte_level_boltzmann_factor, coll_exc_coeff):
+<div class="viewcode-block" id="CollDeexcRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollDeexcRateCoeff.calculate">[docs]</a>
+    def calculate(self, thermal_lte_level_boltzmann_factor, coll_exc_coeff):
         level_lower_index = coll_exc_coeff.index.droplevel(&quot;level_number_upper&quot;)
         level_upper_index = coll_exc_coeff.index.droplevel(&quot;level_number_lower&quot;)
 
@@ -769,10 +850,14 @@ class IndexSetterMixin:
         ].values
 
         coll_deexc_coeff = coll_exc_coeff * n_lower_prop / n_upper_prop
-        return coll_deexc_coeff</div></div>
+        return coll_deexc_coeff</div>
+</div>
 
 
-<div class="viewcode-block" id="RawCollisionTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollisionTransProbs">[docs]</a>class RawCollisionTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
+
+<div class="viewcode-block" id="RawCollisionTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollisionTransProbs">[docs]</a>
+class RawCollisionTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -785,7 +870,9 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;p_coll&quot;,)
     latex_name = (r&quot;p^{\textrm{coll}}&quot;,)
 
-<div class="viewcode-block" id="RawCollisionTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollisionTransProbs.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="RawCollisionTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollisionTransProbs.calculate">[docs]</a>
+    def calculate(
         self,
         coll_exc_coeff,
         coll_deexc_coeff,
@@ -841,10 +928,14 @@ class IndexSetterMixin:
         p_coll = pd.concat(
             [p_deexc_deactivation, p_deexc_internal, p_exc_internal, p_exc_cool]
         )
-        return p_coll</div></div>
+        return p_coll</div>
+</div>
 
 
-<div class="viewcode-block" id="RawTwoPhotonTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawTwoPhotonTransProbs">[docs]</a>class RawTwoPhotonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
+
+<div class="viewcode-block" id="RawTwoPhotonTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawTwoPhotonTransProbs">[docs]</a>
+class RawTwoPhotonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -855,7 +946,9 @@ class IndexSetterMixin:
     outputs = (&quot;p_two_photon&quot;,)
     transition_probabilities_outputs = (&quot;p_two_photon&quot;,)
 
-<div class="viewcode-block" id="RawTwoPhotonTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawTwoPhotonTransProbs.calculate">[docs]</a>    def calculate(self, two_photon_data, two_photon_idx, density):
+<div class="viewcode-block" id="RawTwoPhotonTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawTwoPhotonTransProbs.calculate">[docs]</a>
+    def calculate(self, two_photon_data, two_photon_idx, density):
         no_shells = len(density)
         p_two_phot = two_photon_data.A_ul * two_photon_data.nu0 * H
         p_two_phot = pd.concat([p_two_phot] * no_shells, axis=1)
@@ -869,10 +962,14 @@ class IndexSetterMixin:
         p_two_phot.index = p_two_phot.index.set_levels(
             [&quot;two-photon&quot;], level=&quot;destination_level_idx&quot;
         )
-        return p_two_phot</div></div>
+        return p_two_phot</div>
+</div>
 
 
-<div class="viewcode-block" id="TwoPhotonEmissionCDF"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF">[docs]</a>class TwoPhotonEmissionCDF(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="TwoPhotonEmissionCDF">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF">[docs]</a>
+class TwoPhotonEmissionCDF(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -884,7 +981,9 @@ class IndexSetterMixin:
 
     outputs = (&quot;two_photon_emission_cdf&quot;,)
 
-<div class="viewcode-block" id="TwoPhotonEmissionCDF.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF.calculate">[docs]</a>    def calculate(self, two_photon_data):
+<div class="viewcode-block" id="TwoPhotonEmissionCDF.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF.calculate">[docs]</a>
+    def calculate(self, two_photon_data):
         bins = 500
         # The number of two photon transitions is very small
         # and the CDF has to be calculated only once.
@@ -906,7 +1005,10 @@ class IndexSetterMixin:
             emission_cdfs.append(cdf)
         return pd.concat(emission_cdfs)</div>
 
-<div class="viewcode-block" id="TwoPhotonEmissionCDF.calculate_j_nu"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF.calculate_j_nu">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="TwoPhotonEmissionCDF.calculate_j_nu">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF.calculate_j_nu">[docs]</a>
+    @staticmethod
     def calculate_j_nu(y, alpha, beta, gamma):
         &quot;&quot;&quot;
         Calculate two photon emissivity.
@@ -936,10 +1038,14 @@ class IndexSetterMixin:
         ay = y * (1 - y) * (1 - (4 * y * (1 - y)) ** gamma)
         ay += alpha * (y * (1 - y)) ** beta * (4 * y * (1 - y)) ** gamma
         j_nu = ay * y
-        return j_nu</div></div>
+        return j_nu</div>
+</div>
 
 
-<div class="viewcode-block" id="AdiabaticCoolingRate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.AdiabaticCoolingRate">[docs]</a>class AdiabaticCoolingRate(TransitionProbabilitiesProperty):
+
+<div class="viewcode-block" id="AdiabaticCoolingRate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.AdiabaticCoolingRate">[docs]</a>
+class AdiabaticCoolingRate(TransitionProbabilitiesProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -951,7 +1057,9 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;cool_rate_adiabatic&quot;,)
     latex_name = (r&quot;C_{\textrm{adiabatic}}&quot;,)
 
-<div class="viewcode-block" id="AdiabaticCoolingRate.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.AdiabaticCoolingRate.calculate">[docs]</a>    def calculate(self, electron_densities, t_electrons, time_explosion):
+<div class="viewcode-block" id="AdiabaticCoolingRate.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.AdiabaticCoolingRate.calculate">[docs]</a>
+    def calculate(self, electron_densities, t_electrons, time_explosion):
         cool_rate_adiabatic = (
             3.0 * electron_densities * K_B * t_electrons
         ) / time_explosion
@@ -959,10 +1067,14 @@ class IndexSetterMixin:
         cool_rate_adiabatic = cooling_rate_series2dataframe(
             cool_rate_adiabatic, destination_level_idx=&quot;adiabatic&quot;
         )
-        return cool_rate_adiabatic</div></div>
+        return cool_rate_adiabatic</div>
+</div>
 
 
-<div class="viewcode-block" id="FreeFreeCoolingRate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeFreeCoolingRate">[docs]</a>class FreeFreeCoolingRate(TransitionProbabilitiesProperty):
+
+<div class="viewcode-block" id="FreeFreeCoolingRate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeFreeCoolingRate">[docs]</a>
+class FreeFreeCoolingRate(TransitionProbabilitiesProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -982,7 +1094,9 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;cool_rate_ff&quot;,)
     latex_name = (r&quot;C^{\textrm{ff}}&quot;,)
 
-<div class="viewcode-block" id="FreeFreeCoolingRate.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeFreeCoolingRate.calculate">[docs]</a>    def calculate(self, ion_number_density, electron_densities, t_electrons):
+<div class="viewcode-block" id="FreeFreeCoolingRate.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeFreeCoolingRate.calculate">[docs]</a>
+    def calculate(self, ion_number_density, electron_densities, t_electrons):
         ff_cooling_factor = self._calculate_ff_cooling_factor(
             ion_number_density, electron_densities
         )
@@ -991,6 +1105,7 @@ class IndexSetterMixin:
             cool_rate_ff, destination_level_idx=&quot;ff&quot;
         )
         return cool_rate_ff, ff_cooling_factor.values</div>
+
 
     @staticmethod
     def _calculate_ff_cooling_factor(ion_number_density, electron_densities):
@@ -1002,7 +1117,10 @@ class IndexSetterMixin:
         return factor</div>
 
 
-<div class="viewcode-block" id="TwoPhotonFrequencySampler"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonFrequencySampler">[docs]</a>class TwoPhotonFrequencySampler(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="TwoPhotonFrequencySampler">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonFrequencySampler">[docs]</a>
+class TwoPhotonFrequencySampler(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1012,7 +1130,9 @@ class IndexSetterMixin:
 
     outputs = (&quot;nu_two_photon_sampler&quot;,)
 
-<div class="viewcode-block" id="TwoPhotonFrequencySampler.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonFrequencySampler.calculate">[docs]</a>    def calculate(self, two_photon_emission_cdf):
+<div class="viewcode-block" id="TwoPhotonFrequencySampler.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonFrequencySampler.calculate">[docs]</a>
+    def calculate(self, two_photon_emission_cdf):
         nus = two_photon_emission_cdf[&quot;nu&quot;].values
         em = two_photon_emission_cdf[&quot;cdf&quot;].values
 
@@ -1025,10 +1145,14 @@ class IndexSetterMixin:
                 nus[idx] - nus[idx - 1]
             )
 
-        return nu_two_photon</div></div>
+        return nu_two_photon</div>
+</div>
 
 
-<div class="viewcode-block" id="FreeBoundCoolingRate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundCoolingRate">[docs]</a>class FreeBoundCoolingRate(TransitionProbabilitiesProperty):
+
+<div class="viewcode-block" id="FreeBoundCoolingRate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundCoolingRate">[docs]</a>
+class FreeBoundCoolingRate(TransitionProbabilitiesProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1045,7 +1169,9 @@ class IndexSetterMixin:
     transition_probabilities_outputs = (&quot;cool_rate_fb_tot&quot;,)
     latex_name = (r&quot;C^{\textrm{fb, tot}}&quot;, r&quot;C^{\textrm{fb}}&quot;)
 
-<div class="viewcode-block" id="FreeBoundCoolingRate.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundCoolingRate.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="FreeBoundCoolingRate.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundCoolingRate.calculate">[docs]</a>
+    def calculate(
         self,
         c_fb_sp,
         electron_densities,
@@ -1067,10 +1193,14 @@ class IndexSetterMixin:
             continuum_idx
         ).sort_index(ascending=True)
         p_fb_deactivation.index.name = &quot;continuum_idx&quot;
-        return cool_rate_fb_tot, cool_rate_fb, p_fb_deactivation</div></div>
+        return cool_rate_fb_tot, cool_rate_fb, p_fb_deactivation</div>
+</div>
 
 
-<div class="viewcode-block" id="BoundFreeOpacity"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BoundFreeOpacity">[docs]</a>class BoundFreeOpacity(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="BoundFreeOpacity">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BoundFreeOpacity">[docs]</a>
+class BoundFreeOpacity(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1081,7 +1211,9 @@ class IndexSetterMixin:
     outputs = (&quot;chi_bf&quot;,)
     latex_name = (r&quot;\chi^{\textrm{bf}}&quot;,)
 
-<div class="viewcode-block" id="BoundFreeOpacity.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BoundFreeOpacity.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="BoundFreeOpacity.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BoundFreeOpacity.calculate">[docs]</a>
+    def calculate(
         self,
         photo_ion_cross_sections,
         t_electrons,
@@ -1101,10 +1233,14 @@ class IndexSetterMixin:
         num_neg_elements = (chi_bf &lt; 0).sum().sum()
         if num_neg_elements:
             raise PlasmaException(&quot;Negative values in bound-free opacity.&quot;)
-        return chi_bf</div></div>
+        return chi_bf</div>
+</div>
 
 
-<div class="viewcode-block" id="LevelNumberDensityLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.LevelNumberDensityLTE">[docs]</a>class LevelNumberDensityLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="LevelNumberDensityLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.LevelNumberDensityLTE">[docs]</a>
+class LevelNumberDensityLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1115,7 +1251,9 @@ class IndexSetterMixin:
     latex_name = (r&quot;n_{\textrm{i}}^*&quot;,)
 
     # TODO: only do this for continuum species
-<div class="viewcode-block" id="LevelNumberDensityLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.LevelNumberDensityLTE.calculate">[docs]</a>    def calculate(self, electron_densities, phi_ik, ion_number_density):
+<div class="viewcode-block" id="LevelNumberDensityLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.LevelNumberDensityLTE.calculate">[docs]</a>
+    def calculate(self, electron_densities, phi_ik, ion_number_density):
         next_higher_ion_index = get_ion_multi_index(
             phi_ik.index, next_higher=True
         )
@@ -1123,10 +1261,14 @@ class IndexSetterMixin:
         lte_level_number_density = (
             phi_ik * ion_number_density.loc[next_higher_ion_index].values
         ).multiply(electron_densities, axis=1)
-        return lte_level_number_density</div></div>
+        return lte_level_number_density</div>
+</div>
 
 
-<div class="viewcode-block" id="PhotoIonBoltzmannFactor"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonBoltzmannFactor">[docs]</a>class PhotoIonBoltzmannFactor(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="PhotoIonBoltzmannFactor">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonBoltzmannFactor">[docs]</a>
+class PhotoIonBoltzmannFactor(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1135,15 +1277,21 @@ class IndexSetterMixin:
 
     outputs = (&quot;boltzmann_factor_photo_ion&quot;,)
 
-<div class="viewcode-block" id="PhotoIonBoltzmannFactor.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonBoltzmannFactor.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="PhotoIonBoltzmannFactor.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonBoltzmannFactor.calculate">[docs]</a>
+    @staticmethod
     def calculate(photo_ion_cross_sections, t_electrons):
         nu = photo_ion_cross_sections[&quot;nu&quot;].values
 
         boltzmann_factor = np.exp(-nu[np.newaxis].T / t_electrons * (H / K_B))
-        return boltzmann_factor</div></div>
+        return boltzmann_factor</div>
+</div>
 
 
-<div class="viewcode-block" id="CollIonRateCoeffSeaton"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollIonRateCoeffSeaton">[docs]</a>class CollIonRateCoeffSeaton(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="CollIonRateCoeffSeaton">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollIonRateCoeffSeaton">[docs]</a>
+class CollIonRateCoeffSeaton(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1165,7 +1313,9 @@ class IndexSetterMixin:
     outputs = (&quot;coll_ion_coeff&quot;,)
     latex_name = (r&quot;c_{\textrm{i,}\kappa}&quot;,)
 
-<div class="viewcode-block" id="CollIonRateCoeffSeaton.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollIonRateCoeffSeaton.calculate">[docs]</a>    def calculate(self, photo_ion_cross_sections, t_electrons):
+<div class="viewcode-block" id="CollIonRateCoeffSeaton.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollIonRateCoeffSeaton.calculate">[docs]</a>
+    def calculate(self, photo_ion_cross_sections, t_electrons):
         photo_ion_cross_sections_threshold = photo_ion_cross_sections.groupby(
             level=[0, 1, 2]
         ).first()
@@ -1181,6 +1331,7 @@ class IndexSetterMixin:
         coll_ion_coeff[ion_number &gt;= 2] *= 0.3
         return coll_ion_coeff</div>
 
+
     def _calculate_factor(self, nu_i, t_electrons):
         u0s = self._calculate_u0s(nu_i.values, t_electrons)
         factor = np.exp(-u0s) / u0s
@@ -1193,7 +1344,10 @@ class IndexSetterMixin:
         return u0s</div>
 
 
-<div class="viewcode-block" id="CollRecombRateCoeff"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollRecombRateCoeff">[docs]</a>class CollRecombRateCoeff(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="CollRecombRateCoeff">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollRecombRateCoeff">[docs]</a>
+class CollRecombRateCoeff(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1212,11 +1366,17 @@ class IndexSetterMixin:
     outputs = (&quot;coll_recomb_coeff&quot;,)
     latex_name = (r&quot;c_{\kappa\textrm{i,}}&quot;,)
 
-<div class="viewcode-block" id="CollRecombRateCoeff.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollRecombRateCoeff.calculate">[docs]</a>    def calculate(self, phi_ik, coll_ion_coeff):
-        return coll_ion_coeff.multiply(phi_ik.loc[coll_ion_coeff.index])</div></div>
+<div class="viewcode-block" id="CollRecombRateCoeff.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollRecombRateCoeff.calculate">[docs]</a>
+    def calculate(self, phi_ik, coll_ion_coeff):
+        return coll_ion_coeff.multiply(phi_ik.loc[coll_ion_coeff.index])</div>
+</div>
 
 
-<div class="viewcode-block" id="RawCollIonTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollIonTransProbs">[docs]</a>class RawCollIonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
+
+<div class="viewcode-block" id="RawCollIonTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollIonTransProbs">[docs]</a>
+class RawCollIonTransProbs(TransitionProbabilitiesProperty, IndexSetterMixin):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -1242,7 +1402,9 @@ class IndexSetterMixin:
         r&quot;C^{\textrm{ion}}&quot;,
     )
 
-<div class="viewcode-block" id="RawCollIonTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollIonTransProbs.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="RawCollIonTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollIonTransProbs.calculate">[docs]</a>
+    def calculate(
         self,
         coll_ion_coeff,
         coll_recomb_coeff,
@@ -1296,7 +1458,9 @@ class IndexSetterMixin:
             names=list(photo_ion_idx.columns) + [&quot;transition_type&quot;],
         )
         cool_rate_coll_ion = cool_rate_coll_ion.set_index(ion_cool_index)
-        return p_coll_ion, p_coll_recomb, cool_rate_coll_ion</div></div>
+        return p_coll_ion, p_coll_recomb, cool_rate_coll_ion</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -1307,7 +1471,7 @@ class IndexSetterMixin:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

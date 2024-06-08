@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.logger.logger &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -143,7 +142,9 @@ DEFAULT_LOG_LEVEL = &quot;INFO&quot;
 DEFAULT_SPECIFIC_STATE = False
 
 
-<div class="viewcode-block" id="FilterLog"><a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.FilterLog">[docs]</a>class FilterLog(object):
+<div class="viewcode-block" id="FilterLog">
+<a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.FilterLog">[docs]</a>
+class FilterLog(object):
     &quot;&quot;&quot;
     Filter Log Class for Filtering Logging Output
     to a particular level
@@ -158,7 +159,9 @@ DEFAULT_SPECIFIC_STATE = False
     def __init__(self, log_level):
         self.log_level = log_level
 
-<div class="viewcode-block" id="FilterLog.filter"><a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.FilterLog.filter">[docs]</a>    def filter(self, log_record):
+<div class="viewcode-block" id="FilterLog.filter">
+<a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.FilterLog.filter">[docs]</a>
+    def filter(self, log_record):
         &quot;&quot;&quot;
         filter() allows to set the logging level for
         all the record that are being parsed &amp; hence remove those
@@ -177,10 +180,14 @@ DEFAULT_SPECIFIC_STATE = False
             False, if the current log_record doesn&#39;t have the
             same log_level as the specified one
         &quot;&quot;&quot;
-        return log_record.levelno == self.log_level</div></div>
+        return log_record.levelno == self.log_level</div>
+</div>
 
 
-<div class="viewcode-block" id="logging_state"><a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.logging_state">[docs]</a>def logging_state(log_level, tardis_config, specific_log_level):
+
+<div class="viewcode-block" id="logging_state">
+<a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.logging_state">[docs]</a>
+def logging_state(log_level, tardis_config, specific_log_level):
     &quot;&quot;&quot;
     Function to set the logging configuration for the simulation output
     Called from within run_tardis()
@@ -263,7 +270,10 @@ DEFAULT_SPECIFIC_STATE = False
                 logger.removeFilter(filter)</div>
 
 
-<div class="viewcode-block" id="tardis_logger"><a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.tardis_logger">[docs]</a>def tardis_logger():
+
+<div class="viewcode-block" id="tardis_logger">
+<a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.tardis_logger">[docs]</a>
+def tardis_logger():
     &quot;&quot;&quot;
     Generates the list of the loggers which are derived from TARDIS
     All loggers which are of the form `tardis.module_name` are added to the list
@@ -282,6 +292,7 @@ DEFAULT_SPECIFIC_STATE = False
         if not name.find(&quot;tardis&quot;):
             list_for_loggers.append(logging.getLogger(name))
     return list_for_loggers</div>
+
 </pre></div>
 
            </div>
@@ -292,7 +303,7 @@ DEFAULT_SPECIFIC_STATE = False
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

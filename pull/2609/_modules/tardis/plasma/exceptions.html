@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.exceptions &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -116,11 +115,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.exceptions</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="PlasmaException"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaException">[docs]</a><span></span>class PlasmaException(Exception):
+<div class="viewcode-block" id="PlasmaException">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaException">[docs]</a>
+<span></span>class PlasmaException(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="IncompleteAtomicData"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.IncompleteAtomicData">[docs]</a>class IncompleteAtomicData(PlasmaException):
+
+<div class="viewcode-block" id="IncompleteAtomicData">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.IncompleteAtomicData">[docs]</a>
+class IncompleteAtomicData(PlasmaException):
     def __init__(self, atomic_data_name):
         message = (
             f&quot;The current plasma calculation requires {atomic_data_name}, &quot;
@@ -129,24 +133,40 @@
         super(PlasmaException, self).__init__(message)</div>
 
 
-<div class="viewcode-block" id="PlasmaMissingModule"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaMissingModule">[docs]</a>class PlasmaMissingModule(PlasmaException):
+
+<div class="viewcode-block" id="PlasmaMissingModule">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaMissingModule">[docs]</a>
+class PlasmaMissingModule(PlasmaException):
     pass</div>
 
 
-<div class="viewcode-block" id="PlasmaIsolatedModule"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaIsolatedModule">[docs]</a>class PlasmaIsolatedModule(PlasmaException):
+
+<div class="viewcode-block" id="PlasmaIsolatedModule">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaIsolatedModule">[docs]</a>
+class PlasmaIsolatedModule(PlasmaException):
     pass</div>
 
 
-<div class="viewcode-block" id="NotInitializedModule"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.NotInitializedModule">[docs]</a>class NotInitializedModule(PlasmaException):
+
+<div class="viewcode-block" id="NotInitializedModule">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.NotInitializedModule">[docs]</a>
+class NotInitializedModule(PlasmaException):
     pass</div>
 
 
-<div class="viewcode-block" id="PlasmaIonizationError"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaIonizationError">[docs]</a>class PlasmaIonizationError(PlasmaException):
+
+<div class="viewcode-block" id="PlasmaIonizationError">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaIonizationError">[docs]</a>
+class PlasmaIonizationError(PlasmaException):
     pass</div>
 
 
-<div class="viewcode-block" id="PlasmaConfigError"><a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaConfigError">[docs]</a>class PlasmaConfigError(PlasmaException):
+
+<div class="viewcode-block" id="PlasmaConfigError">
+<a class="viewcode-back" href="../../../api/tardis.plasma.exceptions.html#tardis.plasma.exceptions.PlasmaConfigError">[docs]</a>
+class PlasmaConfigError(PlasmaException):
     pass</div>
+
 </pre></div>
 
            </div>
@@ -157,7 +177,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

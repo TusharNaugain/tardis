@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.vpacket &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -119,35 +118,31 @@
 <span></span>import math
 
 import numpy as np
-from tardis.transport.montecarlo.opacities import (
-    chi_continuum_calculator,
-)
-from numba import float64, int64
-from numba import njit
+from numba import float64, int64, njit
 from numba.experimental import jitclass
 
-from tardis.transport.montecarlo import njit_dict_no_parallel
-from tardis.transport.montecarlo.r_packet import (
-    PacketStatus,
+from tardis.opacities.opacities import (
+    chi_continuum_calculator,
 )
-from tardis.transport.r_packet_transport import (
-    move_packet_across_shell_boundary,
+from tardis.transport.frame_transformations import (
+    angle_aberration_CMF_to_LF,
+    angle_aberration_LF_to_CMF,
+    get_doppler_factor,
 )
-
 from tardis.transport.geometry.calculate_distances import (
     calculate_distance_boundary,
     calculate_distance_line,
 )
-
-from tardis.transport.frame_transformations import (
-    get_doppler_factor,
-    angle_aberration_LF_to_CMF,
-    angle_aberration_CMF_to_LF,
-)
-
+from tardis.transport.montecarlo import njit_dict_no_parallel
 from tardis.transport.montecarlo.numba_config import (
-    SIGMA_THOMSON,
     C_SPEED_OF_LIGHT,
+    SIGMA_THOMSON,
+)
+from tardis.transport.montecarlo.r_packet import (
+    PacketStatus,
+)
+from tardis.transport.montecarlo.r_packet_transport import (
+    move_packet_across_shell_boundary,
 )
 
 vpacket_spec = [
@@ -162,8 +157,10 @@ vpacket_spec = [
 ]
 
 
-<div class="viewcode-block" id="VPacket"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.VPacket">[docs]</a>@jitclass(vpacket_spec)
-class VPacket(object):
+<div class="viewcode-block" id="VPacket">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.VPacket">[docs]</a>
+@jitclass(vpacket_spec)
+class VPacket:
     def __init__(
         self,
         r,
@@ -184,11 +181,14 @@ class VPacket(object):
         self.index = index</div>
 
 
-<div class="viewcode-block" id="trace_vpacket_within_shell"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket_within_shell">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="trace_vpacket_within_shell">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket_within_shell">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def trace_vpacket_within_shell(
     v_packet,
     numba_radial_1d_geometry,
-    numba_model,
+    time_explosion,
     opacity_state,
     enable_full_relativity,
     continuum_processes_enabled,
@@ -216,7 +216,7 @@ def trace_vpacket_within_shell(
     doppler_factor = get_doppler_factor(
         v_packet.r,
         v_packet.mu,
-        numba_model.time_explosion,
+        time_explosion,
         enable_full_relativity,
     )
 
@@ -263,7 +263,7 @@ def trace_vpacket_within_shell(
             comov_nu,
             is_last_line,
             nu_line,
-            numba_model.time_explosion,
+            time_explosion,
             enable_full_relativity,
         )
 
@@ -280,11 +280,14 @@ def trace_vpacket_within_shell(
     return tau_trace_combined, distance_boundary, delta_shell</div>
 
 
-<div class="viewcode-block" id="trace_vpacket"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="trace_vpacket">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def trace_vpacket(
     v_packet,
     numba_radial_1d_geometry,
-    numba_model,
+    time_explosion,
     opacity_state,
     tau_russian,
     survival_probability,
@@ -293,17 +296,17 @@ def trace_vpacket(
 ):
     &quot;&quot;&quot;
     Trace single vpacket.
+
     Parameters
     ----------
     v_packet
-    numba_model
+    time_explosion
     opacity_state
 
     Returns
     -------
 
     &quot;&quot;&quot;
-
     tau_trace_combined = 0.0
     while True:
         (
@@ -313,7 +316,7 @@ def trace_vpacket(
         ) = trace_vpacket_within_shell(
             v_packet,
             numba_radial_1d_geometry,
-            numba_model,
+            time_explosion,
             opacity_state,
             enable_full_relativity,
             continuum_processes_enabled,
@@ -351,12 +354,15 @@ def trace_vpacket(
     return tau_trace_combined</div>
 
 
-<div class="viewcode-block" id="trace_vpacket_volley"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket_volley">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="trace_vpacket_volley">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.vpacket.html#tardis.transport.montecarlo.vpacket.trace_vpacket_volley">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def trace_vpacket_volley(
     r_packet,
     vpacket_collection,
     numba_radial_1d_geometry,
-    numba_model,
+    time_explosion,
     opacity_state,
     enable_full_relativity,
     tau_russian,
@@ -375,12 +381,11 @@ def trace_vpacket_volley(
         [description]
     numba_radial_1d_geometry : [type]
         [description]
-    numba_model : [type]
+    time_explosion : [type]
         [description]
     opacity_state : [type]
         [description]
     &quot;&quot;&quot;
-
     if (r_packet.nu &lt; vpacket_collection.v_packet_spawn_start_frequency) or (
         r_packet.nu &gt; vpacket_collection.v_packet_spawn_end_frequency
     ):
@@ -399,7 +404,7 @@ def trace_vpacket_volley(
         v_packet_on_inner_boundary = False
         if enable_full_relativity:
             mu_min = angle_aberration_LF_to_CMF(
-                r_packet, numba_model.time_explosion, mu_min
+                r_packet, time_explosion, mu_min
             )
     else:
         v_packet_on_inner_boundary = True
@@ -407,14 +412,14 @@ def trace_vpacket_volley(
 
         if enable_full_relativity:
             inv_c = 1 / C_SPEED_OF_LIGHT
-            inv_t = 1 / numba_model.time_explosion
+            inv_t = 1 / time_explosion
             beta_inner = numba_radial_1d_geometry.r_inner[0] * inv_t * inv_c
 
     mu_bin = (1.0 - mu_min) / no_of_vpackets
     r_packet_doppler_factor = get_doppler_factor(
         r_packet.r,
         r_packet.mu,
-        numba_model.time_explosion,
+        time_explosion,
         enable_full_relativity,
     )
     for i in range(no_of_vpackets):
@@ -437,12 +442,12 @@ def trace_vpacket_volley(
         # C code: next line, angle_aberration_CMF_to_LF( &amp; virt_packet, storage);
         if enable_full_relativity:
             v_packet_mu = angle_aberration_CMF_to_LF(
-                r_packet, numba_model.time_explosion, v_packet_mu
+                r_packet, time_explosion, v_packet_mu
             )
         v_packet_doppler_factor = get_doppler_factor(
             r_packet.r,
             v_packet_mu,
-            numba_model.time_explosion,
+            time_explosion,
             enable_full_relativity,
         )
 
@@ -470,7 +475,7 @@ def trace_vpacket_volley(
         tau_vpacket = trace_vpacket(
             v_packet,
             numba_radial_1d_geometry,
-            numba_model,
+            time_explosion,
             opacity_state,
             tau_russian,
             survival_probability,
@@ -491,6 +496,7 @@ def trace_vpacket_volley(
             r_packet.last_line_interaction_out_id,
             r_packet.last_line_interaction_shell_id,
         )</div>
+
 </pre></div>
 
            </div>
@@ -501,7 +507,7 @@ def trace_vpacket_volley(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

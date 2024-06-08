@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.model.matter.decay &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -126,7 +125,9 @@ from radioactivedecay.utils import Z_to_elem
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="IsotopicMassFraction"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction">[docs]</a>class IsotopicMassFraction(pd.DataFrame):
+<div class="viewcode-block" id="IsotopicMassFraction">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction">[docs]</a>
+class IsotopicMassFraction(pd.DataFrame):
     _metadata = [&quot;time_0&quot;]
 
     def __init__(self, *args, **kwargs):
@@ -149,7 +150,9 @@ logger = logging.getLogger(__name__)
             for i in range(len(self.columns)):
                 self.comp_dicts[i][nuclear_symbol] = mass_fractions[i]
 
-<div class="viewcode-block" id="IsotopicMassFraction.from_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.from_inventories">[docs]</a>    @classmethod
+<div class="viewcode-block" id="IsotopicMassFraction.from_inventories">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.from_inventories">[docs]</a>
+    @classmethod
     def from_inventories(cls, inventories):
         multi_index_tuples = set([])
         for inventory in inventories:
@@ -171,12 +174,18 @@ logger = logging.getLogger(__name__)
 
         return cls(abundances)</div>
 
-<div class="viewcode-block" id="IsotopicMassFraction.id_to_tuple"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.id_to_tuple">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="IsotopicMassFraction.id_to_tuple">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.id_to_tuple">[docs]</a>
+    @staticmethod
     def id_to_tuple(atomic_id):
         nuclide = Nuclide(atomic_id)
         return nuclide.Z, nuclide.A</div>
 
-<div class="viewcode-block" id="IsotopicMassFraction.to_inventories"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.to_inventories">[docs]</a>    def to_inventories(self, shell_masses=None):
+
+<div class="viewcode-block" id="IsotopicMassFraction.to_inventories">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.to_inventories">[docs]</a>
+    def to_inventories(self, shell_masses=None):
         &quot;&quot;&quot;
         Convert DataFrame to a list of inventories interpreting the MultiIndex as
         atomic_number and mass_number
@@ -198,7 +207,10 @@ logger = logging.getLogger(__name__)
                     )
         return [Inventory(comp_dict, &quot;g&quot;) for comp_dict in comp_dicts]</div>
 
-<div class="viewcode-block" id="IsotopicMassFraction.decay"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.decay">[docs]</a>    def decay(self, t):
+
+<div class="viewcode-block" id="IsotopicMassFraction.decay">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.decay">[docs]</a>
+    def decay(self, t):
         &quot;&quot;&quot;
         Decay the Model
 
@@ -230,7 +242,10 @@ logger = logging.getLogger(__name__)
         ), &quot;Negative abundances detected. Please make sure your input abundances are correct.&quot;
         return df</div>
 
-<div class="viewcode-block" id="IsotopicMassFraction.as_atoms"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.as_atoms">[docs]</a>    def as_atoms(self):
+
+<div class="viewcode-block" id="IsotopicMassFraction.as_atoms">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.as_atoms">[docs]</a>
+    def as_atoms(self):
         &quot;&quot;&quot;
         Merge Isotope dataframe according to atomic number
 
@@ -241,7 +256,10 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         return self.groupby(&quot;atomic_number&quot;).sum()</div>
 
-<div class="viewcode-block" id="IsotopicMassFraction.merge"><a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.merge">[docs]</a>    def merge(self, other, normalize=True):
+
+<div class="viewcode-block" id="IsotopicMassFraction.merge">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.merge">[docs]</a>
+    def merge(self, other, normalize=True):
         &quot;&quot;&quot;
         Merge Isotope dataframe with abundance passed as parameter
 
@@ -265,7 +283,9 @@ logger = logging.getLogger(__name__)
             norm_factor = modified_df.sum(axis=0)
             modified_df /= norm_factor
 
-        return modified_df</div></div>
+        return modified_df</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -276,7 +296,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

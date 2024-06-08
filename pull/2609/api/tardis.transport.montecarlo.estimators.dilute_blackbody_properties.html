@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.estimators.dilute_blackbody_properties module &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -69,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -149,26 +149,26 @@
            <div itemprop="articleBody">
              
   <section id="module-tardis.transport.montecarlo.estimators.dilute_blackbody_properties">
-<span id="tardis-transport-montecarlo-estimators-dilute-blackbody-properties-module"></span><h1>tardis.transport.montecarlo.estimators.dilute_blackbody_properties module<a class="headerlink" href="#module-tardis.transport.montecarlo.estimators.dilute_blackbody_properties" title="Permalink to this heading">¶</a></h1>
+<span id="tardis-transport-montecarlo-estimators-dilute-blackbody-properties-module"></span><h1>tardis.transport.montecarlo.estimators.dilute_blackbody_properties module<a class="headerlink" href="#module-tardis.transport.montecarlo.estimators.dilute_blackbody_properties" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.dilute_blackbody_properties.</span></span><span class="sig-name descname"><span class="pre">MCDiluteBlackBodyRadFieldSolver</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/dilute_blackbody_properties.html#MCDiluteBlackBodyRadFieldSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.dilute_blackbody_properties.</span></span><span class="sig-name descname"><span class="pre">MCDiluteBlackBodyRadFieldSolver</span></span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/dilute_blackbody_properties.html#MCDiluteBlackBodyRadFieldSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radfield_mc_estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_of_simulation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/dilute_blackbody_properties.html#MCDiluteBlackBodyRadFieldSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver.solve" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radfield_mc_estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_of_simulation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/dilute_blackbody_properties.html#MCDiluteBlackBodyRadFieldSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver.solve" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate an updated radiation field from the :math:
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">bar{nu}_textrm{estimator}</span></code> and <span class="math notranslate nohighlight">\(\J_\textrm{estimator}\)</span>
 calculated in the montecarlo simulation.
 The details of the calculation can be found in the documentation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nubar_estimator</strong><span class="classifier">np.ndarray (float)</span></dt><dd></dd>
 <dt><strong>j_estimator</strong><span class="classifier">np.ndarray (float)</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>t_radiative</strong><span class="classifier">astropy.units.Quantity (float)</span></dt><dd></dd>
 <dt><strong>dilution_factor</strong><span class="classifier">numpy.ndarray (float)</span></dt><dd></dd>
@@ -193,7 +193,7 @@ The details of the calculation can be found in the documentation.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

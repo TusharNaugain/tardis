@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.montecarlo_configuration &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -146,7 +145,9 @@ numba_config_spec = [
 ]
 
 
-<div class="viewcode-block" id="MonteCarloConfiguration"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_configuration.html#tardis.transport.montecarlo.montecarlo_configuration.MonteCarloConfiguration">[docs]</a>@jitclass(numba_config_spec)
+<div class="viewcode-block" id="MonteCarloConfiguration">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_configuration.html#tardis.transport.montecarlo.montecarlo_configuration.MonteCarloConfiguration">[docs]</a>
+@jitclass(numba_config_spec)
 class MonteCarloConfiguration(object):
     def __init__(self):
         self.ENABLE_FULL_RELATIVITY = False
@@ -171,7 +172,10 @@ class MonteCarloConfiguration(object):
         self.ENABLE_VPACKET_TRACKING = False</div>
 
 
-<div class="viewcode-block" id="configuration_initialize"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_configuration.html#tardis.transport.montecarlo.montecarlo_configuration.configuration_initialize">[docs]</a>def configuration_initialize(config, transport, number_of_vpackets):
+
+<div class="viewcode-block" id="configuration_initialize">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_configuration.html#tardis.transport.montecarlo.montecarlo_configuration.configuration_initialize">[docs]</a>
+def configuration_initialize(config, transport, number_of_vpackets):
     if transport.line_interaction_type == &quot;macroatom&quot;:
         config.LINE_INTERACTION_TYPE = LineInteractionType.MACROATOM
     elif transport.line_interaction_type == &quot;downbranch&quot;:
@@ -200,6 +204,7 @@ class MonteCarloConfiguration(object):
     )
     config.ENABLE_VPACKET_TRACKING = transport.enable_vpacket_tracking
     config.ENABLE_RPACKET_TRACKING = transport.enable_rpacket_tracking</div>
+
 </pre></div>
 
            </div>
@@ -210,7 +215,7 @@ class MonteCarloConfiguration(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

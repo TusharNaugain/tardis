@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.scripts.cmfgen2tardis &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -128,7 +127,9 @@ from tardis.io.atom_data import AtomData
 # atomic_dataset = AtomData.from_hdf()
 
 
-<div class="viewcode-block" id="get_atomic_number"><a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.get_atomic_number">[docs]</a>def get_atomic_number(element):
+<div class="viewcode-block" id="get_atomic_number">
+<a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.get_atomic_number">[docs]</a>
+def get_atomic_number(element):
     index = -1
     for atomic_no, row in atomic_dataset.atom_data.iterrows():
         if element in row[&quot;name&quot;]:
@@ -137,7 +138,10 @@ from tardis.io.atom_data import AtomData
     return index</div>
 
 
-<div class="viewcode-block" id="extract_file_block"><a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.extract_file_block">[docs]</a>def extract_file_block(f):
+
+<div class="viewcode-block" id="extract_file_block">
+<a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.extract_file_block">[docs]</a>
+def extract_file_block(f):
     qty = []
 
     for line in f:
@@ -155,7 +159,10 @@ from tardis.io.atom_data import AtomData
     return qty[::-1]</div>
 
 
-<div class="viewcode-block" id="convert_format"><a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.convert_format">[docs]</a>def convert_format(file_path):
+
+<div class="viewcode-block" id="convert_format">
+<a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.convert_format">[docs]</a>
+def convert_format(file_path):
     quantities_row = []
     prop_list = [&quot;Velocity&quot;, &quot;Density&quot;, &quot;Electron density&quot;, &quot;Temperature&quot;]
     with open(file_path, &quot;r&quot;) as f:
@@ -214,7 +221,10 @@ from tardis.io.atom_data import AtomData
         )</div>
 
 
-<div class="viewcode-block" id="parse_file"><a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.parse_file">[docs]</a>def parse_file(args):
+
+<div class="viewcode-block" id="parse_file">
+<a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.parse_file">[docs]</a>
+def parse_file(args):
     abundances_df, density_df, time_of_model, quantities_row = convert_format(
         args.input_path
     )
@@ -233,7 +243,10 @@ from tardis.io.atom_data import AtomData
     resultant_df.to_csv(save_file_path, index=False, sep=&quot; &quot;, mode=&quot;a&quot;)</div>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.main">[docs]</a>def main():
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../../api/tardis.scripts.cmfgen2tardis.html#tardis.scripts.cmfgen2tardis.main">[docs]</a>
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(&quot;input_path&quot;, help=&quot;Path to a CMFGEN file&quot;)
     parser.add_argument(
@@ -241,6 +254,7 @@ from tardis.io.atom_data import AtomData
     )
     args = parser.parse_args()
     parse_file(args)</div>
+
 </pre></div>
 
            </div>
@@ -251,7 +265,7 @@ from tardis.io.atom_data import AtomData
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.widgets.custom_abundance &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -155,7 +154,9 @@ BASE_DIR = tardis.__path__[0]
 YAML_DELIMITER = &quot;---&quot;
 
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData">[docs]</a>class CustomAbundanceWidgetData:
+<div class="viewcode-block" id="CustomAbundanceWidgetData">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData">[docs]</a>
+class CustomAbundanceWidgetData:
     &quot;&quot;&quot;The model information and data that required in custom
     abundance widget.
 
@@ -182,7 +183,9 @@ YAML_DELIMITER = &quot;---&quot;
         self.velocity = velocity.to(&quot;km/s&quot;)
         self.elements = self.get_symbols()
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData.get_symbols"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.get_symbols">[docs]</a>    def get_symbols(self):
+<div class="viewcode-block" id="CustomAbundanceWidgetData.get_symbols">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.get_symbols">[docs]</a>
+    def get_symbols(self):
         &quot;&quot;&quot;Get symbol string from atomic number and mass number.&quot;&quot;&quot;
         str_symbols = np.array(
             self.abundance.index.get_level_values(0).map(
@@ -194,7 +197,10 @@ YAML_DELIMITER = &quot;---&quot;
         )
         return np.add(str_symbols, str_mass)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData.from_csvy"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_csvy">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidgetData.from_csvy">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_csvy">[docs]</a>
+    @classmethod
     def from_csvy(cls, fpath):
         &quot;&quot;&quot;Create a new CustomAbundanceWidgetData instance with data
         from CSVY file.
@@ -304,7 +310,10 @@ YAML_DELIMITER = &quot;---&quot;
             velocity=velocity,
         )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData.from_yml"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_yml">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidgetData.from_yml">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_yml">[docs]</a>
+    @classmethod
     def from_yml(cls, fpath, atom_data=None):
         &quot;&quot;&quot;Create a new CustomAbundanceWidgetData instance with data
         from YAML file.
@@ -351,7 +360,10 @@ YAML_DELIMITER = &quot;---&quot;
             velocity=velocity,
         )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_hdf">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidgetData.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, fpath):
         &quot;&quot;&quot;Create a new CustomAbundanceWidgetData instance with data
         from HDF file.
@@ -386,7 +398,10 @@ YAML_DELIMITER = &quot;---&quot;
             velocity=velocity,
         )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidgetData.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_simulation">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidgetData.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidgetData.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim):
         &quot;&quot;&quot;Create a new CustomAbundanceWidgetData instance from a
         Simulation object.
@@ -419,10 +434,14 @@ YAML_DELIMITER = &quot;---&quot;
             density=density,
             abundance=abundance,
             velocity=velocity,
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="CustomYAML"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomYAML">[docs]</a>class CustomYAML(yaml.YAMLObject):
+
+<div class="viewcode-block" id="CustomYAML">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomYAML">[docs]</a>
+class CustomYAML(yaml.YAMLObject):
     &quot;&quot;&quot;A custom YAML object generated by required properties.&quot;&quot;&quot;
 
     def __init__(
@@ -452,7 +471,9 @@ YAML_DELIMITER = &quot;---&quot;
         self.v_inner_boundary = v_inner_boundary
         self.v_outer_boundary = v_outer_boundary
 
-<div class="viewcode-block" id="CustomYAML.create_fields_dict"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomYAML.create_fields_dict">[docs]</a>    def create_fields_dict(self, elements):
+<div class="viewcode-block" id="CustomYAML.create_fields_dict">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomYAML.create_fields_dict">[docs]</a>
+    def create_fields_dict(self, elements):
         &quot;&quot;&quot;Create a dictionary to store the items in &#39;fields&#39; part.
 
         Parameters
@@ -473,10 +494,14 @@ YAML_DELIMITER = &quot;---&quot;
                 field[&quot;name&quot;] = elements[i - 2]
                 field[&quot;desc&quot;] = f&quot;fractional {elements[i-2]} abundance&quot;
 
-            self.datatype[&quot;fields&quot;].append(field)</div></div>
+            self.datatype[&quot;fields&quot;].append(field)</div>
+</div>
 
 
-<div class="viewcode-block" id="CustomAbundanceWidget"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget">[docs]</a>class CustomAbundanceWidget:
+
+<div class="viewcode-block" id="CustomAbundanceWidget">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget">[docs]</a>
+class CustomAbundanceWidget:
     &quot;&quot;&quot;Widget to edit abundances and densities of simulation model
     graphically.
 
@@ -550,7 +575,9 @@ YAML_DELIMITER = &quot;---&quot;
 
         return _checked_list
 
-<div class="viewcode-block" id="CustomAbundanceWidget.create_widgets"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.create_widgets">[docs]</a>    def create_widgets(self):
+<div class="viewcode-block" id="CustomAbundanceWidget.create_widgets">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.create_widgets">[docs]</a>
+    def create_widgets(self):
         &quot;&quot;&quot;Create widget components in GUI and register callbacks for widgets.&quot;&quot;&quot;
         self.dpd_shell_no = ipw.Dropdown(
             options=list(range(1, self.no_of_shells + 1)),
@@ -704,7 +731,10 @@ YAML_DELIMITER = &quot;---&quot;
         )
         self.rbs_multi_apply.observe(self.rbs_multi_apply_eventhandler, &quot;value&quot;)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.update_input_item_value"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_input_item_value">[docs]</a>    def update_input_item_value(self, index, value):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.update_input_item_value">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_input_item_value">[docs]</a>
+    def update_input_item_value(self, index, value):
         &quot;&quot;&quot;Update the value of the widget in the list of abundance inputs.
 
         Keep two decimal places for displayed value and disable
@@ -722,7 +752,10 @@ YAML_DELIMITER = &quot;---&quot;
         self.input_items[index].value = float(&quot;{:.2e}&quot;.format(value))
         self._trigger = True</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.read_abundance"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.read_abundance">[docs]</a>    def read_abundance(self):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.read_abundance">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.read_abundance">[docs]</a>
+    def read_abundance(self):
         &quot;&quot;&quot;Read abundances data in DataFrame to input items box when
         shell No. changes.
         &quot;&quot;&quot;
@@ -730,7 +763,10 @@ YAML_DELIMITER = &quot;---&quot;
             value = self.data.abundance.iloc[i, self.shell_no - 1]
             self.update_input_item_value(i, value)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.bound_locked_sum_to_1"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.bound_locked_sum_to_1">[docs]</a>    def bound_locked_sum_to_1(self, index):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.bound_locked_sum_to_1">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.bound_locked_sum_to_1">[docs]</a>
+    def bound_locked_sum_to_1(self, index):
         &quot;&quot;&quot;Ensure the sum of locked abundances is no more than 1. If the
         locked sum is more than 1, calculate the maximum with the sum no
         more than 1 and return it.
@@ -759,7 +795,10 @@ YAML_DELIMITER = &quot;---&quot;
             self.update_input_item_value(index, new)
             self.update_abundance_plot(index)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.update_abundance_plot"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_abundance_plot">[docs]</a>    def update_abundance_plot(self, index):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.update_abundance_plot">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_abundance_plot">[docs]</a>
+    def update_abundance_plot(self, index):
         &quot;&quot;&quot;Update the abundance line of certain element in the plot.
 
         Parameters
@@ -770,7 +809,10 @@ YAML_DELIMITER = &quot;---&quot;
         y = self.data.abundance.iloc[index]
         self.fig.data[index + 2].y = np.append(y, y.iloc[-1])</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.update_front_end"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_front_end">[docs]</a>    def update_front_end(self):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.update_front_end">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_front_end">[docs]</a>
+    def update_front_end(self):
         &quot;&quot;&quot;Update checkbox widgets, input widgets and plot in the front
         end when selected shell No. is changed.
         &quot;&quot;&quot;
@@ -790,7 +832,10 @@ YAML_DELIMITER = &quot;---&quot;
             width[0] = x_outer - x_inner
             self.fig.data[0].width = width</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.update_bar_diagonal"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_bar_diagonal">[docs]</a>    def update_bar_diagonal(self):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.update_bar_diagonal">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_bar_diagonal">[docs]</a>
+    def update_bar_diagonal(self):
         &quot;&quot;&quot;Update bar diagonal (and shell no dropdown) when the range
         of shells changed.
         &quot;&quot;&quot;
@@ -815,13 +860,19 @@ YAML_DELIMITER = &quot;---&quot;
             self.fig.data[0].width = width
             self.fig.data[0].y = y</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.update_line_color"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_line_color">[docs]</a>    def update_line_color(self):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.update_line_color">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.update_line_color">[docs]</a>
+    def update_line_color(self):
         &quot;&quot;&quot;Update line color in the plot according to colormap.&quot;&quot;&quot;
         colorscale = transition_colors(self.no_of_elements, self.plot_cmap)
         for i in range(self.no_of_elements):
             self.fig.data[2 + i].line.color = colorscale[i]</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.overwrite_existing_shells"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.overwrite_existing_shells">[docs]</a>    def overwrite_existing_shells(self, v_0, v_1):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.overwrite_existing_shells">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.overwrite_existing_shells">[docs]</a>
+    def overwrite_existing_shells(self, v_0, v_1):
         &quot;&quot;&quot;Judge whether the existing shell(s) will be overwritten when
         inserting a new shell within the entered velocity range.
 
@@ -859,7 +910,10 @@ YAML_DELIMITER = &quot;---&quot;
         else:
             return False</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_add_shell"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_add_shell">[docs]</a>    def on_btn_add_shell(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_add_shell">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_add_shell">[docs]</a>
+    def on_btn_add_shell(self, obj):
         &quot;&quot;&quot;Add new shell with given boundary velocities. Triggered if
         the button is clicked.
 
@@ -963,7 +1017,10 @@ YAML_DELIMITER = &quot;---&quot;
         self.irs_shell_range.max = self.no_of_shells
         self.overwrite_warning.layout.visibility = &quot;hidden&quot;</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.tbs_scale_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.tbs_scale_eventhandler">[docs]</a>    def tbs_scale_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.tbs_scale_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.tbs_scale_eventhandler">[docs]</a>
+    def tbs_scale_eventhandler(self, obj):
         &quot;&quot;&quot;Switch the scale type of y axis between linear mode and log
         mode. Triggered if the toggle button is changed.
 
@@ -991,7 +1048,10 @@ YAML_DELIMITER = &quot;---&quot;
                 yaxis2=dict(type=&quot;log&quot;),
             )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.input_item_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.input_item_eventhandler">[docs]</a>    def input_item_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.input_item_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.input_item_eventhandler">[docs]</a>
+    def input_item_eventhandler(self, obj):
         &quot;&quot;&quot;Update the data and the widget when it gets new abundance
         input. Triggered if the abundance input is changed.
 
@@ -1021,7 +1081,10 @@ YAML_DELIMITER = &quot;---&quot;
         else:
             self.norm_warning.layout.visibility = &quot;visible&quot;</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.check_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.check_eventhandler">[docs]</a>    def check_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.check_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.check_eventhandler">[docs]</a>
+    def check_eventhandler(self, obj):
         &quot;&quot;&quot;Triggered if the checkbox is changed.
 
         Parameters
@@ -1034,7 +1097,10 @@ YAML_DELIMITER = &quot;---&quot;
         if obj.new == True:
             self.bound_locked_sum_to_1(item_index)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.dpd_shell_no_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.dpd_shell_no_eventhandler">[docs]</a>    def dpd_shell_no_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.dpd_shell_no_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.dpd_shell_no_eventhandler">[docs]</a>
+    def dpd_shell_no_eventhandler(self, obj):
         &quot;&quot;&quot;Make the data in widgets correspond with the selected shell.
         Triggered if the dropdown value is changed.
 
@@ -1056,7 +1122,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         self.update_front_end()</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_prev"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_prev">[docs]</a>    def on_btn_prev(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_prev">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_prev">[docs]</a>
+    def on_btn_prev(self, obj):
         &quot;&quot;&quot;Move to previous shell.
 
         Parameters
@@ -1066,7 +1135,10 @@ YAML_DELIMITER = &quot;---&quot;
         &quot;&quot;&quot;
         self.shell_no -= 1</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_next"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_next">[docs]</a>    def on_btn_next(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_next">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_next">[docs]</a>
+    def on_btn_next(self, obj):
         &quot;&quot;&quot;Move to next shell.
 
         Parameters
@@ -1076,7 +1148,10 @@ YAML_DELIMITER = &quot;---&quot;
         &quot;&quot;&quot;
         self.shell_no += 1</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_norm"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_norm">[docs]</a>    def on_btn_norm(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_norm">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_norm">[docs]</a>
+    def on_btn_norm(self, obj):
         &quot;&quot;&quot;Normalize unlocked abundances to 1. Triggered if the
         normalize button is clicked.
 
@@ -1107,6 +1182,7 @@ YAML_DELIMITER = &quot;---&quot;
                 self.update_abundance_plot(i)
             else:
                 self.apply_to_multiple_shells(i)</div>
+
 
     @debounce(0.5)
     def input_symb_eventhandler(self, obj):
@@ -1144,7 +1220,9 @@ YAML_DELIMITER = &quot;---&quot;
         self.btn_add_element.disabled = True
         self.symb_warning.readout = &quot;invalid&quot;
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_add_element"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_add_element">[docs]</a>    def on_btn_add_element(self, obj):
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_add_element">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_add_element">[docs]</a>
+    def on_btn_add_element(self, obj):
         &quot;&quot;&quot;Add new element and update the display in the front end.
         Triggered if the add button is clicked.
 
@@ -1211,7 +1289,10 @@ YAML_DELIMITER = &quot;---&quot;
         # Clear symbol input box.
         self.input_symb.value = &quot;&quot;</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.apply_to_multiple_shells"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.apply_to_multiple_shells">[docs]</a>    def apply_to_multiple_shells(self, item_index):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.apply_to_multiple_shells">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.apply_to_multiple_shells">[docs]</a>
+    def apply_to_multiple_shells(self, item_index):
         &quot;&quot;&quot;Apply the changed abundances to specified range of shell(s).
 
         Parameters
@@ -1229,7 +1310,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         self.update_abundance_plot(item_index)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.input_v_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.input_v_eventhandler">[docs]</a>    def input_v_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.input_v_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.input_v_eventhandler">[docs]</a>
+    def input_v_eventhandler(self, obj):
         &quot;&quot;&quot;Judge whether the input velocity range is valid. Triggered if the
         velocity input is changed.
 
@@ -1253,7 +1337,10 @@ YAML_DELIMITER = &quot;---&quot;
         else:
             self.overwrite_warning.layout.visibility = &quot;hidden&quot;</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_output"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_output">[docs]</a>    def on_btn_output(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.on_btn_output">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.on_btn_output">[docs]</a>
+    def on_btn_output(self, obj):
         &quot;&quot;&quot;Triggered if the output button is clicked.
 
         Parameters
@@ -1266,7 +1353,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         self.to_csvy(path, overwrite)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.rbs_single_apply_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.rbs_single_apply_eventhandler">[docs]</a>    def rbs_single_apply_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.rbs_single_apply_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.rbs_single_apply_eventhandler">[docs]</a>
+    def rbs_single_apply_eventhandler(self, obj):
         &quot;&quot;&quot;Switch to single shell editing mode. Triggered if the
         first radio button is selected.
 
@@ -1289,7 +1379,10 @@ YAML_DELIMITER = &quot;---&quot;
         self.irs_shell_range.disabled = True
         self.update_bar_diagonal()</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.rbs_multi_apply_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.rbs_multi_apply_eventhandler">[docs]</a>    def rbs_multi_apply_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.rbs_multi_apply_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.rbs_multi_apply_eventhandler">[docs]</a>
+    def rbs_multi_apply_eventhandler(self, obj):
         &quot;&quot;&quot;Switch to multi-shells editing mode. Triggered if the
         second radio button is selected.
 
@@ -1316,7 +1409,10 @@ YAML_DELIMITER = &quot;---&quot;
         self.irs_shell_range.disabled = False
         self.update_bar_diagonal()</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.irs_shell_range_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.irs_shell_range_eventhandler">[docs]</a>    def irs_shell_range_eventhandler(self, obj):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.irs_shell_range_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.irs_shell_range_eventhandler">[docs]</a>
+    def irs_shell_range_eventhandler(self, obj):
         &quot;&quot;&quot;Select the velocity range of new shell and highlight the range
         in the plot. Triggered if the shell range slider is changed.
 
@@ -1327,7 +1423,10 @@ YAML_DELIMITER = &quot;---&quot;
         &quot;&quot;&quot;
         self.update_bar_diagonal()</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.generate_abundance_density_plot"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.generate_abundance_density_plot">[docs]</a>    def generate_abundance_density_plot(self):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.generate_abundance_density_plot">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.generate_abundance_density_plot">[docs]</a>
+    def generate_abundance_density_plot(self):
         &quot;&quot;&quot;Generate abundance and density plot in different shells.&quot;&quot;&quot;
         title = &quot;Abundance/Density vs Velocity&quot;
         abundance = self.data.abundance
@@ -1395,7 +1494,10 @@ YAML_DELIMITER = &quot;---&quot;
             ),
         )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.display">[docs]</a>    def display(self, cmap=&quot;jet&quot;):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.display">[docs]</a>
+    def display(self, cmap=&quot;jet&quot;):
         &quot;&quot;&quot;Display the GUI.
 
         Parameters
@@ -1517,7 +1619,10 @@ YAML_DELIMITER = &quot;---&quot;
                 ]
             )</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.to_csvy"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.to_csvy">[docs]</a>    @error_view.capture(clear_output=True)
+
+<div class="viewcode-block" id="CustomAbundanceWidget.to_csvy">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.to_csvy">[docs]</a>
+    @error_view.capture(clear_output=True)
     def to_csvy(self, path, overwrite):
         &quot;&quot;&quot;Output CSVY file on the specified path.
 
@@ -1539,7 +1644,10 @@ YAML_DELIMITER = &quot;---&quot;
             self.write_yaml_portion(posix_path)
             self.write_csv_portion(posix_path)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.write_yaml_portion"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.write_yaml_portion">[docs]</a>    @error_view.capture(clear_output=True)
+
+<div class="viewcode-block" id="CustomAbundanceWidget.write_yaml_portion">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.write_yaml_portion">[docs]</a>
+    @error_view.capture(clear_output=True)
     def write_yaml_portion(self, path):
         &quot;&quot;&quot;Write the YAML portion of the output file.
 
@@ -1571,7 +1679,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         print(&quot;Saved Successfully!&quot;)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.write_csv_portion"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.write_csv_portion">[docs]</a>    def write_csv_portion(self, path):
+
+<div class="viewcode-block" id="CustomAbundanceWidget.write_csv_portion">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.write_csv_portion">[docs]</a>
+    def write_csv_portion(self, path):
         &quot;&quot;&quot;Write the CSV portion of the output file.
 
         Parameters
@@ -1601,7 +1712,10 @@ YAML_DELIMITER = &quot;---&quot;
         except pd.errors.EmptyDataError:
             data = None</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.from_csvy"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_csvy">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidget.from_csvy">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_csvy">[docs]</a>
+    @classmethod
     def from_csvy(cls, fpath):
         &quot;&quot;&quot;Create a new CustomAbundanceWidget instance with data from CSVY file.
 
@@ -1618,7 +1732,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         return cls(widget_data)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.from_yml"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_yml">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidget.from_yml">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_yml">[docs]</a>
+    @classmethod
     def from_yml(cls, fpath):
         &quot;&quot;&quot;Create a new CustomAbundanceWidget instance with data from YAML file.
 
@@ -1635,7 +1752,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         return cls(widget_data)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_hdf">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidget.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, fpath):
         &quot;&quot;&quot;Create a new CustomAbundanceWidget instance with data from HDF file.
 
@@ -1652,7 +1772,10 @@ YAML_DELIMITER = &quot;---&quot;
 
         return cls(widget_data)</div>
 
-<div class="viewcode-block" id="CustomAbundanceWidget.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_simulation">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="CustomAbundanceWidget.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim):
         &quot;&quot;&quot;Create a new CustomAbundanceWidget instance from a Simulation object.
 
@@ -1666,10 +1789,14 @@ YAML_DELIMITER = &quot;---&quot;
         &quot;&quot;&quot;
         widget_data = CustomAbundanceWidgetData.from_simulation(sim)
 
-        return cls(widget_data)</div></div>
+        return cls(widget_data)</div>
+</div>
 
 
-<div class="viewcode-block" id="DensityEditor"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor">[docs]</a>class DensityEditor:
+
+<div class="viewcode-block" id="DensityEditor">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor">[docs]</a>
+class DensityEditor:
     &quot;&quot;&quot;Widget to edit density profile of the model.
 
     It provides an interface to allow the user directly change
@@ -1707,7 +1834,9 @@ YAML_DELIMITER = &quot;---&quot;
     def shell_no(self):
         return self.shell_no_widget.value
 
-<div class="viewcode-block" id="DensityEditor.create_widgets"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.create_widgets">[docs]</a>    def create_widgets(self):
+<div class="viewcode-block" id="DensityEditor.create_widgets">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.create_widgets">[docs]</a>
+    def create_widgets(self):
         &quot;&quot;&quot;Create widget components in density editor GUI and register
         callbacks for widgets.
         &quot;&quot;&quot;
@@ -1796,7 +1925,10 @@ YAML_DELIMITER = &quot;---&quot;
             ]
         )</div>
 
-<div class="viewcode-block" id="DensityEditor.read_density"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.read_density">[docs]</a>    def read_density(self):
+
+<div class="viewcode-block" id="DensityEditor.read_density">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.read_density">[docs]</a>
+    def read_density(self):
         &quot;&quot;&quot;Read density data in DataFrame to density input box when
         shell No. changes.
         &quot;&quot;&quot;
@@ -1805,12 +1937,18 @@ YAML_DELIMITER = &quot;---&quot;
         self.input_d.value = float(&quot;{:.3e}&quot;.format(dvalue))
         self._trigger = True</div>
 
-<div class="viewcode-block" id="DensityEditor.update_density_plot"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.update_density_plot">[docs]</a>    def update_density_plot(self):
+
+<div class="viewcode-block" id="DensityEditor.update_density_plot">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.update_density_plot">[docs]</a>
+    def update_density_plot(self):
         &quot;&quot;&quot;Update the density line in the plot.&quot;&quot;&quot;
         y = np.append(self.data.density[1:], self.data.density[-1])
         self.fig.data[1].y = y</div>
 
-<div class="viewcode-block" id="DensityEditor.input_d_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.input_d_eventhandler">[docs]</a>    def input_d_eventhandler(self, obj):
+
+<div class="viewcode-block" id="DensityEditor.input_d_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.input_d_eventhandler">[docs]</a>
+    def input_d_eventhandler(self, obj):
         &quot;&quot;&quot;Update the data and the widgets when the widget gets new
         density input.
 
@@ -1827,6 +1965,7 @@ YAML_DELIMITER = &quot;---&quot;
 
             self.update_density_plot()</div>
 
+
     def input_d_time_0_eventhandler(self, obj):
         &quot;&quot;&quot;Update density time 0 data when the widget gets new input.
 
@@ -1838,7 +1977,9 @@ YAML_DELIMITER = &quot;---&quot;
         new_value = obj.new
         self.data.density_t_0 = new_value * self.data.density_t_0.unit
 
-<div class="viewcode-block" id="DensityEditor.input_d_time_0_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.input_d_time_0_eventhandler">[docs]</a>    def input_d_time_0_eventhandler(self, obj):
+<div class="viewcode-block" id="DensityEditor.input_d_time_0_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.input_d_time_0_eventhandler">[docs]</a>
+    def input_d_time_0_eventhandler(self, obj):
         &quot;&quot;&quot;Update density time 0 data when the widget gets new input.
 
         Parameters
@@ -1849,9 +1990,12 @@ YAML_DELIMITER = &quot;---&quot;
         new_value = obj.new
         self.data.density_t_0 = new_value * self.data.density_t_0.unit</div>
 
+
     dtype_out = ipw.Output()
 
-<div class="viewcode-block" id="DensityEditor.dpd_dtype_eventhandler"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.dpd_dtype_eventhandler">[docs]</a>    @dtype_out.capture(clear_output=True)
+<div class="viewcode-block" id="DensityEditor.dpd_dtype_eventhandler">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.dpd_dtype_eventhandler">[docs]</a>
+    @dtype_out.capture(clear_output=True)
     def dpd_dtype_eventhandler(self, obj):
         &quot;&quot;&quot;Display the input boxes of the specified density type.
         Triggered if the density type dropdown is changed.
@@ -1874,7 +2018,10 @@ YAML_DELIMITER = &quot;---&quot;
         elif obj.new == &quot;power_law&quot;:
             display(self.pow_box)</div>
 
-<div class="viewcode-block" id="DensityEditor.on_btn_calculate"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.on_btn_calculate">[docs]</a>    def on_btn_calculate(self, obj):
+
+<div class="viewcode-block" id="DensityEditor.on_btn_calculate">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.on_btn_calculate">[docs]</a>
+    def on_btn_calculate(self, obj):
         &quot;&quot;&quot;Calculate density according to density parameters input.
         Triggered if the density calculate button is clicked.
 
@@ -1922,7 +2069,10 @@ YAML_DELIMITER = &quot;---&quot;
         self.read_density()
         self.update_density_plot()</div>
 
-<div class="viewcode-block" id="DensityEditor.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.display">[docs]</a>    def display(self):
+
+<div class="viewcode-block" id="DensityEditor.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.DensityEditor.display">[docs]</a>
+    def display(self):
         &quot;&quot;&quot;Display the GUI.
 
         Returns
@@ -1950,7 +2100,9 @@ YAML_DELIMITER = &quot;---&quot;
                 self.dtype_out,
                 self.btn_calculate,
             ]
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -1961,7 +2113,7 @@ YAML_DELIMITER = &quot;---&quot;
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 

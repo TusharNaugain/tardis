@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Converting Arepo snapshots to be usable by TARDIS &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/nbsphinx-code-cells.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=2051adde"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -182,13 +181,13 @@
 <div class="admonition note">
 <p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/io/configuration/components/models/converters/arepo_to_tardis.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
 </div><section id="Converting-Arepo-snapshots-to-be-usable-by-TARDIS">
-<h1>Converting Arepo snapshots to be usable by TARDIS<a class="headerlink" href="#Converting-Arepo-snapshots-to-be-usable-by-TARDIS" title="Permalink to this heading">¶</a></h1>
+<h1>Converting Arepo snapshots to be usable by TARDIS<a class="headerlink" href="#Converting-Arepo-snapshots-to-be-usable-by-TARDIS" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title fa fa-exclamation-circle">Note</p>
 <p>This notebook cannot be run interactively!</p>
 </div>
 <section id="What-is-Arepo?">
-<h2>What is <a class="reference external" href="https://arepo-code.org/">Arepo</a>?<a class="headerlink" href="#What-is-Arepo?" title="Permalink to this heading">¶</a></h2>
+<h2>What is <a class="reference external" href="https://arepo-code.org/">Arepo</a>?<a class="headerlink" href="#What-is-Arepo?" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p><em>Arepo is a massively parallel gravity and magnetohydrodynamics code for astrophysics, designed for problems of large dynamic range. It employs a finite-volume approach to discretize the equations of hydrodynamics on a moving Voronoi mesh, and a tree-particle-mesh method for gravitational interactions. Arepo is originally optimized for cosmological simulations of structure formation, but has also been used in many other applications in astrophysics.</em></p>
 </div></blockquote>
@@ -224,7 +223,7 @@
 </div>
 </section>
 <section id="Loading-the-simulation-data">
-<h2>Loading the simulation data<a class="headerlink" href="#Loading-the-simulation-data" title="Permalink to this heading">¶</a></h2>
+<h2>Loading the simulation data<a class="headerlink" href="#Loading-the-simulation-data" title="Link to this heading">¶</a></h2>
 <p>As a first step, the relevant data has to be loaded from an Arepo snapshot, i.e. an output file of Arepo. In case you have the arepo-snap-util package installed, you can use the built in wrapper (as described below) to load the relevant data. In case you do not have this package installed or want to load the snapshot in a different way, you can manually provide the relevant data and continue with the next step.</p>
 <p>If you’re using the built-in tool, you will need to provide the path to the snapshot file, a list with the elements you want to include in your TARDIS model, as well as the species file with which the Arepo simulation was run. <em>(The species file should contain one header line, followed by two colums, where the first contains the names of all the species and is used to find the indices of the individual species within the snapshot. The second column is not used by the loader.)</em></p>
 <p>In case you have the arepo-snap-util package installed, you can load the data directly from a snapshot:</p>
@@ -310,7 +309,7 @@ Nuclear data shape (per element):  (1218054,)
 <p>The data should have the same shape as the one provided by the built-in tool (see the given shapes above for an example).</p>
 </section>
 <section id="Extracting-a-profile-and-converting-it-to-a-csvy-file">
-<h2>Extracting a profile and converting it to a csvy file<a class="headerlink" href="#Extracting-a-profile-and-converting-it-to-a-csvy-file" title="Permalink to this heading">¶</a></h2>
+<h2>Extracting a profile and converting it to a csvy file<a class="headerlink" href="#Extracting-a-profile-and-converting-it-to-a-csvy-file" title="Link to this heading">¶</a></h2>
 <p>Now You can create a TARDIS model. There are two possibilities on how to extract the profiles from the snapshot:</p>
 <ul class="simple">
 <li><p><strong>Cone profile</strong>: This extracts the data within a specified cone</p></li>
@@ -353,15 +352,15 @@ Nuclear data shape (per element):  (1218054,)
 </div>
 </section>
 <section id="Plotting-the-data">
-<h2>Plotting the data<a class="headerlink" href="#Plotting-the-data" title="Permalink to this heading">¶</a></h2>
+<h2>Plotting the data<a class="headerlink" href="#Plotting-the-data" title="Link to this heading">¶</a></h2>
 <p>Using <code class="docutils literal notranslate"><span class="pre">profile.plot_profile(save=&lt;filename&gt;,</span> <span class="pre">dpi=&lt;dpi&gt;)</span></code> you can create a plot of the exported profile. Due to the large number of cells usually used in Arepo simulations, it is recommended to plot the data only <strong>after</strong> rebinning the profiles or exporting them to a <code class="docutils literal notranslate"><span class="pre">csvy</span></code> file (which automatically rebins the data).</p>
 </section>
 <section id="Manually-rebinning-the-data">
-<h2>Manually rebinning the data<a class="headerlink" href="#Manually-rebinning-the-data" title="Permalink to this heading">¶</a></h2>
+<h2>Manually rebinning the data<a class="headerlink" href="#Manually-rebinning-the-data" title="Link to this heading">¶</a></h2>
 <p>Using <code class="docutils literal notranslate"><span class="pre">profile.rebin(&lt;nshells&gt;)</span></code>, you can manually rebin the data , using the mean value of the data in each bin. Rebinning only works when decreasing the number of bins. In case you need to increase resolution, you will need to create a new profile.</p>
 </section>
 <section id="Selecting-a-specific-region">
-<h2>Selecting a specific region<a class="headerlink" href="#Selecting-a-specific-region" title="Permalink to this heading">¶</a></h2>
+<h2>Selecting a specific region<a class="headerlink" href="#Selecting-a-specific-region" title="Link to this heading">¶</a></h2>
 <p>In many cases you only want a very specific region from the snapshot, e.g. cutting out the dense, optically thick regions. This can be acchieved using the keywords <code class="docutils literal notranslate"><span class="pre">inner_radius</span></code> and <code class="docutils literal notranslate"><span class="pre">outer_radius</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -406,7 +405,7 @@ Nuclear data shape (per element):  (1218054,)
 <p>The export function will not overwrite existing files, but rather add an incrementing number to the filename.</p>
 </div>
 <section id="Using-the-parser-as-a-command-line-tool">
-<h3>Using the parser as a command line tool<a class="headerlink" href="#Using-the-parser-as-a-command-line-tool" title="Permalink to this heading">¶</a></h3>
+<h3>Using the parser as a command line tool<a class="headerlink" href="#Using-the-parser-as-a-command-line-tool" title="Link to this heading">¶</a></h3>
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">tardis.io.arepo</span></code> package as a command line utility, e.g. if you are running batch jobs and want to automatically convert your snapshots from within you job-script.</p>
 <p>To export the same profile as in the example above you can run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>./&lt;location_of_arepo_parser&gt;/arepo.py<span class="w"> </span>snapshot.hdf5<span class="w"> </span>snapshot_converted.csvy<span class="w"> </span>-o<span class="w"> </span><span class="m">40</span><span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>--inner_radius<span class="w"> </span>1e11<span class="w"> </span>--outer_radius<span class="w"> </span>2e11<span class="w"> </span>-e<span class="w"> </span>ni56<span class="w"> </span>si28<span class="w"> </span>--plot<span class="w"> </span>plot.png
@@ -436,7 +435,7 @@ Nuclear data shape (per element):  (1218054,)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jun 2024.
       </span></p>
   </div>
 
