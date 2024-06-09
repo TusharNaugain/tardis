@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=f0b9d8d0"></script>
+        <script src="../../../../_static/documentation_options.js?v=886f6cd9"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -121,16 +121,16 @@ from numba import njit
 from tardis import constants as const
 from tardis.transport.montecarlo import njit_dict
 
-h_cgs = const.h.cgs.value
-c = const.c.to(&quot;cm/s&quot;).value
-kb = const.k_B.cgs.value
-inv_c2 = 1 / (c**2)
+H_CGS = const.h.cgs.value
+C = const.c.to(&quot;cm/s&quot;).value
+K_BOLTZMANN = const.k_B.cgs.value
+INV_C2 = 1 / (C**2)
 
 
-<div class="viewcode-block" id="calculate_transition_probabilities">
-<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.util.html#tardis.opacities.macro_atom.util.calculate_transition_probabilities">[docs]</a>
+<div class="viewcode-block" id="fast_calculate_transition_probabilities">
+<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.util.html#tardis.opacities.macro_atom.util.fast_calculate_transition_probabilities">[docs]</a>
 @njit(**njit_dict)
-def calculate_transition_probabilities(
+def fast_calculate_transition_probabilities(
     transition_probability_coef,
     beta_sobolev,
     j_blues,
