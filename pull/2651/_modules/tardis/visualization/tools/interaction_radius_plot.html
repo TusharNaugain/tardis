@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tardis.visualization.tools.interaction_radius_plot &mdash; tardis</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link href="../../../../_static/tardis.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            tardis
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quickstart for TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how_to_guides.html">How-To Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/output/index.html">Additional Outputs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/intro/index.html">Physics Walkthrough Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/setup/index.html">Setting Up the Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/development/index.html">Developer Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/tools/index.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/credits.html">Credits &amp; Publication Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/research_done_using_TARDIS/research_papers.html">Papers Using TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/code_comparison/index.html">Code Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/zreferences.html">References and Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">tardis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tardis.visualization.tools.interaction_radius_plot</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tardis.visualization.tools.interaction_radius_plot</h1><div class="highlight"><pre>
+<span></span>import tardis.visualization.tools.sdec_plot as sdec
+
+import numpy as np
+import pandas as pd
+import astropy.units as u
+
+from tardis.util.base import (
+    atomic_number2element_symbol,
+    element_symbol2atomic_number,
+    species_string_to_tuple,
+    roman_to_int,
+    int_to_roman,
+)
+
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.colors as clr
+import plotly.graph_objects as go
+
+
+<div class="viewcode-block" id="InteractionRadiusPlotter"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">[docs]</a>class InteractionRadiusPlotter:
+    &quot;&quot;&quot;
+    Plotting interface for the interaction radius plot.
+    &quot;&quot;&quot;
+
+    def __init__(self, data, time_explosion, no_of_shells):
+        &quot;&quot;&quot;
+        Initialize the plotter with required data from the simulation.
+
+        Parameters
+        ----------
+        data : dict of SDECData
+            Dictionary to store data required for interaction radius plot,
+            for both packet modes (real, virtual).
+
+        time_explosion : astropy.units.Quantity
+            Time of the explosion.
+
+        no_of_shells : int
+            The number of shells in TARDIS simulation.
+        &quot;&quot;&quot;
+
+        self.data = data
+        self.time_explosion = time_explosion
+        self.no_of_shells = no_of_shells
+        return
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>    @classmethod
+    def from_simulation(cls, sim):
+        &quot;&quot;&quot;
+        Create an instance of the plotter from a TARDIS simulation object.
+
+        Parameters
+        ----------
+        sim : tardis.simulation.Simulation
+            TARDIS simulation object produced by running a simulation.
+
+        Returns
+        -------
+        Plotter
+        &quot;&quot;&quot;
+
+        return cls(
+            dict(
+                virtual=sdec.SDECData.from_simulation(sim, &quot;virtual&quot;),
+                real=sdec.SDECData.from_simulation(sim, &quot;real&quot;),
+            ),
+            sim.plasma.time_explosion,
+            sim.simulation_state.no_of_shells,
+        )</div>
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_hdf">[docs]</a>    @classmethod
+    def from_hdf(cls, hdf_fpath):
+        &quot;&quot;&quot;
+        Create an instance of the Plotter from a simulation HDF file.
+
+        Parameters
+        ----------
+        hdf_fpath : str
+            Valid path to the HDF file where simulation is saved.
+
+        Returns
+        -------
+        Plotter
+        &quot;&quot;&quot;
+
+        return cls(
+            dict(
+                virtual=sdec.SDECData.from_hdf(hdf_fpath, &quot;virtual&quot;),
+                real=sdec.SDECData.from_hdf(hdf_fpath, &quot;real&quot;),
+            ),
+        )</div>
+
+    def _parse_species_list(self, species_list):
+        &quot;&quot;&quot;
+        Parse user requested species list and create list of species ids to be used.
+
+        Parameters
+        ----------
+        species_list : list of species to plot
+            List of species (e.g. Si II, Ca II, etc.) that the user wants to show as unique colours.
+            Species can be given as an ion (e.g. Si II), an element (e.g. Si), a range of ions
+            (e.g. Si I - V), or any combination of these (e.g. species_list = [Si II, Fe I-V, Ca])
+
+        &quot;&quot;&quot;
+        if species_list is not None:
+            # check if there are any digits in the species list. If there are, then exit.
+            # species_list should only contain species in the Roman numeral
+            # format, e.g. Si II, and each ion must contain a space
+            if any(char.isdigit() for char in &quot; &quot;.join(species_list)) == True:
+                raise ValueError(
+                    &quot;All species must be in Roman numeral form, e.g. Si II&quot;
+                )
+            else:
+                full_species_list = []
+                for species in species_list:
+                    # check if a hyphen is present. If it is, then it indicates a
+                    # range of ions. Add each ion in that range to the list as a new entry
+                    if &quot;-&quot; in species:
+                        # split the string on spaces. First thing in the list is then the element
+                        element = species.split(&quot; &quot;)[0]
+                        # Next thing is the ion range
+                        # convert the requested ions into numerals
+                        first_ion_numeral = roman_to_int(
+                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[0]
+                        )
+                        second_ion_numeral = roman_to_int(
+                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[-1]
+                        )
+                        # add each ion between the two requested into the species list
+                        for ion_number in np.arange(
+                            first_ion_numeral, second_ion_numeral + 1
+                        ):
+                            full_species_list.append(
+                                f&quot;{element} {int_to_roman(ion_number)}&quot;
+                            )
+                    else:
+                        # Otherwise it&#39;s either an element or ion so just add to the list
+                        full_species_list.append(species)
+
+                # full_species_list is now a list containing each individual species requested
+                # e.g. it parses species_list = [Si I - V] into species_list = [Si I, Si II, Si III, Si IV, Si V]
+                self._full_species_list = full_species_list
+                requested_species_ids = []
+                keep_colour = []
+
+                # go through each of the requested species. Check whether it is
+                # an element or ion (ions have spaces). If it is an element,
+                # add all possible ions to the ions list. Otherwise just add
+                # the requested ion
+                for species in full_species_list:
+                    if &quot; &quot; in species:
+                        requested_species_ids.append(
+                            [
+                                species_string_to_tuple(species)[0] * 100
+                                + species_string_to_tuple(species)[1]
+                            ]
+                        )
+                    else:
+                        atomic_number = element_symbol2atomic_number(species)
+                        requested_species_ids.append(
+                            [
+                                atomic_number * 100 + ion_number
+                                for ion_number in np.arange(atomic_number)
+                            ]
+                        )
+                        # add the atomic number to a list so you know that this element should
+                        # have all species in the same colour, i.e. it was requested like
+                        # species_list = [Si]
+                        keep_colour.append(atomic_number)
+                requested_species_ids = [
+                    species_id
+                    for temp_list in requested_species_ids
+                    for species_id in temp_list
+                ]
+
+                self._species_list = requested_species_ids
+                self._keep_colour = keep_colour
+        else:
+            self._species_list = None
+        return
+
+    def _make_colorbar_labels(self):
+        &quot;&quot;&quot;Get the labels for the species in the colorbar.&quot;&quot;&quot;
+        if self._species_list is None:
+            # If species_list is none then the labels are just elements
+            species_name = [
+                atomic_number2element_symbol(atomic_num)
+                for atomic_num in self.species
+            ]
+        else:
+            species_name = []
+            for species in self.species:
+                # Go through each species requested
+                ion_number = species % 100
+                atomic_number = (species - ion_number) / 100
+
+                ion_numeral = int_to_roman(ion_number + 1)
+                atomic_symbol = atomic_number2element_symbol(atomic_number)
+
+                # if the element was requested, and not a specific ion, then
+                # add the element symbol to the label list
+                if (atomic_number in self._keep_colour) &amp; (
+                    atomic_symbol not in species_name
+                ):
+                    # compiling the label, and adding it to the list
+                    label = f&quot;{atomic_symbol}&quot;
+                    species_name.append(label)
+                elif atomic_number not in self._keep_colour:
+                    # otherwise add the ion to the label list
+                    label = f&quot;{atomic_symbol} {ion_numeral}&quot;
+                    species_name.append(label)
+
+        self._species_name = species_name
+        return
+
+    def _make_colorbar_colors(self):
+        &quot;&quot;&quot;Get the colours for the species to be plotted.&quot;&quot;&quot;
+        # the colours depends on the species present in the model and what&#39;s requested
+        # some species need to be shown in the same colour, so the exact colours have to be
+        # worked out
+
+        color_list = []
+
+        # Colors for each element
+        # Create new variables to keep track of the last atomic number that was plotted
+        # This is used when plotting species in case an element was given in the list
+        # This is to ensure that all ions of that element are grouped together
+        # ii is to track the colour index
+        # e.g. if Si is given in species_list, this is to ensure Si I, Si II, etc. all have the same colour
+        color_counter = 0
+        previous_atomic_number = 0
+        for species_counter, identifier in enumerate(self.species):
+            if self._species_list is not None:
+                # Get the ion number and atomic number for each species
+                ion_number = identifier % 100
+                atomic_number = (identifier - ion_number) / 100
+                if previous_atomic_number == 0:
+                    # If this is the first species being plotted, then take note of the atomic number
+                    # don&#39;t update the colour index
+                    color_counter = color_counter
+                    previous_atomic_number = atomic_number
+                elif previous_atomic_number in self._keep_colour:
+                    # If the atomic number is in the list of elements that should all be plotted in the same colour
+                    # then don&#39;t update the colour index if this element has been plotted already
+                    if previous_atomic_number == atomic_number:
+                        color_counter = color_counter
+                        previous_atomic_number = atomic_number
+                    else:
+                        # Otherwise, increase the colour counter by one, because this is a new element
+                        color_counter = color_counter + 1
+                        previous_atomic_number = atomic_number
+                else:
+                    # If this is just a normal species that was requested then increment the colour index
+                    color_counter = color_counter + 1
+                    previous_atomic_number = atomic_number
+                # Calculate the colour of this species
+                color = self.cmap(color_counter / len(self._species_name))
+
+            else:
+                # If you&#39;re not using species list then this is just a fraction based on the total
+                # number of columns in the dataframe
+                color = self.cmap(species_counter / len(self.species))
+
+            color_list.append(color)
+
+        self._color_list = color_list
+
+        return
+
+    def _show_colorbar_mpl(self):
+        &quot;&quot;&quot;Show matplotlib colorbar with labels of elements mapped to colors.&quot;&quot;&quot;
+
+        if not self._species_name:
+            raise ValueError(&quot;No species found to plot in colorbar&quot;)
+
+        color_values = [
+            self.cmap(species_counter / len(self._species_name))
+            for species_counter in range(len(self._species_name))
+        ]
+
+        custcmap = clr.ListedColormap(color_values)
+        norm = clr.Normalize(vmin=0, vmax=len(self._species_name))
+        mappable = cm.ScalarMappable(norm=norm, cmap=custcmap)
+        mappable.set_array(np.linspace(1, len(self._species_name) + 1, 256))
+        cbar = plt.colorbar(mappable, ax=self.ax)
+
+        bounds = np.arange(len(self._species_name)) + 0.5
+        cbar.set_ticks(bounds)
+
+        cbar.set_ticklabels(self._species_name)
+        return
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_mpl"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">[docs]</a>    def generate_plot_mpl(
+        self,
+        packets_mode=&quot;virtual&quot;,
+        ax=None,
+        figsize=(12, 7),
+        cmapname=&quot;jet&quot;,
+        species_list=None,
+    ):
+        &quot;&quot;&quot;
+        Generate the last interaction radius distribution plot
+        using matplotlib.
+        &quot;&quot;&quot;
+
+        # Parse the requested species list
+        self._parse_species_list(species_list=species_list)
+        species_in_model = np.unique(
+            self.data[packets_mode]
+            .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
+            .values
+        )
+        if self._species_list is None or not self._species_list:
+            raise ValueError(&quot;No species provided for plotting.&quot;)
+        msk = np.isin(self._species_list, species_in_model)
+        self.species = np.array(self._species_list)[msk]
+
+        if len(self.species) == 0:
+            raise ValueError(&quot;No valid species found for plotting.&quot;)
+
+        if ax is None:
+            self.ax = plt.figure(figsize=figsize).add_subplot(111)
+        else:
+            self.ax = ax
+
+        # Get the labels in the color bar. This determines the number of unique colors
+        self._make_colorbar_labels()
+        # Set colormap to be used in elements of emission and absorption plots
+        self.cmap = cm.get_cmap(cmapname, len(self._species_name))
+        # Get the number of unique colors
+        self._make_colorbar_colors()
+        self._show_colorbar_mpl()
+
+        groups = self.data[packets_mode].packets_df_line_interaction.groupby(
+            by=&quot;last_line_interaction_species&quot;
+        )
+
+        plot_colors = []
+        plot_data = []
+
+        for species_counter, identifier in enumerate(self.species):
+            g_df = groups.get_group(identifier)
+            r_last_interaction = g_df[&quot;last_interaction_in_r&quot;].values * u.cm
+            v_last_interaction = (r_last_interaction / self.time_explosion).to(
+                &quot;km/s&quot;
+            )
+            plot_data.append(v_last_interaction)
+            plot_colors.append(self._color_list[species_counter])
+
+        self.ax.hist(plot_data, bins=self.no_of_shells, color=plot_colors)
+        self.ax.ticklabel_format(axis=&quot;y&quot;, scilimits=(0, 0))
+        self.ax.tick_params(&quot;both&quot;, labelsize=20)
+        self.ax.set_xlabel(&quot;Last Interaction Velocity (km/s)&quot;, fontsize=25)
+        self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=25)
+
+        return plt.gca()</div>
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_plotly"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_plotly">[docs]</a>    def generate_plot_plotly(
+        self,
+        packets_mode=&quot;virtual&quot;,
+        species_list=None,
+    ):
+        &quot;&quot;&quot;
+        Generate the last interaction radius distribution plot
+        using Plotly.
+        &quot;&quot;&quot;
+        # Parse the requested species list
+        self._parse_species_list(species_list=species_list)
+        species_in_model = np.unique(
+            self.data[packets_mode]
+            .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
+            .values
+        )
+        if self._species_list is None or not self._species_list:
+            raise ValueError(&quot;No species provided for plotting.&quot;)
+        msk = np.isin(self._species_list, species_in_model)
+        self.species = np.array(self._species_list)[msk]
+        if len(self.species) == 0:
+            raise ValueError(&quot;No valid species found for plotting.&quot;)
+        # Get the labels in the color bar. This determines the number of unique colors
+        self._make_colorbar_labels()
+        # Get the number of unique colors
+        self._make_colorbar_colors()
+        groups = self.data[packets_mode].packets_df_line_interaction.groupby(
+            by=&quot;last_line_interaction_species&quot;
+        )
+
+        plot_colors = []
+        plot_data = []
+
+        for species_counter, identifier in enumerate(self.species):
+            g_df = groups.get_group(identifier)
+            r_last_interaction = g_df[&quot;last_interaction_in_r&quot;].values * u.cm
+            v_last_interaction = (r_last_interaction / self.time_explosion).to(
+                &quot;km/s&quot;
+            )
+            plot_data.append(v_last_interaction)
+            color = f&quot;rgba({int(255*self._color_list[species_counter][0])}, {int(255*self._color_list[species_counter][1])}, {int(255*self._color_list[species_counter][2])}, 1)&quot;
+            plot_colors.append(color)
+        fig = go.Figure()
+        for data, color, name in zip(
+            plot_data, plot_colors, self._species_name
+        ):
+            fig.add_trace(
+                go.Histogram(
+                    x=data,
+                    marker_color=color,
+                    name=name,
+                    opacity=0.75,
+                    nbinsx=self.no_of_shells,
+                )
+            )
+        fig.update_layout(
+            barmode=&quot;overlay&quot;,
+            xaxis_title=&quot;Last Interaction Velocity (km/s)&quot;,
+            yaxis_title=&quot;Packet Count&quot;,
+            template=&quot;plotly_white&quot;,
+            font=dict(size=18),
+        )
+        return fig</div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 10 Jun 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
