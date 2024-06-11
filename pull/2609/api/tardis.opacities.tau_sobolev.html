@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=886f6cd9"></script>
+        <script src="../_static/documentation_options.js?v=15c151d4"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -162,7 +162,39 @@ Columns as zones.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.TauSobolev.calculate">
 <span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_number_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_lower_level_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength_cm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#TauSobolev.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.TauSobolev.calculate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calculate Sobolev line opacity.</p>
+<p>Calculates the Sobolev line opacity based on the provided parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lines</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame containing information about spectral lines.</p>
+</dd>
+<dt><strong>level_number_density</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame with level number densities.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Time since explosion.</p>
+</dd>
+<dt><strong>stimulated_emission_factor</strong><span class="classifier">float</span></dt><dd><p>Factor for stimulated emission.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Calculated Sobolev line opacity values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If any calculated tau_sobolevs are nan or inf.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_sobolev_line_opacity</span><span class="p">(</span><span class="n">lines_data</span><span class="p">,</span> <span class="n">level_density_data</span><span class="p">,</span> <span class="n">time_exp</span><span class="p">,</span> <span class="n">stim_factor</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.TauSobolev.latex_formula">
@@ -184,7 +216,38 @@ Columns as zones.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.calculate_sobolev_line_opacity">
 <span class="sig-prename descclassname"><span class="pre">tardis.opacities.tau_sobolev.</span></span><span class="sig-name descname"><span class="pre">calculate_sobolev_line_opacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_number_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#calculate_sobolev_line_opacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.calculate_sobolev_line_opacity" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calculates the Sobolev line opacity based on the provided parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lines</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame containing information about spectral lines.</p>
+</dd>
+<dt><strong>level_number_density</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame with level number densities.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Time since explosion.</p>
+</dd>
+<dt><strong>stimulated_emission_factor</strong><span class="classifier">float</span></dt><dd><p>Factor for stimulated emission.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Calculated Sobolev line opacity values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If any calculated tau_sobolevs are nan or inf.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_sobolev_line_opacity</span><span class="p">(</span><span class="n">lines_data</span><span class="p">,</span> <span class="n">level_density_data</span><span class="p">,</span> <span class="n">time_exp</span><span class="p">,</span> <span class="n">stim_factor</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </section>
 
@@ -200,7 +263,7 @@ Columns as zones.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Jun 2024.
+      <span class="lastupdated">Last updated on 11 Jun 2024.
       </span></p>
   </div>
 
