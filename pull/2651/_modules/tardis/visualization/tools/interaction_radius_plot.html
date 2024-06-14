@@ -140,7 +140,7 @@ import plotly.graph_objects as go
     Plotting interface for the interaction radius plot.
     &quot;&quot;&quot;
 
-    def __init__(self, data, time_explosion, no_of_shells):
+    def __init__(self, data, time_explosion, velocity):
         &quot;&quot;&quot;
         Initialize the plotter with required data from the simulation.
 
@@ -153,13 +153,13 @@ import plotly.graph_objects as go
         time_explosion : astropy.units.Quantity
             Time of the explosion.
 
-        no_of_shells : int
-            The number of shells in TARDIS simulation.
+        velocity : astropy.units.Quantity
+            Velocity array from the simulation.
         &quot;&quot;&quot;
 
         self.data = data
         self.time_explosion = time_explosion
-        self.no_of_shells = no_of_shells
+        self.velocity = velocity
         return
 
 <div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>    @classmethod
@@ -183,7 +183,7 @@ import plotly.graph_objects as go
                 real=sdec.SDECData.from_simulation(sim, &quot;real&quot;),
             ),
             sim.plasma.time_explosion,
-            sim.simulation_state.no_of_shells,
+            sim.simulation_state.velocity,
         )</div>
 
 <div class="viewcode-block" id="InteractionRadiusPlotter.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_hdf">[docs]</a>    @classmethod
@@ -200,7 +200,8 @@ import plotly.graph_objects as go
         -------
         Plotter
         &quot;&quot;&quot;
-
+        hdfstore = pd.HDFStore(hdf_fpath)
+        time_explosion = hdfstore[&#39;/simulation/plasma/scalars&#39;][&#39;time_explosion&#39;] * u.s
         return cls(
             dict(
                 virtual=sdec.SDECData.from_hdf(hdf_fpath, &quot;virtual&quot;),
@@ -218,6 +219,11 @@ import plotly.graph_objects as go
             List of species (e.g. Si II, Ca II, etc.) that the user wants to show as unique colours.
             Species can be given as an ion (e.g. Si II), an element (e.g. Si), a range of ions
             (e.g. Si I - V), or any combination of these (e.g. species_list = [Si II, Fe I-V, Ca])
+        
+        Raises
+        ------
+        ValueError
+            If species list contains invalid entries.
 
         &quot;&quot;&quot;
         if species_list is not None:
@@ -298,9 +304,13 @@ import plotly.graph_objects as go
         return
 
     def _make_colorbar_labels(self):
-        &quot;&quot;&quot;Get the labels for the species in the colorbar.&quot;&quot;&quot;
+        &quot;&quot;&quot;
+        Generate labels for the colorbar based on species.
+
+        If a species list is provided, uses that to generate labels.
+        Otherwise, generates labels from the species in the model.
+        &quot;&quot;&quot;
         if self._species_list is None:
-            # If species_list is none then the labels are just elements
             species_name = [
                 atomic_number2element_symbol(atomic_num)
                 for atomic_num in self.species
@@ -332,7 +342,11 @@ import plotly.graph_objects as go
         return
 
     def _make_colorbar_colors(self):
-        &quot;&quot;&quot;Get the colours for the species to be plotted.&quot;&quot;&quot;
+        &quot;&quot;&quot;
+        Generate colors for the species to be plotted.
+
+        Creates a list of colors corresponding to the species names.
+        &quot;&quot;&quot;
         # the colours depends on the species present in the model and what&#39;s requested
         # some species need to be shown in the same colour, so the exact colours have to be
         # worked out
@@ -385,40 +399,34 @@ import plotly.graph_objects as go
 
         return
 
-    def _show_colorbar_mpl(self):
-        &quot;&quot;&quot;Show matplotlib colorbar with labels of elements mapped to colors.&quot;&quot;&quot;
-
-        if not self._species_name:
-            raise ValueError(&quot;No species found to plot in colorbar&quot;)
-
-        color_values = [
-            self.cmap(species_counter / len(self._species_name))
-            for species_counter in range(len(self._species_name))
-        ]
-
-        custcmap = clr.ListedColormap(color_values)
-        norm = clr.Normalize(vmin=0, vmax=len(self._species_name))
-        mappable = cm.ScalarMappable(norm=norm, cmap=custcmap)
-        mappable.set_array(np.linspace(1, len(self._species_name) + 1, 256))
-        cbar = plt.colorbar(mappable, ax=self.ax)
-
-        bounds = np.arange(len(self._species_name)) + 0.5
-        cbar.set_ticks(bounds)
-
-        cbar.set_ticklabels(self._species_name)
-        return
-
 <div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_mpl"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">[docs]</a>    def generate_plot_mpl(
         self,
         packets_mode=&quot;virtual&quot;,
         ax=None,
-        figsize=(12, 7),
+        figsize=(11, 6),
         cmapname=&quot;jet&quot;,
         species_list=None,
     ):
         &quot;&quot;&quot;
-        Generate the last interaction radius distribution plot
-        using matplotlib.
+        Generate the last interaction radius distribution plot using matplotlib.
+
+        Parameters
+        ----------
+        packets_mode : str, optional
+            Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
+        ax : matplotlib.axes.Axes, optional
+            Axes object to plot on. If None, creates a new figure.
+        figsize : tuple, optional
+            Size of the figure. Default is (11, 6).
+        cmapname : str, optional
+            Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
+        species_list : list of str
+            List of species to plot. Default is None.
+
+        Returns
+        -------
+        matplotlib.axes.Axes
+            Axes object with the plot.
         &quot;&quot;&quot;
 
         # Parse the requested species list
@@ -447,7 +455,6 @@ import plotly.graph_objects as go
         self.cmap = cm.get_cmap(cmapname, len(self._species_name))
         # Get the number of unique colors
         self._make_colorbar_colors()
-        self._show_colorbar_mpl()
 
         groups = self.data[packets_mode].packets_df_line_interaction.groupby(
             by=&quot;last_line_interaction_species&quot;
@@ -465,22 +472,45 @@ import plotly.graph_objects as go
             plot_data.append(v_last_interaction)
             plot_colors.append(self._color_list[species_counter])
 
-        self.ax.hist(plot_data, bins=self.no_of_shells, color=plot_colors)
+        bin_edges = (self.velocity).to(&quot;km/s&quot;)
+
+        for data, color, name in zip(
+            plot_data, plot_colors, self._species_name
+            ):
+            hist, _ = np.histogram(data, bins=bin_edges)
+            step_x = np.repeat(bin_edges, 2)[1:-1]
+            step_y = np.repeat(hist, 2)
+            self.ax.plot(step_x, step_y, label=name, color=color, linewidth=2.5, drawstyle=&#39;steps-post&#39;, alpha=0.75)
+
         self.ax.ticklabel_format(axis=&quot;y&quot;, scilimits=(0, 0))
-        self.ax.tick_params(&quot;both&quot;, labelsize=20)
-        self.ax.set_xlabel(&quot;Last Interaction Velocity (km/s)&quot;, fontsize=25)
-        self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=25)
+        self.ax.tick_params(&quot;both&quot;, labelsize=14)
+        self.ax.set_xlabel(&quot;Last Interaction Velocity (km/s)&quot;, fontsize=14)
+        self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=14)
+        self.ax.grid(True, which=&#39;both&#39;, linestyle=&#39;--&#39;, linewidth=0.5)
+        self.ax.legend(fontsize=15)
+        plt.tight_layout()
 
-        return plt.gca()</div>
-
+        return self.ax</div>
+    
 <div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_plotly"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_plotly">[docs]</a>    def generate_plot_plotly(
         self,
         packets_mode=&quot;virtual&quot;,
         species_list=None,
     ):
         &quot;&quot;&quot;
-        Generate the last interaction radius distribution plot
-        using Plotly.
+        Generate the last interaction radius distribution plot using plotly.
+
+        Parameters
+        ----------
+        packets_mode : str, optional
+            Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
+        species_list : list of str
+            List of species to plot. Default is None.
+
+        Returns
+        -------
+        plotly.graph_objects.Figure
+            Plotly figure object with the plot.
         &quot;&quot;&quot;
         # Parse the requested species list
         self._parse_species_list(species_list=species_list)
@@ -516,24 +546,34 @@ import plotly.graph_objects as go
             color = f&quot;rgba({int(255*self._color_list[species_counter][0])}, {int(255*self._color_list[species_counter][1])}, {int(255*self._color_list[species_counter][2])}, 1)&quot;
             plot_colors.append(color)
         fig = go.Figure()
+
+        bin_edges = (self.velocity).to(&quot;km/s&quot;)
         for data, color, name in zip(
             plot_data, plot_colors, self._species_name
         ):
+            hist, _ = np.histogram(data, bins=bin_edges)
+            step_x = np.repeat(bin_edges, 2)[1:-1]
+            step_y = np.repeat(hist, 2)
             fig.add_trace(
-                go.Histogram(
-                    x=data,
-                    marker_color=color,
+                go.Scatter(
+                    x=step_x,
+                    y=step_y,
+                    mode=&#39;lines&#39;,
+                    line=dict(
+                        color=color,
+                        width=2.5,
+                        shape=&#39;hv&#39;,
+                    ),
                     name=name,
                     opacity=0.75,
-                    nbinsx=self.no_of_shells,
                 )
             )
         fig.update_layout(
-            barmode=&quot;overlay&quot;,
             xaxis_title=&quot;Last Interaction Velocity (km/s)&quot;,
             yaxis_title=&quot;Packet Count&quot;,
             template=&quot;plotly_white&quot;,
-            font=dict(size=18),
+            font=dict(size=14),
+            yaxis=dict(tickformat=&quot;.1e&quot;),
         )
         return fig</div></div>
 </pre></div>
@@ -546,7 +586,7 @@ import plotly.graph_objects as go
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 10 Jun 2024.
+      <span class="lastupdated">Last updated on 14 Jun 2024.
       </span></p>
   </div>
 

@@ -148,7 +148,7 @@
 <span id="tardis-visualization-tools-interaction-radius-plot-module"></span><h1>tardis.visualization.tools.interaction_radius_plot module<a class="headerlink" href="#module-tardis.visualization.tools.interaction_radius_plot" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.tools.interaction_radius_plot.</span></span><span class="sig-name descname"><span class="pre">InteractionRadiusPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_shells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.tools.interaction_radius_plot.</span></span><span class="sig-name descname"><span class="pre">InteractionRadiusPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Plotting interface for the interaction radius plot.</p>
 <p>Initialize the plotter with required data from the simulation.</p>
@@ -160,7 +160,7 @@ for both packet modes (real, virtual).</p>
 </dd>
 <dt><strong>time_explosion</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Time of the explosion.</p>
 </dd>
-<dt><strong>no_of_shells</strong><span class="classifier">int</span></dt><dd><p>The number of shells in TARDIS simulation.</p>
+<dt><strong>velocity</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Velocity array from the simulation.</p>
 </dd>
 </dl>
 </dd>
@@ -205,16 +205,52 @@ for both packet modes (real, virtual).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">
-<span class="sig-name descname"><span class="pre">generate_plot_mpl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_mpl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate the last interaction radius distribution plot
-using matplotlib.</p>
+<span class="sig-name descname"><span class="pre">generate_plot_mpl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_mpl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the last interaction radius distribution plot using matplotlib.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packets_mode</strong><span class="classifier">str, optional</span></dt><dd><p>Packet mode, either ‘virtual’ or ‘real’. Default is ‘virtual’.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib.axes.Axes, optional</span></dt><dd><p>Axes object to plot on. If None, creates a new figure.</p>
+</dd>
+<dt><strong>figsize</strong><span class="classifier">tuple, optional</span></dt><dd><p>Size of the figure. Default is (11, 6).</p>
+</dd>
+<dt><strong>cmapname</strong><span class="classifier">str, optional</span></dt><dd><p>Colormap name. Default is ‘jet’. A specific colormap can be chosen, such as “jet”, “viridis”, “plasma”, etc.</p>
+</dd>
+<dt><strong>species_list</strong><span class="classifier">list of str</span></dt><dd><p>List of species to plot. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>matplotlib.axes.Axes</dt><dd><p>Axes object with the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_plotly">
 <span class="sig-name descname"><span class="pre">generate_plot_plotly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_plotly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_plotly" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate the last interaction radius distribution plot
-using Plotly.</p>
+<dd><p>Generate the last interaction radius distribution plot using plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packets_mode</strong><span class="classifier">str, optional</span></dt><dd><p>Packet mode, either ‘virtual’ or ‘real’. Default is ‘virtual’.</p>
+</dd>
+<dt><strong>species_list</strong><span class="classifier">list of str</span></dt><dd><p>List of species to plot. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>plotly.graph_objects.Figure</dt><dd><p>Plotly figure object with the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -233,7 +269,7 @@ using Plotly.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 10 Jun 2024.
+      <span class="lastupdated">Last updated on 14 Jun 2024.
       </span></p>
   </div>
 
