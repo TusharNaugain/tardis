@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.transition_probabilities &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -119,7 +119,6 @@
 
 import numpy as np
 import pandas as pd
-
 from scipy import sparse as sp
 
 from tardis.plasma.properties.base import ProcessingPlasmaProperty
@@ -167,7 +166,7 @@ def normalize_trans_probs(p):
     return p_norm
 
 
-class SpMatrixSeriesConverterMixin(object):
+class SpMatrixSeriesConverterMixin:
     @staticmethod
     def series2matrix(series, idx2reduced_idx):
         &quot;&quot;&quot;
@@ -237,7 +236,9 @@ class SpMatrixSeriesConverterMixin(object):
         return series
 
 
-<div class="viewcode-block" id="MarkovChainIndex"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainIndex">[docs]</a>class MarkovChainIndex(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="MarkovChainIndex">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainIndex">[docs]</a>
+class MarkovChainIndex(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -249,7 +250,9 @@ class SpMatrixSeriesConverterMixin(object):
 
     outputs = (&quot;idx2mkv_idx&quot;, &quot;k_packet_idx&quot;, &quot;idx2deactivation_idx&quot;)
 
-<div class="viewcode-block" id="MarkovChainIndex.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainIndex.calculate">[docs]</a>    def calculate(self, atomic_data, continuum_interaction_species):
+<div class="viewcode-block" id="MarkovChainIndex.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainIndex.calculate">[docs]</a>
+    def calculate(self, atomic_data, continuum_interaction_species):
         ma_ref = atomic_data.macro_atom_references
         mask = ma_ref.index.droplevel(&quot;source_level_number&quot;).isin(
             continuum_interaction_species
@@ -265,10 +268,14 @@ class SpMatrixSeriesConverterMixin(object):
         k_packet_idx = ma_ref.references_idx.max() + 1
 
         idx2deactivation_idx = idx2mkv_idx + k_packet_idx + 1
-        return idx2mkv_idx, k_packet_idx, idx2deactivation_idx</div></div>
+        return idx2mkv_idx, k_packet_idx, idx2deactivation_idx</div>
+</div>
 
 
-<div class="viewcode-block" id="NonContinuumTransProbsMask"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.NonContinuumTransProbsMask">[docs]</a>class NonContinuumTransProbsMask(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="NonContinuumTransProbsMask">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.NonContinuumTransProbsMask">[docs]</a>
+class NonContinuumTransProbsMask(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -277,7 +284,9 @@ class SpMatrixSeriesConverterMixin(object):
 
     outputs = (&quot;non_continuum_trans_probs_mask&quot;,)
 
-<div class="viewcode-block" id="NonContinuumTransProbsMask.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.NonContinuumTransProbsMask.calculate">[docs]</a>    def calculate(self, atomic_data, continuum_interaction_species):
+<div class="viewcode-block" id="NonContinuumTransProbsMask.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.NonContinuumTransProbsMask.calculate">[docs]</a>
+    def calculate(self, atomic_data, continuum_interaction_species):
         # I don&#39;t have to remove the ground states of
         # the next higher ionization states of the continuum species
         # since they only contain zero probabilities.
@@ -287,10 +296,14 @@ class SpMatrixSeriesConverterMixin(object):
         non_continuum_trans_probs_mask = np.logical_not(
             continuum_trans_probs_mask
         )
-        return non_continuum_trans_probs_mask</div></div>
+        return non_continuum_trans_probs_mask</div>
+</div>
 
 
-<div class="viewcode-block" id="MarkovChainTransProbsCollector"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbsCollector">[docs]</a>class MarkovChainTransProbsCollector(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="MarkovChainTransProbsCollector">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbsCollector">[docs]</a>
+class MarkovChainTransProbsCollector(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -305,14 +318,20 @@ class SpMatrixSeriesConverterMixin(object):
         super().__init__(plasma_parent)
         self.inputs = inputs
 
-<div class="viewcode-block" id="MarkovChainTransProbsCollector.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbsCollector.calculate">[docs]</a>    def calculate(self, *args):
+<div class="viewcode-block" id="MarkovChainTransProbsCollector.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbsCollector.calculate">[docs]</a>
+    def calculate(self, *args):
         p = pd.concat(args)
         p = p.groupby(level=[0, 1, 2]).sum()
         p = normalize_trans_probs(p)
-        return p</div></div>
+        return p</div>
+</div>
 
 
-<div class="viewcode-block" id="MarkovChainTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbs">[docs]</a>class MarkovChainTransProbs(
+
+<div class="viewcode-block" id="MarkovChainTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbs">[docs]</a>
+class MarkovChainTransProbs(
     ProcessingPlasmaProperty, SpMatrixSeriesConverterMixin
 ):
     outputs = (&quot;N&quot;, &quot;R&quot;, &quot;B&quot;, &quot;p_deactivation&quot;)
@@ -342,7 +361,9 @@ class SpMatrixSeriesConverterMixin(object):
         in source_level_idx.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="MarkovChainTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbs.calculate">[docs]</a>    def calculate(self, p_combined, idx2mkv_idx):
+<div class="viewcode-block" id="MarkovChainTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbs.calculate">[docs]</a>
+    def calculate(self, p_combined, idx2mkv_idx):
         p = p_combined
         p_internal = p.xs(0, level=&quot;transition_type&quot;)
         p_deactivation = normalize_trans_probs(
@@ -370,10 +391,14 @@ class SpMatrixSeriesConverterMixin(object):
             R[column] = R1
         N = N.sort_index()
         B = B.sort_index()
-        return N, R, B, p_deactivation</div></div>
+        return N, R, B, p_deactivation</div>
+</div>
 
 
-<div class="viewcode-block" id="MonteCarloTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MonteCarloTransProbs">[docs]</a>class MonteCarloTransProbs(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="MonteCarloTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MonteCarloTransProbs">[docs]</a>
+class MonteCarloTransProbs(ProcessingPlasmaProperty):
     outputs = (
         &quot;non_continuum_trans_probs&quot;,
         &quot;level_absorption_probs&quot;,
@@ -393,7 +418,9 @@ class SpMatrixSeriesConverterMixin(object):
     macro_atom_data
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="MonteCarloTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MonteCarloTransProbs.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="MonteCarloTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MonteCarloTransProbs.calculate">[docs]</a>
+    def calculate(
         self,
         non_markov_transition_probabilities,
         atomic_data,
@@ -539,7 +566,9 @@ class SpMatrixSeriesConverterMixin(object):
             combined_trans_probs,
             block_references,
             macro_atom_info,
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -550,7 +579,7 @@ class SpMatrixSeriesConverterMixin(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

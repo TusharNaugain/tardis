@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.estimators.continuum_radfield_properties &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -126,6 +126,7 @@ from tardis.io.atom_data import AtomData
 from tardis.model.radiation_field_state import (
     DiluteBlackBodyRadiationFieldState,
 )
+from tardis.plasma.properties.continuum_processes import PhotoIonBoltzmannFactor
 from tardis.transport.montecarlo.estimators.radfield_mc_estimators import (
     RadiationFieldMCEstimators,
 )
@@ -133,19 +134,22 @@ from tardis.transport.montecarlo.estimators.util import (
     bound_free_estimator_array2frame,
     integrate_array_by_blocks,
 )
-from tardis.plasma.properties.continuum_processes import PhotoIonBoltzmannFactor
 
 H = const.h.cgs.value
 
 
-<div class="viewcode-block" id="MCContinuumPropertiesSolver"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver">[docs]</a>class MCContinuumPropertiesSolver:
+<div class="viewcode-block" id="MCContinuumPropertiesSolver">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver">[docs]</a>
+class MCContinuumPropertiesSolver:
     def __init__(
         self,
         atom_data: AtomData,
     ):
         self.atom_data = atom_data
 
-<div class="viewcode-block" id="MCContinuumPropertiesSolver.solve"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver.solve">[docs]</a>    def solve(
+<div class="viewcode-block" id="MCContinuumPropertiesSolver.solve">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver.solve">[docs]</a>
+    def solve(
         self,
         radfield_mc_estimators: RadiationFieldMCEstimators,
         time_simulation,
@@ -184,14 +188,20 @@ H = const.h.cgs.value
 
         return ContinuumProperties(
             stimulated_recomb_rate_factor, photo_ionization_rate_coefficient
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver">[docs]</a>class DiluteBlackBodyContinuumPropertiesSolver:
+
+<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver">[docs]</a>
+class DiluteBlackBodyContinuumPropertiesSolver:
     def __init__(self, atom_data: AtomData) -&gt; None:
         self.atom_data = atom_data
 
-<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.solve"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.solve">[docs]</a>    def solve(
+<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.solve">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.solve">[docs]</a>
+    def solve(
         self,
         dilute_blackbody_radiationfield_state: DiluteBlackBodyRadiationFieldState,
         t_electrons: u.Quantity,
@@ -235,7 +245,10 @@ H = const.h.cgs.value
             stimulated_recomb_rate_coeff, photo_ion_rate_coeff
         )</div>
 
-<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient">[docs]</a>    def calculate_photo_ionization_rate_coefficient(
+
+<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient">[docs]</a>
+    def calculate_photo_ionization_rate_coefficient(
         self,
         mean_intensity_photo_ion_df: pd.DataFrame,
     ):
@@ -271,7 +284,10 @@ H = const.h.cgs.value
         gamma = pd.DataFrame(gamma, index=self.atom_data.photo_ion_unique_index)
         return gamma</div>
 
-<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor">[docs]</a>    def calculate_stimulated_recomb_rate_factor(
+
+<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor">[docs]</a>
+    def calculate_stimulated_recomb_rate_factor(
         self,
         mean_intensity_photo_ion_df: pd.DataFrame,
         photo_ion_boltzmann_factor: np.ndarray,
@@ -317,7 +333,10 @@ H = const.h.cgs.value
 
         return alpha_stim_factor</div>
 
-<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table">[docs]</a>    def calculate_mean_intensity_photo_ion_table(
+
+<div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table">[docs]</a>
+    def calculate_mean_intensity_photo_ion_table(
         self,
         dilute_blackbody_radiationfield_state: DiluteBlackBodyRadiationFieldState,
     ):
@@ -333,13 +352,18 @@ H = const.h.cgs.value
                 len(dilute_blackbody_radiationfield_state.t_radiative)
             ),
         )
-        return mean_intensity_df</div></div>
+        return mean_intensity_df</div>
+</div>
 
 
-<div class="viewcode-block" id="ContinuumProperties"><a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties">[docs]</a>@dataclass
+
+<div class="viewcode-block" id="ContinuumProperties">
+<a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties">[docs]</a>
+@dataclass
 class ContinuumProperties:
     stimulated_recomb_rate_factor: pd.DataFrame
     photo_ionization_rate_coefficient: pd.DataFrame</div>
+
 </pre></div>
 
            </div>
@@ -350,7 +374,7 @@ class ContinuumProperties:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

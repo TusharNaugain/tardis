@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.helium_nlte &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -134,10 +134,14 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="HeliumNLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE">[docs]</a>class HeliumNLTE(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="HeliumNLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE">[docs]</a>
+class HeliumNLTE(ProcessingPlasmaProperty):
     outputs = (&quot;helium_population&quot;,)
 
-<div class="viewcode-block" id="HeliumNLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="HeliumNLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(
         level_boltzmann_factor,
         ionization_data,
@@ -165,7 +169,7 @@ logger = logging.getLogger(__name__)
         helium_population.loc[0, 0] = 0.0
         # He II excited states
         he_two_population = level_boltzmann_factor.loc[2, 1].mul(
-            (float(g.loc[2, 1, 0]) ** (-1.0))
+            float(g.loc[2, 1, 0]) ** (-1.0)
         )
         helium_population.loc[1].update(he_two_population)
         # He II ground state
@@ -187,7 +191,10 @@ logger = logging.getLogger(__name__)
         #        helium_population.update(normalised)
         return helium_population</div>
 
-<div class="viewcode-block" id="HeliumNLTE.calculate_helium_one"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate_helium_one">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="HeliumNLTE.calculate_helium_one">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate_helium_one">[docs]</a>
+    @staticmethod
     def calculate_helium_one(
         g_electron, beta_rad, ionization_data, level_boltzmann_factor, g, w
     ):
@@ -202,7 +209,10 @@ logger = logging.getLogger(__name__)
             * np.exp(ionization_data.loc[2, 1] * beta_rad)
         )</div>
 
-<div class="viewcode-block" id="HeliumNLTE.calculate_helium_three"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate_helium_three">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="HeliumNLTE.calculate_helium_three">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNLTE.calculate_helium_three">[docs]</a>
+    @staticmethod
     def calculate_helium_three(
         t_rad,
         w,
@@ -227,10 +237,14 @@ logger = logging.getLogger(__name__)
             * (delta.loc[2, 2] * zeta + w * (1.0 - zeta))
             * (t_electrons / t_rad) ** 0.5
         )
-        return he_three_population</div></div>
+        return he_three_population</div>
+</div>
 
 
-<div class="viewcode-block" id="HeliumNumericalNLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNumericalNLTE">[docs]</a>class HeliumNumericalNLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="HeliumNumericalNLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNumericalNLTE">[docs]</a>
+class HeliumNumericalNLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     IMPORTANT: This particular property requires a specific numerical NLTE
     solver and a specific atomic dataset (neither of which are distributed
@@ -240,12 +254,14 @@ logger = logging.getLogger(__name__)
     outputs = (&quot;helium_population&quot;,)
 
     def __init__(self, plasma_parent, heating_rate_data_file):
-        super(HeliumNumericalNLTE, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self._g_upper = None
         self._g_lower = None
         self.heating_rate_data = np.loadtxt(heating_rate_data_file, unpack=True)
 
-<div class="viewcode-block" id="HeliumNumericalNLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNumericalNLTE.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="HeliumNumericalNLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.helium_nlte.html#tardis.plasma.properties.helium_nlte.HeliumNumericalNLTE.calculate">[docs]</a>
+    def calculate(
         self,
         ion_number_density,
         electron_densities,
@@ -292,7 +308,9 @@ logger = logging.getLogger(__name__)
                         number_density = (
                             ion_number_density[zone].loc[element].sum()
                         )
-                    except:
+                    except Exception as e:
+                        # TODO: Do not write bare except
+                        print(&quot;Exception occurred! &quot;, e)
                         number_density = 0.0
                         logger.debug(
                             f&quot;Number Density could not be calculated. Setting Number Density to {number_density}&quot;
@@ -345,10 +363,8 @@ logger = logging.getLogger(__name__)
         # Reading in populations from files
         helium_population = level_boltzmann_factor.loc[2].copy()
         for zone, _ in enumerate(electron_densities):
-            with open(
-                f&quot;He_NLTE_Files/discradfield{zone}.txt&quot;, &quot;r&quot;
-            ) as read_file:
-                for level in range(0, 35):
+            with open(f&quot;He_NLTE_Files/discradfield{zone}.txt&quot;) as read_file:
+                for level in range(35):
                     level_population = read_file.readline()
                     level_population = float(level_population)
                     helium_population[zone].loc[0, level] = level_population
@@ -392,7 +408,9 @@ logger = logging.getLogger(__name__)
             ion_number_density.loc[2].sum() / unnormalised
         )
         helium_population.update(normalised)
-        return helium_population</div></div>
+        return helium_population</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -403,7 +421,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.tools.sdec_plot &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -121,6 +121,7 @@ Spectral element DEComposition (SDEC) Plot for TARDIS simulation models.
 This plot is a spectral diagnostics plot similar to those originally
 proposed by M. Kromer (see, for example, Kromer et al. 2013, figure 4).
 &quot;&quot;&quot;
+
 import logging
 
 import astropy.units as u
@@ -144,7 +145,9 @@ from tardis.visualization import plot_util as pu
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="SDECData"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData">[docs]</a>class SDECData:
+<div class="viewcode-block" id="SDECData">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData">[docs]</a>
+class SDECData:
     &quot;&quot;&quot;The data of simulation model used by Spectral element DEComposition (SDEC) Plot.
 
     This preprocesses the data required by SDECPlotter class for doing
@@ -261,7 +264,9 @@ logger = logging.getLogger(__name__)
             .to_numpy()
         )
 
-<div class="viewcode-block" id="SDECData.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="SDECData.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim, packets_mode):
         &quot;&quot;&quot;
         Create an instance of SDECData from a TARDIS simulation object.
@@ -348,7 +353,10 @@ logger = logging.getLogger(__name__)
                 &quot;allowed values are &#39;virtual&#39; or &#39;real&#39;&quot;
             )</div>
 
-<div class="viewcode-block" id="SDECData.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_hdf">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="SDECData.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, hdf_fpath, packets_mode):
         &quot;&quot;&quot;
         Create an instance of SDECData from a simulation HDF file.
@@ -506,10 +514,14 @@ logger = logging.getLogger(__name__)
                 raise ValueError(
                     &quot;Invalid value passed to packets_mode. Only &quot;
                     &quot;allowed values are &#39;virtual&#39; or &#39;real&#39;&quot;
-                )</div></div>
+                )</div>
+</div>
 
 
-<div class="viewcode-block" id="SDECPlotter"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter">[docs]</a>class SDECPlotter:
+
+<div class="viewcode-block" id="SDECPlotter">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter">[docs]</a>
+class SDECPlotter:
     &quot;&quot;&quot;
     Plotting interface for Spectral element DEComposition (SDEC) Plot.
 
@@ -529,7 +541,9 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         self.data = data
 
-<div class="viewcode-block" id="SDECPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="SDECPlotter.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim):
         &quot;&quot;&quot;
         Create an instance of SDECPlotter from a TARDIS simulation object.
@@ -558,7 +572,10 @@ logger = logging.getLogger(__name__)
                 }
             )</div>
 
-<div class="viewcode-block" id="SDECPlotter.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.from_hdf">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="SDECPlotter.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, hdf_fpath, packets_mode=None):
         &quot;&quot;&quot;
         Create an instance of SDECPlotter from a simulation HDF file.
@@ -601,6 +618,7 @@ logger = logging.getLogger(__name__)
                 }
             )</div>
 
+
     def _parse_species_list(self, species_list):
         &quot;&quot;&quot;
         Parse user requested species list and create list of species ids to be used.
@@ -621,71 +639,70 @@ logger = logging.getLogger(__name__)
                 raise ValueError(
                     &quot;All species must be in Roman numeral form, e.g. Si II&quot;
                 )
-            else:
-                full_species_list = []
-                for species in species_list:
-                    # check if a hyphen is present. If it is, then it indicates a
-                    # range of ions. Add each ion in that range to the list as a new entry
-                    if &quot;-&quot; in species:
-                        # split the string on spaces. First thing in the list is then the element
-                        element = species.split(&quot; &quot;)[0]
-                        # Next thing is the ion range
-                        # convert the requested ions into numerals
-                        first_ion_numeral = roman_to_int(
-                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[0]
+            full_species_list = []
+            for species in species_list:
+                # check if a hyphen is present. If it is, then it indicates a
+                # range of ions. Add each ion in that range to the list as a new entry
+                if &quot;-&quot; in species:
+                    # split the string on spaces. First thing in the list is then the element
+                    element = species.split(&quot; &quot;)[0]
+                    # Next thing is the ion range
+                    # convert the requested ions into numerals
+                    first_ion_numeral = roman_to_int(
+                        species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[0]
+                    )
+                    second_ion_numeral = roman_to_int(
+                        species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[-1]
+                    )
+                    # add each ion between the two requested into the species list
+                    for ion_number in np.arange(
+                        first_ion_numeral, second_ion_numeral + 1
+                    ):
+                        full_species_list.append(
+                            f&quot;{element} {int_to_roman(ion_number)}&quot;
                         )
-                        second_ion_numeral = roman_to_int(
-                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[-1]
-                        )
-                        # add each ion between the two requested into the species list
-                        for ion_number in np.arange(
-                            first_ion_numeral, second_ion_numeral + 1
-                        ):
-                            full_species_list.append(
-                                f&quot;{element} {int_to_roman(ion_number)}&quot;
-                            )
-                    else:
-                        # Otherwise it&#39;s either an element or ion so just add to the list
-                        full_species_list.append(species)
+                else:
+                    # Otherwise it&#39;s either an element or ion so just add to the list
+                    full_species_list.append(species)
 
-                # full_species_list is now a list containing each individual species requested
-                # e.g. it parses species_list = [Si I - V] into species_list = [Si I, Si II, Si III, Si IV, Si V]
-                self._full_species_list = full_species_list
-                requested_species_ids = []
-                keep_colour = []
+            # full_species_list is now a list containing each individual species requested
+            # e.g. it parses species_list = [Si I - V] into species_list = [Si I, Si II, Si III, Si IV, Si V]
+            self._full_species_list = full_species_list
+            requested_species_ids = []
+            keep_colour = []
 
-                # go through each of the requested species. Check whether it is
-                # an element or ion (ions have spaces). If it is an element,
-                # add all possible ions to the ions list. Otherwise just add
-                # the requested ion
-                for species in full_species_list:
-                    if &quot; &quot; in species:
-                        requested_species_ids.append(
-                            [
-                                species_string_to_tuple(species)[0] * 100
-                                + species_string_to_tuple(species)[1]
-                            ]
-                        )
-                    else:
-                        atomic_number = element_symbol2atomic_number(species)
-                        requested_species_ids.append(
-                            [
-                                atomic_number * 100 + ion_number
-                                for ion_number in np.arange(atomic_number)
-                            ]
-                        )
-                        # add the atomic number to a list so you know that this element should
-                        # have all species in the same colour, i.e. it was requested like
-                        # species_list = [Si]
-                        keep_colour.append(atomic_number)
-                requested_species_ids = [
-                    species_id
-                    for temp_list in requested_species_ids
-                    for species_id in temp_list
-                ]
+            # go through each of the requested species. Check whether it is
+            # an element or ion (ions have spaces). If it is an element,
+            # add all possible ions to the ions list. Otherwise just add
+            # the requested ion
+            for species in full_species_list:
+                if &quot; &quot; in species:
+                    requested_species_ids.append(
+                        [
+                            species_string_to_tuple(species)[0] * 100
+                            + species_string_to_tuple(species)[1]
+                        ]
+                    )
+                else:
+                    atomic_number = element_symbol2atomic_number(species)
+                    requested_species_ids.append(
+                        [
+                            atomic_number * 100 + ion_number
+                            for ion_number in np.arange(atomic_number)
+                        ]
+                    )
+                    # add the atomic number to a list so you know that this element should
+                    # have all species in the same colour, i.e. it was requested like
+                    # species_list = [Si]
+                    keep_colour.append(atomic_number)
+            requested_species_ids = [
+                species_id
+                for temp_list in requested_species_ids
+                for species_id in temp_list
+            ]
 
-                self._species_list = requested_species_ids
-                self._keep_colour = keep_colour
+            self._species_list = requested_species_ids
+            self._keep_colour = keep_colour
         else:
             self._species_list = None
 
@@ -787,8 +804,7 @@ logger = logging.getLogger(__name__)
                     &quot;to plot luminosities instead of flux, set distance=None &quot;
                     &quot;or don&#39;t specify distance parameter in the function call.&quot;
                 )
-            else:
-                self.lum_to_flux = 4.0 * np.pi * (distance.to(&quot;cm&quot;)) ** 2
+            self.lum_to_flux = 4.0 * np.pi * (distance.to(&quot;cm&quot;)) ** 2
 
         # Calculate luminosities to be shown in plot
         (
@@ -1228,7 +1244,9 @@ logger = logging.getLogger(__name__)
 
         return L_lambda_ph / self.lum_to_flux
 
-<div class="viewcode-block" id="SDECPlotter.generate_plot_mpl"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_mpl">[docs]</a>    def generate_plot_mpl(
+<div class="viewcode-block" id="SDECPlotter.generate_plot_mpl">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_mpl">[docs]</a>
+    def generate_plot_mpl(
         self,
         packets_mode=&quot;virtual&quot;,
         packet_wvl_range=None,
@@ -1386,6 +1404,7 @@ logger = logging.getLogger(__name__)
             )
 
         return plt.gca()</div>
+
 
     def _plot_emission_mpl(self):
         &quot;&quot;&quot;Plot emission part of the SDEC Plot using matplotlib.&quot;&quot;&quot;
@@ -1628,7 +1647,9 @@ logger = logging.getLogger(__name__)
 
         self._color_list = color_list
 
-<div class="viewcode-block" id="SDECPlotter.generate_plot_ply"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_ply">[docs]</a>    def generate_plot_ply(
+<div class="viewcode-block" id="SDECPlotter.generate_plot_ply">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_ply">[docs]</a>
+    def generate_plot_ply(
         self,
         packets_mode=&quot;virtual&quot;,
         packet_wvl_range=None,
@@ -1806,7 +1827,10 @@ logger = logging.getLogger(__name__)
 
         return self.fig</div>
 
-<div class="viewcode-block" id="SDECPlotter.to_rgb255_string"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.to_rgb255_string">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="SDECPlotter.to_rgb255_string">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.to_rgb255_string">[docs]</a>
+    @staticmethod
     def to_rgb255_string(color_tuple):
         &quot;&quot;&quot;
         Convert a matplotlib RGBA tuple to a generic RGB 255 string.
@@ -1824,6 +1848,7 @@ logger = logging.getLogger(__name__)
         &quot;&quot;&quot;
         color_tuple_255 = tuple([int(x * 255) for x in color_tuple[:3]])
         return f&quot;rgb{color_tuple_255}&quot;</div>
+
 
     def _plot_emission_ply(self):
         &quot;&quot;&quot;Plot emission part of the SDEC Plot using plotly.&quot;&quot;&quot;
@@ -2018,6 +2043,7 @@ logger = logging.getLogger(__name__)
                 marker=dict(color=[0], opacity=0, **coloraxis_options),
             )
         )</div>
+
 </pre></div>
 
            </div>
@@ -2028,7 +2054,7 @@ logger = logging.getLogger(__name__)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.readers.generic_readers &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -115,25 +115,34 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.generic_readers</h1><div class="highlight"><pre>
-<span></span>from astropy import units as u
-from typing import Any, Tuple
-from numpy import recfromtxt
-import pandas as pd
-from radioactivedecay import Nuclide
-from radioactivedecay.utils import Z_DICT, elem_to_Z
-from pathlib import Path
+<span></span>from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from typing import Any, Tuple
 
 import numpy as np
-from tardis.io.model.readers.util import read_csv_isotope_abundances
+import pandas as pd
+from astropy import units as u
+from numpy import genfromtxt
+from radioactivedecay import Nuclide
+from radioactivedecay.utils import Z_DICT, elem_to_Z
 
+from tardis.io.model.readers.util import read_csv_isotope_abundances
 from tardis.util.base import parse_quantity
 
 
-<div class="viewcode-block" id="ConfigurationError"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.ConfigurationError">[docs]</a>class ConfigurationError(Exception):
+<div class="viewcode-block" id="ConfigurationError">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.ConfigurationError">[docs]</a>
+class ConfigurationError(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_density"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_density">[docs]</a>def read_simple_ascii_density(
+
+<div class="viewcode-block" id="read_simple_ascii_density">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_density">[docs]</a>
+def read_simple_ascii_density(
     fname: Any,
 ) -&gt; Tuple[u.Quantity, u.Quantity, u.Quantity]:
     &quot;&quot;&quot;
@@ -158,12 +167,11 @@ from tardis.util.base import parse_quantity
     mean_density: u.Quantity
         mean density
     &quot;&quot;&quot;
-
     with open(fname) as fh:
         time_of_model_string = fh.readline().strip()
         time_of_model = parse_quantity(time_of_model_string)
 
-    data = recfromtxt(
+    data = genfromtxt(
         fname,
         skip_header=1,
         names=(&quot;index&quot;, &quot;velocity&quot;, &quot;density&quot;),
@@ -175,7 +183,10 @@ from tardis.util.base import parse_quantity
     return time_of_model, velocity, mean_density</div>
 
 
-<div class="viewcode-block" id="read_csv_composition"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_csv_composition">[docs]</a>def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
+
+<div class="viewcode-block" id="read_csv_composition">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_csv_composition">[docs]</a>
+def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
     &quot;&quot;&quot;Read composition from a simple CSV file
 
     The CSV file can contain specific isotopes or elemental abundances in the
@@ -190,13 +201,15 @@ from tardis.util.base import parse_quantity
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
     return read_csv_isotope_abundances(
         fname, delimiter=delimiter, skip_columns=0, skip_rows=[1]
     )</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_abundances"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_abundances">[docs]</a>def read_simple_ascii_abundances(fname):
+
+<div class="viewcode-block" id="read_simple_ascii_abundances">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_abundances">[docs]</a>
+def read_simple_ascii_abundances(fname):
     &quot;&quot;&quot;
     Reading an abundance file of the following structure (example; lines starting with hash will be ignored):
     The first line of abundances describe the abundances in the center of the model and are not used.
@@ -225,7 +238,10 @@ from tardis.util.base import parse_quantity
     return index, abundances</div>
 
 
-<div class="viewcode-block" id="read_uniform_abundances"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_abundances">[docs]</a>def read_uniform_abundances(abundances_section, no_of_shells):
+
+<div class="viewcode-block" id="read_uniform_abundances">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_abundances">[docs]</a>
+def read_uniform_abundances(abundances_section, no_of_shells):
     &quot;&quot;&quot;
     Parameters
     ----------
@@ -273,6 +289,7 @@ from tardis.util.base import parse_quantity
             )
 
     return abundance, isotope_abundance</div>
+
 </pre></div>
 
            </div>
@@ -283,7 +300,7 @@ from tardis.util.base import parse_quantity
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

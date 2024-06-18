@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.widgets.line_info &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -116,30 +116,30 @@
              
   <h1>Source code for tardis.visualization.widgets.line_info</h1><div class="highlight"><pre>
 <span></span>&quot;&quot;&quot;Class to create and display Line Info Widget.&quot;&quot;&quot;
-import re
 
-from astropy import units as u
+import ipywidgets as ipw
 import numpy as np
 import pandas as pd
-import qgrid
+from astropy import units as u
 from plotly import graph_objects as go
 from plotly.callbacks import BoxSelector
-import ipywidgets as ipw
 
 from tardis.analysis import LastLineInteraction
 from tardis.util.base import (
-    species_tuple_to_string,
-    species_string_to_tuple,
     is_notebook,
-)
-from tardis.visualization.widgets.util import (
-    create_table_widget,
-    TableSummaryLabel,
+    species_string_to_tuple,
+    species_tuple_to_string,
 )
 from tardis.visualization import plot_util as pu
+from tardis.visualization.widgets.util import (
+    TableSummaryLabel,
+    create_table_widget,
+)
 
 
-<div class="viewcode-block" id="LineInfoWidget"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget">[docs]</a>class LineInfoWidget:
+<div class="viewcode-block" id="LineInfoWidget">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget">[docs]</a>
+class LineInfoWidget:
     &quot;&quot;&quot;
     Widget to explore atomic lines that produced features in the simulated spectrum.
 
@@ -231,7 +231,9 @@ from tardis.visualization import plot_util as pu
             options=self.GROUP_MODES_DESC, index=0
         )
 
-<div class="viewcode-block" id="LineInfoWidget.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="LineInfoWidget.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim):
         &quot;&quot;&quot;
         Create an instance of LineInfoWidget from a TARDIS simulation object.
@@ -264,7 +266,10 @@ from tardis.visualization import plot_util as pu
             ),
         )</div>
 
-<div class="viewcode-block" id="LineInfoWidget.get_species_interactions"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_species_interactions">[docs]</a>    def get_species_interactions(
+
+<div class="viewcode-block" id="LineInfoWidget.get_species_interactions">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_species_interactions">[docs]</a>
+    def get_species_interactions(
         self, wavelength_range, filter_mode=FILTER_MODES[0]
     ):
         &quot;&quot;&quot;
@@ -347,7 +352,10 @@ from tardis.visualization import plot_util as pu
             ascending=False
         ).to_frame()</div>
 
-<div class="viewcode-block" id="LineInfoWidget.get_last_line_counts"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_last_line_counts">[docs]</a>    def get_last_line_counts(
+
+<div class="viewcode-block" id="LineInfoWidget.get_last_line_counts">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_last_line_counts">[docs]</a>
+    def get_last_line_counts(
         self,
         selected_species,
         filter_mode=FILTER_MODES[0],
@@ -420,7 +428,7 @@ from tardis.visualization import plot_util as pu
 
                 assert (
                     current_last_lines_in.empty &amp; current_last_lines_out.empty
-                    == False
+                    is False
                 )
 
             except (KeyError, AssertionError):  # selected_species is invalid
@@ -441,9 +449,9 @@ from tardis.visualization import plot_util as pu
 
             if group_mode == &quot;both&quot;:
                 # Group by both exc. line ids and de-exc. line ids
-                current_last_lines_in[
-                    &quot;line_id_out&quot;
-                ] = current_last_lines_out.line_id
+                current_last_lines_in[&quot;line_id_out&quot;] = (
+                    current_last_lines_out.line_id
+                )
                 grouped_line_interactions = current_last_lines_in.groupby(
                     [&quot;line_id&quot;, &quot;line_id_out&quot;]
                 )
@@ -520,7 +528,10 @@ from tardis.visualization import plot_util as pu
         )
         return last_line_counts.sort_values(ascending=False).to_frame()</div>
 
-<div class="viewcode-block" id="LineInfoWidget.get_middle_half_edges"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_middle_half_edges">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="LineInfoWidget.get_middle_half_edges">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_middle_half_edges">[docs]</a>
+    @staticmethod
     def get_middle_half_edges(arr):
         &quot;&quot;&quot;
         Get edges of the middle half range of an array.
@@ -539,7 +550,10 @@ from tardis.visualization import plot_util as pu
             (arr[-1] - arr[0]) * 3 / 4 + arr[1],
         ]</div>
 
-<div class="viewcode-block" id="LineInfoWidget.plot_spectrum"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.plot_spectrum">[docs]</a>    def plot_spectrum(
+
+<div class="viewcode-block" id="LineInfoWidget.plot_spectrum">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.plot_spectrum">[docs]</a>
+    def plot_spectrum(
         self,
         wavelength,
         luminosity_density_lambda,
@@ -616,6 +630,7 @@ from tardis.visualization import plot_util as pu
                 margin=dict(t=50, b=60),
             ),
         )</div>
+
 
     def _update_species_interactions(self, wavelength_range, filter_mode):
         &quot;&quot;&quot;
@@ -772,12 +787,17 @@ from tardis.visualization import plot_util as pu
             self.GROUP_MODES[self.group_mode_dropdown.index],
         )
 
-<div class="viewcode-block" id="LineInfoWidget.ui_control_description"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.ui_control_description">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="LineInfoWidget.ui_control_description">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.ui_control_description">[docs]</a>
+    @staticmethod
     def ui_control_description(text):
         &quot;&quot;&quot;Get description label of a UI control with increased font size.&quot;&quot;&quot;
         return ipw.HTML(f&quot;&lt;span style=&#39;font-size: 1.15em;&#39;&gt;{text}:&lt;/span&gt;&quot;)</div>
 
-<div class="viewcode-block" id="LineInfoWidget.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.display">[docs]</a>    def display(self):
+
+<div class="viewcode-block" id="LineInfoWidget.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.display">[docs]</a>
+    def display(self):
         &quot;&quot;&quot;
         Display the fully-functional line info widget.
 
@@ -856,7 +876,9 @@ from tardis.visualization import plot_util as pu
                         ),
                     ),
                 ]
-            )</div></div>
+            )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -867,7 +889,7 @@ from tardis.visualization import plot_util as pu
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

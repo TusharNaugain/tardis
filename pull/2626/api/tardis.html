@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis package &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -81,6 +82,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.analysis.html">tardis.analysis module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.base.html">tardis.base module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.constants.html">tardis.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum module</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tardis">Module contents</a></li>
@@ -91,6 +93,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
@@ -147,9 +150,9 @@
            <div itemprop="articleBody">
              
   <section id="tardis-package">
-<h1>tardis package<a class="headerlink" href="#tardis-package" title="Permalink to this heading">¶</a></h1>
+<h1>tardis package<a class="headerlink" href="#tardis-package" title="Link to this heading">¶</a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tardis.energy_input.html">tardis.energy_input package</a><ul>
@@ -470,6 +473,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.base.html#tardis.simulation.base.Simulation"><code class="docutils literal notranslate"><span class="pre">Simulation</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.simulation.convergence.html">tardis.simulation.convergence module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.simulation.convergence.html#tardis.simulation.convergence.ConvergenceSolver"><code class="docutils literal notranslate"><span class="pre">ConvergenceSolver</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.simulation.html#module-tardis.simulation">Module contents</a></li>
@@ -503,12 +510,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.r_packet_transport.html">tardis.transport.r_packet_transport module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.move_packet_across_shell_boundary"><code class="docutils literal notranslate"><span class="pre">move_packet_across_shell_boundary()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.move_r_packet"><code class="docutils literal notranslate"><span class="pre">move_r_packet()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.r_packet_transport.html#tardis.transport.r_packet_transport.trace_packet"><code class="docutils literal notranslate"><span class="pre">trace_packet()</span></code></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#module-tardis.transport">Module contents</a></li>
@@ -577,7 +578,7 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tardis.analysis.html">tardis.analysis module</a><ul>
@@ -614,11 +615,24 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.constants.html">tardis.constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.f_nu_to_f_lambda"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.f_nu_to_f_lambda()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.flux_lambda"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.flux_lambda</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.flux_nu"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.flux_nu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.hdf_properties"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.hdf_properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.luminosity_to_flux"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.luminosity_to_flux()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.plot"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.html#tardis.spectrum.TARDISSpectrum.to_ascii"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.to_ascii()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
 <section id="module-tardis">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tardis" title="Permalink to this heading">¶</a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tardis" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -634,7 +648,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

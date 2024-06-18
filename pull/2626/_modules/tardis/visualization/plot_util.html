@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.plot_util &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -118,10 +118,13 @@
 <span></span>&quot;&quot;&quot;Utility functions to be used in plotting.&quot;&quot;&quot;
 
 import re
+
 import numpy as np
 
 
-<div class="viewcode-block" id="axis_label_in_latex"><a class="viewcode-back" href="../../../api/tardis.visualization.plot_util.html#tardis.visualization.plot_util.axis_label_in_latex">[docs]</a>def axis_label_in_latex(label_text, unit, only_text=True):
+<div class="viewcode-block" id="axis_label_in_latex">
+<a class="viewcode-back" href="../../../api/tardis.visualization.plot_util.html#tardis.visualization.plot_util.axis_label_in_latex">[docs]</a>
+def axis_label_in_latex(label_text, unit, only_text=True):
     &quot;&quot;&quot;
     Get axis label for plotly plots that can show units in latex.
 
@@ -145,7 +148,7 @@ import numpy as np
     # If present, place s^{-1} just after erg
     if &quot;erg&quot; in unit_in_latex and &quot;s^{-1}&quot; in unit_in_latex:
         constituent_units = (
-            re.compile(&quot;\\\mathrm\{(.*)\}&quot;)
+            re.compile(&quot;\\\\mathrm\\{(.*)\\}&quot;)
             .findall(unit_in_latex)[0]
             .split(&quot;\\,&quot;)
         )
@@ -160,7 +163,10 @@ import numpy as np
         return f&quot;${label_text}\\,[{unit_in_latex}]$&quot;</div>
 
 
-<div class="viewcode-block" id="get_mid_point_idx"><a class="viewcode-back" href="../../../api/tardis.visualization.plot_util.html#tardis.visualization.plot_util.get_mid_point_idx">[docs]</a>def get_mid_point_idx(arr):
+
+<div class="viewcode-block" id="get_mid_point_idx">
+<a class="viewcode-back" href="../../../api/tardis.visualization.plot_util.html#tardis.visualization.plot_util.get_mid_point_idx">[docs]</a>
+def get_mid_point_idx(arr):
     &quot;&quot;&quot;
     Get index of the middle point of a sorted array (ascending or descending).
 
@@ -177,6 +183,7 @@ import numpy as np
     &quot;&quot;&quot;
     mid_value = (arr[0] + arr[-1]) / 2
     return np.abs(arr - mid_value).argmin()</div>
+
 </pre></div>
 
            </div>
@@ -187,7 +194,7 @@ import numpy as np
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

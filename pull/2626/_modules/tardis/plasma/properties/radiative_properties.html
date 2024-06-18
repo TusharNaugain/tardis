@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.radiative_properties &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -120,9 +120,9 @@
 import numpy as np
 import pandas as pd
 from astropy import units as u
-from tardis import constants as const
 from numba import jit, prange
 
+from tardis import constants as const
 from tardis.plasma.properties.base import (
     ProcessingPlasmaProperty,
     TransitionProbabilitiesProperty,
@@ -145,7 +145,9 @@ C_EINSTEIN = (
 ).value  # See tardis/docs/physics/plasma/macroatom.rst
 
 
-<div class="viewcode-block" id="StimulatedEmissionFactor"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor">[docs]</a>class StimulatedEmissionFactor(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="StimulatedEmissionFactor">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor">[docs]</a>
+class StimulatedEmissionFactor(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -157,12 +159,14 @@ C_EINSTEIN = (
     latex_formula = (r&quot;1-\dfrac{g_{lower}n_{upper}}{g_{upper}n_{lower}}&quot;,)
 
     def __init__(self, plasma_parent=None, nlte_species=None):
-        super(StimulatedEmissionFactor, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self._g_upper = None
         self._g_lower = None
         self.nlte_species = nlte_species
 
-<div class="viewcode-block" id="StimulatedEmissionFactor.get_g_lower"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_g_lower">[docs]</a>    def get_g_lower(self, g, lines_lower_level_index):
+<div class="viewcode-block" id="StimulatedEmissionFactor.get_g_lower">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_g_lower">[docs]</a>
+    def get_g_lower(self, g, lines_lower_level_index):
         if self._g_lower is None:
             g_lower = np.array(
                 g.iloc[lines_lower_level_index], dtype=np.float64
@@ -170,7 +174,10 @@ C_EINSTEIN = (
             self._g_lower = g_lower[np.newaxis].T
         return self._g_lower</div>
 
-<div class="viewcode-block" id="StimulatedEmissionFactor.get_g_upper"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_g_upper">[docs]</a>    def get_g_upper(self, g, lines_upper_level_index):
+
+<div class="viewcode-block" id="StimulatedEmissionFactor.get_g_upper">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_g_upper">[docs]</a>
+    def get_g_upper(self, g, lines_upper_level_index):
         if self._g_upper is None:
             g_upper = np.array(
                 g.iloc[lines_upper_level_index], dtype=np.float64
@@ -178,14 +185,20 @@ C_EINSTEIN = (
             self._g_upper = g_upper[np.newaxis].T
         return self._g_upper</div>
 
-<div class="viewcode-block" id="StimulatedEmissionFactor.get_metastable_upper"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_metastable_upper">[docs]</a>    def get_metastable_upper(self, metastability, lines_upper_level_index):
+
+<div class="viewcode-block" id="StimulatedEmissionFactor.get_metastable_upper">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_metastable_upper">[docs]</a>
+    def get_metastable_upper(self, metastability, lines_upper_level_index):
         if getattr(self, &quot;_meta_stable_upper&quot;, None) is None:
             self._meta_stable_upper = metastability.values[
                 lines_upper_level_index
             ][np.newaxis].T
         return self._meta_stable_upper</div>
 
-<div class="viewcode-block" id="StimulatedEmissionFactor.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.calculate">[docs]</a>    def calculate(
+
+<div class="viewcode-block" id="StimulatedEmissionFactor.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.calculate">[docs]</a>
+    def calculate(
         self,
         g,
         level_number_density,
@@ -210,9 +223,9 @@ C_EINSTEIN = (
             (g_lower * n_upper) / (g_upper * n_lower)
         )
         stimulated_emission_factor[n_lower == 0.0] = 0.0
-        stimulated_emission_factor[
-            np.isneginf(stimulated_emission_factor)
-        ] = 0.0
+        stimulated_emission_factor[np.isneginf(stimulated_emission_factor)] = (
+            0.0
+        )
         stimulated_emission_factor[
             meta_stable_upper &amp; (stimulated_emission_factor &lt; 0)
         ] = 0.0
@@ -229,10 +242,14 @@ C_EINSTEIN = (
             stimulated_emission_factor[
                 (stimulated_emission_factor &lt; 0) &amp; nlte_lines_mask[np.newaxis].T
             ] = 0.0
-        return stimulated_emission_factor</div></div>
+        return stimulated_emission_factor</div>
+</div>
 
 
-<div class="viewcode-block" id="TauSobolev"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev">[docs]</a>class TauSobolev(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="TauSobolev">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev">[docs]</a>
+class TauSobolev(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -249,7 +266,7 @@ C_EINSTEIN = (
     )
 
     def __init__(self, plasma_parent):
-        super(TauSobolev, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.sobolev_coefficient = (
             (
                 ((np.pi * const.e.gauss**2) / (const.m_e.cgs * const.c.cgs))
@@ -261,7 +278,9 @@ C_EINSTEIN = (
             .value
         )
 
-<div class="viewcode-block" id="TauSobolev.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="TauSobolev.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev.calculate">[docs]</a>
+    def calculate(
         self,
         lines,
         level_number_density,
@@ -298,10 +317,14 @@ C_EINSTEIN = (
             tau_sobolevs,
             index=lines.index,
             columns=np.array(level_number_density.columns),
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="BetaSobolev"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev">[docs]</a>class BetaSobolev(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="BetaSobolev">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev">[docs]</a>
+class BetaSobolev(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -311,7 +334,9 @@ C_EINSTEIN = (
     outputs = (&quot;beta_sobolev&quot;,)
     latex_name = (r&quot;\beta_{\textrm{sobolev}}&quot;,)
 
-<div class="viewcode-block" id="BetaSobolev.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev.calculate">[docs]</a>    def calculate(self, tau_sobolevs):
+<div class="viewcode-block" id="BetaSobolev.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev.calculate">[docs]</a>
+    def calculate(self, tau_sobolevs):
         if getattr(self, &quot;beta_sobolev&quot;, None) is None:
             initial = 0.0
         else:
@@ -326,7 +351,10 @@ C_EINSTEIN = (
         )
         return beta_sobolev</div>
 
-<div class="viewcode-block" id="BetaSobolev.calculate_beta_sobolev"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev.calculate_beta_sobolev">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="BetaSobolev.calculate_beta_sobolev">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev.calculate_beta_sobolev">[docs]</a>
+    @staticmethod
     @jit(nopython=True, parallel=True)
     def calculate_beta_sobolev(tau_sobolevs, beta_sobolevs):
         for i in prange(len(tau_sobolevs)):
@@ -338,10 +366,14 @@ C_EINSTEIN = (
                 beta_sobolevs[i] = (1 - np.exp(-tau_sobolevs[i])) / (
                     tau_sobolevs[i]
                 )
-        return beta_sobolevs</div></div>
+        return beta_sobolevs</div>
+</div>
 
 
-<div class="viewcode-block" id="TransitionProbabilities"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities">[docs]</a>class TransitionProbabilities(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="TransitionProbabilities">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities">[docs]</a>
+class TransitionProbabilities(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -351,11 +383,13 @@ C_EINSTEIN = (
     outputs = (&quot;transition_probabilities&quot;,)
 
     def __init__(self, plasma_parent):
-        super(TransitionProbabilities, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.initialize = True
         self.normalize = True
 
-<div class="viewcode-block" id="TransitionProbabilities.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="TransitionProbabilities.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate">[docs]</a>
+    def calculate(
         self,
         atomic_data,
         beta_sobolev,
@@ -389,6 +423,7 @@ C_EINSTEIN = (
         )
         return transition_probabilities</div>
 
+
     def _calculate_transition_probability(
         self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
     ):
@@ -412,7 +447,9 @@ C_EINSTEIN = (
         )
         return transition_probabilities
 
-<div class="viewcode-block" id="TransitionProbabilities.calculate_transition_probabilities"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate_transition_probabilities">[docs]</a>    def calculate_transition_probabilities(
+<div class="viewcode-block" id="TransitionProbabilities.calculate_transition_probabilities">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate_transition_probabilities">[docs]</a>
+    def calculate_transition_probabilities(
         self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
     ):
         transition_probabilities = self.prepare_transition_probabilities(
@@ -420,7 +457,10 @@ C_EINSTEIN = (
         )
         return transition_probabilities</div>
 
-<div class="viewcode-block" id="TransitionProbabilities.initialize_macro_atom_transition_type_filters"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.initialize_macro_atom_transition_type_filters">[docs]</a>    def initialize_macro_atom_transition_type_filters(
+
+<div class="viewcode-block" id="TransitionProbabilities.initialize_macro_atom_transition_type_filters">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.initialize_macro_atom_transition_type_filters">[docs]</a>
+    def initialize_macro_atom_transition_type_filters(
         self, atomic_data, macro_atom_data
     ):
         self.transition_up_filter = macro_atom_data.transition_type.values == 1
@@ -434,11 +474,14 @@ C_EINSTEIN = (
             )
         )</div>
 
+
     @staticmethod
     def _get_transition_probability_coefs(macro_atom_data):
         return macro_atom_data.transition_probability.values[np.newaxis].T
 
-<div class="viewcode-block" id="TransitionProbabilities.prepare_transition_probabilities"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.prepare_transition_probabilities">[docs]</a>    def prepare_transition_probabilities(
+<div class="viewcode-block" id="TransitionProbabilities.prepare_transition_probabilities">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.prepare_transition_probabilities">[docs]</a>
+    def prepare_transition_probabilities(
         self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
     ):
         current_beta_sobolev = beta_sobolev.values.take(
@@ -458,6 +501,7 @@ C_EINSTEIN = (
         )
         return transition_probabilities</div>
 
+
     def _normalize_transition_probabilities(self, transition_probabilities):
         macro_atom.normalize_transition_probabilities(
             transition_probabilities, self.block_references
@@ -467,18 +511,26 @@ C_EINSTEIN = (
     def _get_macro_atom_data(atomic_data):
         try:
             return atomic_data.macro_atom_data
-        except:
+        except Exception as e:
+            # TODO: Do not write bare except
+            print(&quot;Exception occurred! &quot;, e)
             logger.debug(
                 &quot;Macro Atom Data was not found. Instead returning All Macro Atom Data&quot;
             )
             return atomic_data.macro_atom_data_all</div>
 
 
-<div class="viewcode-block" id="NonMarkovChainTransitionProbabilities"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.NonMarkovChainTransitionProbabilities">[docs]</a>class NonMarkovChainTransitionProbabilities(TransitionProbabilities):
+
+<div class="viewcode-block" id="NonMarkovChainTransitionProbabilities">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.NonMarkovChainTransitionProbabilities">[docs]</a>
+class NonMarkovChainTransitionProbabilities(TransitionProbabilities):
     outputs = (&quot;non_markov_transition_probabilities&quot;,)</div>
 
 
-<div class="viewcode-block" id="RawRadBoundBoundTransProbs"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.RawRadBoundBoundTransProbs">[docs]</a>class RawRadBoundBoundTransProbs(
+
+<div class="viewcode-block" id="RawRadBoundBoundTransProbs">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.RawRadBoundBoundTransProbs">[docs]</a>
+class RawRadBoundBoundTransProbs(
     TransitionProbabilities, TransitionProbabilitiesProperty
 ):
     &quot;&quot;&quot;
@@ -493,10 +545,12 @@ C_EINSTEIN = (
     transition_probabilities_outputs = (&quot;p_rad_bb&quot;,)
 
     def __init__(self, plasma_parent):
-        super(RawRadBoundBoundTransProbs, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.normalize = False
 
-<div class="viewcode-block" id="RawRadBoundBoundTransProbs.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.RawRadBoundBoundTransProbs.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="RawRadBoundBoundTransProbs.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.RawRadBoundBoundTransProbs.calculate">[docs]</a>
+    def calculate(
         self,
         atomic_data,
         beta_sobolev,
@@ -534,7 +588,9 @@ C_EINSTEIN = (
         # constant C_EINSTEIN and convert from eV to erg.
         # See tardis/docs/physics/plasma/macroatom.rst
         p_rad_bb = p_rad_bb * C_EINSTEIN * u.eV.to(u.erg)
-        return p_rad_bb</div></div>
+        return p_rad_bb</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -545,7 +601,7 @@ C_EINSTEIN = (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.widgets.grotrian module &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -86,6 +85,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
@@ -145,16 +145,16 @@
            <div itemprop="articleBody">
              
   <section id="module-tardis.visualization.widgets.grotrian">
-<span id="tardis-visualization-widgets-grotrian-module"></span><h1>tardis.visualization.widgets.grotrian module<a class="headerlink" href="#module-tardis.visualization.widgets.grotrian" title="Permalink to this heading">¶</a></h1>
+<span id="tardis-visualization-widgets-grotrian-module"></span><h1>tardis.visualization.widgets.grotrian module<a class="headerlink" href="#module-tardis.visualization.widgets.grotrian" title="Link to this heading">¶</a></h1>
 <p>Grotrian Diagram Widget for TARDIS simulation models.</p>
 <p>This widget displays a Grotrian Diagram of the last line interactions of the simulation packets</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">GrotrianPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_energy_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_population_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_interaction_analysis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">GrotrianPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_energy_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_population_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_interaction_analysis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class for the Grotrian Diagram</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>atom_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Mapping from atomic number to symbol and name</p>
 </dd>
@@ -170,57 +170,57 @@ and each column representing the supernova shell</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES">
-<span class="sig-name descname"><span class="pre">FILTER_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('packet_out_nu',</span> <span class="pre">'packet_in_nu')</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FILTER_MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('packet_out_nu',</span> <span class="pre">'packet_in_nu')</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES_DESC">
-<span class="sig-name descname"><span class="pre">FILTER_MODES_DESC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('Emitted</span> <span class="pre">Wavelength',</span> <span class="pre">'Absorbed</span> <span class="pre">Wavelength')</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES_DESC" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FILTER_MODES_DESC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('Emitted</span> <span class="pre">Wavelength',</span> <span class="pre">'Absorbed</span> <span class="pre">Wavelength')</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.FILTER_MODES_DESC" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.Y_SCALE_OPTION">
-<span class="sig-name descname"><span class="pre">Y_SCALE_OPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Linear':</span> <span class="pre">&lt;function</span> <span class="pre">GrotrianPlot.&lt;lambda&gt;&gt;,</span> <span class="pre">'Log':</span> <span class="pre">&lt;ufunc</span> <span class="pre">'log'&gt;}</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.Y_SCALE_OPTION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Y_SCALE_OPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Linear':</span> <span class="pre">&lt;function</span> <span class="pre">GrotrianPlot.&lt;lambda&gt;&gt;,</span> <span class="pre">'Log':</span> <span class="pre">&lt;ufunc</span> <span class="pre">'log'&gt;}</span></em><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.Y_SCALE_OPTION" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_name</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_name" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_name</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_number">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_number</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_number" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_number</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_number" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_symbol">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_symbol</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_symbol" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atomic_symbol</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.atomic_symbol" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.display">
-<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.display" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.display" title="Link to this definition">¶</a></dt>
 <dd><p>Function to draw the plot and the reference scales (calls other draw methods independently)</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.filter_mode">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter_mode</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.filter_mode" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter_mode</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.filter_mode" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.from_simulation">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.from_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.from_simulation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.from_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.from_simulation" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a GrotrianPlot object from a Simulation object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>sim</strong><span class="classifier">tardis.simulation.Simulation</span></dt><dd><p>TARDIS simulation object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>tardis.visualization.widgets.grotrian.GrotrianPlot</dt><dd><p>GrotrianPlot object</p>
 </dd>
@@ -231,60 +231,60 @@ and each column representing the supernova shell</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.ion_number">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ion_number</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.ion_number" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ion_number</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.ion_number" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.level_diff_threshold">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">level_diff_threshold</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.level_diff_threshold" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">level_diff_threshold</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.level_diff_threshold" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.max_levels">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_levels</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.max_levels" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_levels</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.max_levels" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.max_wavelength">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_wavelength</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.max_wavelength" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_wavelength</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.max_wavelength" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.min_wavelength">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_wavelength</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.min_wavelength" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_wavelength</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.min_wavelength" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.reset_selected_plot_wavelength_range">
-<span class="sig-name descname"><span class="pre">reset_selected_plot_wavelength_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.reset_selected_plot_wavelength_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.reset_selected_plot_wavelength_range" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset_selected_plot_wavelength_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.reset_selected_plot_wavelength_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.reset_selected_plot_wavelength_range" title="Link to this definition">¶</a></dt>
 <dd><p>Resets the wavelength range of the selected plot</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.set_ion">
-<span class="sig-name descname"><span class="pre">set_ion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ion_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.set_ion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.set_ion" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_ion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ion_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianPlot.set_ion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.set_ion" title="Link to this definition">¶</a></dt>
 <dd><p>Sets the atomic number and ion number</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.shell">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shell</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.shell" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shell</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.shell" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianPlot.y_scale">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_scale</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.y_scale" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_scale</span></span><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianPlot.y_scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianWidget">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">GrotrianWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_shells</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">GrotrianWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_shells</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A wrapper class for the Grotrian Diagram, containing the Grotrian Plot and the IpyWidgets</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>plot</strong><span class="classifier">tardis.visualization.widgets.grotrian.GrotrianPlot</span></dt><dd><p>GrotrianPlot object</p>
 </dd>
@@ -295,22 +295,22 @@ and each column representing the supernova shell</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianWidget.display">
-<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget.display" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget.display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget.display" title="Link to this definition">¶</a></dt>
 <dd><p>Function to render the Grotrian Widget containing the plot and IpyWidgets together</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.GrotrianWidget.from_simulation">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget.from_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget.from_simulation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#GrotrianWidget.from_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.GrotrianWidget.from_simulation" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a GrotrianWidget object from a Simulation object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>sim</strong><span class="classifier">tardis.simulation.Simulation</span></dt><dd><p>TARDIS simulation object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>tardis.visualization.widgets.grotrian.GrotrianWidget</dt><dd><p>GrotrianWidget object</p>
 </dd>
@@ -323,15 +323,15 @@ and each column representing the supernova shell</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.is_zero_defined">
-<span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">is_zero_defined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#is_zero_defined"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.is_zero_defined" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">is_zero_defined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#is_zero_defined"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.is_zero_defined" title="Link to this definition">¶</a></dt>
 <dd><p>Utility function to decide if a certain transform is defined at zero</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>transform</strong><span class="classifier">function</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>bool</dt><dd><p>True if transform is defined at 0 else False</p>
 </dd>
@@ -342,11 +342,11 @@ and each column representing the supernova shell</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.visualization.widgets.grotrian.standardize">
-<span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_undefined_offset=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#standardize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.standardize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.visualization.widgets.grotrian.</span></span><span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_undefined_offset=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/widgets/grotrian.html#standardize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.widgets.grotrian.standardize" title="Link to this definition">¶</a></dt>
 <dd><p>Utility function to standardize displayed values like wavelengths, num_packets, levels populations to the range [0, 1]
 This helps in computing visual elements like widths, colors, etc.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>values</strong><span class="classifier">pandas.Series</span></dt><dd><p>The data to standardize</p>
 </dd>
@@ -363,7 +363,7 @@ Default value is 0</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>pandas.Series</dt><dd><p>Values after standardization</p>
 </dd>
@@ -386,7 +386,7 @@ Default value is 0</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.model.geometry.radial1d &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -115,14 +115,17 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.geometry.radial1d</h1><div class="highlight"><pre>
-<span></span>from numba import float64
-from numba.experimental import jitclass
+<span></span>import warnings
+
 import numpy as np
 from astropy import units as u
-import warnings
+from numba import float64
+from numba.experimental import jitclass
 
 
-<div class="viewcode-block" id="HomologousRadial1DGeometry"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry">[docs]</a>class HomologousRadial1DGeometry:
+<div class="viewcode-block" id="HomologousRadial1DGeometry">
+<a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry">[docs]</a>
+class HomologousRadial1DGeometry:
     &quot;&quot;&quot;
     Holds information about model geometry for radial 1D models.
 
@@ -283,7 +286,9 @@ import warnings
     def no_of_shells_active(self):
         return len(self.r_inner_active)
 
-<div class="viewcode-block" id="HomologousRadial1DGeometry.to_numba"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry.to_numba">[docs]</a>    def to_numba(self):
+<div class="viewcode-block" id="HomologousRadial1DGeometry.to_numba">
+<a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.HomologousRadial1DGeometry.to_numba">[docs]</a>
+    def to_numba(self):
         &quot;&quot;&quot;
         Returns a new NumbaRadial1DGeometry object
 
@@ -297,7 +302,9 @@ import warnings
             self.r_outer_active.to(u.cm).value,
             self.v_inner_active.to(u.cm / u.s).value,
             self.v_outer_active.to(u.cm / u.s).value,
-        )</div></div>
+        )</div>
+</div>
+
 
 
 numba_geometry_spec = [
@@ -309,8 +316,10 @@ numba_geometry_spec = [
 ]
 
 
-<div class="viewcode-block" id="NumbaRadial1DGeometry"><a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.NumbaRadial1DGeometry">[docs]</a>@jitclass(numba_geometry_spec)
-class NumbaRadial1DGeometry(object):
+<div class="viewcode-block" id="NumbaRadial1DGeometry">
+<a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.NumbaRadial1DGeometry">[docs]</a>
+@jitclass(numba_geometry_spec)
+class NumbaRadial1DGeometry:
     def __init__(self, r_inner, r_outer, v_inner, v_outer):
         &quot;&quot;&quot;
         Radial 1D Geometry for the Numba mode
@@ -328,6 +337,7 @@ class NumbaRadial1DGeometry(object):
         self.v_inner = v_inner
         self.v_outer = v_outer
         self.volume = (4 / 3) * np.pi * (self.r_outer**3 - self.r_inner**3)</div>
+
 </pre></div>
 
            </div>
@@ -338,7 +348,7 @@ class NumbaRadial1DGeometry(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

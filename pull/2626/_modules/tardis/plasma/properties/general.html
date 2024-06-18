@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.general &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -118,10 +118,9 @@
 <span></span>import logging
 
 import numpy as np
-import pandas as pd
 from astropy import units as u
-from tardis import constants as const
 
+from tardis import constants as const
 from tardis.plasma.properties.base import ProcessingPlasmaProperty
 
 logger = logging.getLogger(__name__)
@@ -138,7 +137,9 @@ __all__ = [
 ]
 
 
-<div class="viewcode-block" id="BetaRadiation"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaRadiation">[docs]</a>class BetaRadiation(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="BetaRadiation">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaRadiation">[docs]</a>
+class BetaRadiation(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -150,14 +151,20 @@ __all__ = [
     latex_formula = (r&quot;\dfrac{1}{k_{B} T_{\textrm{rad}}}&quot;,)
 
     def __init__(self, plasma_parent):
-        super(BetaRadiation, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.k_B_cgs = const.k_B.cgs.value
 
-<div class="viewcode-block" id="BetaRadiation.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaRadiation.calculate">[docs]</a>    def calculate(self, t_rad):
-        return 1 / (self.k_B_cgs * t_rad)</div></div>
+<div class="viewcode-block" id="BetaRadiation.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaRadiation.calculate">[docs]</a>
+    def calculate(self, t_rad):
+        return 1 / (self.k_B_cgs * t_rad)</div>
+</div>
 
 
-<div class="viewcode-block" id="GElectron"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.GElectron">[docs]</a>class GElectron(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="GElectron">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.GElectron">[docs]</a>
+class GElectron(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -170,14 +177,20 @@ __all__ = [
         r&quot;\Big(\dfrac{2\pi m_{e}/\beta_{\textrm{rad}}}{h^2}\Big)^{3/2}&quot;,
     )
 
-<div class="viewcode-block" id="GElectron.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.GElectron.calculate">[docs]</a>    def calculate(self, beta_rad):
+<div class="viewcode-block" id="GElectron.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.GElectron.calculate">[docs]</a>
+    def calculate(self, beta_rad):
         return (
             (2 * np.pi * const.m_e.cgs.value / beta_rad)
             / (const.h.cgs.value**2)
-        ) ** 1.5</div></div>
+        ) ** 1.5</div>
+</div>
 
 
-<div class="viewcode-block" id="ThermalGElectron"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron">[docs]</a>class ThermalGElectron(GElectron):
+
+<div class="viewcode-block" id="ThermalGElectron">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron">[docs]</a>
+class ThermalGElectron(GElectron):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -190,11 +203,17 @@ __all__ = [
         r&quot;\Big(\dfrac{2\pi m_{e}/\beta_{\textrm{electron}}}{h^2}\Big)^{3/2}&quot;,
     )
 
-<div class="viewcode-block" id="ThermalGElectron.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron.calculate">[docs]</a>    def calculate(self, beta_electron):
-        return super(ThermalGElectron, self).calculate(beta_electron)</div></div>
+<div class="viewcode-block" id="ThermalGElectron.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron.calculate">[docs]</a>
+    def calculate(self, beta_electron):
+        return super().calculate(beta_electron)</div>
+</div>
 
 
-<div class="viewcode-block" id="SelectedAtoms"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.SelectedAtoms">[docs]</a>class SelectedAtoms(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="SelectedAtoms">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.SelectedAtoms">[docs]</a>
+class SelectedAtoms(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -204,11 +223,17 @@ __all__ = [
 
     outputs = (&quot;selected_atoms&quot;,)
 
-<div class="viewcode-block" id="SelectedAtoms.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.SelectedAtoms.calculate">[docs]</a>    def calculate(self, abundance):
-        return abundance.index</div></div>
+<div class="viewcode-block" id="SelectedAtoms.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.SelectedAtoms.calculate">[docs]</a>
+    def calculate(self, abundance):
+        return abundance.index</div>
+</div>
 
 
-<div class="viewcode-block" id="ElectronTemperature"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ElectronTemperature">[docs]</a>class ElectronTemperature(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="ElectronTemperature">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ElectronTemperature">[docs]</a>
+class ElectronTemperature(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -219,11 +244,17 @@ __all__ = [
     latex_name = (r&quot;T_{\textrm{electron}}&quot;,)
     latex_formula = (r&quot;\textrm{const.}\times T_{\textrm{rad}}&quot;,)
 
-<div class="viewcode-block" id="ElectronTemperature.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ElectronTemperature.calculate">[docs]</a>    def calculate(self, t_rad, link_t_rad_t_electron):
-        return t_rad * link_t_rad_t_electron</div></div>
+<div class="viewcode-block" id="ElectronTemperature.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ElectronTemperature.calculate">[docs]</a>
+    def calculate(self, t_rad, link_t_rad_t_electron):
+        return t_rad * link_t_rad_t_electron</div>
+</div>
 
 
-<div class="viewcode-block" id="BetaElectron"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaElectron">[docs]</a>class BetaElectron(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="BetaElectron">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaElectron">[docs]</a>
+class BetaElectron(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -235,29 +266,45 @@ __all__ = [
     latex_formula = (r&quot;\frac{1}{K_{B} T_{\textrm{electron}}}&quot;,)
 
     def __init__(self, plasma_parent):
-        super(BetaElectron, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.k_B_cgs = const.k_B.cgs.value
 
-<div class="viewcode-block" id="BetaElectron.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaElectron.calculate">[docs]</a>    def calculate(self, t_electrons):
-        return 1 / (self.k_B_cgs * t_electrons)</div></div>
+<div class="viewcode-block" id="BetaElectron.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.BetaElectron.calculate">[docs]</a>
+    def calculate(self, t_electrons):
+        return 1 / (self.k_B_cgs * t_electrons)</div>
+</div>
 
 
-<div class="viewcode-block" id="LuminosityInner"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner">[docs]</a>class LuminosityInner(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="LuminosityInner">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner">[docs]</a>
+class LuminosityInner(ProcessingPlasmaProperty):
     outputs = (&quot;luminosity_inner&quot;,)
 
-<div class="viewcode-block" id="LuminosityInner.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="LuminosityInner.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner.calculate">[docs]</a>
+    @staticmethod
     def calculate(r_inner, t_inner):
         return (
             4 * np.pi * const.sigma_sb.cgs * r_inner[0] ** 2 * t_inner**4
-        ).to(&quot;erg/s&quot;)</div></div>
+        ).to(&quot;erg/s&quot;)</div>
+</div>
 
 
-<div class="viewcode-block" id="TimeSimulation"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation">[docs]</a>class TimeSimulation(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="TimeSimulation">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation">[docs]</a>
+class TimeSimulation(ProcessingPlasmaProperty):
     outputs = (&quot;time_simulation&quot;,)
 
-<div class="viewcode-block" id="TimeSimulation.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="TimeSimulation.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation.calculate">[docs]</a>
+    @staticmethod
     def calculate(luminosity_inner):
-        return 1.0 * u.erg / luminosity_inner</div></div>
+        return 1.0 * u.erg / luminosity_inner</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -268,7 +315,7 @@ __all__ = [
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

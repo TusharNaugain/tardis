@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.model.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -122,7 +122,6 @@ from pathlib import Path
 import numpy as np
 from astropy import units as u
 
-from tardis import constants
 from tardis.io.configuration.config_reader import Configuration
 from tardis.io.configuration.config_validator import validate_dict
 from tardis.io.model.readers.csvy import (
@@ -135,13 +134,9 @@ from tardis.model.parse_input import (
     parse_csvy_composition,
     parse_csvy_geometry,
     parse_csvy_radiation_field_state,
+    parse_packet_source,
     parse_radiation_field_state,
     parse_structure_config,
-    parse_packet_source,
-)
-from tardis.transport.montecarlo.packet_source import BlackBodySimpleSource
-from tardis.model.radiation_field_state import (
-    DiluteBlackBodyRadiationFieldState,
 )
 from tardis.util.base import is_valid_nuclide_or_elem
 
@@ -153,7 +148,9 @@ SCHEMA_DIR = (
 ).resolve()
 
 
-<div class="viewcode-block" id="SimulationState"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState">[docs]</a>class SimulationState(HDFWriterMixin):
+<div class="viewcode-block" id="SimulationState">
+<a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState">[docs]</a>
+class SimulationState(HDFWriterMixin):
     &quot;&quot;&quot;
     An object that hold information about the individual shells.
 
@@ -390,7 +387,9 @@ SCHEMA_DIR = (
     def no_of_raw_shells(self):
         return self.geometry.no_of_shells
 
-<div class="viewcode-block" id="SimulationState.from_config"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_config">[docs]</a>    @classmethod
+<div class="viewcode-block" id="SimulationState.from_config">
+<a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_config">[docs]</a>
+    @classmethod
     def from_config(cls, config, atom_data, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
@@ -445,7 +444,10 @@ SCHEMA_DIR = (
             electron_densities=electron_densities,
         )</div>
 
-<div class="viewcode-block" id="SimulationState.from_csvy"><a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_csvy">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="SimulationState.from_csvy">
+<a class="viewcode-back" href="../../../api/tardis.model.base.html#tardis.model.base.SimulationState.from_csvy">[docs]</a>
+    @classmethod
     def from_csvy(cls, config, atom_data=None, legacy_mode_enabled=False):
         &quot;&quot;&quot;
         Create a new SimulationState instance from a Configuration object.
@@ -466,7 +468,7 @@ SCHEMA_DIR = (
             &quot;dilution_factor&quot;,
         }
 
-        if os.path.isabs(config.csvy_model):
+        if Path.is_absolute(Path(config.csvy_model)):
             csvy_model_fname = config.csvy_model
         else:
             csvy_model_fname = os.path.join(
@@ -479,22 +481,20 @@ SCHEMA_DIR = (
         )
 
         if hasattr(csvy_model_data, &quot;columns&quot;):
-            abund_names = set(
-                [
-                    name
-                    for name in csvy_model_data.columns
-                    if is_valid_nuclide_or_elem(name)
-                ]
-            )
+            abund_names = {
+                name
+                for name in csvy_model_data.columns
+                if is_valid_nuclide_or_elem(name)
+            }
             unsupported_columns = (
                 set(csvy_model_data.columns)
                 - abund_names
                 - CSVY_SUPPORTED_COLUMNS
             )
 
-            field_names = set(
-                [field[&quot;name&quot;] for field in csvy_model_config.datatype.fields]
-            )
+            field_names = {
+                field[&quot;name&quot;] for field in csvy_model_config.datatype.fields
+            }
             assert (
                 set(csvy_model_data.columns) - field_names == set()
             ), &quot;CSVY columns exist without field descriptions&quot;
@@ -539,7 +539,9 @@ SCHEMA_DIR = (
             radiation_field_state=radiation_field_state,
             packet_source=packet_source,
             electron_densities=electron_densities,
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -550,7 +552,7 @@ SCHEMA_DIR = (
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

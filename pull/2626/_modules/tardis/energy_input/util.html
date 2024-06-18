@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.energy_input.util &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -116,10 +116,10 @@
              
   <h1>Source code for tardis.energy_input.util</h1><div class="highlight"><pre>
 <span></span>import astropy.units as u
-import tardis.constants as const
 import numpy as np
 from numba import njit
 
+import tardis.constants as const
 from tardis.transport.montecarlo import njit_dict_no_parallel
 from tardis.transport.montecarlo.opacities import kappa_calculation
 
@@ -131,7 +131,9 @@ C_CGS = const.c.cgs.value
 H_CGS_KEV = const.h.to(&quot;keV s&quot;).value
 
 
-<div class="viewcode-block" id="spherical_to_cartesian"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.spherical_to_cartesian">[docs]</a>@njit(**njit_dict_no_parallel)
+<div class="viewcode-block" id="spherical_to_cartesian">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.spherical_to_cartesian">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def spherical_to_cartesian(r, theta, phi):
     &quot;&quot;&quot;Converts spherical coordinates to Cartesian
 
@@ -155,11 +157,15 @@ def spherical_to_cartesian(r, theta, phi):
     return np.array([x, y, z])</div>
 
 
-<div class="viewcode-block" id="get_random_unit_vector"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_unit_vector">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_random_unit_vector">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_unit_vector">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_random_unit_vector():
     &quot;&quot;&quot;Generate a random unit vector
 
-    Returns:
+    Returns
+    -------
         array: random unit vector
     &quot;&quot;&quot;
     theta = get_random_theta_photon()
@@ -170,7 +176,10 @@ def get_random_unit_vector():
     return normalize_vector(vector)</div>
 
 
-<div class="viewcode-block" id="doppler_factor_3d"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.doppler_factor_3d">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="doppler_factor_3d">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.doppler_factor_3d">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def doppler_factor_3d(direction_vector, position_vector, time):
     &quot;&quot;&quot;Doppler shift for photons in 3D
 
@@ -189,7 +198,10 @@ def doppler_factor_3d(direction_vector, position_vector, time):
     return 1 - (np.dot(direction_vector, velocity_vector) / C_CGS)</div>
 
 
-<div class="viewcode-block" id="angle_aberration_gamma"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.angle_aberration_gamma">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="angle_aberration_gamma">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.angle_aberration_gamma">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def angle_aberration_gamma(direction_vector, position_vector, time):
     &quot;&quot;&quot;Angle aberration formula for photons in 3D
 
@@ -222,7 +234,10 @@ def angle_aberration_gamma(direction_vector, position_vector, time):
     return output_vector</div>
 
 
-<div class="viewcode-block" id="euler_rodrigues"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.euler_rodrigues">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="euler_rodrigues">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.euler_rodrigues">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def euler_rodrigues(theta, direction):
     &quot;&quot;&quot;
     Calculates the Euler-Rodrigues rotation matrix
@@ -261,7 +276,10 @@ def euler_rodrigues(theta, direction):
     )</div>
 
 
-<div class="viewcode-block" id="solve_quadratic_equation"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.solve_quadratic_equation">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="solve_quadratic_equation">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.solve_quadratic_equation">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def solve_quadratic_equation(position, direction, radius):
     &quot;&quot;&quot;
     Solves the quadratic equation for the distance to the shell boundary
@@ -293,7 +311,10 @@ def solve_quadratic_equation(position, direction, radius):
     return solution_1, solution_2</div>
 
 
-<div class="viewcode-block" id="solve_quadratic_equation_expanding"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.solve_quadratic_equation_expanding">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="solve_quadratic_equation_expanding">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.solve_quadratic_equation_expanding">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def solve_quadratic_equation_expanding(position, direction, time, radius):
     &quot;&quot;&quot;
     Solves the quadratic equation for the distance to an expanding shell boundary
@@ -327,7 +348,10 @@ def solve_quadratic_equation_expanding(position, direction, time, radius):
     return solution_1, solution_2</div>
 
 
-<div class="viewcode-block" id="klein_nishina"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.klein_nishina">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="klein_nishina">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.klein_nishina">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def klein_nishina(energy, theta_C):
     &quot;&quot;&quot;
     Calculates the Klein-Nishina equation
@@ -335,9 +359,9 @@ def klein_nishina(energy, theta_C):
     https://en.wikipedia.org/wiki/Klein%E2%80%93Nishina_formula
 
     .. math::
-        \frac{r_e}{2} [1 + \kappa (1 - \cos\theta_C)]^{-2} \left( 1 + \cos^2\theta_C + \frac{\kappa^2 (1 - \cos\theta_C)^2}{1 + \kappa(1 - \cos\theta_C)}\right)
+        \frac{r_e}{2} [1 + \\kappa (1 - \\cos\theta_C)]^{-2} \\left( 1 + \\cos^2\theta_C + \frac{\\kappa^2 (1 - \\cos\theta_C)^2}{1 + \\kappa(1 - \\cos\theta_C)}\right)
 
-    where :math:`\kappa = E / (m_e c^2)`
+    where :math:`\\kappa = E / (m_e c^2)`
 
     Parameters
     ----------
@@ -345,6 +369,7 @@ def klein_nishina(energy, theta_C):
         Packet energy
     theta_C : float
         Compton angle
+
     Returns
     -------
     float
@@ -364,7 +389,10 @@ def klein_nishina(energy, theta_C):
     )</div>
 
 
-<div class="viewcode-block" id="compton_theta_distribution"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.compton_theta_distribution">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="compton_theta_distribution">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.compton_theta_distribution">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def compton_theta_distribution(energy, sample_resolution=100):
     &quot;&quot;&quot;
     Calculates the cumulative distribution function of theta angles
@@ -389,9 +417,13 @@ def compton_theta_distribution(energy, sample_resolution=100):
     return theta_angles, norm_theta_distribution</div>
 
 
-<div class="viewcode-block" id="get_random_theta_photon"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_theta_photon">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_random_theta_photon">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_theta_photon">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_random_theta_photon():
     &quot;&quot;&quot;Get a random theta direction between 0 and pi
+
     Returns
     -------
     float
@@ -400,7 +432,10 @@ def get_random_theta_photon():
     return np.arccos(1.0 - 2.0 * np.random.random())</div>
 
 
-<div class="viewcode-block" id="get_random_phi_photon"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_phi_photon">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_random_phi_photon">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_phi_photon">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_random_phi_photon():
     &quot;&quot;&quot;Get a random phi direction between 0 and 2 * pi
 
@@ -412,7 +447,10 @@ def get_random_phi_photon():
     return 2.0 * np.pi * np.random.random()</div>
 
 
-<div class="viewcode-block" id="convert_half_life_to_astropy_units"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.convert_half_life_to_astropy_units">[docs]</a>def convert_half_life_to_astropy_units(half_life_string):
+
+<div class="viewcode-block" id="convert_half_life_to_astropy_units">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.convert_half_life_to_astropy_units">[docs]</a>
+def convert_half_life_to_astropy_units(half_life_string):
     &quot;&quot;&quot;Converts input half-life to use astropy units
 
     Parameters
@@ -438,7 +476,10 @@ def get_random_phi_photon():
     return half_life_with_unit.to(u.s)</div>
 
 
-<div class="viewcode-block" id="normalize_vector"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.normalize_vector">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="normalize_vector">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.normalize_vector">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def normalize_vector(vector):
     &quot;&quot;&quot;
     Normalizes a vector in Cartesian coordinates
@@ -456,7 +497,10 @@ def normalize_vector(vector):
     return vector / np.linalg.norm(vector)</div>
 
 
-<div class="viewcode-block" id="get_perpendicular_vector"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_perpendicular_vector">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_perpendicular_vector">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_perpendicular_vector">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_perpendicular_vector(original_direction):
     &quot;&quot;&quot;
     Computes a random vector which is perpendicular to the input vector
@@ -475,7 +519,10 @@ def get_perpendicular_vector(original_direction):
     return normalize_vector(perpendicular_vector)</div>
 
 
-<div class="viewcode-block" id="get_index"><a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_index">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="get_index">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.util.html#tardis.energy_input.util.get_index">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def get_index(value, array):
     &quot;&quot;&quot;Get the index that places a value
     at array[i] &lt; array &lt;= vec[i+1]
@@ -502,6 +549,7 @@ def get_index(value, array):
         i += 1
 
     return i</div>
+
 </pre></div>
 
            </div>
@@ -512,7 +560,7 @@ def get_index(value, array):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

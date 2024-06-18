@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.cmfgen &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -115,21 +115,24 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.cmfgen</h1><div class="highlight"><pre>
-<span></span>import re
+<span></span>import dataclasses
+import re
+
 import pandas as pd
 from astropy import units as u
-from pathlib import Path
-import dataclasses
 
 
-<div class="viewcode-block" id="CMFGENModel"><a class="viewcode-back" href="../../../../api/tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.CMFGENModel">[docs]</a>@dataclasses.dataclass
+<div class="viewcode-block" id="CMFGENModel">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.CMFGENModel">[docs]</a>
+@dataclasses.dataclass
 class CMFGENModel:
     metadata: dict
     data: pd.DataFrame</div>
 
 
+
 HEADER_RE_STR = [
-    (&quot;t0:\s+(\d+\.\d+)+\s+day&quot;, &quot;t0&quot;),
+    (r&quot;t0:\s+(\d+\.\d+)+\s+day&quot;, &quot;t0&quot;),
 ]
 
 COLUMN_ROW = 1
@@ -137,13 +140,14 @@ UNIT_ROW = 2
 DATA_START_ROW = 3
 
 
-<div class="viewcode-block" id="read_cmfgen_model"><a class="viewcode-back" href="../../../../api/tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.read_cmfgen_model">[docs]</a>def read_cmfgen_model(fname):
+<div class="viewcode-block" id="read_cmfgen_model">
+<a class="viewcode-back" href="../../../../api/tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.read_cmfgen_model">[docs]</a>
+def read_cmfgen_model(fname):
     &quot;&quot;&quot;
     Read in a CMFGEN model file and return the data and model
 
     Parameters
     ----------
-
     fname : str
 
     Returns
@@ -190,6 +194,7 @@ DATA_START_ROW = 3
     )
     data.columns = column_names
     return CMFGENModel(metadata, data)</div>
+
 </pre></div>
 
            </div>
@@ -200,7 +205,7 @@ DATA_START_ROW = 3
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

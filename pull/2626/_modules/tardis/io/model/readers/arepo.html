@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.readers.arepo &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -115,15 +115,17 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.arepo</h1><div class="highlight"><pre>
-<span></span>import os
-import argparse
+<span></span>import argparse
+import os
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy import stats
 
 
-<div class="viewcode-block" id="ArepoSnapshot"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ArepoSnapshot">[docs]</a>class ArepoSnapshot:
+<div class="viewcode-block" id="ArepoSnapshot">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ArepoSnapshot">[docs]</a>
+class ArepoSnapshot:
     def __init__(
         self,
         filename,
@@ -162,7 +164,6 @@ from scipy import stats
             of-sight to the x-axis. Only usable with snapshots.
             Default: 0.0
         &quot;&quot;&quot;
-
         try:
             import gadget_snap
         except ModuleNotFoundError:
@@ -229,14 +230,20 @@ from scipy import stats
                 self.s.data[&quot;xnuc&quot;][:, self.spec_ind[i]]
             )
 
-<div class="viewcode-block" id="ArepoSnapshot.get_grids"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ArepoSnapshot.get_grids">[docs]</a>    def get_grids(self):
+<div class="viewcode-block" id="ArepoSnapshot.get_grids">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ArepoSnapshot.get_grids">[docs]</a>
+    def get_grids(self):
         &quot;&quot;&quot;
         Returns all relevant data to create Profile objects
         &quot;&quot;&quot;
-        return self.pos, self.vel, self.rho, self.mass, self.nuc_dict, self.time</div></div>
+        return self.pos, self.vel, self.rho, self.mass, self.nuc_dict, self.time</div>
+</div>
 
 
-<div class="viewcode-block" id="Profile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile">[docs]</a>class Profile:
+
+<div class="viewcode-block" id="Profile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile">[docs]</a>
+class Profile:
     &quot;&quot;&quot;
     Parent class of all Profiles. Contains general function,
     e.g. for plotting and export.
@@ -262,7 +269,6 @@ from scipy import stats
             Time of the data
 
         &quot;&quot;&quot;
-
         self.pos = pos
         self.vel = vel
         self.rho = rho
@@ -291,7 +297,9 @@ from scipy import stats
         self.xnuc_prof_p = {}
         self.xnuc_prof_n = {}
 
-<div class="viewcode-block" id="Profile.plot_profile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.plot_profile">[docs]</a>    def plot_profile(self, save=None, dpi=600, **kwargs):
+<div class="viewcode-block" id="Profile.plot_profile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.plot_profile">[docs]</a>
+    def plot_profile(self, save=None, dpi=600, **kwargs):
         &quot;&quot;&quot;
         Plots profile, both in the positive and negative direction.
 
@@ -307,7 +315,6 @@ from scipy import stats
         -------
         fig : matplotlib figure object
         &quot;&quot;&quot;
-
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=[9.8, 9.6])
 
         # Positive direction plots
@@ -370,7 +377,7 @@ from scipy import stats
             labels,
             loc=&quot;upper left&quot;,
             bbox_to_anchor=(1.05, 1.05),
-            title=&quot;Time = {:.2f} s&quot;.format(self.time),
+            title=f&quot;Time = {self.time:.2f} s&quot;,
         )
         if save is not None:
             plt.savefig(
@@ -381,7 +388,10 @@ from scipy import stats
 
         return fig</div>
 
-<div class="viewcode-block" id="Profile.rebin"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.rebin">[docs]</a>    def rebin(self, nshells):
+
+<div class="viewcode-block" id="Profile.rebin">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.rebin">[docs]</a>
+    def rebin(self, nshells):
         &quot;&quot;&quot;
         Rebins the data to nshells. Uses the scipy.stats.binned_statistic
         to bin the data. The standard deviation of each bin can be obtained
@@ -397,7 +407,6 @@ from scipy import stats
         self : Profile object
 
         &quot;&quot;&quot;
-
         self.vel_prof_p, bins_p = stats.binned_statistic(
             self.pos_prof_p,
             self.vel_prof_p * self.mass_prof_p,
@@ -491,7 +500,10 @@ from scipy import stats
 
         return self</div>
 
-<div class="viewcode-block" id="Profile.export"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.export">[docs]</a>    def export(
+
+<div class="viewcode-block" id="Profile.export">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.export">[docs]</a>
+    def export(
         self,
         nshells,
         filename,
@@ -523,7 +535,6 @@ from scipy import stats
         filename : str
             Name of the actual saved file
         &quot;&quot;&quot;
-
         # Find a free filename
         if str(filename).endswith(&quot;.csvy&quot;):
             filename = str(filename).replace(&quot;.csvy&quot;, &quot;&quot;)
@@ -543,12 +554,8 @@ from scipy import stats
                     [
                         &quot;---\n&quot;,
                         &quot;name: csvy_full\n&quot;,
-                        &quot;model_density_time_0: {:g} day\n&quot;.format(
-                            self.time / (3600 * 24)
-                        ),  # TODO astropy units
-                        &quot;model_isotope_time_0: {:g} day\n&quot;.format(
-                            self.time / (3600 / 24)
-                        ),  # TODO astropy units
+                        f&quot;model_density_time_0: {self.time / (3600 * 24):g} day\n&quot;,  # TODO astropy units
+                        f&quot;model_isotope_time_0: {self.time / (3600 / 24):g} day\n&quot;,  # TODO astropy units
                         &quot;description: Config file for TARDIS from Arepo snapshot.\n&quot;,
                         &quot;tardis_model_config_version: v1.0\n&quot;,
                         &quot;datatype:\n&quot;,
@@ -567,27 +574,19 @@ from scipy import stats
                 f.write(
                     &quot;&quot;.join(
                         [
-                            &quot;    -  name: %s\n&quot; % spec.capitalize(),
-                            &quot;       desc: fractional %s abundance.\n&quot;
-                            % spec.capitalize(),
+                            f&quot;    -  name: {spec.capitalize()}\n&quot;,
+                            f&quot;       desc: fractional {spec.capitalize()} abundance.\n&quot;,
                         ]
                     )
                 )
 
-            f.write(
-                &quot;&quot;.join(
-                    [
-                        &quot;\n&quot;,
-                        &quot;---\n&quot;,
-                    ]
-                )
-            )
+            f.write(&quot;\n---\n&quot;)
 
             # WRITE DATA
             datastring = [&quot;velocity,&quot;, &quot;density,&quot;]
             for spec in self.species[:-1]:
-                datastring.append(&quot;%s,&quot; % spec.capitalize())
-            datastring.append(&quot;%s&quot; % self.species[-1].capitalize())
+                datastring.append(f&quot;{spec.capitalize()},&quot;)
+            datastring.append(f&quot;{self.species[-1].capitalize()}&quot;)
             f.write(&quot;&quot;.join(datastring))
 
             # Rebin data to nshells
@@ -615,12 +614,15 @@ from scipy import stats
             for i in inds:
                 f.write(&quot;\n&quot;)
                 for ii in range(len(exp) - 1):
-                    f.write(&quot;%g,&quot; % exp[ii][i])
-                f.write(&quot;%g&quot; % exp[-1][i])
+                    f.write(f&quot;{exp[ii][i]:g},&quot;)
+                f.write(f&quot;{exp[-1][i]:g}&quot;)
 
         return filename</div>
 
-<div class="viewcode-block" id="Profile.get_profiles"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.get_profiles">[docs]</a>    def get_profiles(self):
+
+<div class="viewcode-block" id="Profile.get_profiles">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.Profile.get_profiles">[docs]</a>
+    def get_profiles(self):
         &quot;&quot;&quot;Returns all profiles for manual post_processing etc.&quot;&quot;&quot;
         return (
             self.pos_prof_p,
@@ -633,16 +635,22 @@ from scipy import stats
             self.mass_prof_n,
             self.xnuc_prof_p,
             self.xnuc_prof_n,
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="ConeProfile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ConeProfile">[docs]</a>class ConeProfile(Profile):
+
+<div class="viewcode-block" id="ConeProfile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ConeProfile">[docs]</a>
+class ConeProfile(Profile):
     &quot;&quot;&quot;
     Class for profiles extracted inside a cone around the x-axis.
     Extends Profile.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="ConeProfile.create_profile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ConeProfile.create_profile">[docs]</a>    def create_profile(
+<div class="viewcode-block" id="ConeProfile.create_profile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.ConeProfile.create_profile">[docs]</a>
+    def create_profile(
         self,
         opening_angle=20.0,
         inner_radius=None,
@@ -670,7 +678,6 @@ from scipy import stats
         profile : ConeProfile object
 
         &quot;&quot;&quot;
-
         # Convert Cartesian coordinates into cylindrical coordinates
         # P(x,y,z) -&gt; P(x,r,theta)
         cyl = np.array(
@@ -803,17 +810,23 @@ from scipy import stats
         self.pos_prof_p = self.pos_prof_p[mask_p]
         self.pos_prof_n = self.pos_prof_n[mask_n]
 
-        return self</div></div>
+        return self</div>
+</div>
 
 
-<div class="viewcode-block" id="FullProfile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.FullProfile">[docs]</a>class FullProfile(Profile):
+
+<div class="viewcode-block" id="FullProfile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.FullProfile">[docs]</a>
+class FullProfile(Profile):
     &quot;&quot;&quot;
     Class for profiles extracted from the full snapshot,
     i.e. angle averaged profiles.
     Extends Profile.
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="FullProfile.create_profile"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.FullProfile.create_profile">[docs]</a>    def create_profile(
+<div class="viewcode-block" id="FullProfile.create_profile">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.arepo.html#tardis.io.model.readers.arepo.FullProfile.create_profile">[docs]</a>
+    def create_profile(
         self,
         inner_radius=None,
         outer_radius=None,
@@ -837,7 +850,6 @@ from scipy import stats
         profile : FullProfile object
 
         &quot;&quot;&quot;
-
         pos_p = np.sqrt(
             (self.pos[0]) ** 2 + (self.pos[1]) ** 2 + (self.pos[2]) ** 2
         ).flatten()
@@ -944,7 +956,9 @@ from scipy import stats
         self.pos_prof_p = self.pos_prof_p[mask_p]
         self.pos_prof_n = self.pos_prof_n[mask_n]
 
-        return self</div></div>
+        return self</div>
+</div>
+
 
 
 if __name__ == &quot;__main__&quot;:
@@ -1080,7 +1094,7 @@ if __name__ == &quot;__main__&quot;:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

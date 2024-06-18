@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.montecarlo_transport_state &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -125,10 +125,12 @@ from tardis.transport.montecarlo.estimators.dilute_blackbody_properties import (
     MCDiluteBlackBodyRadFieldSolver,
 )
 from tardis.transport.montecarlo.formal_integral import IntegrationError
-from tardis.transport.montecarlo.spectrum import TARDISSpectrum
+from tardis.spectrum import TARDISSpectrum
 
 
-<div class="viewcode-block" id="MonteCarloTransportState"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState">[docs]</a>class MonteCarloTransportState(HDFWriterMixin):
+<div class="viewcode-block" id="MonteCarloTransportState">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState">[docs]</a>
+class MonteCarloTransportState(HDFWriterMixin):
     hdf_properties = [
         &quot;output_nu&quot;,
         &quot;output_energy&quot;,
@@ -198,7 +200,9 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
         self.rpacket_tracker = rpacket_tracker
         self.vpacket_tracker = vpacket_tracker
 
-<div class="viewcode-block" id="MonteCarloTransportState.calculate_radiationfield_properties"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_radiationfield_properties">[docs]</a>    def calculate_radiationfield_properties(self):
+<div class="viewcode-block" id="MonteCarloTransportState.calculate_radiationfield_properties">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_radiationfield_properties">[docs]</a>
+    def calculate_radiationfield_properties(self):
         &quot;&quot;&quot;
         Calculate an updated radiation field from the :math:
         `\\bar{nu}_\\textrm{estimator}` and :math:`\\J_\\textrm{estimator}`
@@ -226,6 +230,7 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
             dilute_bb_radfield.t_radiative,
             dilute_bb_radfield.dilution_factor,
         )</div>
+
 
     @property
     def output_nu(self):
@@ -383,7 +388,9 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
             )
         return self._integrator
 
-<div class="viewcode-block" id="MonteCarloTransportState.calculate_emitted_luminosity"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_emitted_luminosity">[docs]</a>    def calculate_emitted_luminosity(
+<div class="viewcode-block" id="MonteCarloTransportState.calculate_emitted_luminosity">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_emitted_luminosity">[docs]</a>
+    def calculate_emitted_luminosity(
         self, luminosity_nu_start, luminosity_nu_end
     ):
         &quot;&quot;&quot;
@@ -406,7 +413,10 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
             luminosity_wavelength_filter
         ].sum()</div>
 
-<div class="viewcode-block" id="MonteCarloTransportState.calculate_reabsorbed_luminosity"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_reabsorbed_luminosity">[docs]</a>    def calculate_reabsorbed_luminosity(
+
+<div class="viewcode-block" id="MonteCarloTransportState.calculate_reabsorbed_luminosity">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_reabsorbed_luminosity">[docs]</a>
+    def calculate_reabsorbed_luminosity(
         self, luminosity_nu_start, luminosity_nu_end
     ):
         &quot;&quot;&quot;
@@ -428,6 +438,7 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
         return self.reabsorbed_packet_luminosity[
             luminosity_wavelength_filter
         ].sum()</div>
+
 
     @property
     def virt_packet_nus(self):
@@ -571,6 +582,7 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
                 UserWarning,
             )
             return None</div>
+
 </pre></div>
 
            </div>
@@ -581,7 +593,7 @@ from tardis.transport.montecarlo.spectrum import TARDISSpectrum
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

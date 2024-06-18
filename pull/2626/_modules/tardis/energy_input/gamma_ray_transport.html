@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.energy_input.gamma_ray_transport &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -116,9 +116,10 @@
              
   <h1>Source code for tardis.energy_input.gamma_ray_transport</h1><div class="highlight"><pre>
 <span></span>import logging
+
+import astropy.units as u
 import numpy as np
 import pandas as pd
-import astropy.units as u
 import radioactivedecay as rd
 
 from tardis.energy_input.energy_source import (
@@ -135,11 +136,16 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-<div class="viewcode-block" id="get_nuclide_atomic_number"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_nuclide_atomic_number">[docs]</a>def get_nuclide_atomic_number(nuclide):
+<div class="viewcode-block" id="get_nuclide_atomic_number">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_nuclide_atomic_number">[docs]</a>
+def get_nuclide_atomic_number(nuclide):
     return rd.Nuclide(nuclide).Z</div>
 
 
-<div class="viewcode-block" id="get_chain_decay_power_per_ejectamass"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_chain_decay_power_per_ejectamass">[docs]</a>def get_chain_decay_power_per_ejectamass(
+
+<div class="viewcode-block" id="get_chain_decay_power_per_ejectamass">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_chain_decay_power_per_ejectamass">[docs]</a>
+def get_chain_decay_power_per_ejectamass(
     inventory,
     time,
     time_start,
@@ -195,7 +201,10 @@ logging.basicConfig(level=logging.INFO)
     return decaypower</div>
 
 
-<div class="viewcode-block" id="calculate_ejecta_velocity_volume"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_ejecta_velocity_volume">[docs]</a>def calculate_ejecta_velocity_volume(model):
+
+<div class="viewcode-block" id="calculate_ejecta_velocity_volume">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_ejecta_velocity_volume">[docs]</a>
+def calculate_ejecta_velocity_volume(model):
     outer_velocities = model.v_outer.to(&quot;cm/s&quot;).value
     inner_velocities = model.v_inner.to(&quot;cm/s&quot;).value
     ejecta_velocity_volume = (
@@ -205,7 +214,10 @@ logging.basicConfig(level=logging.INFO)
     return ejecta_velocity_volume</div>
 
 
-<div class="viewcode-block" id="calculate_total_decays_old"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_total_decays_old">[docs]</a>def calculate_total_decays_old(inventories, time_delta):
+
+<div class="viewcode-block" id="calculate_total_decays_old">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_total_decays_old">[docs]</a>
+def calculate_total_decays_old(inventories, time_delta):
     &quot;&quot;&quot;Function to create inventories of isotope
 
     Parameters
@@ -233,7 +245,10 @@ logging.basicConfig(level=logging.INFO)
     return total_decays</div>
 
 
-<div class="viewcode-block" id="create_isotope_dicts_old"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.create_isotope_dicts_old">[docs]</a>def create_isotope_dicts_old(raw_isotope_abundance, cell_masses):
+
+<div class="viewcode-block" id="create_isotope_dicts_old">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.create_isotope_dicts_old">[docs]</a>
+def create_isotope_dicts_old(raw_isotope_abundance, cell_masses):
     &quot;&quot;&quot;
     Function to create a dictionary of isotopes for each shell with their masses.
 
@@ -268,7 +283,10 @@ logging.basicConfig(level=logging.INFO)
     return isotope_dicts</div>
 
 
-<div class="viewcode-block" id="create_inventories_dict_old"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.create_inventories_dict_old">[docs]</a>def create_inventories_dict_old(isotope_dict):
+
+<div class="viewcode-block" id="create_inventories_dict_old">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.create_inventories_dict_old">[docs]</a>
+def create_inventories_dict_old(isotope_dict):
     &quot;&quot;&quot;Function to create dictionary of inventories for each shell
 
     Parameters
@@ -294,7 +312,10 @@ logging.basicConfig(level=logging.INFO)
     return inv</div>
 
 
-<div class="viewcode-block" id="calculate_average_energies"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_average_energies">[docs]</a>def calculate_average_energies(raw_isotope_abundance, gamma_ray_lines):
+
+<div class="viewcode-block" id="calculate_average_energies">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_average_energies">[docs]</a>
+def calculate_average_energies(raw_isotope_abundance, gamma_ray_lines):
     &quot;&quot;&quot;
     Function to calculate average energies of positrons and gamma rays
     from a list of gamma ray lines from nndc.
@@ -359,7 +380,10 @@ logging.basicConfig(level=logging.INFO)
     )</div>
 
 
-<div class="viewcode-block" id="get_taus"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_taus">[docs]</a>def get_taus(raw_isotope_abundance):
+
+<div class="viewcode-block" id="get_taus">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.get_taus">[docs]</a>
+def get_taus(raw_isotope_abundance):
     &quot;&quot;&quot;
     Function to calculate taus for each isotope
 
@@ -395,7 +419,10 @@ logging.basicConfig(level=logging.INFO)
     return taus, parents</div>
 
 
-<div class="viewcode-block" id="decay_chain_energies"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.decay_chain_energies">[docs]</a>def decay_chain_energies(
+
+<div class="viewcode-block" id="decay_chain_energies">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.decay_chain_energies">[docs]</a>
+def decay_chain_energies(
     average_energies,
     total_decays,
 ):
@@ -432,12 +459,17 @@ logging.basicConfig(level=logging.INFO)
     return decay_energy</div>
 
 
-<div class="viewcode-block" id="fractional_decay_energy"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.fractional_decay_energy">[docs]</a>def fractional_decay_energy(decay_energy):
+
+<div class="viewcode-block" id="fractional_decay_energy">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.fractional_decay_energy">[docs]</a>
+def fractional_decay_energy(decay_energy):
     &quot;&quot;&quot;Function to calculate fractional decay energy
+
     Parameters
     ----------
     decay_energy : Dict
         dictionary of decay chain energies for each isotope in each shell
+
     Returns
     -------
     fractional_decay_energy : Dict
@@ -462,7 +494,10 @@ logging.basicConfig(level=logging.INFO)
     return fractional_decay_energy</div>
 
 
-<div class="viewcode-block" id="calculate_energy_per_mass"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_energy_per_mass">[docs]</a>def calculate_energy_per_mass(decay_energy, raw_isotope_abundance, cell_masses):
+
+<div class="viewcode-block" id="calculate_energy_per_mass">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_energy_per_mass">[docs]</a>
+def calculate_energy_per_mass(decay_energy, raw_isotope_abundance, cell_masses):
     &quot;&quot;&quot;
     Function to calculate decay energy per mass for each isotope chain.
 
@@ -516,7 +551,10 @@ logging.basicConfig(level=logging.INFO)
     return energy_per_mass, energy_df</div>
 
 
-<div class="viewcode-block" id="distribute_packets"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.distribute_packets">[docs]</a>def distribute_packets(decay_energy, total_energy, num_packets):
+
+<div class="viewcode-block" id="distribute_packets">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.distribute_packets">[docs]</a>
+def distribute_packets(decay_energy, total_energy, num_packets):
     packets_per_isotope = {}
     for shell, isotopes in decay_energy.items():
         packets_per_isotope[shell] = {}
@@ -550,7 +588,10 @@ logging.basicConfig(level=logging.INFO)
     return packets_per_isotope_df</div>
 
 
-<div class="viewcode-block" id="packets_per_isotope"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.packets_per_isotope">[docs]</a>def packets_per_isotope(fractional_decay_energy, decayed_packet_count_dict):
+
+<div class="viewcode-block" id="packets_per_isotope">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.packets_per_isotope">[docs]</a>
+def packets_per_isotope(fractional_decay_energy, decayed_packet_count_dict):
     packets_per_isotope = {
         shell: {
             parent_isotope: {
@@ -567,7 +608,7 @@ logging.basicConfig(level=logging.INFO)
 
     packets_per_isotope_list = []
     for shell, parent_isotope in packets_per_isotope.items():
-        for isotopes, isotope_dict in parent_isotope.items():
+        for isotope_dict in parent_isotope.values():
             for name, value in isotope_dict.items():
                 packets_per_isotope_list.append(
                     {
@@ -588,18 +629,25 @@ logging.basicConfig(level=logging.INFO)
     return packets_per_isotope_df</div>
 
 
-<div class="viewcode-block" id="calculate_average_power_per_mass"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_average_power_per_mass">[docs]</a>def calculate_average_power_per_mass(energy_per_mass, time_delta):
+
+<div class="viewcode-block" id="calculate_average_power_per_mass">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_average_power_per_mass">[docs]</a>
+def calculate_average_power_per_mass(energy_per_mass, time_delta):
     # Time averaged energy per mass for constant packet count
     average_power_per_mass = energy_per_mass / (time_delta)
 
     return average_power_per_mass</div>
 
 
-<div class="viewcode-block" id="iron_group_fraction_per_shell"><a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.iron_group_fraction_per_shell">[docs]</a>def iron_group_fraction_per_shell(model):
+
+<div class="viewcode-block" id="iron_group_fraction_per_shell">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.iron_group_fraction_per_shell">[docs]</a>
+def iron_group_fraction_per_shell(model):
     # Taking iron group to be elements 21-30
     # Used as part of the approximations for photoabsorption and pair creation
     # Dependent on atomic data
     return model.abundance.loc[(21):(30)].sum(axis=0)</div>
+
 </pre></div>
 
            </div>
@@ -610,7 +658,7 @@ logging.basicConfig(level=logging.INFO)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 

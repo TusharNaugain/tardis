@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.energy_input.main_gamma_ray_loop &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=4ce30224"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -125,23 +125,15 @@ from tardis.energy_input.energy_source import (
     get_nuclear_lines_database,
 )
 from tardis.energy_input.gamma_packet_loop import gamma_packet_loop
-from tardis.energy_input.gamma_ray_channel import (
-    calculate_total_decays,
-    create_inventories_dict,
-    create_isotope_dicts,
-)
-
-from tardis.energy_input.gamma_ray_transport import (
-    calculate_total_decays_old,
-    create_isotope_dicts_old,
-    create_inventories_dict_old,
-)
 from tardis.energy_input.gamma_ray_packet_source import RadioactivePacketSource
 from tardis.energy_input.gamma_ray_transport import (
     calculate_average_energies,
     calculate_average_power_per_mass,
     calculate_ejecta_velocity_volume,
     calculate_energy_per_mass,
+    calculate_total_decays_old,
+    create_inventories_dict_old,
+    create_isotope_dicts_old,
     decay_chain_energies,
     distribute_packets,
     get_taus,
@@ -153,7 +145,9 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-<div class="viewcode-block" id="run_gamma_ray_loop"><a class="viewcode-back" href="../../../api/tardis.energy_input.main_gamma_ray_loop.html#tardis.energy_input.main_gamma_ray_loop.run_gamma_ray_loop">[docs]</a>def run_gamma_ray_loop(
+<div class="viewcode-block" id="run_gamma_ray_loop">
+<a class="viewcode-back" href="../../../api/tardis.energy_input.main_gamma_ray_loop.html#tardis.energy_input.main_gamma_ray_loop.run_gamma_ray_loop">[docs]</a>
+def run_gamma_ray_loop(
     model,
     plasma,
     num_decays,
@@ -403,6 +397,7 @@ logging.basicConfig(level=logging.INFO)
         energy_plot_positrons,
         energy_estimated_deposition,
     )</div>
+
 </pre></div>
 
            </div>
@@ -413,7 +408,7 @@ logging.basicConfig(level=logging.INFO)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jun 2024.
+      <span class="lastupdated">Last updated on 18 Jun 2024.
       </span></p>
   </div>
 
