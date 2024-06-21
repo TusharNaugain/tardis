@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../../../_static/documentation_options.js?v=ce1e3682"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -116,16 +116,17 @@
              
   <h1>Source code for tardis.energy_input.gamma_ray_transport</h1><div class="highlight"><pre>
 <span></span>import logging
+
+import astropy.units as u
 import numpy as np
 import pandas as pd
-import astropy.units as u
 import radioactivedecay as rd
 
 from tardis.energy_input.energy_source import (
     get_all_isotopes,
     setup_input_energy,
 )
-from tardis.transport.montecarlo.opacities import M_P
+from tardis.opacities.opacities import M_P
 
 # Energy: keV, exported as eV for SF solver
 # distance: cm
@@ -463,10 +464,12 @@ def decay_chain_energies(
 <a class="viewcode-back" href="../../../api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.fractional_decay_energy">[docs]</a>
 def fractional_decay_energy(decay_energy):
     &quot;&quot;&quot;Function to calculate fractional decay energy
+
     Parameters
     ----------
     decay_energy : Dict
         dictionary of decay chain energies for each isotope in each shell
+
     Returns
     -------
     fractional_decay_energy : Dict
@@ -655,7 +658,7 @@ def iron_group_fraction_per_shell(model):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 21 Jun 2024.
       </span></p>
   </div>
 

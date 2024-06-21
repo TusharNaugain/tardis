@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.geometry.calculate_distances &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=ce1e3682"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -119,24 +119,26 @@
 
 from numba import njit
 
-from tardis.montecarlo.montecarlo_numba import (
+from tardis.transport.montecarlo import (
     njit_dict_no_parallel,
 )
 
-from tardis.montecarlo.montecarlo_numba.numba_config import (
+from tardis.transport.montecarlo.numba_config import (
     C_SPEED_OF_LIGHT,
     MISS_DISTANCE,
     SIGMA_THOMSON,
     CLOSE_LINE_THRESHOLD,
 )
 
-from tardis.montecarlo.montecarlo_numba.utils import MonteCarloException
-from tardis.montecarlo.montecarlo_numba.r_packet import (
+from tardis.transport.montecarlo.utils import MonteCarloException
+from tardis.transport.montecarlo.r_packet import (
     print_r_packet_properties,
 )
 
 
-<div class="viewcode-block" id="calculate_distance_boundary"><a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_boundary">[docs]</a>@njit(**njit_dict_no_parallel)
+<div class="viewcode-block" id="calculate_distance_boundary">
+<a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_boundary">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_distance_boundary(r, mu, r_inner, r_outer):
     &quot;&quot;&quot;
     Calculate distance to shell boundary in cm.
@@ -178,7 +180,10 @@ def calculate_distance_boundary(r, mu, r_inner, r_outer):
     return distance, delta_shell</div>
 
 
-<div class="viewcode-block" id="calculate_distance_line"><a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_line">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_distance_line">
+<a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_line">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_distance_line(
     r_packet,
     comov_nu,
@@ -192,7 +197,7 @@ def calculate_distance_line(
 
     Parameters
     ----------
-    r_packet : tardis.montecarlo.montecarlo_numba.r_packet.RPacket
+    r_packet : tardis.transport.montecarlo.r_packet.RPacket
     comov_nu : float
         comoving frequency at the CURRENT position of the RPacket
     is_last_line : bool
@@ -229,7 +234,10 @@ def calculate_distance_line(
     return distance</div>
 
 
-<div class="viewcode-block" id="calculate_distance_line_full_relativity"><a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_line_full_relativity">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_distance_line_full_relativity">
+<a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_line_full_relativity">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_distance_line_full_relativity(
     nu_line, nu, time_explosion, r_packet
 ):
@@ -254,7 +262,10 @@ def calculate_distance_line_full_relativity(
     return distance</div>
 
 
-<div class="viewcode-block" id="calculate_distance_electron"><a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_electron">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_distance_electron">
+<a class="viewcode-back" href="../../../../api/tardis.transport.geometry.calculate_distances.html#tardis.transport.geometry.calculate_distances.calculate_distance_electron">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_distance_electron(electron_density, tau_event):
     &quot;&quot;&quot;
     Calculate distance to Thomson Scattering
@@ -266,6 +277,7 @@ def calculate_distance_electron(electron_density, tau_event):
     &quot;&quot;&quot;
     # add full_relativity here
     return tau_event / (electron_density * SIGMA_THOMSON)</div>
+
 </pre></div>
 
            </div>
@@ -276,7 +288,7 @@ def calculate_distance_electron(electron_density, tau_event):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 May 2024.
+      <span class="lastupdated">Last updated on 21 Jun 2024.
       </span></p>
   </div>
 

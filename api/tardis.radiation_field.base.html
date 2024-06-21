@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../_static/documentation_options.js?v=ce1e3682"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -66,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -147,7 +148,7 @@
 <span id="tardis-radiation-field-base-module"></span><h1>tardis.radiation_field.base module<a class="headerlink" href="#module-tardis.radiation_field.base" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.radiation_field.base.MonteCarloRadiationFieldState">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.radiation_field.base.</span></span><span class="sig-name descname"><span class="pre">MonteCarloRadiationFieldState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_radiative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.units.quantity.Quantity.html#astropy.units.quantity.Quantity" title="(in Astropy v6.1)"><span class="pre">Quantity</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilution_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.OpacityState" title="tardis.transport.montecarlo.numba_interface.OpacityState"><span class="pre">OpacityState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource" title="tardis.transport.montecarlo.packet_source.BasePacketSource"><span class="pre">BasePacketSource</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/radiation_field/base.html#MonteCarloRadiationFieldState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.radiation_field.base.MonteCarloRadiationFieldState" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.radiation_field.base.</span></span><span class="sig-name descname"><span class="pre">MonteCarloRadiationFieldState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_radiative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.units.quantity.Quantity.html#astropy.units.quantity.Quantity" title="(in Astropy v6.1)"><span class="pre">Quantity</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilution_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.opacities.opacity_state.html#tardis.opacities.opacity_state.OpacityState" title="tardis.opacities.opacity_state.OpacityState"><span class="pre">OpacityState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource" title="tardis.transport.montecarlo.packet_source.BasePacketSource"><span class="pre">BasePacketSource</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/radiation_field/base.html#MonteCarloRadiationFieldState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.radiation_field.base.MonteCarloRadiationFieldState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>_summary_</p>
 <dl class="field-list simple">
@@ -180,7 +181,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 21 Jun 2024.
       </span></p>
   </div>
 
