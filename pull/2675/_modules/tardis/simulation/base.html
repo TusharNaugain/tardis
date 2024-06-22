@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=e99a4c06"></script>
+        <script src="../../../_static/documentation_options.js?v=d9b54422"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -495,14 +495,14 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
             self.plasma.plasma_solver_settings.RADIATIVE_RATES_TYPE
             == &quot;blackbody&quot;
         ):
-            j_blues = radiation_field.calculate_mean_intensity(
+            planckian_radiation_field = (
+                radiation_field.to_planckian_radiation_field()
+            )
+            j_blues = planckian_radiation_field.calculate_mean_intensity(
                 self.plasma.atomic_data.lines.nu.values
             )
             update_properties[&quot;j_blues&quot;] = pd.DataFrame(
                 j_blues, index=self.plasma.atomic_data.lines.index
-            )
-            raise NotImplementedError(
-                &quot;This is not right yet - calculate dilute mean intensity&quot;
             )
         elif (
             self.plasma.plasma_solver_settings.RADIATIVE_RATES_TYPE
