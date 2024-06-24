@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=14d7e3b9"></script>
+        <script src="../../../_static/documentation_options.js?v=dc9d12e7"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -169,17 +169,6 @@ def calculate_distance_radial(photon, r_inner, r_outer):
         outer_2 = -1
 
     distances = np.array([inner_1, inner_2, outer_1, outer_2])
-
-    # print(
-    #     &quot;Distance to inner shell boundaries: &quot;,
-    #     photon.get_location_r() - r_inner,
-    # )
-    # print(
-    #     &quot;Distance to outer shell boundaries: &quot;,
-    #     photon.get_location_r() - r_outer,
-    # )
-
-    # the correct distance is the shortest positive distance
     distance_list = [i for i in distances if i &gt; 0]
 
     if not distance_list:
@@ -287,7 +276,7 @@ def move_packet(packet, distance):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 24 Jun 2024.
       </span></p>
   </div>
 

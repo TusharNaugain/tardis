@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=14d7e3b9"></script>
+        <script src="../_static/documentation_options.js?v=dc9d12e7"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -147,8 +147,37 @@
 <span id="tardis-energy-input-gamma-ray-packet-source-module"></span><h1>tardis.energy_input.gamma_ray_packet_source module<a class="headerlink" href="#module-tardis.energy_input.gamma_ray_packet_source" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_packet_source.</span></span><span class="sig-name descname"><span class="pre">GammaRayPacketSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isotope_decay_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positronium_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_volume_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_df_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effective_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_positron_energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_power_per_mass</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_packet_source.html#GammaRayPacketSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_packet_source.</span></span><span class="sig-name descname"><span class="pre">GammaRayPacketSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isotope_decay_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positronium_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inv_volume_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effective_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_packet_source.html#GammaRayPacketSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource" title="tardis.transport.montecarlo.packet_source.BasePacketSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePacketSource</span></code></a></p>
+<p>New Gamma ray packet source class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>packet_energy</strong><span class="classifier">float</span></dt><dd><p>Energy of the gamma ray packet</p>
+</dd>
+<dt><strong>isotope_decay_df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame of isotope decay data</p>
+</dd>
+<dt><strong>positronium_fraction</strong><span class="classifier">float</span></dt><dd><p>Fraction of positrons that form positronium</p>
+</dd>
+<dt><strong>inner_velocities</strong><span class="classifier">array</span></dt><dd><p>Array of inner shell velocities</p>
+</dd>
+<dt><strong>outer_velocities</strong><span class="classifier">array</span></dt><dd><p>Array of outer shell velocities</p>
+</dd>
+<dt><strong>inv_volume_time</strong><span class="classifier">array</span></dt><dd><p>Array of inverse volume times (please explain)</p>
+</dd>
+<dt><strong>times</strong><span class="classifier">array</span></dt><dd><p>Array of time steps</p>
+</dd>
+<dt><strong>effective_times</strong><span class="classifier">array</span></dt><dd><p>Array of effective time steps</p>
+</dd>
+<dt><strong>taus</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of isotope mean lifetimes in seconds</p>
+</dd>
+<dt><strong>parents</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of isotope parents</p>
+</dd>
+<dt><strong>average_positron_energies</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of average positron energies per isotope</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.calculate_positron_fraction">
 <span class="sig-name descname"><span class="pre">calculate_positron_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isotopes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_packet_source.html#GammaRayPacketSource.calculate_positron_fraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.calculate_positron_fraction" title="Link to this definition">¶</a></dt>
@@ -164,28 +193,6 @@ releases as positron kinetic energy</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>dict</dt><dd><p>Fraction of energy released as positron kinetic energy per isotope</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.create_packet_decay_times">
-<span class="sig-name descname"><span class="pre">create_packet_decay_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isotopes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_packet_source.html#GammaRayPacketSource.create_packet_decay_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.create_packet_decay_times" title="Link to this definition">¶</a></dt>
-<dd><p>Samples the decay time from the mean lifetime of the isotopes</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>number_of_packets</strong><span class="classifier">int</span></dt><dd><p>Number of packets</p>
-</dd>
-<dt><strong>times</strong><span class="classifier">array</span></dt><dd><p>Array of time steps</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>array</dt><dd><p>Array of decay times</p>
 </dd>
 </dl>
 </dd>
@@ -292,7 +299,8 @@ releases as positron kinetic energy</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.create_packet_times_uniform_energy">
 <span class="sig-name descname"><span class="pre">create_packet_times_uniform_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isotopes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_packet_source.html#GammaRayPacketSource.create_packet_times_uniform_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_packet_source.GammaRayPacketSource.create_packet_times_uniform_energy" title="Link to this definition">¶</a></dt>
-<dd><p>Samples the decay time from the mean lifetime of the isotopes</p>
+<dd><p>This method is not used in the current implementation
+Samples the decay time from the mean lifetime of the isotopes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -642,7 +650,7 @@ to operate on.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 24 Jun 2024.
       </span></p>
   </div>
 
