@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=c759df3b"></script>
+        <script src="../../../../../_static/documentation_options.js?v=cc35b658"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -136,8 +136,8 @@ from tardis.io.model.readers.artis import read_artis_density
 <div class="viewcode-block" id="read_mass_fractions_file">
 <a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_mass_fractions_file">[docs]</a>
 def read_mass_fractions_file(
-    mass_fraction_filename,
-    mass_fraction_filetype,
+    mass_fractions_filename,
+    mass_fractions_filetype,
     inner_boundary_index=None,
     outer_boundary_index=None,
 ):
@@ -146,9 +146,9 @@ def read_mass_fractions_file(
 
     Parameters
     ----------
-    mass_fraction_filename : str
+    mass_fractions_filename : str
         filename or path of the density file
-    mass_fraction_filetype : str
+    mass_fractions_filetype : str
         type of the density file
     inner_boundary_index : int
         index of the inner shell, default None
@@ -164,13 +164,13 @@ def read_mass_fractions_file(
     }
 
     isotope_mass_fractions = pd.DataFrame()
-    if mass_fraction_filetype in [&quot;cmfgen_model&quot;, &quot;custom_composition&quot;]:
+    if mass_fractions_filetype in [&quot;cmfgen_model&quot;, &quot;custom_composition&quot;]:
         index, mass_fractions, isotope_mass_fractions = file_parsers[
-            mass_fraction_filetype
-        ](mass_fraction_filename)
+            mass_fractions_filetype
+        ](mass_fractions_filename)
     else:
-        index, mass_fractions = file_parsers[mass_fraction_filetype](
-            mass_fraction_filename
+        index, mass_fractions = file_parsers[mass_fractions_filetype](
+            mass_fractions_filename
         )
 
     if outer_boundary_index is not None:
@@ -266,7 +266,7 @@ def read_density_file(filename, filetype):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 24 Jun 2024.
       </span></p>
   </div>
 
