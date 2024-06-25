@@ -117,6 +117,7 @@
   <h1>Source code for tardis.visualization.tools.interaction_radius_plot</h1><div class="highlight"><pre>
 <span></span>import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+import matplotlib.colors as clr
 import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
@@ -130,6 +131,7 @@ from tardis.util.base import (
     int_to_roman,
 )
 import tardis.visualization.tools.sdec_plot as sdec
+from tardis.visualization import plot_util as pu
 
 
 <div class="viewcode-block" id="InteractionRadiusPlotter"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">[docs]</a>class InteractionRadiusPlotter:
@@ -157,6 +159,7 @@ import tardis.visualization.tools.sdec_plot as sdec
         self.data = data
         self.time_explosion = time_explosion
         self.velocity = velocity
+        self.sdec_plotter = sdec.SDECPlotter(data)
         return
 
 <div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>    @classmethod
@@ -171,7 +174,7 @@ import tardis.visualization.tools.sdec_plot as sdec
 
         Returns
         -------
-        Plotter
+        InteractionRadiusPlotter
         &quot;&quot;&quot;
 
         return cls(
@@ -195,7 +198,7 @@ import tardis.visualization.tools.sdec_plot as sdec
 
         Returns
         -------
-        Plotter
+        InteractionRadiusPlotter
         &quot;&quot;&quot;
         hdfstore = pd.HDFStore(hdf_fpath)
         time_explosion = (
@@ -230,83 +233,12 @@ import tardis.visualization.tools.sdec_plot as sdec
             If species list contains invalid entries.
 
         &quot;&quot;&quot;
-        if species_list is not None:
-            # check if there are any digits in the species list. If there are, then exit.
-            # species_list should only contain species in the Roman numeral
-            # format, e.g. Si II, and each ion must contain a space
-            if any(char.isdigit() for char in &quot; &quot;.join(species_list)) == True:
-                raise ValueError(
-                    &quot;All species must be in Roman numeral form, e.g. Si II&quot;
-                )
-            else:
-                full_species_list = []
-                species_mapped = {}
-                for species in species_list:
-                    # check if a hyphen is present. If it is, then it indicates a
-                    # range of ions. Add each ion in that range to the list as a new entry
-                    if &quot;-&quot; in species:
-                        # split the string on spaces. First thing in the list is then the element
-                        element = species.split(&quot; &quot;)[0]
-                        # Next thing is the ion range
-                        # convert the requested ions into numerals
-                        first_ion_numeral = roman_to_int(
-                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[0]
-                        )
-                        second_ion_numeral = roman_to_int(
-                            species.split(&quot; &quot;)[-1].split(&quot;-&quot;)[-1]
-                        )
-                        # add each ion between the two requested into the species list
-                        for ion_number in np.arange(
-                            first_ion_numeral, second_ion_numeral + 1
-                        ):
-                            full_species_list.append(
-                                f&quot;{element} {int_to_roman(ion_number)}&quot;
-                            )
-                    else:
-                        # Otherwise it&#39;s either an element or ion so just add to the list
-                        full_species_list.append(species)
-
-                # full_species_list is now a list containing each individual species requested
-                # e.g. it parses species_list = [Si I - V] into species_list = [Si I, Si II, Si III, Si IV, Si V]
-                self._full_species_list = full_species_list
-                requested_species_ids = []
-                keep_colour = []
-
-                # go through each of the requested species. Check whether it is
-                # an element or ion (ions have spaces). If it is an element,
-                # add all possible ions to the ions list. Otherwise just add
-                # the requested ion
-                for species in full_species_list:
-                    if &quot; &quot; in species:
-                        species_id = (
-                            species_string_to_tuple(species)[0] * 100
-                            + species_string_to_tuple(species)[1]
-                        )
-                        requested_species_ids.append([species_id])
-                        species_mapped[species_id] = [species_id]
-                    else:
-                        atomic_number = element_symbol2atomic_number(species)
-                        species_ids = [
-                            atomic_number * 100 + ion_number
-                            for ion_number in np.arange(atomic_number)
-                        ]
-                        requested_species_ids.append(species_ids)
-                        species_mapped[atomic_number * 100] = species_ids
-                        # add the atomic number to a list so you know that this element should
-                        # have all species in the same colour, i.e. it was requested like
-                        # species_list = [Si]
-                        keep_colour.append(atomic_number)
-
-                self._species_list = [
-                    species_id
-                    for temp_list in requested_species_ids
-                    for species_id in temp_list
-                ]
-                self._species_mapped = species_mapped
-                self._keep_colour = keep_colour
-        else:
-            self._species_list = None
-        return
+        # Use the sdec.SDECPlotter instance to parse the species list
+        self.sdec_plotter._parse_species_list(species_list)
+        self._full_species_list = self.sdec_plotter._full_species_list
+        self._species_list = self.sdec_plotter._species_list
+        self._species_mapped = self.sdec_plotter._species_mapped
+        self._keep_colour = self.sdec_plotter._keep_colour
 
     def _make_colorbar_labels(self):
         &quot;&quot;&quot;
@@ -315,36 +247,11 @@ import tardis.visualization.tools.sdec_plot as sdec
         If a species list is provided, uses that to generate labels.
         Otherwise, generates labels from the species in the model.
         &quot;&quot;&quot;
-        if self._species_list is None:
-            species_name = [
-                atomic_number2element_symbol(atomic_num)
-                for atomic_num in self.species
-            ]
-        else:
-            species_name = []
-            for species in self.species:
-                # Go through each species requested
-                ion_number = species % 100
-                atomic_number = (species - ion_number) / 100
-
-                ion_numeral = int_to_roman(ion_number + 1)
-                atomic_symbol = atomic_number2element_symbol(atomic_number)
-
-                # if the element was requested, and not a specific ion, then
-                # add the element symbol to the label list
-                if (atomic_number in self._keep_colour) &amp; (
-                    atomic_symbol not in species_name
-                ):
-                    # compiling the label, and adding it to the list
-                    label = f&quot;{atomic_symbol}&quot;
-                    species_name.append(label)
-                elif atomic_number not in self._keep_colour:
-                    # otherwise add the ion to the label list
-                    label = f&quot;{atomic_symbol} {ion_numeral}&quot;
-                    species_name.append(label)
-
-        self._species_name = species_name
-        return
+        self.sdec_plotter._keep_colour = self._keep_colour
+        self.sdec_plotter.species = self.species
+        self.sdec_plotter._species_list = self._species_list
+        self.sdec_plotter._make_colorbar_labels()
+        self._species_name = self.sdec_plotter._species_name
 
     def _make_colorbar_colors(self):
         &quot;&quot;&quot;
@@ -421,7 +328,7 @@ import tardis.visualization.tools.sdec_plot as sdec
         self,
         packets_mode=&quot;virtual&quot;,
         ax=None,
-        figsize=(11, 6),
+        figsize=(11, 5),
         cmapname=&quot;jet&quot;,
         species_list=None,
     ):
@@ -439,7 +346,7 @@ import tardis.visualization.tools.sdec_plot as sdec
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
         species_list : list of str
-            List of species to plot. Default is None.
+            List of species to plot.
 
         Returns
         -------
@@ -448,7 +355,7 @@ import tardis.visualization.tools.sdec_plot as sdec
         &quot;&quot;&quot;
 
         # Parse the requested species list
-        self._parse_species_list(species_list=species_list)
+        self._parse_species_list(species_list)
         species_in_model = np.unique(
             self.data[packets_mode]
             .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
@@ -473,6 +380,8 @@ import tardis.visualization.tools.sdec_plot as sdec
         self.cmap = cm.get_cmap(cmapname, len(self._species_name))
         # Get the number of unique colors
         self._make_colorbar_colors()
+        # Show colorbar
+        # self._show_colorbar_mpl()
 
         plot_data, plot_colors = self._generate_plot_data(packets_mode)
         bin_edges = (self.velocity).to(&quot;km/s&quot;)
@@ -503,10 +412,31 @@ import tardis.visualization.tools.sdec_plot as sdec
 
         return self.ax</div>
 
+    # def _show_colorbar_mpl(self):
+    #     &quot;&quot;&quot;Show matplotlib colorbar with labels of elements mapped to colors.&quot;&quot;&quot;
+
+    #     color_values = [
+    #         self.cmap(species_counter / len(self._species_name))
+    #         for species_counter in range(len(self._species_name))
+    #     ]
+
+    #     custcmap = clr.ListedColormap(color_values)
+    #     norm = clr.Normalize(vmin=0, vmax=len(self._species_name))
+    #     mappable = cm.ScalarMappable(norm=norm, cmap=custcmap)
+    #     mappable.set_array(np.linspace(1, len(self._species_name) + 1, 256))
+    #     cbar = plt.colorbar(mappable, ax=self.ax)
+
+    #     bounds = np.arange(len(self._species_name)) + 0.5
+    #     cbar.set_ticks(bounds)
+
+    #     cbar.set_ticklabels(self._species_name)
+    #     return
+
 <div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_ply"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">[docs]</a>    def generate_plot_ply(
         self,
         packets_mode=&quot;virtual&quot;,
         species_list=None,
+        cmapname=&quot;jet&quot;,
     ):
         &quot;&quot;&quot;
         Generate the last interaction radius distribution plot using plotly.
@@ -516,7 +446,7 @@ import tardis.visualization.tools.sdec_plot as sdec
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         species_list : list of str
-            List of species to plot. Default is None.
+            List of species to plot.
 
         Returns
         -------
@@ -524,7 +454,7 @@ import tardis.visualization.tools.sdec_plot as sdec
             Plotly figure object with the plot.
         &quot;&quot;&quot;
         # Parse the requested species list
-        self._parse_species_list(species_list=species_list)
+        self._parse_species_list(species_list)
         species_in_model = np.unique(
             self.data[packets_mode]
             .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
@@ -552,15 +482,15 @@ import tardis.visualization.tools.sdec_plot as sdec
             plot_data, plot_colors, self._species_name
         ):
             hist, _ = np.histogram(data, bins=bin_edges)
-            step_x = np.repeat(bin_edges, 2)[1:-1]
-            step_y = np.repeat(hist, 2)
+            self.step_x = np.repeat(bin_edges, 2)[1:-1]
+            self.step_y = np.repeat(hist, 2)
             fig.add_trace(
                 go.Scatter(
-                    x=step_x,
-                    y=step_y,
+                    x=self.step_x,
+                    y=self.step_y,
                     mode=&quot;lines&quot;,
                     line=dict(
-                        color=f&quot;rgba({int(255*color[0])}, {int(255*color[1])}, {int(255*color[2])}, 1)&quot;,
+                        color=pu.to_rgb255_string(color),
                         width=2.5,
                         shape=&quot;hv&quot;,
                     ),
@@ -573,9 +503,72 @@ import tardis.visualization.tools.sdec_plot as sdec
             yaxis_title=&quot;Packet Count&quot;,
             font=dict(size=14),
             yaxis=dict(tickformat=&quot;.1e&quot;),
-            xaxis=dict(tickformat=&quot;.0f&quot;),
+            xaxis=dict(tickformat=&quot;.0f&quot;, tickmode=&quot;auto&quot;),
         )
+
+        # fig = self._show_colorbar_ply(fig)
         return fig</div></div>
+
+    # def _show_colorbar_ply(self, fig):
+    #     &quot;&quot;&quot;
+    #     Show plotly colorbar with labels of elements mapped to colors.
+
+    #     Parameters
+    #     ----------
+    #     fig : plotly.graph_objects.Figure
+    #     Plotly figure object to add the colorbar to.
+
+    #     Returns
+    #     -------
+    #     plotly.graph_objects.Figure
+    #         Plotly figure object with the colorbar added.
+    #     &quot;&quot;&quot;
+    #     # Interpolate [0, 1] range to create bins equal to number of elements
+    #     colorscale_bins = np.linspace(0, 1, num=len(self._species_name) + 1)
+
+    #     # Create a categorical colorscale [a list of (reference point, color)]
+    #     # by mapping same reference points (excluding 1st and last bin edge)
+    #     # twice in a row (https://plotly.com/python/colorscales/#constructing-a-discrete-or-discontinuous-color-scale)
+    #     categorical_colorscale = []
+    #     for species_counter in range(len(self._species_name)):
+    #         color = pu.to_rgb255_string(
+    #             self.cmap(colorscale_bins[species_counter])
+    #         )
+    #         categorical_colorscale.append(
+    #             (colorscale_bins[species_counter], color)
+    #         )
+    #         categorical_colorscale.append(
+    #             (colorscale_bins[species_counter + 1], color)
+    #         )
+
+    #     coloraxis_options = {
+    #         &quot;colorscale&quot;: categorical_colorscale,
+    #         &quot;showscale&quot;: True,
+    #         &quot;cmin&quot;: 0,
+    #         &quot;cmax&quot;: len(self._species_name),
+    #         &quot;colorbar&quot;: {
+    #             &quot;title&quot;: &quot;Elements&quot;,
+    #             &quot;tickvals&quot;: np.arange(0, len(self._species_name)) + 0.5,
+    #             &quot;ticktext&quot;: self._species_name,
+    #             # to change length and position of colorbar
+    #             &quot;len&quot;: 1,
+    #             &quot;yanchor&quot;: &quot;top&quot;,
+    #             &quot;y&quot;: 1,
+    #         },
+    #     }
+
+    #     colorbar_trace = go.Scatter(
+    #         x=[None],
+    #         y=[0],
+    #         mode=&quot;markers&quot;,
+    #         name=&quot;Colorbar&quot;,
+    #         showlegend=False,
+    #         hoverinfo=&quot;skip&quot;,
+    #         marker=dict(color=[0], opacity=0, **coloraxis_options),
+    #     )
+
+    #     fig.add_trace(colorbar_trace)
+    #     return fig
 </pre></div>
 
            </div>
@@ -586,7 +579,7 @@ import tardis.visualization.tools.sdec_plot as sdec
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Jun 2024.
+      <span class="lastupdated">Last updated on 25 Jun 2024.
       </span></p>
   </div>
 
