@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=6bafebd9"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b23d893f"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -115,14 +115,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.base</h1><div class="highlight"><pre>
-<span></span>from tardis.io.model.readers.cmfgen import (
+<span></span>from tardis.io.model.readers.cmfgen_deprecated import (
     read_cmfgen_composition,
     read_cmfgen_density,
 )
 from tardis.io.model.readers.generic_readers import (
     ConfigurationError,
     read_csv_composition,
-    read_simple_ascii_abundances,
+    read_simple_ascii_mass_fractions,
     read_simple_ascii_density,
 )
 
@@ -133,11 +133,11 @@ import pandas as pd
 from tardis.io.model.readers.artis import read_artis_density
 
 
-<div class="viewcode-block" id="read_abundances_file">
-<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_abundances_file">[docs]</a>
-def read_abundances_file(
-    abundance_filename,
-    abundance_filetype,
+<div class="viewcode-block" id="read_mass_fractions_file">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_mass_fractions_file">[docs]</a>
+def read_mass_fractions_file(
+    mass_fractions_filename,
+    mass_fractions_filetype,
     inner_boundary_index=None,
     outer_boundary_index=None,
 ):
@@ -146,9 +146,9 @@ def read_abundances_file(
 
     Parameters
     ----------
-    abundance_filename : str
+    mass_fractions_filename : str
         filename or path of the density file
-    abundance_filetype : str
+    mass_fractions_filetype : str
         type of the density file
     inner_boundary_index : int
         index of the inner shell, default None
@@ -157,30 +157,32 @@ def read_abundances_file(
     &quot;&quot;&quot;
 
     file_parsers = {
-        &quot;simple_ascii&quot;: read_simple_ascii_abundances,
-        &quot;artis&quot;: read_simple_ascii_abundances,
+        &quot;simple_ascii&quot;: read_simple_ascii_mass_fractions,
+        &quot;artis&quot;: read_simple_ascii_mass_fractions,
         &quot;cmfgen_model&quot;: read_cmfgen_composition,
         &quot;custom_composition&quot;: read_csv_composition,
     }
 
-    isotope_abundance = pd.DataFrame()
-    if abundance_filetype in [&quot;cmfgen_model&quot;, &quot;custom_composition&quot;]:
-        index, abundances, isotope_abundance = file_parsers[abundance_filetype](
-            abundance_filename
-        )
+    isotope_mass_fractions = pd.DataFrame()
+    if mass_fractions_filetype in [&quot;cmfgen_model&quot;, &quot;custom_composition&quot;]:
+        index, mass_fractions, isotope_mass_fractions = file_parsers[
+            mass_fractions_filetype
+        ](mass_fractions_filename)
     else:
-        index, abundances = file_parsers[abundance_filetype](abundance_filename)
+        index, mass_fractions = file_parsers[mass_fractions_filetype](
+            mass_fractions_filename
+        )
 
     if outer_boundary_index is not None:
         outer_boundary_index_m1 = outer_boundary_index - 1
     else:
         outer_boundary_index_m1 = None
     index = index[inner_boundary_index:outer_boundary_index]
-    abundances = abundances.loc[
+    mass_fractions = mass_fractions.loc[
         :, slice(inner_boundary_index, outer_boundary_index_m1)
     ]
-    abundances.columns = np.arange(len(abundances.columns))
-    return index, abundances, isotope_abundance</div>
+    mass_fractions.columns = np.arange(len(mass_fractions.columns))
+    return index, mass_fractions, isotope_mass_fractions</div>
 
 
 
@@ -205,6 +207,10 @@ def read_density_file(filename, filetype):
         the array containing the velocities
     unscaled_mean_densities : np.ndarray
         the array containing the densities
+    electron_densities : np.ndarray
+        The array containing electron densities
+    temperature : np.ndarray
+        The array containing temperatures
     &quot;&quot;&quot;
     file_parsers = {
         &quot;artis&quot;: read_artis_density,

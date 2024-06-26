@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=6bafebd9"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b23d893f"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -132,17 +132,17 @@ class STELLAModel:
 
 
 HEADER_RE_STR = [
-    (&quot;\s+days post max Lbol\s+(\d+\.\d*)&quot;, &quot;t_max&quot;),
-    (&quot;\s+zones\s+(\d+)&quot;, &quot;zones&quot;),
+    (r&quot;\s+days post max Lbol\s+(\d+\.\d*)&quot;, &quot;t_max&quot;),
+    (r&quot;\s+zones\s+(\d+)&quot;, &quot;zones&quot;),
     (
-        &quot;\s+inner boundary mass\s+(\d+\.\d+E[+-]\d+)\s+\d+\.\d+E[+-]\d+&quot;,
-        &quot;inner_boundary_mass&quot;,
+        r&quot;\s+inner boundary mass\s+(\d+\.\d+E[+-]\d+)\s+\d+\.\d+E[+-]\d+&quot;,
+        r&quot;inner_boundary_mass&quot;,
     ),
-    (&quot;\s+total mass\s+(\d+\.\d+E[+-]\d+)\s+\d+\.\d+E[+-]\d+&quot;, &quot;total_mass&quot;),
+    (r&quot;\s+total mass\s+(\d+\.\d+E[+-]\d+)\s+\d+\.\d+E[+-]\d+&quot;, &quot;total_mass&quot;),
 ]
 
 DATA_START_ROW = 5
-COLUMN_WITH_UNIT_RE = re.compile(&quot;(.+)\s+\((.+)\)&quot;)
+COLUMN_WITH_UNIT_RE = re.compile(r&quot;(.+)\s+\((.+)\)&quot;)
 
 
 <div class="viewcode-block" id="read_stella_model">

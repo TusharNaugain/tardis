@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=6bafebd9"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b23d893f"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -121,15 +121,15 @@ from radioactivedecay import Nuclide
 from radioactivedecay.utils import Z_DICT, elem_to_Z
 
 
-<div class="viewcode-block" id="read_csv_isotope_abundances">
-<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.util.html#tardis.io.model.readers.util.read_csv_isotope_abundances">[docs]</a>
-def read_csv_isotope_abundances(
+<div class="viewcode-block" id="read_csv_isotope_mass_fractions">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.util.html#tardis.io.model.readers.util.read_csv_isotope_mass_fractions">[docs]</a>
+def read_csv_isotope_mass_fractions(
     fname, delimiter=r&quot;\s+&quot;, skip_columns=0, skip_rows=[1]
 ):
     &quot;&quot;&quot;
     A generic parser for a TARDIS composition stored as a CSV file
 
-    The parser can read in both elemental and isotopic abundances. The first
+    The parser can read in both elemental and isotopic mass fractions. The first
     column is always expected to contain a running index, labelling the grid
     cells. The parser also allows for additional information to be stored in
     the first skip_columns columns. These will be ignored if skip_columns &gt; 0.
@@ -158,16 +158,15 @@ def read_csv_isotope_abundances(
     Returns
     -------
     index : np.ndarray
-    abundances : pandas.DataFrame
-    isotope_abundance : pandas.MultiIndex
+    mass_fractions : pandas.DataFrame
+    isotope_mass_fraction : pandas.MultiIndex
     &quot;&quot;&quot;
-
     df = pd.read_csv(
         fname, comment=&quot;#&quot;, sep=delimiter, skiprows=skip_rows, index_col=0
     )
     df = df.transpose()
 
-    abundance = pd.DataFrame(
+    mass_fractions = pd.DataFrame(
         columns=np.arange(df.shape[1]),
         index=pd.Index([], name=&quot;atomic_number&quot;),
         dtype=np.float64,
@@ -176,23 +175,23 @@ def read_csv_isotope_abundances(
     isotope_index = pd.MultiIndex(
         [[]] * 2, [[]] * 2, names=[&quot;atomic_number&quot;, &quot;mass_number&quot;]
     )
-    isotope_abundance = pd.DataFrame(
+    isotope_mass_fractions = pd.DataFrame(
         columns=np.arange(df.shape[1]), index=isotope_index, dtype=np.float64
     )
 
     for element_symbol_string in df.index[skip_columns:]:
         if element_symbol_string in Z_DICT.values():
             z = elem_to_Z(element_symbol_string)
-            abundance.loc[z, :] = df.loc[element_symbol_string].tolist()
+            mass_fractions.loc[z, :] = df.loc[element_symbol_string].tolist()
         else:
             nuc = Nuclide(element_symbol_string)
             z = nuc.Z
             mass_no = nuc.A
-            isotope_abundance.loc[(z, mass_no), :] = df.loc[
+            isotope_mass_fractions.loc[(z, mass_no), :] = df.loc[
                 element_symbol_string
             ].tolist()
 
-    return abundance.index, abundance, isotope_abundance</div>
+    return mass_fractions.index, mass_fractions, isotope_mass_fractions</div>
 
 </pre></div>
 

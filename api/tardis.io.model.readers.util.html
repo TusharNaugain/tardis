@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=6bafebd9"></script>
+        <script src="../_static/documentation_options.js?v=b23d893f"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.io.model.cmfgen module" href="tardis.io.model.cmfgen.html" />
+    <link rel="next" title="tardis.io.model.parse_composition_configuration module" href="tardis.io.model.parse_composition_configuration.html" />
     <link rel="prev" title="tardis.io.model.readers.stella module" href="tardis.io.model.readers.stella.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -149,10 +149,10 @@
   <section id="module-tardis.io.model.readers.util">
 <span id="tardis-io-model-readers-util-module"></span><h1>tardis.io.model.readers.util module<a class="headerlink" href="#module-tardis.io.model.readers.util" title="Link to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.util.read_csv_isotope_abundances">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.util.</span></span><span class="sig-name descname"><span class="pre">read_csv_isotope_abundances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\s+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/util.html#read_csv_isotope_abundances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.util.read_csv_isotope_abundances" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.io.model.readers.util.read_csv_isotope_mass_fractions">
+<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.util.</span></span><span class="sig-name descname"><span class="pre">read_csv_isotope_mass_fractions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\s+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/util.html#read_csv_isotope_mass_fractions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.util.read_csv_isotope_mass_fractions" title="Link to this definition">¶</a></dt>
 <dd><p>A generic parser for a TARDIS composition stored as a CSV file</p>
-<p>The parser can read in both elemental and isotopic abundances. The first
+<p>The parser can read in both elemental and isotopic mass fractions. The first
 column is always expected to contain a running index, labelling the grid
 cells. The parser also allows for additional information to be stored in
 the first skip_columns columns. These will be ignored if skip_columns &gt; 0.
@@ -178,8 +178,8 @@ is essentially ignored (for the default value of skip_rows).</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
-<dt><strong>abundances</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
-<dt><strong>isotope_abundance</strong><span class="classifier">pandas.MultiIndex</span></dt><dd></dd>
+<dt><strong>mass_fractions</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>isotope_mass_fraction</strong><span class="classifier">pandas.MultiIndex</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -192,7 +192,7 @@ is essentially ignored (for the default value of skip_rows).</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.io.model.readers.stella.html" class="btn btn-neutral float-left" title="tardis.io.model.readers.stella module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.io.model.cmfgen.html" class="btn btn-neutral float-right" title="tardis.io.model.cmfgen module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.io.model.parse_composition_configuration.html" class="btn btn-neutral float-right" title="tardis.io.model.parse_composition_configuration module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

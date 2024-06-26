@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=6bafebd9"></script>
+        <script src="../_static/documentation_options.js?v=b23d893f"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -158,39 +158,14 @@
 <dt class="sig sig-object py" id="tardis.io.model.readers.generic_readers.read_csv_composition">
 <span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.generic_readers.</span></span><span class="sig-name descname"><span class="pre">read_csv_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\s+'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/generic_readers.html#read_csv_composition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.generic_readers.read_csv_composition" title="Link to this definition">¶</a></dt>
 <dd><p>Read composition from a simple CSV file</p>
-<p>The CSV file can contain specific isotopes or elemental abundances in the
+<p>The CSV file can contain specific isotopes or elemental mass fractions in the
 different columns. The first row must contain the header in which the
 contents of each column is specified by the elemental symbol (for elemental
-abundances) or by the symbol plus mass number (for isotopic abundances).</p>
+mass fractions) or by the symbol plus mass number (for isotopic mass fractions).</p>
 <p>Example: C O Fe Ni56 Co</p>
 <p>The i-th row specifies the composition in the i-th shell</p>
 <dl class="simple">
 <dt>fname<span class="classifier">str</span></dt><dd><p>filename of the csv file</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.generic_readers.read_simple_ascii_abundances">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.generic_readers.</span></span><span class="sig-name descname"><span class="pre">read_simple_ascii_abundances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/generic_readers.html#read_simple_ascii_abundances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.generic_readers.read_simple_ascii_abundances" title="Link to this definition">¶</a></dt>
-<dd><p>Reading an abundance file of the following structure (example; lines starting with hash will be ignored):
-The first line of abundances describe the abundances in the center of the model and are not used.
-#index element1, element2, …, element30
-0 0.4 0.3, .. 0.2</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>filename or path with filename</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>index</strong><span class="classifier">np.ndarray</span></dt><dd><p>containing the indices</p>
-</dd>
-<dt><strong>abundances</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>data frame containing index, element1 - element30 and columns according to the shells</p>
-</dd>
-</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -225,19 +200,44 @@ The first density describes the mean density in the center of the model and is n
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.generic_readers.read_uniform_abundances">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.generic_readers.</span></span><span class="sig-name descname"><span class="pre">read_uniform_abundances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abundances_section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_shells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/generic_readers.html#read_uniform_abundances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.generic_readers.read_uniform_abundances" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.io.model.readers.generic_readers.read_simple_ascii_mass_fractions">
+<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.generic_readers.</span></span><span class="sig-name descname"><span class="pre">read_simple_ascii_mass_fractions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/generic_readers.html#read_simple_ascii_mass_fractions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.generic_readers.read_simple_ascii_mass_fractions" title="Link to this definition">¶</a></dt>
+<dd><p>Reading a mass fraction file of the following structure (example; lines starting with hash will be ignored):
+The first line of mass fractions describe the mass fractions in the center of the model and are not used.
+#index element1, element2, …, element30
+0 0.4 0.3, .. 0.2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>filename or path with filename</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>index</strong><span class="classifier">np.ndarray</span></dt><dd><p>containing the indices</p>
+</dd>
+<dt><strong>mass_fractions</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>data frame containing index, element1 - element30 and columns according to the shells</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.io.model.readers.generic_readers.read_uniform_mass_fractions">
+<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.generic_readers.</span></span><span class="sig-name descname"><span class="pre">read_uniform_mass_fractions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass_fractions_section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_of_shells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/generic_readers.html#read_uniform_mass_fractions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.generic_readers.read_uniform_mass_fractions" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>abundances_section</strong><span class="classifier">config.model.abundances</span></dt><dd></dd>
+<dt><strong>mass_fractions_section</strong><span class="classifier">config.model.abundances</span></dt><dd></dd>
 <dt><strong>no_of_shells</strong><span class="classifier">int</span></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>abundance</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
-<dt><strong>isotope_abundance</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>mass_fractions</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>isotope_mass_fractions</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
