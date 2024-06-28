@@ -156,7 +156,6 @@ from tardis.visualization import plot_util as pu
         self.time_explosion = time_explosion
         self.velocity = velocity
         self.sdec_plotter = sdec.SDECPlotter(data)
-        return
 
 <div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>    @classmethod
     def from_simulation(cls, sim):
@@ -229,7 +228,6 @@ from tardis.visualization import plot_util as pu
             If species list contains invalid entries.
 
         &quot;&quot;&quot;
-        # Use the sdec.SDECPlotter instance to parse the species list
         self.sdec_plotter._parse_species_list(species_list)
         self._species_list = self.sdec_plotter._species_list
         self._species_mapped = self.sdec_plotter._species_mapped
@@ -243,7 +241,6 @@ from tardis.visualization import plot_util as pu
         Otherwise, generates labels from the species in the model.
         &quot;&quot;&quot;
         if self._species_list is None:
-            # If species_list is none then the labels are just elements
             species_name = [
                 atomic_number2element_symbol(atomic_num)
                 for atomic_num in self.species
@@ -252,11 +249,9 @@ from tardis.visualization import plot_util as pu
             species_name = []
             for species_key, species_ids in self._species_mapped.items():
                 if any(species in self.species for species in species_ids):
-                    # If the key is for an element, label by element symbol
                     if species_key % 100 == 0:
                         label = atomic_number2element_symbol(species_key // 100)
                     else:
-                        # If the key is for a specific ion, label by element and ion
                         atomic_number = species_key // 100
                         ion_number = species_key % 100
                         ion_numeral = int_to_roman(ion_number + 1)
@@ -271,10 +266,6 @@ from tardis.visualization import plot_util as pu
 
         Creates a list of colors corresponding to the species names.
         &quot;&quot;&quot;
-        # the colours depends on the species present in the model and what&#39;s requested
-        # some species need to be shown in the same colour, so the exact colours have to be
-        # worked out
-
         color_list = []
         species_keys = list(self._species_mapped.keys())
         num_species = len(species_keys)
@@ -333,6 +324,41 @@ from tardis.visualization import plot_util as pu
 
         return plot_data, plot_colors
 
+    def _prepare_plot(self, packets_mode, species_list, cmapname):
+        &quot;&quot;&quot;
+        Helper function to prepare the plot data and colors.
+
+        Parameters
+        ----------
+        packets_mode : str
+            Packet mode, either &#39;virtual&#39; or &#39;real&#39;.
+        species_list : list of str
+            List of species to plot.
+
+        Raises
+        ------
+        ValueError
+            If no species provided or no valid species found.
+
+        &quot;&quot;&quot;
+        self._parse_species_list(species_list)
+        species_in_model = np.unique(
+            self.data[packets_mode]
+            .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
+            .values
+        )
+        if self._species_list is None or not self._species_list:
+            raise ValueError(&quot;No species provided for plotting.&quot;)
+        msk = np.isin(self._species_list, species_in_model)
+        self.species = np.array(self._species_list)[msk]
+
+        if len(self.species) == 0:
+            raise ValueError(&quot;No valid species found for plotting.&quot;)
+
+        self._make_colorbar_labels()
+        self.cmap = cm.get_cmap(cmapname, len(self._species_name))
+        self._make_colorbar_colors()
+
 <div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_mpl"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">[docs]</a>    def generate_plot_mpl(
         self,
         packets_mode=&quot;virtual&quot;,
@@ -340,6 +366,8 @@ from tardis.visualization import plot_util as pu
         figsize=(11, 5),
         cmapname=&quot;jet&quot;,
         species_list=None,
+        log_scale=False,
+        bins_range=None,
     ):
         &quot;&quot;&quot;
         Generate the last interaction radius distribution plot using matplotlib.
@@ -356,42 +384,27 @@ from tardis.visualization import plot_util as pu
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
         species_list : list of str
             List of species to plot.
+        log_scale : bool, optional
+            If True, both axes are scaled logarithmically. Default is False.
+        bins_range : tuple of int, optional
+            Range of bins to plot, e.g., (3, 9). Default is None, which plots all bins.
 
         Returns
         -------
         matplotlib.axes.Axes
             Axes object with the plot.
         &quot;&quot;&quot;
+        self._prepare_plot(packets_mode, species_list, cmapname)
+        plot_data, plot_colors = self._generate_plot_data(packets_mode)
+        bin_edges = (self.velocity).to(&quot;km/s&quot;)
 
-        # Parse the requested species list
-        self._parse_species_list(species_list)
-        species_in_model = np.unique(
-            self.data[packets_mode]
-            .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
-            .values
-        )
-        if self._species_list is None or not self._species_list:
-            raise ValueError(&quot;No species provided for plotting.&quot;)
-        msk = np.isin(self._species_list, species_in_model)
-        self.species = np.array(self._species_list)[msk]
-
-        if len(self.species) == 0:
-            raise ValueError(&quot;No valid species found for plotting.&quot;)
+        if bins_range:
+            bin_edges = bin_edges[bins_range[0] - 1 : bins_range[1] + 1]
 
         if ax is None:
             self.ax = plt.figure(figsize=figsize).add_subplot(111)
         else:
             self.ax = ax
-
-        # Get the labels in the color bar. This determines the number of unique colors
-        self._make_colorbar_labels()
-        # Set colormap to be used in elements of emission and absorption plots
-        self.cmap = cm.get_cmap(cmapname, len(self._species_name))
-        # Get the number of unique colors
-        self._make_colorbar_colors()
-
-        plot_data, plot_colors = self._generate_plot_data(packets_mode)
-        bin_edges = (self.velocity).to(&quot;km/s&quot;)
 
         for data, color, name in zip(
             plot_data, plot_colors, self._species_name
@@ -415,6 +428,10 @@ from tardis.visualization import plot_util as pu
         self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=14)
         self.ax.grid(True, which=&quot;both&quot;, linestyle=&quot;--&quot;, linewidth=0.5)
         self.ax.legend(fontsize=15)
+        plt.legend(bbox_to_anchor=(1.0, 1.0), loc=&quot;upper left&quot;)
+        if log_scale:
+            self.ax.set_xscale(&quot;log&quot;)
+            self.ax.set_yscale(&quot;log&quot;)
         plt.tight_layout()
 
         return self.ax</div>
@@ -422,8 +439,12 @@ from tardis.visualization import plot_util as pu
 <div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_ply"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">[docs]</a>    def generate_plot_ply(
         self,
         packets_mode=&quot;virtual&quot;,
-        species_list=None,
+        fig=None,
+        graph_height=500,
         cmapname=&quot;jet&quot;,
+        species_list=None,
+        log_scale=False,
+        bins_range=None,
     ):
         &quot;&quot;&quot;
         Generate the last interaction radius distribution plot using plotly.
@@ -432,49 +453,43 @@ from tardis.visualization import plot_util as pu
         ----------
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
+        fig : plotly.graph_objects.Figure, optional
+            Plotly figure object to add the plot to. If None, creates a new figure.
+        graph_height : int, optional
+            Height of the graph in pixels. Default is 500.
+        cmapname : str, optional
+            Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
         species_list : list of str
             List of species to plot.
+        log_scale : bool, optional
+            If True, both axes are scaled logarithmically. Default is False.
+        bins_range : tuple of int, optional
+            Range of bins to plot, e.g., (3, 9). Default is None, which plots all bins.
 
         Returns
         -------
         plotly.graph_objects.Figure
             Plotly figure object with the plot.
         &quot;&quot;&quot;
-        # Parse the requested species list
-        self._parse_species_list(species_list)
-        species_in_model = np.unique(
-            self.data[packets_mode]
-            .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
-            .values
-        )
-        if self._species_list is None or not self._species_list:
-            raise ValueError(&quot;No species provided for plotting.&quot;)
-        msk = np.isin(self._species_list, species_in_model)
-        self.species = np.array(self._species_list)[msk]
-
-        if len(self.species) == 0:
-            raise ValueError(&quot;No valid species found for plotting.&quot;)
-        # Get the labels in the color bar. This determines the number of unique colors
-        self._make_colorbar_labels()
-        # Set colormap to be used in elements of emission and absorption plots
-        self.cmap = cm.get_cmap(cmapname, len(self._species_name))
-        # Get the number of unique colors
-        self._make_colorbar_colors()
-
+        self._prepare_plot(packets_mode, species_list, cmapname)
         plot_data, plot_colors = self._generate_plot_data(packets_mode)
         bin_edges = (self.velocity).to(&quot;km/s&quot;)
+
+        if bins_range:
+            bin_edges = bin_edges[bins_range[0] - 1 : bins_range[1] + 1]
+
         fig = go.Figure()
 
         for data, color, name in zip(
             plot_data, plot_colors, self._species_name
         ):
             hist, _ = np.histogram(data, bins=bin_edges)
-            self.step_x = np.repeat(bin_edges, 2)[1:-1]
-            self.step_y = np.repeat(hist, 2)
+            step_x = np.repeat(bin_edges, 2)[1:-1]
+            step_y = np.repeat(hist, 2)
             fig.add_trace(
                 go.Scatter(
-                    x=self.step_x,
-                    y=self.step_y,
+                    x=step_x,
+                    y=step_y,
                     mode=&quot;lines&quot;,
                     line=dict(
                         color=pu.to_rgb255_string(color),
@@ -486,12 +501,16 @@ from tardis.visualization import plot_util as pu
                 )
             )
         fig.update_layout(
+            height=graph_height,
             xaxis_title=&quot;Last Interaction Velocity (km/s)&quot;,
             yaxis_title=&quot;Packet Count&quot;,
             font=dict(size=14),
-            yaxis=dict(tickformat=&quot;.1e&quot;),
-            xaxis=dict(tickformat=&quot;.0f&quot;, tickmode=&quot;auto&quot;),
+            yaxis=dict(exponentformat=&quot;power&quot; if log_scale else &quot;e&quot;),
+            xaxis=dict(exponentformat=&quot;power&quot; if log_scale else &quot;none&quot;),
         )
+        if log_scale:
+            fig.update_xaxes(type=&quot;log&quot;)
+            fig.update_yaxes(type=&quot;log&quot;, dtick=1)
 
         return fig</div></div>
 </pre></div>
@@ -504,7 +523,7 @@ from tardis.visualization import plot_util as pu
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 27 Jun 2024.
+      <span class="lastupdated">Last updated on 28 Jun 2024.
       </span></p>
   </div>
 

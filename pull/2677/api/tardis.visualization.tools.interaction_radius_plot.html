@@ -205,7 +205,7 @@ for both packet modes (real, virtual).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">
-<span class="sig-name descname"><span class="pre">generate_plot_mpl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_mpl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_plot_mpl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_mpl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate the last interaction radius distribution plot using matplotlib.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -220,6 +220,10 @@ for both packet modes (real, virtual).</p>
 </dd>
 <dt><strong>species_list</strong><span class="classifier">list of str</span></dt><dd><p>List of species to plot.</p>
 </dd>
+<dt><strong>log_scale</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, both axes are scaled logarithmically. Default is False.</p>
+</dd>
+<dt><strong>bins_range</strong><span class="classifier">tuple of int, optional</span></dt><dd><p>Range of bins to plot, e.g., (3, 9). Default is None, which plots all bins.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -233,14 +237,24 @@ for both packet modes (real, virtual).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">
-<span class="sig-name descname"><span class="pre">generate_plot_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_plot_ply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packets_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'virtual'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmapname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/interaction_radius_plot.html#InteractionRadiusPlotter.generate_plot_ply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate the last interaction radius distribution plot using plotly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>packets_mode</strong><span class="classifier">str, optional</span></dt><dd><p>Packet mode, either ‘virtual’ or ‘real’. Default is ‘virtual’.</p>
 </dd>
+<dt><strong>fig</strong><span class="classifier">plotly.graph_objects.Figure, optional</span></dt><dd><p>Plotly figure object to add the plot to. If None, creates a new figure.</p>
+</dd>
+<dt><strong>graph_height</strong><span class="classifier">int, optional</span></dt><dd><p>Height of the graph in pixels. Default is 500.</p>
+</dd>
+<dt><strong>cmapname</strong><span class="classifier">str, optional</span></dt><dd><p>Colormap name. Default is ‘jet’. A specific colormap can be chosen, such as “jet”, “viridis”, “plasma”, etc.</p>
+</dd>
 <dt><strong>species_list</strong><span class="classifier">list of str</span></dt><dd><p>List of species to plot.</p>
+</dd>
+<dt><strong>log_scale</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, both axes are scaled logarithmically. Default is False.</p>
+</dd>
+<dt><strong>bins_range</strong><span class="classifier">tuple of int, optional</span></dt><dd><p>Range of bins to plot, e.g., (3, 9). Default is None, which plots all bins.</p>
 </dd>
 </dl>
 </dd>
@@ -269,7 +283,7 @@ for both packet modes (real, virtual).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 27 Jun 2024.
+      <span class="lastupdated">Last updated on 28 Jun 2024.
       </span></p>
   </div>
 
