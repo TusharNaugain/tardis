@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.ion_population &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -149,7 +149,9 @@ def calculate_block_ids_from_dataframe(dataframe):
     return np.hstack(([0], block_start_id, [len(dataframe)]))
 
 
-<div class="viewcode-block" id="PhiSahaLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaLTE">[docs]</a>class PhiSahaLTE(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="PhiSahaLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaLTE">[docs]</a>
+class PhiSahaLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -168,7 +170,9 @@ def calculate_block_ids_from_dataframe(dataframe):
 
     broadcast_ionization_energy = None
 
-<div class="viewcode-block" id="PhiSahaLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="PhiSahaLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(g_electron, beta_rad, partition_function, ionization_data):
         phis = np.empty(
             (
@@ -200,12 +204,16 @@ def calculate_block_ids_from_dataframe(dataframe):
 
         return pd.DataFrame(phis * phi_coefficient, index=phi_index)</div>
 
+
     @staticmethod
     def _calculate_block_ids(partition_function):
         partition_function.index.get_level_values(0).unique()</div>
 
 
-<div class="viewcode-block" id="ThermalPhiSahaLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.ThermalPhiSahaLTE">[docs]</a>class ThermalPhiSahaLTE(PhiSahaLTE):
+
+<div class="viewcode-block" id="ThermalPhiSahaLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.ThermalPhiSahaLTE">[docs]</a>
+class ThermalPhiSahaLTE(PhiSahaLTE):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -222,7 +230,9 @@ def calculate_block_ids_from_dataframe(dataframe):
                      \big)^{3/2}e^{\dfrac{-\chi_{i,j}}{kT_{\textrm{electron}}}}&quot;,
     )
 
-<div class="viewcode-block" id="ThermalPhiSahaLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.ThermalPhiSahaLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="ThermalPhiSahaLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.ThermalPhiSahaLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(
         thermal_g_electron,
         beta_electron,
@@ -234,10 +244,14 @@ def calculate_block_ids_from_dataframe(dataframe):
             beta_electron,
             thermal_lte_partition_function,
             ionization_data,
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="PhiSahaNebular"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular">[docs]</a>class PhiSahaNebular(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="PhiSahaNebular">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular">[docs]</a>
+class PhiSahaNebular(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -253,7 +267,9 @@ def calculate_block_ids_from_dataframe(dataframe):
                      \dfrac{T_{\textrm{electron}}}{T_{\textrm{rad}}}\right)^{1/2}&quot;,
     )
 
-<div class="viewcode-block" id="PhiSahaNebular.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="PhiSahaNebular.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular.calculate">[docs]</a>
+    @staticmethod
     def calculate(
         t_rad,
         w,
@@ -277,7 +293,10 @@ def calculate_block_ids_from_dataframe(dataframe):
         )
         return phis</div>
 
-<div class="viewcode-block" id="PhiSahaNebular.get_zeta_values"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular.get_zeta_values">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="PhiSahaNebular.get_zeta_values">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.PhiSahaNebular.get_zeta_values">[docs]</a>
+    @staticmethod
     def get_zeta_values(zeta_data, ion_index, t_rad):
         zeta_t_rad = zeta_data.columns.values.astype(np.float64)
         zeta_values = zeta_data.loc[ion_index].values.astype(np.float64)
@@ -294,10 +313,14 @@ def calculate_block_ids_from_dataframe(dataframe):
             )
             zeta[np.isnan(zeta)] = 1.0
 
-        return zeta</div></div>
+        return zeta</div>
+</div>
 
 
-<div class="viewcode-block" id="RadiationFieldCorrection"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.RadiationFieldCorrection">[docs]</a>class RadiationFieldCorrection(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="RadiationFieldCorrection">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.RadiationFieldCorrection">[docs]</a>
+class RadiationFieldCorrection(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -329,7 +352,9 @@ def calculate_block_ids_from_dataframe(dataframe):
         else:
             self.chi_0 = ionization_data.loc[self.chi_0_species]
 
-<div class="viewcode-block" id="RadiationFieldCorrection.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.RadiationFieldCorrection.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="RadiationFieldCorrection.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.RadiationFieldCorrection.calculate">[docs]</a>
+    def calculate(
         self, w, ionization_data, beta_rad, t_electrons, t_rad, beta_electron
     ):
         if getattr(self, &quot;chi_0&quot;, None) is None:
@@ -368,10 +393,14 @@ def calculate_block_ids_from_dataframe(dataframe):
             columns=np.arange(len(t_rad)),
             index=ionization_data.index,
         )
-        return delta</div></div>
+        return delta</div>
+</div>
 
 
-<div class="viewcode-block" id="IonNumberDensity"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity">[docs]</a>class IonNumberDensity(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="IonNumberDensity">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity">[docs]</a>
+class IonNumberDensity(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Convergence process to find the correct solution. A trial value for
     the electron density is initiated in a particular zone. The ion
@@ -406,7 +435,9 @@ def calculate_block_ids_from_dataframe(dataframe):
         self.block_ids = None
         self._electron_densities = electron_densities
 
-<div class="viewcode-block" id="IonNumberDensity.calculate_with_n_electron"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity.calculate_with_n_electron">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="IonNumberDensity.calculate_with_n_electron">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity.calculate_with_n_electron">[docs]</a>
+    @staticmethod
     def calculate_with_n_electron(
         phi,
         partition_function,
@@ -444,11 +475,14 @@ def calculate_block_ids_from_dataframe(dataframe):
             block_ids,
         )</div>
 
+
     @staticmethod
     def _calculate_block_ids(phi):
         return calculate_block_ids_from_dataframe(phi)
 
-<div class="viewcode-block" id="IonNumberDensity.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity.calculate">[docs]</a>    def calculate(self, phi, partition_function, number_density):
+<div class="viewcode-block" id="IonNumberDensity.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensity.calculate">[docs]</a>
+    def calculate(self, phi, partition_function, number_density):
         if self._electron_densities is None:
             n_e_convergence_threshold = 0.05
             n_electron = number_density.sum(axis=0)
@@ -500,10 +534,14 @@ def calculate_block_ids_from_dataframe(dataframe):
                 self.ion_zero_threshold,
             )
 
-        return ion_number_density, n_electron</div></div>
+        return ion_number_density, n_electron</div>
+</div>
 
 
-<div class="viewcode-block" id="IonNumberDensityHeNLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE">[docs]</a>class IonNumberDensityHeNLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="IonNumberDensityHeNLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE">[docs]</a>
+class IonNumberDensityHeNLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Convergence process to find the correct solution. A trial value for
     the electron density is initiated in a particular zone. The ion
@@ -539,7 +577,9 @@ def calculate_block_ids_from_dataframe(dataframe):
         self.block_ids = None
         self._electron_densities = electron_densities
 
-<div class="viewcode-block" id="IonNumberDensityHeNLTE.update_he_population"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE.update_he_population">[docs]</a>    def update_he_population(
+<div class="viewcode-block" id="IonNumberDensityHeNLTE.update_he_population">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE.update_he_population">[docs]</a>
+    def update_he_population(
         self, helium_population, n_electron, number_density
     ):
         helium_population_updated = helium_population.copy()
@@ -556,7 +596,10 @@ def calculate_block_ids_from_dataframe(dataframe):
         helium_population_updated.update(normalised)
         return helium_population_updated</div>
 
-<div class="viewcode-block" id="IonNumberDensityHeNLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE.calculate">[docs]</a>    def calculate(
+
+<div class="viewcode-block" id="IonNumberDensityHeNLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.IonNumberDensityHeNLTE.calculate">[docs]</a>
+    def calculate(
         self, phi, partition_function, number_density, helium_population
     ):
         if self._electron_densities is None:
@@ -636,10 +679,14 @@ def calculate_block_ids_from_dataframe(dataframe):
             ion_number_density.loc[2, 2].update(
                 helium_population_updated.loc[2, 0]
             )
-        return ion_number_density, n_electron, helium_population_updated</div></div>
+        return ion_number_density, n_electron, helium_population_updated</div>
+</div>
 
 
-<div class="viewcode-block" id="SahaFactor"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.SahaFactor">[docs]</a>class SahaFactor(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="SahaFactor">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.SahaFactor">[docs]</a>
+class SahaFactor(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Calculates the &#39;Saha factor&#39; Phi_ik = n_i* / (n_k* n_e), i.e.,
     the ratio of the LTE level population n_i*, and the product of
@@ -655,7 +702,9 @@ def calculate_block_ids_from_dataframe(dataframe):
     outputs = (&quot;phi_ik&quot;,)
     latex_name = (r&quot;\Phi_{i,\kappa}&quot;,)
 
-<div class="viewcode-block" id="SahaFactor.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.SahaFactor.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="SahaFactor.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.ion_population.html#tardis.plasma.properties.ion_population.SahaFactor.calculate">[docs]</a>
+    def calculate(
         self,
         thermal_phi_lte,
         thermal_lte_level_boltzmann_factor,
@@ -676,12 +725,14 @@ def calculate_block_ids_from_dataframe(dataframe):
         ].values
         return boltzmann_factor / (phi_saha * partition_function)</div>
 
+
     @staticmethod
     def _prepare_boltzmann_factor(boltzmann_factor):
         atomic_number = boltzmann_factor.index.get_level_values(0)
         ion_number = boltzmann_factor.index.get_level_values(1)
         selected_ions_mask = atomic_number != ion_number
         return boltzmann_factor[selected_ions_mask]</div>
+
 </pre></div>
 
            </div>
@@ -692,7 +743,7 @@ def calculate_block_ids_from_dataframe(dataframe):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

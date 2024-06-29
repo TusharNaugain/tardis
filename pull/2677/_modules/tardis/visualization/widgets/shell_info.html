@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.widgets.shell_info &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -130,7 +130,9 @@ import numpy as np
 import ipywidgets as ipw
 
 
-<div class="viewcode-block" id="BaseShellInfo"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo">[docs]</a>class BaseShellInfo:
+<div class="viewcode-block" id="BaseShellInfo">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo">[docs]</a>
+class BaseShellInfo:
     &quot;&quot;&quot;The simulation information that is used by shell info widget&quot;&quot;&quot;
 
     def __init__(
@@ -170,7 +172,9 @@ import ipywidgets as ipw
         self.ion_number_density = ion_number_density
         self.level_number_density = level_number_density
 
-<div class="viewcode-block" id="BaseShellInfo.shells_data"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.shells_data">[docs]</a>    def shells_data(self):
+<div class="viewcode-block" id="BaseShellInfo.shells_data">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.shells_data">[docs]</a>
+    def shells_data(self):
         &quot;&quot;&quot;Generates shells data in a form that can be used by a table widget
 
         Returns
@@ -192,7 +196,10 @@ import ipywidgets as ipw
         # Format to string to make qgrid show values in scientific notations
         return shells_temp_w.applymap(lambda x: f&quot;{x:.6e}&quot;)</div>
 
-<div class="viewcode-block" id="BaseShellInfo.element_count"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.element_count">[docs]</a>    def element_count(self, shell_num):
+
+<div class="viewcode-block" id="BaseShellInfo.element_count">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.element_count">[docs]</a>
+    def element_count(self, shell_num):
         &quot;&quot;&quot;Generates fractional abundance of elements present in a specific
         shell in a form that can be used by a table widget
 
@@ -223,7 +230,10 @@ import ipywidgets as ipw
             }
         )</div>
 
-<div class="viewcode-block" id="BaseShellInfo.ion_count"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.ion_count">[docs]</a>    def ion_count(self, atomic_num, shell_num):
+
+<div class="viewcode-block" id="BaseShellInfo.ion_count">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.ion_count">[docs]</a>
+    def ion_count(self, atomic_num, shell_num):
         &quot;&quot;&quot;Generates fractional abundance of ions of a specific element and
         shell, in a form that can be used by a table widget
 
@@ -257,7 +267,10 @@ import ipywidgets as ipw
             }
         )</div>
 
-<div class="viewcode-block" id="BaseShellInfo.level_count"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.level_count">[docs]</a>    def level_count(self, ion, atomic_num, shell_num):
+
+<div class="viewcode-block" id="BaseShellInfo.level_count">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.BaseShellInfo.level_count">[docs]</a>
+    def level_count(self, ion, atomic_num, shell_num):
         &quot;&quot;&quot;Generates fractional abundance of levels of a specific ion, element
         and shell, in a form that can be used by a table widget
 
@@ -288,10 +301,14 @@ import ipywidgets as ipw
         level_count_data.index.name = &quot;Level&quot;
         level_count_data.name = f&quot;Frac. Ab. (Ion={ion})&quot;
         level_count_data.fillna(0, inplace=True)
-        return level_count_data.map(&quot;{:.6e}&quot;.format).to_frame()</div></div>
+        return level_count_data.map(&quot;{:.6e}&quot;.format).to_frame()</div>
+</div>
 
 
-<div class="viewcode-block" id="SimulationShellInfo"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.SimulationShellInfo">[docs]</a>class SimulationShellInfo(BaseShellInfo):
+
+<div class="viewcode-block" id="SimulationShellInfo">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.SimulationShellInfo">[docs]</a>
+class SimulationShellInfo(BaseShellInfo):
     &quot;&quot;&quot;The simulation information that is used by shell info widget, obtained
     from a TARDIS Simulation object
     &quot;&quot;&quot;
@@ -314,7 +331,10 @@ import ipywidgets as ipw
         )</div>
 
 
-<div class="viewcode-block" id="HDFShellInfo"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.HDFShellInfo">[docs]</a>class HDFShellInfo(BaseShellInfo):
+
+<div class="viewcode-block" id="HDFShellInfo">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.HDFShellInfo">[docs]</a>
+class HDFShellInfo(BaseShellInfo):
     &quot;&quot;&quot;The simulation information that is used by shell info widget, obtained
     from a simulation HDF file
     &quot;&quot;&quot;
@@ -340,7 +360,10 @@ import ipywidgets as ipw
             )</div>
 
 
-<div class="viewcode-block" id="ShellInfoWidget"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget">[docs]</a>class ShellInfoWidget:
+
+<div class="viewcode-block" id="ShellInfoWidget">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget">[docs]</a>
+class ShellInfoWidget:
     &quot;&quot;&quot;The Shell Info Widget to explore abundances in different shells.
 
     It consists of four interlinked table widgets - shells table; element count,
@@ -419,7 +442,9 @@ import ipywidgets as ipw
             },
         )
 
-<div class="viewcode-block" id="ShellInfoWidget.update_element_count_table"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_element_count_table">[docs]</a>    def update_element_count_table(self, event, qgrid_widget):
+<div class="viewcode-block" id="ShellInfoWidget.update_element_count_table">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_element_count_table">[docs]</a>
+    def update_element_count_table(self, event, qgrid_widget):
         &quot;&quot;&quot;Event listener to update the data in element count table widget based
         on interaction (row selected event) in shells table widget.
 
@@ -453,7 +478,10 @@ import ipywidgets as ipw
         # Select 0th row in count table which will trigger update_ion_count_table
         self.element_count_table.change_selection([atomic_num0])</div>
 
-<div class="viewcode-block" id="ShellInfoWidget.update_ion_count_table"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_ion_count_table">[docs]</a>    def update_ion_count_table(self, event, qgrid_widget):
+
+<div class="viewcode-block" id="ShellInfoWidget.update_ion_count_table">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_ion_count_table">[docs]</a>
+    def update_ion_count_table(self, event, qgrid_widget):
         &quot;&quot;&quot;Event listener to update the data in ion count table widget based
         on interaction (row selected event) in element count table widget.
 
@@ -488,7 +516,10 @@ import ipywidgets as ipw
             self.ion_count_table.change_selection([])
         self.ion_count_table.change_selection([ion0])</div>
 
-<div class="viewcode-block" id="ShellInfoWidget.update_level_count_table"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_level_count_table">[docs]</a>    def update_level_count_table(self, event, qgrid_widget):
+
+<div class="viewcode-block" id="ShellInfoWidget.update_level_count_table">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.update_level_count_table">[docs]</a>
+    def update_level_count_table(self, event, qgrid_widget):
         &quot;&quot;&quot;Event listener to update the data in level count table widget based
         on interaction (row selected event) in ion count table widget.
 
@@ -522,7 +553,10 @@ import ipywidgets as ipw
             ion, atomic_num, shell_num
         )</div>
 
-<div class="viewcode-block" id="ShellInfoWidget.display"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.display">[docs]</a>    def display(
+
+<div class="viewcode-block" id="ShellInfoWidget.display">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.ShellInfoWidget.display">[docs]</a>
+    def display(
         self,
         shells_table_width=&quot;30%&quot;,
         element_count_table_width=&quot;24%&quot;,
@@ -605,10 +639,14 @@ import ipywidgets as ipw
 
             # Put text horizontally before shell info container
             shell_info_widget = ipw.VBox([text, shell_info_tables_container])
-            return shell_info_widget</div></div>
+            return shell_info_widget</div>
+</div>
 
 
-<div class="viewcode-block" id="shell_info_from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_simulation">[docs]</a>def shell_info_from_simulation(sim_model):
+
+<div class="viewcode-block" id="shell_info_from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_simulation">[docs]</a>
+def shell_info_from_simulation(sim_model):
     &quot;&quot;&quot;Create shell info widget from a TARDIS simulation object
 
     Parameters
@@ -624,7 +662,10 @@ import ipywidgets as ipw
     return ShellInfoWidget(shell_info_data)</div>
 
 
-<div class="viewcode-block" id="shell_info_from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_hdf">[docs]</a>def shell_info_from_hdf(hdf_fpath):
+
+<div class="viewcode-block" id="shell_info_from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_hdf">[docs]</a>
+def shell_info_from_hdf(hdf_fpath):
     &quot;&quot;&quot;Create shell info widget from a simulation HDF file
 
     Parameters
@@ -640,6 +681,7 @@ import ipywidgets as ipw
     &quot;&quot;&quot;
     shell_info_data = HDFShellInfo(hdf_fpath)
     return ShellInfoWidget(shell_info_data)</div>
+
 </pre></div>
 
            </div>
@@ -650,7 +692,7 @@ import ipywidgets as ipw
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.readers.blondin_toymodel &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -128,7 +128,9 @@ PATTERN_REMOVE_BRACKET = re.compile(r&quot;\[.+\]&quot;)
 T0_PATTERN = re.compile(&quot;tend = (.+)\n&quot;)
 
 
-<div class="viewcode-block" id="read_blondin_toymodel"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.blondin_toymodel.html#tardis.io.model.readers.blondin_toymodel.read_blondin_toymodel">[docs]</a>def read_blondin_toymodel(fname):
+<div class="viewcode-block" id="read_blondin_toymodel">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.blondin_toymodel.html#tardis.io.model.readers.blondin_toymodel.read_blondin_toymodel">[docs]</a>
+def read_blondin_toymodel(fname):
     &quot;&quot;&quot;
     Reading the Blondin toy-model format and returns a dictionary and a
     dataframe
@@ -239,7 +241,10 @@ T0_PATTERN = re.compile(&quot;tend = (.+)\n&quot;)
     return blondin_dict, blondin_csv</div>
 
 
-<div class="viewcode-block" id="convert_blondin_toymodel"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.blondin_toymodel.html#tardis.io.model.readers.blondin_toymodel.convert_blondin_toymodel">[docs]</a>def convert_blondin_toymodel(
+
+<div class="viewcode-block" id="convert_blondin_toymodel">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.blondin_toymodel.html#tardis.io.model.readers.blondin_toymodel.convert_blondin_toymodel">[docs]</a>
+def convert_blondin_toymodel(
     in_fname, out_fname, v_inner, v_outer, conversion_t_electron_rad=None
 ):
     &quot;&quot;&quot;
@@ -279,6 +284,7 @@ T0_PATTERN = re.compile(&quot;tend = (.+)\n&quot;)
 
     with open(out_fname, &quot;w&quot;) as fh:
         fh.write(csvy_file)</div>
+
 </pre></div>
 
            </div>
@@ -289,7 +295,7 @@ T0_PATTERN = re.compile(&quot;tend = (.+)\n&quot;)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

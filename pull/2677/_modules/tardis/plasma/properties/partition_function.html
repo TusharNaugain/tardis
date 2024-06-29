@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.partition_function &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -137,7 +137,9 @@ __all__ = [
 ]
 
 
-<div class="viewcode-block" id="LevelBoltzmannFactorLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorLTE">[docs]</a>class LevelBoltzmannFactorLTE(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="LevelBoltzmannFactorLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorLTE">[docs]</a>
+class LevelBoltzmannFactorLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -155,7 +157,9 @@ __all__ = [
         r&quot;g_{i,j,k}e^{\dfrac{-\epsilon_{i,j,k}}{k_{\textrm{B}}T_{\textrm{rad}}}}&quot;,
     )
 
-<div class="viewcode-block" id="LevelBoltzmannFactorLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="LevelBoltzmannFactorLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(excitation_energy, g, beta_rad, levels):
         exponential = np.exp(np.outer(excitation_energy.values, -beta_rad))
         level_boltzmann_factor_array = g.values[np.newaxis].T * exponential
@@ -165,10 +169,14 @@ __all__ = [
             columns=np.arange(len(beta_rad)),
             dtype=np.float64,
         )
-        return level_boltzmann_factor</div></div>
+        return level_boltzmann_factor</div>
+</div>
 
 
-<div class="viewcode-block" id="ThermalLevelBoltzmannFactorLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLevelBoltzmannFactorLTE">[docs]</a>class ThermalLevelBoltzmannFactorLTE(LevelBoltzmannFactorLTE):
+
+<div class="viewcode-block" id="ThermalLevelBoltzmannFactorLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLevelBoltzmannFactorLTE">[docs]</a>
+class ThermalLevelBoltzmannFactorLTE(LevelBoltzmannFactorLTE):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -186,14 +194,20 @@ __all__ = [
         r&quot;g_{i,j,k}e^{\dfrac{-\epsilon_{i,j,k}}{k_{\textrm{B}}T_{\textrm{electron}}}}&quot;,
     )
 
-<div class="viewcode-block" id="ThermalLevelBoltzmannFactorLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLevelBoltzmannFactorLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="ThermalLevelBoltzmannFactorLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLevelBoltzmannFactorLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(excitation_energy, g, beta_electron, levels):
         return super(
             ThermalLevelBoltzmannFactorLTE, ThermalLevelBoltzmannFactorLTE
-        ).calculate(excitation_energy, g, beta_electron, levels)</div></div>
+        ).calculate(excitation_energy, g, beta_electron, levels)</div>
+</div>
 
 
-<div class="viewcode-block" id="LevelBoltzmannFactorDiluteLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorDiluteLTE">[docs]</a>class LevelBoltzmannFactorDiluteLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="LevelBoltzmannFactorDiluteLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorDiluteLTE">[docs]</a>
+class LevelBoltzmannFactorDiluteLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -212,17 +226,23 @@ __all__ = [
         r&quot;Wg_{i,j,k}e^{\dfrac{-\epsilon_{i,j,k}}{k_{\textrm{B}}T_{\textrm{rad}}}}&quot;,
     )
 
-<div class="viewcode-block" id="LevelBoltzmannFactorDiluteLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorDiluteLTE.calculate">[docs]</a>    def calculate(
+<div class="viewcode-block" id="LevelBoltzmannFactorDiluteLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorDiluteLTE.calculate">[docs]</a>
+    def calculate(
         self, levels, g, excitation_energy, beta_rad, w, metastability
     ):
         level_boltzmann_factor = LevelBoltzmannFactorLTE.calculate(
             excitation_energy, g, beta_rad, levels
         )
         level_boltzmann_factor[~metastability] *= w
-        return level_boltzmann_factor</div></div>
+        return level_boltzmann_factor</div>
+</div>
 
 
-<div class="viewcode-block" id="LevelBoltzmannFactorNoNLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNoNLTE">[docs]</a>class LevelBoltzmannFactorNoNLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="LevelBoltzmannFactorNoNLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNoNLTE">[docs]</a>
+class LevelBoltzmannFactorNoNLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -233,12 +253,18 @@ __all__ = [
 
     outputs = (&quot;level_boltzmann_factor&quot;,)
 
-<div class="viewcode-block" id="LevelBoltzmannFactorNoNLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNoNLTE.calculate">[docs]</a>    @staticmethod
+<div class="viewcode-block" id="LevelBoltzmannFactorNoNLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNoNLTE.calculate">[docs]</a>
+    @staticmethod
     def calculate(general_level_boltzmann_factor):
-        return general_level_boltzmann_factor</div></div>
+        return general_level_boltzmann_factor</div>
+</div>
 
 
-<div class="viewcode-block" id="LevelBoltzmannFactorNLTE"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE">[docs]</a>class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
+
+<div class="viewcode-block" id="LevelBoltzmannFactorNLTE">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE">[docs]</a>
+class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -249,13 +275,18 @@ __all__ = [
 
     outputs = (&quot;level_boltzmann_factor&quot;,)
 
-<div class="viewcode-block" id="LevelBoltzmannFactorNLTE.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE.calculate">[docs]</a>    def calculate(self):
+<div class="viewcode-block" id="LevelBoltzmannFactorNLTE.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE.calculate">[docs]</a>
+    def calculate(self):
         raise AttributeError(
             &quot;This attribute is not defined on the parent class.&quot;
             &quot;Please use one of the subclasses.&quot;
         )</div>
 
-<div class="viewcode-block" id="LevelBoltzmannFactorNLTE.from_config"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE.from_config">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="LevelBoltzmannFactorNLTE.from_config">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.LevelBoltzmannFactorNLTE.from_config">[docs]</a>
+    @staticmethod
     def from_config(nlte_conf):
         if nlte_conf.classical_nebular and not nlte_conf.coronal_approximation:
             return LevelBoltzmannFactorNLTEClassic
@@ -269,6 +300,7 @@ __all__ = [
             )
         else:
             return LevelBoltzmannFactorNLTEGeneral</div>
+
 
     def __init__(self, plasma_parent):
         &quot;&quot;&quot;
@@ -465,6 +497,7 @@ __all__ = [
         return general_level_boltzmann_factor</div>
 
 
+
 class LevelBoltzmannFactorNLTECoronal(LevelBoltzmannFactorNLTE):
     calculate = LevelBoltzmannFactorNLTE._calculate_coronal_approximation
 
@@ -477,7 +510,9 @@ class LevelBoltzmannFactorNLTEGeneral(LevelBoltzmannFactorNLTE):
     calculate = LevelBoltzmannFactorNLTE._calculate_general
 
 
-<div class="viewcode-block" id="PartitionFunction"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.PartitionFunction">[docs]</a>class PartitionFunction(ProcessingPlasmaProperty):
+<div class="viewcode-block" id="PartitionFunction">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.PartitionFunction">[docs]</a>
+class PartitionFunction(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -490,13 +525,19 @@ class LevelBoltzmannFactorNLTEGeneral(LevelBoltzmannFactorNLTE):
     latex_name = (&quot;Z_{i,j}&quot;,)
     latex_formula = (r&quot;\sum_{k}bf_{i,j,k}&quot;,)
 
-<div class="viewcode-block" id="PartitionFunction.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.PartitionFunction.calculate">[docs]</a>    def calculate(self, level_boltzmann_factor):
+<div class="viewcode-block" id="PartitionFunction.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.PartitionFunction.calculate">[docs]</a>
+    def calculate(self, level_boltzmann_factor):
         return level_boltzmann_factor.groupby(
             level=[&quot;atomic_number&quot;, &quot;ion_number&quot;]
-        ).sum()</div></div>
+        ).sum()</div>
+</div>
 
 
-<div class="viewcode-block" id="ThermalLTEPartitionFunction"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLTEPartitionFunction">[docs]</a>class ThermalLTEPartitionFunction(PartitionFunction):
+
+<div class="viewcode-block" id="ThermalLTEPartitionFunction">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLTEPartitionFunction">[docs]</a>
+class ThermalLTEPartitionFunction(PartitionFunction):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -508,10 +549,14 @@ class LevelBoltzmannFactorNLTEGeneral(LevelBoltzmannFactorNLTE):
     outputs = (&quot;thermal_lte_partition_function&quot;,)
     latex_name = (r&quot;Z_{i,j}(T_\mathrm{e}&quot;,)
 
-<div class="viewcode-block" id="ThermalLTEPartitionFunction.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLTEPartitionFunction.calculate">[docs]</a>    def calculate(self, thermal_lte_level_boltzmann_factor):
+<div class="viewcode-block" id="ThermalLTEPartitionFunction.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.partition_function.html#tardis.plasma.properties.partition_function.ThermalLTEPartitionFunction.calculate">[docs]</a>
+    def calculate(self, thermal_lte_level_boltzmann_factor):
         return super(ThermalLTEPartitionFunction, self).calculate(
             thermal_lte_level_boltzmann_factor
-        )</div></div>
+        )</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -522,7 +567,7 @@ class LevelBoltzmannFactorNLTEGeneral(LevelBoltzmannFactorNLTE):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

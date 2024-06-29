@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.estimators.continuum_radfield_properties module &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -67,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -86,6 +86,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
@@ -146,44 +147,44 @@
            <div itemprop="articleBody">
              
   <section id="module-tardis.transport.montecarlo.estimators.continuum_radfield_properties">
-<span id="tardis-transport-montecarlo-estimators-continuum-radfield-properties-module"></span><h1>tardis.transport.montecarlo.estimators.continuum_radfield_properties module<a class="headerlink" href="#module-tardis.transport.montecarlo.estimators.continuum_radfield_properties" title="Permalink to this heading">¶</a></h1>
+<span id="tardis-transport-montecarlo-estimators-continuum-radfield-properties-module"></span><h1>tardis.transport.montecarlo.estimators.continuum_radfield_properties module<a class="headerlink" href="#module-tardis.transport.montecarlo.estimators.continuum_radfield_properties" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">ContinuumProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulated_recomb_rate_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ionization_rate_coefficient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#ContinuumProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">ContinuumProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulated_recomb_rate_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ionization_rate_coefficient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#ContinuumProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.photo_ionization_rate_coefficient">
-<span class="sig-name descname"><span class="pre">photo_ionization_rate_coefficient</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.photo_ionization_rate_coefficient" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">photo_ionization_rate_coefficient</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.photo_ionization_rate_coefficient" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recomb_rate_factor">
-<span class="sig-name descname"><span class="pre">stimulated_recomb_rate_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recomb_rate_factor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">stimulated_recomb_rate_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recomb_rate_factor" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">DiluteBlackBodyContinuumPropertiesSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData" title="tardis.io.atom_data.base.AtomData"><span class="pre">AtomData</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">DiluteBlackBodyContinuumPropertiesSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData" title="tardis.io.atom_data.base.AtomData"><span class="pre">AtomData</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table">
-<span class="sig-name descname"><span class="pre">calculate_mean_intensity_photo_ion_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilute_blackbody_radiationfield_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState" title="tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState"><span class="pre">DiluteBlackBodyRadiationFieldState</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_mean_intensity_photo_ion_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilute_blackbody_radiationfield_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState" title="tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState"><span class="pre">DiluteBlackBodyRadiationFieldState</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_mean_intensity_photo_ion_table" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient">
-<span class="sig-name descname"><span class="pre">calculate_photo_ionization_rate_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_intensity_photo_ion_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_photo_ionization_rate_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_intensity_photo_ion_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_photo_ionization_rate_coefficient" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the photoionization rate coefficient.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mean_intensity_photo_ion_df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>The mean intensity of the radiation field at the frequencies of the photoionization table.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>pd.DataFrame</dt><dd><p>The calculated photoionization rate coefficient.</p>
 </dd>
@@ -196,10 +197,10 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor">
-<span class="sig-name descname"><span class="pre">calculate_stimulated_recomb_rate_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_intensity_photo_ion_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ion_boltzmann_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_stimulated_recomb_rate_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_intensity_photo_ion_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ion_boltzmann_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the stimulated recombination rate factor (the phi_ik are multiplied in the plasma).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mean_intensity_photo_ion_df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>The mean intensity of the radiation field at the frequencies of the photoionization table.</p>
 </dd>
@@ -207,7 +208,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>pd.DataFrame</dt><dd><p>The calculated stimulated recombination rate factor.</p>
 </dd>
@@ -220,10 +221,10 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilute_blackbody_radiationfield_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState" title="tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState"><span class="pre">DiluteBlackBodyRadiationFieldState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_electrons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.units.quantity.Quantity.html#astropy.units.quantity.Quantity" title="(in Astropy v6.1)"><span class="pre">Quantity</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.solve" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilute_blackbody_radiationfield_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.model.radiation_field_state.html#tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState" title="tardis.model.radiation_field_state.DiluteBlackBodyRadiationFieldState"><span class="pre">DiluteBlackBodyRadiationFieldState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_electrons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.units.quantity.Quantity.html#astropy.units.quantity.Quantity" title="(in Astropy v6.1)"><span class="pre">Quantity</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#DiluteBlackBodyContinuumPropertiesSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver.solve" title="Link to this definition">¶</a></dt>
 <dd><p>Solve for the continuum properties.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>dilute_blackbody_radiationfield_state</strong><span class="classifier">DiluteBlackBodyRadiationFieldState</span></dt><dd><p>The state of the dilute blackbody radiation field.</p>
 </dd>
@@ -231,7 +232,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ContinuumProperties</dt><dd><p>The calculated continuum properties.</p>
 </dd>
@@ -244,14 +245,14 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">MCContinuumPropertiesSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData" title="tardis.io.atom_data.base.AtomData"><span class="pre">AtomData</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#MCContinuumPropertiesSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">MCContinuumPropertiesSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData" title="tardis.io.atom_data.base.AtomData"><span class="pre">AtomData</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#MCContinuumPropertiesSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radfield_mc_estimators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.transport.montecarlo.estimators.radfield_mc_estimators.html#tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators" title="tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators"><span class="pre">RadiationFieldMCEstimators</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_simulation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#MCContinuumPropertiesSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver.solve" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radfield_mc_estimators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tardis.transport.montecarlo.estimators.radfield_mc_estimators.html#tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators" title="tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators"><span class="pre">RadiationFieldMCEstimators</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_simulation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#MCContinuumPropertiesSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver.solve" title="Link to this definition">¶</a></dt>
 <dd><p>Solve for the continuum properties.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>radfield_mc_estimators</strong><span class="classifier">RadiationFieldMCEstimators</span></dt><dd><p>The Monte Carlo estimators for the radiation field.</p>
 </dd>
@@ -261,7 +262,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ContinuumProperties</dt><dd><p>The calculated continuum properties.</p>
 </dd>
@@ -286,7 +287,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

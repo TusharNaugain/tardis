@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basic Profile of TARDIS &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -66,6 +65,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -169,7 +169,7 @@
 <div class="admonition note">
 <p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/contributing/tools/profiling/profiling_example.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
 </div><section id="Basic-Profile-of-TARDIS">
-<h1>Basic Profile of TARDIS<a class="headerlink" href="#Basic-Profile-of-TARDIS" title="Permalink to this heading">¶</a></h1>
+<h1>Basic Profile of TARDIS<a class="headerlink" href="#Basic-Profile-of-TARDIS" title="Link to this heading">¶</a></h1>
 <p>A profile is a set of statistics that describes how often and for how long various parts of the program execute (cProfile). A majority of TARDIS can be profiled, however, some code is Numba code, which cannot be profiled. This is because Numba compiles these functions directly to machine code; the python interpreter doesn’t see these functions and therefore it doesn’t read them.</p>
 <p>This notebook uses snakeviz, which is a graphical viewer for the output of cProfile, to visualize the results and make them interactive. In order to use SnakeViz, you must first download it via pip. The first cell loads SnakeViz and gets the notebook ready to run TARDIS.</p>
 <div class="nbinput docutils container">
@@ -212,7 +212,7 @@ run_tardis(&#39;tardis_example.yml&#39;)
 <p>The bottom left montecarlo_radial1d is montecarlo_main_loop. This function does a majority of the computation, yet there is nothing below it. This is because it, and all the functions that it calls, are Numba functions. montecarlo_main_loop is visible as montecarlo_radial1d calls it, but the functions that it calls are not visible as it is a Numba function.</p>
 <p>If the SnakeViz is run again without restarting the kernel, then the times will decrease and more time will be spent in montecarlo_main_loop relative to montecarlo_radial1d, as the Numba functions will have all compiled.</p>
 <p>If you run this notebook the HTML from cell 2 will be displayed at the bottom without issue; the lower cell is just a solution to display the SnakeViz output without having access to the HTML.</p>
-<img alt="../../../_images/tardis_prof.png" src="../../../_images/tardis_prof.png" />
+<p><img alt="image1" src="../../../_images/tardis_prof.png" /></p>
 </section>
 
 
@@ -227,7 +227,7 @@ run_tardis(&#39;tardis_example.yml&#39;)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

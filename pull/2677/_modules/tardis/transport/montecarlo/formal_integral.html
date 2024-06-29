@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.formal_integral &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -127,18 +127,21 @@ from numba import njit, char, float64, int64, typeof, byte, prange
 from numba.experimental import jitclass
 
 
+from tardis.opacities.opacity_state import (
+    OpacityState,
+    opacity_state_initialize,
+)
 from tardis.transport.montecarlo.numba_config import SIGMA_THOMSON
 from tardis.transport.montecarlo import njit_dict, njit_dict_no_parallel
 from tardis.transport.montecarlo.numba_interface import (
     opacity_state_initialize,
-    NumbaModel,
     OpacityState,
 )
 from tardis.transport.montecarlo.formal_integral_cuda import (
     CudaFormalIntegrator,
 )
 
-from tardis.transport.montecarlo.spectrum import TARDISSpectrum
+from tardis.spectrum import TARDISSpectrum
 
 C_INV = 3.33564e-11
 M_PI = np.arccos(-1)
@@ -146,14 +149,19 @@ KB_CGS = 1.3806488e-16
 H_CGS = 6.62606957e-27
 
 
-<div class="viewcode-block" id="IntegrationError"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.IntegrationError">[docs]</a>class IntegrationError(Exception):
+<div class="viewcode-block" id="IntegrationError">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.IntegrationError">[docs]</a>
+class IntegrationError(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="numba_formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.numba_formal_integral">[docs]</a>@njit(**njit_dict)
+
+<div class="viewcode-block" id="numba_formal_integral">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.numba_formal_integral">[docs]</a>
+@njit(**njit_dict)
 def numba_formal_integral(
     geometry,
-    model,
+    time_explosion,
     plasma,
     iT,
     inu,
@@ -166,8 +174,6 @@ def numba_formal_integral(
     N,
 ):
     &quot;&quot;&quot;
-    model, plasma, and estimator are the numba variants
-
     Returns
     -------
     L : float64 array
@@ -226,7 +232,7 @@ def numba_formal_integral(
 
             # initialize z intersections for p values
             size_z = populate_z(
-                geometry, model, p, z, shell_id
+                geometry, time_explosion, p, z, shell_id
             )  # check returns
             # initialize I_nu
             if p &lt;= R_ph:
@@ -240,7 +246,7 @@ def numba_formal_integral(
             idx_nu_start = line_search(plasma.line_list_nu, nu_start, size_line)
             offset = shell_id[0] * size_line
             # start tracking accumulated e-scattering optical depth
-            zstart = model.time_explosion / C_INV * (1.0 - z[0])
+            zstart = time_explosion / C_INV * (1.0 - z[0])
             # Initialize &quot;pointers&quot;
             pline = int(idx_nu_start)
             pexp_tau = int(offset + idx_nu_start)
@@ -262,7 +268,7 @@ def numba_formal_integral(
                 for _ in range(max(nu_end_idx - pline, 0)):
                     # calculate e-scattering optical depth to next resonance point
                     zend = (
-                        model.time_explosion
+                        time_explosion
                         / C_INV
                         * (1.0 - line_list_nu[pline] / nu)
                     )  # check
@@ -304,9 +310,7 @@ def numba_formal_integral(
                 # calculate e-scattering optical depth to grid cell boundary
 
                 Jkkp = 0.5 * (Jred_lu[pJred_lu] + Jblue_lu[pJblue_lu])
-                zend = (
-                    model.time_explosion / C_INV * (1.0 - nu_end / nu)
-                )  # check
+                zend = time_explosion / C_INV * (1.0 - nu_end / nu)  # check
                 escat_contrib += (
                     (zend - zstart) * escat_op * (Jkkp - I_nu[p_idx])
                 )
@@ -324,6 +328,7 @@ def numba_formal_integral(
     return L, I_nu_p</div>
 
 
+
 # integrator_spec = [
 #    (&quot;model&quot;, NumbaModel.class_type.instance_type),
 #    (&quot;plasma&quot;, OpacityState.class_type.instance_type),
@@ -332,19 +337,23 @@ def numba_formal_integral(
 
 
 # @jitclass(integrator_spec)
-<div class="viewcode-block" id="NumbaFormalIntegrator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator">[docs]</a>class NumbaFormalIntegrator(object):
+<div class="viewcode-block" id="NumbaFormalIntegrator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator">[docs]</a>
+class NumbaFormalIntegrator(object):
     &quot;&quot;&quot;
     Helper class for performing the formal integral
     with numba.
     &quot;&quot;&quot;
 
-    def __init__(self, geometry, model, plasma, points=1000):
+    def __init__(self, geometry, time_explosion, plasma, points=1000):
         self.geometry = geometry
-        self.model = model
+        self.time_explosion = time_explosion
         self.plasma = plasma
         self.points = points
 
-<div class="viewcode-block" id="NumbaFormalIntegrator.formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator.formal_integral">[docs]</a>    def formal_integral(
+<div class="viewcode-block" id="NumbaFormalIntegrator.formal_integral">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.NumbaFormalIntegrator.formal_integral">[docs]</a>
+    def formal_integral(
         self,
         iT,
         inu,
@@ -361,7 +370,7 @@ def numba_formal_integral(
         &quot;&quot;&quot;
         return numba_formal_integral(
             self.geometry,
-            self.model,
+            self.time_explosion,
             self.plasma,
             iT,
             inu,
@@ -372,10 +381,14 @@ def numba_formal_integral(
             tau_sobolev,
             electron_density,
             N,
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="FormalIntegrator"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator">[docs]</a>class FormalIntegrator(object):
+
+<div class="viewcode-block" id="FormalIntegrator">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator">[docs]</a>
+class FormalIntegrator(object):
     &quot;&quot;&quot;
     Class containing the formal integrator.
 
@@ -413,7 +426,9 @@ def numba_formal_integral(
             self.original_plasma = plasma
             self.levels_index = plasma.levels
 
-<div class="viewcode-block" id="FormalIntegrator.generate_numba_objects"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects">[docs]</a>    def generate_numba_objects(self):
+<div class="viewcode-block" id="FormalIntegrator.generate_numba_objects">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects">[docs]</a>
+    def generate_numba_objects(self):
         &quot;&quot;&quot;instantiate the numba interface objects
         needed for computing the formal integral&quot;&quot;&quot;
         from tardis.model.geometry.radial1d import NumbaRadial1DGeometry
@@ -426,9 +441,6 @@ def numba_formal_integral(
             self.transport.r_outer_i
             / self.simulation_state.time_explosion.to(&quot;s&quot;).value,
         )
-        self.numba_model = NumbaModel(
-            self.simulation_state.time_explosion.cgs.value,
-        )
         self.opacity_state = opacity_state_initialize(
             self.original_plasma,
             self.transport.line_interaction_type,
@@ -438,19 +450,22 @@ def numba_formal_integral(
         if self.transport.use_gpu:
             self.integrator = CudaFormalIntegrator(
                 self.numba_radial_1d_geometry,
-                self.numba_model,
+                self.simulation_state.time_explosion.cgs.value,
                 self.opacity_state,
                 self.points,
             )
         else:
             self.integrator = NumbaFormalIntegrator(
                 self.numba_radial_1d_geometry,
-                self.numba_model,
+                self.simulation_state.time_explosion.cgs.value,
                 self.opacity_state,
                 self.points,
             )</div>
 
-<div class="viewcode-block" id="FormalIntegrator.check"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.check">[docs]</a>    def check(self, raises=True):
+
+<div class="viewcode-block" id="FormalIntegrator.check">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.check">[docs]</a>
+    def check(self, raises=True):
         &quot;&quot;&quot;
         A method that determines if the formal integral can be performed with
         the current configuration settings
@@ -493,7 +508,10 @@ def numba_formal_integral(
 
         return True</div>
 
-<div class="viewcode-block" id="FormalIntegrator.calculate_spectrum"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.calculate_spectrum">[docs]</a>    def calculate_spectrum(
+
+<div class="viewcode-block" id="FormalIntegrator.calculate_spectrum">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.calculate_spectrum">[docs]</a>
+    def calculate_spectrum(
         self, frequency, points=None, interpolate_shells=0, raises=True
     ):
         # Very crude implementation
@@ -527,7 +545,10 @@ def numba_formal_integral(
 
         return TARDISSpectrum(frequency, luminosity)</div>
 
-<div class="viewcode-block" id="FormalIntegrator.make_source_function"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.make_source_function">[docs]</a>    def make_source_function(self):
+
+<div class="viewcode-block" id="FormalIntegrator.make_source_function">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.make_source_function">[docs]</a>
+    def make_source_function(self):
         &quot;&quot;&quot;
         Calculates the source function using the line absorption rate estimator `Edotlu_estimator`
 
@@ -678,7 +699,10 @@ def numba_formal_integral(
 
         return att_S_ul, Jredlu, Jbluelu, e_dot_u</div>
 
-<div class="viewcode-block" id="FormalIntegrator.interpolate_integrator_quantities"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.interpolate_integrator_quantities">[docs]</a>    def interpolate_integrator_quantities(
+
+<div class="viewcode-block" id="FormalIntegrator.interpolate_integrator_quantities">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.interpolate_integrator_quantities">[docs]</a>
+    def interpolate_integrator_quantities(
         self, att_S_ul, Jredlu, Jbluelu, e_dot_u
     ):
         transport = self.transport
@@ -733,7 +757,10 @@ def numba_formal_integral(
         e_dot_u = e_dot_u.clip(0.0)
         return att_S_ul, Jredlu, Jbluelu, e_dot_u</div>
 
-<div class="viewcode-block" id="FormalIntegrator.formal_integral"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.formal_integral">[docs]</a>    def formal_integral(self, nu, N):
+
+<div class="viewcode-block" id="FormalIntegrator.formal_integral">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.formal_integral">[docs]</a>
+    def formal_integral(self, nu, N):
         &quot;&quot;&quot;Do the formal integral with the numba
         routines&quot;&quot;&quot;
         # TODO: get rid of storage later on
@@ -774,11 +801,15 @@ def numba_formal_integral(
             error &lt; 1e-7
         ), f&quot;Incorrect I_nu_p values, max relative difference:{error}&quot;
 
-        return np.array(L, np.float64)</div></div>
+        return np.array(L, np.float64)</div>
+</div>
 
 
-<div class="viewcode-block" id="populate_z"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.populate_z">[docs]</a>@njit(**njit_dict_no_parallel)
-def populate_z(geometry, model, p, oz, oshell_id):
+
+<div class="viewcode-block" id="populate_z">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.populate_z">[docs]</a>
+@njit(**njit_dict_no_parallel)
+def populate_z(geometry, time_explosion, p, oz, oshell_id):
     &quot;&quot;&quot;Calculate p line intersections
 
     This function calculates the intersection points of the p-line with
@@ -793,7 +824,7 @@ def populate_z(geometry, model, p, oz, oshell_id):
     # abbreviations
     r = geometry.r_outer
     N = len(geometry.r_inner)  # check
-    inv_t = 1 / model.time_explosion
+    inv_t = 1 / time_explosion
     z = 0
     offset = N
 
@@ -824,7 +855,10 @@ def populate_z(geometry, model, p, oz, oshell_id):
         return 2 * (N - offset)</div>
 
 
-<div class="viewcode-block" id="calculate_z"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.calculate_z">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_z">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.calculate_z">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_z(r, p, inv_t):
     &quot;&quot;&quot;Calculate distance to p line
 
@@ -843,11 +877,17 @@ def calculate_z(r, p, inv_t):
         return 0</div>
 
 
-<div class="viewcode-block" id="BoundsError"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.BoundsError">[docs]</a>class BoundsError(IndexError):
+
+<div class="viewcode-block" id="BoundsError">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.BoundsError">[docs]</a>
+class BoundsError(IndexError):
     pass</div>
 
 
-<div class="viewcode-block" id="line_search"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.line_search">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="line_search">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.line_search">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def line_search(nu, nu_insert, number_of_lines):
     &quot;&quot;&quot;
     Insert a value in to an array of line frequencies
@@ -876,7 +916,10 @@ def line_search(nu, nu_insert, number_of_lines):
     return result</div>
 
 
-<div class="viewcode-block" id="reverse_binary_search"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.reverse_binary_search">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="reverse_binary_search">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.reverse_binary_search">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def reverse_binary_search(x, x_insert, imin, imax):
     &quot;&quot;&quot;Look for a place to insert a value in an inversely sorted float array.
 
@@ -895,7 +938,10 @@ def reverse_binary_search(x, x_insert, imin, imax):
     return len(x) - 1 - np.searchsorted(x[::-1], x_insert, side=&quot;right&quot;)</div>
 
 
-<div class="viewcode-block" id="trapezoid_integration"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.trapezoid_integration">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="trapezoid_integration">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.trapezoid_integration">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def trapezoid_integration(array, h):
     &quot;&quot;&quot;in the future, let&#39;s just replace
     this with the numpy trapz
@@ -904,7 +950,10 @@ def trapezoid_integration(array, h):
     return np.trapz(array, dx=h)</div>
 
 
-<div class="viewcode-block" id="intensity_black_body"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.intensity_black_body">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="intensity_black_body">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.intensity_black_body">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def intensity_black_body(nu, temperature):
     &quot;&quot;&quot;
     Calculate the blackbody intensity.
@@ -927,10 +976,14 @@ def intensity_black_body(nu, temperature):
     return coefficient * nu * nu * nu / (np.exp(H_CGS * nu * beta_rad) - 1)</div>
 
 
-<div class="viewcode-block" id="calculate_p_values"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.calculate_p_values">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="calculate_p_values">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.calculate_p_values">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def calculate_p_values(R_max, N):
     &quot;&quot;&quot;This can probably be replaced with a simpler function&quot;&quot;&quot;
     return np.arange(N).astype(np.float64) * R_max / (N - 1)</div>
+
 </pre></div>
 
            </div>
@@ -941,7 +994,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.logger.montecarlo_tracking module &mdash; tardis</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -67,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -86,6 +86,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/optional/index.html">Optional Inputs</a></li>
@@ -145,10 +146,10 @@
            <div itemprop="articleBody">
              
   <section id="module-tardis.io.logger.montecarlo_tracking">
-<span id="tardis-io-logger-montecarlo-tracking-module"></span><h1>tardis.io.logger.montecarlo_tracking module<a class="headerlink" href="#module-tardis.io.logger.montecarlo_tracking" title="Permalink to this heading">¶</a></h1>
+<span id="tardis-io-logger-montecarlo-tracking-module"></span><h1>tardis.io.logger.montecarlo_tracking module<a class="headerlink" href="#module-tardis.io.logger.montecarlo_tracking" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.io.logger.montecarlo_tracking.log_decorator">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.logger.montecarlo_tracking.</span></span><span class="sig-name descname"><span class="pre">log_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/logger/montecarlo_tracking.html#log_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.logger.montecarlo_tracking.log_decorator" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.io.logger.montecarlo_tracking.</span></span><span class="sig-name descname"><span class="pre">log_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/logger/montecarlo_tracking.html#log_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.logger.montecarlo_tracking.log_decorator" title="Link to this definition">¶</a></dt>
 <dd><p>Decorator to log functions while in debug mode, i.e., when
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">debug_montecarlo</span></code> is True in the config. Works for
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;jit'd</span> <span class="pre">and</span> <span class="pre">`&#64;njit</span></code>’d functions, but with a significant speed
@@ -176,7 +177,7 @@ penalty.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

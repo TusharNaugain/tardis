@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.configuration.config_reader &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -133,11 +133,16 @@ pp = pprint.PrettyPrinter(indent=4)
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="ConfigurationError"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationError">[docs]</a>class ConfigurationError(ValueError):
+<div class="viewcode-block" id="ConfigurationError">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationError">[docs]</a>
+class ConfigurationError(ValueError):
     pass</div>
 
 
-<div class="viewcode-block" id="ConfigurationNameSpace"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace">[docs]</a>class ConfigurationNameSpace(dict):
+
+<div class="viewcode-block" id="ConfigurationNameSpace">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace">[docs]</a>
+class ConfigurationNameSpace(dict):
     &quot;&quot;&quot;
     The configuration name space class allows to wrap a dictionary and adds
     utility functions for easy access. Accesses like a.b.c are then possible
@@ -154,7 +159,9 @@ logger = logging.getLogger(__name__)
     config_ns : ConfigurationNameSpace
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="ConfigurationNameSpace.from_yaml"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.from_yaml">[docs]</a>    @classmethod
+<div class="viewcode-block" id="ConfigurationNameSpace.from_yaml">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.from_yaml">[docs]</a>
+    @classmethod
     def from_yaml(cls, fname):
         &quot;&quot;&quot;
         Read a configuration from a YAML file
@@ -172,7 +179,10 @@ logger = logging.getLogger(__name__)
 
         return cls.from_config_dict(yaml_dict)</div>
 
-<div class="viewcode-block" id="ConfigurationNameSpace.from_config_dict"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.from_config_dict">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="ConfigurationNameSpace.from_config_dict">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.from_config_dict">[docs]</a>
+    @classmethod
     def from_config_dict(cls, config_dict):
         &quot;&quot;&quot;
         Validating a config file.
@@ -187,6 +197,7 @@ logger = logging.getLogger(__name__)
         `tardis.config_reader.Configuration`
         &quot;&quot;&quot;
         return cls(config_validator.validate_dict(config_dict))</div>
+
 
     def __init__(self, value=None):
         if value is None:
@@ -239,7 +250,9 @@ logger = logging.getLogger(__name__)
     def __dir__(self):
         return self.keys()
 
-<div class="viewcode-block" id="ConfigurationNameSpace.get_config_item"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.get_config_item">[docs]</a>    def get_config_item(self, config_item_string):
+<div class="viewcode-block" id="ConfigurationNameSpace.get_config_item">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.get_config_item">[docs]</a>
+    def get_config_item(self, config_item_string):
         &quot;&quot;&quot;
         Get configuration items using a string of type &#39;a.b.param&#39;
 
@@ -269,7 +282,10 @@ logger = logging.getLogger(__name__)
                 &quot;.&quot;.join(config_item_path[1:])
             )</div>
 
-<div class="viewcode-block" id="ConfigurationNameSpace.set_config_item"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.set_config_item">[docs]</a>    def set_config_item(self, config_item_string, value):
+
+<div class="viewcode-block" id="ConfigurationNameSpace.set_config_item">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.set_config_item">[docs]</a>
+    def set_config_item(self, config_item_string, value):
         &quot;&quot;&quot;
         set configuration items using a string of type &#39;a.b.param&#39;
 
@@ -303,29 +319,44 @@ logger = logging.getLogger(__name__)
                 &quot;.&quot;.join(config_item_path[1:]), value
             )</div>
 
-<div class="viewcode-block" id="ConfigurationNameSpace.deepcopy"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.deepcopy">[docs]</a>    def deepcopy(self):
-        return ConfigurationNameSpace(copy.deepcopy(dict(self)))</div></div>
+
+<div class="viewcode-block" id="ConfigurationNameSpace.deepcopy">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigurationNameSpace.deepcopy">[docs]</a>
+    def deepcopy(self):
+        return ConfigurationNameSpace(copy.deepcopy(dict(self)))</div>
+</div>
 
 
-<div class="viewcode-block" id="ConfigWriterMixin"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigWriterMixin">[docs]</a>class ConfigWriterMixin(HDFWriterMixin):
+
+<div class="viewcode-block" id="ConfigWriterMixin">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigWriterMixin">[docs]</a>
+class ConfigWriterMixin(HDFWriterMixin):
     &quot;&quot;&quot;
     Overrides HDFWriterMixin to obtain HDF properties from configuration keys
     &quot;&quot;&quot;
 
-<div class="viewcode-block" id="ConfigWriterMixin.get_properties"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigWriterMixin.get_properties">[docs]</a>    def get_properties(self):
+<div class="viewcode-block" id="ConfigWriterMixin.get_properties">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.ConfigWriterMixin.get_properties">[docs]</a>
+    def get_properties(self):
         data = yaml.dump(self)
         data = pd.DataFrame(index=[0], data={&quot;config&quot;: data})
-        return data</div></div>
+        return data</div>
+</div>
 
 
-<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration">[docs]</a>class Configuration(ConfigurationNameSpace, ConfigWriterMixin):
+
+<div class="viewcode-block" id="Configuration">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration">[docs]</a>
+class Configuration(ConfigurationNameSpace, ConfigWriterMixin):
     &quot;&quot;&quot;
     Tardis configuration class
     &quot;&quot;&quot;
 
     hdf_name = &quot;simulation&quot;
 
-<div class="viewcode-block" id="Configuration.from_yaml"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.from_yaml">[docs]</a>    @classmethod
+<div class="viewcode-block" id="Configuration.from_yaml">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.from_yaml">[docs]</a>
+    @classmethod
     def from_yaml(cls, fname, *args, **kwargs):
         try:
             yaml_dict = yaml_load_file(
@@ -345,7 +376,10 @@ logger = logging.getLogger(__name__)
 
         return cls.from_config_dict(yaml_dict, *args, **kwargs)</div>
 
-<div class="viewcode-block" id="Configuration.from_config_dict"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.from_config_dict">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="Configuration.from_config_dict">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.from_config_dict">[docs]</a>
+    @classmethod
     def from_config_dict(cls, config_dict, validate=True, config_dirname=&quot;&quot;):
         &quot;&quot;&quot;
         Validating and subsequently parsing a config file.
@@ -421,7 +455,10 @@ logger = logging.getLogger(__name__)
 
         return cls(validated_config_dict)</div>
 
-<div class="viewcode-block" id="Configuration.validate_spectrum_section"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_spectrum_section">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="Configuration.validate_spectrum_section">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_spectrum_section">[docs]</a>
+    @staticmethod
     def validate_spectrum_section(
         spectrum_section, enable_full_relativity=False
     ):
@@ -452,7 +489,10 @@ logger = logging.getLogger(__name__)
                 &quot;relativity mode. &quot;
             )</div>
 
-<div class="viewcode-block" id="Configuration.validate_model_section"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_model_section">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="Configuration.validate_model_section">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_model_section">[docs]</a>
+    @staticmethod
     def validate_model_section(model_section):
         &quot;&quot;&quot;
         Parse the model section dictionary
@@ -513,7 +553,10 @@ logger = logging.getLogger(__name__)
                     if time_0.value &lt;= 0:
                         raise ValueError(f&quot;Time Specified is Invalid, {time_0}&quot;)</div>
 
-<div class="viewcode-block" id="Configuration.validate_montecarlo_section"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_montecarlo_section">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="Configuration.validate_montecarlo_section">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.validate_montecarlo_section">[docs]</a>
+    @staticmethod
     def validate_montecarlo_section(montecarlo_section):
         &quot;&quot;&quot;
         Validate the montecarlo section dictionary
@@ -536,7 +579,10 @@ logger = logging.getLogger(__name__)
         else:
             raise ValueError(&#39;convergence_strategy is not &quot;damped&quot; or &quot;custom&quot;&#39;)</div>
 
-<div class="viewcode-block" id="Configuration.parse_convergence_section"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.parse_convergence_section">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="Configuration.parse_convergence_section">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.Configuration.parse_convergence_section">[docs]</a>
+    @staticmethod
     def parse_convergence_section(convergence_section_dict):
         &quot;&quot;&quot;
         Parse the convergence section dictionary
@@ -546,7 +592,7 @@ logger = logging.getLogger(__name__)
         convergence_section_dict : dict
             dictionary
         &quot;&quot;&quot;
-        convergence_parameters = [&quot;damping_constant&quot;, &quot;threshold&quot;]
+        convergence_parameters = [&quot;damping_constant&quot;, &quot;threshold&quot;, &quot;type&quot;]
 
         for convergence_variable in [&quot;t_inner&quot;, &quot;t_rad&quot;, &quot;w&quot;]:
             if convergence_variable not in convergence_section_dict:
@@ -563,11 +609,15 @@ logger = logging.getLogger(__name__)
 
         return convergence_section_dict</div>
 
+
     def __init__(self, config_dict):
         super(Configuration, self).__init__(config_dict)</div>
 
 
-<div class="viewcode-block" id="quantity_representer"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.quantity_representer">[docs]</a>def quantity_representer(dumper, data):
+
+<div class="viewcode-block" id="quantity_representer">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.quantity_representer">[docs]</a>
+def quantity_representer(dumper, data):
     &quot;&quot;&quot;
     Represents Astropy Quantity as str
 
@@ -585,7 +635,10 @@ logger = logging.getLogger(__name__)
     return dumper.represent_data(str(data))</div>
 
 
-<div class="viewcode-block" id="cns_representer"><a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.cns_representer">[docs]</a>def cns_representer(dumper, data):
+
+<div class="viewcode-block" id="cns_representer">
+<a class="viewcode-back" href="../../../../api/tardis.io.configuration.config_reader.html#tardis.io.configuration.config_reader.cns_representer">[docs]</a>
+def cns_representer(dumper, data):
     &quot;&quot;&quot;
     Represents Configuration as dict
 
@@ -603,6 +656,7 @@ logger = logging.getLogger(__name__)
     return dumper.represent_dict(dict(data))</div>
 
 
+
 yaml.add_representer(u.Quantity, quantity_representer)
 yaml.add_representer(ConfigurationNameSpace, cns_representer)
 yaml.add_representer(Configuration, cns_representer)
@@ -616,7 +670,7 @@ yaml.add_representer(Configuration, cns_representer)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

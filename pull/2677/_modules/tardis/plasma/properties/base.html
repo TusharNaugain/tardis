@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -136,7 +136,9 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
-<div class="viewcode-block" id="BasePlasmaProperty"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BasePlasmaProperty">[docs]</a>class BasePlasmaProperty(object, metaclass=ABCMeta):
+<div class="viewcode-block" id="BasePlasmaProperty">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BasePlasmaProperty">[docs]</a>
+class BasePlasmaProperty(object, metaclass=ABCMeta):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -163,7 +165,9 @@ logger = logging.getLogger(__name__)
     def _update_type_str(self):
         self.type_str = repr(type(self.value))
 
-<div class="viewcode-block" id="BasePlasmaProperty.get_latex_label"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BasePlasmaProperty.get_latex_label">[docs]</a>    def get_latex_label(self):
+<div class="viewcode-block" id="BasePlasmaProperty.get_latex_label">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BasePlasmaProperty.get_latex_label">[docs]</a>
+    def get_latex_label(self):
         latex_template = r&quot;&quot;&quot;\textbf{{Name}} {name}
 \textbf{{Formula}} {formula}
 {description}
@@ -180,10 +184,14 @@ logger = logging.getLogger(__name__)
             formula=getattr(self, &quot;latex_formula&quot;, &quot;--&quot;),
             description=getattr(self, &quot;latex_description&quot;, &quot;&quot;),
         )
-        return latex_label.replace(&quot;\\&quot;, r&quot;\\&quot;)</div></div>
+        return latex_label.replace(&quot;\\&quot;, r&quot;\\&quot;)</div>
+</div>
 
 
-<div class="viewcode-block" id="ProcessingPlasmaProperty"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty">[docs]</a>class ProcessingPlasmaProperty(BasePlasmaProperty, metaclass=ABCMeta):
+
+<div class="viewcode-block" id="ProcessingPlasmaProperty">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty">[docs]</a>
+class ProcessingPlasmaProperty(BasePlasmaProperty, metaclass=ABCMeta):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -212,7 +220,9 @@ logger = logging.getLogger(__name__)
     def _get_input_values(self):
         return (self.plasma_parent.get_value(item) for item in self.inputs)
 
-<div class="viewcode-block" id="ProcessingPlasmaProperty.update"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty.update">[docs]</a>    def update(self):
+<div class="viewcode-block" id="ProcessingPlasmaProperty.update">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty.update">[docs]</a>
+    def update(self):
         &quot;&quot;&quot;
         Updates the processing Plasma by calling the `calculate`-method with
         the required inputs
@@ -233,15 +243,22 @@ logger = logging.getLogger(__name__)
         else:
             logger.info(&quot;{} has been frozen!&quot;.format(self.name))</div>
 
-<div class="viewcode-block" id="ProcessingPlasmaProperty.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty.calculate">[docs]</a>    @abstractmethod
+
+<div class="viewcode-block" id="ProcessingPlasmaProperty.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty.calculate">[docs]</a>
+    @abstractmethod
     def calculate(self, *args, **kwargs):
         raise NotImplementedError(
             &quot;This method needs to be implemented by &quot;
             &quot;processing plasma modules&quot;
-        )</div></div>
+        )</div>
+</div>
 
 
-<div class="viewcode-block" id="HiddenPlasmaProperty"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.HiddenPlasmaProperty">[docs]</a>class HiddenPlasmaProperty(ProcessingPlasmaProperty, metaclass=ABCMeta):
+
+<div class="viewcode-block" id="HiddenPlasmaProperty">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.HiddenPlasmaProperty">[docs]</a>
+class HiddenPlasmaProperty(ProcessingPlasmaProperty, metaclass=ABCMeta):
     &quot;&quot;&quot;
     Used for plasma properties that should not be displayed in the final graph (e.g. lines_lower_level_index).
     The code will automatically remove these property names from the graph and instead connect their inputs directly
@@ -250,6 +267,7 @@ logger = logging.getLogger(__name__)
 
     def __init__(self, plasma_parent):
         super(HiddenPlasmaProperty, self).__init__(plasma_parent)</div>
+
 
 
 class TransitionProbabilitiesProperty(
@@ -266,7 +284,9 @@ class TransitionProbabilitiesProperty(
         pass
 
 
-<div class="viewcode-block" id="BaseAtomicDataProperty"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BaseAtomicDataProperty">[docs]</a>class BaseAtomicDataProperty(ProcessingPlasmaProperty, metaclass=ABCMeta):
+<div class="viewcode-block" id="BaseAtomicDataProperty">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BaseAtomicDataProperty">[docs]</a>
+class BaseAtomicDataProperty(ProcessingPlasmaProperty, metaclass=ABCMeta):
     &quot;&quot;&quot;
     Used for atomic data properties. Main feature is the ability to filter atomic data by the elements required for
     the simulation.
@@ -287,7 +307,9 @@ class TransitionProbabilitiesProperty(
     def _filter_atomic_property(self, raw_atomic_property):
         raise NotImplementedError(&quot;Needs to be implemented in subclasses&quot;)
 
-<div class="viewcode-block" id="BaseAtomicDataProperty.calculate"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BaseAtomicDataProperty.calculate">[docs]</a>    def calculate(self, atomic_data, selected_atoms):
+<div class="viewcode-block" id="BaseAtomicDataProperty.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BaseAtomicDataProperty.calculate">[docs]</a>
+    def calculate(self, atomic_data, selected_atoms):
 
         if getattr(self, self.outputs[0]) is not None:
             return getattr(self, self.outputs[0])
@@ -297,10 +319,14 @@ class TransitionProbabilitiesProperty(
                 self._filter_atomic_property(
                     raw_atomic_property, selected_atoms
                 )
-            )</div></div>
+            )</div>
+</div>
 
 
-<div class="viewcode-block" id="Input"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input">[docs]</a>class Input(BasePlasmaProperty):
+
+<div class="viewcode-block" id="Input">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input">[docs]</a>
+class Input(BasePlasmaProperty):
     &quot;&quot;&quot;
     The plasma property class for properties that are input directly from model
     and not calculated within the plasma module, e.g. t_rad.
@@ -309,22 +335,34 @@ class TransitionProbabilitiesProperty(
     def _set_output_value(self, output, value):
         setattr(self, output, value)
 
-<div class="viewcode-block" id="Input.set_value"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input.set_value">[docs]</a>    def set_value(self, value):
+<div class="viewcode-block" id="Input.set_value">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input.set_value">[docs]</a>
+    def set_value(self, value):
         assert len(self.outputs) == 1
-        self._set_output_value(self.outputs[0], value)</div></div>
+        self._set_output_value(self.outputs[0], value)</div>
+</div>
 
 
-<div class="viewcode-block" id="ArrayInput"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ArrayInput">[docs]</a>class ArrayInput(Input):
+
+<div class="viewcode-block" id="ArrayInput">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.ArrayInput">[docs]</a>
+class ArrayInput(Input):
     def _set_output_value(self, output, value):
         setattr(self, output, np.array(value, copy=False))</div>
 
 
-<div class="viewcode-block" id="DataFrameInput"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.DataFrameInput">[docs]</a>class DataFrameInput(Input):
+
+<div class="viewcode-block" id="DataFrameInput">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.DataFrameInput">[docs]</a>
+class DataFrameInput(Input):
     def _set_output_value(self, output, value):
         setattr(self, output, np.array(pd.DataFrame(value), copy=False))</div>
 
 
-<div class="viewcode-block" id="PreviousIterationProperty"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.PreviousIterationProperty">[docs]</a>class PreviousIterationProperty(BasePlasmaProperty):
+
+<div class="viewcode-block" id="PreviousIterationProperty">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.PreviousIterationProperty">[docs]</a>
+class PreviousIterationProperty(BasePlasmaProperty):
     &quot;&quot;&quot;
     This class is used for properties where, to prevent a property calculation loop, the property values from the
     previous iteration (which are static) are used in the current calculation. Usually only required for NLTE
@@ -338,9 +376,13 @@ class TransitionProbabilitiesProperty(
     def _set_output_value(self, output, value):
         setattr(self, output, value)
 
-<div class="viewcode-block" id="PreviousIterationProperty.set_value"><a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.PreviousIterationProperty.set_value">[docs]</a>    def set_value(self, value):
+<div class="viewcode-block" id="PreviousIterationProperty.set_value">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.PreviousIterationProperty.set_value">[docs]</a>
+    def set_value(self, value):
         assert len(self.outputs) == 1
-        self._set_output_value(self.outputs[0], value)</div></div>
+        self._set_output_value(self.outputs[0], value)</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -351,7 +393,7 @@ class TransitionProbabilitiesProperty(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.io.model.readers.generic_readers &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -115,25 +115,30 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.generic_readers</h1><div class="highlight"><pre>
-<span></span>from astropy import units as u
+<span></span>from pathlib import Path
 from typing import Any, Tuple
-from numpy import recfromtxt
-import pandas as pd
-from radioactivedecay import Nuclide
-from radioactivedecay.utils import Z_DICT, elem_to_Z
-from pathlib import Path
 
 import numpy as np
-from tardis.io.model.readers.util import read_csv_isotope_abundances
+import pandas as pd
+from astropy import units as u
+from numpy import recfromtxt
+from radioactivedecay import Nuclide
+from radioactivedecay.utils import Z_DICT, elem_to_Z
 
+from tardis.io.model.readers.util import read_csv_isotope_mass_fractions
 from tardis.util.base import parse_quantity
 
 
-<div class="viewcode-block" id="ConfigurationError"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.ConfigurationError">[docs]</a>class ConfigurationError(Exception):
+<div class="viewcode-block" id="ConfigurationError">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.ConfigurationError">[docs]</a>
+class ConfigurationError(Exception):
     pass</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_density"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_density">[docs]</a>def read_simple_ascii_density(
+
+<div class="viewcode-block" id="read_simple_ascii_density">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_density">[docs]</a>
+def read_simple_ascii_density(
     fname: Any,
 ) -&gt; Tuple[u.Quantity, u.Quantity, u.Quantity]:
     &quot;&quot;&quot;
@@ -158,7 +163,6 @@ from tardis.util.base import parse_quantity
     mean_density: u.Quantity
         mean density
     &quot;&quot;&quot;
-
     with open(fname) as fh:
         time_of_model_string = fh.readline().strip()
         time_of_model = parse_quantity(time_of_model_string)
@@ -175,13 +179,16 @@ from tardis.util.base import parse_quantity
     return time_of_model, velocity, mean_density</div>
 
 
-<div class="viewcode-block" id="read_csv_composition"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_csv_composition">[docs]</a>def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
+
+<div class="viewcode-block" id="read_csv_composition">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_csv_composition">[docs]</a>
+def read_csv_composition(fname, delimiter=r&quot;\s+&quot;):
     &quot;&quot;&quot;Read composition from a simple CSV file
 
-    The CSV file can contain specific isotopes or elemental abundances in the
+    The CSV file can contain specific isotopes or elemental mass fractions in the
     different columns. The first row must contain the header in which the
     contents of each column is specified by the elemental symbol (for elemental
-    abundances) or by the symbol plus mass number (for isotopic abundances).
+    mass fractions) or by the symbol plus mass number (for isotopic mass fractions).
 
     Example: C O Fe Ni56 Co
 
@@ -190,16 +197,18 @@ from tardis.util.base import parse_quantity
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
-    return read_csv_isotope_abundances(
+    return read_csv_isotope_mass_fractions(
         fname, delimiter=delimiter, skip_columns=0, skip_rows=[1]
     )</div>
 
 
-<div class="viewcode-block" id="read_simple_ascii_abundances"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_abundances">[docs]</a>def read_simple_ascii_abundances(fname):
+
+<div class="viewcode-block" id="read_simple_ascii_mass_fractions">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_mass_fractions">[docs]</a>
+def read_simple_ascii_mass_fractions(fname):
     &quot;&quot;&quot;
-    Reading an abundance file of the following structure (example; lines starting with hash will be ignored):
-    The first line of abundances describe the abundances in the center of the model and are not used.
+    Reading a mass fraction file of the following structure (example; lines starting with hash will be ignored):
+    The first line of mass fractions describe the mass fractions in the center of the model and are not used.
     #index element1, element2, ..., element30
     0 0.4 0.3, .. 0.2
 
@@ -212,32 +221,35 @@ from tardis.util.base import parse_quantity
     -------
     index : np.ndarray
         containing the indices
-    abundances : pandas.DataFrame
+    mass_fractions : pandas.DataFrame
         data frame containing index, element1 - element30 and columns according to the shells
     &quot;&quot;&quot;
     data = np.loadtxt(fname)
 
     index = data[1:, 0].astype(int)
-    abundances = pd.DataFrame(
+    mass_fractions = pd.DataFrame(
         data[1:, 1:].transpose(), index=np.arange(1, data.shape[1])
     )
 
-    return index, abundances</div>
+    return index, mass_fractions</div>
 
 
-<div class="viewcode-block" id="read_uniform_abundances"><a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_abundances">[docs]</a>def read_uniform_abundances(abundances_section, no_of_shells):
+
+<div class="viewcode-block" id="read_uniform_mass_fractions">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_mass_fractions">[docs]</a>
+def read_uniform_mass_fractions(mass_fractions_section, no_of_shells):
     &quot;&quot;&quot;
     Parameters
     ----------
-    abundances_section : config.model.abundances
+    mass_fractions_section : config.model.abundances
     no_of_shells : int
 
     Returns
     -------
-    abundance : pandas.DataFrame
-    isotope_abundance : pandas.DataFrame
+    mass_fractions : pandas.DataFrame
+    isotope_mass_fractions : pandas.DataFrame
     &quot;&quot;&quot;
-    abundance = pd.DataFrame(
+    mass_fractions = pd.DataFrame(
         columns=np.arange(no_of_shells),
         index=pd.Index(np.arange(1, 120), name=&quot;atomic_number&quot;),
         dtype=np.float64,
@@ -246,33 +258,34 @@ from tardis.util.base import parse_quantity
     isotope_index = pd.MultiIndex(
         [[]] * 2, [[]] * 2, names=[&quot;atomic_number&quot;, &quot;mass_number&quot;]
     )
-    isotope_abundance = pd.DataFrame(
+    isotope_mass_fractions = pd.DataFrame(
         columns=np.arange(no_of_shells), index=isotope_index, dtype=np.float64
     )
 
-    for element_symbol_string in abundances_section:
+    for element_symbol_string in mass_fractions_section:
         if element_symbol_string in [&quot;type&quot;, &quot;model_isotope_time_0&quot;]:
             continue
         try:
             if element_symbol_string in Z_DICT.values():
                 z = elem_to_Z(element_symbol_string)
-                abundance.loc[z] = float(
-                    abundances_section[element_symbol_string]
+                mass_fractions.loc[z] = float(
+                    mass_fractions_section[element_symbol_string]
                 )
             else:
                 nuc = Nuclide(element_symbol_string)
                 mass_no = nuc.A
                 z = nuc.Z
-                isotope_abundance.loc[(z, mass_no), :] = float(
-                    abundances_section[element_symbol_string]
+                isotope_mass_fractions.loc[(z, mass_no), :] = float(
+                    mass_fractions_section[element_symbol_string]
                 )
 
         except RuntimeError as err:
             raise RuntimeError(
-                f&quot;Abundances are not defined properly in config file : {err.args}&quot;
+                f&quot;mass_fractions are not defined properly in config file : {err.args}&quot;
             )
 
-    return abundance, isotope_abundance</div>
+    return mass_fractions, isotope_mass_fractions</div>
+
 </pre></div>
 
            </div>
@@ -283,7 +296,7 @@ from tardis.util.base import parse_quantity
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

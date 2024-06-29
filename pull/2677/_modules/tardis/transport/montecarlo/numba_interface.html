@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.numba_interface &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -127,24 +127,6 @@ from tardis import constants as const
 C_SPEED_OF_LIGHT = const.c.to(&quot;cm/s&quot;).value
 
 
-numba_model_spec = [
-    (&quot;time_explosion&quot;, float64),
-]
-
-
-<div class="viewcode-block" id="NumbaModel"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.NumbaModel">[docs]</a>@jitclass(numba_model_spec)
-class NumbaModel(object):
-    def __init__(self, time_explosion):
-        &quot;&quot;&quot;
-        Model for the Numba mode
-
-        Parameters
-        ----------
-        time_explosion : float
-        &quot;&quot;&quot;
-        self.time_explosion = time_explosion</div>
-
-
 opacity_state_spec = [
     (&quot;electron_density&quot;, float64[:]),
     (&quot;t_electrons&quot;, float64[:]),
@@ -171,7 +153,9 @@ opacity_state_spec = [
 ]
 
 
-<div class="viewcode-block" id="OpacityState"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.OpacityState">[docs]</a>@jitclass(opacity_state_spec)
+<div class="viewcode-block" id="OpacityState">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.OpacityState">[docs]</a>
+@jitclass(opacity_state_spec)
 class OpacityState(object):
     def __init__(
         self,
@@ -248,7 +232,10 @@ class OpacityState(object):
         self.k_packet_idx = k_packet_idx</div>
 
 
-<div class="viewcode-block" id="opacity_state_initialize"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.opacity_state_initialize">[docs]</a>def opacity_state_initialize(
+
+<div class="viewcode-block" id="opacity_state_initialize">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.opacity_state_initialize">[docs]</a>
+def opacity_state_initialize(
     plasma,
     line_interaction_type,
     disable_line_scattering,
@@ -385,120 +372,14 @@ class OpacityState(object):
     )</div>
 
 
-rpacket_tracker_spec = [
-    (&quot;length&quot;, int64),
-    (&quot;seed&quot;, int64),
-    (&quot;index&quot;, int64),
-    (&quot;status&quot;, int64[:]),
-    (&quot;r&quot;, float64[:]),
-    (&quot;nu&quot;, float64[:]),
-    (&quot;mu&quot;, float64[:]),
-    (&quot;energy&quot;, float64[:]),
-    (&quot;shell_id&quot;, int64[:]),
-    (&quot;interaction_type&quot;, int64[:]),
-    (&quot;num_interactions&quot;, int64),
-]
 
-
-<div class="viewcode-block" id="RPacketTracker"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.RPacketTracker">[docs]</a>@jitclass(rpacket_tracker_spec)
-class RPacketTracker(object):
-    &quot;&quot;&quot;
-    Numba JITCLASS for storing the information for each interaction a RPacket instance undergoes.
-
-    Parameters
-    ----------
-        length : int
-            Length of the initial array that is instantiated
-        seed : int
-            Seed for each RPacket
-        index : int
-            Index position of each RPacket
-        status : int
-            Current status of the RPacket as per interactions
-        r : float
-            Radius of the shell where the RPacket is present
-        nu : float
-            Luminosity of the RPacket
-        mu : float
-            Cosine of the angle made by the direction of movement of the RPacket from its original direction
-        energy : float
-            Energy possessed by the RPacket at a particular shell
-        shell_id : int
-            Current Shell No in which the RPacket is present
-        interaction_type: int
-            Type of interaction the rpacket undergoes
-        num_interactions : int
-            Internal counter for the interactions that a particular RPacket undergoes
-    &quot;&quot;&quot;
-
-    def __init__(self, length):
-        self.length = length
-        self.seed = np.int64(0)
-        self.index = np.int64(0)
-        self.status = np.empty(self.length, dtype=np.int64)
-        self.r = np.empty(self.length, dtype=np.float64)
-        self.nu = np.empty(self.length, dtype=np.float64)
-        self.mu = np.empty(self.length, dtype=np.float64)
-        self.energy = np.empty(self.length, dtype=np.float64)
-        self.shell_id = np.empty(self.length, dtype=np.int64)
-        self.interaction_type = np.empty(self.length, dtype=np.int64)
-        self.num_interactions = 0
-
-    def track(self, r_packet):
-        if self.num_interactions &gt;= self.length:
-            temp_length = self.length * 2
-            temp_status = np.empty(temp_length, dtype=np.int64)
-            temp_r = np.empty(temp_length, dtype=np.float64)
-            temp_nu = np.empty(temp_length, dtype=np.float64)
-            temp_mu = np.empty(temp_length, dtype=np.float64)
-            temp_energy = np.empty(temp_length, dtype=np.float64)
-            temp_shell_id = np.empty(temp_length, dtype=np.int64)
-            temp_interaction_type = np.empty(temp_length, dtype=np.int64)
-
-            temp_status[: self.length] = self.status
-            temp_r[: self.length] = self.r
-            temp_nu[: self.length] = self.nu
-            temp_mu[: self.length] = self.mu
-            temp_energy[: self.length] = self.energy
-            temp_shell_id[: self.length] = self.shell_id
-            temp_interaction_type[: self.length] = self.interaction_type
-
-            self.status = temp_status
-            self.r = temp_r
-            self.nu = temp_nu
-            self.mu = temp_mu
-            self.energy = temp_energy
-            self.shell_id = temp_shell_id
-            self.interaction_type = temp_interaction_type
-            self.length = temp_length
-
-        self.index = r_packet.index
-        self.seed = r_packet.seed
-        self.status[self.num_interactions] = r_packet.status
-        self.r[self.num_interactions] = r_packet.r
-        self.nu[self.num_interactions] = r_packet.nu
-        self.mu[self.num_interactions] = r_packet.mu
-        self.energy[self.num_interactions] = r_packet.energy
-        self.shell_id[self.num_interactions] = r_packet.current_shell_id
-        self.interaction_type[
-            self.num_interactions
-        ] = r_packet.last_interaction_type
-        self.num_interactions += 1
-
-    def finalize_array(self):
-        self.status = self.status[: self.num_interactions]
-        self.r = self.r[: self.num_interactions]
-        self.nu = self.nu[: self.num_interactions]
-        self.mu = self.mu[: self.num_interactions]
-        self.energy = self.energy[: self.num_interactions]
-        self.shell_id = self.shell_id[: self.num_interactions]
-        self.interaction_type = self.interaction_type[: self.num_interactions]</div>
-
-
-<div class="viewcode-block" id="LineInteractionType"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.LineInteractionType">[docs]</a>class LineInteractionType(IntEnum):
+<div class="viewcode-block" id="LineInteractionType">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.numba_interface.html#tardis.transport.montecarlo.numba_interface.LineInteractionType">[docs]</a>
+class LineInteractionType(IntEnum):
     SCATTER = 0
     DOWNBRANCH = 1
     MACROATOM = 2</div>
+
 </pre></div>
 
            </div>
@@ -509,7 +390,7 @@ class RPacketTracker(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

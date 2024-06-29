@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.grid.base &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -150,7 +150,9 @@ def _set_tardis_config_property(tardis_config, key, value):
     return
 
 
-<div class="viewcode-block" id="tardisGrid"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid">[docs]</a>class tardisGrid:
+<div class="viewcode-block" id="tardisGrid">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid">[docs]</a>
+class tardisGrid:
     &quot;&quot;&quot;
     A class that stores a grid of TARDIS parameters and
     facilitates running large numbers of simulations
@@ -186,7 +188,9 @@ def _set_tardis_config_property(tardis_config, key, value):
 
         return
 
-<div class="viewcode-block" id="tardisGrid.grid_row_to_config"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.grid_row_to_config">[docs]</a>    def grid_row_to_config(self, row_index):
+<div class="viewcode-block" id="tardisGrid.grid_row_to_config">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.grid_row_to_config">[docs]</a>
+    def grid_row_to_config(self, row_index):
         &quot;&quot;&quot;
         Converts a grid row to a TARDIS config dict.
         Modifies the base self.config according to the
@@ -211,7 +215,10 @@ def _set_tardis_config_property(tardis_config, key, value):
             _set_tardis_config_property(tmp_config, colname, value)
         return tmp_config</div>
 
-<div class="viewcode-block" id="tardisGrid.grid_row_to_simulation_state"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.grid_row_to_simulation_state">[docs]</a>    def grid_row_to_simulation_state(self, row_index, atomic_data):
+
+<div class="viewcode-block" id="tardisGrid.grid_row_to_simulation_state">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.grid_row_to_simulation_state">[docs]</a>
+    def grid_row_to_simulation_state(self, row_index, atomic_data):
         &quot;&quot;&quot;
         Generates a TARDIS SimulationState object using the base
         self.config modified by the specified grid row.
@@ -231,7 +238,10 @@ def _set_tardis_config_property(tardis_config, key, value):
         )
         return simulation_state</div>
 
-<div class="viewcode-block" id="tardisGrid.run_sim_from_grid"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.run_sim_from_grid">[docs]</a>    def run_sim_from_grid(self, row_index, **tardiskwargs):
+
+<div class="viewcode-block" id="tardisGrid.run_sim_from_grid">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.run_sim_from_grid">[docs]</a>
+    def run_sim_from_grid(self, row_index, **tardiskwargs):
         &quot;&quot;&quot;
         Runs a full TARDIS simulation using the base self.config
         modified by the user specified row_index.
@@ -250,7 +260,10 @@ def _set_tardis_config_property(tardis_config, key, value):
         sim = tardis.run_tardis(tardis_config, **tardiskwargs)
         return sim</div>
 
-<div class="viewcode-block" id="tardisGrid.save_grid"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.save_grid">[docs]</a>    def save_grid(self, filename):
+
+<div class="viewcode-block" id="tardisGrid.save_grid">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.save_grid">[docs]</a>
+    def save_grid(self, filename):
         &quot;&quot;&quot;
         Saves the parameter grid. Does not save the base
         self.config in any way.
@@ -263,7 +276,10 @@ def _set_tardis_config_property(tardis_config, key, value):
         self.grid.to_csv(filename, index=False)
         return</div>
 
-<div class="viewcode-block" id="tardisGrid.from_axes"><a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.from_axes">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="tardisGrid.from_axes">
+<a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.from_axes">[docs]</a>
+    @classmethod
     def from_axes(cls, configFile, axesdict):
         &quot;&quot;&quot;
         Creates a grid from a set of axes. The axes are provided
@@ -289,7 +305,9 @@ def _set_tardis_config_property(tardis_config, key, value):
         tmp = np.dstack(axesmesh)
         gridpoints = tmp.reshape((dim, len(axes)), order=&quot;F&quot;)
         df = pd.DataFrame(data=gridpoints, columns=axesdict.keys())
-        return cls(configFile=configFile, gridFrame=df)</div></div>
+        return cls(configFile=configFile, gridFrame=df)</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -300,7 +318,7 @@ def _set_tardis_config_property(tardis_config, key, value):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

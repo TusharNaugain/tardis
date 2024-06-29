@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Matterbridge Server &mdash; tardis</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -63,6 +62,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../io/optional/index.html">Optional Inputs</a></li>
@@ -143,9 +143,9 @@
            <div itemprop="articleBody">
              
   <section id="matterbridge-server">
-<h1>Matterbridge Server<a class="headerlink" href="#matterbridge-server" title="Permalink to this heading">¶</a></h1>
+<h1>Matterbridge Server<a class="headerlink" href="#matterbridge-server" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>We use Matterbridge to connect channels across different messaging platforms
 such as <em>Slack</em>, <em>Mattermost</em> and <em>Gitter</em>. Matterbridge provides binaries
 for  many operating systems. The <code class="docutils literal notranslate"><span class="pre">matterbridge</span></code> binary is intended to be used</p>
@@ -165,27 +165,27 @@ Linux service.</p>
 A <em>cron</em> job restarts the service periodically to prevent disconnections.</p>
 </section>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
 <p>Use the TOML file in <code class="docutils literal notranslate"><span class="pre">tardis-matterbridge</span></code> as an example. You can set up
 as many gateways as you want!</p>
 <section id="slack">
-<h3>Slack<a class="headerlink" href="#slack" title="Permalink to this heading">¶</a></h3>
+<h3>Slack<a class="headerlink" href="#slack" title="Link to this heading">¶</a></h3>
 <p>Follow the <a class="reference external" href="https://github.com/42wim/matterbridge/wiki/Slack-bot-setup">steps for Slack in the Matterbridge wiki</a> and read carefully
 <a class="reference external" href="https://github.com/42wim/matterbridge/issues/964#issuecomment-612721850">this comment</a> (do not add any scopes manually!). Copy the token to use
 later in the TOML file.</p>
 </section>
 <section id="gitter">
-<h3>Gitter<a class="headerlink" href="#gitter" title="Permalink to this heading">¶</a></h3>
+<h3>Gitter<a class="headerlink" href="#gitter" title="Link to this heading">¶</a></h3>
 <p>Create a new GitHub dedicated account to use as a bot, refer to <a class="reference external" href="https://developer.gitter.im/docs/authentication">this link</a>
 and copy the token to use later in the TOML file.</p>
 </section>
 <section id="mattermost">
-<h3>Mattermost<a class="headerlink" href="#mattermost" title="Permalink to this heading">¶</a></h3>
+<h3>Mattermost<a class="headerlink" href="#mattermost" title="Link to this heading">¶</a></h3>
 <p>Follow the <a class="reference external" href="https://github.com/42wim/matterbridge/wiki/Section-Mattermost-%28basic%29">steps for Mattermost in the Matterbridge wiki</a>.</p>
 </section>
 </section>
 <section id="first-time-setup">
-<h2>First-time setup<a class="headerlink" href="#first-time-setup" title="Permalink to this heading">¶</a></h2>
+<h2>First-time setup<a class="headerlink" href="#first-time-setup" title="Link to this heading">¶</a></h2>
 <p>Follow these steps to set up the server:</p>
 <ol class="arabic simple">
 <li><p><em>ssh</em> to <a class="reference external" href="http://opensupernova.org">OpenSupernova.org</a> server.</p></li>
@@ -200,7 +200,7 @@ and copy the token to use later in the TOML file.</p>
 </ol>
 </section>
 <section id="update-server-configuration">
-<h2>Update server configuration<a class="headerlink" href="#update-server-configuration" title="Permalink to this heading">¶</a></h2>
+<h2>Update server configuration<a class="headerlink" href="#update-server-configuration" title="Link to this heading">¶</a></h2>
 <p>After updating the TOML file, follow these steps:</p>
 <ol class="arabic simple">
 <li><p><em>ssh</em> to <a class="reference external" href="http://opensupernova.org">OpenSupernova.org</a> server.</p></li>
@@ -211,7 +211,7 @@ and copy the token to use later in the TOML file.</p>
 </ol>
 </section>
 <section id="cron-job">
-<h2>Cron job<a class="headerlink" href="#cron-job" title="Permalink to this heading">¶</a></h2>
+<h2>Cron job<a class="headerlink" href="#cron-job" title="Link to this heading">¶</a></h2>
 <p>To edit the cron job, <em>ssh</em> to <a class="reference external" href="http://opensupernova.org">OpenSupernova.org</a> and run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">crontab</span> <span class="pre">-e</span></code>.</p>
 </section>
 </section>
@@ -228,7 +228,7 @@ and copy the token to use later in the TOML file.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

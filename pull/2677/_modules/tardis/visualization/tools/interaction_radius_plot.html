@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.tools.interaction_radius_plot &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -130,7 +130,9 @@ import tardis.visualization.tools.sdec_plot as sdec
 from tardis.visualization import plot_util as pu
 
 
-<div class="viewcode-block" id="InteractionRadiusPlotter"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">[docs]</a>class InteractionRadiusPlotter:
+<div class="viewcode-block" id="InteractionRadiusPlotter">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">[docs]</a>
+class InteractionRadiusPlotter:
     &quot;&quot;&quot;
     Plotting interface for the interaction radius plot.
     &quot;&quot;&quot;
@@ -157,7 +159,9 @@ from tardis.visualization import plot_util as pu
         self.velocity = velocity
         self.sdec_plotter = sdec.SDECPlotter(data)
 
-<div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>    @classmethod
+<div class="viewcode-block" id="InteractionRadiusPlotter.from_simulation">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">[docs]</a>
+    @classmethod
     def from_simulation(cls, sim):
         &quot;&quot;&quot;
         Create an instance of the plotter from a TARDIS simulation object.
@@ -181,7 +185,10 @@ from tardis.visualization import plot_util as pu
             sim.simulation_state.velocity,
         )</div>
 
-<div class="viewcode-block" id="InteractionRadiusPlotter.from_hdf"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_hdf">[docs]</a>    @classmethod
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.from_hdf">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_hdf">[docs]</a>
+    @classmethod
     def from_hdf(cls, hdf_fpath):
         &quot;&quot;&quot;
         Create an instance of the Plotter from a simulation HDF file.
@@ -195,21 +202,24 @@ from tardis.visualization import plot_util as pu
         -------
         InteractionRadiusPlotter
         &quot;&quot;&quot;
-        hdfstore = pd.HDFStore(hdf_fpath)
-        time_explosion = (
-            hdfstore[&quot;/simulation/plasma/scalars&quot;][&quot;time_explosion&quot;] * u.s
-        )
-        velocity = (
-            hdfstore[&quot;/simulation/simulation_state&quot;][&quot;velocity&quot;] * u.cm / u.s
-        )
-        return cls(
-            dict(
-                virtual=sdec.SDECData.from_hdf(hdf_fpath, &quot;virtual&quot;),
-                real=sdec.SDECData.from_hdf(hdf_fpath, &quot;real&quot;),
-            ),
-            time_explosion,
-            velocity,
-        )</div>
+        with pd.HDFStore(hdf_fpath, &quot;r&quot;) as hdf:
+            time_explosion = (
+                hdf[&quot;/simulation/plasma/scalars&quot;][&quot;time_explosion&quot;] * u.s
+            )
+            v_inner = hdf[&quot;/simulation/simulation_state/v_inner&quot;] * (u.cm / u.s)
+            v_outer = hdf[&quot;/simulation/simulation_state/v_outer&quot;] * (u.cm / u.s)
+            velocity = pd.concat(
+                [v_inner, pd.Series([v_outer.iloc[-1]])], ignore_index=True
+            ).tolist() * (u.cm / u.s)
+            return cls(
+                dict(
+                    virtual=sdec.SDECData.from_hdf(hdf_fpath, &quot;virtual&quot;),
+                    real=sdec.SDECData.from_hdf(hdf_fpath, &quot;real&quot;),
+                ),
+                time_explosion,
+                velocity,
+            )</div>
+
 
     def _parse_species_list(self, species_list):
         &quot;&quot;&quot;
@@ -363,7 +373,9 @@ from tardis.visualization import plot_util as pu
         self.cmap = cm.get_cmap(cmapname, len(self._species_name))
         self._make_colorbar_colors()
 
-<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_mpl"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">[docs]</a>    def generate_plot_mpl(
+<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_mpl">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">[docs]</a>
+    def generate_plot_mpl(
         self,
         packets_mode=&quot;virtual&quot;,
         ax=None,
@@ -440,7 +452,10 @@ from tardis.visualization import plot_util as pu
 
         return self.ax</div>
 
-<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_ply"><a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">[docs]</a>    def generate_plot_ply(
+
+<div class="viewcode-block" id="InteractionRadiusPlotter.generate_plot_ply">
+<a class="viewcode-back" href="../../../../api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">[docs]</a>
+    def generate_plot_ply(
         self,
         packets_mode=&quot;virtual&quot;,
         fig=None,
@@ -483,7 +498,6 @@ from tardis.visualization import plot_util as pu
             bin_edges = bin_edges[bins_range[0] - 1 : bins_range[1] + 1]
 
         fig = go.Figure()
-
         for data, color, name in zip(
             plot_data, plot_colors, self._species_name
         ):
@@ -516,7 +530,9 @@ from tardis.visualization import plot_util as pu
             fig.update_xaxes(type=&quot;log&quot;)
             fig.update_yaxes(type=&quot;log&quot;, dtick=1)
 
-        return fig</div></div>
+        return fig</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -527,7 +543,7 @@ from tardis.visualization import plot_util as pu
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

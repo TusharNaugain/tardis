@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.packet_collections &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -136,7 +136,9 @@ packet_collection_spec = [
 ]
 
 
-<div class="viewcode-block" id="PacketCollection"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.PacketCollection">[docs]</a>@jitclass(packet_collection_spec)
+<div class="viewcode-block" id="PacketCollection">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.PacketCollection">[docs]</a>
+@jitclass(packet_collection_spec)
 class PacketCollection:
     def __init__(
         self,
@@ -162,7 +164,10 @@ class PacketCollection:
         )</div>
 
 
-<div class="viewcode-block" id="initialize_last_interaction_tracker"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.initialize_last_interaction_tracker">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="initialize_last_interaction_tracker">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.initialize_last_interaction_tracker">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def initialize_last_interaction_tracker(no_of_packets):
     last_line_interaction_in_ids = -1 * np.ones(no_of_packets, dtype=np.int64)
     last_line_interaction_out_ids = -1 * np.ones(no_of_packets, dtype=np.int64)
@@ -183,6 +188,7 @@ def initialize_last_interaction_tracker(no_of_packets):
     )</div>
 
 
+
 last_interaction_tracker_spec = [
     (&quot;types&quot;, int64[:]),
     (&quot;in_nus&quot;, float64[:]),
@@ -193,7 +199,9 @@ last_interaction_tracker_spec = [
 ]
 
 
-<div class="viewcode-block" id="LastInteractionTracker"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.LastInteractionTracker">[docs]</a>@jitclass(last_interaction_tracker_spec)
+<div class="viewcode-block" id="LastInteractionTracker">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.LastInteractionTracker">[docs]</a>
+@jitclass(last_interaction_tracker_spec)
 class LastInteractionTracker:
     def __init__(
         self,
@@ -220,6 +228,7 @@ class LastInteractionTracker:
         self.shell_ids[i] = r_packet.last_line_interaction_shell_id</div>
 
 
+
 vpacket_collection_spec = [
     (&quot;source_rpacket_index&quot;, int64),
     (&quot;spectrum_frequency&quot;, float64[:]),
@@ -241,7 +250,9 @@ vpacket_collection_spec = [
 ]
 
 
-<div class="viewcode-block" id="VPacketCollection"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.VPacketCollection">[docs]</a>@jitclass(vpacket_collection_spec)
+<div class="viewcode-block" id="VPacketCollection">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.VPacketCollection">[docs]</a>
+@jitclass(vpacket_collection_spec)
 class VPacketCollection:
     def __init__(
         self,
@@ -413,7 +424,10 @@ class VPacketCollection:
         ]</div>
 
 
-<div class="viewcode-block" id="consolidate_vpacket_tracker"><a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.consolidate_vpacket_tracker">[docs]</a>@njit(**njit_dict_no_parallel)
+
+<div class="viewcode-block" id="consolidate_vpacket_tracker">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_collections.html#tardis.transport.montecarlo.packet_collections.consolidate_vpacket_tracker">[docs]</a>
+@njit(**njit_dict_no_parallel)
 def consolidate_vpacket_tracker(
     vpacket_collections, spectrum_frequency, start_frequency, end_frequency
 ):
@@ -487,6 +501,7 @@ def consolidate_vpacket_tracker(
 
         current_start_vpacket_tracker_idx = current_end_vpacket_tracker_idx
     return vpacket_tracker</div>
+
 </pre></div>
 
            </div>
@@ -497,7 +512,7 @@ def consolidate_vpacket_tracker(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Helium NLTE &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -65,6 +64,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
@@ -141,7 +141,7 @@
            <div itemprop="articleBody">
              
   <section id="helium-nlte">
-<h1>Helium NLTE<a class="headerlink" href="#helium-nlte" title="Permalink to this heading">¶</a></h1>
+<h1>Helium NLTE<a class="headerlink" href="#helium-nlte" title="Link to this heading">¶</a></h1>
 <dl class="simple">
 <dt>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">helium_treatment</span></code> setting in the TARDIS config. file will accept one of three options:</dt><dd><ul class="simple">
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">none</span></code>: The default setting. Populate helium in the same way as the other elements.</p></li>
@@ -151,7 +151,7 @@
 </dd>
 </dl>
 <section id="recombination-he-nlte">
-<h2>Recombination He NLTE<a class="headerlink" href="#recombination-he-nlte" title="Permalink to this heading">¶</a></h2>
+<h2>Recombination He NLTE<a class="headerlink" href="#recombination-he-nlte" title="Link to this heading">¶</a></h2>
 <p>Paper version:</p>
 <p>This section will summarise the equations used in the calculation of the helium state for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">recomb-NLTE</span></code> approximation in TARDIS. A full physical justification for these equations will be provided in an upcoming paper. All of the level populations are given as a function of the He II ground state population (<span class="math notranslate nohighlight">\(n_{2,1,0}\)</span>), and the values are then normalised using the helium number density to give the correct level number densities.</p>
 <dl>
@@ -185,7 +185,7 @@
 \[\frac{N_{i,j}}{Z_{i,j}} = \frac{n_{i,j,k}}{g_{i,j,k}}\]</div>
 </section>
 <section id="numerical-he-nlte">
-<h2>Numerical He NLTE<a class="headerlink" href="#numerical-he-nlte" title="Permalink to this heading">¶</a></h2>
+<h2>Numerical He NLTE<a class="headerlink" href="#numerical-he-nlte" title="Link to this heading">¶</a></h2>
 <p>Another <code class="xref py py-obj docutils literal notranslate"><span class="pre">helium_treatment</span></code> option offered by TARDIS is <code class="xref py py-obj docutils literal notranslate"><span class="pre">numerical-nlte</span></code>. The use of this plasma property requires an additional code that is the property of Stephan Hachinger (see arXiv:1201.1506) and is not distributed with TARDIS. TARDIS also requires a specific atomic datafile to use this module. This plasma option is included so that people who have access to and permission to use the necessary module may use it. Otherwise, the <code class="xref py py-obj docutils literal notranslate"><span class="pre">recomb-NLTE</span></code> option provides a very accurate alternative approximation.</p>
 </section>
 </section>
@@ -202,7 +202,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 

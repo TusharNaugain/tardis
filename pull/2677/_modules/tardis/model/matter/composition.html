@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.model.matter.composition &mdash; tardis</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+
+  
     <link rel="shortcut icon" href="../../../../_static/tardis_logo.ico"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=c8fa0691"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -60,6 +59,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/configuration/index.html">Configuration (Required Input)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/model/index.html">Reading Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../io/optional/index.html">Optional Inputs</a></li>
@@ -124,7 +124,9 @@ from radioactivedecay.decaydata import DEFAULTDATA as RD_DEFAULT_DATA
 from tardis.model.matter.decay import IsotopicMassFraction
 
 
-<div class="viewcode-block" id="compile_rd_isotope_masses"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.compile_rd_isotope_masses">[docs]</a>def compile_rd_isotope_masses():
+<div class="viewcode-block" id="compile_rd_isotope_masses">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.compile_rd_isotope_masses">[docs]</a>
+def compile_rd_isotope_masses():
     &quot;&quot;&quot;
     Compiles the masses of isotopes from the default data in RD_DEFAULT_DATA.
 
@@ -158,10 +160,13 @@ from tardis.model.matter.decay import IsotopicMassFraction
     return isotope_masses.drop_duplicates()</div>
 
 
+
 ISOTOPE_MASSES = compile_rd_isotope_masses()
 
 
-<div class="viewcode-block" id="Composition"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition">[docs]</a>class Composition:
+<div class="viewcode-block" id="Composition">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition">[docs]</a>
+class Composition:
     &quot;&quot;&quot;
     Holds information about model composition
 
@@ -208,7 +213,9 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
         self.nuclide_masses = pd.concat([self.nuclide_masses, isotope_masses])
         self.raw_isotope_abundance = raw_isotope_abundance
 
-<div class="viewcode-block" id="Composition.assemble_isotope_masses"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.assemble_isotope_masses">[docs]</a>    def assemble_isotope_masses(self):
+<div class="viewcode-block" id="Composition.assemble_isotope_masses">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.assemble_isotope_masses">[docs]</a>
+    def assemble_isotope_masses(self):
         isotope_mass_df = pd.Series(
             index=self.isotopic_mass_fraction.index, data=-1
         )
@@ -219,11 +226,15 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
 
         return isotope_mass_df</div>
 
-<div class="viewcode-block" id="Composition.convert_element2nuclide_index"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.convert_element2nuclide_index">[docs]</a>    @staticmethod
+
+<div class="viewcode-block" id="Composition.convert_element2nuclide_index">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.convert_element2nuclide_index">[docs]</a>
+    @staticmethod
     def convert_element2nuclide_index(element_index):
         new_nuclide_index = pd.MultiIndex.from_product([element_index, [-1]])
         new_nuclide_index.names = [&quot;atomic_number&quot;, &quot;mass_number&quot;]
         return new_nuclide_index</div>
+
 
     @property
     def isotopic_mass_fraction(self):
@@ -300,7 +311,9 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
             axis=0,
         )
 
-<div class="viewcode-block" id="Composition.calculate_mass_fraction_at_time"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_mass_fraction_at_time">[docs]</a>    def calculate_mass_fraction_at_time(self, time_explosion):
+<div class="viewcode-block" id="Composition.calculate_mass_fraction_at_time">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_mass_fraction_at_time">[docs]</a>
+    def calculate_mass_fraction_at_time(self, time_explosion):
         &quot;&quot;&quot;
         Calculate the mass fraction at a given time using the radioactive decay from
         the IsotopicMassFraction.
@@ -323,7 +336,10 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
         else:
             self.isotopic_mass_fraction.decay(time_explosion)</div>
 
-<div class="viewcode-block" id="Composition.calculate_elemental_cell_masses"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_elemental_cell_masses">[docs]</a>    def calculate_elemental_cell_masses(self, volume):
+
+<div class="viewcode-block" id="Composition.calculate_elemental_cell_masses">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_elemental_cell_masses">[docs]</a>
+    def calculate_elemental_cell_masses(self, volume):
         &quot;&quot;&quot;
         Calculate the elemental cell masses.
 
@@ -345,7 +361,10 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
             self.elemental_mass_fraction * (self.density * volume).to(u.g).value
         )</div>
 
-<div class="viewcode-block" id="Composition.calculate_cell_masses"><a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_cell_masses">[docs]</a>    def calculate_cell_masses(self, volume):
+
+<div class="viewcode-block" id="Composition.calculate_cell_masses">
+<a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_cell_masses">[docs]</a>
+    def calculate_cell_masses(self, volume):
         &quot;&quot;&quot;
         Calculate the cell masses.
 
@@ -363,7 +382,9 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
         --------
         &gt;&gt;&gt; composition.calculate_cell_masses(10 * u.cm**3)
         &quot;&quot;&quot;
-        return (self.density * volume).to(u.g)</div></div>
+        return (self.density * volume).to(u.g)</div>
+</div>
+
 </pre></div>
 
            </div>
@@ -374,7 +395,7 @@ ISOTOPE_MASSES = compile_rd_isotope_masses()
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 29 Jun 2024.
       </span></p>
   </div>
 
