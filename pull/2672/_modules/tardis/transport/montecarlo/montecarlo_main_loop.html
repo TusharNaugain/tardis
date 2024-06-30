@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=f8ce1161"></script>
+        <script src="../../../../_static/documentation_options.js?v=40d24338"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -122,9 +122,6 @@ from numba.typed import List
 
 from tardis.transport.montecarlo import njit_dict
 from tardis.transport.montecarlo.packet_trackers import RPacketTracker
-from tardis.transport.montecarlo import (
-    montecarlo_configuration as TempMonteCarloConfiguration,
-)
 from tardis.transport.montecarlo.packet_collections import (
     VPacketCollection,
     consolidate_vpacket_tracker,
@@ -205,12 +202,11 @@ def montecarlo_main_loop(
                 montecarlo_configuration.TEMPORARY_V_PACKET_BINS,
             )
         )
-        if TempMonteCarloConfiguration.ENABLE_RPACKET_TRACKING:
-            rpacket_trackers.append(
-                RPacketTracker(
-                    montecarlo_configuration.INITIAL_TRACKING_ARRAY_LENGTH
-                )
+        rpacket_trackers.append(
+            RPacketTracker(
+                montecarlo_configuration.INITIAL_TRACKING_ARRAY_LENGTH
             )
+        )
 
     # Get the ID of the main thread and the number of threads
     main_thread_id = get_thread_id()
@@ -252,10 +248,7 @@ def montecarlo_main_loop(
         vpacket_collection = vpacket_collections[i]
 
         # RPacket Tracker for this thread
-        if TempMonteCarloConfiguration.ENABLE_RPACKET_TRACKING:
-            rpacket_tracker = rpacket_trackers[i]
-        else:
-            rpacket_tracker = None
+        rpacket_tracker = rpacket_trackers[i]
 
         loop = single_packet_loop(
             r_packet,
@@ -311,7 +304,7 @@ def montecarlo_main_loop(
             1,
         )
 
-    if TempMonteCarloConfiguration.ENABLE_RPACKET_TRACKING:
+    if montecarlo_configuration.ENABLE_RPACKET_TRACKING:
         for rpacket_tracker in rpacket_trackers:
             rpacket_tracker.finalize_array()
 
@@ -332,7 +325,7 @@ def montecarlo_main_loop(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jun 2024.
+      <span class="lastupdated">Last updated on 30 Jun 2024.
       </span></p>
   </div>
 
