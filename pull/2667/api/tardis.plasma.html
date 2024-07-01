@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=bc617c52"></script>
+        <script src="../_static/documentation_options.js?v=59fdc97f"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.plasma.properties package" href="tardis.plasma.properties.html" />
-    <link rel="prev" title="tardis.model.radiation_field_state module" href="tardis.model.radiation_field_state.html" />
+    <link rel="prev" title="tardis.opacities.tau_sobolev module" href="tardis.opacities.tau_sobolev.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -66,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -306,23 +307,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html">tardis.plasma.properties.radiative_properties module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.BetaSobolev"><code class="docutils literal notranslate"><span class="pre">BetaSobolev</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.NonMarkovChainTransitionProbabilities"><code class="docutils literal notranslate"><span class="pre">NonMarkovChainTransitionProbabilities</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.RawRadBoundBoundTransProbs"><code class="docutils literal notranslate"><span class="pre">RawRadBoundBoundTransProbs</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor"><code class="docutils literal notranslate"><span class="pre">StimulatedEmissionFactor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev"><code class="docutils literal notranslate"><span class="pre">TauSobolev</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities"><code class="docutils literal notranslate"><span class="pre">TransitionProbabilities</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.rate_matrix_index.html">tardis.plasma.properties.rate_matrix_index module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.rate_matrix_index.html#tardis.plasma.properties.rate_matrix_index.NLTEIndexHelper"><code class="docutils literal notranslate"><span class="pre">NLTEIndexHelper</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html">tardis.plasma.properties.transition_probabilities module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainIndex"><code class="docutils literal notranslate"><span class="pre">MarkovChainIndex</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbs"><code class="docutils literal notranslate"><span class="pre">MarkovChainTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MarkovChainTransProbsCollector"><code class="docutils literal notranslate"><span class="pre">MarkovChainTransProbsCollector</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.MonteCarloTransProbs"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.transition_probabilities.html#tardis.plasma.properties.transition_probabilities.NonContinuumTransProbsMask"><code class="docutils literal notranslate"><span class="pre">NonContinuumTransProbsMask</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -381,7 +371,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.model.radiation_field_state.html" class="btn btn-neutral float-left" title="tardis.model.radiation_field_state module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.opacities.tau_sobolev.html" class="btn btn-neutral float-left" title="tardis.opacities.tau_sobolev module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.plasma.properties.html" class="btn btn-neutral float-right" title="tardis.plasma.properties package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -389,7 +379,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 20 Jun 2024.
+      <span class="lastupdated">Last updated on 01 Jul 2024.
       </span></p>
   </div>
 
