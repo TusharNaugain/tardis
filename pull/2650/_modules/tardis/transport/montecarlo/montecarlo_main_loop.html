@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=6e4bc077"></script>
+        <script src="../../../../_static/documentation_options.js?v=091cb6bf"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -236,7 +236,7 @@ def montecarlo_main_loop(
     # so we iterate from 0 to n_threads-1 to create the estimator_list
     estimator_list = estimators.create_estimator_list(n_threads)
 
-    for i in range(no_of_packets):
+    for i in prange(no_of_packets):
         thread_id = get_thread_id()
         if show_progress_bars:
             if thread_id == main_thread_id:
@@ -270,11 +270,13 @@ def montecarlo_main_loop(
         if ENABLE_RPACKET_TRACKING is None:
             rpacket_tracker = None
         else:
+            assert ENABLE_RPACKET_TRACKING is not None
             rpacket_tracker = rpacket_trackers[i]
 
         if ENABLE_RPACKET_LAST_INTERACTION_TRACKING is None:
             rpacket_last_interaction_tracker = None
         else:
+            assert ENABLE_RPACKET_LAST_INTERACTION_TRACKING is not None
             rpacket_last_interaction_tracker = (
                 rpacket_last_interaction_trackers[i]
             )
