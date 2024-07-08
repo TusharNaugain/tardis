@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=19677cec"></script>
+        <script src="../../../../../_static/documentation_options.js?v=6e4bc077"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -222,11 +222,11 @@ def load_csv_from_csvy(fname):
 
 
 
-<div class="viewcode-block" id="parse_csv_abundances">
-<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.parse_csv_abundances">[docs]</a>
-def parse_csv_abundances(csvy_data):
+<div class="viewcode-block" id="parse_csv_mass_fractions">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.parse_csv_mass_fractions">[docs]</a>
+def parse_csv_mass_fractions(csvy_data):
     &quot;&quot;&quot;
-    A parser for the csv data part of a csvy model file. This function filters out columns that are not abundances.
+    A parser for the csv data part of a csvy model file. This function filters out columns that are not mass fractions.
 
     Parameters
     ----------
@@ -235,18 +235,18 @@ def parse_csv_abundances(csvy_data):
     Returns
     -------
     index : np.ndarray
-    abundances : pandas.DataFrame
-    isotope_abundance : pandas.MultiIndex
+    mass_fractions : pandas.DataFrame
+    isotope_mass_fraction : pandas.MultiIndex
     &quot;&quot;&quot;
 
-    abundance_col_names = [
+    mass_fraction_col_names = [
         name for name in csvy_data.columns if is_valid_nuclide_or_elem(name)
     ]
-    df = csvy_data.loc[:, abundance_col_names]
+    df = csvy_data.loc[:, mass_fraction_col_names]
 
     df = df.transpose()
 
-    abundance = pd.DataFrame(
+    mass_fractions = pd.DataFrame(
         columns=np.arange(df.shape[1]),
         index=pd.Index([], name=&quot;atomic_number&quot;),
         dtype=np.float64,
@@ -255,23 +255,23 @@ def parse_csv_abundances(csvy_data):
     isotope_index = pd.MultiIndex(
         [[]] * 2, [[]] * 2, names=[&quot;atomic_number&quot;, &quot;mass_number&quot;]
     )
-    isotope_abundance = pd.DataFrame(
+    isotope_mass_fractions = pd.DataFrame(
         columns=np.arange(df.shape[1]), index=isotope_index, dtype=np.float64
     )
 
     for element_symbol_string in df.index[0:]:
         if element_symbol_string in Z_DICT.values():
             z = elem_to_Z(element_symbol_string)
-            abundance.loc[z, :] = df.loc[element_symbol_string].tolist()
+            mass_fractions.loc[z, :] = df.loc[element_symbol_string].tolist()
         else:
             nuc = Nuclide(element_symbol_string)
             z = nuc.Z
             mass_no = nuc.A
-            isotope_abundance.loc[(z, mass_no), :] = df.loc[
+            isotope_mass_fractions.loc[(z, mass_no), :] = df.loc[
                 element_symbol_string
             ].tolist()
 
-    return abundance.index, abundance, isotope_abundance</div>
+    return mass_fractions.index, mass_fractions, isotope_mass_fractions</div>
 
 </pre></div>
 
@@ -283,7 +283,7 @@ def parse_csv_abundances(csvy_data):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jul 2024.
       </span></p>
   </div>
 

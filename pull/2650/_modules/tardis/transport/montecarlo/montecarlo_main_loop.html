@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=19677cec"></script>
+        <script src="../../../../_static/documentation_options.js?v=6e4bc077"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -155,6 +155,8 @@ def montecarlo_main_loop(
     iteration,
     show_progress_bars,
     total_iterations,
+    ENABLE_RPACKET_TRACKING=None,
+    ENABLE_RPACKET_LAST_INTERACTION_TRACKING=True,
 ):
     &quot;&quot;&quot;This is the main loop of the MonteCarlo routine that generates packets
     and sends them through the ejecta.
@@ -193,8 +195,26 @@ def montecarlo_main_loop(
     # Pre-allocate a list of vpacket collections for later storage
     vpacket_collections = List()
     # Configuring the Tracking for R_Packets
-    rpacket_trackers = List()
-    rpacket_last_interaction_trackers = List()
+    if ENABLE_RPACKET_TRACKING is None:
+        rpacket_trackers = None
+    else:
+        rpacket_trackers = List()
+        for i in range(no_of_packets):
+            rpacket_trackers.append(
+                RPacketTracker(
+                    montecarlo_configuration.INITIAL_TRACKING_ARRAY_LENGTH
+                )
+            )
+
+    if ENABLE_RPACKET_LAST_INTERACTION_TRACKING is None:
+        rpacket_last_interaction_trackers = None
+    else:
+        rpacket_last_interaction_trackers = List()
+        for i in range(no_of_packets):
+            rpacket_last_interaction_trackers.append(
+                RPacketLastInteractionTracker()
+            )
+
     for i in range(no_of_packets):
         vpacket_collections.append(
             VPacketCollection(
@@ -206,14 +226,6 @@ def montecarlo_main_loop(
                 montecarlo_configuration.TEMPORARY_V_PACKET_BINS,
             )
         )
-        rpacket_trackers.append(
-            RPacketTracker(
-                montecarlo_configuration.INITIAL_TRACKING_ARRAY_LENGTH
-            )
-        )
-        rpacket_last_interaction_trackers.append(
-            RPacketLastInteractionTracker()
-        )
 
     # Get the ID of the main thread and the number of threads
     main_thread_id = get_thread_id()
@@ -224,7 +236,7 @@ def montecarlo_main_loop(
     # so we iterate from 0 to n_threads-1 to create the estimator_list
     estimator_list = estimators.create_estimator_list(n_threads)
 
-    for i in prange(no_of_packets):
+    for i in range(no_of_packets):
         thread_id = get_thread_id()
         if show_progress_bars:
             if thread_id == main_thread_id:
@@ -255,8 +267,17 @@ def montecarlo_main_loop(
         vpacket_collection = vpacket_collections[i]
 
         # RPacket Tracker for this thread
-        rpacket_tracker = rpacket_trackers[i]
-        rpacket_last_interaction_tracker = rpacket_last_interaction_trackers[i]
+        if ENABLE_RPACKET_TRACKING is None:
+            rpacket_tracker = None
+        else:
+            rpacket_tracker = rpacket_trackers[i]
+
+        if ENABLE_RPACKET_LAST_INTERACTION_TRACKING is None:
+            rpacket_last_interaction_tracker = None
+        else:
+            rpacket_last_interaction_tracker = (
+                rpacket_last_interaction_trackers[i]
+            )
 
         loop = single_packet_loop(
             r_packet,
@@ -268,6 +289,8 @@ def montecarlo_main_loop(
             rpacket_tracker,
             rpacket_last_interaction_tracker,
             montecarlo_configuration,
+            ENABLE_RPACKET_TRACKING=ENABLE_RPACKET_TRACKING,
+            ENABLE_RPACKET_LAST_INTERACTION_TRACKING=ENABLE_RPACKET_LAST_INTERACTION_TRACKING,
         )
         packet_collection.output_nus[i] = r_packet.nu
 
@@ -313,7 +336,7 @@ def montecarlo_main_loop(
             1,
         )
 
-    if montecarlo_configuration.ENABLE_RPACKET_TRACKING:
+    if ENABLE_RPACKET_TRACKING is not None:
         for rpacket_tracker in rpacket_trackers:
             rpacket_tracker.finalize_array()
 
@@ -335,7 +358,7 @@ def montecarlo_main_loop(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jul 2024.
       </span></p>
   </div>
 

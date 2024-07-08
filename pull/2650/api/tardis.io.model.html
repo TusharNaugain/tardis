@@ -16,13 +16,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=19677cec"></script>
+        <script src="../_static/documentation_options.js?v=6e4bc077"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -68,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -107,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -165,8 +164,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.base.html">tardis.io.model.readers.base module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_abundances_file"><code class="docutils literal notranslate"><span class="pre">read_abundances_file()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_density_file"><code class="docutils literal notranslate"><span class="pre">read_density_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.base.html#tardis.io.model.readers.base.read_mass_fractions_file"><code class="docutils literal notranslate"><span class="pre">read_mass_fractions_file()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.blondin_toymodel.html">tardis.io.model.readers.blondin_toymodel module</a><ul>
@@ -175,23 +174,28 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.cmfgen.html">tardis.io.model.readers.cmfgen module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_composition"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_composition()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_density"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.CMFGENModel"><code class="docutils literal notranslate"><span class="pre">CMFGENModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_model"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.cmfgen_deprecated.html">tardis.io.model.readers.cmfgen_deprecated module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen_deprecated.html#tardis.io.model.readers.cmfgen_deprecated.read_cmfgen_composition"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_composition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.cmfgen_deprecated.html#tardis.io.model.readers.cmfgen_deprecated.read_cmfgen_density"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_density()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.csvy.html">tardis.io.model.readers.csvy module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.load_csv_from_csvy"><code class="docutils literal notranslate"><span class="pre">load_csv_from_csvy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.load_csvy"><code class="docutils literal notranslate"><span class="pre">load_csvy()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.load_yaml_from_csvy"><code class="docutils literal notranslate"><span class="pre">load_yaml_from_csvy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.parse_csv_abundances"><code class="docutils literal notranslate"><span class="pre">parse_csv_abundances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.csvy.html#tardis.io.model.readers.csvy.parse_csv_mass_fractions"><code class="docutils literal notranslate"><span class="pre">parse_csv_mass_fractions()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html">tardis.io.model.readers.generic_readers module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.ConfigurationError"><code class="docutils literal notranslate"><span class="pre">ConfigurationError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_csv_composition"><code class="docutils literal notranslate"><span class="pre">read_csv_composition()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_abundances"><code class="docutils literal notranslate"><span class="pre">read_simple_ascii_abundances()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_density"><code class="docutils literal notranslate"><span class="pre">read_simple_ascii_density()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_abundances"><code class="docutils literal notranslate"><span class="pre">read_uniform_abundances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_simple_ascii_mass_fractions"><code class="docutils literal notranslate"><span class="pre">read_simple_ascii_mass_fractions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.generic_readers.html#tardis.io.model.readers.generic_readers.read_uniform_mass_fractions"><code class="docutils literal notranslate"><span class="pre">read_uniform_mass_fractions()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.stella.html">tardis.io.model.readers.stella module</a><ul>
@@ -200,7 +204,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.io.model.readers.util.html">tardis.io.model.readers.util module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.util.html#tardis.io.model.readers.util.read_csv_isotope_abundances"><code class="docutils literal notranslate"><span class="pre">read_csv_isotope_abundances()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.io.model.readers.util.html#tardis.io.model.readers.util.read_csv_isotope_mass_fractions"><code class="docutils literal notranslate"><span class="pre">read_csv_isotope_mass_fractions()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -215,33 +219,16 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.cmfgen.html">tardis.io.model.cmfgen module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.CMFGENModel"><code class="docutils literal notranslate"><span class="pre">CMFGENModel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.CMFGENModel.data"><code class="docutils literal notranslate"><span class="pre">CMFGENModel.data</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.CMFGENModel.metadata"><code class="docutils literal notranslate"><span class="pre">CMFGENModel.metadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_composition_configuration.html">tardis.io.model.parse_composition_configuration module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html">tardis.io.model.parse_density_configuration module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_geometry_configuration.html">tardis.io.model.parse_geometry_configuration module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_mass_fraction_configuration.html">tardis.io.model.parse_mass_fraction_configuration module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_packet_source_configuration.html">tardis.io.model.parse_packet_source_configuration module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_packet_source_configuration.html#tardis.io.model.parse_packet_source_configuration.initialize_packet_source"><code class="docutils literal notranslate"><span class="pre">initialize_packet_source()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_packet_source_configuration.html#tardis.io.model.parse_packet_source_configuration.parse_packet_source_from_config"><code class="docutils literal notranslate"><span class="pre">parse_packet_source_from_config()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.cmfgen.html#tardis.io.model.cmfgen.read_cmfgen_model"><code class="docutils literal notranslate"><span class="pre">read_cmfgen_model()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.density.html">tardis.io.model.density module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.calculate_density_after_time"><code class="docutils literal notranslate"><span class="pre">calculate_density_after_time()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.calculate_exponential_density"><code class="docutils literal notranslate"><span class="pre">calculate_exponential_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.calculate_power_law_density"><code class="docutils literal notranslate"><span class="pre">calculate_power_law_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.parse_config_v1_density"><code class="docutils literal notranslate"><span class="pre">parse_config_v1_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.parse_csvy_density"><code class="docutils literal notranslate"><span class="pre">parse_csvy_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.density.html#tardis.io.model.density.parse_density_section"><code class="docutils literal notranslate"><span class="pre">parse_density_section()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html">tardis.io.model.parse_density_configuration module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_density_after_time"><code class="docutils literal notranslate"><span class="pre">calculate_density_after_time()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_exponential_density"><code class="docutils literal notranslate"><span class="pre">calculate_exponential_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.calculate_power_law_density"><code class="docutils literal notranslate"><span class="pre">calculate_power_law_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_config_v1_density"><code class="docutils literal notranslate"><span class="pre">parse_config_v1_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_csvy_density"><code class="docutils literal notranslate"><span class="pre">parse_csvy_density()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tardis.io.model.parse_density_configuration.html#tardis.io.model.parse_density_configuration.parse_density_section"><code class="docutils literal notranslate"><span class="pre">parse_density_section()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.io.model.parse_radiation_field_configuration.html">tardis.io.model.parse_radiation_field_configuration module</a></li>
 </ul>
 </div>
 </section>
@@ -262,7 +249,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jul 2024.
       </span></p>
   </div>
 

@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=19677cec"></script>
+        <script src="../../../_static/documentation_options.js?v=6e4bc077"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -129,12 +129,14 @@ import tardis
 from tardis import constants as const
 from tardis.io.atom_data.base import AtomData
 from tardis.io.configuration.config_reader import ConfigurationError
+from tardis.io.model.parse_packet_source_configuration import (
+    initialize_packet_source,
+)
 from tardis.io.util import HDFWriterMixin
 from tardis.model import SimulationState
-from tardis.model.parse_input import initialize_packet_source
-from tardis.transport.montecarlo.base import MonteCarloTransportSolver
 from tardis.plasma.standard_plasmas import assemble_plasma
 from tardis.simulation.convergence import ConvergenceSolver
+from tardis.transport.montecarlo.base import MonteCarloTransportSolver
 from tardis.util.base import is_notebook
 from tardis.visualization import ConvergencePlots
 
@@ -834,12 +836,10 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
                     atom_data=atom_data,
                     legacy_mode_enabled=legacy_mode_enabled,
                 )
+            # Override with custom packet source from function argument if present
             if packet_source is not None:
                 simulation_state.packet_source = initialize_packet_source(
-                    config,
-                    simulation_state.geometry,
-                    packet_source,
-                    legacy_mode_enabled,
+                    packet_source, config, simulation_state.geometry
                 )
         if &quot;plasma&quot; in kwargs:
             plasma = kwargs[&quot;plasma&quot;]
@@ -921,7 +921,7 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Jun 2024.
+      <span class="lastupdated">Last updated on 08 Jul 2024.
       </span></p>
   </div>
 
