@@ -15,7 +15,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/documentation_options.js?v=00367301"></script>
+        <script src="_static/documentation_options.js?v=7d4294f6"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -1008,7 +1008,7 @@
       <li><a href="api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.AtomData.from_hdf">from_hdf() (tardis.io.atom_data.base.AtomData class method)</a>
 
       <ul>
-        <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_hdf">(tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter class method)</a>
+        <li><a href="api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.from_hdf">(tardis.visualization.tools.liv_plot.LIVPlotter class method)</a>
 </li>
         <li><a href="api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_hdf">(tardis.visualization.tools.sdec_plot.SDECData class method)</a>
 </li>
@@ -1024,7 +1024,9 @@
       <li><a href="api/tardis.analysis.html#tardis.analysis.LastLineInteraction.from_simulation">from_simulation() (tardis.analysis.LastLineInteraction class method)</a>
 
       <ul>
-        <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.from_simulation">(tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter class method)</a>
+        <li><a href="api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.from_simulation">(tardis.visualization.tools.liv_plot.LIVPlotter class method)</a>
+</li>
+        <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.from_simulation">(tardis.visualization.tools.rpacket_plot.RPacketPlotter class method)</a>
 </li>
         <li><a href="api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECData.from_simulation">(tardis.visualization.tools.sdec_plot.SDECData class method)</a>
 </li>
@@ -1079,13 +1081,15 @@
 </li>
       <li><a href="api/tardis.transport.montecarlo.formal_integral.html#tardis.transport.montecarlo.formal_integral.FormalIntegrator.generate_numba_objects">generate_numba_objects() (tardis.transport.montecarlo.formal_integral.FormalIntegrator method)</a>
 </li>
-      <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_mpl">generate_plot_mpl() (tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter method)</a>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.generate_plot">generate_plot() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_mpl">generate_plot_mpl() (tardis.visualization.tools.liv_plot.LIVPlotter method)</a>
 
       <ul>
         <li><a href="api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_mpl">(tardis.visualization.tools.sdec_plot.SDECPlotter method)</a>
 </li>
       </ul></li>
-      <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter.generate_plot_ply">generate_plot_ply() (tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter method)</a>
+      <li><a href="api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_ply">generate_plot_ply() (tardis.visualization.tools.liv_plot.LIVPlotter method)</a>
 
       <ul>
         <li><a href="api/tardis.visualization.tools.sdec_plot.html#tardis.visualization.tools.sdec_plot.SDECPlotter.generate_plot_ply">(tardis.visualization.tools.sdec_plot.SDECPlotter method)</a>
@@ -1115,6 +1119,10 @@
 </li>
       <li><a href="api/tardis.simulation.convergence.html#tardis.simulation.convergence.ConvergenceSolver.get_convergence_status">get_convergence_status() (tardis.simulation.convergence.ConvergenceSolver method)</a>
 </li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.get_coordinates_multiple_packets">get_coordinates_multiple_packets() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.get_coordinates_with_theta_init">get_coordinates_with_theta_init() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
+</li>
       <li><a href="api/tardis.opacities.opacities.html#tardis.opacities.opacities.get_current_bound_free_continua">get_current_bound_free_continua() (in module tardis.opacities.opacities)</a>
 </li>
       <li><a href="api/tardis.transport.montecarlo.interaction.html#tardis.transport.montecarlo.interaction.get_current_line_id">get_current_line_id() (in module tardis.transport.montecarlo.interaction)</a>
@@ -1126,6 +1134,10 @@
       <li><a href="api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_full_relativity">get_doppler_factor_full_relativity() (in module tardis.transport.frame_transformations)</a>
 </li>
       <li><a href="api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_partial_relativity">get_doppler_factor_partial_relativity() (in module tardis.transport.frame_transformations)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.get_equal_array_size">get_equal_array_size() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.get_frames">get_frames() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
 </li>
       <li><a href="api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor.get_g_lower">get_g_lower() (tardis.plasma.properties.radiative_properties.StimulatedEmissionFactor method)</a>
 </li>
@@ -1139,12 +1151,12 @@
 </li>
       <li><a href="api/tardis.io.util.html#tardis.io.util.get_internal_data_path">get_internal_data_path() (in module tardis.io.util)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor">get_inverse_doppler_factor() (in module tardis.transport.frame_transformations)</a>
 </li>
       <li><a href="api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_full_relativity">get_inverse_doppler_factor_full_relativity() (in module tardis.transport.frame_transformations)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_partial_relativity">get_inverse_doppler_factor_partial_relativity() (in module tardis.transport.frame_transformations)</a>
 </li>
       <li><a href="api/tardis.energy_input.energy_source.html#tardis.energy_input.energy_source.get_isotope_string">get_isotope_string() (in module tardis.energy_input.energy_source)</a>
@@ -1184,6 +1196,8 @@
       <li><a href="api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_theta_photon">get_random_theta_photon() (in module tardis.energy_input.util)</a>
 </li>
       <li><a href="api/tardis.energy_input.util.html#tardis.energy_input.util.get_random_unit_vector">get_random_unit_vector() (in module tardis.energy_input.util)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter.get_slider_steps">get_slider_steps() (tardis.visualization.tools.rpacket_plot.RPacketPlotter method)</a>
 </li>
       <li><a href="api/tardis.visualization.widgets.line_info.html#tardis.visualization.widgets.line_info.LineInfoWidget.get_species_interactions">get_species_interactions() (tardis.visualization.widgets.line_info.LineInfoWidget method)</a>
 </li>
@@ -1338,8 +1352,6 @@
       <li><a href="api/tardis.transport.montecarlo.formal_integral_cuda.html#tardis.transport.montecarlo.formal_integral_cuda.intensity_black_body_cuda">intensity_black_body_cuda() (in module tardis.transport.montecarlo.formal_integral_cuda)</a>
 </li>
       <li><a href="api/tardis.energy_input.energy_source.html#tardis.energy_input.energy_source.intensity_ratio">intensity_ratio() (in module tardis.energy_input.energy_source)</a>
-</li>
-      <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#tardis.visualization.tools.interaction_radius_plot.InteractionRadiusPlotter">InteractionRadiusPlotter (class in tardis.visualization.tools.interaction_radius_plot)</a>
 </li>
       <li><a href="api/tardis.transport.montecarlo.r_packet.html#tardis.transport.montecarlo.r_packet.InteractionType">InteractionType (class in tardis.transport.montecarlo.r_packet)</a>
 </li>
@@ -1646,6 +1658,8 @@
       <li><a href="api/tardis.plasma.properties.atomic.html#tardis.plasma.properties.atomic.LinesUpperLevelIndex">LinesUpperLevelIndex (class in tardis.plasma.properties.atomic)</a>
 </li>
       <li><a href="api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.LinkTRadTElectron">LinkTRadTElectron (class in tardis.plasma.properties.plasma_input)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter">LIVPlotter (class in tardis.visualization.tools.liv_plot)</a>
 </li>
       <li><a href="api/tardis.analysis.html#tardis.analysis.TARDISHistory.load_atom_data">load_atom_data() (tardis.analysis.TARDISHistory method)</a>
 </li>
@@ -2013,7 +2027,9 @@
 </li>
         <li><a href="api/tardis.visualization.tools.convergence_plot.html#module-tardis.visualization.tools.convergence_plot">tardis.visualization.tools.convergence_plot</a>
 </li>
-        <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#module-tardis.visualization.tools.interaction_radius_plot">tardis.visualization.tools.interaction_radius_plot</a>
+        <li><a href="api/tardis.visualization.tools.liv_plot.html#module-tardis.visualization.tools.liv_plot">tardis.visualization.tools.liv_plot</a>
+</li>
+        <li><a href="api/tardis.visualization.tools.rpacket_plot.html#module-tardis.visualization.tools.rpacket_plot">tardis.visualization.tools.rpacket_plot</a>
 </li>
         <li><a href="api/tardis.visualization.tools.sdec_plot.html#module-tardis.visualization.tools.sdec_plot">tardis.visualization.tools.sdec_plot</a>
 </li>
@@ -2629,6 +2645,8 @@
       <li><a href="api/tardis.transport.montecarlo.r_packet.html#tardis.transport.montecarlo.r_packet.RPacket">RPacket (class in tardis.transport.montecarlo.r_packet)</a>
 </li>
       <li><a href="api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.rpacket_trackers_to_dataframe">rpacket_trackers_to_dataframe() (in module tardis.transport.montecarlo.packet_trackers)</a>
+</li>
+      <li><a href="api/tardis.visualization.tools.rpacket_plot.html#tardis.visualization.tools.rpacket_plot.RPacketPlotter">RPacketPlotter (class in tardis.visualization.tools.rpacket_plot)</a>
 </li>
       <li><a href="api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.RPacketTracker">RPacketTracker (class in tardis.transport.montecarlo.packet_trackers)</a>
 </li>
@@ -3725,10 +3743,17 @@
 </li>
       </ul></li>
       <li>
-    tardis.visualization.tools.interaction_radius_plot
+    tardis.visualization.tools.liv_plot
 
       <ul>
-        <li><a href="api/tardis.visualization.tools.interaction_radius_plot.html#module-tardis.visualization.tools.interaction_radius_plot">module</a>
+        <li><a href="api/tardis.visualization.tools.liv_plot.html#module-tardis.visualization.tools.liv_plot">module</a>
+</li>
+      </ul></li>
+      <li>
+    tardis.visualization.tools.rpacket_plot
+
+      <ul>
+        <li><a href="api/tardis.visualization.tools.rpacket_plot.html#module-tardis.visualization.tools.rpacket_plot">module</a>
 </li>
       </ul></li>
       <li>
@@ -4089,7 +4114,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 03 Jul 2024.
+      <span class="lastupdated">Last updated on 08 Jul 2024.
       </span></p>
   </div>
 
