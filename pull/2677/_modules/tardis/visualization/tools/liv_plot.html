@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=7d4294f6"></script>
+        <script src="../../../../_static/documentation_options.js?v=a84be699"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -409,11 +409,11 @@ class LIVPlotter:
 <a class="viewcode-back" href="../../../../api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_mpl">[docs]</a>
     def generate_plot_mpl(
         self,
+        species_list,
         packets_mode=&quot;virtual&quot;,
         ax=None,
         figsize=(11, 5),
         cmapname=&quot;jet&quot;,
-        species_list=[],
         log_scale=False,
         num_bins=None,
         velocity_range=None,
@@ -423,6 +423,8 @@ class LIVPlotter:
 
         Parameters
         ----------
+        species_list : list of str
+            List of species to plot.
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         ax : matplotlib.axes.Axes, optional
@@ -431,8 +433,6 @@ class LIVPlotter:
             Size of the figure. Default is (11, 5).
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
-        species_list : list of str
-            List of species to plot.
         log_scale : bool, optional
             If True, both axes are scaled logarithmically. Default is False.
         num_bins : int, optional
@@ -490,11 +490,11 @@ class LIVPlotter:
 <a class="viewcode-back" href="../../../../api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_ply">[docs]</a>
     def generate_plot_ply(
         self,
+        species_list,
         packets_mode=&quot;virtual&quot;,
         fig=None,
         figsize=(1000, 500),
         cmapname=&quot;jet&quot;,
-        species_list=[],
         log_scale=False,
         num_bins=None,
         velocity_range=None,
@@ -504,6 +504,8 @@ class LIVPlotter:
 
         Parameters
         ----------
+        species_list : list of str
+            List of species to plot.
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         fig : plotly.graph_objects.Figure, optional
@@ -512,8 +514,6 @@ class LIVPlotter:
             Size of the figure. Default is (1000, 500).
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
-        species_list : list of str
-            List of species to plot.
         log_scale : bool, optional
             If True, both axes are scaled logarithmically. Default is False.
         num_bins : int, optional
