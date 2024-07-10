@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=08d7878b"></script>
+        <script src="../../../../_static/documentation_options.js?v=66063d29"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -539,7 +539,7 @@ class LIVPlotter:
         species_list=None,
         packets_mode=&quot;virtual&quot;,
         fig=None,
-        figsize=(1000, 500),
+        graph_height=600,
         cmapname=&quot;jet&quot;,
         xlog_scale=False,
         ylog_scale=False,
@@ -557,8 +557,8 @@ class LIVPlotter:
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         fig : plotly.graph_objects.Figure, optional
             Plotly figure object to add the plot to. If None, creates a new figure.
-        figsize : tuple, optional
-            Size of the figure. Default is (1000, 500).
+        graph_height : int, optional
+            Height (in px) of the plotly graph to display. Default value is 600.
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
         xlog_scale : bool, optional
@@ -603,8 +603,7 @@ class LIVPlotter:
                 )
             )
         self.fig.update_layout(
-            width=figsize[0],
-            height=figsize[1],
+            height=graph_height,
             xaxis_title=&quot;Last Interaction Velocity (km/s)&quot;,
             yaxis_title=&quot;Packet Count&quot;,
             font=dict(size=15),
