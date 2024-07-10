@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=0668b220"></script>
+        <script src="../../../../_static/documentation_options.js?v=c069a7a1"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -226,9 +226,9 @@ class StimulatedEmissionFactor(ProcessingPlasmaProperty):
         )
 
         # the following line probably can be removed as well
-        stimulated_emission_factor[np.isneginf(stimulated_emission_factor)] = (
-            0.0
-        )
+        stimulated_emission_factor[
+            np.isneginf(stimulated_emission_factor)
+        ] = 0.0
         stimulated_emission_factor[
             meta_stable_upper &amp; (stimulated_emission_factor &lt; 0)
         ] = 0.0
