@@ -16,7 +16,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=5bdfefbc"></script>
+        <script src="../../_static/documentation_options.js?v=8c94aa69"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -140,6 +140,79 @@ simulation’s <a class="reference internal" href="../../physics/spectrum/virtua
 example, if you call your TARDIS simulation <code class="docutils literal notranslate"><span class="pre">sim</span></code>, you would access the virtual packet frequencies by running
 <code class="docutils literal notranslate"><span class="pre">sim.transport.virt_packet_nus</span></code>.</p>
 </div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute of Simulation</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">virt_packet_logging</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p>Shows if virtual packet logging is turned on</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_nus</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Virtual packet frequencies</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_energies</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Virtual packet energies</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_initial_mus</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Propagation directions that virtual packets are launched at</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_initial_rs</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Radii that virtual packets are launched at</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_interaction_type</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><div class="line-block">
+<div class="line">Type of interaction that caused the virtual packets to be spawned</div>
+<div class="line">(enum, see <a class="reference internal" href="how_to_physical_quantities.html"><span class="doc">How to Access Physical Quantities</span></a>)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_interaction_in_nu</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Frequencies of the r-packets which spawned the virtual packet</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_interaction_in_r</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><p>Radii of the r-packets which spawned the virtual packet</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_line_interaction_in_id</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><div class="line-block">
+<div class="line">If the last interaction was a line interaction, the</div>
+<div class="line">line_interaction_in_id for that interaction</div>
+<div class="line">(see <a class="reference internal" href="how_to_physical_quantities.html"><span class="doc">How to Access Physical Quantities</span></a>)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_line_interaction_out_id</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><div class="line-block">
+<div class="line">If the last interaction was a line interaction, the</div>
+<div class="line">line_interaction_out_id for that interaction</div>
+<div class="line">(see <a class="reference internal" href="how_to_physical_quantities.html"><span class="doc">How to Access Physical Quantities</span></a>)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport.virt_packet_last_line_interaction_shell_id</span></code></p></td>
+<td><p>Numpy array</p></td>
+<td><div class="line-block">
+<div class="line">If the last interaction was a line interaction, the</div>
+<div class="line">line_interaction_shell_id for that interaction</div>
+<div class="line">(see <a class="reference internal" href="how_to_physical_quantities.html"><span class="doc">How to Access Physical Quantities</span></a>)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
@@ -154,7 +227,7 @@ example, if you call your TARDIS simulation <code class="docutils literal notran
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 09 Jul 2024.
+      <span class="lastupdated">Last updated on 10 Jul 2024.
       </span></p>
   </div>
 
