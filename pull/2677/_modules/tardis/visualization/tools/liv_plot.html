@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=8e318cd5"></script>
+        <script src="../../../../_static/documentation_options.js?v=08d7878b"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -115,7 +115,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.visualization.tools.liv_plot</h1><div class="highlight"><pre>
-<span></span>import matplotlib.pyplot as plt
+<span></span>import logging
+import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import plotly.graph_objects as go
 import numpy as np
@@ -128,6 +129,8 @@ from tardis.util.base import (
 )
 import tardis.visualization.tools.sdec_plot as sdec
 from tardis.visualization import plot_util as pu
+
+logger = logging.getLogger(__name__)
 
 
 <div class="viewcode-block" id="LIVPlotter">
@@ -376,6 +379,17 @@ class LIVPlotter:
         new_bin_edges : np.ndarray
             Array of bin edges for the velocity data.
         &quot;&quot;&quot;
+        if species_list is None:
+            # Extract all unique elements from the packets data
+            species_in_model = np.unique(
+                self.data[packets_mode]
+                .packets_df_line_interaction[&quot;last_line_interaction_species&quot;]
+                .values
+            )
+            species_list = [
+                f&quot;{atomic_number2element_symbol(specie // 100)}&quot;
+                for specie in species_in_model
+            ]
         self._parse_species_list(species_list)
         species_in_model = np.unique(
             self.data[packets_mode]
@@ -399,9 +413,15 @@ class LIVPlotter:
         if num_bins:
             if num_bins &lt; 1:
                 raise ValueError(&quot;Number of bins must be positive&quot;)
-            new_bin_edges = np.linspace(
-                bin_edges[0], bin_edges[-1], num_bins + 1
-            )
+            elif len(bin_edges) - 1 &lt; num_bins:
+                logger.info(
+                    &quot;Number of bins must be less than or equal to number of shells&quot;
+                )
+                new_bin_edges = bin_edges
+            else:
+                new_bin_edges = np.linspace(
+                    bin_edges[0], bin_edges[-1], num_bins + 1
+                )
         else:
             new_bin_edges = bin_edges
 
@@ -434,12 +454,13 @@ class LIVPlotter:
 <a class="viewcode-back" href="../../../../api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_mpl">[docs]</a>
     def generate_plot_mpl(
         self,
-        species_list,
+        species_list=None,
         packets_mode=&quot;virtual&quot;,
         ax=None,
         figsize=(11, 5),
         cmapname=&quot;jet&quot;,
-        log_scale=False,
+        xlog_scale=False,
+        ylog_scale=False,
         num_bins=None,
         velocity_range=None,
     ):
@@ -448,8 +469,8 @@ class LIVPlotter:
 
         Parameters
         ----------
-        species_list : list of str
-            List of species to plot.
+        species_list : list of str, optional
+            List of species to plot. Default is None which plots all species in the model.
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         ax : matplotlib.axes.Axes, optional
@@ -458,10 +479,12 @@ class LIVPlotter:
             Size of the figure. Default is (11, 5).
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
-        log_scale : bool, optional
-            If True, both axes are scaled logarithmically. Default is False.
+        xlog_scale : bool, optional
+            If True, x-axis is scaled logarithmically. Default is False.
+        ylog_scale : bool, optional
+            If True, y-axis is scaled logarithmically. Default is False.
         num_bins : int, optional
-            Number of bins for regrouping within the same range. Default is None
+            Number of bins for regrouping within the same range. Default is None.
         velocity_range : tuple, optional
             Limits for the x-axis. If specified, overrides any automatically determined limits.
 
@@ -494,14 +517,14 @@ class LIVPlotter:
             )
 
         self.ax.ticklabel_format(axis=&quot;y&quot;, scilimits=(0, 0))
-        self.ax.tick_params(&quot;both&quot;, labelsize=14)
+        self.ax.tick_params(&quot;both&quot;, labelsize=15)
         self.ax.set_xlabel(&quot;Last Interaction Velocity (km/s)&quot;, fontsize=14)
-        self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=14)
-        self.ax.grid(True, which=&quot;both&quot;, linestyle=&quot;--&quot;, linewidth=0.5)
+        self.ax.set_ylabel(&quot;Packet Count&quot;, fontsize=15)
         self.ax.legend(fontsize=15, bbox_to_anchor=(1.0, 1.0), loc=&quot;upper left&quot;)
         self.ax.figure.tight_layout()
-        if log_scale:
+        if xlog_scale:
             self.ax.set_xscale(&quot;log&quot;)
+        if ylog_scale:
             self.ax.set_yscale(&quot;log&quot;)
         if velocity_range:
             self.ax.set_xlim(velocity_range[0], velocity_range[1])
@@ -513,12 +536,13 @@ class LIVPlotter:
 <a class="viewcode-back" href="../../../../api/tardis.visualization.tools.liv_plot.html#tardis.visualization.tools.liv_plot.LIVPlotter.generate_plot_ply">[docs]</a>
     def generate_plot_ply(
         self,
-        species_list,
+        species_list=None,
         packets_mode=&quot;virtual&quot;,
         fig=None,
         figsize=(1000, 500),
         cmapname=&quot;jet&quot;,
-        log_scale=False,
+        xlog_scale=False,
+        ylog_scale=False,
         num_bins=None,
         velocity_range=None,
     ):
@@ -527,8 +551,8 @@ class LIVPlotter:
 
         Parameters
         ----------
-        species_list : list of str
-            List of species to plot.
+        species_list : list of str, optional
+            List of species to plot. Default is None which plots all species in the model.
         packets_mode : str, optional
             Packet mode, either &#39;virtual&#39; or &#39;real&#39;. Default is &#39;virtual&#39;.
         fig : plotly.graph_objects.Figure, optional
@@ -537,10 +561,12 @@ class LIVPlotter:
             Size of the figure. Default is (1000, 500).
         cmapname : str, optional
             Colormap name. Default is &#39;jet&#39;. A specific colormap can be chosen, such as &quot;jet&quot;, &quot;viridis&quot;, &quot;plasma&quot;, etc.
-        log_scale : bool, optional
-            If True, both axes are scaled logarithmically. Default is False.
+        xlog_scale : bool, optional
+            If True, x-axis is scaled logarithmically. Default is False.
+        ylog_scale : bool, optional
+            If True, y-axis is scaled logarithmically. Default is False.
         num_bins : int, optional
-            Number of bins for regrouping within the same range. Default is None
+            Number of bins for regrouping within the same range. Default is None.
         velocity_range : tuple, optional
             Limits for the x-axis. If specified, overrides any automatically determined limits.
 
@@ -581,12 +607,13 @@ class LIVPlotter:
             height=figsize[1],
             xaxis_title=&quot;Last Interaction Velocity (km/s)&quot;,
             yaxis_title=&quot;Packet Count&quot;,
-            font=dict(size=14),
-            yaxis=dict(exponentformat=&quot;power&quot; if log_scale else &quot;e&quot;),
-            xaxis=dict(exponentformat=&quot;power&quot; if log_scale else &quot;none&quot;),
+            font=dict(size=15),
+            yaxis=dict(exponentformat=&quot;power&quot; if ylog_scale else &quot;e&quot;),
+            xaxis=dict(exponentformat=&quot;power&quot; if xlog_scale else &quot;none&quot;),
         )
-        if log_scale:
+        if xlog_scale:
             self.fig.update_xaxes(type=&quot;log&quot;)
+        if ylog_scale:
             self.fig.update_yaxes(type=&quot;log&quot;, dtick=1)
 
         if velocity_range:
