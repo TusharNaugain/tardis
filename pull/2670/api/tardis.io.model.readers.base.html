@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../_static/documentation_options.js?v=2400560e"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -66,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -105,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -148,26 +149,6 @@
   <section id="module-tardis.io.model.readers.base">
 <span id="tardis-io-model-readers-base-module"></span><h1>tardis.io.model.readers.base module<a class="headerlink" href="#module-tardis.io.model.readers.base" title="Link to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.base.read_abundances_file">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.base.</span></span><span class="sig-name descname"><span class="pre">read_abundances_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abundance_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abundance_filetype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_boundary_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_boundary_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/base.html#read_abundances_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.base.read_abundances_file" title="Link to this definition">¶</a></dt>
-<dd><p>read different density file formats</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>abundance_filename</strong><span class="classifier">str</span></dt><dd><p>filename or path of the density file</p>
-</dd>
-<dt><strong>abundance_filetype</strong><span class="classifier">str</span></dt><dd><p>type of the density file</p>
-</dd>
-<dt><strong>inner_boundary_index</strong><span class="classifier">int</span></dt><dd><p>index of the inner shell, default None</p>
-</dd>
-<dt><strong>outer_boundary_index</strong><span class="classifier">int</span></dt><dd><p>index of the outer shell, default None</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="tardis.io.model.readers.base.read_density_file">
 <span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.base.</span></span><span class="sig-name descname"><span class="pre">read_density_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/base.html#read_density_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.base.read_density_file" title="Link to this definition">¶</a></dt>
 <dd><p>read different density file formats</p>
@@ -188,6 +169,30 @@
 </dd>
 <dt><strong>unscaled_mean_densities</strong><span class="classifier">np.ndarray</span></dt><dd><p>the array containing the densities</p>
 </dd>
+<dt><strong>electron_densities</strong><span class="classifier">np.ndarray</span></dt><dd><p>The array containing electron densities</p>
+</dd>
+<dt><strong>temperature</strong><span class="classifier">np.ndarray</span></dt><dd><p>The array containing temperatures</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.io.model.readers.base.read_mass_fractions_file">
+<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.base.</span></span><span class="sig-name descname"><span class="pre">read_mass_fractions_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass_fractions_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_fractions_filetype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_boundary_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_boundary_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/base.html#read_mass_fractions_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.base.read_mass_fractions_file" title="Link to this definition">¶</a></dt>
+<dd><p>read different density file formats</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mass_fractions_filename</strong><span class="classifier">str</span></dt><dd><p>filename or path of the density file</p>
+</dd>
+<dt><strong>mass_fractions_filetype</strong><span class="classifier">str</span></dt><dd><p>type of the density file</p>
+</dd>
+<dt><strong>inner_boundary_index</strong><span class="classifier">int</span></dt><dd><p>index of the inner shell, default None</p>
+</dd>
+<dt><strong>outer_boundary_index</strong><span class="classifier">int</span></dt><dd><p>index of the outer shell, default None</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -207,7 +212,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 12 Jul 2024.
       </span></p>
   </div>
 

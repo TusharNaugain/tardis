@@ -16,7 +16,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../_static/documentation_options.js?v=2400560e"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.io.model.readers.csvy module" href="tardis.io.model.readers.csvy.html" />
+    <link rel="next" title="tardis.io.model.readers.cmfgen_deprecated module" href="tardis.io.model.readers.cmfgen_deprecated.html" />
     <link rel="prev" title="tardis.io.model.readers.blondin_toymodel module" href="tardis.io.model.readers.blondin_toymodel.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -66,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.gui.html">tardis.gui package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.io.html">tardis.io package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.model.html">tardis.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.html">tardis.opacities package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
@@ -105,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -147,48 +148,35 @@
              
   <section id="module-tardis.io.model.readers.cmfgen">
 <span id="tardis-io-model-readers-cmfgen-module"></span><h1>tardis.io.model.readers.cmfgen module<a class="headerlink" href="#module-tardis.io.model.readers.cmfgen" title="Link to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.read_cmfgen_composition">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.cmfgen.</span></span><span class="sig-name descname"><span class="pre">read_cmfgen_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\s+'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/cmfgen.html#read_cmfgen_composition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.cmfgen.read_cmfgen_composition" title="Link to this definition">¶</a></dt>
-<dd><p>Read composition from a CMFGEN model file</p>
-<p>The CMFGEN file format contains information about the ejecta state in the
-first four columns and the following ones contain elemental and isotopic
-abundances.</p>
-<p>WARNING : deprecated</p>
-<dl class="simple">
-<dt>fname<span class="classifier">str</span></dt><dd><p>filename of the csv file</p>
-</dd>
-</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.CMFGENModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.cmfgen.</span></span><span class="sig-name descname"><span class="pre">CMFGENModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/cmfgen.html#CMFGENModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.cmfgen.CMFGENModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.CMFGENModel.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.io.model.readers.cmfgen.CMFGENModel.data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.CMFGENModel.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></em><a class="headerlink" href="#tardis.io.model.readers.cmfgen.CMFGENModel.metadata" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.read_cmfgen_density">
-<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.cmfgen.</span></span><span class="sig-name descname"><span class="pre">read_cmfgen_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/cmfgen.html#read_cmfgen_density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.cmfgen.read_cmfgen_density" title="Link to this definition">¶</a></dt>
-<dd><p>Reading a density file of the following structure (example; lines starting with a hash will be ignored):
-The first density describes the mean density in the center of the model and is not used.
-The file consists of a header row and next row contains unit of the respective attributes
-Note that the first column has to contain a running index</p>
-<p>Example:</p>
-<p>index velocity densities electron_densities temperature
-- km/s g/cm^3 /cm^3 K
-0 871.66905 4.2537191e-09 2.5953807e+14 7.6395577
-1 877.44269 4.2537191e-09 2.5953807e+14 7.6395577</p>
-<p>Rest columns contain abundances of elements and isotopes</p>
+<dt class="sig sig-object py" id="tardis.io.model.readers.cmfgen.read_cmfgen_model">
+<span class="sig-prename descclassname"><span class="pre">tardis.io.model.readers.cmfgen.</span></span><span class="sig-name descname"><span class="pre">read_cmfgen_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/model/readers/cmfgen.html#read_cmfgen_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.model.readers.cmfgen.read_cmfgen_model" title="Link to this definition">¶</a></dt>
+<dd><p>Read in a CMFGEN model file and return the data and model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>filename or path with filename</p>
-</dd>
+<dt><strong>fname</strong><span class="classifier">str</span></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>time_of_model</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>time at which the model is valid</p>
-</dd>
-<dt><strong>velocity</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
-<dt><strong>mean_density</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
-<dt><strong>electron_densities</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
-<dt><strong>temperature</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
+<dt><strong>model</strong><span class="classifier">CMFGENModel</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -201,14 +189,14 @@ Note that the first column has to contain a running index</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.io.model.readers.blondin_toymodel.html" class="btn btn-neutral float-left" title="tardis.io.model.readers.blondin_toymodel module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.io.model.readers.csvy.html" class="btn btn-neutral float-right" title="tardis.io.model.readers.csvy module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.io.model.readers.cmfgen_deprecated.html" class="btn btn-neutral float-right" title="tardis.io.model.readers.cmfgen_deprecated module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 12 Jul 2024.
       </span></p>
   </div>
 

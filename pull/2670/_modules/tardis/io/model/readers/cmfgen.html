@@ -15,7 +15,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../../../../../_static/documentation_options.js?v=2400560e"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -115,102 +115,86 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.cmfgen</h1><div class="highlight"><pre>
-<span></span>from tardis.io.model.readers.util import read_csv_isotope_abundances
-from tardis.util.base import parse_quantity
-
-
+<span></span>import re
 import pandas as pd
 from astropy import units as u
+from pathlib import Path
+import dataclasses
 
 
-import warnings
+<div class="viewcode-block" id="CMFGENModel">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.CMFGENModel">[docs]</a>
+@dataclasses.dataclass
+class CMFGENModel:
+    metadata: dict
+    data: pd.DataFrame</div>
 
 
-<div class="viewcode-block" id="read_cmfgen_density">
-<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_density">[docs]</a>
-def read_cmfgen_density(fname: str):
+
+HEADER_RE_STR = [
+    (r&quot;t0:\s+(\d+\.\d+)+\s+day&quot;, &quot;t0&quot;),
+]
+
+COLUMN_ROW = 1
+UNIT_ROW = 2
+DATA_START_ROW = 3
+
+
+<div class="viewcode-block" id="read_cmfgen_model">
+<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_model">[docs]</a>
+def read_cmfgen_model(fname):
     &quot;&quot;&quot;
-    Reading a density file of the following structure (example; lines starting with a hash will be ignored):
-    The first density describes the mean density in the center of the model and is not used.
-    The file consists of a header row and next row contains unit of the respective attributes
-    Note that the first column has to contain a running index
-
-    Example:
-
-    index velocity densities electron_densities temperature
-    - km/s g/cm^3 /cm^3 K
-    0 871.66905 4.2537191e-09 2.5953807e+14 7.6395577
-    1 877.44269 4.2537191e-09 2.5953807e+14 7.6395577
-
-    Rest columns contain abundances of elements and isotopes
+    Read in a CMFGEN model file and return the data and model
 
     Parameters
     ----------
+
     fname : str
-        filename or path with filename
 
     Returns
     -------
-    time_of_model : astropy.units.Quantity
-        time at which the model is valid
-    velocity : np.ndarray
-    mean_density : np.ndarray
-    electron_densities : np.ndarray
-    temperature : np.ndarray
+    model : CMFGENModel
+
     &quot;&quot;&quot;
-    warnings.warn(
-        &quot;The current CMFGEN model parser is deprecated&quot;, DeprecationWarning
-    )
-
-    df = pd.read_csv(fname, comment=&quot;#&quot;, delimiter=r&quot;\s+&quot;, skiprows=[0, 2])
-
+    header_re = [re.compile(re_str[0]) for re_str in HEADER_RE_STR]
+    metadata = {}
     with open(fname) as fh:
-        for row_index, line in enumerate(fh):
-            if row_index == 0:
-                time_of_model_string = line.strip().replace(&quot;t0:&quot;, &quot;&quot;)
-                time_of_model = parse_quantity(time_of_model_string)
-            elif row_index == 2:
-                quantities = line.split()
+        for i, line in enumerate(fh):
+            if i &lt; len(HEADER_RE_STR):
+                header_re_match = header_re[i].match(line)
+                metadata[HEADER_RE_STR[i][1]] = header_re_match.group(1)
+            elif i == COLUMN_ROW:
+                if &quot;Index&quot; in line:
+                    column_names = re.split(r&quot;\s&quot;, line.strip())
+                    column_names = [
+                        col.lower().replace(&quot; &quot;, &quot;_&quot;) for col in column_names
+                    ]
+                    column_names = column_names[
+                        1:
+                    ]  # Remove Index from column names
+                else:
+                    raise ValueError(
+                        &#39;&quot;Index&quot; is required in the Cmfgen input file to infer columns&#39;
+                    )
+            elif i == UNIT_ROW:
+                units = re.split(r&quot;\s&quot;, line.strip())
+                units = units[1:]  # Remove index column
+                for col, unit in zip(column_names, units):
+                    if u.Unit(unit) == &quot;&quot;:  # dimensionless
+                        continue
+                    metadata[f&quot;{col}_unit&quot;] = u.Unit(unit)
+                break
 
-    velocity = u.Quantity(df[&quot;velocity&quot;].values, quantities[1]).to(&quot;cm/s&quot;)
-    temperature = u.Quantity(df[&quot;temperature&quot;].values, quantities[2])[1:]
-    mean_density = u.Quantity(df[&quot;densities&quot;].values, quantities[3])[1:]
-    electron_densities = u.Quantity(
-        df[&quot;electron_densities&quot;].values, quantities[4]
-    )[1:]
-
-    return (
-        time_of_model,
-        velocity,
-        mean_density,
-        electron_densities,
-        temperature,
-    )</div>
-
-
-
-<div class="viewcode-block" id="read_cmfgen_composition">
-<a class="viewcode-back" href="../../../../../api/tardis.io.model.readers.cmfgen.html#tardis.io.model.readers.cmfgen.read_cmfgen_composition">[docs]</a>
-def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
-    &quot;&quot;&quot;Read composition from a CMFGEN model file
-
-    The CMFGEN file format contains information about the ejecta state in the
-    first four columns and the following ones contain elemental and isotopic
-    abundances.
-
-    WARNING : deprecated
-
-    fname : str
-        filename of the csv file
-    &quot;&quot;&quot;
-
-    warnings.warn(
-        &quot;The current CMFGEN model parser is deprecated&quot;, DeprecationWarning
+        metadata[&quot;t0&quot;] = float(metadata[&quot;t0&quot;]) * u.day
+    data = pd.read_csv(
+        fname,
+        delim_whitespace=True,
+        skiprows=DATA_START_ROW,
+        header=None,
+        index_col=0,
     )
-
-    return read_csv_isotope_abundances(
-        fname, delimiter=delimiter, skip_columns=4, skip_rows=[0, 2, 3]
-    )</div>
+    data.columns = column_names
+    return CMFGENModel(metadata, data)</div>
 
 </pre></div>
 
@@ -222,7 +206,7 @@ def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 12 Jul 2024.
       </span></p>
   </div>
 

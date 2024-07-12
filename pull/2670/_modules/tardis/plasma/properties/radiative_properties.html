@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=e76577ee"></script>
+        <script src="../../../../_static/documentation_options.js?v=2400560e"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -120,24 +120,21 @@
 import numpy as np
 import pandas as pd
 from astropy import units as u
-from tardis import constants as const
 from numba import jit, prange
 
+from tardis import constants as const
+from tardis.opacities.macro_atom.base import TransitionProbabilities
 from tardis.plasma.properties.base import (
     ProcessingPlasmaProperty,
     TransitionProbabilitiesProperty,
 )
-from tardis.plasma.properties.util import macro_atom
 
 logger = logging.getLogger(__name__)
 
 __all__ = [
     &quot;StimulatedEmissionFactor&quot;,
-    &quot;TauSobolev&quot;,
     &quot;BetaSobolev&quot;,
-    &quot;TransitionProbabilities&quot;,
     &quot;RawRadBoundBoundTransProbs&quot;,
-    &quot;NonMarkovChainTransitionProbabilities&quot;,
 ]
 
 C_EINSTEIN = (
@@ -219,10 +216,16 @@ class StimulatedEmissionFactor(ProcessingPlasmaProperty):
             metastability, lines_upper_level_index
         )
 
-        stimulated_emission_factor = 1 - (
-            (g_lower * n_upper) / (g_upper * n_lower)
+        # In theory the factor should be 1 for n_lower = 0, but in practice the opacity is reduced to 0 anyway
+        stimulated_emission_factor = np.zeros(n_lower.shape, dtype=np.float64)
+
+        n_lower_zero_mask = n_lower == 0.0
+        stimulated_emission_factor[~n_lower_zero_mask] = 1 - (
+            (g_lower * n_upper)[~n_lower_zero_mask]
+            / (g_upper * n_lower)[~n_lower_zero_mask]
         )
-        stimulated_emission_factor[n_lower == 0.0] = 0.0
+
+        # the following line probably can be removed as well
         stimulated_emission_factor[
             np.isneginf(stimulated_emission_factor)
         ] = 0.0
@@ -243,81 +246,6 @@ class StimulatedEmissionFactor(ProcessingPlasmaProperty):
                 (stimulated_emission_factor &lt; 0) &amp; nlte_lines_mask[np.newaxis].T
             ] = 0.0
         return stimulated_emission_factor</div>
-</div>
-
-
-
-<div class="viewcode-block" id="TauSobolev">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev">[docs]</a>
-class TauSobolev(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    tau_sobolev : Pandas DataFrame, dtype float
-          Sobolev optical depth for each line. Indexed by line.
-          Columns as zones.
-    &quot;&quot;&quot;
-
-    outputs = (&quot;tau_sobolevs&quot;,)
-    latex_name = (r&quot;\tau_{\textrm{sobolev}}&quot;,)
-    latex_formula = (
-        r&quot;\dfrac{\pi e^{2}}{m_{e} c}f_{lu}\lambda t_{exp}\
-        n_{lower} \Big(1-\dfrac{g_{lower}n_{upper}}{g_{upper}n_{lower}}\Big)&quot;,
-    )
-
-    def __init__(self, plasma_parent):
-        super(TauSobolev, self).__init__(plasma_parent)
-        self.sobolev_coefficient = (
-            (
-                ((np.pi * const.e.gauss**2) / (const.m_e.cgs * const.c.cgs))
-                * u.cm
-                * u.s
-                / u.cm**3
-            )
-            .to(1)
-            .value
-        )
-
-<div class="viewcode-block" id="TauSobolev.calculate">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TauSobolev.calculate">[docs]</a>
-    def calculate(
-        self,
-        lines,
-        level_number_density,
-        lines_lower_level_index,
-        time_explosion,
-        stimulated_emission_factor,
-        j_blues,
-        f_lu,
-        wavelength_cm,
-    ):
-        f_lu = f_lu.values[np.newaxis].T
-        wavelength = wavelength_cm.values[np.newaxis].T
-        n_lower = level_number_density.values.take(
-            lines_lower_level_index, axis=0, mode=&quot;raise&quot;
-        )
-        tau_sobolevs = (
-            self.sobolev_coefficient
-            * f_lu
-            * wavelength
-            * time_explosion
-            * n_lower
-            * stimulated_emission_factor
-        )
-
-        if np.any(np.isnan(tau_sobolevs)) or np.any(
-            np.isinf(np.abs(tau_sobolevs))
-        ):
-            raise ValueError(
-                &quot;Some tau_sobolevs are nan, inf, -inf in tau_sobolevs.&quot;
-                &quot; Something went wrong!&quot;
-            )
-
-        return pd.DataFrame(
-            tau_sobolevs,
-            index=lines.index,
-            columns=np.array(level_number_density.columns),
-        )</div>
 </div>
 
 
@@ -368,161 +296,6 @@ class BetaSobolev(ProcessingPlasmaProperty):
                 )
         return beta_sobolevs</div>
 </div>
-
-
-
-<div class="viewcode-block" id="TransitionProbabilities">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities">[docs]</a>
-class TransitionProbabilities(ProcessingPlasmaProperty):
-    &quot;&quot;&quot;
-    Attributes
-    ----------
-    transition_probabilities : Pandas DataFrame, dtype float
-    &quot;&quot;&quot;
-
-    outputs = (&quot;transition_probabilities&quot;,)
-
-    def __init__(self, plasma_parent):
-        super(TransitionProbabilities, self).__init__(plasma_parent)
-        self.initialize = True
-        self.normalize = True
-
-<div class="viewcode-block" id="TransitionProbabilities.calculate">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate">[docs]</a>
-    def calculate(
-        self,
-        atomic_data,
-        beta_sobolev,
-        j_blues,
-        stimulated_emission_factor,
-        tau_sobolevs,
-    ):
-        # I wonder why?
-        # Not sure who wrote this but the answer is that when the plasma is
-        # first initialised (before the first iteration, without temperature
-        # values etc.) there are no j_blues values so this just prevents
-        # an error. Aoife.
-        if len(j_blues) == 0:
-            return None
-        macro_atom_data = self._get_macro_atom_data(atomic_data)
-        if self.initialize:
-            self.initialize_macro_atom_transition_type_filters(
-                atomic_data, macro_atom_data
-            )
-            self.transition_probability_coef = (
-                self._get_transition_probability_coefs(macro_atom_data)
-            )
-            self.initialize = False
-        transition_probabilities = self._calculate_transition_probability(
-            macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-        )
-        transition_probabilities = pd.DataFrame(
-            transition_probabilities,
-            index=macro_atom_data.transition_line_id,
-            columns=tau_sobolevs.columns,
-        )
-        return transition_probabilities</div>
-
-
-    def _calculate_transition_probability(
-        self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-    ):
-        transition_probabilities = np.empty(
-            (self.transition_probability_coef.shape[0], beta_sobolev.shape[1])
-        )
-        # trans_old = self.calculate_transition_probabilities(macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor)
-        transition_type = macro_atom_data.transition_type.values
-        lines_idx = macro_atom_data.lines_idx.values
-        tpos = macro_atom_data.transition_probability.values
-        macro_atom.calculate_transition_probabilities(
-            tpos,
-            beta_sobolev.values,
-            j_blues.values,
-            stimulated_emission_factor,
-            transition_type,
-            lines_idx,
-            self.block_references,
-            transition_probabilities,
-            self.normalize,
-        )
-        return transition_probabilities
-
-<div class="viewcode-block" id="TransitionProbabilities.calculate_transition_probabilities">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.calculate_transition_probabilities">[docs]</a>
-    def calculate_transition_probabilities(
-        self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-    ):
-        transition_probabilities = self.prepare_transition_probabilities(
-            macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-        )
-        return transition_probabilities</div>
-
-
-<div class="viewcode-block" id="TransitionProbabilities.initialize_macro_atom_transition_type_filters">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.initialize_macro_atom_transition_type_filters">[docs]</a>
-    def initialize_macro_atom_transition_type_filters(
-        self, atomic_data, macro_atom_data
-    ):
-        self.transition_up_filter = macro_atom_data.transition_type.values == 1
-        self.transition_up_line_filter = macro_atom_data.lines_idx.values[
-            self.transition_up_filter
-        ]
-        self.block_references = np.hstack(
-            (
-                atomic_data.macro_atom_references.block_references,
-                len(macro_atom_data),
-            )
-        )</div>
-
-
-    @staticmethod
-    def _get_transition_probability_coefs(macro_atom_data):
-        return macro_atom_data.transition_probability.values[np.newaxis].T
-
-<div class="viewcode-block" id="TransitionProbabilities.prepare_transition_probabilities">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.TransitionProbabilities.prepare_transition_probabilities">[docs]</a>
-    def prepare_transition_probabilities(
-        self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-    ):
-        current_beta_sobolev = beta_sobolev.values.take(
-            macro_atom_data.lines_idx.values, axis=0, mode=&quot;raise&quot;
-        )
-        transition_probabilities = (
-            self.transition_probability_coef * current_beta_sobolev
-        )
-        j_blues = j_blues.take(
-            self.transition_up_line_filter, axis=0, mode=&quot;raise&quot;
-        )
-        macro_stimulated_emission = stimulated_emission_factor.take(
-            self.transition_up_line_filter, axis=0, mode=&quot;raise&quot;
-        )
-        transition_probabilities[self.transition_up_filter] *= (
-            j_blues * macro_stimulated_emission
-        )
-        return transition_probabilities</div>
-
-
-    def _normalize_transition_probabilities(self, transition_probabilities):
-        macro_atom.normalize_transition_probabilities(
-            transition_probabilities, self.block_references
-        )
-
-    @staticmethod
-    def _get_macro_atom_data(atomic_data):
-        try:
-            return atomic_data.macro_atom_data
-        except:
-            logger.debug(
-                &quot;Macro Atom Data was not found. Instead returning All Macro Atom Data&quot;
-            )
-            return atomic_data.macro_atom_data_all</div>
-
-
-
-<div class="viewcode-block" id="NonMarkovChainTransitionProbabilities">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.radiative_properties.html#tardis.plasma.properties.radiative_properties.NonMarkovChainTransitionProbabilities">[docs]</a>
-class NonMarkovChainTransitionProbabilities(TransitionProbabilities):
-    outputs = (&quot;non_markov_transition_probabilities&quot;,)</div>
 
 
 
@@ -599,7 +372,7 @@ class RawRadBoundBoundTransProbs(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 21 Jun 2024.
+      <span class="lastupdated">Last updated on 12 Jul 2024.
       </span></p>
   </div>
 
