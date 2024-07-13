@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=08f812dc"></script>
+        <script src="../../../../_static/documentation_options.js?v=39e4f953"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -434,9 +434,9 @@ class LIVPlotter:
         if num_bins:
             if num_bins &lt; 1:
                 raise ValueError(&quot;Number of bins must be positive&quot;)
-            elif num_bins &gt; len(bin_edges) - 1:
-                logger.warn(
-                    &quot;Number of bins must be less than or equal to number of shells. Plotting with number of bins equals to number of shells.&quot;
+            elif len(bin_edges) - 1 &lt; num_bins:
+                logger.info(
+                    &quot;Number of bins must be less than or equal to number of shells&quot;
                 )
                 new_bin_edges = bin_edges
             else:
