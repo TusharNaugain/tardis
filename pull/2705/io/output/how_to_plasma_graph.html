@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Generate the Plasma Graph &mdash; tardis</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/documentation_options.js?v=8f6dc630"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Physics Walkthrough Introduction" href="../../physics/intro/index.html" />
+    <link rel="prev" title="How to Track the Properties of Real Packets" href="how_to_rpacket_tracking.html" />
+    <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            tardis
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_guides.html">How-To Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration (Required Input)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/index.html">Reading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/index.html">Optional Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization Tools &amp; Widgets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Additional Outputs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="how_to_physical_quantities.html">How to Access Physical Quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_iterations.html">Access information about individual iterations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_to_hdf.html">How to Store Simulations to HDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpacket_logging.html">Virtual Packet Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="progress_bars.html">Progress Bars for Simulation Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_rpacket_tracking.html">How to Track the Properties of Real Packets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to Generate the Plasma Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Displaying-the-Graph-Within-A-Jupyter-Notebook">Displaying the Graph Within A Jupyter Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Saving-the-Graph-Onto-a-.tex-File">Saving the Graph Onto a .tex File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Default-Plasma-Graph">Default Plasma Graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-Different-Scale">Plasma Graph with Different Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-No-Equations">Plasma Graph with No Equations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Plasma-Graph-with-Inputted-Arguments">Plasma Graph with Inputted Arguments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/intro/index.html">Physics Walkthrough Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/setup/index.html">Setting Up the Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/spectrum/index.html">Spectrum Generation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/development/index.html">Developer Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/tools/index.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/in_progress/index.html">Features In-Progress</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/credits.html">Credits &amp; Publication Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/research_done_using_TARDIS/research_papers.html">Papers Using TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/code_comparison/index.html">Code Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/zreferences.html">References and Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">tardis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Additional Outputs</a></li>
+      <li class="breadcrumb-item active">How to Generate the Plasma Graph</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/io/output/how_to_plasma_graph.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style>
+    /* strip stderr */
+    div.nboutput.container div.output_area.stderr {
+        background: #fdd;
+        display: none;
+    }
+
+    .launch-btn {
+        background-color: #2980B9;
+        border: none;
+        border-radius: 4px;
+        color: #fcfcfc;
+        font-family: inherit;
+        text-decoration: none;
+        padding: 3px 8px;
+        letter-spacing: 0.03em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+
+    .launch-btn:hover {
+        background-color: #1b6391;
+        color: #fcfcfc;
+    }
+
+    .launch-btn:visited {
+        color: #fcfcfc;
+    }
+
+    .note-p {
+        margin-bottom: 0.4em;
+        line-height: 2em;
+    }
+</style>
+
+<div class="admonition note">
+<p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/io/output/how_to_plasma_graph.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
+</div><section id="How-to-Generate-the-Plasma-Graph">
+<h1>How to Generate the Plasma Graph<a class="headerlink" href="#How-to-Generate-the-Plasma-Graph" title="Link to this heading">¶</a></h1>
+<p>After running a simulation, TARDIS has the ability to create a <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a> showcasing how each variable used to compute the plasma state is connected and calculated (see the <a class="reference internal" href="../../physics/setup/plasma/index.html"><span class="doc">Plasma Documentation</span></a> for more information). To do so, one needs to utilize the <code class="docutils literal notranslate"><span class="pre">write_to_tex</span></code> command to generate a .tex file that displays the graph. This tutorial aims to showcase how the .tex file can be generated and
+what options can be inputted to display the graph in a preferred method. To start, TARDIS needs to perform a simulation. Here the <code class="docutils literal notranslate"><span class="pre">tardis_example.yml</span></code> configuration file is used as in the <a class="reference internal" href="../../quickstart.html"><span class="doc">quickstart guide</span></a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#downloading necessary modules</span>
+<span class="kn">from</span> <span class="nn">tardis</span> <span class="kn">import</span> <span class="n">run_tardis</span>
+<span class="kn">from</span> <span class="nn">tardis.io.atom_data.util</span> <span class="kn">import</span> <span class="n">download_atom_data</span>
+
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "18a69272bce54269bd2a067c7ec21cdc"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "82ba33bdf008450a885dffe3fa69dc47"}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/tmp/ipykernel_5759/3520658749.py:7: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+  from IPython.core.display import Image, display
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#downloading atom data</span>
+<span class="n">download_atom_data</span><span class="p">(</span><span class="s1">&#39;kurucz_cd23_chianti_H_He&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/tardis-data/kurucz_cd23_chianti_H_He.h5. Will not download - override with force_download=True.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#running simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">run_tardis</span><span class="p">(</span><span class="s1">&#39;tardis_example.yml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Reading Atomic Data from kurucz_cd23_chianti_H_He.h5 (<span class="ansi-bold">base.py</span>:656)
+[<span class="ansi-bold">tardis.io.atom_data.util</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Atom Data kurucz_cd23_chianti_H_He.h5 not found in local path.
+        Exists in TARDIS Data repo /home/runner/Downloads/tardis-data/kurucz_cd23_chianti_H_He.h5 (<span class="ansi-bold">util.py</span>:36)
+[<span class="ansi-bold">tardis.io.atom_data.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Reading Atom Data with: UUID = 6f7b09e887a311e7a06b246e96350010 MD5  = 864f1753714343c41f99cb065710cace  (<span class="ansi-bold">base.py</span>:258)
+[<span class="ansi-bold">tardis.io.atom_data.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Non provided Atomic Data: synpp_refs, photoionization_data, yg_data, two_photon_data, linelist (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.io.model.parse_density_configuration</span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        Number of density points larger than number of shells. Assuming inner point irrelevant (<span class="ansi-bold">parse_density_configuration.py</span>:114)
+[<span class="ansi-bold">tardis.model.matter.decay</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Decaying abundances for 1123200.0 seconds (<span class="ansi-bold">decay.py</span>:101)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 1 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/transport/montecarlo/montecarlo_main_loop.py:130: NumbaTypeSafetyWarning: <span class="ansi-bold">unsafe cast from uint64 to int64. Precision may be lost.</span>
+  vpacket_collection = vpacket_collections[i]
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f00e5bc465264de3a228416b1a442ec6"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "c2f65b40c2454ef0b2506fbfd6af1b98"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 7.942e+42 erg / s
+        Luminosity absorbed  = 2.659e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_110c5">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_110c5_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_110c5_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_110c5_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_110c5_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_110c5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_110c5_row0_col0" class="data row0 col0" >9.93e+03 K</td>
+      <td id="T_110c5_row0_col1" class="data row0 col1" >1.01e+04 K</td>
+      <td id="T_110c5_row0_col2" class="data row0 col2" >0.4</td>
+      <td id="T_110c5_row0_col3" class="data row0 col3" >0.507</td>
+    </tr>
+    <tr>
+      <th id="T_110c5_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_110c5_row1_col0" class="data row1 col0" >9.85e+03 K</td>
+      <td id="T_110c5_row1_col1" class="data row1 col1" >1.02e+04 K</td>
+      <td id="T_110c5_row1_col2" class="data row1 col2" >0.211</td>
+      <td id="T_110c5_row1_col3" class="data row1 col3" >0.197</td>
+    </tr>
+    <tr>
+      <th id="T_110c5_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_110c5_row2_col0" class="data row2 col0" >9.78e+03 K</td>
+      <td id="T_110c5_row2_col1" class="data row2 col1" >1.01e+04 K</td>
+      <td id="T_110c5_row2_col2" class="data row2 col2" >0.143</td>
+      <td id="T_110c5_row2_col3" class="data row2 col3" >0.117</td>
+    </tr>
+    <tr>
+      <th id="T_110c5_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_110c5_row3_col0" class="data row3 col0" >9.71e+03 K</td>
+      <td id="T_110c5_row3_col1" class="data row3 col1" >9.87e+03 K</td>
+      <td id="T_110c5_row3_col2" class="data row3 col2" >0.105</td>
+      <td id="T_110c5_row3_col3" class="data row3 col3" >0.0869</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 9933.952 K
+        Expected t_inner for next iteration = 10703.212 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 2 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.071e+43 erg / s
+        Luminosity absorbed  = 3.576e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_00dd2">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_00dd2_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_00dd2_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_00dd2_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_00dd2_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_00dd2_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_00dd2_row0_col0" class="data row0 col0" >1.01e+04 K</td>
+      <td id="T_00dd2_row0_col1" class="data row0 col1" >1.08e+04 K</td>
+      <td id="T_00dd2_row0_col2" class="data row0 col2" >0.507</td>
+      <td id="T_00dd2_row0_col3" class="data row0 col3" >0.525</td>
+    </tr>
+    <tr>
+      <th id="T_00dd2_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_00dd2_row1_col0" class="data row1 col0" >1.02e+04 K</td>
+      <td id="T_00dd2_row1_col1" class="data row1 col1" >1.1e+04 K</td>
+      <td id="T_00dd2_row1_col2" class="data row1 col2" >0.197</td>
+      <td id="T_00dd2_row1_col3" class="data row1 col3" >0.203</td>
+    </tr>
+    <tr>
+      <th id="T_00dd2_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_00dd2_row2_col0" class="data row2 col0" >1.01e+04 K</td>
+      <td id="T_00dd2_row2_col1" class="data row2 col1" >1.08e+04 K</td>
+      <td id="T_00dd2_row2_col2" class="data row2 col2" >0.117</td>
+      <td id="T_00dd2_row2_col3" class="data row2 col3" >0.125</td>
+    </tr>
+    <tr>
+      <th id="T_00dd2_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_00dd2_row3_col0" class="data row3 col0" >9.87e+03 K</td>
+      <td id="T_00dd2_row3_col1" class="data row3 col1" >1.05e+04 K</td>
+      <td id="T_00dd2_row3_col2" class="data row3 col2" >0.0869</td>
+      <td id="T_00dd2_row3_col3" class="data row3 col3" >0.0933</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10703.212 K
+        Expected t_inner for next iteration = 10673.712 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 3 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.074e+43 erg / s
+        Luminosity absorbed  = 3.391e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 1/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_fb229">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_fb229_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_fb229_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_fb229_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_fb229_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_fb229_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_fb229_row0_col0" class="data row0 col0" >1.08e+04 K</td>
+      <td id="T_fb229_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_fb229_row0_col2" class="data row0 col2" >0.525</td>
+      <td id="T_fb229_row0_col3" class="data row0 col3" >0.483</td>
+    </tr>
+    <tr>
+      <th id="T_fb229_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_fb229_row1_col0" class="data row1 col0" >1.1e+04 K</td>
+      <td id="T_fb229_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_fb229_row1_col2" class="data row1 col2" >0.203</td>
+      <td id="T_fb229_row1_col3" class="data row1 col3" >0.189</td>
+    </tr>
+    <tr>
+      <th id="T_fb229_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_fb229_row2_col0" class="data row2 col0" >1.08e+04 K</td>
+      <td id="T_fb229_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_fb229_row2_col2" class="data row2 col2" >0.125</td>
+      <td id="T_fb229_row2_col3" class="data row2 col3" >0.118</td>
+    </tr>
+    <tr>
+      <th id="T_fb229_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_fb229_row3_col0" class="data row3 col0" >1.05e+04 K</td>
+      <td id="T_fb229_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_fb229_row3_col2" class="data row3 col2" >0.0933</td>
+      <td id="T_fb229_row3_col3" class="data row3 col3" >0.0895</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10673.712 K
+        Expected t_inner for next iteration = 10635.953 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 4 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.058e+43 erg / s
+        Luminosity absorbed  = 3.352e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 2/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_1dbaa">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_1dbaa_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_1dbaa_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_1dbaa_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_1dbaa_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1dbaa_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1dbaa_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_1dbaa_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_1dbaa_row0_col2" class="data row0 col2" >0.483</td>
+      <td id="T_1dbaa_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_1dbaa_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_1dbaa_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_1dbaa_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_1dbaa_row1_col2" class="data row1 col2" >0.189</td>
+      <td id="T_1dbaa_row1_col3" class="data row1 col3" >0.182</td>
+    </tr>
+    <tr>
+      <th id="T_1dbaa_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_1dbaa_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_1dbaa_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_1dbaa_row2_col2" class="data row2 col2" >0.118</td>
+      <td id="T_1dbaa_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_1dbaa_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_1dbaa_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_1dbaa_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_1dbaa_row3_col2" class="data row3 col2" >0.0895</td>
+      <td id="T_1dbaa_row3_col3" class="data row3 col3" >0.0861</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10635.953 K
+        Expected t_inner for next iteration = 10638.407 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 5 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.055e+43 erg / s
+        Luminosity absorbed  = 3.399e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 3/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_be296">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_be296_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_be296_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_be296_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_be296_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_be296_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_be296_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_be296_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_be296_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_be296_row0_col3" class="data row0 col3" >0.479</td>
+    </tr>
+    <tr>
+      <th id="T_be296_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_be296_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_be296_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_be296_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_be296_row1_col3" class="data row1 col3" >0.178</td>
+    </tr>
+    <tr>
+      <th id="T_be296_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_be296_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_be296_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_be296_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_be296_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_be296_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_be296_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_be296_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_be296_row3_col2" class="data row3 col2" >0.0861</td>
+      <td id="T_be296_row3_col3" class="data row3 col3" >0.0839</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10638.407 K
+        Expected t_inner for next iteration = 10650.202 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 6 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.398e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 4/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_06764">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_06764_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_06764_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_06764_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_06764_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_06764_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_06764_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_06764_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_06764_row0_col2" class="data row0 col2" >0.479</td>
+      <td id="T_06764_row0_col3" class="data row0 col3" >0.47</td>
+    </tr>
+    <tr>
+      <th id="T_06764_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_06764_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_06764_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_06764_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_06764_row1_col3" class="data row1 col3" >0.185</td>
+    </tr>
+    <tr>
+      <th id="T_06764_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_06764_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_06764_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_06764_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_06764_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_06764_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_06764_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_06764_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_06764_row3_col2" class="data row3 col2" >0.0839</td>
+      <td id="T_06764_row3_col3" class="data row3 col3" >0.0856</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10650.202 K
+        Expected t_inner for next iteration = 10645.955 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 7 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.382e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 5/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_42cd6">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_42cd6_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_42cd6_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_42cd6_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_42cd6_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_42cd6_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_42cd6_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_42cd6_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_42cd6_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_42cd6_row0_col3" class="data row0 col3" >0.47</td>
+    </tr>
+    <tr>
+      <th id="T_42cd6_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_42cd6_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_42cd6_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_42cd6_row1_col2" class="data row1 col2" >0.185</td>
+      <td id="T_42cd6_row1_col3" class="data row1 col3" >0.178</td>
+    </tr>
+    <tr>
+      <th id="T_42cd6_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_42cd6_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_42cd6_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_42cd6_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_42cd6_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_42cd6_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_42cd6_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_42cd6_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_42cd6_row3_col2" class="data row3 col2" >0.0856</td>
+      <td id="T_42cd6_row3_col3" class="data row3 col3" >0.086</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10645.955 K
+        Expected t_inner for next iteration = 10642.050 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 8 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.062e+43 erg / s
+        Luminosity absorbed  = 3.350e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 6/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_28532">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_28532_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_28532_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_28532_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_28532_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_28532_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_28532_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_28532_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_28532_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_28532_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_28532_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_28532_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_28532_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_28532_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_28532_row1_col3" class="data row1 col3" >0.175</td>
+    </tr>
+    <tr>
+      <th id="T_28532_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_28532_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_28532_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_28532_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_28532_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_28532_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_28532_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_28532_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_28532_row3_col2" class="data row3 col2" >0.086</td>
+      <td id="T_28532_row3_col3" class="data row3 col3" >0.084</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10642.050 K
+        Expected t_inner for next iteration = 10636.106 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 9 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.052e+43 erg / s
+        Luminosity absorbed  = 3.411e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 7/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_10796">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_10796_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_10796_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_10796_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_10796_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_10796_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_10796_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_10796_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_10796_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_10796_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_10796_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_10796_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_10796_row1_col1" class="data row1 col1" >1.15e+04 K</td>
+      <td id="T_10796_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_10796_row1_col3" class="data row1 col3" >0.17</td>
+    </tr>
+    <tr>
+      <th id="T_10796_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_10796_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_10796_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_10796_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_10796_row2_col3" class="data row2 col3" >0.109</td>
+    </tr>
+    <tr>
+      <th id="T_10796_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_10796_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_10796_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_10796_row3_col2" class="data row3 col2" >0.084</td>
+      <td id="T_10796_row3_col3" class="data row3 col3" >0.0822</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10636.106 K
+        Expected t_inner for next iteration = 10654.313 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 10 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.070e+43 erg / s
+        Luminosity absorbed  = 3.335e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 8/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_e384d">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_e384d_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_e384d_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_e384d_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_e384d_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_e384d_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e384d_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_e384d_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_e384d_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_e384d_row0_col3" class="data row0 col3" >0.475</td>
+    </tr>
+    <tr>
+      <th id="T_e384d_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_e384d_row1_col0" class="data row1 col0" >1.15e+04 K</td>
+      <td id="T_e384d_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_e384d_row1_col2" class="data row1 col2" >0.17</td>
+      <td id="T_e384d_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_e384d_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_e384d_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_e384d_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_e384d_row2_col2" class="data row2 col2" >0.109</td>
+      <td id="T_e384d_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_e384d_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_e384d_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_e384d_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_e384d_row3_col2" class="data row3 col2" >0.0822</td>
+      <td id="T_e384d_row3_col3" class="data row3 col3" >0.0878</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10654.313 K
+        Expected t_inner for next iteration = 10628.190 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 11 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.053e+43 erg / s
+        Luminosity absorbed  = 3.363e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 9/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_7a4d1">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_7a4d1_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_7a4d1_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_7a4d1_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_7a4d1_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_7a4d1_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_7a4d1_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_7a4d1_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_7a4d1_row0_col2" class="data row0 col2" >0.475</td>
+      <td id="T_7a4d1_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_7a4d1_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_7a4d1_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_7a4d1_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_7a4d1_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_7a4d1_row1_col3" class="data row1 col3" >0.184</td>
+    </tr>
+    <tr>
+      <th id="T_7a4d1_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_7a4d1_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_7a4d1_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_7a4d1_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_7a4d1_row2_col3" class="data row2 col3" >0.114</td>
+    </tr>
+    <tr>
+      <th id="T_7a4d1_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_7a4d1_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_7a4d1_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_7a4d1_row3_col2" class="data row3 col2" >0.0878</td>
+      <td id="T_7a4d1_row3_col3" class="data row3 col3" >0.0859</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10628.190 K
+        Expected t_inner for next iteration = 10644.054 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 12 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.056e+43 erg / s
+        Luminosity absorbed  = 3.420e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 10/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_9e480">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_9e480_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_9e480_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_9e480_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_9e480_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9e480_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9e480_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_9e480_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_9e480_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_9e480_row0_col3" class="data row0 col3" >0.467</td>
+    </tr>
+    <tr>
+      <th id="T_9e480_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_9e480_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_9e480_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_9e480_row1_col2" class="data row1 col2" >0.184</td>
+      <td id="T_9e480_row1_col3" class="data row1 col3" >0.176</td>
+    </tr>
+    <tr>
+      <th id="T_9e480_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_9e480_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_9e480_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_9e480_row2_col2" class="data row2 col2" >0.114</td>
+      <td id="T_9e480_row2_col3" class="data row2 col3" >0.11</td>
+    </tr>
+    <tr>
+      <th id="T_9e480_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_9e480_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_9e480_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_9e480_row3_col2" class="data row3 col2" >0.0859</td>
+      <td id="T_9e480_row3_col3" class="data row3 col3" >0.0821</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10644.054 K
+        Expected t_inner for next iteration = 10653.543 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 13 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.062e+43 erg / s
+        Luminosity absorbed  = 3.406e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 11/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_9fffd">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_9fffd_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_9fffd_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_9fffd_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_9fffd_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9fffd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9fffd_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_9fffd_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_9fffd_row0_col2" class="data row0 col2" >0.467</td>
+      <td id="T_9fffd_row0_col3" class="data row0 col3" >0.466</td>
+    </tr>
+    <tr>
+      <th id="T_9fffd_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_9fffd_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_9fffd_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_9fffd_row1_col2" class="data row1 col2" >0.176</td>
+      <td id="T_9fffd_row1_col3" class="data row1 col3" >0.18</td>
+    </tr>
+    <tr>
+      <th id="T_9fffd_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_9fffd_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_9fffd_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_9fffd_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_9fffd_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_9fffd_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_9fffd_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_9fffd_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_9fffd_row3_col2" class="data row3 col2" >0.0821</td>
+      <td id="T_9fffd_row3_col3" class="data row3 col3" >0.0841</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10653.543 K
+        Expected t_inner for next iteration = 10647.277 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 14 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.063e+43 erg / s
+        Luminosity absorbed  = 3.369e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 12/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_a098b">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_a098b_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_a098b_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_a098b_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_a098b_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a098b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a098b_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_a098b_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_a098b_row0_col2" class="data row0 col2" >0.466</td>
+      <td id="T_a098b_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_a098b_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_a098b_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_a098b_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_a098b_row1_col2" class="data row1 col2" >0.18</td>
+      <td id="T_a098b_row1_col3" class="data row1 col3" >0.182</td>
+    </tr>
+    <tr>
+      <th id="T_a098b_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_a098b_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_a098b_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_a098b_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_a098b_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_a098b_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_a098b_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_a098b_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_a098b_row3_col2" class="data row3 col2" >0.0841</td>
+      <td id="T_a098b_row3_col3" class="data row3 col3" >0.0854</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10647.277 K
+        Expected t_inner for next iteration = 10638.875 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 15 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.053e+43 erg / s
+        Luminosity absorbed  = 3.417e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 13/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_46360">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_46360_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_46360_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_46360_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_46360_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_46360_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_46360_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_46360_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_46360_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_46360_row0_col3" class="data row0 col3" >0.484</td>
+    </tr>
+    <tr>
+      <th id="T_46360_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_46360_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_46360_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_46360_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_46360_row1_col3" class="data row1 col3" >0.181</td>
+    </tr>
+    <tr>
+      <th id="T_46360_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_46360_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_46360_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_46360_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_46360_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_46360_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_46360_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_46360_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_46360_row3_col2" class="data row3 col2" >0.0854</td>
+      <td id="T_46360_row3_col3" class="data row3 col3" >0.0858</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10638.875 K
+        Expected t_inner for next iteration = 10655.125 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 16 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.059e+43 erg / s
+        Luminosity absorbed  = 3.445e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 14/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_45a52">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_45a52_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_45a52_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_45a52_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_45a52_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_45a52_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_45a52_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_45a52_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_45a52_row0_col2" class="data row0 col2" >0.484</td>
+      <td id="T_45a52_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_45a52_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_45a52_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_45a52_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_45a52_row1_col2" class="data row1 col2" >0.181</td>
+      <td id="T_45a52_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_45a52_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_45a52_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_45a52_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_45a52_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_45a52_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_45a52_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_45a52_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_45a52_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_45a52_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_45a52_row3_col3" class="data row3 col3" >0.0858</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10655.125 K
+        Expected t_inner for next iteration = 10655.561 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 17 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.067e+43 erg / s
+        Luminosity absorbed  = 3.372e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 15/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_227cd">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_227cd_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_227cd_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_227cd_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_227cd_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_227cd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_227cd_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_227cd_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_227cd_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_227cd_row0_col3" class="data row0 col3" >0.468</td>
+    </tr>
+    <tr>
+      <th id="T_227cd_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_227cd_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_227cd_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_227cd_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_227cd_row1_col3" class="data row1 col3" >0.175</td>
+    </tr>
+    <tr>
+      <th id="T_227cd_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_227cd_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_227cd_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_227cd_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_227cd_row2_col3" class="data row2 col3" >0.11</td>
+    </tr>
+    <tr>
+      <th id="T_227cd_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_227cd_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_227cd_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_227cd_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_227cd_row3_col3" class="data row3 col3" >0.0816</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10655.561 K
+        Expected t_inner for next iteration = 10636.536 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 18 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.057e+43 erg / s
+        Luminosity absorbed  = 3.365e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 16/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_85631">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_85631_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_85631_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_85631_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_85631_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_85631_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_85631_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_85631_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_85631_row0_col2" class="data row0 col2" >0.468</td>
+      <td id="T_85631_row0_col3" class="data row0 col3" >0.464</td>
+    </tr>
+    <tr>
+      <th id="T_85631_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_85631_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_85631_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_85631_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_85631_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_85631_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_85631_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_85631_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_85631_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_85631_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_85631_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_85631_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_85631_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_85631_row3_col2" class="data row3 col2" >0.0816</td>
+      <td id="T_85631_row3_col3" class="data row3 col3" >0.0848</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10636.536 K
+        Expected t_inner for next iteration = 10641.692 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 19 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.056e+43 erg / s
+        Luminosity absorbed  = 3.405e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 17/4 consecutive times. (<span class="ansi-bold">base.py</span>:246)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:522)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_dbe2f">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_dbe2f_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_dbe2f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_dbe2f_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_dbe2f_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_dbe2f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_dbe2f_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_dbe2f_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_dbe2f_row0_col2" class="data row0 col2" >0.464</td>
+      <td id="T_dbe2f_row0_col3" class="data row0 col3" >0.466</td>
+    </tr>
+    <tr>
+      <th id="T_dbe2f_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_dbe2f_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_dbe2f_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_dbe2f_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_dbe2f_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_dbe2f_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_dbe2f_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_dbe2f_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_dbe2f_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_dbe2f_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_dbe2f_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_dbe2f_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_dbe2f_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_dbe2f_row3_col2" class="data row3 col2" >0.0848</td>
+      <td id="T_dbe2f_row3_col3" class="data row3 col3" >0.0853</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10641.692 K
+        Expected t_inner for next iteration = 10650.463 K
+ (<span class="ansi-bold">base.py</span>:549)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Simulation finished in 19 iterations
+        Simulation took 45.74 s
+ (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 20 of 20 (<span class="ansi-bold">base.py</span>:372)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.401e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:554)
+</pre></div></div>
+</div>
+<section id="Displaying-the-Graph-Within-A-Jupyter-Notebook">
+<h2>Displaying the Graph Within A Jupyter Notebook<a class="headerlink" href="#Displaying-the-Graph-Within-A-Jupyter-Notebook" title="Link to this heading">¶</a></h2>
+<p>Now that TARDIS has finished a simulation run, the plasma graph can now be generated. To display the basic graph within a Jupyter Notebook, one can simply use the <code class="docutils literal notranslate"><span class="pre">nx.draw</span></code> as follows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+%pylab is deprecated, use %matplotlib inline and import the required libraries.
+Populating the interactive namespace from numpy and matplotlib
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_7_1.svg" src="../../_images/io_output_how_to_plasma_graph_7_1.svg" /></div>
+</div>
+<p>There are many different ways of displaying the graph in a more readable format. One such example is shown below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">position</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_9_0.svg" src="../../_images/io_output_how_to_plasma_graph_9_0.svg" /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title fa fa-exclamation-circle">Note</p>
+<p>For the purposes of this tutorial, pylab inline has been used to display the graph within the tutorial page. It is recommended to use pylab notebook when displaying the graph on a local Jupyter Notebook to explore the nodes in depth.</p>
+</div>
+</section>
+<section id="Saving-the-Graph-Onto-a-.tex-File">
+<h2>Saving the Graph Onto a .tex File<a class="headerlink" href="#Saving-the-Graph-Onto-a-.tex-File" title="Link to this heading">¶</a></h2>
+<p>With the <code class="docutils literal notranslate"><span class="pre">write_to_tex</span></code> command, a copy of the graph can be saved within a .tex file. Currently, there are four parameters TARDIS uses to write the graph in <a class="reference external" href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a> and save it to a .tex file:</p>
+<ul><li><p>fname_graph: The name of the file TARDIS will save the graph onto (required)</p>
+</li><li><p>scale: a scaling factor to expand/contract the generated graph</p>
+</li><li><p>args: a list of optional settings for displaying the graph</p>
+</li><li><p>latex_label: a parameter that enables or disables writing LaTeX equations and edge labels onto the file (default set to True to enable writing)</p>
+</li></ul><p>With these parameters, TARDIS can write the graph in many different ways. For this tutorial, only a few examples will be shown to display what each parameter exactly does and what the resulting graph will look like when generated in a LaTeX environment.</p>
+<div class="admonition warning">
+<p class="admonition-title fa fa-exclamation-circle">Warning</p>
+<p>As of now, TARDIS has an issue of not spacing edges correctly, causing the default output to look very condensed and unreadable in certain areas. It is recommended, therefore, to use the given parameters to generate a graph that displays everything in as readable a format as possible.</p>
+</div>
+<section id="Default-Plasma-Graph">
+<h3>Default Plasma Graph<a class="headerlink" href="#Default-Plasma-Graph" title="Link to this heading">¶</a></h3>
+<p>From above, TARDIS only needs the name of the file it should save the graph to as default.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">write_to_tex</span><span class="p">(</span><span class="s2">&quot;plasma_graph_default.tex&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With the default settings, the contents of the file will simply be the graph written in LaTeX.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;plasma_graph_default.tex&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+\documentclass[class=minimal,border=20pt]{standalone}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{0pt}%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+
+% Start of code
+\begin{tikzpicture}[&gt;=latex&#39;,line join=bevel,scale=0.5]
+%%
+\node (TRadiative) at (843.0bp,1042.6bp) [draw,ellipse] {$\textrm{TRadiative}$};
+  \node (BetaRadiation) at (493.0bp,953.35bp) [draw,ellipse] {$\textrm{BetaRadiation: }\dfrac{1}{k_{B} T_{\textrm{rad}}}$};
+  \node (ElectronTemperature) at (1232.0bp,953.35bp) [draw,ellipse] {$\textrm{ElectronTemperature: }\textrm{const.}\times T_{\textrm{rad}}$};
+  \node (JBluesDiluteBlackBody) at (2570.0bp,864.1bp) [draw,ellipse] {$\textrm{JBluesDiluteBlackBody}$};
+  \node (GElectron) at (437.0bp,810.1bp) [draw,ellipse] {$\textrm{GElectron: }\Big(\dfrac{2\pi m_{e}/\beta_{\textrm{rad}}}{h^2}\Big)^{3/2}$};
+  \node (LevelBoltzmannFactorLTE) at (1739.0bp,864.1bp) [draw,ellipse] {$\textrm{LevelBoltzmannFactorLTE: }g_{i,j,k}e^{\dfrac{-\epsilon_{i,j,k}}{k_{\textrm{B}}T_{\textrm{rad}}}}$};
+  \node (PhiSahaLTE) at (953.0bp,577.6bp) [draw,ellipse] {$\textrm{PhiSahaLTE: }\dfrac{2Z_{i,j+1}}{Z_{i,j}}\big(                      \dfrac{2\pi m_{e}/\beta_{\textrm{rad}}}{h^2}                      \big)^{3/2}e^{\dfrac{-\chi_{i,j}}{kT_{\textrm{rad}}}}$};
+  \node (TransitionProbabilities) at (2464.0bp,18.0bp) [draw,ellipse] {$\textrm{TransitionProbabilities}$};
+  \node (Abundance) at (2323.0bp,1131.9bp) [draw,ellipse] {$\textrm{Abundance}$};
+  \node (SelectedAtoms) at (2323.0bp,1042.6bp) [draw,ellipse] {$\textrm{SelectedAtoms}$};
+  \node (Levels) at (2323.0bp,953.35bp) [draw,ellipse] {$\textrm{Levels}$};
+  \node (Lines) at (2794.0bp,953.35bp) [draw,ellipse] {$\textrm{Lines}$};
+  \node (IonizationData) at (1786.0bp,953.35bp) [draw,ellipse] {$\textrm{IonizationData}$};
+  \node (MacroAtomData) at (2075.0bp,953.35bp) [draw,ellipse] {$\textrm{MacroAtomData}$};
+  \node (NumberDensity) at (2033.0bp,577.6bp) [draw,ellipse] {$\textrm{NumberDensity}$};
+  \node (IonNumberDensity) at (2034.0bp,488.35bp) [draw,ellipse] {$\textrm{IonNumberDensity}$};
+  \node (LevelNumberDensity) at (2037.0bp,399.1bp) [draw,ellipse] {$\textrm{LevelNumberDensity: }N_{i,j}\dfrac{bf_{i,j,k}}{Z_{i,j}}$};
+  \node (TimeExplosion) at (1705.0bp,309.85bp) [draw,ellipse] {$\textrm{TimeExplosion}$};
+  \node (TauSobolev) at (2307.0bp,208.55bp) [draw,ellipse] {$\textrm{TauSobolev: }\dfrac{\pi e^{2}}{m_{e} c}f_{lu}\lambda t_{exp}        n_{lower} \Big(1-\dfrac{g_{lower}n_{upper}}{g_{upper}n_{lower}}\Big)$};
+  \node (BetaSobolev) at (2307.0bp,107.25bp) [draw,ellipse] {$\textrm{BetaSobolev}$};
+  \node (AtomicData) at (2056.0bp,1042.6bp) [draw,ellipse] {$\textrm{AtomicData}$};
+  \node (StimulatedEmissionFactor) at (2322.0bp,309.85bp) [draw,ellipse] {$\textrm{StimulatedEmissionFactor: }1-\dfrac{g_{lower}n_{upper}}{g_{upper}n_{lower}}$};
+  \node (DilutionFactor) at (2561.0bp,953.35bp) [draw,ellipse] {$\textrm{DilutionFactor}$};
+  \node (LinkTRadTElectron) at (1232.0bp,1042.6bp) [draw,ellipse] {$\textrm{LinkTRadTElectron}$};
+  \node (HeliumTreatment) at (2601.0bp,1131.9bp) [draw,ellipse] {$\textrm{HeliumTreatment}$};
+  \node (ContinuumInteractionSpecies) at (2973.0bp,1131.9bp) [draw,ellipse] {$\textrm{ContinuumInteractionSpecies}$};
+  \node (NLTEIonizationSpecies) at (3372.0bp,1131.9bp) [draw,ellipse] {$\textrm{NLTEIonizationSpecies}$};
+  \node (NLTEExcitationSpecies) at (3739.0bp,1131.9bp) [draw,ellipse] {$\textrm{NLTEExcitationSpecies}$};
+  \node (LevelBoltzmannFactorNoNLTE) at (2015.0bp,756.1bp) [draw,ellipse] {$\textrm{LevelBoltzmannFactorNoNLTE}$};
+  \node (PartitionFunction) at (2015.0bp,666.85bp) [draw,ellipse] {$\textrm{PartitionFunction: }\sum_{k}bf_{i,j,k}$};
+  \draw [-&gt;] (TRadiative) ..controls (725.83bp,1012.4bp) and (636.47bp,990.12bp)  .. (BetaRadiation);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (702.25bp,993.3bp) node {$T_{\textrm{rad}}$};
+  \draw [-&gt;] (TRadiative) ..controls (971.28bp,1012.8bp) and (1072.7bp,990.09bp)  .. (ElectronTemperature);
+  \draw (1075.25bp,993.3bp) node {$T_{\textrm{rad}}$};
+  \draw [-&gt;] (TRadiative) ..controls (832.89bp,1000.6bp) and (827.71bp,958.14bp)  .. (851.5bp,935.35bp) .. controls (880.66bp,907.43bp) and (2263.7bp,884.13bp)  .. (2304.0bp,882.1bp) .. controls (2340.9bp,880.25bp) and (2380.6bp,877.9bp)  .. (JBluesDiluteBlackBody);
+  \draw (854.25bp,948.68bp) node {$T_{\textrm{rad}}$};
+  \draw [-&gt;] (BetaRadiation) ..controls (476.64bp,911.1bp) and (459.42bp,867.64bp)  .. (GElectron);
+  \draw (481.25bp,904.05bp) node {$\beta_{\textrm{rad}}$};
+  \draw [-&gt;] (BetaRadiation) ..controls (760.16bp,934.21bp) and (825.9bp,927.03bp)  .. (886.0bp,917.35bp) .. controls (919.13bp,912.02bp) and (926.26bp,904.71bp)  .. (959.5bp,900.1bp) .. controls (1030.0bp,890.34bp) and (1173.8bp,882.7bp)  .. (LevelBoltzmannFactorLTE);
+  \draw (962.25bp,904.05bp) node {$\beta_{\textrm{rad}}$};
+  \draw [-&gt;] (BetaRadiation) ..controls (789.84bp,927.96bp) and (875.0bp,906.22bp)  .. (875.0bp,865.1bp) .. controls (875.0bp,865.1bp) and (875.0bp,865.1bp)  .. (875.0bp,665.85bp) .. controls (875.0bp,639.89bp) and (894.43bp,618.11bp)  .. (PhiSahaLTE);
+  \draw (877.25bp,751.43bp) node {$\beta_{\textrm{rad}}$};
+  \draw [-&gt;] (JBluesDiluteBlackBody) ..controls (2683.2bp,832.22bp) and (2733.0bp,804.87bp)  .. (2733.0bp,757.1bp) .. controls (2733.0bp,757.1bp) and (2733.0bp,757.1bp)  .. (2733.0bp,621.23bp) .. controls (2733.0bp,491.27bp) and (2855.0bp,485.44bp)  .. (2855.0bp,355.48bp) .. controls (2855.0bp,355.48bp) and (2855.0bp,355.48bp)  .. (2855.0bp,106.25bp) .. controls (2855.0bp,57.675bp) and (2738.6bp,36.132bp)  .. (TransitionProbabilities);
+  \draw (2836.25bp,439.05bp) node {$J$};
+  \draw [-&gt;] (Abundance) ..controls (2323.0bp,1101.8bp) and (2323.0bp,1085.8bp)  .. (SelectedAtoms);
+  \draw (2325.25bp,1082.55bp) node {abundance};
+  \draw [-&gt;] (SelectedAtoms) ..controls (2323.0bp,1012.5bp) and (2323.0bp,996.56bp)  .. (Levels);
+  \draw (2325.25bp,993.3bp) node {selected-atoms};
+  \draw [-&gt;] (SelectedAtoms) ..controls (2487.7bp,1011.1bp) and (2632.9bp,984.21bp)  .. (Lines);
+  \draw (2602.25bp,993.3bp) node {selected-atoms};
+  \draw [-&gt;] (SelectedAtoms) ..controls (2259.5bp,1010.4bp) and (2220.0bp,991.42bp)  .. (2212.0bp,989.35bp) .. controls (2088.6bp,957.67bp) and (2052.8bp,983.04bp)  .. (1926.0bp,971.35bp) .. controls (1914.3bp,970.28bp) and (1902.1bp,969.01bp)  .. (IonizationData);
+  \draw (2252.25bp,993.3bp) node {selected-atoms};
+  \draw [-&gt;] (SelectedAtoms) ..controls (2293.1bp,1012.7bp) and (2274.8bp,997.9bp)  .. (2256.0bp,989.35bp) .. controls (2235.3bp,979.96bp) and (2212.2bp,973.09bp)  .. (MacroAtomData);
+  \draw (2285.25bp,993.3bp) node {selected-atoms};
+  \draw [-&gt;] (NumberDensity) ..controls (2033.3bp,547.54bp) and (2033.5bp,531.56bp)  .. (IonNumberDensity);
+  \draw (2035.25bp,528.3bp) node {$N_{i}$};
+  \draw [-&gt;] (IonNumberDensity) ..controls (2035.0bp,458.29bp) and (2035.5bp,442.31bp)  .. (LevelNumberDensity);
+  \draw (2037.25bp,439.05bp) node {$N_{i,j}$};
+  \draw [-&gt;] (TimeExplosion) ..controls (1874.1bp,280.96bp) and (2015.0bp,257.71bp)  .. (TauSobolev);
+  \draw (2008.25bp,260.55bp) node {$t_{\textrm{exp}}$};
+  \draw [-&gt;] (TauSobolev) ..controls (2396.6bp,165.19bp) and (2420.8bp,147.52bp)  .. (2437.0bp,125.25bp) .. controls (2453.5bp,102.53bp) and (2459.9bp,70.72bp)  .. (TransitionProbabilities);
+  \draw (2456.25bp,102.58bp) node {$\tau_{\textrm{sobolev}}$};
+  \draw [-&gt;] (TauSobolev) ..controls (2307.0bp,165.12bp) and (2307.0bp,150.02bp)  .. (BetaSobolev);
+  \draw (2309.25bp,147.2bp) node {$\tau_{\textrm{sobolev}}$};
+  \draw [-&gt;] (AtomicData) ..controls (2113.7bp,1013.8bp) and (2146.5bp,999.34bp)  .. (2176.5bp,989.35bp) .. controls (2200.0bp,981.54bp) and (2226.1bp,974.72bp)  .. (Levels);
+  \draw (2178.25bp,993.3bp) node {atomic-data};
+  \draw [-&gt;] (AtomicData) ..controls (2140.6bp,1021.9bp) and (2162.0bp,1015.0bp)  .. (2181.0bp,1006.6bp) .. controls (2194.2bp,1000.8bp) and (2194.7bp,993.6bp)  .. (2208.5bp,989.35bp) .. controls (2313.0bp,957.22bp) and (2591.3bp,983.11bp)  .. (2700.0bp,971.35bp) .. controls (2707.4bp,970.55bp) and (2715.1bp,969.5bp)  .. (Lines);
+  \draw (2210.25bp,993.3bp) node {atomic-data};
+  \draw [-&gt;] (AtomicData) ..controls (1961.9bp,1011.2bp) and (1894.6bp,989.44bp)  .. (IonizationData);
+  \draw (1947.25bp,993.3bp) node {atomic-data};
+  \draw [-&gt;] (AtomicData) ..controls (1855.5bp,1034.1bp) and (1738.4bp,1017.6bp)  .. (1646.0bp,971.35bp) .. controls (1625.2bp,960.94bp) and (1629.5bp,944.29bp)  .. (1608.0bp,935.35bp) .. controls (1547.0bp,909.99bp) and (1077.7bp,934.56bp)  .. (1014.0bp,917.35bp) .. controls (982.27bp,908.79bp) and (974.75bp,902.53bp)  .. (949.0bp,882.1bp) .. controls (907.07bp,848.85bp) and (915.02bp,819.42bp)  .. (869.0bp,792.1bp) .. controls (522.54bp,586.46bp) and (0.0bp,936.88bp)  .. (0.0bp,533.98bp) .. controls (0.0bp,533.98bp) and (0.0bp,533.98bp)  .. (0.0bp,106.25bp) .. controls (0.0bp,49.177bp) and (1711.1bp,26.635bp)  .. (TransitionProbabilities);
+  \draw (3.25bp,528.3bp) node {atomic-data};
+  \draw [-&gt;] (AtomicData) ..controls (2062.4bp,1012.4bp) and (2065.9bp,996.23bp)  .. (MacroAtomData);
+  \draw (2069.25bp,993.3bp) node {atomic-data};
+  \draw [-&gt;] (Levels) ..controls (2246.0bp,938.91bp) and (2234.7bp,937.04bp)  .. (2224.0bp,935.35bp) .. controls (2106.0bp,916.68bp) and (1971.5bp,897.35bp)  .. (LevelBoltzmannFactorLTE);
+  \draw (2106.25bp,904.05bp) node {$\textrm{levels}$};
+  \draw [-&gt;] (Levels) ..controls (2323.0bp,917.36bp) and (2323.0bp,889.34bp)  .. (2323.0bp,865.1bp) .. controls (2323.0bp,865.1bp) and (2323.0bp,865.1bp)  .. (2323.0bp,710.48bp) .. controls (2323.0bp,624.72bp) and (2401.0bp,619.74bp)  .. (2401.0bp,533.98bp) .. controls (2401.0bp,533.98bp) and (2401.0bp,533.98bp)  .. (2401.0bp,398.1bp) .. controls (2401.0bp,372.0bp) and (2381.3bp,350.22bp)  .. (StimulatedEmissionFactor);
+  \draw (2370.25bp,617.55bp) node {$\textrm{metastability}$};
+  \draw [-&gt;] (Levels) ..controls (2351.7bp,918.71bp) and (2369.0bp,891.99bp)  .. (2369.0bp,865.1bp) .. controls (2369.0bp,865.1bp) and (2369.0bp,865.1bp)  .. (2369.0bp,710.48bp) .. controls (2369.0bp,678.49bp) and (2304.8bp,478.03bp)  .. (2299.0bp,470.35bp) .. controls (2281.4bp,447.23bp) and (2271.1bp,445.57bp)  .. (2244.0bp,435.1bp) .. controls (2226.4bp,428.3bp) and (2207.4bp,422.81bp)  .. (LevelNumberDensity);
+  \draw (2366.25bp,662.18bp) node {$\textrm{levels}$};
+  \draw [-&gt;] (Lines) ..controls (2718.4bp,922.91bp) and (2664.1bp,901.76bp)  .. (JBluesDiluteBlackBody);
+  \draw (2704.25bp,904.05bp) node {$\nu$};
+  \draw [-&gt;] (Lines) ..controls (2808.1bp,917.64bp) and (2817.0bp,890.01bp)  .. (2817.0bp,865.1bp) .. controls (2817.0bp,865.1bp) and (2817.0bp,865.1bp)  .. (2817.0bp,353.48bp) .. controls (2817.0bp,324.82bp) and (2819.6bp,310.73bp)  .. (2798.0bp,291.85bp) .. controls (2767.4bp,265.05bp) and (2692.8bp,246.83bp)  .. (TauSobolev);
+  \draw (2819.25bp,572.93bp) node {$\lambda_{cm}$};
+  \draw [-&gt;] (Lines) ..controls (2779.9bp,917.64bp) and (2771.0bp,890.01bp)  .. (2771.0bp,865.1bp) .. controls (2771.0bp,865.1bp) and (2771.0bp,865.1bp)  .. (2771.0bp,621.23bp) .. controls (2771.0bp,449.44bp) and (2545.9bp,365.32bp)  .. (StimulatedEmissionFactor);
+  \draw (2773.25bp,617.55bp) node {$\textrm{lines}$};
+  \draw [-&gt;] (IonizationData) ..controls (1673.2bp,938.95bp) and (1656.6bp,937.07bp)  .. (1641.0bp,935.35bp) .. controls (1564.6bp,926.98bp) and (953.0bp,941.95bp)  .. (953.0bp,865.1bp) .. controls (953.0bp,865.1bp) and (953.0bp,865.1bp)  .. (953.0bp,665.85bp) .. controls (953.0bp,646.35bp) and (953.0bp,624.4bp)  .. (PhiSahaLTE);
+  \draw (955.25bp,751.43bp) node {ionization-data};
+  \draw [-&gt;] (DilutionFactor) ..controls (2564.0bp,923.29bp) and (2565.6bp,907.31bp)  .. (JBluesDiluteBlackBody);
+  \draw (2568.25bp,904.05bp) node {$W$};
+  \draw [-&gt;] (LinkTRadTElectron) ..controls (1232.0bp,1012.5bp) and (1232.0bp,996.56bp)  .. (ElectronTemperature);
+  \draw (1234.25bp,993.3bp) node {$T_{\textrm{electron}}/T_{\textrm{rad}}$};
+  \draw [-&gt;] (GElectron) ..controls (544.67bp,756.63bp) and (714.9bp,674.99bp)  .. (861.0bp,613.6bp) .. controls (871.86bp,609.04bp) and (883.55bp,604.39bp)  .. (PhiSahaLTE);
+  \draw (662.25bp,706.8bp) node {$g_{\textrm{electron}}$};
+  \draw [-&gt;] (LevelBoltzmannFactorLTE) ..controls (1832.4bp,827.24bp) and (1908.5bp,798.01bp)  .. (LevelBoltzmannFactorNoNLTE);
+  \draw (1919.25bp,805.43bp) node {$bf_{i,j,k}$};
+  \draw [-&gt;] (PhiSahaLTE) ..controls (1381.3bp,542.03bp) and (1714.6bp,515.14bp)  .. (IonNumberDensity);
+  \draw (1592.25bp,528.3bp) node {$\Phi$};
+  \draw [-&gt;] (StimulatedEmissionFactor) ..controls (2317.7bp,280.16bp) and (2315.3bp,264.73bp)  .. (TauSobolev);
+  \draw (2318.25bp,260.55bp) node {stimulated-emission-factor};
+  \draw [-&gt;] (StimulatedEmissionFactor) ..controls (2701.7bp,285.6bp) and (2772.4bp,268.24bp)  .. (2798.0bp,238.6bp) .. controls (2882.1bp,141.21bp) and (2669.2bp,69.702bp)  .. (TransitionProbabilities);
+  \draw (2806.25bp,147.2bp) node {stimulated-emission-factor};
+  \draw [-&gt;] (LevelNumberDensity) ..controls (1673.3bp,378.86bp) and (1588.2bp,361.07bp)  .. (1559.5bp,327.85bp) .. controls (1549.0bp,315.74bp) and (1548.8bp,303.77bp)  .. (1559.5bp,291.85bp) .. controls (1586.1bp,262.19bp) and (1757.1bp,242.11bp)  .. (TauSobolev);
+  \draw (1561.25bp,305.18bp) node {$N_{i,j,k}$};
+  \draw [-&gt;] (LevelNumberDensity) ..controls (2139.6bp,366.69bp) and (2205.4bp,346.56bp)  .. (StimulatedEmissionFactor);
+  \draw (2207.25bp,349.8bp) node {$N_{i,j,k}$};
+  \draw [-&gt;] (PartitionFunction) ..controls (2130.6bp,639.29bp) and (2161.2bp,622.62bp)  .. (2179.0bp,595.6bp) .. controls (2204.6bp,556.77bp) and (2151.2bp,527.14bp)  .. (IonNumberDensity);
+  \draw (2187.25bp,572.93bp) node {$Z_{i,j}$};
+  \draw [-&gt;] (PartitionFunction) ..controls (1675.1bp,637.93bp) and (1375.5bp,613.31bp)  .. (PhiSahaLTE);
+  \draw (1581.25bp,617.55bp) node {$Z_{i,j}$};
+  \draw [-&gt;] (PartitionFunction) ..controls (2159.8bp,640.47bp) and (2184.2bp,623.48bp)  .. (2194.0bp,595.6bp) .. controls (2212.5bp,543.08bp) and (2226.4bp,517.0bp)  .. (2196.0bp,470.35bp) .. controls (2180.9bp,447.13bp) and (2156.1bp,431.53bp)  .. (LevelNumberDensity);
+  \draw (2215.25bp,528.3bp) node {$Z_{i,j}$};
+  \draw [-&gt;] (BetaSobolev) ..controls (2361.8bp,75.815bp) and (2396.5bp,56.519bp)  .. (TransitionProbabilities);
+  \draw (2401.25bp,57.95bp) node {$\beta_{\textrm{sobolev}}$};
+  \draw [-&gt;] (LevelBoltzmannFactorNoNLTE) ..controls (2198.7bp,726.74bp) and (2285.0bp,703.51bp)  .. (2285.0bp,667.85bp) .. controls (2285.0bp,667.85bp) and (2285.0bp,667.85bp)  .. (2285.0bp,487.35bp) .. controls (2285.0bp,456.22bp) and (2214.6bp,433.5bp)  .. (LevelNumberDensity);
+  \draw (2287.25bp,572.93bp) node {level-boltzmann-factor};
+  \draw [-&gt;] (LevelBoltzmannFactorNoNLTE) ..controls (2015.0bp,726.04bp) and (2015.0bp,710.06bp)  .. (PartitionFunction);
+  \draw (2017.25bp,706.8bp) node {level-boltzmann-factor};
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+
+</pre></div></div>
+</div>
+<p>If one was to build the .tex file, the following graph will be generated:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;default_plasma_graph.png&#39;</span><span class="p">,</span> <span class="n">unconfined</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_20_0.png" class="no-scaled-link" src="../../_images/io_output_how_to_plasma_graph_20_0.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title fa fa-exclamation-circle">Note</p>
+<p>For the remainder of this tutorial, the contents of the .tex file will be omitted and only the generated graph will be shown.</p>
+</div>
+</section>
+<section id="Plasma-Graph-with-Different-Scale">
+<h3>Plasma Graph with Different Scale<a class="headerlink" href="#Plasma-Graph-with-Different-Scale" title="Link to this heading">¶</a></h3>
+<p>One can change the scaling of the graph by passing in a positive, non-zero float into the <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameter to either make the resulting graph larger (scale &gt; 0.5) or smaller (scale &lt; 0.5).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">write_to_tex</span><span class="p">(</span><span class="s2">&quot;plasma_graph_scaled.tex&quot;</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With a scale of 1.25, the graph TARDIS will output will look as follows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;plasma_graph_scaled.png&#39;</span><span class="p">,</span> <span class="n">unconfined</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_26_0.png" class="no-scaled-link" src="../../_images/io_output_how_to_plasma_graph_26_0.png" />
+</div>
+</div>
+</section>
+<section id="Plasma-Graph-with-No-Equations">
+<h3>Plasma Graph with No Equations<a class="headerlink" href="#Plasma-Graph-with-No-Equations" title="Link to this heading">¶</a></h3>
+<p>TARDIS has the option to generate a graph without any equations or edge labels via the <code class="docutils literal notranslate"><span class="pre">latex_label</span></code> command. The graph in this case will only consist of nodes containing the names of variables used to calculate the plasma state connected with edges.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">write_to_tex</span><span class="p">(</span><span class="s2">&quot;plasma_graph_no_eq.tex&quot;</span><span class="p">,</span> <span class="n">latex_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With these inputs, the graph will look like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;plasma_graph_no_eq.png&#39;</span><span class="p">,</span> <span class="n">unconfined</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_30_0.png" class="no-scaled-link" src="../../_images/io_output_how_to_plasma_graph_30_0.png" />
+</div>
+</div>
+</section>
+<section id="Plasma-Graph-with-Inputted-Arguments">
+<h3>Plasma Graph with Inputted Arguments<a class="headerlink" href="#Plasma-Graph-with-Inputted-Arguments" title="Link to this heading">¶</a></h3>
+<p>In order to create the .tex file, TARDIS will first convert the graph into a readable <a class="reference external" href="https://graphviz.org/doc/info/lang.html">DOT</a> format via the <code class="docutils literal notranslate"><span class="pre">write_to_dot</span></code> function. As such, using the <code class="docutils literal notranslate"><span class="pre">args</span></code> parameter within the <code class="docutils literal notranslate"><span class="pre">write_to_tex</span></code> function, one can pass in any Graphviz attribute for TARDIS to implement as a list. In this example, the following attributes are used:</p>
+<ul><li><p>nodesep: changes spacing of nodes</p>
+</li><li><p>edge[lblstyle]: edits the edge labels</p>
+</li><li><p>margin: sets the margins of the outputted graph</p>
+</li><li><p>ratio: sets the drawing height and width</p>
+</li><li><p>size: sets the maximum height and width of the graph</p>
+</li></ul><p>For more information on these attributes, visit the <a class="reference external" href="https://graphviz.org/doc/info/attrs.html">Graphviz attributes documentation</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attributes_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;nodesep=1.0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;edge[lblstyle=&quot;fill=white&quot;]&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;margin=0&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;ratio=&quot;fill&quot;&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;size=&quot;8.3,11.7!&quot;&#39;</span><span class="p">]</span>
+
+<span class="n">sim</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">write_to_tex</span><span class="p">(</span><span class="s2">&quot;plasma_graph_with_args.tex&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">attributes_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>With these attributes, the following graph can be generated:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;plasma_graph_args.png&#39;</span><span class="p">,</span> <span class="n">unconfined</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/io_output_how_to_plasma_graph_34_0.png" class="no-scaled-link" src="../../_images/io_output_how_to_plasma_graph_34_0.png" />
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"5d070bb847034a94a0868719699a20f4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "10bcb508d0394246a3e92bbe8a25774f": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "7ded4714ca3c446fb67d1027899d3091": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_5d070bb847034a94a0868719699a20f4", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_10bcb508d0394246a3e92bbe8a25774f", "value": 0.0}}, "6eb0ad775c78424ebe992b0be2e0c4e7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c3c5f4b11dcf4ca786e6be1172fbf225": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "19e6aeb2917e4d78ae5e5d2e993a22b0": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_6eb0ad775c78424ebe992b0be2e0c4e7", "placeholder": "\u200b", "style": "IPY_MODEL_c3c5f4b11dcf4ca786e6be1172fbf225", "value": "Iterations:"}}, "4e0b363a02254282a1f955fa88b52c91": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4619a7de9c244f6db211232ef20dc7c1": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "fde61c388197454daa13f33365709695": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_4e0b363a02254282a1f955fa88b52c91", "placeholder": "\u200b", "style": "IPY_MODEL_4619a7de9c244f6db211232ef20dc7c1", "value": "0/?\u2007[00:00&lt;?,\u2007?it/s]"}}, "491a065ed3ce4b958eceadb92de4ad68": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "18a69272bce54269bd2a067c7ec21cdc": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_19e6aeb2917e4d78ae5e5d2e993a22b0", "IPY_MODEL_7ded4714ca3c446fb67d1027899d3091", "IPY_MODEL_fde61c388197454daa13f33365709695"], "layout": "IPY_MODEL_491a065ed3ce4b958eceadb92de4ad68"}}, "a3d178f00b884d5c98c6f8b8dbd2d480": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "97204e5e473c4c6ca3cc34756dbe30ea": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "ee5eb3778a9447d1b1a83664c5c82e8d": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a3d178f00b884d5c98c6f8b8dbd2d480", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_97204e5e473c4c6ca3cc34756dbe30ea", "value": 0.0}}, "db3287c0d9de469280617e676b68d585": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5a8bf92f901848929f7140781da4dac1": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "822c198fe6a24ef7b30c65c8bf35a9c7": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_db3287c0d9de469280617e676b68d585", "placeholder": "\u200b", "style": "IPY_MODEL_5a8bf92f901848929f7140781da4dac1", "value": "Packets:\u2007\u2007\u2007"}}, "35fdedc70afb475092b4fb4fb3c6dbe1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "15448a00108a49019fbe63f1e4af43db": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6f19663707fa4d9bb6e7004f7105df55": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_35fdedc70afb475092b4fb4fb3c6dbe1", "placeholder": "\u200b", "style": "IPY_MODEL_15448a00108a49019fbe63f1e4af43db", "value": "0/?\u2007[00:00&lt;?,\u2007?it/s]"}}, "189f6f7e105840c6824528c62dc7715a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "82ba33bdf008450a885dffe3fa69dc47": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_822c198fe6a24ef7b30c65c8bf35a9c7", "IPY_MODEL_ee5eb3778a9447d1b1a83664c5c82e8d", "IPY_MODEL_6f19663707fa4d9bb6e7004f7105df55"], "layout": "IPY_MODEL_189f6f7e105840c6824528c62dc7715a"}}, "5b63faca26cd40209571371ed795ae7b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4293523a99d44946bf6a42a36d6d1956": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_5b63faca26cd40209571371ed795ae7b", "msg_id": "", "outputs": []}}, "4da1d58c9f7d4b9b949a9d826a5b05b5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "50ad7944f0f644088db820551662cde0": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_4da1d58c9f7d4b9b949a9d826a5b05b5", "msg_id": "", "outputs": []}}, "17b640b68b53401ba6cd7d56b5481370": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "f7da41bed3f04485b30bdf05bff8bca1": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "be362a697cce474a84048f731e306541": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_17b640b68b53401ba6cd7d56b5481370", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_f7da41bed3f04485b30bdf05bff8bca1", "value": 20.0}}, "13f0b98292d0460e91e5486a274a9897": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "2004f820fc654c88babae156da0726b8": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dfa8a41c3f354c329b55c109c36890fb": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_13f0b98292d0460e91e5486a274a9897", "placeholder": "\u200b", "style": "IPY_MODEL_2004f820fc654c88babae156da0726b8", "value": "Iterations:"}}, "573f02e24c39494ab1e9541225a8e63c": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "368f6990931e4300ad1a84486cc722b7": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5f505fa4c26647f1ae4cd06f94d2ceb6": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_573f02e24c39494ab1e9541225a8e63c", "placeholder": "\u200b", "style": "IPY_MODEL_368f6990931e4300ad1a84486cc722b7", "value": "20/20\u2007[00:13&lt;00:00,\u2007\u20071.78s/it]"}}, "6a46beed78b848d8bbe8e26eef83e49a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f00e5bc465264de3a228416b1a442ec6": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_dfa8a41c3f354c329b55c109c36890fb", "IPY_MODEL_be362a697cce474a84048f731e306541", "IPY_MODEL_5f505fa4c26647f1ae4cd06f94d2ceb6"], "layout": "IPY_MODEL_6a46beed78b848d8bbe8e26eef83e49a"}}, "6b6a17965f7b44c29ed04f2c39ce99ce": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "9012584fd32043d88914d79b15e492d4": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "2984165ea965423089c7ff40c98d337f": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_6b6a17965f7b44c29ed04f2c39ce99ce", "max": 100000.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_9012584fd32043d88914d79b15e492d4", "value": 100000.0}}, "55fd43199db94ee6a0b23e4abe815112": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "621d8c2dc58040e090be38a19f009bb7": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d462518af2be4f6984aff7260b8e7a65": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_55fd43199db94ee6a0b23e4abe815112", "placeholder": "\u200b", "style": "IPY_MODEL_621d8c2dc58040e090be38a19f009bb7", "value": "Packets:\u2007\u2007\u2007"}}, "b695cb937bc74b9bbf1ac23eaa3f5099": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2f3167304c4940dd8e33ebf666979b37": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b74dd4410cdb428d922c5c668734334f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b695cb937bc74b9bbf1ac23eaa3f5099", "placeholder": "\u200b", "style": "IPY_MODEL_2f3167304c4940dd8e33ebf666979b37", "value": "100000/100000\u2007[00:04&lt;00:00,\u200721540.74it/s]"}}, "a476a7903c0c4245a6f6ce068f328dd0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c2f65b40c2454ef0b2506fbfd6af1b98": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_d462518af2be4f6984aff7260b8e7a65", "IPY_MODEL_2984165ea965423089c7ff40c98d337f", "IPY_MODEL_b74dd4410cdb428d922c5c668734334f"], "layout": "IPY_MODEL_a476a7903c0c4245a6f6ce068f328dd0"}}}, "version_major": 2, "version_minor": 0}
+</script></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="how_to_rpacket_tracking.html" class="btn btn-neutral float-left" title="How to Track the Properties of Real Packets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../physics/intro/index.html" class="btn btn-neutral float-right" title="Physics Walkthrough Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 16 Jul 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
