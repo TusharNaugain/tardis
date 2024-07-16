@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=74e04866"></script>
+        <script src="../../../../_static/documentation_options.js?v=06433ce6"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -121,7 +121,7 @@ from astropy import units as u
 from numba import float64, int64, cuda
 import math
 
-from tardis.transport.montecarlo.numba_config import SIGMA_THOMSON
+from tardis.transport.montecarlo.configuration.constants import SIGMA_THOMSON
 
 C_INV = 3.33564e-11
 M_PI = np.arccos(-1)
@@ -268,7 +268,6 @@ def cuda_formal_integral(
             )
 
             for _ in range(max(nu_end_idx - pline, 0)):
-
                 # calculate e-scattering optical depth to next resonance point
                 zend = time_explosion / C_INV * (1.0 - line_list_nu[pline] / nu)
                 if first == 1:
@@ -672,7 +671,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Jul 2024.
+      <span class="lastupdated">Last updated on 16 Jul 2024.
       </span></p>
   </div>
 
