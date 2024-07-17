@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=b1c05297"></script>
+        <script src="../../../../_static/documentation_options.js?v=20378be4"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -147,6 +147,7 @@ class MonteCarloTransportState(HDFWriterMixin):
         &quot;emitted_packet_mask&quot;,
         &quot;last_interaction_type&quot;,
         &quot;last_interaction_in_nu&quot;,
+        &quot;last_interaction_in_r&quot;,
         &quot;last_line_interaction_out_id&quot;,
         &quot;last_line_interaction_in_id&quot;,
         &quot;last_line_interaction_shell_id&quot;,
@@ -158,6 +159,7 @@ class MonteCarloTransportState(HDFWriterMixin):
         &quot;virt_packet_initial_rs&quot;,
         &quot;virt_packet_initial_mus&quot;,
         &quot;virt_packet_last_interaction_in_nu&quot;,
+        &quot;virt_packet_last_interaction_in_r&quot;,
         &quot;virt_packet_last_interaction_type&quot;,
         &quot;virt_packet_last_line_interaction_in_id&quot;,
         &quot;virt_packet_last_line_interaction_out_id&quot;,
@@ -168,6 +170,7 @@ class MonteCarloTransportState(HDFWriterMixin):
 
     last_interaction_type = None
     last_interaction_in_nu = None
+    last_interaction_in_r = None
     last_line_interaction_out_id = None
     last_line_interaction_in_id = None
     last_line_interaction_shell_id = None
@@ -528,6 +531,20 @@ class MonteCarloTransportState(HDFWriterMixin):
             return None
 
     @property
+    def virt_packet_last_interaction_in_r(self):
+        try:
+            return u.Quantity(self.vpacket_tracker.last_interaction_in_r, u.cm)
+        except AttributeError:
+            warnings.warn(
+                &quot;MontecarloTransport.virt_packet_last_interaction_in_r:&quot;
+                &quot;Set &#39;virtual_packet_logging: True&#39; in the configuration file&quot;
+                &quot;to access this property&quot;
+                &quot;It should be added under &#39;virtual&#39; property of &#39;spectrum&#39; property&quot;,
+                UserWarning,
+            )
+            return None
+
+    @property
     def virt_packet_last_interaction_type(self):
         try:
             return self.vpacket_tracker.last_interaction_type
@@ -593,7 +610,7 @@ class MonteCarloTransportState(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 16 Jul 2024.
+      <span class="lastupdated">Last updated on 17 Jul 2024.
       </span></p>
   </div>
 

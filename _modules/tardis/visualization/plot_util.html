@@ -15,7 +15,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=b1c05297"></script>
+        <script src="../../../_static/documentation_options.js?v=20378be4"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -183,6 +183,28 @@ def get_mid_point_idx(arr):
     mid_value = (arr[0] + arr[-1]) / 2
     return np.abs(arr - mid_value).argmin()</div>
 
+
+
+<div class="viewcode-block" id="to_rgb255_string">
+<a class="viewcode-back" href="../../../api/tardis.visualization.plot_util.html#tardis.visualization.plot_util.to_rgb255_string">[docs]</a>
+def to_rgb255_string(color_tuple):
+    &quot;&quot;&quot;
+    Convert a matplotlib RGBA tuple to a generic RGB 255 string.
+
+    Parameters
+    ----------
+    color_tuple : tuple
+        Matplotlib RGBA tuple of float values in closed interval [0, 1]
+
+    Returns
+    -------
+    str
+        RGB string of format rgb(r,g,b) where r,g,b are integers between
+        0 and 255 (both inclusive)
+    &quot;&quot;&quot;
+    color_tuple_255 = tuple([int(x * 255) for x in color_tuple[:3]])
+    return f&quot;rgb{color_tuple_255}&quot;</div>
+
 </pre></div>
 
            </div>
@@ -193,7 +215,7 @@ def get_mid_point_idx(arr):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 16 Jul 2024.
+      <span class="lastupdated">Last updated on 17 Jul 2024.
       </span></p>
   </div>
 

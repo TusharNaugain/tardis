@@ -15,7 +15,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=b1c05297"></script>
+        <script src="../../../../_static/documentation_options.js?v=20378be4"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -316,6 +316,7 @@ class MonteCarloTransportSolver(HDFWriterMixin):
         ] = v_packets_energy_hist
         transport_state.last_interaction_type = last_interaction_tracker.types
         transport_state.last_interaction_in_nu = last_interaction_tracker.in_nus
+        transport_state.last_interaction_in_r = last_interaction_tracker.in_rs
         transport_state.last_line_interaction_in_id = (
             last_interaction_tracker.in_ids
         )
@@ -447,7 +448,7 @@ class MonteCarloTransportSolver(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 16 Jul 2024.
+      <span class="lastupdated">Last updated on 17 Jul 2024.
       </span></p>
   </div>
 
