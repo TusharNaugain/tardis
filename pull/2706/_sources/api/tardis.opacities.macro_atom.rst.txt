@@ -1,0 +1,20 @@
+tardis.opacities.macro\_atom package
+====================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   tardis.opacities.macro_atom.base
+   tardis.opacities.macro_atom.transition_probabilities
+   tardis.opacities.macro_atom.util
+
+Module contents
+---------------
+
+.. automodule:: tardis.opacities.macro_atom
+   :members:
+   :undoc-members:
+   :show-inheritance:
