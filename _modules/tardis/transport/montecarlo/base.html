@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=1d5d9988"></script>
+        <script src="../../../../_static/documentation_options.js?v=0a41d4b8"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -133,10 +133,9 @@ import tardis.transport.montecarlo.configuration.constants as constants
 from tardis import constants as const
 from tardis.io.logger import montecarlo_tracking as mc_tracker
 from tardis.io.util import HDFWriterMixin
-from tardis.transport.montecarlo import (
+from tardis.transport.montecarlo.montecarlo_main_loop import (
     montecarlo_main_loop,
 )
-from tardis.transport.montecarlo.configuration import montecarlo_globals
 from tardis.transport.montecarlo.configuration.base import (
     MonteCarloConfiguration,
     configuration_initialize,
@@ -343,11 +342,13 @@ class MonteCarloTransportSolver(HDFWriterMixin):
 
         update_iterations_pbar(1)
         refresh_packet_pbar()
-        # Condition for Checking if RPacket Tracking is enabled
-        if self.enable_rpacket_tracking:
-            transport_state.rpacket_tracker = rpacket_trackers
 
-        if self.transport_state.rpacket_tracker is not None:
+        transport_state.rpacket_tracker = rpacket_trackers
+
+        # Need to change the implementation of rpacket_trackers_to_dataframe
+        # Such that it also takes of the case of
+        # RPacketLastInteractionTracker
+        if self.enable_rpacket_tracking:
             self.transport_state.rpacket_tracker_df = (
                 rpacket_trackers_to_dataframe(
                     self.transport_state.rpacket_tracker
