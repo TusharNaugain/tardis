@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=010653f2"></script>
+        <script src="../../../../_static/documentation_options.js?v=65e1d089"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -135,7 +135,7 @@ logger = logging.getLogger(__name__)
 
 
 <div class="viewcode-block" id="create_table_widget">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.create_table_widget">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.create_table_widget">[docs]</a>
 def create_table_widget(
     data, col_widths, table_options=None, changeable_col=None
 ):
@@ -233,7 +233,7 @@ def create_table_widget(
 
 
 <div class="viewcode-block" id="TableSummaryLabel">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.TableSummaryLabel">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.TableSummaryLabel">[docs]</a>
 class TableSummaryLabel:
     &quot;&quot;&quot;
     Label like widget to show summary of a qgrid table widget.
@@ -275,7 +275,7 @@ class TableSummaryLabel:
         self.widget = self._create(label_key, label_value)
 
 <div class="viewcode-block" id="TableSummaryLabel.update_and_resize">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.TableSummaryLabel.update_and_resize">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.TableSummaryLabel.update_and_resize">[docs]</a>
     def update_and_resize(self, value):
         &quot;&quot;&quot;
         Update the label value and resize it as per the size of target table.
@@ -365,7 +365,7 @@ class TableSummaryLabel:
 
 
 <div class="viewcode-block" id="Timer">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.Timer">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.Timer">[docs]</a>
 class Timer:
     &quot;&quot;&quot;Timer to implement debouncing using an asynchronous loop.
 
@@ -391,13 +391,13 @@ class Timer:
         self._callback()
 
 <div class="viewcode-block" id="Timer.start">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.Timer.start">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.Timer.start">[docs]</a>
     def start(self):
         self._task = asyncio.ensure_future(self._job())</div>
 
 
 <div class="viewcode-block" id="Timer.cancel">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.Timer.cancel">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.Timer.cancel">[docs]</a>
     def cancel(self):
         self._task.cancel()</div>
 </div>
@@ -405,7 +405,7 @@ class Timer:
 
 
 <div class="viewcode-block" id="debounce">
-<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.util.debounce">[docs]</a>
+<a class="viewcode-back" href="../../../../api/tardis.visualization.widgets.util.html#tardis.visualization.widgets.custom_abundance.debounce">[docs]</a>
 def debounce(wait):
     &quot;&quot;&quot;Decorator that will postpone a function&#39;s execution until after
      `wait` seconds have elapsed since the last time it was invoked.

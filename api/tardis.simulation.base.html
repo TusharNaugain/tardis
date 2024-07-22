@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=010653f2"></script>
+        <script src="../_static/documentation_options.js?v=65e1d089"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -80,6 +80,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.radiation_field.html">tardis.radiation_field package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -257,7 +258,7 @@ cb_func(simulation, extra_arg1, …)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.simulation.base.Simulation.advance_state">
-<span class="sig-name descname"><span class="pre">advance_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/simulation/base.html#Simulation.advance_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.simulation.base.Simulation.advance_state" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">advance_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emitted_luminosity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/simulation/base.html#Simulation.advance_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.simulation.base.Simulation.advance_state" title="Link to this definition">¶</a></dt>
 <dd><p>Advances the state of the model and the plasma for the next
 iteration of the simulation. Returns True if the convergence criteria
 are met, else False.</p>
@@ -272,7 +273,7 @@ are met, else False.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.simulation.base.Simulation.estimate_t_inner">
-<span class="sig-name descname"><span class="pre">estimate_t_inner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_inner_update_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/simulation/base.html#Simulation.estimate_t_inner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.simulation.base.Simulation.estimate_t_inner" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">estimate_t_inner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emitted_luminosity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_inner_update_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/simulation/base.html#Simulation.estimate_t_inner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.simulation.base.Simulation.estimate_t_inner" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -304,7 +305,7 @@ object.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.simulation.base.Simulation.hdf_properties">
-<span class="sig-name descname"><span class="pre">hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['simulation_state',</span> <span class="pre">'plasma',</span> <span class="pre">'transport',</span> <span class="pre">'iterations_w',</span> <span class="pre">'iterations_t_rad',</span> <span class="pre">'iterations_electron_densities',</span> <span class="pre">'iterations_t_inner']</span></em><a class="headerlink" href="#tardis.simulation.base.Simulation.hdf_properties" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">hdf_properties</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['simulation_state',</span> <span class="pre">'plasma',</span> <span class="pre">'transport',</span> <span class="pre">'iterations_w',</span> <span class="pre">'iterations_t_rad',</span> <span class="pre">'iterations_electron_densities',</span> <span class="pre">'iterations_t_inner',</span> <span class="pre">'spectrum_solver']</span></em><a class="headerlink" href="#tardis.simulation.base.Simulation.hdf_properties" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
