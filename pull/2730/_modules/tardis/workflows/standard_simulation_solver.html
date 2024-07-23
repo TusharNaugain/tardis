@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=c041ca5d"></script>
+        <script src="../../../_static/documentation_options.js?v=32d7313a"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -128,20 +128,16 @@
 from pathlib import Path
 
 import numpy as np
-import pandas as pd
 from astropy import units as u
-from IPython.display import display
 
 from tardis import constants as const
 from tardis.io.atom_data.base import AtomData
-from tardis.io.logger.logger import logging_state
 from tardis.model import SimulationState
 from tardis.plasma.standard_plasmas import assemble_plasma
 from tardis.simulation.convergence import ConvergenceSolver
 from tardis.spectrum.base import SpectrumSolver
 from tardis.spectrum.formal_integral import FormalIntegrator
 from tardis.transport.montecarlo.base import MonteCarloTransportSolver
-from tardis.util.base import is_notebook
 
 # logging support
 logger = logging.getLogger(__name__)
@@ -219,11 +215,11 @@ class StandardSimulationSolver:
         self.integrated_spectrum_settings = configuration.spectrum.integrated
         self.spectrum_solver = SpectrumSolver.from_config(configuration)
 
+        # Convergence solvers
         self.convergence_strategy = (
             configuration.montecarlo.convergence_strategy
         )
 
-        # Convergence solvers
         self.t_radiative_convergence_solver = ConvergenceSolver(
             self.convergence_strategy.t_rad
         )
@@ -250,10 +246,9 @@ class StandardSimulationSolver:
 
         try:
             atom_data = AtomData.from_hdf(atom_data_fname)
-        except TypeError as e:
-            print(
-                e,
-                &quot;Error might be from the use of an old-format of the atomic database, \n&quot;
+        except TypeError:
+            logger.exception(
+                &quot;TypeError might be from the use of an old-format of the atomic database, \n&quot;
                 &quot;please see https://github.com/tardis-sn/tardis-refdata/tree/master/atom_data&quot;
                 &quot; for the most recent version.&quot;,
             )
@@ -283,7 +278,9 @@ class StandardSimulationSolver:
         (
             estimated_t_radiative,
             estimated_dilution_factor,
-        ) = self.transport_solver.transport_state.calculate_radiationfield_properties()
+        ) = (
+            self.transport_solver.transport_state.calculate_radiationfield_properties()
+        )
 
         estimated_t_inner = self.estimate_t_inner(
             self.simulation_state.t_inner,
@@ -352,11 +349,10 @@ class StandardSimulationSolver:
         return False</div>
 
 
-<div class="viewcode-block" id="StandardSimulationSolver.solve_plasma">
-<a class="viewcode-back" href="../../../api/tardis.workflows.standard_simulation_solver.html#tardis.workflows.standard_simulation_solver.StandardSimulationSolver.solve_plasma">[docs]</a>
-    def solve_plasma(
+<div class="viewcode-block" id="StandardSimulationSolver.solve_simulation_state">
+<a class="viewcode-back" href="../../../api/tardis.workflows.standard_simulation_solver.html#tardis.workflows.standard_simulation_solver.StandardSimulationSolver.solve_simulation_state">[docs]</a>
+    def solve_simulation_state(
         self,
-        transport_state,
         estimated_t_radiative,
         estimated_dilution_factor,
         estimated_t_inner,
@@ -381,19 +377,25 @@ class StandardSimulationSolver:
 
         self.simulation_state.t_radiative = next_t_radiative
         self.simulation_state.dilution_factor = next_dilution_factor
-        self.simulation_state.blackbody_packet_source.temperature = next_t_inner
+        self.simulation_state.blackbody_packet_source.temperature = next_t_inner</div>
 
+
+<div class="viewcode-block" id="StandardSimulationSolver.solve_plasma">
+<a class="viewcode-back" href="../../../api/tardis.workflows.standard_simulation_solver.html#tardis.workflows.standard_simulation_solver.StandardSimulationSolver.solve_plasma">[docs]</a>
+    def solve_plasma(
+        self,
+        transport_state,
+    ):
         update_properties = dict(
             t_rad=self.simulation_state.t_radiative,
             w=self.simulation_state.dilution_factor,
         )
         # A check to see if the plasma is set with JBluesDetailed, in which
         # case it needs some extra kwargs.
-        estimators = transport_state.radfield_mc_estimators
         if &quot;j_blue_estimator&quot; in self.plasma_solver.outputs_dict:
             update_properties.update(
-                t_inner=next_t_inner,
-                j_blue_estimator=estimators.j_blue_estimator,
+                t_inner=self.simulation_state.blackbody_packet_source.temperature,
+                j_blue_estimator=transport_state.radfield_mc_estimators.j_blue_estimator,
             )
 
         self.plasma_solver.update(**update_properties)</div>
@@ -418,6 +420,10 @@ class StandardSimulationSolver:
             show_progress_bars=False,
         )
 
+        output_energy = transport_state.packet_collection.output_energies
+        if np.sum(output_energy &lt; 0) == len(output_energy):
+            logger.critical(&quot;No r-packet escaped through the outer boundary.&quot;)
+
         return transport_state, virtual_packet_energies</div>
 
 
@@ -432,9 +438,9 @@ class StandardSimulationSolver:
         self.spectrum_solver.transport_state = transport_state
 
         if virtual_packet_energies is not None:
-            self.spectrum_solver._montecarlo_virtual_luminosity.value[:] = (
-                virtual_packet_energies
-            )
+            self.spectrum_solver._montecarlo_virtual_luminosity.value[
+                :
+            ] = virtual_packet_energies
 
         if self.integrated_spectrum_settings is not None:
             # Set up spectrum solver integrator
@@ -455,12 +461,6 @@ class StandardSimulationSolver:
                 self.real_packet_count
             )
 
-            output_energy = transport_state.packet_collection.output_energies
-            if np.sum(output_energy &lt; 0) == len(output_energy):
-                logger.critical(
-                    &quot;No r-packet escaped through the outer boundary.&quot;
-                )
-
             self.spectrum_solver.transport_state = transport_state
 
             emitted_luminosity = (
@@ -475,11 +475,14 @@ class StandardSimulationSolver:
                 estimated_t_inner,
             ) = self.get_convergence_estimates(emitted_luminosity)
 
-            self.solve_plasma(
-                transport_state,
+            self.solve_simulation_state(
                 estimated_t_radiative,
                 estimated_dilution_factor,
                 estimated_t_inner,
+            )
+
+            self.solve_plasma(
+                transport_state,
             )
 
             converged = self.check_convergence(
