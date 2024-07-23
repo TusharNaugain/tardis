@@ -2,6 +2,15 @@
 <html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.opacities.opacity_state &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
@@ -15,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=015c6d82"></script>
+        <script src="../../../_static/documentation_options.js?v=217f7f35"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -120,6 +129,7 @@ from numba import float64, int64
 from numba.experimental import jitclass
 
 from tardis.opacities.tau_sobolev import calculate_sobolev_line_opacity
+from tardis.transport.montecarlo.configuration import montecarlo_globals
 
 opacity_state_spec = [
     (&quot;electron_density&quot;, float64[:]),
@@ -232,7 +242,6 @@ def opacity_state_initialize(
     plasma,
     line_interaction_type,
     disable_line_scattering,
-    continuum_processes_enabled,
 ):
     &quot;&quot;&quot;
     Initialize the OpacityState object and copy over the data over from TARDIS Plasma
@@ -278,7 +287,7 @@ def opacity_state_initialize(
         )
         # TODO: Fix setting of block references for non-continuum mode
 
-        if continuum_processes_enabled:
+        if montecarlo_globals.CONTINUUM_PROCESSES_ENABLED:
             macro_block_references = plasma.macro_block_references
         else:
             macro_block_references = plasma.atomic_data.macro_atom_references[
@@ -291,7 +300,7 @@ def opacity_state_initialize(
             &quot;destination_level_idx&quot;
         ].values
         transition_line_id = plasma.macro_atom_data[&quot;lines_idx&quot;].values
-    if continuum_processes_enabled:
+    if montecarlo_globals.CONTINUUM_PROCESSES_ENABLED:
         bf_threshold_list_nu = plasma.nu_i.loc[
             plasma.level2continuum_idx.index
         ].values
@@ -380,7 +389,7 @@ def opacity_state_initialize(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 23 Jul 2024.
       </span></p>
   </div>
 

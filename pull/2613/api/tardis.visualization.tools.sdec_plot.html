@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.visualization.tools.sdec_plot module &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=015c6d82"></script>
+        <script src="../_static/documentation_options.js?v=217f7f35"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -25,7 +34,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.visualization.widgets package" href="tardis.visualization.widgets.html" />
-    <link rel="prev" title="tardis.visualization.tools.convergence_plot module" href="tardis.visualization.tools.convergence_plot.html" />
+    <link rel="prev" title="tardis.visualization.tools.rpacket_plot module" href="tardis.visualization.tools.rpacket_plot.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -70,6 +79,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -151,7 +161,7 @@
 proposed by M. Kromer (see, for example, Kromer et al. 2013, figure 4).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.visualization.tools.sdec_plot.SDECData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.tools.sdec_plot.</span></span><span class="sig-name descname"><span class="pre">SDECData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_in_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_out_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_in_nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_nus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_delta_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_luminosity_density_lambda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_wavelength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_of_simulation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/sdec_plot.html#SDECData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.sdec_plot.SDECData" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.visualization.tools.sdec_plot.</span></span><span class="sig-name descname"><span class="pre">SDECData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_in_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_out_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_line_interaction_in_nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_interaction_in_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_nus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_delta_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_luminosity_density_lambda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_wavelength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_of_simulation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/sdec_plot.html#SDECData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.sdec_plot.SDECData" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The data of simulation model used by Spectral element DEComposition (SDEC) Plot.</p>
 <p>This preprocesses the data required by SDECPlotter class for doing
@@ -170,6 +180,8 @@ absorption (interaction in)</p>
 emission (interaction out)</p>
 </dd>
 <dt><strong>last_line_interaction_in_nu</strong><span class="classifier">np.array</span></dt><dd><p>Frequency values of the last absorption of emitted packets</p>
+</dd>
+<dt><strong>last_line_interaction_in_r</strong><span class="classifier">np.array</span></dt><dd><p>Radius of the last interaction experienced by emitted packets</p>
 </dd>
 <dt><strong>lines_df</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Data about the atomic lines present in simulation model’s plasma</p>
 </dd>
@@ -409,27 +421,6 @@ e.g. [‘Si II’, ‘Ca II’, ‘C’, ‘Fe I-V’]</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.visualization.tools.sdec_plot.SDECPlotter.to_rgb255_string">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_rgb255_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color_tuple</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/visualization/tools/sdec_plot.html#SDECPlotter.to_rgb255_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.visualization.tools.sdec_plot.SDECPlotter.to_rgb255_string" title="Link to this definition">¶</a></dt>
-<dd><p>Convert a matplotlib RGBA tuple to a generic RGB 255 string.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>color_tuple</strong><span class="classifier">tuple</span></dt><dd><p>Matplotlib RGBA tuple of float values in closed interval [0, 1]</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>str</dt><dd><p>RGB string of format rgb(r,g,b) where r,g,b are integers between
-0 and 255 (both inclusive)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -438,7 +429,7 @@ e.g. [‘Si II’, ‘Ca II’, ‘C’, ‘Fe I-V’]</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.visualization.tools.convergence_plot.html" class="btn btn-neutral float-left" title="tardis.visualization.tools.convergence_plot module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.visualization.tools.rpacket_plot.html" class="btn btn-neutral float-left" title="tardis.visualization.tools.rpacket_plot module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.visualization.widgets.html" class="btn btn-neutral float-right" title="tardis.visualization.widgets package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -446,7 +437,7 @@ e.g. [‘Si II’, ‘Ca II’, ‘C’, ‘Fe I-V’]</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 23 Jul 2024.
       </span></p>
   </div>
 

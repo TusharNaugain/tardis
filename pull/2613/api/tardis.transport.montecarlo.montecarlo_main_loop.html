@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.montecarlo_main_loop module &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=015c6d82"></script>
+        <script src="../_static/documentation_options.js?v=217f7f35"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -25,7 +34,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.transport.montecarlo.montecarlo_transport_state module" href="tardis.transport.montecarlo.montecarlo_transport_state.html" />
-    <link rel="prev" title="tardis.transport.montecarlo.montecarlo_configuration module" href="tardis.transport.montecarlo.montecarlo_configuration.html" />
+    <link rel="prev" title="tardis.transport.montecarlo.macro_atom module" href="tardis.transport.montecarlo.macro_atom.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -70,6 +79,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -148,7 +158,7 @@
 <span id="tardis-transport-montecarlo-montecarlo-main-loop-module"></span><h1>tardis.transport.montecarlo.montecarlo_main_loop module<a class="headerlink" href="#module-tardis.transport.montecarlo.montecarlo_main_loop" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.montecarlo_main_loop.montecarlo_main_loop">
-<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.montecarlo_main_loop.</span></span><span class="sig-name descname"><span class="pre">montecarlo_main_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">montecarlo_configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_vpackets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/montecarlo_main_loop.html#montecarlo_main_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.montecarlo_main_loop.montecarlo_main_loop" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.montecarlo_main_loop.</span></span><span class="sig-name descname"><span class="pre">montecarlo_main_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">montecarlo_configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_frequency_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_vpackets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress_bars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/montecarlo_main_loop.html#montecarlo_main_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.montecarlo_main_loop.montecarlo_main_loop" title="Link to this definition">¶</a></dt>
 <dd><p>This is the main loop of the MonteCarlo routine that generates packets
 and sends them through the ejecta.</p>
 <dl class="field-list simple">
@@ -162,7 +172,7 @@ and sends them through the ejecta.</p>
 </dd>
 <dt><strong>opacity_state</strong><span class="classifier">OpacityState</span></dt><dd></dd>
 <dt><strong>estimators</strong><span class="classifier">Estimators</span></dt><dd></dd>
-<dt><strong>spectrum_frequency</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Frequency bins</p>
+<dt><strong>spectrum_frequency_grid</strong><span class="classifier">astropy.units.Quantity</span></dt><dd><p>Frequency bins</p>
 </dd>
 <dt><strong>number_of_vpackets</strong><span class="classifier">int</span></dt><dd><p>VPackets released per interaction</p>
 </dd>
@@ -183,7 +193,7 @@ and sends them through the ejecta.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.transport.montecarlo.montecarlo_configuration.html" class="btn btn-neutral float-left" title="tardis.transport.montecarlo.montecarlo_configuration module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.transport.montecarlo.macro_atom.html" class="btn btn-neutral float-left" title="tardis.transport.montecarlo.macro_atom module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.transport.montecarlo.montecarlo_transport_state.html" class="btn btn-neutral float-right" title="tardis.transport.montecarlo.montecarlo_transport_state module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -191,7 +201,7 @@ and sends them through the ejecta.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 23 Jul 2024.
       </span></p>
   </div>
 

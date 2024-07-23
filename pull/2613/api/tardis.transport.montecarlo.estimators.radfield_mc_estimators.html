@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.estimators.radfield_mc_estimators module &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=015c6d82"></script>
+        <script src="../_static/documentation_options.js?v=217f7f35"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -70,6 +79,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -153,7 +163,7 @@
 <dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators" title="tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadiationFieldMCEstimators</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RadiationFieldMCEstimators#7f016e4fc500&lt;j_estimator:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu_bar_estimator:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),j_blue_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),Edotlu_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),stim_recomb_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),bf_heating_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),stim_recomb_cooling_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_estimator_statistics:array(int64,</span> <span class="pre">2d,</span> <span class="pre">A)&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RadiationFieldMCEstimators#7f70e331f650&lt;j_estimator:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu_bar_estimator:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),j_blue_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),Edotlu_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),stim_recomb_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),bf_heating_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),stim_recomb_cooling_estimator:array(float64,</span> <span class="pre">2d,</span> <span class="pre">A),photo_ion_estimator_statistics:array(int64,</span> <span class="pre">2d,</span> <span class="pre">A)&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.radfield_mc_estimators.RadiationFieldMCEstimators.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -201,7 +211,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 19 Jun 2024.
+      <span class="lastupdated">Last updated on 23 Jul 2024.
       </span></p>
   </div>
 
