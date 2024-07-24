@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=f4e56348"></script>
+        <script src="../../../_static/documentation_options.js?v=5420a579"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -257,38 +257,33 @@ class StandardSimulationSolver:
 
         return atom_data
 
-<div class="viewcode-block" id="StandardSimulationSolver.estimate_t_inner">
-<a class="viewcode-back" href="../../../api/tardis.workflows.standard_simulation_solver.html#tardis.workflows.standard_simulation_solver.StandardSimulationSolver.estimate_t_inner">[docs]</a>
-    def estimate_t_inner(
-        self,
-        input_t_inner,
-        luminosity_requested,
-        emitted_luminosity,
-        t_inner_update_exponent=-0.5,
-    ):
-        luminosity_ratios = (
-            (emitted_luminosity / luminosity_requested).to(1).value
-        )
-
-        return input_t_inner * luminosity_ratios**t_inner_update_exponent</div>
-
-
 <div class="viewcode-block" id="StandardSimulationSolver.get_convergence_estimates">
 <a class="viewcode-back" href="../../../api/tardis.workflows.standard_simulation_solver.html#tardis.workflows.standard_simulation_solver.StandardSimulationSolver.get_convergence_estimates">[docs]</a>
-    def get_convergence_estimates(self, emitted_luminosity):
+    def get_convergence_estimates(self, transport_state):
         (
             estimated_t_radiative,
             estimated_dilution_factor,
-        ) = (
-            self.transport_solver.transport_state.calculate_radiationfield_properties()
+        ) = self.transport_solver.transport_state.calculate_radiationfield_properties()
+
+        self.initialize_spectrum_solver(
+            transport_state,
+            None,
         )
 
-        estimated_t_inner = self.estimate_t_inner(
-            self.simulation_state.t_inner,
-            self.luminosity_requested,
-            emitted_luminosity,
-            t_inner_update_exponent=self.convergence_strategy.t_inner_update_exponent,
+        emitted_luminosity = self.spectrum_solver.calculate_emitted_luminosity(
+            self.luminosity_nu_start, self.luminosity_nu_end
         )
+
+        luminosity_ratios = (
+            (emitted_luminosity / self.luminosity_requested).to(1).value
+        )
+
+        estimated_t_inner = (
+            self.simulation_state.t_inner
+            * luminosity_ratios
+            ** self.convergence_strategy.t_inner_update_exponent
+        )
+
         return {
             &quot;t_radiative&quot;: estimated_t_radiative,
             &quot;dilution_factor&quot;: estimated_dilution_factor,
@@ -415,9 +410,9 @@ class StandardSimulationSolver:
         self.spectrum_solver.transport_state = transport_state
 
         if virtual_packet_energies is not None:
-            self.spectrum_solver._montecarlo_virtual_luminosity.value[
-                :
-            ] = virtual_packet_energies
+            self.spectrum_solver._montecarlo_virtual_luminosity.value[:] = (
+                virtual_packet_energies
+            )
 
         if self.integrated_spectrum_settings is not None:
             # Set up spectrum solver integrator
@@ -438,17 +433,7 @@ class StandardSimulationSolver:
                 self.real_packet_count
             )
 
-            self.spectrum_solver.transport_state = transport_state
-
-            emitted_luminosity = (
-                self.spectrum_solver.calculate_emitted_luminosity(
-                    self.luminosity_nu_start, self.luminosity_nu_end
-                )
-            )
-
-            estimated_values = self.get_convergence_estimates(
-                emitted_luminosity
-            )
+            estimated_values = self.get_convergence_estimates(transport_state)
 
             self.solve_simulation_state(estimated_values)
 
@@ -479,7 +464,7 @@ class StandardSimulationSolver:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Jul 2024.
+      <span class="lastupdated">Last updated on 24 Jul 2024.
       </span></p>
   </div>
 
