@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=ac9a78a6"></script>
+        <script src="../../../_static/documentation_options.js?v=9f4e1827"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -143,14 +143,15 @@ from tardis.io.model.parse_packet_source_configuration import (
 )
 from tardis.io.util import HDFWriterMixin
 from tardis.model import SimulationState
+from tardis.plasma.radiation_field import DilutePlanckianRadiationField
 from tardis.plasma.standard_plasmas import assemble_plasma
-from tardis.spectrum.formal_integral import FormalIntegrator
 from tardis.simulation.convergence import ConvergenceSolver
+from tardis.spectrum.base import SpectrumSolver
+from tardis.spectrum.formal_integral import FormalIntegrator
 from tardis.transport.montecarlo.base import MonteCarloTransportSolver
 from tardis.transport.montecarlo.configuration import montecarlo_globals
 from tardis.util.base import is_notebook
 from tardis.visualization import ConvergencePlots
-from tardis.spectrum.base import SpectrumSolver
 
 # Adding logging support
 logger = logging.getLogger(__name__)
@@ -490,10 +491,12 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
         # Bad test to see if this is a nlte run
         if &quot;nlte_data&quot; in self.plasma.outputs_dict:
             self.plasma.store_previous_properties()
-
+        radiation_field = DilutePlanckianRadiationField(
+            temperature=self.simulation_state.t_radiative,
+            dilution_factor=self.simulation_state.dilution_factor,
+        )
         update_properties = dict(
-            t_rad=self.simulation_state.t_radiative,
-            w=self.simulation_state.dilution_factor,
+            dilute_planckian_radiation_field=radiation_field
         )
         # A check to see if the plasma is set with JBluesDetailed, in which
         # case it needs some extra kwargs.
@@ -952,7 +955,7 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Jul 2024.
+      <span class="lastupdated">Last updated on 24 Jul 2024.
       </span></p>
   </div>
 

@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=ac9a78a6"></script>
+        <script src="../../../../_static/documentation_options.js?v=9f4e1827"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -127,6 +127,7 @@
 <span></span>from tardis.plasma.properties.base import (
     ArrayInput,
     Input,
+    ProcessingPlasmaProperty,
 )
 
 __all__ = [
@@ -146,27 +147,38 @@ __all__ = [
     &quot;ContinuumInteractionSpecies&quot;,
     &quot;NLTEIonizationSpecies&quot;,
     &quot;NLTEExcitationSpecies&quot;,
+    &quot;DilutePlanckianRadField&quot;,
 ]
 
 
 <div class="viewcode-block" id="TRadiative">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TRadiative">[docs]</a>
-class TRadiative(ArrayInput):
+class TRadiative(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
+    Radiative temperature property.
+
     Attributes
     ----------
     t_rad : Numpy Array, dtype float
     &quot;&quot;&quot;
 
     outputs = (&quot;t_rad&quot;,)
-    latex_name = (r&quot;T_{\textrm{rad}}&quot;,)</div>
+    latex_name = (r&quot;T_{\textrm{rad}}&quot;,)
+
+<div class="viewcode-block" id="TRadiative.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TRadiative.calculate">[docs]</a>
+    def calculate(self, dilute_planckian_radiation_field):
+        return dilute_planckian_radiation_field.temperature.cgs.value</div>
+</div>
 
 
 
 <div class="viewcode-block" id="DilutionFactor">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.DilutionFactor">[docs]</a>
-class DilutionFactor(ArrayInput):
+class DilutionFactor(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
+    Dilution factor of the radiation field.
+
     Attributes
     ----------
     w : Numpy Array, dtype float between 0 and 1
@@ -175,7 +187,13 @@ class DilutionFactor(ArrayInput):
     &quot;&quot;&quot;
 
     outputs = (&quot;w&quot;,)
-    latex_name = (&quot;W&quot;,)</div>
+    latex_name = (&quot;W&quot;,)
+
+<div class="viewcode-block" id="DilutionFactor.calculate">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.DilutionFactor.calculate">[docs]</a>
+    def calculate(self, dilute_planckian_radiation_field):
+        return dilute_planckian_radiation_field.dilution_factor</div>
+</div>
 
 
 
@@ -337,6 +355,13 @@ class NumberDensity(Input):
     outputs = (&quot;number_density&quot;,)
     latex_name = (&quot;N_{i}&quot;,)</div>
 
+
+
+<div class="viewcode-block" id="DilutePlanckianRadField">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.DilutePlanckianRadField">[docs]</a>
+class DilutePlanckianRadField(Input):
+    outputs = (&quot;dilute_planckian_radiation_field&quot;,)</div>
+
 </pre></div>
 
            </div>
@@ -347,7 +372,7 @@ class NumberDensity(Input):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 23 Jul 2024.
+      <span class="lastupdated">Last updated on 24 Jul 2024.
       </span></p>
   </div>
 
