@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=63249528"></script>
+        <script src="../../../../_static/documentation_options.js?v=7f163af7"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -177,7 +177,7 @@ def initialize_packet_source(packet_source, config, geometry):
 
 <div class="viewcode-block" id="parse_packet_source_from_config">
 <a class="viewcode-back" href="../../../../api/tardis.io.model.parse_packet_source_configuration.html#tardis.io.model.parse_packet_source_configuration.parse_packet_source_from_config">[docs]</a>
-def parse_packet_source_from_config(config, geometry, legacy_mode_enabled):
+def parse_packet_source_from_config(config, geometry, enable_legacy_mode):
     &quot;&quot;&quot;
     Parse the packet source based on the given configuration and geometry.
 
@@ -197,12 +197,12 @@ def parse_packet_source_from_config(config, geometry, legacy_mode_enabled):
         packet_source = BlackBodySimpleSourceRelativistic(
             base_seed=config.montecarlo.seed,
             time_explosion=config.supernova.time_explosion,
-            legacy_mode_enabled=legacy_mode_enabled,
+            legacy_mode_enabled=enable_legacy_mode,
         )
     else:
         packet_source = BlackBodySimpleSource(
             base_seed=config.montecarlo.seed,
-            legacy_mode_enabled=legacy_mode_enabled,
+            legacy_mode_enabled=enable_legacy_mode,
         )
 
     return initialize_packet_source(packet_source, config, geometry)</div>
