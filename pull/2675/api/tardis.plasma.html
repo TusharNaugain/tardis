@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma package &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d9b54422"></script>
+        <script src="../_static/documentation_options.js?v=290506f6"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -70,6 +79,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -162,9 +172,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.plasma.properties.html">tardis.plasma.properties package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.plasma.properties.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.util.html">tardis.plasma.properties.util package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.util.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.util.html#module-tardis.plasma.properties.util">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html">tardis.plasma.properties.continuum_processes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#module-tardis.plasma.properties.continuum_processes">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -197,37 +207,6 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.Input"><code class="docutils literal notranslate"><span class="pre">Input</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.PreviousIterationProperty"><code class="docutils literal notranslate"><span class="pre">PreviousIterationProperty</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty"><code class="docutils literal notranslate"><span class="pre">ProcessingPlasmaProperty</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html">tardis.plasma.properties.continuum_processes module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.AdiabaticCoolingRate"><code class="docutils literal notranslate"><span class="pre">AdiabaticCoolingRate</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BfHeatingRateCoeffEstimator"><code class="docutils literal notranslate"><span class="pre">BfHeatingRateCoeffEstimator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.BoundFreeOpacity"><code class="docutils literal notranslate"><span class="pre">BoundFreeOpacity</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollDeexcRateCoeff"><code class="docutils literal notranslate"><span class="pre">CollDeexcRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollExcRateCoeff"><code class="docutils literal notranslate"><span class="pre">CollExcRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollIonRateCoeffSeaton"><code class="docutils literal notranslate"><span class="pre">CollIonRateCoeffSeaton</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CollRecombRateCoeff"><code class="docutils literal notranslate"><span class="pre">CollRecombRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.CorrPhotoIonRateCoeff"><code class="docutils literal notranslate"><span class="pre">CorrPhotoIonRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundCoolingRate"><code class="docutils literal notranslate"><span class="pre">FreeBoundCoolingRate</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeBoundEmissionCDF"><code class="docutils literal notranslate"><span class="pre">FreeBoundEmissionCDF</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.FreeFreeCoolingRate"><code class="docutils literal notranslate"><span class="pre">FreeFreeCoolingRate</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.LevelNumberDensityLTE"><code class="docutils literal notranslate"><span class="pre">LevelNumberDensityLTE</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonBoltzmannFactor"><code class="docutils literal notranslate"><span class="pre">PhotoIonBoltzmannFactor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonEstimatorsNormFactor"><code class="docutils literal notranslate"><span class="pre">PhotoIonEstimatorsNormFactor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeff"><code class="docutils literal notranslate"><span class="pre">PhotoIonRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.PhotoIonRateCoeffEstimator"><code class="docutils literal notranslate"><span class="pre">PhotoIonRateCoeffEstimator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollIonTransProbs"><code class="docutils literal notranslate"><span class="pre">RawCollIonTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawCollisionTransProbs"><code class="docutils literal notranslate"><span class="pre">RawCollisionTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawPhotoIonTransProbs"><code class="docutils literal notranslate"><span class="pre">RawPhotoIonTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawRecombTransProbs"><code class="docutils literal notranslate"><span class="pre">RawRecombTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.RawTwoPhotonTransProbs"><code class="docutils literal notranslate"><span class="pre">RawTwoPhotonTransProbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombCoolingRateCoeff"><code class="docutils literal notranslate"><span class="pre">SpontRecombCoolingRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.SpontRecombRateCoeff"><code class="docutils literal notranslate"><span class="pre">SpontRecombRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombCoolingRateCoeffEstimator"><code class="docutils literal notranslate"><span class="pre">StimRecombCoolingRateCoeffEstimator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeff"><code class="docutils literal notranslate"><span class="pre">StimRecombRateCoeff</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.StimRecombRateCoeffEstimator"><code class="docutils literal notranslate"><span class="pre">StimRecombRateCoeffEstimator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonEmissionCDF"><code class="docutils literal notranslate"><span class="pre">TwoPhotonEmissionCDF</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.continuum_processes.html#tardis.plasma.properties.continuum_processes.TwoPhotonFrequencySampler"><code class="docutils literal notranslate"><span class="pre">TwoPhotonFrequencySampler</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.general.html">tardis.plasma.properties.general module</a><ul>
@@ -298,7 +277,6 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.NumberDensity"><code class="docutils literal notranslate"><span class="pre">NumberDensity</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TRadiative"><code class="docutils literal notranslate"><span class="pre">TRadiative</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TimeExplosion"><code class="docutils literal notranslate"><span class="pre">TimeExplosion</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.Volume"><code class="docutils literal notranslate"><span class="pre">Volume</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.plasma.properties.property_collections.html">tardis.plasma.properties.property_collections module</a><ul>
@@ -395,7 +373,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jun 2024.
+      <span class="lastupdated">Last updated on 26 Jul 2024.
       </span></p>
   </div>
 

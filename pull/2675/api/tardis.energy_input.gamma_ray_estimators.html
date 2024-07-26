@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.energy_input.gamma_ray_estimators module &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d9b54422"></script>
+        <script src="../_static/documentation_options.js?v=290506f6"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -70,6 +79,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -143,65 +153,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-tardis.energy_input.gamma_ray_estimators">
-<span id="tardis-energy-input-gamma-ray-estimators-module"></span><h1>tardis.energy_input.gamma_ray_estimators module<a class="headerlink" href="#module-tardis.energy_input.gamma_ray_estimators" title="Link to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_estimators.compton_emissivity_estimator">
-<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_estimators.</span></span><span class="sig-name descname"><span class="pre">compton_emissivity_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_estimators.html#compton_emissivity_estimator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_estimators.compton_emissivity_estimator" title="Link to this definition">¶</a></dt>
-<dd><p>Compton scattering emissivity estimator for integral
-calculations</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>packet</strong><span class="classifier">GXPacket</span></dt><dd><p>Packet that needs its emissivity calculated</p>
-</dd>
-<dt><strong>distance</strong><span class="classifier">float64</span></dt><dd><p>Distance packet has travelled</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>float64, int</dt><dd><p>Unnormalized emissivity estimator, line index</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_estimators.deposition_estimator_kasen">
-<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_estimators.</span></span><span class="sig-name descname"><span class="pre">deposition_estimator_kasen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejecta_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iron_group_fraction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_estimators.html#deposition_estimator_kasen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_estimators.deposition_estimator_kasen" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_estimators.get_average_compton_fraction">
-<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_estimators.</span></span><span class="sig-name descname"><span class="pre">get_average_compton_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_estimators.html#get_average_compton_fraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_estimators.get_average_compton_fraction" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tardis.energy_input.gamma_ray_estimators.pair_creation_estimator">
-<span class="sig-prename descclassname"><span class="pre">tardis.energy_input.gamma_ray_estimators.</span></span><span class="sig-name descname"><span class="pre">pair_creation_estimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pair_creation_opacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/energy_input/gamma_ray_estimators.html#pair_creation_estimator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.energy_input.gamma_ray_estimators.pair_creation_estimator" title="Link to this definition">¶</a></dt>
-<dd><p>Calculates the emissivity for pair creation gamma-rays</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>packet</strong><span class="classifier">GXPacket</span></dt><dd><p>Packet that needs its emissivity calculated</p>
-</dd>
-<dt><strong>pair_creation_opacity</strong><span class="classifier">float64</span></dt><dd><p>Opacity of the pair creation process</p>
-</dd>
-<dt><strong>distance</strong><span class="classifier">float64</span></dt><dd><p>Distance packet has travelled</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>float64</dt><dd><p>Emissivity estimator</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
+  <section id="tardis-energy-input-gamma-ray-estimators-module">
+<h1>tardis.energy_input.gamma_ray_estimators module<a class="headerlink" href="#tardis-energy-input-gamma-ray-estimators-module" title="Link to this heading">¶</a></h1>
 </section>
 
 
@@ -216,7 +169,7 @@ calculations</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jun 2024.
+      <span class="lastupdated">Last updated on 26 Jul 2024.
       </span></p>
   </div>
 

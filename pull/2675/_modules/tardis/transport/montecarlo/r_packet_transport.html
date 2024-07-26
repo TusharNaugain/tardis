@@ -2,6 +2,15 @@
 <html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.r_packet_transport &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
@@ -15,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=d9b54422"></script>
+        <script src="../../../../_static/documentation_options.js?v=290506f6"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -118,6 +127,7 @@
 <span></span>import numpy as np
 from numba import njit
 
+import tardis.transport.montecarlo.configuration.montecarlo_globals as montecarlo_globals
 from tardis.transport.frame_transformations import (
     get_doppler_factor,
 )
@@ -147,7 +157,6 @@ def trace_packet(
     estimators,
     chi_continuum,
     escat_prob,
-    continuum_processes_enabled,
     enable_full_relativity,
     disable_line_scattering,
 ):
@@ -232,7 +241,7 @@ def trace_packet(
                 r_packet.next_line_id = cur_line_id
                 break
             elif distance == distance_continuum:
-                if not continuum_processes_enabled:
+                if not montecarlo_globals.CONTINUUM_PROCESSES_ENABLED:
                     interaction_type = InteractionType.ESCATTERING
                 else:
                     zrand = np.random.random()
@@ -259,6 +268,7 @@ def trace_packet(
         if tau_trace_combined &gt; tau_event and not disable_line_scattering:
             interaction_type = InteractionType.LINE  # Line
             r_packet.last_interaction_in_nu = r_packet.nu
+            r_packet.last_interaction_in_r = r_packet.r
             r_packet.last_line_interaction_in_id = cur_line_id
             r_packet.last_line_interaction_shell_id = r_packet.current_shell_id
             r_packet.next_line_id = cur_line_id
@@ -282,7 +292,7 @@ def trace_packet(
             cur_line_id += 1
         if distance_continuum &lt; distance_boundary:
             distance = distance_continuum
-            if not continuum_processes_enabled:
+            if not montecarlo_globals.CONTINUUM_PROCESSES_ENABLED:
                 interaction_type = InteractionType.ESCATTERING
             else:
                 zrand = np.random.random()
@@ -382,7 +392,7 @@ def move_packet_across_shell_boundary(packet, delta_shell, no_of_shells):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jun 2024.
+      <span class="lastupdated">Last updated on 26 Jul 2024.
       </span></p>
   </div>
 

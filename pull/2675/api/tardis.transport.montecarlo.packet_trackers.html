@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.transport.montecarlo.packet_trackers module &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
@@ -16,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d9b54422"></script>
+        <script src="../_static/documentation_options.js?v=290506f6"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -70,6 +79,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.plasma.html">tardis.plasma package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.scripts.html">tardis.scripts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.simulation.html">tardis.simulation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.html">tardis.spectrum package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.stats.html">tardis.stats package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="tardis.transport.html">tardis.transport package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.util.html">tardis.util package</a></li>
@@ -105,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -147,6 +157,36 @@
   <section id="module-tardis.transport.montecarlo.packet_trackers">
 <span id="tardis-transport-montecarlo-packet-trackers-module"></span><h1>tardis.transport.montecarlo.packet_trackers module<a class="headerlink" href="#module-tardis.transport.montecarlo.packet_trackers" title="Link to this heading">¶</a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">RPacketLastInteractionTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#RPacketLastInteractionTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker" title="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPacketLastInteractionTracker</span></code></a></p>
+<p>Numba JITCLASS for storing the last interaction the RPacket undergoes.
+Parameters
+———-</p>
+<blockquote>
+<div><dl class="simple">
+<dt>index<span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
+</dd>
+<dt>r<span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
+</dd>
+<dt>nu<span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
+</dd>
+<dt>energy<span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket</p>
+</dd>
+<dt>shell_id<span class="classifier">int</span></dt><dd><p>Current Shell No in which the last interaction happened</p>
+</dd>
+<dt>interaction_type: int</dt><dd><p>Type of interaction the rpacket undergoes</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type">
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketLastInteractionTracker#7f758d2177a0&lt;index:int64,r:float64,nu:float64,energy:float64,shell_id:int64,interaction_type:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketTracker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">RPacketTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#RPacketTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker" title="tardis.transport.montecarlo.packet_trackers.RPacketTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPacketTracker</span></code></a></p>
@@ -165,7 +205,7 @@ Parameters
 </dd>
 <dt>r<span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
 </dd>
-<dt>nu<span class="classifier">float</span></dt><dd><p>Luminosity of the RPacket</p>
+<dt>nu<span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
 </dd>
 <dt>mu<span class="classifier">float</span></dt><dd><p>Cosine of the angle made by the direction of movement of the RPacket from its original direction</p>
 </dd>
@@ -181,7 +221,7 @@ Parameters
 </div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f542a3322a0&lt;length:int64,seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f758d216c00&lt;length:int64,seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -220,7 +260,7 @@ Parameters
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jun 2024.
+      <span class="lastupdated">Last updated on 26 Jul 2024.
       </span></p>
   </div>
 

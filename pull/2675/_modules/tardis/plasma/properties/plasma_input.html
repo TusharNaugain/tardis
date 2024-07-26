@@ -2,6 +2,15 @@
 <html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tardis.plasma.properties.plasma_input &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
@@ -15,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=d9b54422"></script>
+        <script src="../../../../_static/documentation_options.js?v=290506f6"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -79,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/development/index.html">Developer Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/tools/index.html">Developer Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/in_progress/index.html">Features In-Progress</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
@@ -132,7 +141,6 @@ __all__ = [
     &quot;JBlues&quot;,
     &quot;LinkTRadTElectron&quot;,
     &quot;HeliumTreatment&quot;,
-    &quot;Volume&quot;,
     &quot;ContinuumInteractionSpecies&quot;,
     &quot;NLTEIonizationSpecies&quot;,
     &quot;NLTEExcitationSpecies&quot;,
@@ -144,6 +152,8 @@ __all__ = [
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.TRadiative">[docs]</a>
 class TRadiative(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
+    Radiative temperature property.
+
     Attributes
     ----------
     t_rad : Numpy Array, dtype float
@@ -164,6 +174,8 @@ class TRadiative(ProcessingPlasmaProperty):
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.DilutionFactor">[docs]</a>
 class DilutionFactor(ProcessingPlasmaProperty):
     &quot;&quot;&quot;
+    Dilution factor of the radiation field.
+
     Attributes
     ----------
     w : Numpy Array, dtype float between 0 and 1
@@ -173,6 +185,7 @@ class DilutionFactor(ProcessingPlasmaProperty):
 
     outputs = (&quot;w&quot;,)
     latex_name = (&quot;W&quot;,)
+
 <div class="viewcode-block" id="DilutionFactor.calculate">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.DilutionFactor.calculate">[docs]</a>
     def calculate(self, dilute_planckian_radiation_field):
@@ -273,13 +286,6 @@ class HeliumTreatment(Input):
     outputs = (&quot;helium_treatment&quot;,)</div>
 
 
-<div class="viewcode-block" id="Volume">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.Volume">[docs]</a>
-class Volume(Input):
-    outputs = (&quot;volume&quot;,)</div>
-
-
-
 <div class="viewcode-block" id="ContinuumInteractionSpecies">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.plasma_input.html#tardis.plasma.properties.plasma_input.ContinuumInteractionSpecies">[docs]</a>
 class ContinuumInteractionSpecies(Input):
@@ -341,7 +347,7 @@ class DilutePlanckianRadField(Input):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Jun 2024.
+      <span class="lastupdated">Last updated on 26 Jul 2024.
       </span></p>
   </div>
 
