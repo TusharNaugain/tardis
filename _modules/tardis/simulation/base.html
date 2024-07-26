@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=b14df4ad"></script>
+        <script src="../../../_static/documentation_options.js?v=10f9ef1b"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -275,7 +275,6 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
         convergence_plots_kwargs,
         show_progress_bars,
         spectrum_solver,
-        integrator_settings,
     ):
         super(Simulation, self).__init__(
             iterations, simulation_state.no_of_shells
@@ -294,7 +293,6 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
         self.luminosity_nu_end = luminosity_nu_end
         self.luminosity_requested = luminosity_requested
         self.spectrum_solver = spectrum_solver
-        self.integrator_settings = integrator_settings
         self.show_progress_bars = show_progress_bars
         self.version = tardis.__version__
 
@@ -627,7 +625,6 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
         self.iterate(self.last_no_of_packets, self.no_of_virtual_packets)
 
         # Set up spectrum solver integrator
-        self.spectrum_solver.integrator_settings = self.integrator_settings
         self.spectrum_solver._integrator = FormalIntegrator(
             self.simulation_state, self.plasma, self.transport
         )
@@ -908,7 +905,6 @@ class Simulation(PlasmaStateStorerMixin, HDFWriterMixin):
             convergence_strategy=config.montecarlo.convergence_strategy,
             convergence_plots_kwargs=convergence_plots_kwargs,
             show_progress_bars=show_progress_bars,
-            integrator_settings=config.spectrum.integrated,
             spectrum_solver=spectrum_solver,
         )</div>
 </div>
