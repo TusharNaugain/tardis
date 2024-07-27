@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=290506f6"></script>
+        <script src="../../../_static/documentation_options.js?v=3240acb1"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -150,14 +150,16 @@ class SpectrumSolver(HDFWriterMixin):
 
     hdf_name = &quot;spectrum&quot;
 
-    def __init__(self, transport_state, spectrum_frequency_grid):
+    def __init__(
+        self, transport_state, spectrum_frequency_grid, integrator_settings=None
+    ):
         self.transport_state = transport_state
         self.spectrum_frequency_grid = spectrum_frequency_grid
         self._montecarlo_virtual_luminosity = u.Quantity(
             np.zeros_like(self.spectrum_frequency_grid.value), &quot;erg / s&quot;
         )  # should be init with v_packets_energy_hist
         self._integrator = None
-        self.integrator_settings = None
+        self.integrator_settings = integrator_settings
         self._spectrum_integrated = None
 
     @property
@@ -188,7 +190,7 @@ class SpectrumSolver(HDFWriterMixin):
 
     @property
     def spectrum_integrated(self):
-        if self._spectrum_integrated is None:
+        if self._spectrum_integrated is None and self.integrator is not None:
             # This was changed from unpacking to specific attributes as compute
             # is not used in calculate_spectrum
             try:
@@ -211,13 +213,15 @@ class SpectrumSolver(HDFWriterMixin):
                     np.array([np.nan, np.nan]) * u.Hz,
                     np.array([np.nan]) * u.erg / u.s,
                 )
+        else:
+            self._spectrum_integrated = None
         return self._spectrum_integrated
 
     @property
     def integrator(self):
         if self._integrator is None:
             warnings.warn(
-                &quot;MontecarloTransport.integrator: &quot;
+                &quot;SpectrumSolver.integrator: &quot;
                 &quot;The FormalIntegrator is not yet available.&quot;
                 &quot;Please run the montecarlo simulation at least once.&quot;,
                 UserWarning,
@@ -312,6 +316,30 @@ class SpectrumSolver(HDFWriterMixin):
         ].sum()</div>
 
 
+<div class="viewcode-block" id="SpectrumSolver.solve">
+<a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.solve">[docs]</a>
+    def solve(self, transport_state):
+        &quot;&quot;&quot;Solve the spectra
+
+        Parameters
+        ----------
+        transport_state: MonteCarloTransportState
+            The transport state to be used to compute the spectra
+
+        Returns
+        -------
+        tuple(TARDISSpectrum)
+            Real, virtual and integrated spectra, if available
+        &quot;&quot;&quot;
+        self.transport_state = transport_state
+
+        return (
+            self.spectrum_real_packets,
+            self.spectrum_virtual_packets,
+            self.spectrum_integrated,
+        )</div>
+
+
 <div class="viewcode-block" id="SpectrumSolver.from_config">
 <a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.from_config">[docs]</a>
     @classmethod
@@ -325,6 +353,7 @@ class SpectrumSolver(HDFWriterMixin):
         return cls(
             transport_state=None,
             spectrum_frequency_grid=spectrum_frequency_grid,
+            integrator_settings=config.spectrum.integrated,
         )</div>
 </div>
 
@@ -338,7 +367,7 @@ class SpectrumSolver(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 26 Jul 2024.
+      <span class="lastupdated">Last updated on 27 Jul 2024.
       </span></p>
   </div>
 
