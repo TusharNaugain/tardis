@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=7eb4a255"></script>
+        <script src="../../../../_static/documentation_options.js?v=bd0735d5"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -234,30 +234,23 @@ class PlasmaSolverFactory:
             continuum_interaction_species=self.continuum_interaction_species,
             nlte_species=self.legacy_nlte_species,
         )
-        self.check_continuum_interaction_species()
-
-        self.plasma_modules = basic_inputs + basic_properties
-
-        self.setup_analytical_approximations()
-        self.property_kwargs[RadiationFieldCorrection] = dict(
-            delta_treatment=self.delta_treatment
-        )
-        if config is not None:
-            self.setup_legacy_nlte(config.plasma.nlte)
-
-        if self.line_interaction_type in (&quot;downbranch&quot;, &quot;macroatom&quot;) and (
-            len(self.continuum_interaction_species) == 0
-        ):
-            self.plasma_modules += macro_atom_properties
-
-        self.setup_helium_treatment()
-
-        if len(self.continuum_interaction_species) &gt; 0:
-            self.setup_continuum_interactions()
 
 <div class="viewcode-block" id="PlasmaSolverFactory.parse_plasma_config">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.parse_plasma_config">[docs]</a>
     def parse_plasma_config(self, plasma_config):
+        &quot;&quot;&quot;
+        Parse the plasma configuration.
+
+        Parameters
+        ----------
+        plasma_config : PlasmaConfig
+            The plasma configuration object containing the plasma parameters.
+
+        Returns
+        -------
+        None
+
+        &quot;&quot;&quot;
         self.set_continuum_interaction_species_from_string(
             plasma_config.continuum_interaction.species
         )
@@ -285,6 +278,33 @@ class PlasmaSolverFactory:
         self.enable_two_photon_decay = (
             plasma_config.continuum_interaction.enable_two_photon_decay
         )</div>
+
+
+<div class="viewcode-block" id="PlasmaSolverFactory.setup_factory">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_factory">[docs]</a>
+    def setup_factory(self, config=None):
+        self.check_continuum_interaction_species()
+
+        self.plasma_modules = basic_inputs + basic_properties
+
+        self.setup_analytical_approximations()
+        self.property_kwargs[RadiationFieldCorrection] = dict(
+            delta_treatment=self.delta_treatment
+        )
+        if (config is not None) and len(self.legacy_nlte_species) &gt; 0:
+            self.setup_legacy_nlte(config.plasma.nlte)
+        else:
+            self.plasma_modules += non_nlte_properties
+
+        if self.line_interaction_type in (&quot;downbranch&quot;, &quot;macroatom&quot;) and (
+            len(self.continuum_interaction_species) == 0
+        ):
+            self.plasma_modules += macro_atom_properties
+
+        self.setup_helium_treatment()
+
+        if len(self.continuum_interaction_species) &gt; 0:
+            self.setup_continuum_interactions()</div>
 
 
 <div class="viewcode-block" id="PlasmaSolverFactory.setup_helium_treatment">
@@ -370,16 +390,13 @@ class PlasmaSolverFactory:
         This method adds the NLTE properties for the legacy species to the plasma modules.
         If there are no legacy NLTE species, it adds the non-NLTE properties instead.
         &quot;&quot;&quot;
-        if len(self.legacy_nlte_species) &gt; 0:
-            self.plasma_modules += nlte_properties
-            self.plasma_modules.append(
-                LevelBoltzmannFactorNLTE.from_config(nlte_config)
-            )
-            self.property_kwargs[StimulatedEmissionFactor] = dict(
-                nlte_species=self.legacy_nlte_species
-            )
-        else:
-            self.plasma_modules += non_nlte_properties</div>
+        self.plasma_modules += nlte_properties
+        self.plasma_modules.append(
+            LevelBoltzmannFactorNLTE.from_config(nlte_config)
+        )
+        self.property_kwargs[StimulatedEmissionFactor] = dict(
+            nlte_species=self.legacy_nlte_species
+        )</div>
 
 
 <div class="viewcode-block" id="PlasmaSolverFactory.setup_analytical_approximations">
@@ -687,7 +704,7 @@ class PlasmaSolverFactory:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 27 Jul 2024.
+      <span class="lastupdated">Last updated on 28 Jul 2024.
       </span></p>
   </div>
 
