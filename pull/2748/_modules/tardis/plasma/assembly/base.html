@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=bd0735d5"></script>
+        <script src="../../../../_static/documentation_options.js?v=352f30a9"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -210,9 +210,7 @@ class PlasmaSolverFactory:
     heating_rate_data_file: str = &quot;none&quot;
 
     ## Continuum Interaction
-    continuum_interaction_species: pd.MultiIndex = pd.MultiIndex.from_tuples(
-        [], names=[&quot;atomic_number&quot;, &quot;ion_number&quot;]
-    )
+    continuum_interaction_species: list = []
     enable_adiabatic_cooling: bool = False
     enable_two_photon_decay: bool = False
 
@@ -231,8 +229,15 @@ class PlasmaSolverFactory:
         self.atom_data.prepare_atom_data(
             selected_atomic_numbers,
             line_interaction_type=self.line_interaction_type,
-            continuum_interaction_species=self.continuum_interaction_species,
+            continuum_interaction_species=self.continuum_interaction_species_multi_index,
             nlte_species=self.legacy_nlte_species,
+        )
+
+    @property
+    def continuum_interaction_species_multi_index(self):
+        return pd.MultiIndex.from_tuples(
+            map_species_from_string(self.continuum_interaction_species),
+            names=[&quot;atomic_number&quot;, &quot;ion_number&quot;],
         )
 
 <div class="viewcode-block" id="PlasmaSolverFactory.parse_plasma_config">
@@ -251,7 +256,7 @@ class PlasmaSolverFactory:
         None
 
         &quot;&quot;&quot;
-        self.set_continuum_interaction_species_from_string(
+        self.continuum_interaction_species = (
             plasma_config.continuum_interaction.species
         )
         self.set_nlte_species_from_string(plasma_config.nlte.species)
@@ -477,22 +482,20 @@ class PlasmaSolverFactory:
         -------
         None
         &quot;&quot;&quot;
-        continuum_interaction_species = [
+        self.continuum_interaction_species = [
             species_string_to_tuple(species)
             for species in continuum_interaction_species
-        ]
-
-        self.continuum_interaction_species = pd.MultiIndex.from_tuples(
-            continuum_interaction_species, names=[&quot;atomic_number&quot;, &quot;ion_number&quot;]
-        )</div>
+        ]</div>
 
 
 <div class="viewcode-block" id="PlasmaSolverFactory.check_continuum_interaction_species">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.check_continuum_interaction_species">[docs]</a>
     def check_continuum_interaction_species(self):
 
-        continuum_atoms = self.continuum_interaction_species.get_level_values(
-            &quot;atomic_number&quot;
+        continuum_atoms = (
+            self.continuum_interaction_species_multi_index.get_level_values(
+                &quot;atomic_number&quot;
+            )
         )
 
         continuum_atoms_in_selected_atoms = np.all(
@@ -666,7 +669,7 @@ class PlasmaSolverFactory:
             link_t_rad_t_electron=self.link_t_rad_t_electron,
             atomic_data=self.atom_data,
             j_blues=j_blues,
-            continuum_interaction_species=self.continuum_interaction_species,
+            continuum_interaction_species=self.continuum_interaction_species_multi_index,
             nlte_ionization_species=self.nlte_ionization_species,
             nlte_excitation_species=self.nlte_excitation_species,
         )
