@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=352f30a9"></script>
+        <script src="../_static/documentation_options.js?v=93ba4782"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -168,7 +168,15 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.check_continuum_interaction_species">
 <span class="sig-name descname"><span class="pre">check_continuum_interaction_species</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.check_continuum_interaction_species"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.check_continuum_interaction_species" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Check if all continuum interaction species belong to atoms that have been specified in the configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>PlasmaConfigError: If not all continuum interaction species belong to specified atoms.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.continuum_interaction_species">
@@ -369,7 +377,18 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.setup_continuum_interactions">
 <span class="sig-name descname"><span class="pre">setup_continuum_interactions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.setup_continuum_interactions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_continuum_interactions" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Set up continuum interactions for the plasma assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>PlasmaConfigError: If the line_interaction_type is not “macroatom”.</dt><dd></dd>
+<dt>PlasmaConfigError: If an NLTE ionization species is not in the continuum species.</dt><dd></dd>
+<dt>PlasmaConfigError: If an NLTE excitation species is not in the continuum species.</dt><dd></dd>
+<dt>PlasmaConfigError: If the NLTE solver type is unknown.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.setup_electron_densities">
@@ -379,7 +398,24 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.setup_factory">
 <span class="sig-name descname"><span class="pre">setup_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.setup_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_factory" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Set up the plasma factory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config</strong><span class="classifier">object, optional</span></dt><dd><p>Configuration object containing plasma settings (default: None).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method performs the necessary setup steps for the plasma factory.
+It checks the continuum interaction species, sets up the plasma modules,
+sets up analytical approximations, sets up radiation field correction,
+sets up legacy NLTE species if present, sets up macro atom properties if
+line interaction type is ‘downbranch’ or ‘macroatom’ and there are no
+continuum interaction species, and sets up helium treatment. Finally,
+it sets up continuum interactions if there are any.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.setup_helium_treatment">
@@ -421,9 +457,6 @@ and excitation treatment.</p>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>This method adds the NLTE properties for the legacy species to the plasma modules.
-If there are no legacy NLTE species, it adds the non-NLTE properties instead.</p>
 </dd></dl>
 
 </dd></dl>

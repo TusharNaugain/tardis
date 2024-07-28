@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=352f30a9"></script>
+        <script src="../../../../_static/documentation_options.js?v=93ba4782"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -288,6 +288,25 @@ class PlasmaSolverFactory:
 <div class="viewcode-block" id="PlasmaSolverFactory.setup_factory">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_factory">[docs]</a>
     def setup_factory(self, config=None):
+        &quot;&quot;&quot;
+        Set up the plasma factory.
+
+        Parameters
+        ----------
+        config : object, optional
+            Configuration object containing plasma settings (default: None).
+
+        Notes
+        -----
+        This method performs the necessary setup steps for the plasma factory.
+        It checks the continuum interaction species, sets up the plasma modules,
+        sets up analytical approximations, sets up radiation field correction,
+        sets up legacy NLTE species if present, sets up macro atom properties if
+        line interaction type is &#39;downbranch&#39; or &#39;macroatom&#39; and there are no
+        continuum interaction species, and sets up helium treatment. Finally,
+        it sets up continuum interactions if there are any.
+
+        &quot;&quot;&quot;
         self.check_continuum_interaction_species()
 
         self.plasma_modules = basic_inputs + basic_properties
@@ -389,11 +408,6 @@ class PlasmaSolverFactory:
         ----------
         nlte_config : dict
             A dictionary containing the NLTE configuration.
-
-        Notes
-        -----
-        This method adds the NLTE properties for the legacy species to the plasma modules.
-        If there are no legacy NLTE species, it adds the non-NLTE properties instead.
         &quot;&quot;&quot;
         self.plasma_modules += nlte_properties
         self.plasma_modules.append(
@@ -491,7 +505,13 @@ class PlasmaSolverFactory:
 <div class="viewcode-block" id="PlasmaSolverFactory.check_continuum_interaction_species">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.check_continuum_interaction_species">[docs]</a>
     def check_continuum_interaction_species(self):
+        &quot;&quot;&quot;
+        Check if all continuum interaction species belong to atoms that have been specified in the configuration.
 
+        Raises
+        ------
+            PlasmaConfigError: If not all continuum interaction species belong to specified atoms.
+        &quot;&quot;&quot;
         continuum_atoms = (
             self.continuum_interaction_species_multi_index.get_level_values(
                 &quot;atomic_number&quot;
@@ -532,7 +552,16 @@ class PlasmaSolverFactory:
 <div class="viewcode-block" id="PlasmaSolverFactory.setup_continuum_interactions">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_continuum_interactions">[docs]</a>
     def setup_continuum_interactions(self):
+        &quot;&quot;&quot;
+        Set up continuum interactions for the plasma assembly.
 
+        Raises
+        ------
+            PlasmaConfigError: If the line_interaction_type is not &quot;macroatom&quot;.
+            PlasmaConfigError: If an NLTE ionization species is not in the continuum species.
+            PlasmaConfigError: If an NLTE excitation species is not in the continuum species.
+            PlasmaConfigError: If the NLTE solver type is unknown.
+        &quot;&quot;&quot;
         if self.line_interaction_type != &quot;macroatom&quot;:
             raise PlasmaConfigError(
                 &quot;Continuum interactions require line_interaction_type &quot;
