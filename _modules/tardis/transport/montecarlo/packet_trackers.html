@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=187c66d0"></script>
+        <script src="../../../../_static/documentation_options.js?v=04a74c01"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,8 +124,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.transport.montecarlo.packet_trackers</h1><div class="highlight"><pre>
-<span></span>from numba import float64, int64
+<span></span>from numba import float64, int64, njit
 from numba.experimental import jitclass
+from numba.typed import List
 import numpy as np
 import pandas as pd
 
@@ -336,7 +337,52 @@ class RPacketLastInteractionTracker(object):
         self.nu = r_packet.nu
         self.energy = r_packet.energy
         self.shell_id = r_packet.current_shell_id
-        self.interaction_type = r_packet.last_interaction_type</div>
+        self.interaction_type = r_packet.last_interaction_type
+
+    # To make it compatible with RPacketTracker
+    def finalize_array(self):
+        pass</div>
+
+
+
+<div class="viewcode-block" id="generate_rpacket_tracker_list">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.generate_rpacket_tracker_list">[docs]</a>
+@njit
+def generate_rpacket_tracker_list(no_of_packets, length):
+    &quot;&quot;&quot;
+    Parameters
+    ----------
+    no_of_packets : The count of RPackets that are sent in the ejecta
+    length : initial length of the tracking array
+
+    Returns
+    -------
+    A list containing RPacketTracker for each RPacket
+    &quot;&quot;&quot;
+    rpacket_trackers = List()
+    for i in range(no_of_packets):
+        rpacket_trackers.append(RPacketTracker(length))
+    return rpacket_trackers</div>
+
+
+
+<div class="viewcode-block" id="generate_rpacket_last_interaction_tracker_list">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.generate_rpacket_last_interaction_tracker_list">[docs]</a>
+@njit
+def generate_rpacket_last_interaction_tracker_list(no_of_packets):
+    &quot;&quot;&quot;
+    Parameters
+    ----------
+    no_of_packets : The count of RPackets that are sent in the ejecta
+
+    Returns
+    -------
+    A list containing RPacketLastInteractionTracker for each RPacket
+    &quot;&quot;&quot;
+    rpacket_trackers = List()
+    for i in range(no_of_packets):
+        rpacket_trackers.append(RPacketLastInteractionTracker())
+    return rpacket_trackers</div>
 
 </pre></div>
 
