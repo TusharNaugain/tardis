@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=3240acb1"></script>
+        <script src="../../../../_static/documentation_options.js?v=67c392c3"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -126,15 +126,9 @@
   <h1>Source code for tardis.transport.montecarlo.montecarlo_transport_state</h1><div class="highlight"><pre>
 <span></span>import warnings
 
-import numpy as np
 from astropy import units as u
 
 from tardis.io.util import HDFWriterMixin
-from tardis.transport.montecarlo.estimators.dilute_blackbody_properties import (
-    MCRadiationFieldPropertiesSolver,
-)
-from tardis.spectrum.formal_integral import IntegrationError
-from tardis.spectrum.spectrum import TARDISSpectrum
 
 
 <div class="viewcode-block" id="MonteCarloTransportState">
@@ -191,7 +185,6 @@ class MonteCarloTransportState(HDFWriterMixin):
         rpacket_tracker=None,
         vpacket_tracker=None,
     ):
-        self.time_explosion = time_explosion
         self.packet_collection = packet_collection
         self.radfield_mc_estimators = radfield_mc_estimators
         self.enable_full_relativity = False
@@ -425,7 +418,7 @@ class MonteCarloTransportState(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 27 Jul 2024.
+      <span class="lastupdated">Last updated on 29 Jul 2024.
       </span></p>
   </div>
 
