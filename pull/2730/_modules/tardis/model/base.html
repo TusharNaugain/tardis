@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=5420a579"></script>
+        <script src="../../../_static/documentation_options.js?v=d8af9c2a"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -274,14 +274,14 @@ class SimulationState(HDFWriterMixin):
 
     @property
     def t_radiative(self):
-        return self.radiation_field_state.t_radiative[
+        return self.radiation_field_state.temperature[
             self.geometry.v_inner_boundary_index : self.geometry.v_outer_boundary_index
         ]
 
     @t_radiative.setter
     def t_radiative(self, new_t_radiative):
         if len(new_t_radiative) == self.no_of_shells:
-            self.radiation_field_state.t_radiative[
+            self.radiation_field_state.temperature[
                 self.geometry.v_inner_boundary_index : self.geometry.v_outer_boundary_index
             ] = new_t_radiative
         else:
@@ -555,7 +555,7 @@ class SimulationState(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Jul 2024.
+      <span class="lastupdated">Last updated on 29 Jul 2024.
       </span></p>
   </div>
 

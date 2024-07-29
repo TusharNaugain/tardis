@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=5420a579"></script>
+        <script src="../../../../_static/documentation_options.js?v=d8af9c2a"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -125,11 +125,10 @@
              
   <h1>Source code for tardis.plasma.properties.base</h1><div class="highlight"><pre>
 <span></span>import logging
+from abc import ABCMeta, abstractmethod
 
-from abc import ABCMeta, abstractmethod, abstractproperty
 import numpy as np
 import pandas as pd
-
 
 __all__ = [
     &quot;BasePlasmaProperty&quot;,
@@ -147,7 +146,7 @@ logger = logging.getLogger(__name__)
 
 <div class="viewcode-block" id="BasePlasmaProperty">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.base.html#tardis.plasma.properties.base.BasePlasmaProperty">[docs]</a>
-class BasePlasmaProperty(object, metaclass=ABCMeta):
+class BasePlasmaProperty(metaclass=ABCMeta):
     &quot;&quot;&quot;
     Attributes
     ----------
@@ -159,7 +158,8 @@ class BasePlasmaProperty(object, metaclass=ABCMeta):
                  Used to label nodes when plotting graphs
     &quot;&quot;&quot;
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def outputs(self):
         pass
 
@@ -250,7 +250,7 @@ class ProcessingPlasmaProperty(BasePlasmaProperty, metaclass=ABCMeta):
                 for i, output in enumerate(self.outputs):
                     setattr(self, output, new_values[i])
         else:
-            logger.info(&quot;{} has been frozen!&quot;.format(self.name))</div>
+            logger.info(f&quot;{self.name} has been frozen!&quot;)</div>
 
 
 <div class="viewcode-block" id="ProcessingPlasmaProperty.calculate">
@@ -288,7 +288,8 @@ class TransitionProbabilitiesProperty(
     track all transition probabilities and to later combine them.
     &quot;&quot;&quot;
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def transition_probabilities_outputs(self):
         pass
 
@@ -402,7 +403,7 @@ class PreviousIterationProperty(BasePlasmaProperty):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Jul 2024.
+      <span class="lastupdated">Last updated on 29 Jul 2024.
       </span></p>
   </div>
 
