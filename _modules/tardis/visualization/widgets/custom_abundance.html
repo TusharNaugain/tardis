@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=56919ed1"></script>
+        <script src="../../../../_static/documentation_options.js?v=187c66d0"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -968,7 +968,9 @@ class CustomAbundanceWidget:
         if end_index &lt; len(v_vals) and np.isclose(v_vals[end_index], v_end):
             # New shell will overwrite the original shell that ends at v_end.
             v_vals = np.delete(v_vals, end_index)
-            self.data.abundance = self.data.abundance.drop(max(0, end_index - 1), 1)
+            self.data.abundance = self.data.abundance.drop(
+                max(0, end_index - 1), 1
+            )
 
         # Insert new velocities calculate new densities according
         # to new velocities through interpolation.
