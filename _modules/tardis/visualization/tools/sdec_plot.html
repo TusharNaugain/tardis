@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=9d6c989d"></script>
+        <script src="../../../../_static/documentation_options.js?v=56919ed1"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -889,8 +889,8 @@ class SDECPlotter:
                 ),
             )
             # Then drop all of the individual columns for species included in &#39;other&#39;
-            self.total_luminosities_df.drop(
-                sorted_list.keys()[~mask], inplace=True, axis=1
+            self.total_luminosities_df = self.total_luminosities_df.drop(
+                sorted_list.keys()[~mask], axis=1
             )
             # Repeat this for the emission and absorption dfs
             # This will require creating a temporary list that includes &#39;noint&#39; and &#39;escatter&#39;
@@ -913,9 +913,8 @@ class SDECPlotter:
             # Need to add a new value to the mask array for the &#39;other&#39; column just added
             mask = np.insert(mask, 0, True)
             # Then drop all of the individual columns for species included in &#39;other&#39;
-            self.emission_luminosities_df.drop(
+            self.emission_luminosities_df = self.emission_luminosities_df.drop(
                 self.emission_luminosities_df.keys()[~mask],
-                inplace=True,
                 axis=1,
             )
 
@@ -935,9 +934,8 @@ class SDECPlotter:
             # Need to add a new value to the mask array for the &#39;other&#39; column just added
             mask = np.insert(mask, 0, True)
             # Then drop all of the individual columns for species included in &#39;other&#39;
-            self.absorption_luminosities_df.drop(
+            self.absorption_luminosities_df = self.absorption_luminosities_df.drop(
                 self.absorption_luminosities_df.keys()[~mask],
-                inplace=True,
                 axis=1,
             )
 
@@ -956,8 +954,8 @@ class SDECPlotter:
                 ].sum(axis=1),
             )
             # Then drop all of the individual columns for elements included in &#39;other&#39;
-            self.total_luminosities_df.drop(
-                sorted_list.keys()[nelements:], inplace=True, axis=1
+            self.total_luminosities_df = self.total_luminosities_df.drop(
+                sorted_list.keys()[nelements:], axis=1
             )
             # If nelements is included then create a new column which is the sum
             # of all other elements, i.e. those that aren&#39;t in the top contributing nelements
@@ -969,8 +967,8 @@ class SDECPlotter:
                 ].sum(axis=1),
             )
             # Then drop all of the individual columns for elements included in &#39;other&#39;
-            self.emission_luminosities_df.drop(
-                sorted_list.keys()[nelements:], inplace=True, axis=1
+            self.emission_luminosities_df = self.emission_luminosities_df.drop(
+                sorted_list.keys()[nelements:], axis=1
             )
             # If nelements is included then create a new column which is the sum
             # of all other elements, i.e. those that aren&#39;t in the top contributing nelements
@@ -982,8 +980,8 @@ class SDECPlotter:
                 ].sum(axis=1),
             )
             # Then drop all of the individual columns for elements included in &#39;other&#39;
-            self.absorption_luminosities_df.drop(
-                sorted_list.keys()[nelements:], inplace=True, axis=1
+            self.absorption_luminosities_df = self.absorption_luminosities_df.drop(
+                sorted_list.keys()[nelements:], axis=1
             )
             # Get the list of species in the model
             # Index from 1: to avoid the &#39;other&#39; column

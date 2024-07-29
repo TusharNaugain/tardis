@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=9d6c989d"></script>
+        <script src="../../../_static/documentation_options.js?v=56919ed1"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -156,7 +156,7 @@ def axis_label_in_latex(label_text, unit, only_text=True):
     # If present, place s^{-1} just after erg
     if &quot;erg&quot; in unit_in_latex and &quot;s^{-1}&quot; in unit_in_latex:
         constituent_units = (
-            re.compile(&quot;\\\mathrm\{(.*)\}&quot;)
+            re.compile(r&quot;\\mathrm\{(.*)\}&quot;)
             .findall(unit_in_latex)[0]
             .split(&quot;\\,&quot;)
         )
