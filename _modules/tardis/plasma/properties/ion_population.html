@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=2a32d719"></script>
+        <script src="../../../../_static/documentation_options.js?v=2e29a943"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -134,7 +134,9 @@ from scipy import interpolate
 
 from tardis.plasma.exceptions import PlasmaIonizationError
 from tardis.plasma.properties.base import ProcessingPlasmaProperty
-from tardis.plasma.properties.continuum_processes import get_ion_multi_index
+from tardis.plasma.properties.continuum_processes.rates import (
+    get_ion_multi_index,
+)
 
 logger = logging.getLogger(__name__)
 

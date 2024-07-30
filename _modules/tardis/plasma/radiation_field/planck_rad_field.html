@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=2a32d719"></script>
+        <script src="../../../../_static/documentation_options.js?v=2e29a943"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -136,7 +136,7 @@ from tardis.util.base import intensity_black_body
 <a class="viewcode-back" href="../../../../api/tardis.plasma.radiation_field.planck_rad_field.html#tardis.plasma.radiation_field.planck_rad_field.DilutePlanckianRadiationField">[docs]</a>
 class DilutePlanckianRadiationField:
     &quot;&quot;&quot;
-    Represents the state of a dilute thermal radiation field.
+    Represents the state of a dilute planckian radiation field.
 
 
     Parameters
@@ -202,6 +202,72 @@ class DilutePlanckianRadiationField:
         return self.dilution_factor * intensity_black_body(
             nu[np.newaxis].T, self.temperature
         )</div>
+
+
+<div class="viewcode-block" id="DilutePlanckianRadiationField.to_planckian_radiation_field">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.radiation_field.planck_rad_field.html#tardis.plasma.radiation_field.planck_rad_field.DilutePlanckianRadiationField.to_planckian_radiation_field">[docs]</a>
+    def to_planckian_radiation_field(self):
+        return PlanckianRadiationField(self.temperature)</div>
+</div>
+
+
+
+<div class="viewcode-block" id="PlanckianRadiationField">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.radiation_field.planck_rad_field.html#tardis.plasma.radiation_field.planck_rad_field.PlanckianRadiationField">[docs]</a>
+class PlanckianRadiationField:
+    &quot;&quot;&quot;
+    Represents the state of a planckian radiation field.
+
+
+    Parameters
+    ----------
+    temperature : u.Quantity
+        Radiative temperature in each shell
+    dilution_factor : numpy.ndarray
+        Dilution Factors in each shell
+    geometry: tardis.model.Radial1DModel
+        The geometry of the model that uses to constrains the active shells
+    &quot;&quot;&quot;
+
+    def __init__(
+        self,
+        temperature: u.Quantity,
+        geometry=None,
+    ):
+        if (
+            geometry is not None
+        ):  # check the active shells only (this is used when setting up the radiation_field_state)
+            assert np.all(
+                temperature[
+                    geometry.v_inner_boundary_index : geometry.v_outer_boundary_index
+                ]
+                &gt; 0 * u.K
+            )
+        else:
+            assert np.all(temperature &gt; 0 * u.K)
+        self.temperature = temperature
+
+    @property
+    def temperature_kelvin(self):
+        return self.temperature.to(u.K).value
+
+<div class="viewcode-block" id="PlanckianRadiationField.calculate_mean_intensity">
+<a class="viewcode-back" href="../../../../api/tardis.plasma.radiation_field.planck_rad_field.html#tardis.plasma.radiation_field.planck_rad_field.PlanckianRadiationField.calculate_mean_intensity">[docs]</a>
+    def calculate_mean_intensity(self, nu: Union[u.Quantity, np.ndarray]):
+        &quot;&quot;&quot;
+        Calculate the intensity of the radiation field at a given frequency.
+
+        Parameters
+        ----------
+        nu : u.Quantity
+            Frequency at which the intensity is to be calculated
+
+        Returns
+        -------
+        intensity : u.Quantity
+            Intensity of the radiation field at the given frequency
+        &quot;&quot;&quot;
+        return intensity_black_body(nu[np.newaxis].T, self.temperature)</div>
 </div>
 
 </pre></div>
