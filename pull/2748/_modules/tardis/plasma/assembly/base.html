@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=93ba4782"></script>
+        <script src="../../../../_static/documentation_options.js?v=075a97ae"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -254,7 +254,6 @@ class PlasmaSolverFactory:
         Returns
         -------
         None
-
         &quot;&quot;&quot;
         self.continuum_interaction_species = (
             plasma_config.continuum_interaction.species
@@ -295,17 +294,6 @@ class PlasmaSolverFactory:
         ----------
         config : object, optional
             Configuration object containing plasma settings (default: None).
-
-        Notes
-        -----
-        This method performs the necessary setup steps for the plasma factory.
-        It checks the continuum interaction species, sets up the plasma modules,
-        sets up analytical approximations, sets up radiation field correction,
-        sets up legacy NLTE species if present, sets up macro atom properties if
-        line interaction type is &#39;downbranch&#39; or &#39;macroatom&#39; and there are no
-        continuum interaction species, and sets up helium treatment. Finally,
-        it sets up continuum interactions if there are any.
-
         &quot;&quot;&quot;
         self.check_continuum_interaction_species()
 
@@ -736,7 +724,7 @@ class PlasmaSolverFactory:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Jul 2024.
+      <span class="lastupdated">Last updated on 30 Jul 2024.
       </span></p>
   </div>
 
