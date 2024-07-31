@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=075a97ae"></script>
+        <script src="../../../../_static/documentation_options.js?v=b600759c"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -226,7 +226,7 @@ class BaseShellInfo:
         &quot;&quot;&quot;
         element_count_data = self.abundance[shell_num - 1].copy()
         element_count_data.index.name = &quot;Z&quot;
-        element_count_data.fillna(0, inplace=True)
+        element_count_data = element_count_data.fillna(0)
         return pd.DataFrame(
             {
                 &quot;Element&quot;: element_count_data.index.map(
@@ -264,7 +264,7 @@ class BaseShellInfo:
         element_num_density = self.number_density.loc[atomic_num, shell_num - 1]
         ion_count_data = ion_num_density / element_num_density  # Normalization
         ion_count_data.index.name = &quot;Ion&quot;
-        ion_count_data.fillna(0, inplace=True)
+        ion_count_data = ion_count_data.fillna(0)
         return pd.DataFrame(
             {
                 &quot;Species&quot;: ion_count_data.index.map(
@@ -309,7 +309,7 @@ class BaseShellInfo:
         level_count_data = level_num_density / ion_num_density  # Normalization
         level_count_data.index.name = &quot;Level&quot;
         level_count_data.name = f&quot;Frac. Ab. (Ion={ion})&quot;
-        level_count_data.fillna(0, inplace=True)
+        level_count_data = level_count_data.fillna(0)
         return level_count_data.map(&quot;{:.6e}&quot;.format).to_frame()</div>
 </div>
 
@@ -701,7 +701,7 @@ def shell_info_from_hdf(hdf_fpath):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 31 Jul 2024.
       </span></p>
   </div>
 

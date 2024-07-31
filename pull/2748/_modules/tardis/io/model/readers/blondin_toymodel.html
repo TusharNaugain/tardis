@@ -24,7 +24,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=075a97ae"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b600759c"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -180,7 +180,7 @@ def read_blondin_toymodel(fname):
         header=None,
         names=columns,
     )
-    raw_blondin_csv.set_index(&quot;idx&quot;, inplace=True)
+    raw_blondin_csv = raw_blondin_csv.set_index(&quot;idx&quot;)
 
     blondin_csv = raw_blondin_csv.loc[
         :,
@@ -204,7 +204,7 @@ def read_blondin_toymodel(fname):
     }
     rename_col_dict.update({item: item[2:] for item in blondin_csv.columns[3:]})
     rename_col_dict[&quot;X_56Ni0&quot;] = &quot;Ni56&quot;
-    blondin_csv.rename(columns=rename_col_dict, inplace=True)
+    blondin_csv = blondin_csv.rename(columns=rename_col_dict)
     blondin_csv.iloc[:, 3:] = blondin_csv.iloc[:, 3:].divide(
         blondin_csv.iloc[:, 3:].sum(axis=1), axis=0
     )
@@ -304,7 +304,7 @@ def convert_blondin_toymodel(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 31 Jul 2024.
       </span></p>
   </div>
 

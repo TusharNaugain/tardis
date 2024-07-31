@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=075a97ae"></script>
+        <script src="../../../../_static/documentation_options.js?v=b600759c"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -802,7 +802,7 @@ class ZetaData(BaseAtomicDataProperty):
             updated_index = pd.DataFrame(updated_index)
             updated_dataframe[&quot;atomic_number&quot;] = np.array(updated_index[0])
             updated_dataframe[&quot;ion_number&quot;] = np.array(updated_index[1])
-            updated_dataframe.fillna(1.0, inplace=True)
+            updated_dataframe = updated_dataframe.fillna(1.0)
             return updated_dataframe
 
     def _set_index(self, zeta_data):
@@ -1027,7 +1027,7 @@ class YgInterpolator(ProcessingPlasmaProperty):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 31 Jul 2024.
       </span></p>
   </div>
 

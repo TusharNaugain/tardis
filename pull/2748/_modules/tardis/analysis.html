@@ -24,7 +24,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=075a97ae"></script>
+        <script src="../../_static/documentation_options.js?v=b600759c"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -342,8 +342,8 @@ class LastLineInteraction:
             ]
         ]
         self.last_line_in_table[&quot;count&quot;] = last_line_in_count
-        self.last_line_in_table.sort_values(
-            by=&quot;count&quot;, ascending=False, inplace=True
+        self.last_line_in_table = self.last_line_in_table.sort_values(
+            by=&quot;count&quot;, ascending=False
         )
         self.last_line_out_table = self.last_line_out.reset_index()[
             [
@@ -355,8 +355,8 @@ class LastLineInteraction:
             ]
         ]
         self.last_line_out_table[&quot;count&quot;] = last_line_out_count
-        self.last_line_out_table.sort_values(
-            by=&quot;count&quot;, ascending=False, inplace=True
+        self.last_line_out_table = self.last_line_out_table.sort_values(
+            by=&quot;count&quot;, ascending=False
         )</div>
 
 
@@ -681,7 +681,7 @@ class TARDISHistory:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 31 Jul 2024.
       </span></p>
   </div>
 
