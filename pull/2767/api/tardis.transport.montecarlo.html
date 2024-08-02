@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=6e46bf9a"></script>
+        <script src="../_static/documentation_options.js?v=4c822f29"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -177,14 +177,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.transport.montecarlo.estimators.html">tardis.transport.montecarlo.estimators package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.montecarlo.estimators.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.estimators.base.html">tardis.transport.montecarlo.estimators.base module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.base.html#tardis.transport.montecarlo.estimators.base.EstimatedRadiationFieldProperties"><code class="docutils literal notranslate"><span class="pre">EstimatedRadiationFieldProperties</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.estimators.continuum_radfield_properties.html">tardis.transport.montecarlo.estimators.continuum_radfield_properties module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties"><code class="docutils literal notranslate"><span class="pre">ContinuumProperties</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.DiluteBlackBodyContinuumPropertiesSolver"><code class="docutils literal notranslate"><span class="pre">DiluteBlackBodyContinuumPropertiesSolver</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.MCContinuumPropertiesSolver"><code class="docutils literal notranslate"><span class="pre">MCContinuumPropertiesSolver</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.html">tardis.transport.montecarlo.estimators.dilute_blackbody_properties module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.html#tardis.transport.montecarlo.estimators.dilute_blackbody_properties.MCDiluteBlackBodyRadFieldSolver"><code class="docutils literal notranslate"><span class="pre">MCDiluteBlackBodyRadFieldSolver</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.estimators.mc_rad_field_solver.html">tardis.transport.montecarlo.estimators.mc_rad_field_solver module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.transport.montecarlo.estimators.mc_rad_field_solver.html#tardis.transport.montecarlo.estimators.mc_rad_field_solver.MCRadiationFieldPropertiesSolver"><code class="docutils literal notranslate"><span class="pre">MCRadiationFieldPropertiesSolver</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.estimators.radfield_estimator_calcs.html">tardis.transport.montecarlo.estimators.radfield_estimator_calcs module</a><ul>
@@ -265,7 +269,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html">tardis.transport.montecarlo.montecarlo_transport_state module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_radiationfield_properties"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState.calculate_radiationfield_properties()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.emitted_packet_luminosity"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState.emitted_packet_luminosity</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.emitted_packet_mask"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState.emitted_packet_mask</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.emitted_packet_nu"><code class="docutils literal notranslate"><span class="pre">MonteCarloTransportState.emitted_packet_nu</span></code></a></li>
@@ -471,7 +474,7 @@ properties and with the last iteration, the spectrum is determined.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 02 Aug 2024.
       </span></p>
   </div>
 
