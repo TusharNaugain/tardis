@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=9ba2de27"></script>
+        <script src="../../../../_static/documentation_options.js?v=b6dac7aa"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -140,8 +140,6 @@ __all__ = [
     &quot;SelectedAtoms&quot;,
     &quot;ElectronTemperature&quot;,
     &quot;BetaElectron&quot;,
-    &quot;LuminosityInner&quot;,
-    &quot;TimeSimulation&quot;,
     &quot;ThermalGElectron&quot;,
 ]
 
@@ -284,36 +282,6 @@ class BetaElectron(ProcessingPlasmaProperty):
         return 1 / (self.k_B_cgs * t_electrons)</div>
 </div>
 
-
-
-<div class="viewcode-block" id="LuminosityInner">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner">[docs]</a>
-class LuminosityInner(ProcessingPlasmaProperty):
-    outputs = (&quot;luminosity_inner&quot;,)
-
-<div class="viewcode-block" id="LuminosityInner.calculate">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.LuminosityInner.calculate">[docs]</a>
-    @staticmethod
-    def calculate(r_inner, t_inner):
-        return (
-            4 * np.pi * const.sigma_sb.cgs * r_inner[0] ** 2 * t_inner**4
-        ).to(&quot;erg/s&quot;)</div>
-</div>
-
-
-
-<div class="viewcode-block" id="TimeSimulation">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation">[docs]</a>
-class TimeSimulation(ProcessingPlasmaProperty):
-    outputs = (&quot;time_simulation&quot;,)
-
-<div class="viewcode-block" id="TimeSimulation.calculate">
-<a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.TimeSimulation.calculate">[docs]</a>
-    @staticmethod
-    def calculate(luminosity_inner):
-        return 1.0 * u.erg / luminosity_inner</div>
-</div>
-
 </pre></div>
 
            </div>
@@ -324,7 +292,7 @@ class TimeSimulation(ProcessingPlasmaProperty):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 05 Aug 2024.
       </span></p>
   </div>
 

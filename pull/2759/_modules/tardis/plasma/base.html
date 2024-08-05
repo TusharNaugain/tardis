@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=9ba2de27"></script>
+        <script src="../../../_static/documentation_options.js?v=b6dac7aa"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,19 +124,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.base</h1><div class="highlight"><pre>
-<span></span>import os
-import re
-import logging
-import tempfile
+<span></span>import dataclasses
 import fileinput
+import logging
+import re
+import tempfile
 
 import networkx as nx
 
-from tardis.plasma.exceptions import PlasmaMissingModule, NotInitializedModule
-from tardis.plasma.properties.base import *
 from tardis.io.util import PlasmaWriterMixin
+from tardis.plasma.exceptions import NotInitializedModule, PlasmaMissingModule
+from tardis.plasma.properties.base import *
 
 logger = logging.getLogger(__name__)
+
+
+<div class="viewcode-block" id="PlasmaSolverSettings">
+<a class="viewcode-back" href="../../../api/tardis.plasma.base.html#tardis.plasma.base.PlasmaSolverSettings">[docs]</a>
+@dataclasses.dataclass(frozen=True)
+class PlasmaSolverSettings:
+    RADIATIVE_RATES_TYPE: str = &quot;blackbody&quot;</div>
+
 
 
 <div class="viewcode-block" id="BasePlasma">
@@ -146,7 +154,14 @@ class BasePlasma(PlasmaWriterMixin):
     outputs_dict = {}
     hdf_name = &quot;plasma&quot;
 
-    def __init__(self, plasma_properties, property_kwargs=None, **kwargs):
+    def __init__(
+        self,
+        plasma_properties,
+        plasma_solver_settings,
+        property_kwargs=None,
+        **kwargs,
+    ):
+        self.plasma_solver_settings = plasma_solver_settings
         self.outputs_dict = {}
         self.input_properties = []
         self.plasma_properties = self._init_properties(
@@ -194,7 +209,6 @@ class BasePlasma(PlasmaWriterMixin):
         :param plasma_modules:
         :return:
         &quot;&quot;&quot;
-
         self.graph = nx.DiGraph()
         # Adding all nodes
         self.graph.add_nodes_from(
@@ -339,8 +353,7 @@ class BasePlasma(PlasmaWriterMixin):
         for key in args:
             if key not in self.outputs_dict:
                 raise PlasmaMissingModule(
-                    &quot;Trying to freeze property {0}&quot;
-                    &quot; that is unavailable&quot;.format(key)
+                    f&quot;Trying to freeze property {key}&quot; &quot; that is unavailable&quot;
                 )
             self.outputs_dict[key].frozen = True</div>
 
@@ -366,8 +379,7 @@ class BasePlasma(PlasmaWriterMixin):
         for key in args:
             if key not in self.outputs_dict:
                 raise PlasmaMissingModule(
-                    &quot;Trying to thaw property {0}&quot;
-                    &quot; that is unavailable&quot;.format(key)
+                    f&quot;Trying to thaw property {key}&quot; &quot; that is unavailable&quot;
                 )
             self.outputs_dict[key].frozen = False</div>
 
@@ -392,7 +404,6 @@ class BasePlasma(PlasmaWriterMixin):
             : list
             all affected modules.
         &quot;&quot;&quot;
-
         descendants_ob = []
 
         for plasma_property in changed_properties:
@@ -429,11 +440,10 @@ class BasePlasma(PlasmaWriterMixin):
             enables/disables writing LaTeX equations and
             edge labels into the file.
         &quot;&quot;&quot;
-
         try:
             import pygraphviz
         except:
-            logger.warn(
+            logger.warning(
                 &quot;pygraphviz missing. Plasma graph will not be &quot; &quot;generated.&quot;
             )
             return
@@ -448,7 +458,7 @@ class BasePlasma(PlasmaWriterMixin):
                     ] = f&quot;\\\\textrm{{{node}: }}&quot;
                     node_list = self.plasma_properties_dict[node]
                     formulae = node_list.latex_formula
-                    for output in range(0, len(formulae)):
+                    for output in range(len(formulae)):
                         formula = formulae[output]
                         label = formula.replace(&quot;\\&quot;, &quot;\\\\&quot;)
                         print_graph.nodes[str(node)][&quot;label&quot;] += label
@@ -486,7 +496,7 @@ class BasePlasma(PlasmaWriterMixin):
                 )
 
         if args is not None:
-            with open(fname, &quot;r&quot;) as file:
+            with open(fname) as file:
                 lines = file.readlines()
 
             for newline in args:
@@ -522,7 +532,7 @@ class BasePlasma(PlasmaWriterMixin):
         try:
             import dot2tex
         except:
-            logger.warn(
+            logger.warning(
                 &quot;dot2tex missing. Plasma graph will not be &quot; &quot;generated.&quot;
             )
             return
@@ -531,7 +541,7 @@ class BasePlasma(PlasmaWriterMixin):
 
         self.write_to_dot(temp_fname, args=args, latex_label=latex_label)
 
-        with open(temp_fname, &quot;r&quot;) as file:
+        with open(temp_fname) as file:
             dot_string = file.read().replace(&quot;\\\\&quot;, &quot;\\&quot;)
 
         texcode = dot2tex.dot2tex(
@@ -609,7 +619,7 @@ class BasePlasma(PlasmaWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 05 Aug 2024.
       </span></p>
   </div>
 

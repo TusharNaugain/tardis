@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=9ba2de27"></script>
+        <script src="../../../../_static/documentation_options.js?v=b6dac7aa"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,8 +124,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.transport.montecarlo.packet_trackers</h1><div class="highlight"><pre>
-<span></span>from numba import float64, int64
+<span></span>from numba import float64, int64, njit
 from numba.experimental import jitclass
+from numba.typed import List
 import numpy as np
 import pandas as pd
 
@@ -141,6 +142,7 @@ rpacket_tracker_spec = [
     (&quot;shell_id&quot;, int64[:]),
     (&quot;interaction_type&quot;, int64[:]),
     (&quot;num_interactions&quot;, int64),
+    (&quot;extend_factor&quot;, int64),
 ]
 
 
@@ -174,6 +176,8 @@ class RPacketTracker(object):
             Type of interaction the rpacket undergoes
         num_interactions : int
             Internal counter for the interactions that a particular RPacket undergoes
+        extend_factor : int
+            The factor by which to extend the properties array when the size limit is reached
     &quot;&quot;&quot;
 
     def __init__(self, length):
@@ -188,34 +192,27 @@ class RPacketTracker(object):
         self.shell_id = np.empty(self.length, dtype=np.int64)
         self.interaction_type = np.empty(self.length, dtype=np.int64)
         self.num_interactions = 0
+        self.extend_factor = 2
+
+    def extend_array(self, array, array_length):
+        temp_array = np.empty(
+            array_length * self.extend_factor, dtype=array.dtype
+        )
+        temp_array[:array_length] = array
+        return temp_array
 
     def track(self, r_packet):
         if self.num_interactions &gt;= self.length:
-            temp_length = self.length * 2
-            temp_status = np.empty(temp_length, dtype=np.int64)
-            temp_r = np.empty(temp_length, dtype=np.float64)
-            temp_nu = np.empty(temp_length, dtype=np.float64)
-            temp_mu = np.empty(temp_length, dtype=np.float64)
-            temp_energy = np.empty(temp_length, dtype=np.float64)
-            temp_shell_id = np.empty(temp_length, dtype=np.int64)
-            temp_interaction_type = np.empty(temp_length, dtype=np.int64)
-
-            temp_status[: self.length] = self.status
-            temp_r[: self.length] = self.r
-            temp_nu[: self.length] = self.nu
-            temp_mu[: self.length] = self.mu
-            temp_energy[: self.length] = self.energy
-            temp_shell_id[: self.length] = self.shell_id
-            temp_interaction_type[: self.length] = self.interaction_type
-
-            self.status = temp_status
-            self.r = temp_r
-            self.nu = temp_nu
-            self.mu = temp_mu
-            self.energy = temp_energy
-            self.shell_id = temp_shell_id
-            self.interaction_type = temp_interaction_type
-            self.length = temp_length
+            self.status = self.extend_array(self.status, self.length)
+            self.r = self.extend_array(self.r, self.length)
+            self.nu = self.extend_array(self.nu, self.length)
+            self.mu = self.extend_array(self.mu, self.length)
+            self.energy = self.extend_array(self.energy, self.length)
+            self.shell_id = self.extend_array(self.shell_id, self.length)
+            self.interaction_type = self.extend_array(
+                self.interaction_type, self.length
+            )
+            self.length = self.length * self.extend_factor
 
         self.index = r_packet.index
         self.seed = r_packet.seed
@@ -336,7 +333,52 @@ class RPacketLastInteractionTracker(object):
         self.nu = r_packet.nu
         self.energy = r_packet.energy
         self.shell_id = r_packet.current_shell_id
-        self.interaction_type = r_packet.last_interaction_type</div>
+        self.interaction_type = r_packet.last_interaction_type
+
+    # To make it compatible with RPacketTracker
+    def finalize_array(self):
+        pass</div>
+
+
+
+<div class="viewcode-block" id="generate_rpacket_tracker_list">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.generate_rpacket_tracker_list">[docs]</a>
+@njit
+def generate_rpacket_tracker_list(no_of_packets, length):
+    &quot;&quot;&quot;
+    Parameters
+    ----------
+    no_of_packets : The count of RPackets that are sent in the ejecta
+    length : initial length of the tracking array
+
+    Returns
+    -------
+    A list containing RPacketTracker for each RPacket
+    &quot;&quot;&quot;
+    rpacket_trackers = List()
+    for i in range(no_of_packets):
+        rpacket_trackers.append(RPacketTracker(length))
+    return rpacket_trackers</div>
+
+
+
+<div class="viewcode-block" id="generate_rpacket_last_interaction_tracker_list">
+<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.packet_trackers.html#tardis.transport.montecarlo.packet_trackers.generate_rpacket_last_interaction_tracker_list">[docs]</a>
+@njit
+def generate_rpacket_last_interaction_tracker_list(no_of_packets):
+    &quot;&quot;&quot;
+    Parameters
+    ----------
+    no_of_packets : The count of RPackets that are sent in the ejecta
+
+    Returns
+    -------
+    A list containing RPacketLastInteractionTracker for each RPacket
+    &quot;&quot;&quot;
+    rpacket_trackers = List()
+    for i in range(no_of_packets):
+        rpacket_trackers.append(RPacketLastInteractionTracker())
+    return rpacket_trackers</div>
 
 </pre></div>
 
@@ -348,7 +390,7 @@ class RPacketLastInteractionTracker(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Jul 2024.
+      <span class="lastupdated">Last updated on 05 Aug 2024.
       </span></p>
   </div>
 
