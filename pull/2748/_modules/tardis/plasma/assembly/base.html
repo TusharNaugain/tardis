@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=b600759c"></script>
+        <script src="../../../../_static/documentation_options.js?v=472efae1"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -190,13 +190,15 @@ class PlasmaSolverFactory:
     ## Analytical Approximations
     excitation_analytical_approximation: str = &quot;lte&quot;
     ionization_analytical_approximation: str = &quot;lte&quot;
-    nebular_ionization_delta_treatment: tuple  # species to use for the delta_treatment in nebular ionization ML93
+    nebular_ionization_delta_treatment: (
+        tuple
+    ) = ()  # species to use for the delta_treatment in nebular ionization ML93
 
     link_t_rad_t_electron: float = 1.0
 
     radiative_rates_type: str = &quot;dilute-blackbody&quot;
 
-    delta_treatment = None
+    delta_treatment: float | None = None
 
     ## Statistical Balance Solver
     legacy_nlte_species: list = []
@@ -223,6 +225,10 @@ class PlasmaSolverFactory:
     property_kwargs: dict = {}
 
     def __init__(self, atom_data, selected_atomic_numbers, config=None) -&gt; None:
+        self.plasma_modules = []
+        self.kwargs = {}
+        self.property_kwargs = {}
+
         if config is not None:
             self.parse_plasma_config(config.plasma)
         self.atom_data = atom_data
@@ -724,7 +730,7 @@ class PlasmaSolverFactory:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 31 Jul 2024.
+      <span class="lastupdated">Last updated on 07 Aug 2024.
       </span></p>
   </div>
 
