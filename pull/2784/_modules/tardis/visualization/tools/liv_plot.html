@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=28b88ce9"></script>
+        <script src="../../../../_static/documentation_options.js?v=1c755750"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -350,6 +350,7 @@ class LIVPlotter:
 
         plot_colors = []
         plot_data = []
+        species_not_wvl_range = []
         species_counter = 0
 
         for specie_list in self._species_mapped.values():
@@ -357,13 +358,11 @@ class LIVPlotter:
             for specie in specie_list:
                 if specie in self.species:
                     if specie not in groups.groups:
-                        # atomic_number = specie // 100
-                        # ion_number = specie % 100
-                        # ion_numeral = int_to_roman(ion_number + 1)
-                        # label = f&quot;{atomic_number2element_symbol(atomic_number)} {ion_numeral}&quot;
-                        # logger.warning(
-                        #     f&quot;Species {label} not found in the wavelength range.&quot;
-                        # )
+                        atomic_number = specie // 100
+                        ion_number = specie % 100
+                        ion_numeral = int_to_roman(ion_number + 1)
+                        label = f&quot;{atomic_number2element_symbol(atomic_number)} {ion_numeral}&quot;
+                        species_not_wvl_range.append(label)
                         continue
                     g_df = groups.get_group(specie)
                     r_last_interaction = (
@@ -377,7 +376,10 @@ class LIVPlotter:
                 plot_data.append(full_v_last)
                 plot_colors.append(self._color_list[species_counter])
                 species_counter += 1
-
+        if species_not_wvl_range:
+            logger.info(
+                f&quot;{species_not_wvl_range} were not found in the provided wavelength range.&quot;
+            )
         return plot_data, plot_colors
 
     def _prepare_plot_data(
@@ -746,7 +748,7 @@ class LIVPlotter:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 07 Aug 2024.
+      <span class="lastupdated">Last updated on 08 Aug 2024.
       </span></p>
   </div>
 
