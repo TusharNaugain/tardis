@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploring rates &mdash; tardis</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/tardis_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/documentation_options.js?v=9958e688"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href="../../../_static/tardis.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            tardis
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart for TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how_to_guides.html">How-To Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/configuration/index.html">Configuration (Required Input)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/model/index.html">Reading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/optional/index.html">Optional Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/visualization/index.html">Visualization Tools &amp; Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/output/index.html">Additional Outputs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Physics Walkthrough Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Setting Up the Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../montecarlo/index.html">Monte Carlo Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spectrum/index.html">Spectrum Generation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/development/index.html">Developer Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/tools/index.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/in_progress/index.html">Features In-Progress</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/credits.html">Credits &amp; Publication Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/research_done_using_TARDIS/research_papers.html">Papers Using TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/code_comparison/index.html">Code Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/zreferences.html">References and Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tardis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Exploring rates</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/physics/plasma/detailed_balance/rates.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style>
+    /* strip stderr */
+    div.nboutput.container div.output_area.stderr {
+        background: #fdd;
+        display: none;
+    }
+
+    .launch-btn {
+        background-color: #2980B9;
+        border: none;
+        border-radius: 4px;
+        color: #fcfcfc;
+        font-family: inherit;
+        text-decoration: none;
+        padding: 3px 8px;
+        letter-spacing: 0.03em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+
+    .launch-btn:hover {
+        background-color: #1b6391;
+        color: #fcfcfc;
+    }
+
+    .launch-btn:visited {
+        color: #fcfcfc;
+    }
+
+    .note-p {
+        margin-bottom: 0.4em;
+        line-height: 2em;
+    }
+</style>
+
+<div class="admonition note">
+<p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/physics/plasma/detailed_balance/rates.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
+</div><section id="Exploring-rates">
+<h1>Exploring rates<a class="headerlink" href="#Exploring-rates" title="Link to this heading">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+
+<span class="kn">from</span> <span class="nn">tardis.io.atom_data</span> <span class="kn">import</span> <span class="n">AtomData</span>
+<span class="kn">from</span> <span class="nn">tardis.plasma.detailed_balance.rates</span> <span class="kn">import</span> <span class="n">RadiativeRatesSolver</span><span class="p">,</span> <span class="n">UpsilonRegemorterSolver</span>
+<span class="kn">from</span> <span class="nn">tardis.plasma.radiation_field</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PlanckianRadiationField</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">const</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/wkerzend/python/tardis/tardis/__init__.py:20: UserWarning: Astropy is already imported externally. Astropy should be imported after TARDIS.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9fd88dff6ab34219bc55c34bc5d13252", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ac83e4c608dc4bb2b437252ea98b3f3f", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span> <span class="o">=</span> <span class="n">AtomData</span><span class="o">.</span><span class="n">from_hdf</span><span class="p">(</span><span class="s1">&#39;kurucz_cd23_chianti_H_He.h5&#39;</span><span class="p">)</span>
+<span class="n">lines_df</span> <span class="o">=</span> <span class="n">atom_data</span><span class="o">.</span><span class="n">lines</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span><span class="o">.</span><span class="n">collision_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>g_ratio</th>
+      <th>delta_e</th>
+      <th>t002000</th>
+      <th>t004000</th>
+      <th>t006000</th>
+      <th>t008000</th>
+      <th>t010000</th>
+      <th>t012000</th>
+      <th>t014000</th>
+      <th>t016000</th>
+      <th>...</th>
+      <th>t030000</th>
+      <th>t032000</th>
+      <th>t034000</th>
+      <th>t036000</th>
+      <th>t038000</th>
+      <th>t040000</th>
+      <th>t042000</th>
+      <th>t044000</th>
+      <th>t046000</th>
+      <th>t048000</th>
+    </tr>
+    <tr>
+      <th>atomic_number</th>
+      <th>ion_number</th>
+      <th>level_number_lower</th>
+      <th>level_number_upper</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1</th>
+      <th rowspan="5" valign="top">0</th>
+      <th rowspan="5" valign="top">0</th>
+      <th>2</th>
+      <td>1.000000</td>
+      <td>118352.290645</td>
+      <td>2.042640e-08</td>
+      <td>1.444381e-08</td>
+      <td>1.179346e-08</td>
+      <td>1.021356e-08</td>
+      <td>9.135388e-09</td>
+      <td>8.339527e-09</td>
+      <td>7.720992e-09</td>
+      <td>7.222411e-09</td>
+      <td>...</td>
+      <td>5.274934e-09</td>
+      <td>5.107492e-09</td>
+      <td>4.955053e-09</td>
+      <td>4.815502e-09</td>
+      <td>4.687121e-09</td>
+      <td>4.568493e-09</td>
+      <td>4.458445e-09</td>
+      <td>4.355989e-09</td>
+      <td>4.260291e-09</td>
+      <td>4.170639e-09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.000000</td>
+      <td>118352.240288</td>
+      <td>1.092234e-08</td>
+      <td>7.723319e-09</td>
+      <td>6.306113e-09</td>
+      <td>5.461296e-09</td>
+      <td>4.884770e-09</td>
+      <td>4.459199e-09</td>
+      <td>4.128449e-09</td>
+      <td>3.861840e-09</td>
+      <td>...</td>
+      <td>2.820443e-09</td>
+      <td>2.730903e-09</td>
+      <td>2.649386e-09</td>
+      <td>2.574760e-09</td>
+      <td>2.506107e-09</td>
+      <td>2.442670e-09</td>
+      <td>2.383821e-09</td>
+      <td>2.329031e-09</td>
+      <td>2.277855e-09</td>
+      <td>2.229912e-09</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.500000</td>
+      <td>118352.766880</td>
+      <td>1.092716e-08</td>
+      <td>7.726731e-09</td>
+      <td>6.308898e-09</td>
+      <td>5.463709e-09</td>
+      <td>4.886928e-09</td>
+      <td>4.461169e-09</td>
+      <td>4.130272e-09</td>
+      <td>3.863546e-09</td>
+      <td>...</td>
+      <td>2.821689e-09</td>
+      <td>2.732110e-09</td>
+      <td>2.650556e-09</td>
+      <td>2.575898e-09</td>
+      <td>2.507214e-09</td>
+      <td>2.443749e-09</td>
+      <td>2.384874e-09</td>
+      <td>2.330060e-09</td>
+      <td>2.278861e-09</td>
+      <td>2.230897e-09</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.000000</td>
+      <td>140269.565669</td>
+      <td>5.782447e-09</td>
+      <td>4.088822e-09</td>
+      <td>3.338521e-09</td>
+      <td>2.891255e-09</td>
+      <td>2.586026e-09</td>
+      <td>2.360716e-09</td>
+      <td>2.185607e-09</td>
+      <td>2.044455e-09</td>
+      <td>...</td>
+      <td>1.493097e-09</td>
+      <td>1.445690e-09</td>
+      <td>1.402530e-09</td>
+      <td>1.363019e-09</td>
+      <td>1.326670e-09</td>
+      <td>1.293083e-09</td>
+      <td>1.261924e-09</td>
+      <td>1.232915e-09</td>
+      <td>1.205819e-09</td>
+      <td>1.180435e-09</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.000000</td>
+      <td>140269.549842</td>
+      <td>3.035472e-09</td>
+      <td>2.146412e-09</td>
+      <td>1.752545e-09</td>
+      <td>1.517755e-09</td>
+      <td>1.357527e-09</td>
+      <td>1.239252e-09</td>
+      <td>1.147329e-09</td>
+      <td>1.073232e-09</td>
+      <td>...</td>
+      <td>7.838003e-10</td>
+      <td>7.589145e-10</td>
+      <td>7.362582e-10</td>
+      <td>7.155173e-10</td>
+      <td>6.964362e-10</td>
+      <td>6.788048e-10</td>
+      <td>6.624483e-10</td>
+      <td>6.472203e-10</td>
+      <td>6.329965e-10</td>
+      <td>6.196713e-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2</th>
+      <th rowspan="5" valign="top">1</th>
+      <th rowspan="5" valign="top">2</th>
+      <th>20</th>
+      <td>0.333333</td>
+      <td>132616.990141</td>
+      <td>4.721393e-09</td>
+      <td>3.338525e-09</td>
+      <td>2.725891e-09</td>
+      <td>2.360688e-09</td>
+      <td>2.111462e-09</td>
+      <td>1.927490e-09</td>
+      <td>1.784507e-09</td>
+      <td>1.669251e-09</td>
+      <td>...</td>
+      <td>1.219039e-09</td>
+      <td>1.180328e-09</td>
+      <td>1.145086e-09</td>
+      <td>1.112822e-09</td>
+      <td>1.083140e-09</td>
+      <td>1.055713e-09</td>
+      <td>1.030269e-09</td>
+      <td>1.006581e-09</td>
+      <td>9.844543e-10</td>
+      <td>9.637256e-10</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.333333</td>
+      <td>132616.990141</td>
+      <td>2.491599e-09</td>
+      <td>1.761826e-09</td>
+      <td>1.438525e-09</td>
+      <td>1.245799e-09</td>
+      <td>1.114277e-09</td>
+      <td>1.017191e-09</td>
+      <td>9.417354e-10</td>
+      <td>8.809128e-10</td>
+      <td>...</td>
+      <td>6.433275e-10</td>
+      <td>6.228991e-10</td>
+      <td>6.043009e-10</td>
+      <td>5.872749e-10</td>
+      <td>5.716113e-10</td>
+      <td>5.571378e-10</td>
+      <td>5.437108e-10</td>
+      <td>5.312100e-10</td>
+      <td>5.195336e-10</td>
+      <td>5.085948e-10</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.250000</td>
+      <td>132617.079346</td>
+      <td>2.486935e-09</td>
+      <td>1.758529e-09</td>
+      <td>1.435832e-09</td>
+      <td>1.243467e-09</td>
+      <td>1.112191e-09</td>
+      <td>1.015287e-09</td>
+      <td>9.399728e-10</td>
+      <td>8.792640e-10</td>
+      <td>...</td>
+      <td>6.421233e-10</td>
+      <td>6.217332e-10</td>
+      <td>6.031698e-10</td>
+      <td>5.861756e-10</td>
+      <td>5.705414e-10</td>
+      <td>5.560950e-10</td>
+      <td>5.426931e-10</td>
+      <td>5.302157e-10</td>
+      <td>5.185611e-10</td>
+      <td>5.076428e-10</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.250000</td>
+      <td>132617.079346</td>
+      <td>1.192327e-09</td>
+      <td>8.431006e-10</td>
+      <td>6.883872e-10</td>
+      <td>5.961594e-10</td>
+      <td>5.332200e-10</td>
+      <td>4.867599e-10</td>
+      <td>4.506511e-10</td>
+      <td>4.215445e-10</td>
+      <td>...</td>
+      <td>3.078476e-10</td>
+      <td>2.980715e-10</td>
+      <td>2.891711e-10</td>
+      <td>2.810232e-10</td>
+      <td>2.735273e-10</td>
+      <td>2.666008e-10</td>
+      <td>2.601751e-10</td>
+      <td>2.541927e-10</td>
+      <td>2.486048e-10</td>
+      <td>2.433699e-10</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.200000</td>
+      <td>132617.132580</td>
+      <td>1.194305e-09</td>
+      <td>8.444993e-10</td>
+      <td>6.895292e-10</td>
+      <td>5.971484e-10</td>
+      <td>5.341045e-10</td>
+      <td>4.875674e-10</td>
+      <td>4.513986e-10</td>
+      <td>4.222438e-10</td>
+      <td>...</td>
+      <td>3.083583e-10</td>
+      <td>2.985659e-10</td>
+      <td>2.896508e-10</td>
+      <td>2.814894e-10</td>
+      <td>2.739810e-10</td>
+      <td>2.670430e-10</td>
+      <td>2.606067e-10</td>
+      <td>2.546144e-10</td>
+      <td>2.490172e-10</td>
+      <td>2.437736e-10</td>
+    </tr>
+  </tbody>
+</table>
+<p>358 rows × 26 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radiative_transitions</span> <span class="o">=</span> <span class="n">lines_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)),</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span><span class="o">.</span><span class="n">collision_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)],</span> <span class="p">:)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>g_ratio</th>
+      <th>delta_e</th>
+      <th>t002000</th>
+      <th>t004000</th>
+      <th>t006000</th>
+      <th>t008000</th>
+      <th>t010000</th>
+      <th>t012000</th>
+      <th>t014000</th>
+      <th>t016000</th>
+      <th>...</th>
+      <th>t030000</th>
+      <th>t032000</th>
+      <th>t034000</th>
+      <th>t036000</th>
+      <th>t038000</th>
+      <th>t040000</th>
+      <th>t042000</th>
+      <th>t044000</th>
+      <th>t046000</th>
+      <th>t048000</th>
+    </tr>
+    <tr>
+      <th>atomic_number</th>
+      <th>ion_number</th>
+      <th>level_number_lower</th>
+      <th>level_number_upper</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1</th>
+      <th rowspan="5" valign="top">0</th>
+      <th rowspan="5" valign="top">0</th>
+      <th>2</th>
+      <td>1.000000</td>
+      <td>118352.290645</td>
+      <td>2.042640e-08</td>
+      <td>1.444381e-08</td>
+      <td>1.179346e-08</td>
+      <td>1.021356e-08</td>
+      <td>9.135388e-09</td>
+      <td>8.339527e-09</td>
+      <td>7.720992e-09</td>
+      <td>7.222411e-09</td>
+      <td>...</td>
+      <td>5.274934e-09</td>
+      <td>5.107492e-09</td>
+      <td>4.955053e-09</td>
+      <td>4.815502e-09</td>
+      <td>4.687121e-09</td>
+      <td>4.568493e-09</td>
+      <td>4.458445e-09</td>
+      <td>4.355989e-09</td>
+      <td>4.260291e-09</td>
+      <td>4.170639e-09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.000000</td>
+      <td>118352.240288</td>
+      <td>1.092234e-08</td>
+      <td>7.723319e-09</td>
+      <td>6.306113e-09</td>
+      <td>5.461296e-09</td>
+      <td>4.884770e-09</td>
+      <td>4.459199e-09</td>
+      <td>4.128449e-09</td>
+      <td>3.861840e-09</td>
+      <td>...</td>
+      <td>2.820443e-09</td>
+      <td>2.730903e-09</td>
+      <td>2.649386e-09</td>
+      <td>2.574760e-09</td>
+      <td>2.506107e-09</td>
+      <td>2.442670e-09</td>
+      <td>2.383821e-09</td>
+      <td>2.329031e-09</td>
+      <td>2.277855e-09</td>
+      <td>2.229912e-09</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.500000</td>
+      <td>118352.766880</td>
+      <td>1.092716e-08</td>
+      <td>7.726731e-09</td>
+      <td>6.308898e-09</td>
+      <td>5.463709e-09</td>
+      <td>4.886928e-09</td>
+      <td>4.461169e-09</td>
+      <td>4.130272e-09</td>
+      <td>3.863546e-09</td>
+      <td>...</td>
+      <td>2.821689e-09</td>
+      <td>2.732110e-09</td>
+      <td>2.650556e-09</td>
+      <td>2.575898e-09</td>
+      <td>2.507214e-09</td>
+      <td>2.443749e-09</td>
+      <td>2.384874e-09</td>
+      <td>2.330060e-09</td>
+      <td>2.278861e-09</td>
+      <td>2.230897e-09</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.000000</td>
+      <td>140269.565669</td>
+      <td>5.782447e-09</td>
+      <td>4.088822e-09</td>
+      <td>3.338521e-09</td>
+      <td>2.891255e-09</td>
+      <td>2.586026e-09</td>
+      <td>2.360716e-09</td>
+      <td>2.185607e-09</td>
+      <td>2.044455e-09</td>
+      <td>...</td>
+      <td>1.493097e-09</td>
+      <td>1.445690e-09</td>
+      <td>1.402530e-09</td>
+      <td>1.363019e-09</td>
+      <td>1.326670e-09</td>
+      <td>1.293083e-09</td>
+      <td>1.261924e-09</td>
+      <td>1.232915e-09</td>
+      <td>1.205819e-09</td>
+      <td>1.180435e-09</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.000000</td>
+      <td>140269.549842</td>
+      <td>3.035472e-09</td>
+      <td>2.146412e-09</td>
+      <td>1.752545e-09</td>
+      <td>1.517755e-09</td>
+      <td>1.357527e-09</td>
+      <td>1.239252e-09</td>
+      <td>1.147329e-09</td>
+      <td>1.073232e-09</td>
+      <td>...</td>
+      <td>7.838003e-10</td>
+      <td>7.589145e-10</td>
+      <td>7.362582e-10</td>
+      <td>7.155173e-10</td>
+      <td>6.964362e-10</td>
+      <td>6.788048e-10</td>
+      <td>6.624483e-10</td>
+      <td>6.472203e-10</td>
+      <td>6.329965e-10</td>
+      <td>6.196713e-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2</th>
+      <th rowspan="5" valign="top">1</th>
+      <th rowspan="5" valign="top">2</th>
+      <th>20</th>
+      <td>0.333333</td>
+      <td>132616.990141</td>
+      <td>4.721393e-09</td>
+      <td>3.338525e-09</td>
+      <td>2.725891e-09</td>
+      <td>2.360688e-09</td>
+      <td>2.111462e-09</td>
+      <td>1.927490e-09</td>
+      <td>1.784507e-09</td>
+      <td>1.669251e-09</td>
+      <td>...</td>
+      <td>1.219039e-09</td>
+      <td>1.180328e-09</td>
+      <td>1.145086e-09</td>
+      <td>1.112822e-09</td>
+      <td>1.083140e-09</td>
+      <td>1.055713e-09</td>
+      <td>1.030269e-09</td>
+      <td>1.006581e-09</td>
+      <td>9.844543e-10</td>
+      <td>9.637256e-10</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.333333</td>
+      <td>132616.990141</td>
+      <td>2.491599e-09</td>
+      <td>1.761826e-09</td>
+      <td>1.438525e-09</td>
+      <td>1.245799e-09</td>
+      <td>1.114277e-09</td>
+      <td>1.017191e-09</td>
+      <td>9.417354e-10</td>
+      <td>8.809128e-10</td>
+      <td>...</td>
+      <td>6.433275e-10</td>
+      <td>6.228991e-10</td>
+      <td>6.043009e-10</td>
+      <td>5.872749e-10</td>
+      <td>5.716113e-10</td>
+      <td>5.571378e-10</td>
+      <td>5.437108e-10</td>
+      <td>5.312100e-10</td>
+      <td>5.195336e-10</td>
+      <td>5.085948e-10</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.250000</td>
+      <td>132617.079346</td>
+      <td>2.486935e-09</td>
+      <td>1.758529e-09</td>
+      <td>1.435832e-09</td>
+      <td>1.243467e-09</td>
+      <td>1.112191e-09</td>
+      <td>1.015287e-09</td>
+      <td>9.399728e-10</td>
+      <td>8.792640e-10</td>
+      <td>...</td>
+      <td>6.421233e-10</td>
+      <td>6.217332e-10</td>
+      <td>6.031698e-10</td>
+      <td>5.861756e-10</td>
+      <td>5.705414e-10</td>
+      <td>5.560950e-10</td>
+      <td>5.426931e-10</td>
+      <td>5.302157e-10</td>
+      <td>5.185611e-10</td>
+      <td>5.076428e-10</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.250000</td>
+      <td>132617.079346</td>
+      <td>1.192327e-09</td>
+      <td>8.431006e-10</td>
+      <td>6.883872e-10</td>
+      <td>5.961594e-10</td>
+      <td>5.332200e-10</td>
+      <td>4.867599e-10</td>
+      <td>4.506511e-10</td>
+      <td>4.215445e-10</td>
+      <td>...</td>
+      <td>3.078476e-10</td>
+      <td>2.980715e-10</td>
+      <td>2.891711e-10</td>
+      <td>2.810232e-10</td>
+      <td>2.735273e-10</td>
+      <td>2.666008e-10</td>
+      <td>2.601751e-10</td>
+      <td>2.541927e-10</td>
+      <td>2.486048e-10</td>
+      <td>2.433699e-10</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.200000</td>
+      <td>132617.132580</td>
+      <td>1.194305e-09</td>
+      <td>8.444993e-10</td>
+      <td>6.895292e-10</td>
+      <td>5.971484e-10</td>
+      <td>5.341045e-10</td>
+      <td>4.875674e-10</td>
+      <td>4.513986e-10</td>
+      <td>4.222438e-10</td>
+      <td>...</td>
+      <td>3.083583e-10</td>
+      <td>2.985659e-10</td>
+      <td>2.896508e-10</td>
+      <td>2.814894e-10</td>
+      <td>2.739810e-10</td>
+      <td>2.670430e-10</td>
+      <td>2.606067e-10</td>
+      <td>2.546144e-10</td>
+      <td>2.490172e-10</td>
+      <td>2.437736e-10</td>
+    </tr>
+  </tbody>
+</table>
+<p>358 rows × 26 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radiative_transitions</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>line_id</th>
+      <th>wavelength</th>
+      <th>f_ul</th>
+      <th>f_lu</th>
+      <th>nu</th>
+      <th>B_lu</th>
+      <th>B_ul</th>
+      <th>A_ul</th>
+      <th>wavelength_cm</th>
+    </tr>
+    <tr>
+      <th>atomic_number</th>
+      <th>ion_number</th>
+      <th>level_number_lower</th>
+      <th>level_number_upper</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="11" valign="top">2</th>
+      <th rowspan="11" valign="top">0</th>
+      <th rowspan="2" valign="top">1</th>
+      <th>3</th>
+      <td>533170</td>
+      <td>10833.307</td>
+      <td>0.365400</td>
+      <td>0.609000</td>
+      <td>2.767322e+14</td>
+      <td>1.107679e+11</td>
+      <td>6.646073e+10</td>
+      <td>2.076771e+07</td>
+      <td>0.000108</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>533171</td>
+      <td>10833.217</td>
+      <td>0.608000</td>
+      <td>0.608000</td>
+      <td>2.767345e+14</td>
+      <td>1.105851e+11</td>
+      <td>1.105851e+11</td>
+      <td>3.455659e+07</td>
+      <td>0.000108</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>6</th>
+      <td>533166</td>
+      <td>584.335</td>
+      <td>0.092000</td>
+      <td>0.276000</td>
+      <td>5.130489e+15</td>
+      <td>2.707737e+09</td>
+      <td>9.025791e+08</td>
+      <td>1.797241e+09</td>
+      <td>0.000006</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>6</th>
+      <td>533182</td>
+      <td>20586.937</td>
+      <td>0.125667</td>
+      <td>0.377000</td>
+      <td>1.456227e+14</td>
+      <td>1.303073e+11</td>
+      <td>4.343575e+10</td>
+      <td>1.977784e+06</td>
+      <td>0.000206</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>16</th>
+      <td>533167</td>
+      <td>537.031</td>
+      <td>0.024467</td>
+      <td>0.073400</td>
+      <td>5.582405e+15</td>
+      <td>6.618064e+08</td>
+      <td>2.206021e+08</td>
+      <td>5.658722e+08</td>
+      <td>0.000005</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <th>46</th>
+      <td>533336</td>
+      <td>40490.052</td>
+      <td>0.028000</td>
+      <td>0.028000</td>
+      <td>7.404102e+13</td>
+      <td>1.903452e+10</td>
+      <td>1.903452e+10</td>
+      <td>1.139209e+05</td>
+      <td>0.000405</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <th>46</th>
+      <td>533340</td>
+      <td>40490.167</td>
+      <td>0.000571</td>
+      <td>0.000444</td>
+      <td>7.404081e+13</td>
+      <td>3.019850e+08</td>
+      <td>3.882664e+08</td>
+      <td>2.323742e+03</td>
+      <td>0.000405</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <th>46</th>
+      <td>533344</td>
+      <td>40490.314</td>
+      <td>0.228857</td>
+      <td>0.320400</td>
+      <td>7.404054e+13</td>
+      <td>2.178107e+11</td>
+      <td>1.555791e+11</td>
+      <td>9.311173e+05</td>
+      <td>0.000405</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <th>45</th>
+      <td>533339</td>
+      <td>40490.216</td>
+      <td>0.448636</td>
+      <td>0.548333</td>
+      <td>7.404072e+13</td>
+      <td>3.727608e+11</td>
+      <td>3.049861e+11</td>
+      <td>1.825309e+06</td>
+      <td>0.000405</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <th>47</th>
+      <td>533346</td>
+      <td>40490.429</td>
+      <td>1.046889</td>
+      <td>1.346000</td>
+      <td>7.404033e+13</td>
+      <td>9.150250e+11</td>
+      <td>7.116861e+11</td>
+      <td>4.259298e+06</td>
+      <td>0.000405</td>
+    </tr>
+  </tbody>
+</table>
+<p>180 rows × 9 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temperature</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span>
+<span class="n">rad_field</span> <span class="o">=</span> <span class="n">PlanckianRadiationField</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)</span>
+
+<span class="n">rad_rate_solver</span> <span class="o">=</span> <span class="n">RadiativeRatesSolver</span><span class="p">(</span><span class="n">radiative_transitions</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rad_rates_df</span> <span class="o">=</span> <span class="n">rad_rate_solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rad_field</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radiative_transitions</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[6], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">radiative_transitions</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;radiative_transitions&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rad_rates_df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>atomic_number</th>
+      <th>ion_number</th>
+      <th>level_number_source</th>
+      <th>level_number_destination</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="11" valign="top">2</th>
+      <th rowspan="11" valign="top">0</th>
+      <th rowspan="4" valign="top">0</th>
+      <th>6</th>
+      <td>1.092259e-01</td>
+      <td>2.426770e+04</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>3.931126e-03</td>
+      <td>2.583324e+03</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>7.998261e-04</td>
+      <td>7.686424e+02</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>2.921823e-04</td>
+      <td>3.349007e+02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>3</th>
+      <td>1.247811e+07</td>
+      <td>3.671871e+07</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <th>28</th>
+      <td>3.113439e+06</td>
+      <td>5.720071e+06</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <th>29</th>
+      <td>1.741319e+05</td>
+      <td>3.199534e+05</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <th>29</th>
+      <td>1.424213e+07</td>
+      <td>2.616593e+07</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <th>30</th>
+      <td>5.589118e+06</td>
+      <td>1.037015e+07</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <th>30</th>
+      <td>5.195260e+06</td>
+      <td>9.558669e+06</td>
+    </tr>
+  </tbody>
+</table>
+<p>360 rows × 2 columns</p>
+</div></div>
+</div>
+<section id="Collisional-Rates">
+<h2>Collisional Rates<a class="headerlink" href="#Collisional-Rates" title="Link to this heading">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_strength_solver</span> <span class="o">=</span> <span class="n">UpsilonRegemorterSolver</span><span class="p">(</span><span class="n">radiative_transitions</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ups</span> <span class="o">=</span> <span class="n">col_strength_solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">atom_data</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">nu</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Hz</span> <span class="o">*</span>  <span class="n">const</span><span class="o">.</span><span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">eV</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/var/folders/fg/nwmb1mss6kq3hwhj10dt0qh00000gn/T/ipykernel_571/3900330882.py:1: PerformanceWarning: indexing past lexsort depth may impact performance.
+  (atom_data.lines.loc[1, 0, 0, 3].nu.values * u.Hz *  const.h).to(u.eV)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="math notranslate nohighlight">
+$[10.198837] \; \mathrm{eV}$</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span><span class="o">.</span><span class="n">levels</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+energy         0.0
+g                2
+metastable    True
+Name: (1, 0, 0), dtype: object
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span><span class="o">.</span><span class="n">collision_data</span><span class="o">.</span><span class="n">delta_e</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">k_B</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+atomic_number  ion_number  level_number_lower  level_number_upper
+1              0           0                   2                     1.634030e-18
+                                               1                     1.634029e-18
+                                               3                     1.634036e-18
+                                               5                     1.936630e-18
+                                               4                     1.936630e-18
+                                                                         ...
+2              1           2                   20                    1.830975e-18
+                                               21                    1.830975e-18
+                                               22                    1.830976e-18
+                                               23                    1.830976e-18
+                                               24                    1.830977e-18
+Name: delta_e, Length: 358, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">atom_data</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">nu</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Hz</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">J</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/var/folders/fg/nwmb1mss6kq3hwhj10dt0qh00000gn/T/ipykernel_571/2191378405.py:1: PerformanceWarning: indexing past lexsort depth may impact performance.
+  (atom_data.lines.loc[1,0, 0, 3].nu.values[0] * u.Hz * const.h).to(u.J)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="math notranslate nohighlight">
+$1.6340338 \times 10^{-18} \; \mathrm{J}$</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span><span class="o">.</span><span class="n">lines</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">atom_data</span><span style="color: rgb(98,98,98)">.</span>lines
+
+<span class="ansi-red-fg">NameError</span>: name &#39;atom_data&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+atomic_number  ion_number  level_number_lower  level_number_upper
+1              0           0                   2                     1.634030e-18
+                                               1                     1.634029e-18
+                                               3                     1.634036e-18
+                                               5                     1.936630e-18
+                                               4                     1.936630e-18
+                                                                         ...
+2              1           2                   20                    1.830975e-18
+                                               21                    1.830975e-18
+                                               22                    1.830976e-18
+                                               23                    1.830976e-18
+                                               24                    1.830977e-18
+Name: delta_e, Length: 358, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 08 Aug 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
