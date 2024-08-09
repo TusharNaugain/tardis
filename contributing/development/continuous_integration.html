@@ -25,7 +25,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=eafc7854"></script>
+        <script src="../../_static/documentation_options.js?v=2ce89b59"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -164,13 +164,13 @@ all the TARDIS tests. This helps us to detect bugs immediately.</p>
 <h2>Azure Repos<a class="headerlink" href="#azure-repos" title="Link to this heading">¶</a></h2>
 <p>Azure Repos is just another service to store Git repositories.
 Currently, we use Azure Repos to mirror <code class="docutils literal notranslate"><span class="pre">tardis-refdata</span></code>
-repository since Azure does not impose limits on LFS bandwith
+repository since Azure does not impose limits on LFS bandwidth
 nor storage.</p>
 <p><strong>To clone this repository:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://tardis-sn@dev.azure.com/tardis-sn/TARDIS/_git/tardis-refdata
 </pre></div>
 </div>
-<p><strong>To download a LFS file trough HTTPS:</strong></p>
+<p><strong>To download a LFS file through HTTPS:</strong></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>https://dev.azure.com/tardis-sn/TARDIS/_apis/git/repositories/tardis-refdata/items?path=atom_data/kurucz_cd23_chianti_H_He.h5&amp;resolveLfs=true
 </pre></div>
 </div>
@@ -235,7 +235,7 @@ and works mostly in the same way.</p>
 <p>Triggers also can be set on the Azure’s web interface
 too, but this action is discouraged, since it overrides
 any trigger specified in the YAML file and could lead to
-confusing sitations.</p>
+confusing situations.</p>
 </div>
 <p>There are more useful triggers such as the <em>cron</em> trigger, see the
 <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&amp;tabs=yaml#ci-triggers">Azure documentation section on triggers</a> for more information.</p>
@@ -348,7 +348,7 @@ is inserted into another file).</p>
 <li><p>Install TARDIS environment (optional).</p></li>
 <li><p>Build and install TARDIS (optional).</p></li>
 </ul>
-<p>It was written to make pipelines easier to create and mantain. For example,
+<p>It was written to make pipelines easier to create and maintain. For example,
 to start a new pipeline use:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>steps:
   - template: templates/default.yml
@@ -394,13 +394,13 @@ extra steps to run the tests and upload the coverage results.</p>
 <h3>Authors pipeline<a class="headerlink" href="#authors-pipeline" title="Link to this heading">¶</a></h3>
 <p>This pipeline runs a notebook located in <code class="docutils literal notranslate"><span class="pre">tardis-zenodo</span></code> repository and
 pushes a new version of <code class="docutils literal notranslate"><span class="pre">.zenodo.json</span></code> to the root of <code class="docutils literal notranslate"><span class="pre">tardis</span></code>
-repository if new commiters are found (or author order changes). The
+repository if new committers are found (or author order changes). The
 rendered notebook is uploaded to the pipeline results as an artifact.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Fails if some author name is incomplete (due to an incomplete
-GitHub profile) or duplicated (commited with more than one
-email adress). In both cases update <code class="docutils literal notranslate"><span class="pre">.mailmap</span></code> to fix it.</p>
+GitHub profile) or duplicated (committed with more than one
+email address). In both cases update <code class="docutils literal notranslate"><span class="pre">.mailmap</span></code> to fix it.</p>
 </div>
 <p>In the near future we want to auto-update the citation guidelines in the
 <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> and the documentation.</p>
@@ -475,7 +475,7 @@ bridge has failed.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 06 Aug 2024.
+      <span class="lastupdated">Last updated on 09 Aug 2024.
       </span></p>
   </div>
 
