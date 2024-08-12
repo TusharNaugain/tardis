@@ -24,7 +24,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/documentation_options.js?v=2de2fcff"></script>
+        <script src="_static/documentation_options.js?v=58e972a1"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -469,11 +469,11 @@
 </li>
       <li><a href="api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.calculate_elemental_cell_masses">calculate_elemental_cell_masses() (tardis.model.matter.composition.Composition method)</a>
 </li>
-      <li><a href="api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_emitted_luminosity">calculate_emitted_luminosity() (tardis.spectrum.base.SpectrumSolver method)</a>
-</li>
       <li><a href="api/tardis.energy_input.gamma_ray_packet_source.html#tardis.energy_input.gamma_ray_packet_source.RadioactivePacketSource.calculate_energy_factors">calculate_energy_factors() (tardis.energy_input.gamma_ray_packet_source.RadioactivePacketSource method)</a>
 </li>
       <li><a href="api/tardis.energy_input.gamma_ray_transport.html#tardis.energy_input.gamma_ray_transport.calculate_energy_per_mass">calculate_energy_per_mass() (in module tardis.energy_input.gamma_ray_transport)</a>
+</li>
+      <li><a href="api/tardis.spectrum.luminosity.html#tardis.spectrum.luminosity.calculate_filtered_luminosity">calculate_filtered_luminosity() (in module tardis.spectrum.luminosity)</a>
 </li>
       <li><a href="api/tardis.io.model.parse_radiation_field_configuration.html#tardis.io.model.parse_radiation_field_configuration.calculate_geometric_dilution_factor">calculate_geometric_dilution_factor() (in module tardis.io.model.parse_radiation_field_configuration)</a>
 </li>
@@ -514,8 +514,6 @@
       <li><a href="api/tardis.transport.montecarlo.packet_source.html#tardis.transport.montecarlo.packet_source.BasePacketSource.calculate_radfield_luminosity">calculate_radfield_luminosity() (tardis.transport.montecarlo.packet_source.BasePacketSource method)</a>
 </li>
       <li><a href="api/tardis.plasma.properties.rate_matrix_index.html#tardis.plasma.properties.rate_matrix_index.NLTEIndexHelper.calculate_rate_matrix_index">calculate_rate_matrix_index() (tardis.plasma.properties.rate_matrix_index.NLTEIndexHelper method)</a>
-</li>
-      <li><a href="api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_reabsorbed_luminosity">calculate_reabsorbed_luminosity() (tardis.spectrum.base.SpectrumSolver method)</a>
 </li>
       <li><a href="api/tardis.analysis.html#tardis.analysis.TARDISHistory.calculate_relative_lte_level_populations">calculate_relative_lte_level_populations() (tardis.analysis.TARDISHistory method)</a>
 </li>
@@ -2069,6 +2067,8 @@
 </li>
         <li><a href="api/tardis.spectrum.formal_integral_cuda.html#module-tardis.spectrum.formal_integral_cuda">tardis.spectrum.formal_integral_cuda</a>
 </li>
+        <li><a href="api/tardis.spectrum.luminosity.html#module-tardis.spectrum.luminosity">tardis.spectrum.luminosity</a>
+</li>
         <li><a href="api/tardis.spectrum.spectrum.html#module-tardis.spectrum.spectrum">tardis.spectrum.spectrum</a>
 </li>
         <li><a href="api/tardis.stats.html#module-tardis.stats">tardis.stats</a>
@@ -2888,6 +2888,8 @@
 </li>
       <li><a href="api/tardis.plasma.assembly.base.html#tardis.plasma.assembly.base.PlasmaSolverFactory.setup_legacy_nlte">setup_legacy_nlte() (tardis.plasma.assembly.base.PlasmaSolverFactory method)</a>
 </li>
+      <li><a href="api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.setup_optional_spectra">setup_optional_spectra() (tardis.spectrum.base.SpectrumSolver method)</a>
+</li>
       <li><a href="api/tardis.analysis.html#tardis.analysis.LastLineInteraction.shell">shell (tardis.analysis.LastLineInteraction property)</a>
 
       <ul>
@@ -2896,10 +2898,10 @@
       </ul></li>
       <li><a href="api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_hdf">shell_info_from_hdf() (in module tardis.visualization.widgets.shell_info)</a>
 </li>
-      <li><a href="api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_simulation">shell_info_from_simulation() (in module tardis.visualization.widgets.shell_info)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/tardis.visualization.widgets.shell_info.html#tardis.visualization.widgets.shell_info.shell_info_from_simulation">shell_info_from_simulation() (in module tardis.visualization.widgets.shell_info)</a>
+</li>
       <li><a href="api/tardis.visualization.widgets.custom_abundance.html#tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget.shell_no">shell_no (tardis.visualization.widgets.custom_abundance.CustomAbundanceWidget property)</a>
 
       <ul>
@@ -3639,8 +3641,6 @@
         <li><a href="api/tardis.plasma.properties.nlte.html#module-tardis.plasma.properties.nlte">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     tardis.plasma.properties.nlte_excitation_data
 
@@ -3648,6 +3648,8 @@
         <li><a href="api/tardis.plasma.properties.nlte_excitation_data.html#module-tardis.plasma.properties.nlte_excitation_data">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     tardis.plasma.properties.nlte_rate_equation_solver
 
@@ -3772,6 +3774,13 @@
 
       <ul>
         <li><a href="api/tardis.spectrum.formal_integral_cuda.html#module-tardis.spectrum.formal_integral_cuda">module</a>
+</li>
+      </ul></li>
+      <li>
+    tardis.spectrum.luminosity
+
+      <ul>
+        <li><a href="api/tardis.spectrum.luminosity.html#module-tardis.spectrum.luminosity">module</a>
 </li>
       </ul></li>
       <li>

@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=2de2fcff"></script>
+        <script src="../../../../_static/documentation_options.js?v=58e972a1"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,14 +124,23 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.transport.montecarlo.packet_trackers</h1><div class="highlight"><pre>
-<span></span>from numba import float64, int64, njit
+<span></span>from numba import float64, int64, njit, from_dtype
 from numba.experimental import jitclass
 from numba.typed import List
 import numpy as np
 import pandas as pd
 
+
+boundary_interaction_dtype = np.dtype(
+    [
+        (&quot;event_id&quot;, &quot;int64&quot;),
+        (&quot;current_shell_id&quot;, &quot;int64&quot;),
+        (&quot;next_shell_id&quot;, &quot;int64&quot;),
+    ]
+)
+
+
 rpacket_tracker_spec = [
-    (&quot;length&quot;, int64),
     (&quot;seed&quot;, int64),
     (&quot;index&quot;, int64),
     (&quot;status&quot;, int64[:]),
@@ -141,7 +150,10 @@ rpacket_tracker_spec = [
     (&quot;energy&quot;, float64[:]),
     (&quot;shell_id&quot;, int64[:]),
     (&quot;interaction_type&quot;, int64[:]),
+    (&quot;boundary_interaction&quot;, from_dtype(boundary_interaction_dtype)[:]),
     (&quot;num_interactions&quot;, int64),
+    (&quot;boundary_interactions_index&quot;, int64),
+    (&quot;event_id&quot;, int64),
     (&quot;extend_factor&quot;, int64),
 ]
 
@@ -181,17 +193,25 @@ class RPacketTracker(object):
     &quot;&quot;&quot;
 
     def __init__(self, length):
-        self.length = length
+        &quot;&quot;&quot;
+        Initialize the variables with default value
+        &quot;&quot;&quot;
         self.seed = np.int64(0)
         self.index = np.int64(0)
-        self.status = np.empty(self.length, dtype=np.int64)
-        self.r = np.empty(self.length, dtype=np.float64)
-        self.nu = np.empty(self.length, dtype=np.float64)
-        self.mu = np.empty(self.length, dtype=np.float64)
-        self.energy = np.empty(self.length, dtype=np.float64)
-        self.shell_id = np.empty(self.length, dtype=np.int64)
-        self.interaction_type = np.empty(self.length, dtype=np.int64)
+        self.status = np.empty(length, dtype=np.int64)
+        self.r = np.empty(length, dtype=np.float64)
+        self.nu = np.empty(length, dtype=np.float64)
+        self.mu = np.empty(length, dtype=np.float64)
+        self.energy = np.empty(length, dtype=np.float64)
+        self.shell_id = np.empty(length, dtype=np.int64)
+        self.interaction_type = np.empty(length, dtype=np.int64)
+        self.boundary_interaction = np.empty(
+            length,
+            dtype=boundary_interaction_dtype,
+        )
         self.num_interactions = 0
+        self.boundary_interactions_index = 0
+        self.event_id = 1
         self.extend_factor = 2
 
     def extend_array(self, array, array_length):
@@ -202,17 +222,19 @@ class RPacketTracker(object):
         return temp_array
 
     def track(self, r_packet):
-        if self.num_interactions &gt;= self.length:
-            self.status = self.extend_array(self.status, self.length)
-            self.r = self.extend_array(self.r, self.length)
-            self.nu = self.extend_array(self.nu, self.length)
-            self.mu = self.extend_array(self.mu, self.length)
-            self.energy = self.extend_array(self.energy, self.length)
-            self.shell_id = self.extend_array(self.shell_id, self.length)
+        &quot;&quot;&quot;
+        Track important properties of RPacket
+        &quot;&quot;&quot;
+        if self.num_interactions &gt;= self.status.size:
+            self.status = self.extend_array(self.status, self.status.size)
+            self.r = self.extend_array(self.r, self.r.size)
+            self.nu = self.extend_array(self.nu, self.nu.size)
+            self.mu = self.extend_array(self.mu, self.mu.size)
+            self.energy = self.extend_array(self.energy, self.energy.size)
+            self.shell_id = self.extend_array(self.shell_id, self.shell_id.size)
             self.interaction_type = self.extend_array(
-                self.interaction_type, self.length
+                self.interaction_type, self.interaction_type.size
             )
-            self.length = self.length * self.extend_factor
 
         self.index = r_packet.index
         self.seed = r_packet.seed
@@ -227,14 +249,46 @@ class RPacketTracker(object):
         ] = r_packet.last_interaction_type
         self.num_interactions += 1
 
+    def track_boundary_interaction(self, current_shell_id, next_shell_id):
+        &quot;&quot;&quot;
+        Track boundary interaction properties
+        &quot;&quot;&quot;
+        if self.boundary_interactions_index &gt;= self.boundary_interaction.size:
+            self.boundary_interaction = self.extend_array(
+                self.boundary_interaction,
+                self.boundary_interaction.size,
+            )
+
+        self.boundary_interaction[self.boundary_interactions_index][
+            &quot;event_id&quot;
+        ] = self.event_id
+        self.event_id += 1
+
+        self.boundary_interaction[self.boundary_interactions_index][
+            &quot;current_shell_id&quot;
+        ] = current_shell_id
+
+        self.boundary_interaction[self.boundary_interactions_index][
+            &quot;next_shell_id&quot;
+        ] = next_shell_id
+
+        self.boundary_interactions_index += 1
+
     def finalize_array(self):
+        &quot;&quot;&quot;
+        Change the size of the array from length ( or multiple of length ) to
+        the actual number of interactions
+        &quot;&quot;&quot;
         self.status = self.status[: self.num_interactions]
         self.r = self.r[: self.num_interactions]
         self.nu = self.nu[: self.num_interactions]
         self.mu = self.mu[: self.num_interactions]
         self.energy = self.energy[: self.num_interactions]
         self.shell_id = self.shell_id[: self.num_interactions]
-        self.interaction_type = self.interaction_type[: self.num_interactions]</div>
+        self.interaction_type = self.interaction_type[: self.num_interactions]
+        self.boundary_interaction = self.boundary_interaction[
+            : self.boundary_interactions_index
+        ]</div>
 
 
 
@@ -320,6 +374,9 @@ class RPacketLastInteractionTracker(object):
     &quot;&quot;&quot;
 
     def __init__(self):
+        &quot;&quot;&quot;
+        Initialize properties with default values
+        &quot;&quot;&quot;
         self.index = -1
         self.r = -1.0
         self.nu = 0.0
@@ -328,6 +385,9 @@ class RPacketLastInteractionTracker(object):
         self.interaction_type = -1
 
     def track(self, r_packet):
+        &quot;&quot;&quot;
+        Track properties of RPacket and override the previous values
+        &quot;&quot;&quot;
         self.index = r_packet.index
         self.r = r_packet.r
         self.nu = r_packet.nu
@@ -335,8 +395,17 @@ class RPacketLastInteractionTracker(object):
         self.shell_id = r_packet.current_shell_id
         self.interaction_type = r_packet.last_interaction_type
 
-    # To make it compatible with RPacketTracker
     def finalize_array(self):
+        &quot;&quot;&quot;
+        Added to make RPacketLastInteractionTracker compatible with RPacketTracker
+        &quot;&quot;&quot;
+        pass
+
+    # To make it compatible with RPacketTracker
+    def track_boundary_interaction(self, current_shell_id, next_shell_id):
+        &quot;&quot;&quot;
+        Added to make RPacketLastInteractionTracker compatible with RPacketTracker
+        &quot;&quot;&quot;
         pass</div>
 
 
