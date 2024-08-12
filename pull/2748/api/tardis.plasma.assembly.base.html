@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=472efae1"></script>
+        <script src="../_static/documentation_options.js?v=2de2fcff"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -160,10 +160,113 @@
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.assembly.base.</span></span><span class="sig-name descname"><span class="pre">PlasmaSolverFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_atomic_numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Factory class for creating plasma solvers.</p>
+<dl class="simple">
+<dt>atom_data<span class="classifier">object</span></dt><dd><p>Object containing atomic data.</p>
+</dd>
+<dt>selected_atomic_numbers<span class="classifier">list</span></dt><dd><p>List of selected atomic numbers.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>excitation_analytical_approximation</strong><span class="classifier">str</span></dt><dd><p>Analytical approximation for excitation (default: “lte”).</p>
+</dd>
+<dt><strong>ionization_analytical_approximation</strong><span class="classifier">str</span></dt><dd><p>Analytical approximation for ionization (default: “lte”).</p>
+</dd>
+<dt><strong>nebular_ionization_delta_treatment</strong><span class="classifier">tuple</span></dt><dd><p>Species to use for the delta_treatment in nebular ionization ML93 (default: ()).</p>
+</dd>
+<dt><strong>link_t_rad_t_electron</strong><span class="classifier">float</span></dt><dd><p>Link between t_rad and t_electron (default: 1.0).</p>
+</dd>
+<dt><strong>radiative_rates_type</strong><span class="classifier">str</span></dt><dd><p>Type of radiative rates (default: “dilute-blackbody”).</p>
+</dd>
+<dt><strong>delta_treatment</strong><span class="classifier">float or None</span></dt><dd><p>Delta treatment (default: None).</p>
+</dd>
+<dt><strong>legacy_nlte_species</strong><span class="classifier">list</span></dt><dd><p>List of legacy non-LTE species (default: []).</p>
+</dd>
+<dt><strong>nlte_excitation_species</strong><span class="classifier">list</span></dt><dd><p>List of non-LTE excitation species (default: []).</p>
+</dd>
+<dt><strong>nlte_ionization_species</strong><span class="classifier">list</span></dt><dd><p>List of non-LTE ionization species (default: []).</p>
+</dd>
+<dt><strong>nlte_solver</strong><span class="classifier">str</span></dt><dd><p>Non-LTE solver (default: “lu”).
+Helium treatment options (default: “none”).</p>
+</dd>
+<dt><strong>heating_rate_data_file</strong><span class="classifier">str</span></dt><dd><p>Heating rate data file (default: “none”).</p>
+</dd>
+<dt><strong>continuum_interaction_species</strong><span class="classifier">list</span></dt><dd><p>List of continuum interaction species (default: []).</p>
+</dd>
+<dt><strong>enable_adiabatic_cooling</strong><span class="classifier">bool</span></dt><dd><p>Flag for enabling adiabatic cooling (default: False).</p>
+</dd>
+<dt><strong>enable_two_photon_decay</strong><span class="classifier">bool</span></dt><dd><p>Flag for enabling two-photon decay (default: False).</p>
+</dd>
+<dt><strong>line_interaction_type</strong><span class="classifier">str</span></dt><dd><p>Type of line interaction (default: “scatter”).</p>
+</dd>
+<dt><strong>plasma_modules</strong><span class="classifier">list</span></dt><dd><p>List of plasma modules (default: []).</p>
+</dd>
+<dt><strong>kwargs</strong><span class="classifier">dict</span></dt><dd><p>Additional keyword arguments (default: {}).</p>
+</dd>
+<dt><strong>property_kwargs</strong><span class="classifier">dict</span></dt><dd><p>Additional keyword arguments for properties (default: {}).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>parse_plasma_config(plasma_config)</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>continuum_interaction_species_multi_index()</strong></p></td>
+<td><p>Get the continuum interaction species as a multi-index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>setup_factory(config)</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>setup_helium_treatment()</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>setup_legacy_nlte(nlte_config)</strong></p></td>
+<td><p>Set up the non-LTE properties for the legacy species.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>setup_analytical_approximations()</strong></p></td>
+<td><p>Set up the analytical approximations for excitation and ionization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>initialize_j_blues(dilute_planckian_radiation_field, lines_df)</strong></p></td>
+<td><p>Initialize j_blues.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.assemble">
 <span class="sig-name descname"><span class="pre">assemble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_densities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilute_planckian_radiation_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_densities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.assemble"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.assemble" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Assemble the plasma based on the provided parameters and settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>number_densities</strong><span class="classifier">dict</span></dt><dd><p>Dictionary of number densities for different species.</p>
+</dd>
+<dt><strong>dilute_planckian_radiation_field</strong><span class="classifier">object</span></dt><dd><p>The dilute Planckian radiation field object.</p>
+</dd>
+<dt><strong>time_explosion</strong><span class="classifier">float</span></dt><dd><p>The time of explosion.</p>
+</dd>
+<dt><strong>electron_densities</strong><span class="classifier">array-like, optional</span></dt><dd><p>Optional electron densities.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>BasePlasma</dt><dd><p>The assembled plasma object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If an error occurs during assembly.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.check_continuum_interaction_species">
@@ -241,7 +344,30 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.initialize_j_blues">
 <span class="sig-name descname"><span class="pre">initialize_j_blues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilute_planckian_radiation_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.initialize_j_blues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.initialize_j_blues" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initialize the j_blues DataFrame based on the radiative_rates_type and the dilute_planckian_radiation_field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dilute_planckian_radiation_field</strong><span class="classifier">object</span></dt><dd><p>The dilute Planckian radiation field object.</p>
+</dd>
+<dt><strong>lines_df</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>The DataFrame containing lines information.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>The DataFrame with calculated mean intensity values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If the radiative_rates_type is unknown.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.ionization_analytical_approximation">
@@ -472,7 +598,7 @@ and excitation treatment.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 07 Aug 2024.
+      <span class="lastupdated">Last updated on 12 Aug 2024.
       </span></p>
   </div>
 
