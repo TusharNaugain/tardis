@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=0ceab817"></script>
+        <script src="../../../../_static/documentation_options.js?v=f9194bb7"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -286,6 +286,10 @@ def single_packet_loop(
         # If continuum processes: update continuum estimators
 
         if interaction_type == InteractionType.BOUNDARY:
+            rpacket_tracker.track_boundary_interaction(
+                r_packet.current_shell_id,
+                r_packet.current_shell_id + delta_shell,
+            )
             move_r_packet(
                 r_packet,
                 distance,
@@ -294,7 +298,9 @@ def single_packet_loop(
                 montecarlo_configuration.ENABLE_FULL_RELATIVITY,
             )
             move_packet_across_shell_boundary(
-                r_packet, delta_shell, len(numba_radial_1d_geometry.r_inner)
+                r_packet,
+                delta_shell,
+                len(numba_radial_1d_geometry.r_inner),
             )
 
         elif interaction_type == InteractionType.LINE:
@@ -462,7 +468,7 @@ def set_packet_props_full_relativity(r_packet, time_explosion):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Aug 2024.
+      <span class="lastupdated">Last updated on 13 Aug 2024.
       </span></p>
   </div>
 
