@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -180,9 +180,10 @@ Parameters
 </dd>
 </dl>
 </div></blockquote>
+<p>Initialize properties with default values</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketLastInteractionTracker#7fecdc73fe30&lt;index:int64,r:float64,nu:float64,energy:float64,shell_id:int64,interaction_type:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketLastInteractionTracker#7f2fb010a780&lt;index:int64,r:float64,nu:float64,energy:float64,shell_id:int64,interaction_type:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -218,13 +219,51 @@ Parameters
 </dd>
 <dt>num_interactions<span class="classifier">int</span></dt><dd><p>Internal counter for the interactions that a particular RPacket undergoes</p>
 </dd>
+<dt>extend_factor<span class="classifier">int</span></dt><dd><p>The factor by which to extend the properties array when the size limit is reached</p>
+</dd>
 </dl>
 </div></blockquote>
+<p>Initialize the variables with default value</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7fecdc7989e0&lt;length:int64,seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f2fb0115700&lt;seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),boundary_interaction:unaligned</span> <span class="pre">array(Record(event_id[type=int64;offset=0],current_shell_id[type=int64;offset=8],next_shell_id[type=int64;offset=16];24;False),</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64,boundary_interactions_index:int64,event_id:int64,extend_factor:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.generate_rpacket_last_interaction_tracker_list">
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">generate_rpacket_last_interaction_tracker_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#generate_rpacket_last_interaction_tracker_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.generate_rpacket_last_interaction_tracker_list" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>no_of_packets</strong><span class="classifier">The count of RPackets that are sent in the ejecta</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A list containing RPacketLastInteractionTracker for each RPacket</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.generate_rpacket_tracker_list">
+<span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">generate_rpacket_tracker_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">no_of_packets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#generate_rpacket_tracker_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.generate_rpacket_tracker_list" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>no_of_packets</strong><span class="classifier">The count of RPackets that are sent in the ejecta</span></dt><dd></dd>
+<dt><strong>length</strong><span class="classifier">initial length of the tracking array</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A list containing RPacketTracker for each RPacket</dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -261,7 +300,7 @@ Parameters
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

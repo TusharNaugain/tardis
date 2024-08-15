@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -33,8 +33,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.transport.montecarlo.estimators.dilute_blackbody_properties module" href="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.html" />
-    <link rel="prev" title="tardis.transport.montecarlo.estimators package" href="tardis.transport.montecarlo.estimators.html" />
+    <link rel="next" title="tardis.transport.montecarlo.estimators.mc_rad_field_solver module" href="tardis.transport.montecarlo.estimators.mc_rad_field_solver.html" />
+    <link rel="prev" title="tardis.transport.montecarlo.estimators.base module" href="tardis.transport.montecarlo.estimators.base.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -160,7 +160,7 @@
 <span id="tardis-transport-montecarlo-estimators-continuum-radfield-properties-module"></span><h1>tardis.transport.montecarlo.estimators.continuum_radfield_properties module<a class="headerlink" href="#module-tardis.transport.montecarlo.estimators.continuum_radfield_properties" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">ContinuumProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulated_recomb_rate_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ionization_rate_coefficient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#ContinuumProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.estimators.continuum_radfield_properties.</span></span><span class="sig-name descname"><span class="pre">ContinuumProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulated_recombination_rate_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photo_ionization_rate_coefficient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/estimators/continuum_radfield_properties.html#ContinuumProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.photo_ionization_rate_coefficient">
@@ -168,8 +168,8 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recomb_rate_factor">
-<span class="sig-name descname"><span class="pre">stimulated_recomb_rate_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recomb_rate_factor" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recombination_rate_factor">
+<span class="sig-name descname"><span class="pre">stimulated_recombination_rate_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties.stimulated_recombination_rate_factor" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -289,15 +289,15 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.transport.montecarlo.estimators.html" class="btn btn-neutral float-left" title="tardis.transport.montecarlo.estimators package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.transport.montecarlo.estimators.dilute_blackbody_properties.html" class="btn btn-neutral float-right" title="tardis.transport.montecarlo.estimators.dilute_blackbody_properties module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.transport.montecarlo.estimators.base.html" class="btn btn-neutral float-left" title="tardis.transport.montecarlo.estimators.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.transport.montecarlo.estimators.mc_rad_field_solver.html" class="btn btn-neutral float-right" title="tardis.transport.montecarlo.estimators.mc_rad_field_solver module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

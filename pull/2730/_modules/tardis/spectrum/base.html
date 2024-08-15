@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../../../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -162,6 +162,27 @@ class SpectrumSolver(HDFWriterMixin):
         self.integrator_settings = integrator_settings
         self._spectrum_integrated = None
 
+<div class="viewcode-block" id="SpectrumSolver.setup_optional_spectra">
+<a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.setup_optional_spectra">[docs]</a>
+    def setup_optional_spectra(
+        self, transport_state, virtual_packet_luminosity=None, integrator=None
+    ):
+        &quot;&quot;&quot;Set up the solver to handle virtual and integrated spectra
+
+        Parameters
+        ----------
+        virtual_packet_luminosity : np.ndarray, optional
+            Virtual packet luminosity, unnormalized, by default None
+        integrator : FormalIntegrator, optional
+            Integrator to compute the integrated spectrum with, by default None
+        &quot;&quot;&quot;
+        self.transport_state = transport_state
+        self._montecarlo_virtual_luminosity = (
+            virtual_packet_luminosity * u.erg / u.s
+        )
+        self._integrator = integrator</div>
+
+
     @property
     def spectrum_real_packets(self):
         return TARDISSpectrum(
@@ -264,58 +285,6 @@ class SpectrumSolver(HDFWriterMixin):
             / self.transport_state.time_of_simulation.value
         )
 
-<div class="viewcode-block" id="SpectrumSolver.calculate_emitted_luminosity">
-<a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_emitted_luminosity">[docs]</a>
-    def calculate_emitted_luminosity(
-        self, luminosity_nu_start, luminosity_nu_end
-    ):
-        &quot;&quot;&quot;
-        Calculate emitted luminosity.
-
-        Parameters
-        ----------
-        luminosity_nu_start : astropy.units.Quantity
-        luminosity_nu_end : astropy.units.Quantity
-
-        Returns
-        -------
-        astropy.units.Quantity
-        &quot;&quot;&quot;
-        luminosity_wavelength_filter = (
-            self.transport_state.emitted_packet_nu &gt; luminosity_nu_start
-        ) &amp; (self.transport_state.emitted_packet_nu &lt; luminosity_nu_end)
-
-        return self.transport_state.emitted_packet_luminosity[
-            luminosity_wavelength_filter
-        ].sum()</div>
-
-
-<div class="viewcode-block" id="SpectrumSolver.calculate_reabsorbed_luminosity">
-<a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_reabsorbed_luminosity">[docs]</a>
-    def calculate_reabsorbed_luminosity(
-        self, luminosity_nu_start, luminosity_nu_end
-    ):
-        &quot;&quot;&quot;
-        Calculate reabsorbed luminosity.
-
-        Parameters
-        ----------
-        luminosity_nu_start : astropy.units.Quantity
-        luminosity_nu_end : astropy.units.Quantity
-
-        Returns
-        -------
-        astropy.units.Quantity
-        &quot;&quot;&quot;
-        luminosity_wavelength_filter = (
-            self.transport_state.reabsorbed_packet_nu &gt; luminosity_nu_start
-        ) &amp; (self.transport_state.reabsorbed_packet_nu &lt; luminosity_nu_end)
-
-        return self.transport_state.reabsorbed_packet_luminosity[
-            luminosity_wavelength_filter
-        ].sum()</div>
-
-
 <div class="viewcode-block" id="SpectrumSolver.solve">
 <a class="viewcode-back" href="../../../api/tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.solve">[docs]</a>
     def solve(self, transport_state):
@@ -367,7 +336,7 @@ class SpectrumSolver(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

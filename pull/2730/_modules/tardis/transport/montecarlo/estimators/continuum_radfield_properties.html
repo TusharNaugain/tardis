@@ -24,7 +24,7 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../../../../../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -132,6 +132,9 @@ from astropy import units as u
 
 import tardis.constants as const
 from tardis.io.atom_data import AtomData
+from tardis.plasma.properties.continuum_processes.rates import (
+    PhotoIonBoltzmannFactor,
+)
 from tardis.plasma.radiation_field.planck_rad_field import (
     DilutePlanckianRadiationField,
 )
@@ -142,7 +145,6 @@ from tardis.transport.montecarlo.estimators.util import (
     bound_free_estimator_array2frame,
     integrate_array_by_blocks,
 )
-from tardis.plasma.properties.continuum_processes import PhotoIonBoltzmannFactor
 
 H = const.h.cgs.value
 
@@ -243,7 +245,7 @@ class DiluteBlackBodyContinuumPropertiesSolver:
         photo_ion_rate_coeff = self.calculate_photo_ionization_rate_coefficient(
             mean_intensity_photo_ion_df
         )
-        stimulated_recomb_rate_coeff = (
+        stimulated_recomb_rate_factor = (
             self.calculate_stimulated_recomb_rate_factor(
                 mean_intensity_photo_ion_df,
                 photo_ion_boltzmann_factor,
@@ -251,7 +253,7 @@ class DiluteBlackBodyContinuumPropertiesSolver:
         )
 
         return ContinuumProperties(
-            stimulated_recomb_rate_coeff, photo_ion_rate_coeff
+            stimulated_recomb_rate_factor, photo_ion_rate_coeff
         )</div>
 
 
@@ -278,20 +280,23 @@ class DiluteBlackBodyContinuumPropertiesSolver:
         -----
         Equation 16 in Lucy 2003.
         &quot;&quot;&quot;
-        gamma = mean_intensity_photo_ion_df.multiply(
+        photo_ion_rate_coefficient = mean_intensity_photo_ion_df.multiply(
             4.0
             * np.pi
             * self.atom_data.photoionization_data.x_sect
             / (self.atom_data.photoionization_data.nu * H),
             axis=0,
         )
-        gamma = integrate_array_by_blocks(
-            gamma.values,
+        photo_ion_rate_coefficient = integrate_array_by_blocks(
+            photo_ion_rate_coefficient.values,
             self.atom_data.photoionization_data.nu.values,
             self.atom_data.photo_ion_block_references,
         )
-        gamma = pd.DataFrame(gamma, index=self.atom_data.photo_ion_unique_index)
-        return gamma</div>
+        photo_ion_rate_coefficient = pd.DataFrame(
+            photo_ion_rate_coefficient,
+            index=self.atom_data.photo_ion_unique_index,
+        )
+        return photo_ion_rate_coefficient</div>
 
 
 <div class="viewcode-block" id="DiluteBlackBodyContinuumPropertiesSolver.calculate_stimulated_recomb_rate_factor">
@@ -354,14 +359,13 @@ class DiluteBlackBodyContinuumPropertiesSolver:
                 self.atom_data.photoionization_data.nu.values
             )
         )
-        mean_intensity_df = pd.DataFrame(
+        return pd.DataFrame(
             mean_intensity,
             index=self.atom_data.photoionization_data.index,
             columns=np.arange(
                 len(dilute_blackbody_radiationfield_state.temperature)
             ),
-        )
-        return mean_intensity_df</div>
+        )</div>
 </div>
 
 
@@ -370,7 +374,8 @@ class DiluteBlackBodyContinuumPropertiesSolver:
 <a class="viewcode-back" href="../../../../../api/tardis.transport.montecarlo.estimators.continuum_radfield_properties.html#tardis.transport.montecarlo.estimators.continuum_radfield_properties.ContinuumProperties">[docs]</a>
 @dataclass
 class ContinuumProperties:
-    stimulated_recomb_rate_factor: pd.DataFrame
+    # this is not the rate coefficient but misses Phi I_K
+    stimulated_recombination_rate_factor: pd.DataFrame
     photo_ionization_rate_coefficient: pd.DataFrame</div>
 
 </pre></div>
@@ -383,7 +388,7 @@ class ContinuumProperties:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

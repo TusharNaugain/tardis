@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -161,8 +161,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tardis.spectrum.base.html">tardis.spectrum.base module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_emitted_luminosity"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.calculate_emitted_luminosity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.calculate_reabsorbed_luminosity"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.calculate_reabsorbed_luminosity()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.from_config"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.from_config()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.hdf_name"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.hdf_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.hdf_properties"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.hdf_properties</span></code></a></li>
@@ -170,6 +168,7 @@
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.montecarlo_emitted_luminosity"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.montecarlo_emitted_luminosity</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.montecarlo_reabsorbed_luminosity"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.montecarlo_reabsorbed_luminosity</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.montecarlo_virtual_luminosity"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.montecarlo_virtual_luminosity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.setup_optional_spectra"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.setup_optional_spectra()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.solve"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.solve()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.spectrum_integrated"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.spectrum_integrated</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.base.html#tardis.spectrum.base.SpectrumSolver.spectrum_real_packets"><code class="docutils literal notranslate"><span class="pre">SpectrumSolver.spectrum_real_packets</span></code></a></li>
@@ -222,6 +221,10 @@
 <li class="toctree-l2"><a class="reference internal" href="tardis.spectrum.formal_integral_cuda.html#tardis.spectrum.formal_integral_cuda.trapezoid_integration_cuda"><code class="docutils literal notranslate"><span class="pre">trapezoid_integration_cuda()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tardis.spectrum.luminosity.html">tardis.spectrum.luminosity module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tardis.spectrum.luminosity.html#tardis.spectrum.luminosity.calculate_filtered_luminosity"><code class="docutils literal notranslate"><span class="pre">calculate_filtered_luminosity()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tardis.spectrum.spectrum.html">tardis.spectrum.spectrum module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tardis.spectrum.spectrum.html#tardis.spectrum.spectrum.TARDISSpectrum"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.spectrum.html#tardis.spectrum.spectrum.TARDISSpectrum.f_nu_to_f_lambda"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum.f_nu_to_f_lambda()</span></code></a></li>
@@ -255,7 +258,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

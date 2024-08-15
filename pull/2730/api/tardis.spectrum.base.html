@@ -25,7 +25,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -161,44 +161,6 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.spectrum.base.</span></span><span class="sig-name descname"><span class="pre">SpectrumSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/spectrum/base.html#SpectrumSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.io.util.html#tardis.io.util.HDFWriterMixin" title="tardis.io.util.HDFWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">HDFWriterMixin</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.calculate_emitted_luminosity">
-<span class="sig-name descname"><span class="pre">calculate_emitted_luminosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">luminosity_nu_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_nu_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/spectrum/base.html#SpectrumSolver.calculate_emitted_luminosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver.calculate_emitted_luminosity" title="Link to this definition">¶</a></dt>
-<dd><p>Calculate emitted luminosity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>luminosity_nu_start</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-<dt><strong>luminosity_nu_end</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>astropy.units.Quantity</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.calculate_reabsorbed_luminosity">
-<span class="sig-name descname"><span class="pre">calculate_reabsorbed_luminosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">luminosity_nu_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luminosity_nu_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/spectrum/base.html#SpectrumSolver.calculate_reabsorbed_luminosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver.calculate_reabsorbed_luminosity" title="Link to this definition">¶</a></dt>
-<dd><p>Calculate reabsorbed luminosity.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>luminosity_nu_start</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-<dt><strong>luminosity_nu_end</strong><span class="classifier">astropy.units.Quantity</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>astropy.units.Quantity</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.from_config">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/spectrum/base.html#SpectrumSolver.from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver.from_config" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -232,6 +194,22 @@
 <dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.montecarlo_virtual_luminosity">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">montecarlo_virtual_luminosity</span></span><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver.montecarlo_virtual_luminosity" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.setup_optional_spectra">
+<span class="sig-name descname"><span class="pre">setup_optional_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transport_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">virtual_packet_luminosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/spectrum/base.html#SpectrumSolver.setup_optional_spectra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.spectrum.base.SpectrumSolver.setup_optional_spectra" title="Link to this definition">¶</a></dt>
+<dd><p>Set up the solver to handle virtual and integrated spectra</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>virtual_packet_luminosity</strong><span class="classifier">np.ndarray, optional</span></dt><dd><p>Virtual packet luminosity, unnormalized, by default None</p>
+</dd>
+<dt><strong>integrator</strong><span class="classifier">FormalIntegrator, optional</span></dt><dd><p>Integrator to compute the integrated spectrum with, by default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.spectrum.base.SpectrumSolver.solve">
@@ -289,7 +267,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

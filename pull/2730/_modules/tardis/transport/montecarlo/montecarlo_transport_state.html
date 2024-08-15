@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../../../../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -126,15 +126,9 @@
   <h1>Source code for tardis.transport.montecarlo.montecarlo_transport_state</h1><div class="highlight"><pre>
 <span></span>import warnings
 
-import numpy as np
 from astropy import units as u
 
 from tardis.io.util import HDFWriterMixin
-from tardis.transport.montecarlo.estimators.dilute_blackbody_properties import (
-    MCDiluteBlackBodyRadFieldSolver,
-)
-from tardis.spectrum.formal_integral import IntegrationError
-from tardis.spectrum.spectrum import TARDISSpectrum
 
 
 <div class="viewcode-block" id="MonteCarloTransportState">
@@ -200,38 +194,6 @@ class MonteCarloTransportState(HDFWriterMixin):
         self.opacity_state = opacity_state
         self.rpacket_tracker = rpacket_tracker
         self.vpacket_tracker = vpacket_tracker
-
-<div class="viewcode-block" id="MonteCarloTransportState.calculate_radiationfield_properties">
-<a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.montecarlo_transport_state.html#tardis.transport.montecarlo.montecarlo_transport_state.MonteCarloTransportState.calculate_radiationfield_properties">[docs]</a>
-    def calculate_radiationfield_properties(self):
-        &quot;&quot;&quot;
-        Calculate an updated radiation field from the :math:
-        `\\bar{nu}_\\textrm{estimator}` and :math:`\\J_\\textrm{estimator}`
-        calculated in the montecarlo simulation.
-        The details of the calculation can be found in the documentation.
-
-        Parameters
-        ----------
-        nubar_estimator : np.ndarray (float)
-        j_estimator : np.ndarray (float)
-
-        Returns
-        -------
-        t_radiative : astropy.units.Quantity (float)
-        dilution_factor : numpy.ndarray (float)
-        &quot;&quot;&quot;
-        dilute_bb_solver = MCDiluteBlackBodyRadFieldSolver()
-        dilute_bb_radfield = dilute_bb_solver.solve(
-            self.radfield_mc_estimators,
-            self.time_of_simulation,
-            self.geometry_state.volume,
-        )
-
-        return (
-            dilute_bb_radfield.temperature,
-            dilute_bb_radfield.dilution_factor,
-        )</div>
-
 
     @property
     def output_nu(self):
@@ -456,7 +418,7 @@ class MonteCarloTransportState(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 

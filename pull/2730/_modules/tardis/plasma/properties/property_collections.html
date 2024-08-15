@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=d8af9c2a"></script>
+        <script src="../../../../_static/documentation_options.js?v=acf8d1fd"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,9 +124,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.properties.property_collections</h1><div class="highlight"><pre>
-<span></span>from tardis.opacities.macro_atom.base import (
+<span></span>from tardis.opacities.continuum.bound_free import BoundFreeOpacity
+from tardis.opacities.macro_atom.base import (
     NonMarkovChainTransitionProbabilities,
     TransitionProbabilities,
+)
+from tardis.opacities.macro_atom.continuum_processes.collisional_ion_trans_prob import (
+    RawCollIonTransProbs,
 )
 from tardis.opacities.tau_sobolev import TauSobolev
 from tardis.plasma.properties import *
@@ -146,8 +150,7 @@ basic_inputs = PlasmaPropertyCollection(
         NumberDensity,
         TimeExplosion,
         AtomicData,
-        TRadiative,
-        DilutionFactor,
+        JBlues,
         LinkTRadTElectron,
         HeliumTreatment,
         ContinuumInteractionSpecies,
@@ -157,6 +160,8 @@ basic_inputs = PlasmaPropertyCollection(
 )
 basic_properties = PlasmaPropertyCollection(
     [
+        TRadiative,
+        DilutionFactor,
         BetaRadiation,
         Levels,
         Lines,
@@ -214,19 +219,10 @@ helium_lte_properties = PlasmaPropertyCollection(
 helium_numerical_nlte_properties = PlasmaPropertyCollection(
     [HeliumNumericalNLTE]
 )
-detailed_j_blues_inputs = PlasmaPropertyCollection(
-    [JBluesEstimator, RInner, TInner, Volume]
-)
-detailed_j_blues_properties = PlasmaPropertyCollection(
-    [JBluesDetailed, JBluesNormFactor, LuminosityInner, TimeSimulation]
-)
 continuum_interaction_inputs = PlasmaPropertyCollection(
     [
-        StimRecombRateCoeffEstimator,
-        PhotoIonRateCoeffEstimator,
-        RInner,
-        TInner,
-        Volume,
+        PhotoIonRateCoeff,
+        StimRecombRateFactor,
         BfHeatingRateCoeffEstimator,
         StimRecombCoolingRateCoeffEstimator,
         YgData,
@@ -234,19 +230,15 @@ continuum_interaction_inputs = PlasmaPropertyCollection(
 )
 continuum_interaction_properties = PlasmaPropertyCollection(
     [
+        StimRecombRateCoeff,
         PhotoIonizationData,
         SpontRecombRateCoeff,
-        PhotoIonRateCoeff,
         ThermalLevelBoltzmannFactorLTE,
         ThermalLTEPartitionFunction,
         BetaElectron,
         ThermalGElectron,
         ThermalPhiSahaLTE,
         SahaFactor,
-        TimeSimulation,
-        PhotoIonEstimatorsNormFactor,
-        LuminosityInner,
-        StimRecombRateCoeff,
         CorrPhotoIonRateCoeff,
         SpontRecombCoolingRateCoeff,
         RawRecombTransProbs,
@@ -296,7 +288,7 @@ two_photon_properties = PlasmaPropertyCollection(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 29 Jul 2024.
+      <span class="lastupdated">Last updated on 15 Aug 2024.
       </span></p>
   </div>
 
