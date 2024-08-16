@@ -24,7 +24,7 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=4920feb7"></script>
+        <script src="../../../_static/documentation_options.js?v=a5367b16"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -169,6 +169,8 @@ class OpacitySolver(object):
         -------
         OpacityState
         &quot;&quot;&quot;
+        atomic_data = legacy_plasma.atomic_data
+
         if self.disable_line_scattering:
             tau_sobolev = pd.DataFrame(
                 np.zeros(
@@ -182,11 +184,11 @@ class OpacitySolver(object):
                     ),
                     dtype=np.float64,
                 ),
-                index=legacy_plasma.atomic_data.lines.index,
+                index=atomic_data.lines.index,
             )
         else:
             tau_sobolev = calculate_sobolev_line_opacity(
-                legacy_plasma.atomic_data.lines,
+                atomic_data.lines,
                 legacy_plasma.level_number_density,
                 legacy_plasma.time_explosion,
                 legacy_plasma.stimulated_emission_factor,
@@ -209,7 +211,7 @@ class OpacitySolver(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 14 Aug 2024.
+      <span class="lastupdated">Last updated on 16 Aug 2024.
       </span></p>
   </div>
 
