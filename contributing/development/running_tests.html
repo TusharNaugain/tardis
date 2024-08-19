@@ -25,7 +25,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=87d033cb"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -237,14 +237,12 @@ The <code class="docutils literal notranslate"><span class="pre">--less-packets<
 use very few packets to generate the references and thus make the process much
 faster — THIS IS ONLY FOR DEBUGGING PURPOSES. The <code class="docutils literal notranslate"><span class="pre">-s</span></code> option ensures that
 TARDIS prints out the progress:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--args<span class="o">=</span><span class="s2">&quot;--integration=integration.yml -m integration</span>
-<span class="s2">--generate-reference --less-packets&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>--integration<span class="o">=</span>integration.yml<span class="w"> </span>-m<span class="w"> </span>integration<span class="w"> </span>--generate-reference<span class="w"> </span>--less-packets
 </pre></div>
 </div>
 <p>To run the test after having run the <code class="docutils literal notranslate"><span class="pre">--generate-references</span></code>, all that is
 needed is:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--args<span class="o">=</span><span class="s2">&quot;--integration=integration.yml -m integration</span>
-<span class="s2">--less-packets&quot;</span><span class="w"> </span>--remote-data
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>--integration<span class="o">=</span>integration.yml<span class="w"> </span>-m<span class="w"> </span>integration<span class="w"> </span>--less-packets<span class="w"> </span>--remote-data
 </pre></div>
 </div>
 </section>
@@ -262,7 +260,7 @@ needed is:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 18 Aug 2024.
+      <span class="lastupdated">Last updated on 19 Aug 2024.
       </span></p>
   </div>
 
