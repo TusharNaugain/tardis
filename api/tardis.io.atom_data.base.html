@@ -33,7 +33,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.io.atom_data.util module" href="tardis.io.atom_data.util.html" />
+    <link rel="next" title="tardis.io.atom_data.collision_data module" href="tardis.io.atom_data.collision_data.html" />
     <link rel="prev" title="tardis.io.atom_data.atom_web_download module" href="tardis.io.atom_data.atom_web_download.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -239,8 +239,6 @@ Curated from nndc</p>
 <dt><strong>collision_data_temperatures</strong><span class="classifier">numpy.array</span></dt><dd></dd>
 <dt><strong>zeta_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>synpp_refs</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
-<dt><strong>symbol2atomic_number</strong><span class="classifier">OrderedDict</span></dt><dd></dd>
-<dt><strong>atomic_number2symbol</strong><span class="classifier">OrderedDict</span></dt><dd></dd>
 <dt><strong>photoionization_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>two_photon_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>decay_radiation_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
@@ -267,6 +265,23 @@ Curated from nndc</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fname</strong><span class="classifier">Path, optional</span></dt><dd><p>Path to the HDFStore file or name of known atom data file
 (default: None)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.get_attributes_from_store">
+<span class="sig-name descname"><span class="pre">get_attributes_from_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.get_attributes_from_store"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.get_attributes_from_store" title="Link to this definition">¶</a></dt>
+<dd><p>Gets atom_data attributes, throws error and sets to None
+if they are not available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>store</strong><span class="classifier">pd.HDFStore</span></dt><dd><p>Data source</p>
+</dd>
+<dt><strong>store_key</strong><span class="classifier">str</span></dt><dd><p>HDFStore value to check</p>
 </dd>
 </dl>
 </dd>
@@ -312,6 +327,17 @@ needed</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_line_level_indexes">
+<span class="sig-name descname"><span class="pre">prepare_line_level_indexes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_line_level_indexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_line_level_indexes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_lines">
+<span class="sig-name descname"><span class="pre">prepare_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Prepare line data</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_macro_atom_data">
 <span class="sig-name descname"><span class="pre">prepare_macro_atom_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_lower2level_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_upper2level_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_macro_atom_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_macro_atom_data" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -335,19 +361,6 @@ needed</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="tardis.io.atom_data.base.NLTEData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">NLTEData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlte_species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#NLTEData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.NLTEData" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.io.atom_data.base.NLTEData.get_collision_matrix">
-<span class="sig-name descname"><span class="pre">get_collision_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_electrons</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#NLTEData.get_collision_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.NLTEData.get_collision_matrix" title="Link to this definition">¶</a></dt>
-<dd><p>Creat collision matrix by interpolating the C_ul values for
-the desired temperatures.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
@@ -355,7 +368,7 @@ the desired temperatures.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.io.atom_data.atom_web_download.html" class="btn btn-neutral float-left" title="tardis.io.atom_data.atom_web_download module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.io.atom_data.util.html" class="btn btn-neutral float-right" title="tardis.io.atom_data.util module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.io.atom_data.collision_data.html" class="btn btn-neutral float-right" title="tardis.io.atom_data.collision_data module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
