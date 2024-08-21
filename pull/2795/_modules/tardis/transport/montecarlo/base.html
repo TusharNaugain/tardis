@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=a3d036f7"></script>
+        <script src="../../../../_static/documentation_options.js?v=4d18f787"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -163,8 +163,6 @@ from tardis.util.base import (
     update_iterations_pbar,
 )
 
-from tardis.opacities.opacity_solver import OpacitySolver
-
 logger = logging.getLogger(__name__)
 
 
@@ -224,16 +222,13 @@ class MonteCarloTransportSolver(HDFWriterMixin):
         mc_tracker.DEBUG_MODE = debug_packets
         mc_tracker.BUFFER = logger_buffer
 
-        self.opacity_solver = OpacitySolver(
-            self.line_interaction_type,
-            self.montecarlo_configuration.DISABLE_LINE_SCATTERING,
-        )
-
 <div class="viewcode-block" id="MonteCarloTransportSolver.initialize_transport_state">
 <a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.base.html#tardis.transport.montecarlo.base.MonteCarloTransportSolver.initialize_transport_state">[docs]</a>
     def initialize_transport_state(
         self,
         simulation_state,
+        opacity_state,
+        macro_atom_state,
         plasma,
         no_of_packets,
         no_of_virtual_packets=0,
@@ -250,9 +245,8 @@ class MonteCarloTransportSolver(HDFWriterMixin):
 
         geometry_state = simulation_state.geometry.to_numba()
 
-        opacity_state = self.opacity_solver.solve(plasma)
         opacity_state_numba = opacity_state_to_numba(
-            opacity_state, self.opacity_solver.line_interaction_type
+            opacity_state, macro_atom_state, self.line_interaction_type
         )
         opacity_state_numba = opacity_state_numba[
             simulation_state.geometry.v_inner_boundary_index : simulation_state.geometry.v_outer_boundary_index
@@ -483,7 +477,7 @@ class MonteCarloTransportSolver(HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 13 Aug 2024.
+      <span class="lastupdated">Last updated on 21 Aug 2024.
       </span></p>
   </div>
 
