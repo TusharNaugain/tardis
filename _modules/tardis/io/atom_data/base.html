@@ -129,6 +129,7 @@
 import numpy as np
 import pandas as pd
 from astropy.units import Quantity
+from dataclasses import dataclass
 
 from tardis import constants as const
 from tardis.io.atom_data.collision_data import (
@@ -237,6 +238,17 @@ class AtomData:
         columns: atomic_number, element, Rad energy, Rad intensity decay mode.
         Curated from nndc
 
+    linelist_atoms : pandas.DataFrame
+    A DataFrame containing a linelist of input atoms
+
+    linelist_molecules : pandas.DataFrame
+    A DataFrame containing a linelist of input molecules
+
+    molecule_data : MolecularData
+    A class containing the *molecular data* with:
+        equilibrium_constants, partition_functions, dissociation_energies
+
+
     Attributes
     ----------
     prepared : bool
@@ -251,6 +263,9 @@ class AtomData:
     photoionization_data : pandas.DataFrame
     two_photon_data : pandas.DataFrame
     decay_radiation_data : pandas.DataFrame
+    linelist_atoms : pandas.DataFrame
+    linelist_molecules : pandas.DataFrame
+    molecule_data : MolecularData
 
     Methods
     -------
@@ -281,7 +296,8 @@ class AtomData:
         &quot;photoionization_data&quot;,
         &quot;yg_data&quot;,
         &quot;two_photon_data&quot;,
-        &quot;linelist&quot;,
+        &quot;linelist_atoms&quot;,
+        &quot;linelist_molecules&quot;,
         &quot;decay_radiation_data&quot;,
     ]
 
@@ -355,10 +371,21 @@ class AtomData:
                     raise ValueError(
                         f&quot;Current carsus version, {carsus_version}, is not supported.&quot;
                     )
-            if &quot;linelist&quot; in store:
-                dataframes[&quot;linelist&quot;] = store[&quot;linelist&quot;]
+            if &quot;linelist_atoms&quot; in store:
+                dataframes[&quot;linelist_atoms&quot;] = store[&quot;linelist_atoms&quot;]
+            if &quot;linelist_molecules&quot; in store:
+                dataframes[&quot;linelist_molecules&quot;] = store[&quot;linelist_molecules&quot;]
 
-            atom_data = cls(**dataframes)
+            if &quot;molecules&quot; in store:
+                molecule_data = MoleculeData(
+                    store[&quot;molecules/equilibrium_constants&quot;],
+                    store[&quot;molecules/partition_functions&quot;],
+                    store[&quot;molecules/dissociation_energies&quot;],
+                )
+            else:
+                molecule_data = None
+
+            atom_data = cls(**dataframes, molecule_data=molecule_data)
 
             atom_data.uuid1 = cls.get_attributes_from_store(store, &quot;uuid1&quot;)
             atom_data.md5 = cls.get_attributes_from_store(store, &quot;md5&quot;)
@@ -396,8 +423,10 @@ class AtomData:
         photoionization_data=None,
         yg_data=None,
         two_photon_data=None,
-        linelist=None,
+        linelist_atoms=None,
+        linelist_molecules=None,
         decay_radiation_data=None,
+        molecule_data=None,
     ):
         self.prepared = False
 
@@ -466,8 +495,13 @@ class AtomData:
 
         self.two_photon_data = two_photon_data
 
-        if linelist is not None:
-            self.linelist = linelist
+        if linelist_atoms is not None:
+            self.linelist_atoms = linelist_atoms
+        if linelist_molecules is not None:
+            self.linelist_molecules = linelist_molecules
+
+        if molecule_data is not None:
+            self.molecule_data = molecule_data
 
         if decay_radiation_data is not None:
             self.decay_radiation_data = decay_radiation_data
@@ -827,6 +861,35 @@ class AtomData:
 
         return attribute</div>
 </div>
+
+
+
+<div class="viewcode-block" id="MoleculeData">
+<a class="viewcode-back" href="../../../../api/tardis.io.atom_data.base.html#tardis.io.atom_data.base.MoleculeData">[docs]</a>
+@dataclass
+class MoleculeData:
+    &quot;&quot;&quot;
+    Class to hold molecular data. Held by the AtomData object.
+
+    equilibrium_constants : pandas.DataFrame
+    A DataFrame containing the *molecular equilibrium constants* with:
+        index: molecule
+        columns: temperatures
+
+    partition_functions : pandas.DataFrame
+    A DataFrame containing the *molecular partition functions* with:
+        index: molecule
+        columns: temperatures
+
+    dissociation_energies : pandas.DataFrame
+    A DataFrame containing the *molecular dissociation energies* with:
+        index: molecule
+
+    &quot;&quot;&quot;
+
+    equilibrium_constants: pd.DataFrame
+    partition_functions: pd.DataFrame
+    dissociation_energies: pd.DataFrame</div>
 
 </pre></div>
 
