@@ -126,10 +126,10 @@
   <h1>Source code for tardis.visualization.widgets.util</h1><div class="highlight"><pre>
 <span></span>&quot;&quot;&quot;Utility classes and functions for widgets.&quot;&quot;&quot;
 
-import logging
-import qgrid
-import ipywidgets as ipw
 import asyncio
+import logging
+
+import ipywidgets as ipw
 
 logger = logging.getLogger(__name__)
 
@@ -170,6 +170,15 @@ def create_table_widget(
     qgrid.QgridWidget
         Table widget object
     &quot;&quot;&quot;
+    try:
+        import qgridnext
+    except ModuleNotFoundError as e:
+        logger.exception(
+            &quot;qgridnext must be installed via pip for widgets to work.\n \
+                         Run &#39;pip install qgridnext&#39; inside your tardis environment&quot;
+        )
+        raise e
+
     # Setting the options to be used for creating table widgets
     grid_options = {
         &quot;sortable&quot;: False,
@@ -223,7 +232,7 @@ def create_table_widget(
             )
 
     # Create the table widget using qgrid
-    return qgrid.show_grid(
+    return qgridnext.show_grid(
         data,
         grid_options=grid_options,
         column_options=column_options,
@@ -452,7 +461,7 @@ def debounce(wait):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 30 Aug 2024.
+      <span class="lastupdated">Last updated on 23 Sep 2024.
       </span></p>
   </div>
 
