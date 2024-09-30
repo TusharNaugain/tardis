@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-53HJHD1BWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-53HJHD1BWS');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Store Simulations to HDF &mdash; tardis</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/tardis_logo.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Callbacks" href="callback.html" />
+    <link rel="prev" title="Access information about individual iterations" href="access_iterations.html" />
+    <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            tardis
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart for TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_guides.html">How-To Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Input/Output</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hdf/index.html">Hierarchical Data Format (HDF5)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration (Required Input)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model/index.html">Reading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/index.html">Optional Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization Tools &amp; Widgets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Additional Outputs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="how_to_physical_quantities.html">How to Access Physical Quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_iterations.html">Access information about individual iterations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to Store Simulations to HDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Parameters">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Breakdown-of-the-various-to_hdf-methods">Breakdown of the various to_hdf methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callback.html">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpacket_logging.html">Virtual Packet Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="progress_bars.html">Progress Bars for Simulation Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_rpacket_tracking.html">How to Track the Properties of Real Packets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_plasma_graph.html">How to Generate the Plasma Graph</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/intro/index.html">Physics Walkthrough Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/setup/index.html">Setting Up the Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/spectrum/index.html">Spectrum Generation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/CONTRIBUTING.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/development/index.html">Developer Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/tools/index.html">Developer Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/in_progress/index.html">Features In-Progress</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/credits.html">Credits &amp; Publication Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/research_done_using_TARDIS/research_papers.html">Papers Using TARDIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/code_comparison/index.html">Code Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/zreferences.html">References and Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">tardis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Additional Outputs</a></li>
+      <li class="breadcrumb-item active">How to Store Simulations to HDF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/io/output/how_to_to_hdf.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style>
+    /* strip stderr */
+    div.nboutput.container div.output_area.stderr {
+        background: #fdd;
+        display: none;
+    }
+
+    .launch-btn {
+        background-color: #2980B9;
+        border: none;
+        border-radius: 4px;
+        color: #fcfcfc;
+        font-family: inherit;
+        text-decoration: none;
+        padding: 3px 8px;
+        letter-spacing: 0.03em;
+        display: inline-block;
+        line-height: 1.5em;
+    }
+
+    .launch-btn:hover {
+        background-color: #1b6391;
+        color: #fcfcfc;
+    }
+
+    .launch-btn:visited {
+        color: #fcfcfc;
+    }
+
+    .note-p {
+        margin-bottom: 0.4em;
+        line-height: 2em;
+    }
+</style>
+
+<div class="admonition note">
+<p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/io/output/how_to_to_hdf.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
+</div><section id="How-to-Store-Simulations-to-HDF">
+<h1>How to Store Simulations to HDF<a class="headerlink" href="#How-to-Store-Simulations-to-HDF" title="Link to this heading">¶</a></h1>
+<p>You can ask TARDIS to store the state of each iteration of the simulation you are running. We show examples of how this is done:</p>
+<p>Initialize the simulation with the <code class="docutils literal notranslate"><span class="pre">tardis_example.yml</span></code> configuration file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tardis</span> <span class="kn">import</span> <span class="n">run_tardis</span>
+<span class="kn">from</span> <span class="nn">tardis.io.atom_data</span> <span class="kn">import</span> <span class="n">download_atom_data</span>
+
+<span class="c1"># We download the atomic data needed to run the simulation</span>
+<span class="n">download_atom_data</span><span class="p">(</span><span class="s1">&#39;kurucz_cd23_chianti_H_He&#39;</span><span class="p">)</span>
+
+<span class="c1"># We run the simulation</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">run_tardis</span><span class="p">(</span><span class="s1">&#39;tardis_example.yml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "df240719336f4a93bf3c40185d98e6de"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f7d2577a1d6a436e855ecb87448d96ae"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Atomic Data kurucz_cd23_chianti_H_He already exists in /home/runner/Downloads/tardis-data/kurucz_cd23_chianti_H_He.h5. Will not download - override with force_download=True.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.io.model.parse_atom_data</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Reading Atomic Data from kurucz_cd23_chianti_H_He.h5 (<span class="ansi-bold">parse_atom_data.py</span>:40)
+[<span class="ansi-bold">tardis.io.atom_data.util</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Atom Data kurucz_cd23_chianti_H_He.h5 not found in local path.
+        Exists in TARDIS Data repo /home/runner/Downloads/tardis-data/kurucz_cd23_chianti_H_He.h5 (<span class="ansi-bold">util.py</span>:34)
+[<span class="ansi-bold">tardis.io.atom_data.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Reading Atom Data with: UUID = 6f7b09e887a311e7a06b246e96350010 MD5  = 864f1753714343c41f99cb065710cace  (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.io.atom_data.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Non provided Atomic Data: synpp_refs, photoionization_data, yg_data, two_photon_data, linelist_atoms, linelist_molecules (<span class="ansi-bold">base.py</span>:266)
+[<span class="ansi-bold">tardis.io.model.parse_density_configuration</span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        Number of density points larger than number of shells. Assuming inner point irrelevant (<span class="ansi-bold">parse_density_configuration.py</span>:114)
+[<span class="ansi-bold">tardis.model.matter.decay</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Decaying abundances for 1123200.0 seconds (<span class="ansi-bold">decay.py</span>:101)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 1 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/transport/montecarlo/montecarlo_main_loop.py:123: NumbaTypeSafetyWarning: <span class="ansi-bold">unsafe cast from uint64 to int64. Precision may be lost.</span>
+  vpacket_collection = vpacket_collections[i]
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9a27acec8a8542ceb209321f437062bc"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "98548cd046424438bb5ce36b4de8b42f"}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 7.942e+42 erg / s
+        Luminosity absorbed  = 2.659e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_0acf0">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_0acf0_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_0acf0_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_0acf0_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_0acf0_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_0acf0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_0acf0_row0_col0" class="data row0 col0" >9.93e+03 K</td>
+      <td id="T_0acf0_row0_col1" class="data row0 col1" >1.01e+04 K</td>
+      <td id="T_0acf0_row0_col2" class="data row0 col2" >0.4</td>
+      <td id="T_0acf0_row0_col3" class="data row0 col3" >0.507</td>
+    </tr>
+    <tr>
+      <th id="T_0acf0_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_0acf0_row1_col0" class="data row1 col0" >9.85e+03 K</td>
+      <td id="T_0acf0_row1_col1" class="data row1 col1" >1.02e+04 K</td>
+      <td id="T_0acf0_row1_col2" class="data row1 col2" >0.211</td>
+      <td id="T_0acf0_row1_col3" class="data row1 col3" >0.197</td>
+    </tr>
+    <tr>
+      <th id="T_0acf0_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_0acf0_row2_col0" class="data row2 col0" >9.78e+03 K</td>
+      <td id="T_0acf0_row2_col1" class="data row2 col1" >1.01e+04 K</td>
+      <td id="T_0acf0_row2_col2" class="data row2 col2" >0.143</td>
+      <td id="T_0acf0_row2_col3" class="data row2 col3" >0.117</td>
+    </tr>
+    <tr>
+      <th id="T_0acf0_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_0acf0_row3_col0" class="data row3 col0" >9.71e+03 K</td>
+      <td id="T_0acf0_row3_col1" class="data row3 col1" >9.87e+03 K</td>
+      <td id="T_0acf0_row3_col2" class="data row3 col2" >0.105</td>
+      <td id="T_0acf0_row3_col3" class="data row3 col3" >0.0869</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 9933.952 K
+        Expected t_inner for next iteration = 10703.212 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 2 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.071e+43 erg / s
+        Luminosity absorbed  = 3.576e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_221d0">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_221d0_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_221d0_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_221d0_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_221d0_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_221d0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_221d0_row0_col0" class="data row0 col0" >1.01e+04 K</td>
+      <td id="T_221d0_row0_col1" class="data row0 col1" >1.08e+04 K</td>
+      <td id="T_221d0_row0_col2" class="data row0 col2" >0.507</td>
+      <td id="T_221d0_row0_col3" class="data row0 col3" >0.525</td>
+    </tr>
+    <tr>
+      <th id="T_221d0_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_221d0_row1_col0" class="data row1 col0" >1.02e+04 K</td>
+      <td id="T_221d0_row1_col1" class="data row1 col1" >1.1e+04 K</td>
+      <td id="T_221d0_row1_col2" class="data row1 col2" >0.197</td>
+      <td id="T_221d0_row1_col3" class="data row1 col3" >0.203</td>
+    </tr>
+    <tr>
+      <th id="T_221d0_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_221d0_row2_col0" class="data row2 col0" >1.01e+04 K</td>
+      <td id="T_221d0_row2_col1" class="data row2 col1" >1.08e+04 K</td>
+      <td id="T_221d0_row2_col2" class="data row2 col2" >0.117</td>
+      <td id="T_221d0_row2_col3" class="data row2 col3" >0.125</td>
+    </tr>
+    <tr>
+      <th id="T_221d0_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_221d0_row3_col0" class="data row3 col0" >9.87e+03 K</td>
+      <td id="T_221d0_row3_col1" class="data row3 col1" >1.05e+04 K</td>
+      <td id="T_221d0_row3_col2" class="data row3 col2" >0.0869</td>
+      <td id="T_221d0_row3_col3" class="data row3 col3" >0.0933</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10703.212 K
+        Expected t_inner for next iteration = 10673.712 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 3 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.074e+43 erg / s
+        Luminosity absorbed  = 3.391e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 1/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_bb284">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_bb284_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_bb284_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_bb284_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_bb284_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_bb284_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_bb284_row0_col0" class="data row0 col0" >1.08e+04 K</td>
+      <td id="T_bb284_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_bb284_row0_col2" class="data row0 col2" >0.525</td>
+      <td id="T_bb284_row0_col3" class="data row0 col3" >0.483</td>
+    </tr>
+    <tr>
+      <th id="T_bb284_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_bb284_row1_col0" class="data row1 col0" >1.1e+04 K</td>
+      <td id="T_bb284_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_bb284_row1_col2" class="data row1 col2" >0.203</td>
+      <td id="T_bb284_row1_col3" class="data row1 col3" >0.189</td>
+    </tr>
+    <tr>
+      <th id="T_bb284_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_bb284_row2_col0" class="data row2 col0" >1.08e+04 K</td>
+      <td id="T_bb284_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_bb284_row2_col2" class="data row2 col2" >0.125</td>
+      <td id="T_bb284_row2_col3" class="data row2 col3" >0.118</td>
+    </tr>
+    <tr>
+      <th id="T_bb284_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_bb284_row3_col0" class="data row3 col0" >1.05e+04 K</td>
+      <td id="T_bb284_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_bb284_row3_col2" class="data row3 col2" >0.0933</td>
+      <td id="T_bb284_row3_col3" class="data row3 col3" >0.0895</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10673.712 K
+        Expected t_inner for next iteration = 10635.953 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 4 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.058e+43 erg / s
+        Luminosity absorbed  = 3.352e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 2/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_8f976">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_8f976_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_8f976_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_8f976_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_8f976_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_8f976_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8f976_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_8f976_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_8f976_row0_col2" class="data row0 col2" >0.483</td>
+      <td id="T_8f976_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_8f976_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_8f976_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_8f976_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_8f976_row1_col2" class="data row1 col2" >0.189</td>
+      <td id="T_8f976_row1_col3" class="data row1 col3" >0.182</td>
+    </tr>
+    <tr>
+      <th id="T_8f976_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_8f976_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_8f976_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_8f976_row2_col2" class="data row2 col2" >0.118</td>
+      <td id="T_8f976_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_8f976_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_8f976_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_8f976_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_8f976_row3_col2" class="data row3 col2" >0.0895</td>
+      <td id="T_8f976_row3_col3" class="data row3 col3" >0.0861</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10635.953 K
+        Expected t_inner for next iteration = 10638.407 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 5 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.055e+43 erg / s
+        Luminosity absorbed  = 3.399e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 3/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_d5971">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_d5971_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_d5971_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_d5971_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_d5971_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_d5971_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_d5971_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_d5971_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_d5971_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_d5971_row0_col3" class="data row0 col3" >0.479</td>
+    </tr>
+    <tr>
+      <th id="T_d5971_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_d5971_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_d5971_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_d5971_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_d5971_row1_col3" class="data row1 col3" >0.178</td>
+    </tr>
+    <tr>
+      <th id="T_d5971_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_d5971_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_d5971_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_d5971_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_d5971_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_d5971_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_d5971_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_d5971_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_d5971_row3_col2" class="data row3 col2" >0.0861</td>
+      <td id="T_d5971_row3_col3" class="data row3 col3" >0.0839</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10638.407 K
+        Expected t_inner for next iteration = 10650.202 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 6 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.398e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 4/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_beca0">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_beca0_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_beca0_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_beca0_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_beca0_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_beca0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_beca0_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_beca0_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_beca0_row0_col2" class="data row0 col2" >0.479</td>
+      <td id="T_beca0_row0_col3" class="data row0 col3" >0.47</td>
+    </tr>
+    <tr>
+      <th id="T_beca0_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_beca0_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_beca0_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_beca0_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_beca0_row1_col3" class="data row1 col3" >0.185</td>
+    </tr>
+    <tr>
+      <th id="T_beca0_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_beca0_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_beca0_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_beca0_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_beca0_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_beca0_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_beca0_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_beca0_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_beca0_row3_col2" class="data row3 col2" >0.0839</td>
+      <td id="T_beca0_row3_col3" class="data row3 col3" >0.0856</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10650.202 K
+        Expected t_inner for next iteration = 10645.955 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 7 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.382e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 5/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_e7d6e">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_e7d6e_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_e7d6e_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_e7d6e_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_e7d6e_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_e7d6e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e7d6e_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_e7d6e_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_e7d6e_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_e7d6e_row0_col3" class="data row0 col3" >0.47</td>
+    </tr>
+    <tr>
+      <th id="T_e7d6e_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_e7d6e_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_e7d6e_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_e7d6e_row1_col2" class="data row1 col2" >0.185</td>
+      <td id="T_e7d6e_row1_col3" class="data row1 col3" >0.178</td>
+    </tr>
+    <tr>
+      <th id="T_e7d6e_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_e7d6e_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_e7d6e_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_e7d6e_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_e7d6e_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_e7d6e_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_e7d6e_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_e7d6e_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_e7d6e_row3_col2" class="data row3 col2" >0.0856</td>
+      <td id="T_e7d6e_row3_col3" class="data row3 col3" >0.086</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10645.955 K
+        Expected t_inner for next iteration = 10642.050 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 8 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.062e+43 erg / s
+        Luminosity absorbed  = 3.350e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 6/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_2c964">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_2c964_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_2c964_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_2c964_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_2c964_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_2c964_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_2c964_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_2c964_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_2c964_row0_col2" class="data row0 col2" >0.47</td>
+      <td id="T_2c964_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_2c964_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_2c964_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_2c964_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_2c964_row1_col2" class="data row1 col2" >0.178</td>
+      <td id="T_2c964_row1_col3" class="data row1 col3" >0.175</td>
+    </tr>
+    <tr>
+      <th id="T_2c964_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_2c964_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_2c964_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_2c964_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_2c964_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_2c964_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_2c964_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_2c964_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_2c964_row3_col2" class="data row3 col2" >0.086</td>
+      <td id="T_2c964_row3_col3" class="data row3 col3" >0.084</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10642.050 K
+        Expected t_inner for next iteration = 10636.106 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 9 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.052e+43 erg / s
+        Luminosity absorbed  = 3.411e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 7/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_20a95">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_20a95_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_20a95_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_20a95_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_20a95_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_20a95_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_20a95_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_20a95_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_20a95_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_20a95_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_20a95_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_20a95_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_20a95_row1_col1" class="data row1 col1" >1.15e+04 K</td>
+      <td id="T_20a95_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_20a95_row1_col3" class="data row1 col3" >0.17</td>
+    </tr>
+    <tr>
+      <th id="T_20a95_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_20a95_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_20a95_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_20a95_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_20a95_row2_col3" class="data row2 col3" >0.109</td>
+    </tr>
+    <tr>
+      <th id="T_20a95_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_20a95_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_20a95_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_20a95_row3_col2" class="data row3 col2" >0.084</td>
+      <td id="T_20a95_row3_col3" class="data row3 col3" >0.0822</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10636.106 K
+        Expected t_inner for next iteration = 10654.313 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 10 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.070e+43 erg / s
+        Luminosity absorbed  = 3.335e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 8/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_a6f31">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_a6f31_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_a6f31_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_a6f31_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_a6f31_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a6f31_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a6f31_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_a6f31_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_a6f31_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_a6f31_row0_col3" class="data row0 col3" >0.475</td>
+    </tr>
+    <tr>
+      <th id="T_a6f31_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_a6f31_row1_col0" class="data row1 col0" >1.15e+04 K</td>
+      <td id="T_a6f31_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_a6f31_row1_col2" class="data row1 col2" >0.17</td>
+      <td id="T_a6f31_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_a6f31_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_a6f31_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_a6f31_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_a6f31_row2_col2" class="data row2 col2" >0.109</td>
+      <td id="T_a6f31_row2_col3" class="data row2 col3" >0.112</td>
+    </tr>
+    <tr>
+      <th id="T_a6f31_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_a6f31_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_a6f31_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_a6f31_row3_col2" class="data row3 col2" >0.0822</td>
+      <td id="T_a6f31_row3_col3" class="data row3 col3" >0.0878</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10654.313 K
+        Expected t_inner for next iteration = 10628.190 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 11 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.053e+43 erg / s
+        Luminosity absorbed  = 3.363e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 9/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_24f8f">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_24f8f_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_24f8f_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_24f8f_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_24f8f_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_24f8f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_24f8f_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_24f8f_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_24f8f_row0_col2" class="data row0 col2" >0.475</td>
+      <td id="T_24f8f_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_24f8f_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_24f8f_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_24f8f_row1_col1" class="data row1 col1" >1.12e+04 K</td>
+      <td id="T_24f8f_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_24f8f_row1_col3" class="data row1 col3" >0.184</td>
+    </tr>
+    <tr>
+      <th id="T_24f8f_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_24f8f_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_24f8f_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_24f8f_row2_col2" class="data row2 col2" >0.112</td>
+      <td id="T_24f8f_row2_col3" class="data row2 col3" >0.114</td>
+    </tr>
+    <tr>
+      <th id="T_24f8f_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_24f8f_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_24f8f_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_24f8f_row3_col2" class="data row3 col2" >0.0878</td>
+      <td id="T_24f8f_row3_col3" class="data row3 col3" >0.0859</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10628.190 K
+        Expected t_inner for next iteration = 10644.054 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 12 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.056e+43 erg / s
+        Luminosity absorbed  = 3.420e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 10/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_da281">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_da281_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_da281_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_da281_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_da281_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_da281_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_da281_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_da281_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_da281_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_da281_row0_col3" class="data row0 col3" >0.467</td>
+    </tr>
+    <tr>
+      <th id="T_da281_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_da281_row1_col0" class="data row1 col0" >1.12e+04 K</td>
+      <td id="T_da281_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_da281_row1_col2" class="data row1 col2" >0.184</td>
+      <td id="T_da281_row1_col3" class="data row1 col3" >0.176</td>
+    </tr>
+    <tr>
+      <th id="T_da281_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_da281_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_da281_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_da281_row2_col2" class="data row2 col2" >0.114</td>
+      <td id="T_da281_row2_col3" class="data row2 col3" >0.11</td>
+    </tr>
+    <tr>
+      <th id="T_da281_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_da281_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_da281_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_da281_row3_col2" class="data row3 col2" >0.0859</td>
+      <td id="T_da281_row3_col3" class="data row3 col3" >0.0821</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10644.054 K
+        Expected t_inner for next iteration = 10653.543 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 13 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.062e+43 erg / s
+        Luminosity absorbed  = 3.406e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 11/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_d01b5">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_d01b5_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_d01b5_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_d01b5_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_d01b5_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_d01b5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_d01b5_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_d01b5_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_d01b5_row0_col2" class="data row0 col2" >0.467</td>
+      <td id="T_d01b5_row0_col3" class="data row0 col3" >0.466</td>
+    </tr>
+    <tr>
+      <th id="T_d01b5_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_d01b5_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_d01b5_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_d01b5_row1_col2" class="data row1 col2" >0.176</td>
+      <td id="T_d01b5_row1_col3" class="data row1 col3" >0.18</td>
+    </tr>
+    <tr>
+      <th id="T_d01b5_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_d01b5_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_d01b5_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_d01b5_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_d01b5_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_d01b5_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_d01b5_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_d01b5_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_d01b5_row3_col2" class="data row3 col2" >0.0821</td>
+      <td id="T_d01b5_row3_col3" class="data row3 col3" >0.0841</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10653.543 K
+        Expected t_inner for next iteration = 10647.277 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 14 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.063e+43 erg / s
+        Luminosity absorbed  = 3.369e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 12/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_6d463">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_6d463_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_6d463_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_6d463_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_6d463_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_6d463_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_6d463_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_6d463_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_6d463_row0_col2" class="data row0 col2" >0.466</td>
+      <td id="T_6d463_row0_col3" class="data row0 col3" >0.469</td>
+    </tr>
+    <tr>
+      <th id="T_6d463_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_6d463_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_6d463_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_6d463_row1_col2" class="data row1 col2" >0.18</td>
+      <td id="T_6d463_row1_col3" class="data row1 col3" >0.182</td>
+    </tr>
+    <tr>
+      <th id="T_6d463_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_6d463_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_6d463_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_6d463_row2_col2" class="data row2 col2" >0.111</td>
+      <td id="T_6d463_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_6d463_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_6d463_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_6d463_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_6d463_row3_col2" class="data row3 col2" >0.0841</td>
+      <td id="T_6d463_row3_col3" class="data row3 col3" >0.0854</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10647.277 K
+        Expected t_inner for next iteration = 10638.875 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 15 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.053e+43 erg / s
+        Luminosity absorbed  = 3.417e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 13/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_17f23">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_17f23_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_17f23_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_17f23_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_17f23_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_17f23_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_17f23_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_17f23_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_17f23_row0_col2" class="data row0 col2" >0.469</td>
+      <td id="T_17f23_row0_col3" class="data row0 col3" >0.484</td>
+    </tr>
+    <tr>
+      <th id="T_17f23_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_17f23_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_17f23_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_17f23_row1_col2" class="data row1 col2" >0.182</td>
+      <td id="T_17f23_row1_col3" class="data row1 col3" >0.181</td>
+    </tr>
+    <tr>
+      <th id="T_17f23_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_17f23_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_17f23_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_17f23_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_17f23_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_17f23_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_17f23_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_17f23_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_17f23_row3_col2" class="data row3 col2" >0.0854</td>
+      <td id="T_17f23_row3_col3" class="data row3 col3" >0.0858</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10638.875 K
+        Expected t_inner for next iteration = 10655.125 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 16 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.059e+43 erg / s
+        Luminosity absorbed  = 3.445e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 14/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_24025">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_24025_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_24025_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_24025_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_24025_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_24025_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_24025_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_24025_row0_col1" class="data row0 col1" >1.1e+04 K</td>
+      <td id="T_24025_row0_col2" class="data row0 col2" >0.484</td>
+      <td id="T_24025_row0_col3" class="data row0 col3" >0.472</td>
+    </tr>
+    <tr>
+      <th id="T_24025_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_24025_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_24025_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_24025_row1_col2" class="data row1 col2" >0.181</td>
+      <td id="T_24025_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_24025_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_24025_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_24025_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_24025_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_24025_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_24025_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_24025_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_24025_row3_col1" class="data row3 col1" >1.06e+04 K</td>
+      <td id="T_24025_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_24025_row3_col3" class="data row3 col3" >0.0858</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10655.125 K
+        Expected t_inner for next iteration = 10655.561 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 17 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.067e+43 erg / s
+        Luminosity absorbed  = 3.372e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 15/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_f5b91">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_f5b91_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_f5b91_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_f5b91_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_f5b91_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_f5b91_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_f5b91_row0_col0" class="data row0 col0" >1.1e+04 K</td>
+      <td id="T_f5b91_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_f5b91_row0_col2" class="data row0 col2" >0.472</td>
+      <td id="T_f5b91_row0_col3" class="data row0 col3" >0.468</td>
+    </tr>
+    <tr>
+      <th id="T_f5b91_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_f5b91_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_f5b91_row1_col1" class="data row1 col1" >1.14e+04 K</td>
+      <td id="T_f5b91_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_f5b91_row1_col3" class="data row1 col3" >0.175</td>
+    </tr>
+    <tr>
+      <th id="T_f5b91_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_f5b91_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_f5b91_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_f5b91_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_f5b91_row2_col3" class="data row2 col3" >0.11</td>
+    </tr>
+    <tr>
+      <th id="T_f5b91_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_f5b91_row3_col0" class="data row3 col0" >1.06e+04 K</td>
+      <td id="T_f5b91_row3_col1" class="data row3 col1" >1.08e+04 K</td>
+      <td id="T_f5b91_row3_col2" class="data row3 col2" >0.0858</td>
+      <td id="T_f5b91_row3_col3" class="data row3 col3" >0.0816</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10655.561 K
+        Expected t_inner for next iteration = 10636.536 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 18 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.057e+43 erg / s
+        Luminosity absorbed  = 3.365e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 16/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_5eec1">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_5eec1_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_5eec1_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_5eec1_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_5eec1_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_5eec1_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_5eec1_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_5eec1_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_5eec1_row0_col2" class="data row0 col2" >0.468</td>
+      <td id="T_5eec1_row0_col3" class="data row0 col3" >0.464</td>
+    </tr>
+    <tr>
+      <th id="T_5eec1_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_5eec1_row1_col0" class="data row1 col0" >1.14e+04 K</td>
+      <td id="T_5eec1_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_5eec1_row1_col2" class="data row1 col2" >0.175</td>
+      <td id="T_5eec1_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_5eec1_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_5eec1_row2_col0" class="data row2 col0" >1.11e+04 K</td>
+      <td id="T_5eec1_row2_col1" class="data row2 col1" >1.1e+04 K</td>
+      <td id="T_5eec1_row2_col2" class="data row2 col2" >0.11</td>
+      <td id="T_5eec1_row2_col3" class="data row2 col3" >0.113</td>
+    </tr>
+    <tr>
+      <th id="T_5eec1_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_5eec1_row3_col0" class="data row3 col0" >1.08e+04 K</td>
+      <td id="T_5eec1_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_5eec1_row3_col2" class="data row3 col2" >0.0816</td>
+      <td id="T_5eec1_row3_col3" class="data row3 col3" >0.0848</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10636.536 K
+        Expected t_inner for next iteration = 10641.692 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 19 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.056e+43 erg / s
+        Luminosity absorbed  = 3.405e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+        Iteration converged 17/4 consecutive times. (<span class="ansi-bold">base.py</span>:262)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Plasma stratification: (<span class="ansi-bold">base.py</span>:631)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+</style>
+<table id="T_a8893">
+  <thead>
+    <tr>
+      <th class="index_name level0" >Shell No.</th>
+      <th id="T_a8893_level0_col0" class="col_heading level0 col0" >t_rad</th>
+      <th id="T_a8893_level0_col1" class="col_heading level0 col1" >next_t_rad</th>
+      <th id="T_a8893_level0_col2" class="col_heading level0 col2" >w</th>
+      <th id="T_a8893_level0_col3" class="col_heading level0 col3" >next_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a8893_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a8893_row0_col0" class="data row0 col0" >1.11e+04 K</td>
+      <td id="T_a8893_row0_col1" class="data row0 col1" >1.11e+04 K</td>
+      <td id="T_a8893_row0_col2" class="data row0 col2" >0.464</td>
+      <td id="T_a8893_row0_col3" class="data row0 col3" >0.466</td>
+    </tr>
+    <tr>
+      <th id="T_a8893_level0_row1" class="row_heading level0 row1" >5</th>
+      <td id="T_a8893_row1_col0" class="data row1 col0" >1.13e+04 K</td>
+      <td id="T_a8893_row1_col1" class="data row1 col1" >1.13e+04 K</td>
+      <td id="T_a8893_row1_col2" class="data row1 col2" >0.177</td>
+      <td id="T_a8893_row1_col3" class="data row1 col3" >0.177</td>
+    </tr>
+    <tr>
+      <th id="T_a8893_level0_row2" class="row_heading level0 row2" >10</th>
+      <td id="T_a8893_row2_col0" class="data row2 col0" >1.1e+04 K</td>
+      <td id="T_a8893_row2_col1" class="data row2 col1" >1.11e+04 K</td>
+      <td id="T_a8893_row2_col2" class="data row2 col2" >0.113</td>
+      <td id="T_a8893_row2_col3" class="data row2 col3" >0.111</td>
+    </tr>
+    <tr>
+      <th id="T_a8893_level0_row3" class="row_heading level0 row3" >15</th>
+      <td id="T_a8893_row3_col0" class="data row3 col0" >1.07e+04 K</td>
+      <td id="T_a8893_row3_col1" class="data row3 col1" >1.07e+04 K</td>
+      <td id="T_a8893_row3_col2" class="data row3 col2" >0.0848</td>
+      <td id="T_a8893_row3_col3" class="data row3 col3" >0.0853</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Current t_inner = 10641.692 K
+        Expected t_inner for next iteration = 10650.463 K
+ (<span class="ansi-bold">base.py</span>:658)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Simulation finished in 19 iterations
+        Simulation took 69.61 s
+ (<span class="ansi-bold">base.py</span>:548)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Starting iteration 20 of 20 (<span class="ansi-bold">base.py</span>:450)
+[<span class="ansi-bold">tardis.simulation.base</span>][<span class="ansi-white-intense-fg ansi-bold">INFO</span>   ]
+
+        Luminosity emitted   = 1.061e+43 erg / s
+        Luminosity absorbed  = 3.401e+42 erg / s
+        Luminosity requested = 1.059e+43 erg / s
+ (<span class="ansi-bold">base.py</span>:663)
+</pre></div></div>
+</div>
+<p>You can now use the <code class="docutils literal notranslate"><span class="pre">to_hdf</span></code> method, to save properties to a HDF file.</p>
+<section id="Parameters">
+<h2>Parameters<a class="headerlink" href="#Parameters" title="Link to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">file_path</span></code>: Path where the HDF file should be stored. (Required)</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">path</span></code>: Path inside the HDF store to store the elements. (Optional)</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the group inside HDF store, under which properties will be saved.(Optional) <code class="docutils literal notranslate"><span class="pre">overwrite</span></code>: If the HDF file already exists, do you overwrite the existing file (Optional, default <code class="docutils literal notranslate"><span class="pre">False</span></code>)</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title fa fa-exclamation-circle">Note</p>
+<p>Throughout this notebook, we set <code class="docutils literal notranslate"><span class="pre">overwrite=True</span></code> so that the notebook can be run repeatedly if needed.</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulation</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;/tmp/full_example.hdf&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># The commented out code below shows an example of to_hdf with more parameters</span>
+<span class="c1">#simulation.to_hdf(file_path=&#39;/tmp/full_example.hdf&#39;, path=&#39;/&#39;, name=&#39;simulation&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:276: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([0], dtype=&#39;int64&#39;)]
+
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([0], dtype=&#39;int64&#39;)]
+
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:276: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;values] [items-&gt;None]
+
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/spectrum/formal_integral.py:384: UserWarning: The number of interpolate_shells was not specified. The value was set to 80.
+  warnings.warn(
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<p>Open the stored HDF file with pandas and print a list of its entries using the <code class="docutils literal notranslate"><span class="pre">keys()</span></code> method:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/tmp/full_example.hdf&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/simulation/iterations_electron_densities&#39;,
+ &#39;/simulation/iterations_t_inner&#39;,
+ &#39;/simulation/iterations_t_rad&#39;,
+ &#39;/simulation/iterations_w&#39;,
+ &#39;/simulation/transport/transport_state/emitted_packet_mask&#39;,
+ &#39;/simulation/transport/transport_state/j_blue_estimator&#39;,
+ &#39;/simulation/transport/transport_state/j_estimator&#39;,
+ &#39;/simulation/transport/transport_state/last_interaction_in_nu&#39;,
+ &#39;/simulation/transport/transport_state/last_interaction_in_r&#39;,
+ &#39;/simulation/transport/transport_state/last_interaction_type&#39;,
+ &#39;/simulation/transport/transport_state/last_line_interaction_in_id&#39;,
+ &#39;/simulation/transport/transport_state/last_line_interaction_out_id&#39;,
+ &#39;/simulation/transport/transport_state/last_line_interaction_shell_id&#39;,
+ &#39;/simulation/transport/transport_state/nu_bar_estimator&#39;,
+ &#39;/simulation/transport/transport_state/output_energy&#39;,
+ &#39;/simulation/transport/transport_state/output_nu&#39;,
+ &#39;/simulation/transport/transport_state/packet_luminosity&#39;,
+ &#39;/simulation/transport/transport_state/scalars&#39;,
+ &#39;/simulation/spectrum_solver/montecarlo_virtual_luminosity&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_virtual_packets/_frequency&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_virtual_packets/luminosity&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_virtual_packets/luminosity_density_lambda&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_virtual_packets/scalars&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_virtual_packets/wavelength&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets_reabsorbed/_frequency&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets_reabsorbed/luminosity&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets_reabsorbed/luminosity_density_lambda&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets_reabsorbed/scalars&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets_reabsorbed/wavelength&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets/_frequency&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets/luminosity&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets/luminosity_density_lambda&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets/scalars&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_real_packets/wavelength&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_integrated/_frequency&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_integrated/luminosity&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_integrated/luminosity_density_lambda&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_integrated/scalars&#39;,
+ &#39;/simulation/spectrum_solver/spectrum_integrated/wavelength&#39;,
+ &#39;/simulation/simulation_state/abundance&#39;,
+ &#39;/simulation/simulation_state/density&#39;,
+ &#39;/simulation/simulation_state/dilution_factor&#39;,
+ &#39;/simulation/simulation_state/r_inner&#39;,
+ &#39;/simulation/simulation_state/scalars&#39;,
+ &#39;/simulation/simulation_state/t_radiative&#39;,
+ &#39;/simulation/simulation_state/v_inner&#39;,
+ &#39;/simulation/simulation_state/v_outer&#39;,
+ &#39;/simulation/plasma/beta_rad&#39;,
+ &#39;/simulation/plasma/beta_sobolev&#39;,
+ &#39;/simulation/plasma/continuum_interaction_species&#39;,
+ &#39;/simulation/plasma/dilute_planckian_radiation_field&#39;,
+ &#39;/simulation/plasma/electron_densities&#39;,
+ &#39;/simulation/plasma/excitation_energy&#39;,
+ &#39;/simulation/plasma/f_lu&#39;,
+ &#39;/simulation/plasma/g&#39;,
+ &#39;/simulation/plasma/g_electron&#39;,
+ &#39;/simulation/plasma/general_level_boltzmann_factor&#39;,
+ &#39;/simulation/plasma/ion_number_density&#39;,
+ &#39;/simulation/plasma/ionization_data&#39;,
+ &#39;/simulation/plasma/j_blues&#39;,
+ &#39;/simulation/plasma/level_boltzmann_factor&#39;,
+ &#39;/simulation/plasma/level_number_density&#39;,
+ &#39;/simulation/plasma/levels&#39;,
+ &#39;/simulation/plasma/lines&#39;,
+ &#39;/simulation/plasma/lines_lower_level_index&#39;,
+ &#39;/simulation/plasma/lines_upper_level_index&#39;,
+ &#39;/simulation/plasma/macro_atom_data&#39;,
+ &#39;/simulation/plasma/metastability&#39;,
+ &#39;/simulation/plasma/nlte_excitation_species&#39;,
+ &#39;/simulation/plasma/nlte_ionization_species&#39;,
+ &#39;/simulation/plasma/nu&#39;,
+ &#39;/simulation/plasma/number_density&#39;,
+ &#39;/simulation/plasma/partition_function&#39;,
+ &#39;/simulation/plasma/phi&#39;,
+ &#39;/simulation/plasma/scalars&#39;,
+ &#39;/simulation/plasma/selected_atoms&#39;,
+ &#39;/simulation/plasma/stimulated_emission_factor&#39;,
+ &#39;/simulation/plasma/t_electrons&#39;,
+ &#39;/simulation/plasma/t_rad&#39;,
+ &#39;/simulation/plasma/tau_sobolevs&#39;,
+ &#39;/simulation/plasma/transition_probabilities&#39;,
+ &#39;/simulation/plasma/w&#39;,
+ &#39;/simulation/plasma/wavelength_cm&#39;]
+</pre></div></div>
+</div>
+<p>Access <code class="docutils literal notranslate"><span class="pre">model.density</span></code> under simulation, which is a one-dimensional array</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;/simulation/simulation_state/density&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0     7.542804e-14
+1     5.728475e-14
+2     4.396074e-14
+3     3.406287e-14
+4     2.663135e-14
+5     2.099596e-14
+6     1.668287e-14
+7     1.335311e-14
+8     1.076154e-14
+9     8.729085e-15
+10    7.123652e-15
+11    5.846921e-15
+12    4.825093e-15
+13    4.002324e-15
+14    3.336039e-15
+15    2.793540e-15
+16    2.349550e-15
+17    1.984397e-15
+18    1.682677e-15
+19    1.432260e-15
+dtype: float64
+</pre></div></div>
+</div>
+<p>Scalars are stored in a <code class="docutils literal notranslate"><span class="pre">scalars</span></code> <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> for every module. For example to access <code class="docutils literal notranslate"><span class="pre">model.t_inner</span></code> under simulation, one would need to do the following.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;/simulation/simulation_state/scalars&#39;</span><span class="p">][</span><span class="s1">&#39;t_inner&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10650.463255529794
+</pre></div></div>
+</div>
+<section id="Breakdown-of-the-various-to_hdf-methods">
+<h3>Breakdown of the various to_hdf methods<a class="headerlink" href="#Breakdown-of-the-various-to_hdf-methods" title="Link to this heading">¶</a></h3>
+<p>Every module in TARDIS has its own <code class="docutils literal notranslate"><span class="pre">to_hdf</span></code> method responsible to store its own data to an HDF file.</p>
+<section id="Plasma">
+<h4>Plasma<a class="headerlink" href="#Plasma" title="Link to this heading">¶</a></h4>
+<p>The following call will store every plasma property to <code class="docutils literal notranslate"><span class="pre">/tmp/plasma_output.hdf</span></code> under <code class="docutils literal notranslate"><span class="pre">/parent/plasma</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulation</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;/tmp/plasma_output.hdf&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;parent&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([0], dtype=&#39;int64&#39;)]
+
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:276: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([0], dtype=&#39;int64&#39;)]
+
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:276: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;values] [items-&gt;None]
+
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">plasma_data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/tmp/plasma_output.hdf&#39;</span><span class="p">)</span>
+
+<span class="n">plasma_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/parent/plasma/beta_rad&#39;,
+ &#39;/parent/plasma/beta_sobolev&#39;,
+ &#39;/parent/plasma/continuum_interaction_species&#39;,
+ &#39;/parent/plasma/dilute_planckian_radiation_field&#39;,
+ &#39;/parent/plasma/electron_densities&#39;,
+ &#39;/parent/plasma/excitation_energy&#39;,
+ &#39;/parent/plasma/f_lu&#39;,
+ &#39;/parent/plasma/g&#39;,
+ &#39;/parent/plasma/g_electron&#39;,
+ &#39;/parent/plasma/general_level_boltzmann_factor&#39;,
+ &#39;/parent/plasma/ion_number_density&#39;,
+ &#39;/parent/plasma/ionization_data&#39;,
+ &#39;/parent/plasma/j_blues&#39;,
+ &#39;/parent/plasma/level_boltzmann_factor&#39;,
+ &#39;/parent/plasma/level_number_density&#39;,
+ &#39;/parent/plasma/levels&#39;,
+ &#39;/parent/plasma/lines&#39;,
+ &#39;/parent/plasma/lines_lower_level_index&#39;,
+ &#39;/parent/plasma/lines_upper_level_index&#39;,
+ &#39;/parent/plasma/macro_atom_data&#39;,
+ &#39;/parent/plasma/metastability&#39;,
+ &#39;/parent/plasma/nlte_excitation_species&#39;,
+ &#39;/parent/plasma/nlte_ionization_species&#39;,
+ &#39;/parent/plasma/nu&#39;,
+ &#39;/parent/plasma/number_density&#39;,
+ &#39;/parent/plasma/partition_function&#39;,
+ &#39;/parent/plasma/phi&#39;,
+ &#39;/parent/plasma/scalars&#39;,
+ &#39;/parent/plasma/selected_atoms&#39;,
+ &#39;/parent/plasma/stimulated_emission_factor&#39;,
+ &#39;/parent/plasma/t_electrons&#39;,
+ &#39;/parent/plasma/t_rad&#39;,
+ &#39;/parent/plasma/tau_sobolevs&#39;,
+ &#39;/parent/plasma/transition_probabilities&#39;,
+ &#39;/parent/plasma/w&#39;,
+ &#39;/parent/plasma/wavelength_cm&#39;]
+</pre></div></div>
+</div>
+<p>Plasma’s <code class="docutils literal notranslate"><span class="pre">to_hdf</span></code> method can also accept a <code class="docutils literal notranslate"><span class="pre">collection</span></code> parameter which can specify which types of plasma properties will be stored. For example if we wanted to only store Input plasma properties, we would do the following:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tardis.plasma.properties.base</span> <span class="kn">import</span> <span class="n">Input</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">plasma</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;/tmp/plasma_input_output.hdf&#39;</span><span class="p">,</span> <span class="n">collection</span><span class="o">=</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([0], dtype=&#39;int64&#39;)]
+
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:274: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:285: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  data.to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: PerformanceWarning:
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;values] [items-&gt;None]
+
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">plasma_input_data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/tmp/plasma_input_output.hdf&#39;</span><span class="p">)</span>
+
+<span class="n">plasma_input_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/plasma/continuum_interaction_species&#39;,
+ &#39;/plasma/dilute_planckian_radiation_field&#39;,
+ &#39;/plasma/j_blues&#39;,
+ &#39;/plasma/nlte_excitation_species&#39;,
+ &#39;/plasma/nlte_ionization_species&#39;,
+ &#39;/plasma/number_density&#39;,
+ &#39;/plasma/scalars&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="Model">
+<h4>Model<a class="headerlink" href="#Model" title="Link to this heading">¶</a></h4>
+<p>The following call will store properties of the <code class="docutils literal notranslate"><span class="pre">SimulationState</span></code> to <code class="docutils literal notranslate"><span class="pre">/tmp/model_output.hdf</span></code> under <code class="docutils literal notranslate"><span class="pre">/simulation_state</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulation</span><span class="o">.</span><span class="n">simulation_state</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;/tmp/model_output.hdf&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:269: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:276: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+ (<span class="ansi-bold">warnings.py</span>:112)
+[<span class="ansi-bold">py.warnings         </span>][<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span>]
+        /home/runner/work/tardis/tardis/tardis/io/util.py:288: FutureWarning: Starting with pandas version 3.0 all arguments of to_hdf except for the argument &#39;path_or_buf&#39; will be keyword-only.
+  pd.Series(scalars).to_hdf(buf, os.path.join(path, &#34;scalars&#34;))
+ (<span class="ansi-bold">warnings.py</span>:112)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">model_data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/tmp/model_output.hdf&#39;</span><span class="p">)</span>
+
+<span class="n">model_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/simulation_state/abundance&#39;,
+ &#39;/simulation_state/density&#39;,
+ &#39;/simulation_state/dilution_factor&#39;,
+ &#39;/simulation_state/r_inner&#39;,
+ &#39;/simulation_state/scalars&#39;,
+ &#39;/simulation_state/t_radiative&#39;,
+ &#39;/simulation_state/v_inner&#39;,
+ &#39;/simulation_state/v_outer&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="MontecarloTransport">
+<h4>MontecarloTransport<a class="headerlink" href="#MontecarloTransport" title="Link to this heading">¶</a></h4>
+<p>The following call will store properties of the <code class="docutils literal notranslate"><span class="pre">MontecarloTransport</span></code> to <code class="docutils literal notranslate"><span class="pre">/tmp/transport_output.hdf</span></code> under <code class="docutils literal notranslate"><span class="pre">/transport</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulation</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;/tmp/transport_output.hdf&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">transport_data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/tmp/transport_output.hdf&#39;</span><span class="p">)</span>
+
+<span class="n">transport_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;/transport/transport_state/emitted_packet_mask&#39;,
+ &#39;/transport/transport_state/j_blue_estimator&#39;,
+ &#39;/transport/transport_state/j_estimator&#39;,
+ &#39;/transport/transport_state/last_interaction_in_nu&#39;,
+ &#39;/transport/transport_state/last_interaction_in_r&#39;,
+ &#39;/transport/transport_state/last_interaction_type&#39;,
+ &#39;/transport/transport_state/last_line_interaction_in_id&#39;,
+ &#39;/transport/transport_state/last_line_interaction_out_id&#39;,
+ &#39;/transport/transport_state/last_line_interaction_shell_id&#39;,
+ &#39;/transport/transport_state/nu_bar_estimator&#39;,
+ &#39;/transport/transport_state/output_energy&#39;,
+ &#39;/transport/transport_state/output_nu&#39;,
+ &#39;/transport/transport_state/packet_luminosity&#39;,
+ &#39;/transport/transport_state/scalars&#39;]
+</pre></div></div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"677488c6fc314d2190beb92cb329a4e5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "b0885ea7b876422ab8bb656b57a283c2": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "44368f19858640329c10890d4907fea0": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_677488c6fc314d2190beb92cb329a4e5", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_b0885ea7b876422ab8bb656b57a283c2", "value": 0.0}}, "1b8c884cc3204445b8d292fcb30091a2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "645bdeaca1864dcc8dc56bb5824048c8": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e6d14407db7d46c5a672b6f04437249d": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1b8c884cc3204445b8d292fcb30091a2", "placeholder": "\u200b", "style": "IPY_MODEL_645bdeaca1864dcc8dc56bb5824048c8", "value": "Iterations:"}}, "193573ff46d64158978893f6b55e525c": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d3919bdb37494287b14c1b17f928143a": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f5b35d6775c94a69b0a7cff8b39e1e0d": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_193573ff46d64158978893f6b55e525c", "placeholder": "\u200b", "style": "IPY_MODEL_d3919bdb37494287b14c1b17f928143a", "value": "0/?\u2007[00:00&lt;?,\u2007?it/s]"}}, "a8075a5a6ef743bb90d46d767f63146b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "df240719336f4a93bf3c40185d98e6de": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_e6d14407db7d46c5a672b6f04437249d", "IPY_MODEL_44368f19858640329c10890d4907fea0", "IPY_MODEL_f5b35d6775c94a69b0a7cff8b39e1e0d"], "layout": "IPY_MODEL_a8075a5a6ef743bb90d46d767f63146b"}}, "20dfcb0cab3343b3b056a10ac8a0bfb0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "65d683e9aa1b4466b9ad00ffc478c301": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "b1c563c92de341f39ff850b6c9538e6b": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "info", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_20dfcb0cab3343b3b056a10ac8a0bfb0", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_65d683e9aa1b4466b9ad00ffc478c301", "value": 0.0}}, "bb3f5b0735e8444f88672a7ffb5caa15": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0bf09f7a7436433fb38406e2f65f69ef": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e72062f6c56b48318dea47768b1228af": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_bb3f5b0735e8444f88672a7ffb5caa15", "placeholder": "\u200b", "style": "IPY_MODEL_0bf09f7a7436433fb38406e2f65f69ef", "value": "Packets:\u2007\u2007\u2007"}}, "1e64e13f4cb44d5d8fba25102a89ba51": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0efd7836a6c140fba7e9427fe54d942c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "fcff43ca40a143a4bd370b932ae2c129": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1e64e13f4cb44d5d8fba25102a89ba51", "placeholder": "\u200b", "style": "IPY_MODEL_0efd7836a6c140fba7e9427fe54d942c", "value": "0/?\u2007[00:00&lt;?,\u2007?it/s]"}}, "f00e9f3db9ae408e9298c9832d1bdcc0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f7d2577a1d6a436e855ecb87448d96ae": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_e72062f6c56b48318dea47768b1228af", "IPY_MODEL_b1c563c92de341f39ff850b6c9538e6b", "IPY_MODEL_fcff43ca40a143a4bd370b932ae2c129"], "layout": "IPY_MODEL_f00e9f3db9ae408e9298c9832d1bdcc0"}}, "5646c75ea9cd464f9ee3acaadd7ed58d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "79dd5352dc0a418b9c3db014aee68822": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_5646c75ea9cd464f9ee3acaadd7ed58d", "msg_id": "", "outputs": []}}, "69d441634467462d9c3309d15fd6059b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6eab34c0df3548e6918266949523c10c": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_69d441634467462d9c3309d15fd6059b", "msg_id": "", "outputs": []}}, "bfbf0765476e4a6694b61167110581b6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "d601eb63c41e4727a97fe04f01f17aef": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "7950b32277b347a99645c1c5e712529e": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_bfbf0765476e4a6694b61167110581b6", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_d601eb63c41e4727a97fe04f01f17aef", "value": 20.0}}, "8411b90dccb441478a371b6a98e0b623": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "e5cfa87fa9114912b3da71404c146d9d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "0aa47520ecfb4e9fbcc9c8a4b6fd3fc5": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8411b90dccb441478a371b6a98e0b623", "placeholder": "\u200b", "style": "IPY_MODEL_e5cfa87fa9114912b3da71404c146d9d", "value": "Iterations:"}}, "0288f68d9b224b67b92b71f7dd5b9081": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6aa06173496846ea8b948f6711ecadb9": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "620498591ea0466d9c87adfb6b851b66": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0288f68d9b224b67b92b71f7dd5b9081", "placeholder": "\u200b", "style": "IPY_MODEL_6aa06173496846ea8b948f6711ecadb9", "value": "20/20\u2007[00:17&lt;00:00,\u2007\u20072.22s/it]"}}, "b97e4c98ed43413ab024f627c1756c65": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9a27acec8a8542ceb209321f437062bc": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_0aa47520ecfb4e9fbcc9c8a4b6fd3fc5", "IPY_MODEL_7950b32277b347a99645c1c5e712529e", "IPY_MODEL_620498591ea0466d9c87adfb6b851b66"], "layout": "IPY_MODEL_b97e4c98ed43413ab024f627c1756c65"}}, "2beb7e2ca89e4b66b85b0382bc8ef853": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "60%"}}, "dc0387f7b75d491f8f72ec78f2a5e025": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "2b6ba7f3f3234dfd8efd735f946eb4f3": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2beb7e2ca89e4b66b85b0382bc8ef853", "max": 100000.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_dc0387f7b75d491f8f72ec78f2a5e025", "value": 100000.0}}, "3bffd63b05284d01b7a73f118d68aed4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "6%"}}, "eeeb79ffac5945669760d1ee82b3716c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "21bb9690da5443cebd3627a7eb892165": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3bffd63b05284d01b7a73f118d68aed4", "placeholder": "\u200b", "style": "IPY_MODEL_eeeb79ffac5945669760d1ee82b3716c", "value": "Packets:\u2007\u2007\u2007"}}, "2b89d43570db4fc1a5d4a30e57298de0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8f5d6a23ccae492b8414605a077eef36": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "efc067002e9d48bb8e4f79d67930332b": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2b89d43570db4fc1a5d4a30e57298de0", "placeholder": "\u200b", "style": "IPY_MODEL_8f5d6a23ccae492b8414605a077eef36", "value": "100000/100000\u2007[00:23&lt;00:00,\u200715547.79it/s]"}}, "c2bbb608673d46658e236bd0978f6a69": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "98548cd046424438bb5ce36b4de8b42f": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_21bb9690da5443cebd3627a7eb892165", "IPY_MODEL_2b6ba7f3f3234dfd8efd735f946eb4f3", "IPY_MODEL_efc067002e9d48bb8e4f79d67930332b"], "layout": "IPY_MODEL_c2bbb608673d46658e236bd0978f6a69"}}}, "version_major": 2, "version_minor": 0}
+</script></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="access_iterations.html" class="btn btn-neutral float-left" title="Access information about individual iterations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="callback.html" class="btn btn-neutral float-right" title="Callbacks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
