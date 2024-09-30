@@ -125,11 +125,11 @@
              
   <h1>Source code for tardis.io.atom_data.base</h1><div class="highlight"><pre>
 <span></span>import logging
+from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
 from astropy.units import Quantity
-from dataclasses import dataclass
 
 from tardis import constants as const
 from tardis.io.atom_data.collision_data import (
@@ -400,7 +400,7 @@ class AtomData:
             )
             if nonavailable:
                 logger.info(
-                    &quot;Non provided Atomic Data: {0}&quot;.format(
+                    &quot;Non provided Atomic Data: {}&quot;.format(
                         &quot;, &quot;.join(nonavailable)
                     )
                 )
@@ -901,7 +901,7 @@ class MoleculeData:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

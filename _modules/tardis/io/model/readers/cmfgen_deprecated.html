@@ -124,15 +124,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.cmfgen_deprecated</h1><div class="highlight"><pre>
-<span></span>from tardis.io.model.readers.util import read_csv_isotope_mass_fractions
-from tardis.util.base import parse_quantity
-
+<span></span>import warnings
 
 import pandas as pd
 from astropy import units as u
 
-
-import warnings
+from tardis.io.model.readers.util import read_csv_isotope_mass_fractions
+from tardis.util.base import parse_quantity
 
 
 <div class="viewcode-block" id="read_cmfgen_density">
@@ -212,7 +210,6 @@ def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
     warnings.warn(
         &quot;The current CMFGEN model parser is deprecated&quot;, DeprecationWarning
     )
@@ -231,7 +228,7 @@ def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

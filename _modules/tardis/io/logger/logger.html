@@ -127,7 +127,7 @@
 <span></span>import logging
 import sys
 
-from tardis.io.logger.colored_logger import ColoredFormatter, formatter_message
+from tardis.io.logger.colored_logger import ColoredFormatter
 
 logging.captureWarnings(True)
 logger = logging.getLogger(&quot;tardis&quot;)
@@ -153,7 +153,7 @@ DEFAULT_SPECIFIC_STATE = False
 
 <div class="viewcode-block" id="FilterLog">
 <a class="viewcode-back" href="../../../../api/tardis.io.logger.logger.html#tardis.io.logger.logger.FilterLog">[docs]</a>
-class FilterLog(object):
+class FilterLog:
     &quot;&quot;&quot;
     Filter Log Class for Filtering Logging Output
     to a particular level
@@ -211,7 +211,6 @@ def logging_state(log_level, tardis_config, specific_log_level):
     specific_log_level: boolean
         Allows to set specific logging levels. Logs of the `log_level` level would be output.
     &quot;&quot;&quot;
-
     if &quot;debug&quot; in tardis_config:
         specific_log_level = (
             tardis_config[&quot;debug&quot;][&quot;specific_log_level&quot;]
@@ -249,7 +248,7 @@ def logging_state(log_level, tardis_config, specific_log_level):
             specific_log_level = tardis_config[&quot;debug&quot;][&quot;specific_log_level&quot;]
 
     logging_level = logging_level.upper()
-    if not logging_level in LOGGING_LEVELS:
+    if logging_level not in LOGGING_LEVELS:
         raise ValueError(
             f&quot;Passed Value for log_level = {logging_level} is Invalid. Must be one of the following {list(LOGGING_LEVELS.keys())}&quot;
         )
@@ -312,7 +311,7 @@ def tardis_logger():
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

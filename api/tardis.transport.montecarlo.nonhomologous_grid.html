@@ -166,9 +166,11 @@ Uses: <a class="reference external" href="https://en.wikipedia.org/wiki/Quartic_
 <dd class="field-odd"><dl class="simple">
 <dt><strong>a, b, c, d, e: coefficients of the equations ax^4 + bx^3 + cx^2 + dx + e = 0, float</strong></dt><dd></dd>
 <dt><strong>threshold: lower needed limit on roots, float</strong></dt><dd></dd>
-<dt><strong>Returns</strong></dt><dd></dd>
-<dt><strong>———–</strong></dt><dd></dd>
-<dt><strong>roots: real positive roots of ax^4 + bx^3 + cx^2 + dx + e = 0</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>roots: real positive roots of ax^4 + bx^3 + cx^2 + dx + e = 0</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -178,14 +180,16 @@ Uses: <a class="reference external" href="https://en.wikipedia.org/wiki/Quartic_
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.nonhomologous_grid.tau_sobolev_factor">
 <span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.nonhomologous_grid.</span></span><span class="sig-name descname"><span class="pre">tau_sobolev_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_packet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/nonhomologous_grid.html#tau_sobolev_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.nonhomologous_grid.tau_sobolev_factor" title="Link to this definition">¶</a></dt>
 <dd><p>The angle and velocity dependent Tau Sobolev factor component. Is called when ENABLE_NONHOMOLOGOUS_EXPANSION is set to True.</p>
-<p>Note: to get Tau Sobolev, this needs to be multiplied by tau_sobolevs found from plasma
-Parameters
-———-
-r_packet: RPacket
-geometry: Geometry</p>
+<p>Note: to get Tau Sobolev, this needs to be multiplied by tau_sobolevs found from plasma</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>r_packet: RPacket</strong></dt><dd></dd>
+<dt><strong>geometry: Geometry</strong></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt>factor = 1.0 / ((1 - mu * mu) * v / r + mu * mu * dvdr)</dt><dd></dd>
 </dl>
 </dd>
@@ -226,7 +230,7 @@ geometry: Geometry</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

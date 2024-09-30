@@ -193,7 +193,7 @@ def quantity_from_str(text):
 
 <div class="viewcode-block" id="MockRegexPattern">
 <a class="viewcode-back" href="../../../api/tardis.io.util.html#tardis.io.util.MockRegexPattern">[docs]</a>
-class MockRegexPattern(object):
+class MockRegexPattern:
     &quot;&quot;&quot;
     A mock class to be used in place of a compiled regular expression
     when a type check is needed instead of a regex match.
@@ -349,9 +349,9 @@ def check_equality(item1, item2):
 
 <div class="viewcode-block" id="HDFWriterMixin">
 <a class="viewcode-back" href="../../../api/tardis.io.util.html#tardis.io.util.HDFWriterMixin">[docs]</a>
-class HDFWriterMixin(object):
+class HDFWriterMixin:
     def __new__(cls, *args, **kwargs):
-        instance = super(HDFWriterMixin, cls).__new__(cls)
+        instance = super().__new__(cls)
         instance.optional_hdf_properties = []
         instance.__init__(*args, **kwargs)
         return instance
@@ -429,14 +429,18 @@ class HDFWriterMixin(object):
                 if value.ndim == 1:
                     # This try,except block is only for model.plasma.levels
                     try:
-                        pd.Series(value).to_hdf(buf, os.path.join(path, key))
+                        pd.Series(value).to_hdf(
+                            buf, key=os.path.join(path, key)
+                        )
                     except NotImplementedError:
                         logger.debug(
                             &quot;Could not convert SERIES to HDF. Converting DATAFRAME to HDF&quot;
                         )
-                        pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+                        pd.DataFrame(value).to_hdf(
+                            buf, key=os.path.join(path, key)
+                        )
                 else:
-                    pd.DataFrame(value).to_hdf(buf, os.path.join(path, key))
+                    pd.DataFrame(value).to_hdf(buf, key=os.path.join(path, key))
             else:  # value is a TARDIS object like model, transport or plasma
                 try:
                     value.to_hdf(buf, path, name=key, overwrite=overwrite)
@@ -445,10 +449,10 @@ class HDFWriterMixin(object):
                         &quot;Could not convert VALUE to HDF. Converting DATA (Dataframe) to HDF&quot;
                     )
                     data = pd.DataFrame([value])
-                    data.to_hdf(buf, os.path.join(path, key))
+                    data.to_hdf(buf, key=os.path.join(path, key))
 
         if scalars:
-            pd.Series(scalars).to_hdf(buf, os.path.join(path, &quot;scalars&quot;))
+            pd.Series(scalars).to_hdf(buf, key=os.path.join(path, &quot;scalars&quot;))
 
         if buf.is_open:
             buf.close()</div>
@@ -563,9 +567,7 @@ class PlasmaWriterMixin(HDFWriterMixin):
             If the HDF file path already exists, whether to overwrite it or not
         &quot;&quot;&quot;
         self.collection = collection
-        super(PlasmaWriterMixin, self).to_hdf(
-            file_path_or_buf, path, name, overwrite
-        )</div>
+        super().to_hdf(file_path_or_buf, path, name, overwrite)</div>
 </div>
 
 
@@ -585,7 +587,6 @@ def download_from_url(url, dst, checksum, src=None, retries=3):
     src : tuple
         List of URLs to use as mirrors
     &quot;&quot;&quot;
-
     cached_file_path = download_file(url, sources=src, pkgname=&quot;tardis&quot;)
 
     with open(cached_file_path, &quot;rb&quot;) as f:
@@ -614,7 +615,7 @@ def download_from_url(url, dst, checksum, src=None, retries=3):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

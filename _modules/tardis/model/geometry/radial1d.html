@@ -124,11 +124,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.geometry.radial1d</h1><div class="highlight"><pre>
-<span></span>from numba import float64
-from numba.experimental import jitclass
+<span></span>import warnings
+
 import numpy as np
 from astropy import units as u
-import warnings
+from numba import float64
+from numba.experimental import jitclass
 
 
 <div class="viewcode-block" id="HomologousRadial1DGeometry">
@@ -327,7 +328,7 @@ numba_geometry_spec = [
 <div class="viewcode-block" id="NumbaRadial1DGeometry">
 <a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.NumbaRadial1DGeometry">[docs]</a>
 @jitclass(numba_geometry_spec)
-class NumbaRadial1DGeometry(object):
+class NumbaRadial1DGeometry:
     def __init__(self, r_inner, r_outer, v_inner, v_outer):
         &quot;&quot;&quot;
         Radial 1D Geometry for the Numba mode
@@ -356,7 +357,7 @@ class NumbaRadial1DGeometry(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

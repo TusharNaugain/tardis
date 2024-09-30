@@ -445,7 +445,7 @@ class LIVPlotter:
             raise ValueError(&quot;No valid species found for plotting.&quot;)
 
         self._make_colorbar_labels()
-        self.cmap = cm.get_cmap(cmapname, len(self._species_name))
+        self.cmap = plt.get_cmap(cmapname, len(self._species_name))
         self._make_colorbar_colors()
 
         if packet_wvl_range is None:
@@ -726,7 +726,7 @@ class LIVPlotter:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 

@@ -409,7 +409,7 @@ class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
                         )
                     else:
                         raise e
-                general_level_boltzmann_factor[i].loc[species] = (
+                general_level_boltzmann_factor.loc[species, i] = (
                     level_boltzmann_factor
                     * g.loc[species][0]
                     / level_boltzmann_factor[0]
@@ -576,7 +576,7 @@ class ThermalLTEPartitionFunction(PartitionFunction):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 25 Sep 2024.
+      <span class="lastupdated">Last updated on 30 Sep 2024.
       </span></p>
   </div>
 
