@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -126,14 +127,15 @@
   <h1>Source code for tardis.transport.montecarlo.packet_source</h1><div class="highlight"><pre>
 <span></span>import abc
 
-import numpy as np
 import numexpr as ne
+import numpy as np
+from astropy import units as u
+
 from tardis import constants as const
+from tardis.io.util import HDFWriterMixin
 from tardis.transport.montecarlo.packet_collections import (
     PacketCollection,
 )
-from tardis.io.util import HDFWriterMixin
-from astropy import units as u
 
 
 <div class="viewcode-block" id="BasePacketSource">
@@ -402,7 +404,6 @@ class BlackBodySimpleSource(BasePacketSource, HDFWriterMixin):
         Directions for packets
             numpy.ndarray
         &quot;&quot;&quot;
-
         # For testing purposes
         if self.legacy_mode_enabled:
             return np.sqrt(np.random.random(no_of_packets))
@@ -438,7 +439,6 @@ class BlackBodySimpleSource(BasePacketSource, HDFWriterMixin):
 
         Parameters
         ----------
-
         luminosity : u.Quantity
 
         &quot;&quot;&quot;
@@ -581,7 +581,7 @@ class BlackBodySimpleSourceRelativistic(BlackBodySimpleSource, HDFWriterMixin):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

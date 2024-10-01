@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -145,7 +146,7 @@ class IsotopicMassFraction(pd.DataFrame):
             kwargs.pop(&quot;time_0&quot;)
         else:
             time_0 = 0 * u.d
-        super(IsotopicMassFraction, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.time_0 = time_0
 
     @property
@@ -153,7 +154,7 @@ class IsotopicMassFraction(pd.DataFrame):
         return IsotopicMassFraction
 
     def _update_inventory(self):
-        self.comp_dicts = [dict() for i in range(len(self.columns))]
+        self.comp_dicts = [{} for i in range(len(self.columns))]
         for (atomic_number, mass_number), mass_fractions in self.iterrows():
             nuclear_symbol = f&quot;{Z_to_elem(atomic_number)}{mass_number}&quot;
             for i in range(len(self.columns)):
@@ -163,7 +164,7 @@ class IsotopicMassFraction(pd.DataFrame):
 <a class="viewcode-back" href="../../../../api/tardis.model.matter.decay.html#tardis.model.matter.decay.IsotopicMassFraction.from_inventories">[docs]</a>
     @classmethod
     def from_inventories(cls, inventories):
-        multi_index_tuples = set([])
+        multi_index_tuples = set()
         for inventory in inventories:
             multi_index_tuples.update(
                 [cls.id_to_tuple(key) for key in inventory.contents.keys()]
@@ -204,7 +205,7 @@ class IsotopicMassFraction(pd.DataFrame):
         list
             list of radioactivedecay Inventories
         &quot;&quot;&quot;
-        comp_dicts = [dict() for i in range(len(self.columns))]
+        comp_dicts = [{} for i in range(len(self.columns))]
         for (atomic_number, mass_number), abundances in self.iterrows():
             nuclear_symbol = f&quot;{Z_to_elem(atomic_number)}{mass_number}&quot;
             for i in range(len(self.columns)):
@@ -305,7 +306,7 @@ class IsotopicMassFraction(pd.DataFrame):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

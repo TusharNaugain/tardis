@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -131,18 +132,13 @@ from numba import njit
 from tardis.transport.montecarlo import (
     njit_dict_no_parallel,
 )
-
 from tardis.transport.montecarlo.configuration.constants import (
     C_SPEED_OF_LIGHT,
+    CLOSE_LINE_THRESHOLD,
     MISS_DISTANCE,
     SIGMA_THOMSON,
-    CLOSE_LINE_THRESHOLD,
 )
-
 from tardis.transport.montecarlo.utils import MonteCarloException
-from tardis.transport.montecarlo.r_packet import (
-    print_r_packet_properties,
-)
 
 
 <div class="viewcode-block" id="calculate_distance_boundary">
@@ -163,7 +159,6 @@ def calculate_distance_boundary(r, mu, r_inner, r_outer):
     r_outer : float
        outer radius of current shell
     &quot;&quot;&quot;
-
     delta_shell = 0
     if mu &gt; 0.0:
         # direction outward
@@ -219,7 +214,6 @@ def calculate_distance_line(
     Returns
     -------
     &quot;&quot;&quot;
-
     nu = r_packet.nu
 
     if is_last_line:
@@ -297,7 +291,7 @@ def calculate_distance_electron(electron_density, tau_event):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

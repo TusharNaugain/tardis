@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -156,7 +157,7 @@ def read_blondin_toymodel(fname):
     blondin_csv : pandas.DataFrame
         DataFrame containing the csv part of the toymodel
     &quot;&quot;&quot;
-    with open(fname, &quot;r&quot;) as fh:
+    with open(fname) as fh:
         for line in fh:
             if line.startswith(&quot;#idx&quot;):
                 break
@@ -219,7 +220,7 @@ def read_blondin_toymodel(fname):
     )
     blondin_csv[&quot;velocity&quot;] = new_velocities
 
-    with open(fname, &quot;r&quot;) as fh:
+    with open(fname) as fh:
         t0_string = T0_PATTERN.findall(fh.read())[0]
 
     t0 = parse_quantity(t0_string.replace(&quot;DAYS&quot;, &quot;day&quot;))
@@ -304,7 +305,7 @@ def convert_blondin_toymodel(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

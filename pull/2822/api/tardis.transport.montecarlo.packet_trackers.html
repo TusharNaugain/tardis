@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -160,29 +161,29 @@
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">RPacketLastInteractionTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#RPacketLastInteractionTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker" title="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPacketLastInteractionTracker</span></code></a></p>
-<p>Numba JITCLASS for storing the last interaction the RPacket undergoes.
-Parameters
-———-</p>
-<blockquote>
-<div><dl class="simple">
-<dt>index<span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
+<p>Numba JITCLASS for storing the last interaction the RPacket undergoes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
 </dd>
-<dt>r<span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
+<dt><strong>r</strong><span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
 </dd>
-<dt>nu<span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
+<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
 </dd>
-<dt>energy<span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket</p>
+<dt><strong>energy</strong><span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket</p>
 </dd>
-<dt>shell_id<span class="classifier">int</span></dt><dd><p>Current Shell No in which the last interaction happened</p>
+<dt><strong>shell_id</strong><span class="classifier">int</span></dt><dd><p>Current Shell No in which the last interaction happened</p>
 </dd>
-<dt>interaction_type: int</dt><dd><p>Type of interaction the rpacket undergoes</p>
+<dt><strong>interaction_type: int</strong></dt><dd><p>Type of interaction the rpacket undergoes</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 <p>Initialize properties with default values</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketLastInteractionTracker#7f456d59b890&lt;index:int64,r:float64,nu:float64,energy:float64,shell_id:int64,interaction_type:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketLastInteractionTracker#7f33ed286990&lt;index:int64,r:float64,nu:float64,energy:float64,shell_id:int64,interaction_type:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketLastInteractionTracker.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -191,41 +192,41 @@ Parameters
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketTracker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.transport.montecarlo.packet_trackers.</span></span><span class="sig-name descname"><span class="pre">RPacketTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/transport/montecarlo/packet_trackers.html#RPacketTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker" title="tardis.transport.montecarlo.packet_trackers.RPacketTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPacketTracker</span></code></a></p>
-<p>Numba JITCLASS for storing the information for each interaction a RPacket instance undergoes.
-Parameters
-———-</p>
-<blockquote>
-<div><dl class="simple">
-<dt>length<span class="classifier">int</span></dt><dd><p>Length of the initial array that is instantiated</p>
+<p>Numba JITCLASS for storing the information for each interaction a RPacket instance undergoes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>length</strong><span class="classifier">int</span></dt><dd><p>Length of the initial array that is instantiated</p>
 </dd>
-<dt>seed<span class="classifier">int</span></dt><dd><p>Seed for each RPacket</p>
+<dt><strong>seed</strong><span class="classifier">int</span></dt><dd><p>Seed for each RPacket</p>
 </dd>
-<dt>index<span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
+<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>Index position of each RPacket</p>
 </dd>
-<dt>status<span class="classifier">int</span></dt><dd><p>Current status of the RPacket as per interactions</p>
+<dt><strong>status</strong><span class="classifier">int</span></dt><dd><p>Current status of the RPacket as per interactions</p>
 </dd>
-<dt>r<span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
+<dt><strong>r</strong><span class="classifier">float</span></dt><dd><p>Radius of the shell where the RPacket is present</p>
 </dd>
-<dt>nu<span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
+<dt><strong>nu</strong><span class="classifier">float</span></dt><dd><p>Frequency of the RPacket</p>
 </dd>
-<dt>mu<span class="classifier">float</span></dt><dd><p>Cosine of the angle made by the direction of movement of the RPacket from its original direction</p>
+<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Cosine of the angle made by the direction of movement of the RPacket from its original direction</p>
 </dd>
-<dt>energy<span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket at a particular shell</p>
+<dt><strong>energy</strong><span class="classifier">float</span></dt><dd><p>Energy possessed by the RPacket at a particular shell</p>
 </dd>
-<dt>shell_id<span class="classifier">int</span></dt><dd><p>Current Shell No in which the RPacket is present</p>
+<dt><strong>shell_id</strong><span class="classifier">int</span></dt><dd><p>Current Shell No in which the RPacket is present</p>
 </dd>
-<dt>interaction_type: int</dt><dd><p>Type of interaction the rpacket undergoes</p>
+<dt><strong>interaction_type: int</strong></dt><dd><p>Type of interaction the rpacket undergoes</p>
 </dd>
-<dt>num_interactions<span class="classifier">int</span></dt><dd><p>Internal counter for the interactions that a particular RPacket undergoes</p>
+<dt><strong>num_interactions</strong><span class="classifier">int</span></dt><dd><p>Internal counter for the interactions that a particular RPacket undergoes</p>
 </dd>
-<dt>extend_factor<span class="classifier">int</span></dt><dd><p>The factor by which to extend the properties array when the size limit is reached</p>
+<dt><strong>extend_factor</strong><span class="classifier">int</span></dt><dd><p>The factor by which to extend the properties array when the size limit is reached</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 <p>Initialize the variables with default value</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type">
-<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f456d59a5d0&lt;seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),boundary_interaction:unaligned</span> <span class="pre">array(Record(event_id[type=int64;offset=0],current_shell_id[type=int64;offset=8],next_shell_id[type=int64;offset=16];24;False),</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64,boundary_interactions_index:int64,event_id:int64,extend_factor:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">class_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">jitclass.RPacketTracker#7f33f51ee6f0&lt;seed:int64,index:int64,status:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),r:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),nu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),mu:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),energy:array(float64,</span> <span class="pre">1d,</span> <span class="pre">A),shell_id:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),interaction_type:array(int64,</span> <span class="pre">1d,</span> <span class="pre">A),boundary_interaction:unaligned</span> <span class="pre">array(Record(event_id[type=int64;offset=0],current_shell_id[type=int64;offset=8],next_shell_id[type=int64;offset=16];24;False),</span> <span class="pre">1d,</span> <span class="pre">A),num_interactions:int64,boundary_interactions_index:int64,event_id:int64,extend_factor:int64&gt;</span></em><a class="headerlink" href="#tardis.transport.montecarlo.packet_trackers.RPacketTracker.class_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -299,7 +300,7 @@ Parameters
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

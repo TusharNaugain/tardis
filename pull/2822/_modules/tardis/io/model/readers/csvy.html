@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -125,11 +126,13 @@
              
   <h1>Source code for tardis.io.model.readers.csvy</h1><div class="highlight"><pre>
 <span></span>import logging
+
 import numpy as np
+import pandas as pd
+import yaml
 from radioactivedecay import Nuclide
 from radioactivedecay.utils import Z_DICT, elem_to_Z
-import yaml
-import pandas as pd
+
 from tardis.io.util import YAMLLoader
 from tardis.util.base import is_valid_nuclide_or_elem
 
@@ -247,7 +250,6 @@ def parse_csv_mass_fractions(csvy_data):
     mass_fractions : pandas.DataFrame
     isotope_mass_fraction : pandas.MultiIndex
     &quot;&quot;&quot;
-
     mass_fraction_col_names = [
         name for name in csvy_data.columns if is_valid_nuclide_or_elem(name)
     ]
@@ -292,7 +294,7 @@ def parse_csv_mass_fractions(csvy_data):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

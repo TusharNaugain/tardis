@@ -13,7 +13,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tardis \(\gamma\) &mdash; tardis</title>
+  <title>Packet Initialization &mdash; tardis</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
@@ -35,6 +35,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contribution Guidelines" href="../../contributing/CONTRIBUTING.html" />
+    <link rel="prev" title="Tardis \(\gamma\)" href="index.html" />
     <link href="../../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -79,12 +81,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../io/output/index.html">Additional Outputs</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Physics Walkthrough</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Physics Walkthrough Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Setting Up the Simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Packet Initialization</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -116,7 +122,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></li>
+          <li class="breadcrumb-item"><a href="index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
+      <li class="breadcrumb-item active">Packet Initialization</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/physics/tardisgamma/gammaraypacketinitialization.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,10 +133,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tardis-gamma">
-<h1>Tardis <span class="math notranslate nohighlight">\(\gamma\)</span><a class="headerlink" href="#tardis-gamma" title="Link to this heading">¶</a></h1>
-<section id="packet-initialization">
-<h2>Packet Initialization<a class="headerlink" href="#packet-initialization" title="Link to this heading">¶</a></h2>
+  <section id="packet-initialization">
+<h1>Packet Initialization<a class="headerlink" href="#packet-initialization" title="Link to this heading">¶</a></h1>
 <p>The gamma ray portion of tardis also uses the idea of packets of photons from <span id="id1">[]</span> and <span id="id2">[]</span> (see <span class="xref std std-doc">initialization</span>)
 These packets are given an energy equal to the total energy divided by the number of packets and a frequency that is equal to the packet energy divided by Planck’s constant, h.</p>
 <p>The packets are also given a direction made up of two angles, <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>, where  <span class="math notranslate nohighlight">\(\theta\)</span> is a polar angle between 0 and <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> is an azimuth angle between 0 and <span class="math notranslate nohighlight">\(2\pi\)</span>.
@@ -145,18 +150,20 @@ We sample these angles using the following equations <span id="id3">[]</span>:</
 <p>y = r <span class="math notranslate nohighlight">\(\sin{\theta}\cos{\phi}\)</span></p>
 <p>z = r <span class="math notranslate nohighlight">\(\cos{\theta}\)</span></p>
 </section>
-</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tardis \(\gamma\)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../contributing/CONTRIBUTING.html" class="btn btn-neutral float-right" title="Contribution Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

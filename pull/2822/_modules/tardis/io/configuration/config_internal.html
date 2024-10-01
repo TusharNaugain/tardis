@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -124,13 +125,15 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.configuration.config_internal</h1><div class="highlight"><pre>
-<span></span>import logging, shutil
-import yaml
+<span></span>import logging
 import os
+import shutil
 from pathlib import Path
 
-from tardis import __path__ as TARDIS_PATH
+import yaml
 from astropy.config import get_config_dir
+
+from tardis import __path__ as TARDIS_PATH
 
 TARDIS_PATH = Path(TARDIS_PATH[0])
 DEFAULT_CONFIG_PATH = (
@@ -177,7 +180,7 @@ def get_data_dir():
         data_dir = DEFAULT_DATA_DIR
 
     if not os.path.exists(data_dir):
-        raise IOError(f&quot;Data directory specified in {data_dir} does not exist&quot;)
+        raise OSError(f&quot;Data directory specified in {data_dir} does not exist&quot;)
 
     return Path(data_dir)</div>
 
@@ -191,7 +194,7 @@ def get_data_dir():
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 

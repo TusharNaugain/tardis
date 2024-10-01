@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/montecarlo/index.html">Monte Carlo Iteration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/update_and_conv/update_and_conv.html">Updating Plasma and Convergence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../physics/spectrum/index.html">Spectrum Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/tardisgamma/index.html">Tardis <span class="math notranslate nohighlight">\(\gamma\)</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing to TARDIS</span></p>
 <ul>
@@ -128,14 +129,14 @@
 
 from numba import njit
 
-from tardis.transport.montecarlo import (
-    njit_dict_no_parallel,
-)
-from tardis.transport.montecarlo.configuration.constants import KB, H
 from tardis.transport.frame_transformations import (
     calc_packet_energy,
     calc_packet_energy_full_relativity,
 )
+from tardis.transport.montecarlo import (
+    njit_dict_no_parallel,
+)
+from tardis.transport.montecarlo.configuration.constants import KB, H
 
 
 <div class="viewcode-block" id="update_base_estimators">
@@ -263,7 +264,7 @@ def update_line_estimators(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 24 Sep 2024.
+      <span class="lastupdated">Last updated on 01 Oct 2024.
       </span></p>
   </div>
 
