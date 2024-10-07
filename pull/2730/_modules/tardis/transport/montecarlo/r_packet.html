@@ -24,7 +24,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -127,17 +129,15 @@
 <span></span>from enum import IntEnum
 
 import numpy as np
-import pandas as pd
-from numba import int64, float64, njit, objmode
+from numba import float64, int64, njit, objmode
 from numba.experimental import jitclass
 
-from tardis.transport.montecarlo import (
-    njit_dict_no_parallel,
-)
 from tardis.transport.frame_transformations import (
     get_doppler_factor,
 )
-from tardis.transport.montecarlo import njit_dict_no_parallel
+from tardis.transport.montecarlo import (
+    njit_dict_no_parallel,
+)
 
 
 <div class="viewcode-block" id="InteractionType">
@@ -182,7 +182,7 @@ rpacket_spec = [
 <div class="viewcode-block" id="RPacket">
 <a class="viewcode-back" href="../../../../api/tardis.transport.montecarlo.r_packet.html#tardis.transport.montecarlo.r_packet.RPacket">[docs]</a>
 @jitclass(rpacket_spec)
-class RPacket(object):
+class RPacket:
     def __init__(self, r, mu, nu, energy, seed, index=0):
         self.r = r
         self.mu = mu
@@ -249,7 +249,7 @@ def print_r_packet_properties(r_packet):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

@@ -24,7 +24,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -188,37 +190,59 @@ class WorkflowLogging:
         plasma_state_log[&quot;next_w&quot;] = next_dilution_factor
         plasma_state_log.columns.name = &quot;Shell No.&quot;
 
-        if is_notebook():
-            logger.info(&quot;\n\tPlasma stratification:&quot;)
+        logger.info(&quot;\n\tPlasma stratification:&quot;)
 
-            # Displaying the DataFrame only when the logging level is NOTSET, DEBUG or INFO
-            if logger.level &lt;= logging.INFO:
-                if not logger.filters:
-                    display(
-                        plasma_state_log.iloc[::log_sampling].style.format(
-                            &quot;{:.3g}&quot;
-                        )
-                    )
-                elif logger.filters[0].log_level == 20:
-                    display(
-                        plasma_state_log.iloc[::log_sampling].style.format(
-                            &quot;{:.3g}&quot;
-                        )
-                    )
+        if is_notebook():
+            self.log_dataframe_notebook(plasma_state_log, log_sampling)
         else:
-            output_df = &quot;&quot;
-            plasma_output = plasma_state_log.iloc[::log_sampling].to_string(
-                float_format=lambda x: f&quot;{x:.3g}&quot;,
-                justify=&quot;center&quot;,
-            )
-            for value in plasma_output.split(&quot;\n&quot;):
-                output_df = output_df + f&quot;\t{value}\n&quot;
-            logger.info(&quot;\n\tPlasma stratification:&quot;)
-            logger.info(f&quot;\n{output_df}&quot;)
+            self.log_dataframe_console(plasma_state_log, log_sampling)
 
         logger.info(
             f&quot;\n\tCurrent t_inner = {t_inner:.3f}\n\tExpected t_inner for next iteration = {next_t_inner:.3f}\n&quot;
         )</div>
+
+
+<div class="viewcode-block" id="WorkflowLogging.log_dataframe_notebook">
+<a class="viewcode-back" href="../../../api/tardis.workflows.workflow_logging.html#tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_notebook">[docs]</a>
+    def log_dataframe_notebook(self, dataframe, step):
+        &quot;&quot;&quot;Logs a dataframe in a notebook with a step sample
+
+        Parameters
+        ----------
+        dataframe : pd.DataFrame
+            Dataframe to display
+        step : int
+            Step to use when sampling the dataframe
+        &quot;&quot;&quot;
+        # Displaying the DataFrame only when the logging level is NOTSET, DEBUG or INFO
+        if logger.level &lt;= logging.INFO:
+            if not logger.filters:
+                display(dataframe.iloc[::step].style.format(&quot;{:.3g}&quot;))
+            elif logger.filters[0].log_level == 20:
+                display(dataframe.iloc[::step].style.format(&quot;{:.3g}&quot;))</div>
+
+
+<div class="viewcode-block" id="WorkflowLogging.log_dataframe_console">
+<a class="viewcode-back" href="../../../api/tardis.workflows.workflow_logging.html#tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_console">[docs]</a>
+    def log_dataframe_console(self, dataframe, step):
+        &quot;&quot;&quot;Logs a dataframe to console with a step sample
+
+        Parameters
+        ----------
+        dataframe : pd.DataFrame
+            Dataframe to display
+        step : int
+            Step to use when sampling the dataframe
+        &quot;&quot;&quot;
+        output_df = &quot;&quot;
+        output = dataframe.iloc[::step].to_string(
+            float_format=lambda x: f&quot;{x:.3g}&quot;,
+            justify=&quot;center&quot;,
+        )
+        for value in output.split(&quot;\n&quot;):
+            output_df = output_df + f&quot;\t{value}\n&quot;
+
+        logger.info(f&quot;\n{output_df}&quot;)</div>
 </div>
 
 </pre></div>
@@ -231,7 +255,7 @@ class WorkflowLogging:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

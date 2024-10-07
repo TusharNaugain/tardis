@@ -25,7 +25,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -34,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tardis.analysis module" href="tardis.analysis.html" />
-    <link rel="prev" title="tardis.workflows.standard_simulation module" href="tardis.workflows.standard_simulation.html" />
+    <link rel="prev" title="tardis.workflows.standard_tardis_workflow module" href="tardis.workflows.standard_tardis_workflow.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -159,7 +161,39 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.workflows.workflow_logging.WorkflowLogging">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.workflows.workflow_logging.</span></span><span class="sig-name descname"><span class="pre">WorkflowLogging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/workflows/workflow_logging.html#WorkflowLogging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.workflows.workflow_logging.WorkflowLogging" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_console">
+<span class="sig-name descname"><span class="pre">log_dataframe_console</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/workflows/workflow_logging.html#WorkflowLogging.log_dataframe_console"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_console" title="Link to this definition">¶</a></dt>
+<dd><p>Logs a dataframe to console with a step sample</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataframe</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Dataframe to display</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>Step to use when sampling the dataframe</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_notebook">
+<span class="sig-name descname"><span class="pre">log_dataframe_notebook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/workflows/workflow_logging.html#WorkflowLogging.log_dataframe_notebook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.workflows.workflow_logging.WorkflowLogging.log_dataframe_notebook" title="Link to this definition">¶</a></dt>
+<dd><p>Logs a dataframe in a notebook with a step sample</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dataframe</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Dataframe to display</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>Step to use when sampling the dataframe</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.workflows.workflow_logging.WorkflowLogging.log_plasma_state">
 <span class="sig-name descname"><span class="pre">log_plasma_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_rad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilution_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_t_rad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_dilution_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_t_inner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_sampling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/workflows/workflow_logging.html#WorkflowLogging.log_plasma_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.workflows.workflow_logging.WorkflowLogging.log_plasma_state" title="Link to this definition">¶</a></dt>
@@ -192,7 +226,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tardis.workflows.standard_simulation.html" class="btn btn-neutral float-left" title="tardis.workflows.standard_simulation module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tardis.workflows.standard_tardis_workflow.html" class="btn btn-neutral float-left" title="tardis.workflows.standard_tardis_workflow module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tardis.analysis.html" class="btn btn-neutral float-right" title="tardis.analysis module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -200,7 +234,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

@@ -24,7 +24,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,11 +126,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.model.geometry.radial1d</h1><div class="highlight"><pre>
-<span></span>from numba import float64
-from numba.experimental import jitclass
+<span></span>import warnings
+
 import numpy as np
 from astropy import units as u
-import warnings
+from numba import float64
+from numba.experimental import jitclass
 
 
 <div class="viewcode-block" id="HomologousRadial1DGeometry">
@@ -327,7 +330,7 @@ numba_geometry_spec = [
 <div class="viewcode-block" id="NumbaRadial1DGeometry">
 <a class="viewcode-back" href="../../../../api/tardis.model.geometry.radial1d.html#tardis.model.geometry.radial1d.NumbaRadial1DGeometry">[docs]</a>
 @jitclass(numba_geometry_spec)
-class NumbaRadial1DGeometry(object):
+class NumbaRadial1DGeometry:
     def __init__(self, r_inner, r_outer, v_inner, v_outer):
         &quot;&quot;&quot;
         Radial 1D Geometry for the Numba mode
@@ -356,7 +359,7 @@ class NumbaRadial1DGeometry(object):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

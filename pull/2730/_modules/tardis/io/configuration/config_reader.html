@@ -24,7 +24,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -222,7 +224,7 @@ class ConfigurationNameSpace(dict):
                 &quot;Cannot specify both model and csvy_model in main config file.&quot;
             )
         if hasattr(self, &quot;csvy_model&quot;):
-            model = dict()
+            model = {}
             csvy_model_path = os.path.join(self.config_dirname, self.csvy_model)
             csvy_yml = load_yaml_from_csvy(csvy_model_path)
             if &quot;v_inner_boundary&quot; in csvy_yml:
@@ -246,13 +248,13 @@ class ConfigurationNameSpace(dict):
         dict.__setitem__(self, key, value)
 
     def __getitem__(self, key):
-        return super(ConfigurationNameSpace, self).__getitem__(key)
+        return super().__getitem__(key)
 
     def __getattr__(self, item):
         if item in self:
             return self[item]
         else:
-            super(ConfigurationNameSpace, self).__getattribute__(item)
+            super().__getattribute__(item)
 
     __setattr__ = __setitem__
 
@@ -620,7 +622,7 @@ class Configuration(ConfigurationNameSpace, ConfigWriterMixin):
 
 
     def __init__(self, config_dict):
-        super(Configuration, self).__init__(config_dict)</div>
+        super().__init__(config_dict)</div>
 
 
 
@@ -679,7 +681,7 @@ yaml.add_representer(Configuration, cns_representer)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

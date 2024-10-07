@@ -24,7 +24,9 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=acf8d1fd"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,11 +126,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.arepo</h1><div class="highlight"><pre>
-<span></span>import os
-import argparse
+<span></span>import argparse
+import os
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy import stats
 
 
@@ -173,7 +175,6 @@ class ArepoSnapshot:
             of-sight to the x-axis. Only usable with snapshots.
             Default: 0.0
         &quot;&quot;&quot;
-
         try:
             import gadget_snap
         except ModuleNotFoundError:
@@ -279,7 +280,6 @@ class Profile:
             Time of the data
 
         &quot;&quot;&quot;
-
         self.pos = pos
         self.vel = vel
         self.rho = rho
@@ -326,7 +326,6 @@ class Profile:
         -------
         fig : matplotlib figure object
         &quot;&quot;&quot;
-
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=[9.8, 9.6])
 
         # Positive direction plots
@@ -389,7 +388,7 @@ class Profile:
             labels,
             loc=&quot;upper left&quot;,
             bbox_to_anchor=(1.05, 1.05),
-            title=&quot;Time = {:.2f} s&quot;.format(self.time),
+            title=f&quot;Time = {self.time:.2f} s&quot;,
         )
         if save is not None:
             plt.savefig(
@@ -419,7 +418,6 @@ class Profile:
         self : Profile object
 
         &quot;&quot;&quot;
-
         self.vel_prof_p, bins_p = stats.binned_statistic(
             self.pos_prof_p,
             self.vel_prof_p * self.mass_prof_p,
@@ -548,7 +546,6 @@ class Profile:
         filename : str
             Name of the actual saved file
         &quot;&quot;&quot;
-
         # Find a free filename
         if str(filename).endswith(&quot;.csvy&quot;):
             filename = str(filename).replace(&quot;.csvy&quot;, &quot;&quot;)
@@ -568,12 +565,8 @@ class Profile:
                     [
                         &quot;---\n&quot;,
                         &quot;name: csvy_full\n&quot;,
-                        &quot;model_density_time_0: {:g} day\n&quot;.format(
-                            self.time / (3600 * 24)
-                        ),  # TODO astropy units
-                        &quot;model_isotope_time_0: {:g} day\n&quot;.format(
-                            self.time / (3600 / 24)
-                        ),  # TODO astropy units
+                        f&quot;model_density_time_0: {self.time / (3600 * 24):g} day\n&quot;,  # TODO astropy units
+                        f&quot;model_isotope_time_0: {self.time / (3600 / 24):g} day\n&quot;,  # TODO astropy units
                         &quot;description: Config file for TARDIS from Arepo snapshot.\n&quot;,
                         &quot;tardis_model_config_version: v1.0\n&quot;,
                         &quot;datatype:\n&quot;,
@@ -592,27 +585,19 @@ class Profile:
                 f.write(
                     &quot;&quot;.join(
                         [
-                            &quot;    -  name: %s\n&quot; % spec.capitalize(),
-                            &quot;       desc: fractional %s abundance.\n&quot;
-                            % spec.capitalize(),
+                            f&quot;    -  name: {spec.capitalize()}\n&quot;,
+                            f&quot;       desc: fractional {spec.capitalize()} abundance.\n&quot;,
                         ]
                     )
                 )
 
-            f.write(
-                &quot;&quot;.join(
-                    [
-                        &quot;\n&quot;,
-                        &quot;---\n&quot;,
-                    ]
-                )
-            )
+            f.write(&quot;\n---\n&quot;)
 
             # WRITE DATA
             datastring = [&quot;velocity,&quot;, &quot;density,&quot;]
             for spec in self.species[:-1]:
-                datastring.append(&quot;%s,&quot; % spec.capitalize())
-            datastring.append(&quot;%s&quot; % self.species[-1].capitalize())
+                datastring.append(f&quot;{spec.capitalize()},&quot;)
+            datastring.append(f&quot;{self.species[-1].capitalize()}&quot;)
             f.write(&quot;&quot;.join(datastring))
 
             # Rebin data to nshells
@@ -640,8 +625,8 @@ class Profile:
             for i in inds:
                 f.write(&quot;\n&quot;)
                 for ii in range(len(exp) - 1):
-                    f.write(&quot;%g,&quot; % exp[ii][i])
-                f.write(&quot;%g&quot; % exp[-1][i])
+                    f.write(f&quot;{exp[ii][i]:g},&quot;)
+                f.write(f&quot;{exp[-1][i]:g}&quot;)
 
         return filename</div>
 
@@ -704,7 +689,6 @@ class ConeProfile(Profile):
         profile : ConeProfile object
 
         &quot;&quot;&quot;
-
         # Convert Cartesian coordinates into cylindrical coordinates
         # P(x,y,z) -&gt; P(x,r,theta)
         cyl = np.array(
@@ -877,7 +861,6 @@ class FullProfile(Profile):
         profile : FullProfile object
 
         &quot;&quot;&quot;
-
         pos_p = np.sqrt(
             (self.pos[0]) ** 2 + (self.pos[1]) ** 2 + (self.pos[2]) ** 2
         ).flatten()
@@ -1122,7 +1105,7 @@ if __name__ == &quot;__main__&quot;:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 15 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 
