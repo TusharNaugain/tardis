@@ -24,7 +24,9 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,15 +126,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.io.model.readers.cmfgen_deprecated</h1><div class="highlight"><pre>
-<span></span>from tardis.io.model.readers.util import read_csv_isotope_mass_fractions
-from tardis.util.base import parse_quantity
-
+<span></span>import warnings
 
 import pandas as pd
 from astropy import units as u
 
-
-import warnings
+from tardis.io.model.readers.util import read_csv_isotope_mass_fractions
+from tardis.util.base import parse_quantity
 
 
 <div class="viewcode-block" id="read_cmfgen_density">
@@ -212,7 +212,6 @@ def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
     fname : str
         filename of the csv file
     &quot;&quot;&quot;
-
     warnings.warn(
         &quot;The current CMFGEN model parser is deprecated&quot;, DeprecationWarning
     )
@@ -231,7 +230,7 @@ def read_cmfgen_composition(fname, delimiter=r&quot;\s+&quot;):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

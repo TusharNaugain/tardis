@@ -24,7 +24,9 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -125,8 +127,8 @@
              
   <h1>Source code for tardis.io.model.readers.artis</h1><div class="highlight"><pre>
 <span></span>import numpy as np
-from astropy import units as u
 import pandas as pd
+from astropy import units as u
 
 
 <div class="viewcode-block" id="read_artis_density">
@@ -152,7 +154,6 @@ def read_artis_density(fname):
     data : pandas.DataFrame
         data frame containing index, velocity (in km/s) and density
     &quot;&quot;&quot;
-
     with open(fname) as fh:
         for i, line in enumerate(open(fname)):
             if i == 0:
@@ -202,7 +203,7 @@ def read_artis_density(fname):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

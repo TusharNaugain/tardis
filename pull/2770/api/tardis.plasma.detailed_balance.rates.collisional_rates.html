@@ -25,7 +25,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -159,8 +161,28 @@
 <span id="tardis-plasma-detailed-balance-rates-collisional-rates-module"></span><h1>tardis.plasma.detailed_balance.rates.collisional_rates module<a class="headerlink" href="#module-tardis.plasma.detailed_balance.rates.collisional_rates" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.detailed_balance.rates.collisional_rates.</span></span><span class="sig-name descname"><span class="pre">ThermalCollisionalRateSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radiative_transitions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_collisional_strength_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_collisional_strengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_strength_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collisional_strength_approximation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'regemorter'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/detailed_balance/rates/collisional_rates.html#ThermalCollisionalRateSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.detailed_balance.rates.collisional_rates.</span></span><span class="sig-name descname"><span class="pre">ThermalCollisionalRateSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radiative_transitions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_collisional_strengths_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thermal_collisional_strengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_strengths_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collisional_strength_approximation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'regemorter'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/detailed_balance/rates/collisional_rates.html#ThermalCollisionalRateSolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.calculate_collision_strengths">
+<span class="sig-name descname"><span class="pre">calculate_collision_strengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures_electron</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/detailed_balance/rates/collisional_rates.html#ThermalCollisionalRateSolver.calculate_collision_strengths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.calculate_collision_strengths" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate collision strengths based on the provided electron temperatures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>temperatures_electron</strong><span class="classifier">array-like</span></dt><dd><p>Array-like of electron temperatures.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>DataFrame containing the calculated collision strengths.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.solve">
 <span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures_electron</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/detailed_balance/rates/collisional_rates.html#ThermalCollisionalRateSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.solve" title="Link to this definition">¶</a></dt>
@@ -182,7 +204,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

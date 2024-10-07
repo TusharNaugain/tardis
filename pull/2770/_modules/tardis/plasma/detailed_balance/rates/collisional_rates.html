@@ -24,7 +24,9 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,12 +126,20 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.plasma.detailed_balance.rates.collisional_rates</h1><div class="highlight"><pre>
-<span></span>import pandas as pd
+<span></span>import numpy as np
+import pandas as pd
+from astropy import units as u
 
+from tardis import constants as const
 from tardis.plasma.detailed_balance.rates.collision_strengths import (
     UpsilonCMFGENSolver,
+    UpsilonChiantiSolver,
     UpsilonRegemorterSolver,
 )
+
+BETA_COLL = (
+    (const.h**4 / (8 * const.k_B * const.m_e**3 * np.pi**3)) ** 0.5
+).cgs
 
 
 <div class="viewcode-block" id="ThermalCollisionalRateSolver">
@@ -137,38 +147,125 @@ from tardis.plasma.detailed_balance.rates.collision_strengths import (
 class ThermalCollisionalRateSolver:
     def __init__(
         self,
+        levels,
         radiative_transitions,
-        thermal_collisional_strength_temperatures,
+        thermal_collisional_strengths_temperatures,
         thermal_collisional_strengths,
-        collision_strength_type,
+        collision_strengths_type,
         collisional_strength_approximation=&quot;regemorter&quot;,
     ):
-
-        if collision_strength_type == &quot;cmfgen&quot;:
+        self.levels = levels
+        self.collision_strengths_type = collision_strengths_type
+        if self.collision_strengths_type == &quot;cmfgen&quot;:
             self.thermal_collision_strength_solver = UpsilonCMFGENSolver(
-                thermal_collisional_strength_temperatures,
+                thermal_collisional_strengths_temperatures,
                 thermal_collisional_strengths,
             )
-
+        elif self.collision_strengths_type == &quot;chianti&quot;:
+            self.thermal_collision_strength_solver = UpsilonChiantiSolver(
+                thermal_collisional_strengths,
+            )
+        else:
+            raise ValueError(
+                f&quot;collision_strengths_type {collision_strengths_type} not supported&quot;
+            )
+        self.radiative_transitions = radiative_transitions
         # find the transitions that have radiative rate data but no collisional data
-        approximate_collisional_strength_index = (
+        missing_collision_strengths_index = (
             radiative_transitions.index.difference(
                 thermal_collisional_strengths.index
             )
         )
+        self.all_collisional_strengths_index = (
+            missing_collision_strengths_index.append(
+                thermal_collisional_strengths.index
+            ).sort_values()
+        )
+        self.delta_energies = (
+            self.levels.loc[
+                self.all_collisional_strengths_index.droplevel(
+                    &quot;level_number_upper&quot;
+                )
+            ].energy.values
+            - self.levels.loc[
+                self.all_collisional_strengths_index.droplevel(
+                    &quot;level_number_lower&quot;
+                )
+            ].energy.values
+        ) * u.erg
+
+        self.g_l = self.levels.loc[
+            self.all_collisional_strengths_index.droplevel(&quot;level_number_lower&quot;)
+        ].g.values
+
+        self.g_u = self.levels.loc[
+            self.all_collisional_strengths_index.droplevel(&quot;level_number_upper&quot;)
+        ].g.values
 
         if collisional_strength_approximation == &quot;regemorter&quot;:
             self.thermal_collision_strength_approximator = (
                 UpsilonRegemorterSolver(
-                    radiative_transitions.loc[
-                        approximate_collisional_strength_index
-                    ]
+                    radiative_transitions.loc[missing_collision_strengths_index]
                 )
             )
 
 <div class="viewcode-block" id="ThermalCollisionalRateSolver.solve">
 <a class="viewcode-back" href="../../../../../api/tardis.plasma.detailed_balance.rates.collisional_rates.html#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.solve">[docs]</a>
     def solve(self, temperatures_electron):
+        thermal_all_collision_strengths = self.calculate_collision_strengths(
+            temperatures_electron
+        )
+
+        boltzmann_factor = np.exp(
+            self.delta_energies[np.newaxis].T
+            / (temperatures_electron * const.k_B),
+        ).value
+        collision_rates_coeff_lu = (
+            BETA_COLL / np.sqrt(temperatures_electron) * boltzmann_factor
+        ).to(
+            &quot;cm3 / s&quot;
+        ).value * thermal_all_collision_strengths  # see formula A2 in Przybilla, Butler 2004 - Apj 609, 1181
+
+        collision_rates_coeff_ul = (
+            (self.g_u / self.g_l)[np.newaxis].T
+            / boltzmann_factor
+            * collision_rates_coeff_lu
+        )
+
+        collision_rates_coeff_ul.index = (
+            collision_rates_coeff_lu.index.swaplevel(
+                &quot;level_number_lower&quot;, &quot;level_number_upper&quot;
+            )
+        )
+
+        collision_rates_coeff_df = pd.concat(
+            [collision_rates_coeff_lu, collision_rates_coeff_ul]
+        )
+        collision_rates_coeff_df.index.names = [
+            &quot;atomic_number&quot;,
+            &quot;ion_number&quot;,
+            &quot;level_number_source&quot;,
+            &quot;level_number_destination&quot;,
+        ]
+        return collision_rates_coeff_df</div>
+
+
+<div class="viewcode-block" id="ThermalCollisionalRateSolver.calculate_collision_strengths">
+<a class="viewcode-back" href="../../../../../api/tardis.plasma.detailed_balance.rates.collisional_rates.html#tardis.plasma.detailed_balance.rates.collisional_rates.ThermalCollisionalRateSolver.calculate_collision_strengths">[docs]</a>
+    def calculate_collision_strengths(self, temperatures_electron):
+        &quot;&quot;&quot;
+        Calculate collision strengths based on the provided electron temperatures.
+
+        Parameters
+        ----------
+        temperatures_electron : array-like
+            Array-like of electron temperatures.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame containing the calculated collision strengths.
+        &quot;&quot;&quot;
         thermal_collision_strengths = (
             self.thermal_collision_strength_solver.solve(temperatures_electron)
         )
@@ -196,7 +293,7 @@ class ThermalCollisionalRateSolver:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

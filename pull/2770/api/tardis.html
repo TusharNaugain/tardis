@@ -25,7 +25,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -400,9 +402,15 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacities.html#tardis.opacities.opacities.photoabsorption_opacity_calculation_kasen"><code class="docutils literal notranslate"><span class="pre">photoabsorption_opacity_calculation_kasen()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.opacities.opacity_solver.html">tardis.opacities.opacity_solver module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacity_solver.html#tardis.opacities.opacity_solver.OpacitySolver"><code class="docutils literal notranslate"><span class="pre">OpacitySolver</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.opacities.opacity_state.html">tardis.opacities.opacity_state module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacity_state.html#tardis.opacities.opacity_state.OpacityState"><code class="docutils literal notranslate"><span class="pre">OpacityState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacity_state.html#tardis.opacities.opacity_state.OpacityStateNumba"><code class="docutils literal notranslate"><span class="pre">OpacityStateNumba</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacity_state.html#tardis.opacities.opacity_state.opacity_state_initialize"><code class="docutils literal notranslate"><span class="pre">opacity_state_initialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tardis.opacities.opacity_state.html#tardis.opacities.opacity_state.opacity_state_to_numba"><code class="docutils literal notranslate"><span class="pre">opacity_state_to_numba()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.opacities.tau_sobolev.html">tardis.opacities.tau_sobolev module</a><ul>
@@ -531,6 +539,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.formal_integral_cuda.html#tardis.spectrum.formal_integral_cuda.trapezoid_integration_cuda"><code class="docutils literal notranslate"><span class="pre">trapezoid_integration_cuda()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.luminosity.html">tardis.spectrum.luminosity module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.luminosity.html#tardis.spectrum.luminosity.calculate_filtered_luminosity"><code class="docutils literal notranslate"><span class="pre">calculate_filtered_luminosity()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="tardis.spectrum.spectrum.html">tardis.spectrum.spectrum module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="tardis.spectrum.spectrum.html#tardis.spectrum.spectrum.TARDISSpectrum"><code class="docutils literal notranslate"><span class="pre">TARDISSpectrum</span></code></a></li>
 </ul>
@@ -567,19 +579,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_CMF_to_LF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_CMF_to_LF()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.angle_aberration_LF_to_CMF"><code class="docutils literal notranslate"><span class="pre">angle_aberration_LF_to_CMF()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.calc_packet_energy_full_relativity"><code class="docutils literal notranslate"><span class="pre">calc_packet_energy_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_doppler_factor_partial_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_full_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_full_relativity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="tardis.transport.frame_transformations.html#tardis.transport.frame_transformations.get_inverse_doppler_factor_partial_relativity"><code class="docutils literal notranslate"><span class="pre">get_inverse_doppler_factor_partial_relativity()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="tardis.transport.frame_transformations.html">tardis.transport.frame_transformations module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tardis.transport.html#module-tardis.transport">Module contents</a></li>
@@ -706,7 +706,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

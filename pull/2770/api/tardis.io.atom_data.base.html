@@ -25,7 +25,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -33,7 +35,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="tardis.io.atom_data.util module" href="tardis.io.atom_data.util.html" />
+    <link rel="next" title="tardis.io.atom_data.collision_data module" href="tardis.io.atom_data.collision_data.html" />
     <link rel="prev" title="tardis.io.atom_data.atom_web_download module" href="tardis.io.atom_data.atom_web_download.html" />
     <link href="../_static/tardis.css" rel="stylesheet" type="text/css">
 
@@ -158,8 +160,8 @@
 <span id="tardis-io-atom-data-base-module"></span><h1>tardis.io.atom_data.base module<a class="headerlink" href="#module-tardis.io.atom_data.base" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">AtomData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ionization_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">macro_atom_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">macro_atom_references</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeta_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_data_temperatures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synpp_refs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photoionization_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yg_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_photon_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_radiation_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">AtomData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ionization_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">macro_atom_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">macro_atom_references</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeta_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_data_temperatures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synpp_refs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">photoionization_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yg_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">two_photon_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linelist_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linelist_molecules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_radiation_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecule_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class for storing atomic data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -220,6 +222,13 @@ columns: A_ul[1/s], nu0[Hz], alpha, beta, gamma</p>
 columns: atomic_number, element, Rad energy, Rad intensity decay mode.
 Curated from nndc</p>
 </dd>
+<dt><strong>linelist_atoms</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>A DataFrame containing a linelist of input atoms</strong></dt><dd></dd>
+<dt><strong>linelist_molecules</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>A DataFrame containing a linelist of input molecules</strong></dt><dd></dd>
+<dt><strong>molecule_data</strong><span class="classifier">MolecularData</span></dt><dd></dd>
+<dt><strong>A class containing the *molecular data* with:</strong></dt><dd><p>equilibrium_constants, partition_functions, dissociation_energies</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -239,11 +248,12 @@ Curated from nndc</p>
 <dt><strong>collision_data_temperatures</strong><span class="classifier">numpy.array</span></dt><dd></dd>
 <dt><strong>zeta_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>synpp_refs</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
-<dt><strong>symbol2atomic_number</strong><span class="classifier">OrderedDict</span></dt><dd></dd>
-<dt><strong>atomic_number2symbol</strong><span class="classifier">OrderedDict</span></dt><dd></dd>
 <dt><strong>photoionization_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>two_photon_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
 <dt><strong>decay_radiation_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>linelist_atoms</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>linelist_molecules</strong><span class="classifier">pandas.DataFrame</span></dt><dd></dd>
+<dt><strong>molecule_data</strong><span class="classifier">MolecularData</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -273,9 +283,26 @@ Curated from nndc</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.get_attributes_from_store">
+<span class="sig-name descname"><span class="pre">get_attributes_from_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">store_key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.get_attributes_from_store"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.get_attributes_from_store" title="Link to this definition">¶</a></dt>
+<dd><p>Gets atom_data attributes, throws error and sets to None
+if they are not available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>store</strong><span class="classifier">pd.HDFStore</span></dt><dd><p>Data source</p>
+</dd>
+<dt><strong>store_key</strong><span class="classifier">str</span></dt><dd><p>HDFStore value to check</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.hdf_names">
-<span class="sig-name descname"><span class="pre">hdf_names</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['atom_data',</span> <span class="pre">'ionization_data',</span> <span class="pre">'levels',</span> <span class="pre">'lines',</span> <span class="pre">'macro_atom_data',</span> <span class="pre">'macro_atom_references',</span> <span class="pre">'zeta_data',</span> <span class="pre">'collision_data',</span> <span class="pre">'collision_data_temperatures',</span> <span class="pre">'synpp_refs',</span> <span class="pre">'photoionization_data',</span> <span class="pre">'yg_data',</span> <span class="pre">'two_photon_data',</span> <span class="pre">'linelist',</span> <span class="pre">'decay_radiation_data']</span></em><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.hdf_names" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">hdf_names</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['atom_data',</span> <span class="pre">'ionization_data',</span> <span class="pre">'levels',</span> <span class="pre">'lines',</span> <span class="pre">'macro_atom_data',</span> <span class="pre">'macro_atom_references',</span> <span class="pre">'zeta_data',</span> <span class="pre">'collision_data',</span> <span class="pre">'collision_data_temperatures',</span> <span class="pre">'synpp_refs',</span> <span class="pre">'photoionization_data',</span> <span class="pre">'yg_data',</span> <span class="pre">'two_photon_data',</span> <span class="pre">'linelist_atoms',</span> <span class="pre">'linelist_molecules',</span> <span class="pre">'decay_radiation_data']</span></em><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.hdf_names" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -312,6 +339,17 @@ needed</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_line_level_indexes">
+<span class="sig-name descname"><span class="pre">prepare_line_level_indexes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_line_level_indexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_line_level_indexes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_lines">
+<span class="sig-name descname"><span class="pre">prepare_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Prepare line data</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomData.prepare_macro_atom_data">
 <span class="sig-name descname"><span class="pre">prepare_macro_atom_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_interaction_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_lower2level_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_lines_upper2level_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomData.prepare_macro_atom_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomData.prepare_macro_atom_data" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -326,25 +364,51 @@ needed</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomDataMissingError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">AtomDataMissingError</span></span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomDataMissingError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomDataMissingError" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="tardis.io.atom_data.base.AtomDataNotPreparedError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">AtomDataNotPreparedError</span></span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#AtomDataNotPreparedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.AtomDataNotPreparedError" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="tardis.io.atom_data.base.NLTEData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">NLTEData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlte_species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#NLTEData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.NLTEData" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="tardis.io.atom_data.base.NLTEData.get_collision_matrix">
-<span class="sig-name descname"><span class="pre">get_collision_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_electrons</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#NLTEData.get_collision_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.NLTEData.get_collision_matrix" title="Link to this definition">¶</a></dt>
-<dd><p>Creat collision matrix by interpolating the C_ul values for
-the desired temperatures.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.MoleculeData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.io.atom_data.base.</span></span><span class="sig-name descname"><span class="pre">MoleculeData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equilibrium_constants</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partition_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dissociation_energies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/io/atom_data/base.html#MoleculeData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.io.atom_data.base.MoleculeData" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class to hold molecular data. Held by the AtomData object.</p>
+<p>equilibrium_constants : pandas.DataFrame
+A DataFrame containing the <em>molecular equilibrium constants</em> with:</p>
+<blockquote>
+<div><p>index: molecule
+columns: temperatures</p>
+</div></blockquote>
+<p>partition_functions : pandas.DataFrame
+A DataFrame containing the <em>molecular partition functions</em> with:</p>
+<blockquote>
+<div><p>index: molecule
+columns: temperatures</p>
+</div></blockquote>
+<p>dissociation_energies : pandas.DataFrame
+A DataFrame containing the <em>molecular dissociation energies</em> with:</p>
+<blockquote>
+<div><p>index: molecule</p>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.MoleculeData.dissociation_energies">
+<span class="sig-name descname"><span class="pre">dissociation_energies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.io.atom_data.base.MoleculeData.dissociation_energies" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.MoleculeData.equilibrium_constants">
+<span class="sig-name descname"><span class="pre">equilibrium_constants</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.io.atom_data.base.MoleculeData.equilibrium_constants" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.io.atom_data.base.MoleculeData.partition_functions">
+<span class="sig-name descname"><span class="pre">partition_functions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#tardis.io.atom_data.base.MoleculeData.partition_functions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -355,14 +419,14 @@ the desired temperatures.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tardis.io.atom_data.atom_web_download.html" class="btn btn-neutral float-left" title="tardis.io.atom_data.atom_web_download module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tardis.io.atom_data.util.html" class="btn btn-neutral float-right" title="tardis.io.atom_data.util module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tardis.io.atom_data.collision_data.html" class="btn btn-neutral float-right" title="tardis.io.atom_data.collision_data module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

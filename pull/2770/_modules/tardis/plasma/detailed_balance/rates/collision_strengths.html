@@ -24,7 +24,9 @@
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -128,7 +130,7 @@
 import pandas as pd
 from astropy import units as u
 from scipy.special import exp1
-from scipy.interpolate import PchipInterpolator
+from scipy.interpolate import PchipInterpolator, splrep, splev
 
 from tardis import constants as const
 
@@ -187,6 +189,7 @@ class CollisionalCrossSections:
 
 N_A = const.N_A.cgs.value
 K_B = const.k_B.cgs.value
+K_B_EV = const.k_B.cgs.to(&quot;eV / K&quot;).value
 C = const.c.cgs.value
 H = const.h.cgs.value
 A0 = const.a0.cgs.value
@@ -246,8 +249,9 @@ class UpsilonCMFGENSolver:
         upsilon_temperatures,
         upsilon_g_data,
     ):
-        # upsilon_g_data.columns = upsilon_temperatures
         self.upsilon_lu_data = upsilon_g_data
+
+        # can produce upsilon/g or not, depending on how easy it is
         self.upsilon_g_lu_interpolator = PchipInterpolator(
             upsilon_temperatures,
             self.upsilon_lu_data.values,
@@ -260,6 +264,115 @@ class UpsilonCMFGENSolver:
     def solve(self, t_electrons):
         return pd.DataFrame(
             self.upsilon_g_lu_interpolator(t_electrons),
+            index=self.upsilon_lu_data.index,
+        )</div>
+</div>
+
+
+
+<div class="viewcode-block" id="UpsilonChiantiSolver">
+<a class="viewcode-back" href="../../../../../api/tardis.plasma.detailed_balance.rates.collision_strengths.html#tardis.plasma.detailed_balance.rates.collision_strengths.UpsilonChiantiSolver">[docs]</a>
+class UpsilonChiantiSolver:
+    &quot;&quot;&quot;Solver for Upsilon / g_i for Chianti data.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        upsilon_data,
+    ):
+        self.upsilon_lu_data = upsilon_data
+
+<div class="viewcode-block" id="UpsilonChiantiSolver.upsilon_scaling">
+<a class="viewcode-back" href="../../../../../api/tardis.plasma.detailed_balance.rates.collision_strengths.html#tardis.plasma.detailed_balance.rates.collision_strengths.UpsilonChiantiSolver.upsilon_scaling">[docs]</a>
+    def upsilon_scaling(self, row, t_electrons):
+        &quot;&quot;&quot;Scales Upsilon from Chianti data using equations
+        23-38 from Burgess &amp; Tully 1992 - A&amp;A 254, 436B.
+
+        Parameters
+        ----------
+        row : pd.Series
+            DataFrame row of Chianti collisional data
+        t_electrons : np.ndarray
+            1D array of electron temperatures to interpolate over
+
+        Returns
+        -------
+        pd.Series
+            Scaled Upsilon / g_lower
+
+        Raises
+        ------
+        ValueError
+            Incorrect scaling type provided
+        &quot;&quot;&quot;
+        scaling_constant = row[&quot;cups&quot;]
+        x_knots = np.linspace(0, 1, len(row[&quot;btemp&quot;]))
+        y_knots = row[&quot;bscups&quot;]
+        delta_energy = row[&quot;delta_e&quot;]
+        g_lower = row[&quot;g_l&quot;]
+
+        scaling_type = row[&quot;ttype&quot;]
+        if scaling_type &gt; 5:
+            scaling_type -= 5
+
+        kt = K_B_EV * t_electrons
+
+        spline_tck = splrep(x_knots, y_knots)
+
+        if scaling_type == 1:
+            x = 1 - np.log(scaling_constant) / np.log(
+                kt / delta_energy + scaling_constant
+            )
+            y_func = splev(x, spline_tck)
+            upsilon = y_func * np.log(kt / delta_energy + np.exp(1))
+
+        elif scaling_type == 2:
+            x = (kt / delta_energy) / (kt / delta_energy + scaling_constant)
+            y_func = splev(x, spline_tck)
+            upsilon = y_func
+
+        elif scaling_type == 3:
+            x = (kt / delta_energy) / (kt / delta_energy + scaling_constant)
+            y_func = splev(x, spline_tck)
+            upsilon = y_func / (kt / delta_energy + 1)
+
+        elif scaling_type == 4:
+            x = 1 - np.log(scaling_constant) / np.log(
+                kt / delta_energy + scaling_constant
+            )
+            y_func = splev(x, spline_tck)
+            upsilon = y_func * np.log(kt / delta_energy + scaling_constant)
+
+        elif scaling_type &gt; 4:
+            raise ValueError(
+                &quot;Not sure what to do with scaling type greater than 4&quot;
+            )
+
+        upsilon_g_lu = upsilon / g_lower
+        return pd.Series(data=upsilon_g_lu, name=&quot;upsilon_g&quot;)</div>
+
+
+<div class="viewcode-block" id="UpsilonChiantiSolver.solve">
+<a class="viewcode-back" href="../../../../../api/tardis.plasma.detailed_balance.rates.collision_strengths.html#tardis.plasma.detailed_balance.rates.collision_strengths.UpsilonChiantiSolver.solve">[docs]</a>
+    def solve(self, t_electrons):
+        &quot;&quot;&quot;Solve the Upsilon / g_lower collisional values for arbitrary temperatures.
+
+        Parameters
+        ----------
+        t_electrons : np.ndarray
+            1D array of electron temperatures to interpolate over
+
+        Returns
+        -------
+        pd.DataFrame
+            DataFrame with columns of Upsilon / g_lower per transition and temperature.
+        &quot;&quot;&quot;
+        upsilon_g_lu = self.upsilon_lu_data.apply(
+            self.upsilon_scaling,
+            axis=1,
+            args=(t_electrons.value,),
+        )
+        return pd.DataFrame(
+            upsilon_g_lu,
             index=self.upsilon_lu_data.index,
         )</div>
 </div>
@@ -420,7 +533,7 @@ class CollDeexcRateCoeff:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 

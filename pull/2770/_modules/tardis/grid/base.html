@@ -24,7 +24,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/documentation_options.js?v=c3bcee1d"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -124,13 +126,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for tardis.grid.base</h1><div class="highlight"><pre>
-<span></span>import pandas as pd
-import numpy as np
-import copy
-import tardis
+<span></span>import copy
 
+import numpy as np
+import pandas as pd
+
+import tardis
 from tardis.io.configuration.config_reader import Configuration
-from tardis.io.atom_data import AtomData
 from tardis.model import SimulationState
 
 
@@ -156,7 +158,6 @@ def _set_tardis_config_property(tardis_config, key, value):
     for key in keyitems[1:-1]:
         tmp_dict = getattr(tmp_dict, key)
     setattr(tmp_dict, keyitems[-1], value)
-    return
 
 
 <div class="viewcode-block" id="tardisGrid">
@@ -194,8 +195,6 @@ class tardisGrid:
 
         self.config = tardis_config
         self.grid = gridFrame
-
-        return
 
 <div class="viewcode-block" id="tardisGrid.grid_row_to_config">
 <a class="viewcode-back" href="../../../api/tardis.grid.base.html#tardis.grid.base.tardisGrid.grid_row_to_config">[docs]</a>
@@ -282,8 +281,7 @@ class tardisGrid:
         filename : str
             File name to save grid.
         &quot;&quot;&quot;
-        self.grid.to_csv(filename, index=False)
-        return</div>
+        self.grid.to_csv(filename, index=False)</div>
 
 
 <div class="viewcode-block" id="tardisGrid.from_axes">
@@ -327,7 +325,7 @@ class tardisGrid:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Aug 2024.
+      <span class="lastupdated">Last updated on 07 Oct 2024.
       </span></p>
   </div>
 
