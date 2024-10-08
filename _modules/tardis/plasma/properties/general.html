@@ -130,7 +130,6 @@
 <span></span>import logging
 
 import numpy as np
-from astropy import units as u
 
 from tardis import constants as const
 from tardis.plasma.properties.base import ProcessingPlasmaProperty
@@ -161,7 +160,7 @@ class BetaRadiation(ProcessingPlasmaProperty):
     latex_formula = (r&quot;\dfrac{1}{k_{B} T_{\textrm{rad}}}&quot;,)
 
     def __init__(self, plasma_parent):
-        super(BetaRadiation, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.k_B_cgs = const.k_B.cgs.value
 
 <div class="viewcode-block" id="BetaRadiation.calculate">
@@ -216,7 +215,7 @@ class ThermalGElectron(GElectron):
 <div class="viewcode-block" id="ThermalGElectron.calculate">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.general.html#tardis.plasma.properties.general.ThermalGElectron.calculate">[docs]</a>
     def calculate(self, beta_electron):
-        return super(ThermalGElectron, self).calculate(beta_electron)</div>
+        return super().calculate(beta_electron)</div>
 </div>
 
 
@@ -276,7 +275,7 @@ class BetaElectron(ProcessingPlasmaProperty):
     latex_formula = (r&quot;\frac{1}{K_{B} T_{\textrm{electron}}}&quot;,)
 
     def __init__(self, plasma_parent):
-        super(BetaElectron, self).__init__(plasma_parent)
+        super().__init__(plasma_parent)
         self.k_B_cgs = const.k_B.cgs.value
 
 <div class="viewcode-block" id="BetaElectron.calculate">

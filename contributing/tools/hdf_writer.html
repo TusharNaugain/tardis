@@ -100,7 +100,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Example Usage of HDFWriter</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Parameters">Parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Saving-nested-class-objects.">Saving nested class objects.</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Modifed-Usage">Modifed Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Modified-Usage">Modified Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -308,8 +308,8 @@ File path: nested_test.hdf
 </pre></div></div>
 </div>
 </section>
-<section id="Modifed-Usage">
-<h3>Modifed Usage<a class="headerlink" href="#Modifed-Usage" title="Link to this heading">¶</a></h3>
+<section id="Modified-Usage">
+<h3>Modified Usage<a class="headerlink" href="#Modified-Usage" title="Link to this heading">¶</a></h3>
 <p>In <code class="docutils literal notranslate"><span class="pre">BasePlasma</span></code> class, the way properties of object are collected is different. It does not uses <code class="docutils literal notranslate"><span class="pre">hdf_properties</span></code> attribute. That`s why , <code class="docutils literal notranslate"><span class="pre">PlasmaWriterMixin</span></code> (which extends <code class="docutils literal notranslate"><span class="pre">HDFWriterMixin</span></code>) changes how the properties of <code class="docutils literal notranslate"><span class="pre">BasePlasma</span></code> class will be collected, by changing <code class="docutils literal notranslate"><span class="pre">get_properties</span></code> function.</p>
 <p>Here is a quick demonstration, if behaviour of default <code class="docutils literal notranslate"><span class="pre">get_properties</span></code> function inside <code class="docutils literal notranslate"><span class="pre">HDFWriterMixin</span></code> needs to be changed, by subclassing it to create a new <code class="docutils literal notranslate"><span class="pre">Mixin</span></code>.</p>
 <div class="nbinput nblast docutils container">

@@ -177,7 +177,7 @@ class BasePlasma(PlasmaWriterMixin):
         if item in self.outputs_dict:
             return self.get_value(item)
         else:
-            super(BasePlasma, self).__getattribute__(item)
+            super().__getattribute__(item)
 
     def __setattr__(self, key, value):
         if key != &quot;module_dict&quot; and key in self.outputs_dict:
@@ -185,7 +185,7 @@ class BasePlasma(PlasmaWriterMixin):
                 &quot;Plasma inputs can only be updated using &quot; &quot;the &#39;update&#39; method&quot;
             )
         else:
-            super(BasePlasma, self).__setattr__(key, value)
+            super().__setattr__(key, value)
 
     def __dir__(self):
         attrs = [item for item in self.__dict__ if not item.startswith(&quot;_&quot;)]
@@ -454,7 +454,7 @@ class BasePlasma(PlasmaWriterMixin):
         print_graph = self.remove_hidden_properties(print_graph)
 
         for node in print_graph:
-            if latex_label == True:
+            if latex_label is True:
                 if hasattr(self.plasma_properties_dict[node], &quot;latex_formula&quot;):
                     print_graph.nodes[str(node)][
                         &quot;label&quot;
@@ -475,13 +475,13 @@ class BasePlasma(PlasmaWriterMixin):
         for edge in print_graph.edges:
             label = print_graph.edges[edge][&quot;label&quot;]
             print_graph.edges[edge][&quot;label&quot;] = &quot; &quot;
-            if latex_label == True:
+            if latex_label is True:
                 print_graph.edges[edge][&quot;texlbl&quot;] = label
 
         nx.drawing.nx_agraph.write_dot(print_graph, fname)
 
         for line in fileinput.FileInput(fname, inplace=1):
-            if latex_label == True:
+            if latex_label is True:
                 print(
                     line.replace(
                         r&#39;node [label=&quot;\N&quot;]&#39;,

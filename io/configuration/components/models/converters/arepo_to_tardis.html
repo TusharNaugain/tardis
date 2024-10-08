@@ -207,7 +207,7 @@
 <p>This parser is intended for loading Arepo output files (‘snapshots’), extracting the relevant (line-of-sight dependent) data and exporting it to <code class="docutils literal notranslate"><span class="pre">csvy</span></code> files, which can in turn be used in TARDIS models (<a class="reference internal" href="../index.html#csvy-model"><span class="std std-ref">see CSVY model</span></a>).</p>
 <div class="admonition note">
 <p class="admonition-title fa fa-exclamation-circle">Note</p>
-<p>This parser has been developed for the (not publically available) development version of Arepo, not the public version. Althought it should also work with snapshots from the public version, this has not been tested. If you run into trouble loading the snapshot using the built-in functions, try providing the data manually.</p>
+<p>This parser has been developed for the (not publicly available) development version of Arepo, not the public version. Although it should also work with snapshots from the public version, this has not been tested. If you run into trouble loading the snapshot using the built-in functions, try providing the data manually.</p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -237,7 +237,7 @@
 <section id="Loading-the-simulation-data">
 <h2>Loading the simulation data<a class="headerlink" href="#Loading-the-simulation-data" title="Link to this heading">¶</a></h2>
 <p>As a first step, the relevant data has to be loaded from an Arepo snapshot, i.e. an output file of Arepo. In case you have the arepo-snap-util package installed, you can use the built in wrapper (as described below) to load the relevant data. In case you do not have this package installed or want to load the snapshot in a different way, you can manually provide the relevant data and continue with the next step.</p>
-<p>If you’re using the built-in tool, you will need to provide the path to the snapshot file, a list with the elements you want to include in your TARDIS model, as well as the species file with which the Arepo simulation was run. <em>(The species file should contain one header line, followed by two colums, where the first contains the names of all the species and is used to find the indices of the individual species within the snapshot. The second column is not used by the loader.)</em></p>
+<p>If you’re using the built-in tool, you will need to provide the path to the snapshot file, a list with the elements you want to include in your TARDIS model, as well as the species file with which the Arepo simulation was run. <em>(The species file should contain one header line, followed by two columns, where the first contains the names of all the species and is used to find the indices of the individual species within the snapshot. The second column is not used by the loader.)</em></p>
 <p>In case you have the arepo-snap-util package installed, you can load the data directly from a snapshot:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -339,7 +339,7 @@ Nuclear data shape (per element):  (1218054,)
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">arepo.FullProfile(&lt;args&gt;)</span></code></p></li>
 </ul>
-<p>Next you can create the profiles acccording to the model option you selected. A diagnostic plot will be shown per default, but this behaviour can be turned off with the option <code class="docutils literal notranslate"><span class="pre">show_plot=False</span></code>. The plot will always show both the positve and negative axis.</p>
+<p>Next you can create the profiles according to the model option you selected. A diagnostic plot will be shown per default, but this behaviour can be turned off with the option <code class="docutils literal notranslate"><span class="pre">show_plot=False</span></code>. The plot will always show both the positive and negative axis.</p>
 <div class="admonition note">
 <p class="admonition-title fa fa-exclamation-circle">Note</p>
 <p>The keyword <code class="docutils literal notranslate"><span class="pre">opening_angle=40</span></code> is only needed for the cone profile. The other modes do not accept this keyword! The angle itself is the opening angle of the full cone and NOT the angle between the central x-axis and the cone!</p>
@@ -373,7 +373,7 @@ Nuclear data shape (per element):  (1218054,)
 </section>
 <section id="Selecting-a-specific-region">
 <h2>Selecting a specific region<a class="headerlink" href="#Selecting-a-specific-region" title="Link to this heading">¶</a></h2>
-<p>In many cases you only want a very specific region from the snapshot, e.g. cutting out the dense, optically thick regions. This can be acchieved using the keywords <code class="docutils literal notranslate"><span class="pre">inner_radius</span></code> and <code class="docutils literal notranslate"><span class="pre">outer_radius</span></code>.</p>
+<p>In many cases you only want a very specific region from the snapshot, e.g. cutting out the dense, optically thick regions. This can be achieved using the keywords <code class="docutils literal notranslate"><span class="pre">inner_radius</span></code> and <code class="docutils literal notranslate"><span class="pre">outer_radius</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>

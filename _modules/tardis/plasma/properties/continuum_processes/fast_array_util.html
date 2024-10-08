@@ -129,11 +129,10 @@
   <h1>Source code for tardis.plasma.properties.continuum_processes.fast_array_util</h1><div class="highlight"><pre>
 <span></span># It is currently not possible to use scipy.integrate.cumulative_trapezoid in
 # numba. So here is my own implementation.
-from tardis.transport.montecarlo import njit_dict
-
-
 import numpy as np
 from numba import njit, prange
+
+from tardis.transport.montecarlo import njit_dict
 
 
 <div class="viewcode-block" id="numba_cumulative_trapezoid">
