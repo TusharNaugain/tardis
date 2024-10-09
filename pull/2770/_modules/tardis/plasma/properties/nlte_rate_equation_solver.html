@@ -154,6 +154,14 @@ NLTE_POPULATION_SOLVER_CHARGE_CONSERVATION_TOLERANCE = 1e-6  # Arbitrary toleran
 class NLTEPopulationSolverRoot(ProcessingPlasmaProperty):
     outputs = (&quot;ion_number_density&quot;, &quot;electron_densities&quot;)
 
+    def __init__(
+        self,
+        plasma_parent,
+        electron_densities=None,
+    ):
+        super().__init__(plasma_parent)
+        self._electron_densities = electron_densities
+
 <div class="viewcode-block" id="NLTEPopulationSolverRoot.calculate">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.nlte_rate_equation_solver.html#tardis.plasma.properties.nlte_rate_equation_solver.NLTEPopulationSolverRoot.calculate">[docs]</a>
     def calculate(
@@ -304,6 +312,14 @@ class NLTEPopulationSolverRoot(ProcessingPlasmaProperty):
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.nlte_rate_equation_solver.html#tardis.plasma.properties.nlte_rate_equation_solver.NLTEPopulationSolverLU">[docs]</a>
 class NLTEPopulationSolverLU(ProcessingPlasmaProperty):
     outputs = (&quot;ion_number_density&quot;, &quot;electron_densities&quot;)
+
+    def __init__(
+        self,
+        plasma_parent,
+        electron_densities=None,
+    ):
+        super().__init__(plasma_parent)
+        self._electron_densities = electron_densities
 
 <div class="viewcode-block" id="NLTEPopulationSolverLU.calculate">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.properties.nlte_rate_equation_solver.html#tardis.plasma.properties.nlte_rate_equation_solver.NLTEPopulationSolverLU.calculate">[docs]</a>
@@ -1324,7 +1340,7 @@ def create_coll_exc_deexc_matrix(
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Oct 2024.
+      <span class="lastupdated">Last updated on 09 Oct 2024.
       </span></p>
   </div>
 
