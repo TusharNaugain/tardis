@@ -103,7 +103,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#tardis-core-team-instructions">TARDIS core team Instructions</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Continuous Integration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#github-actions">GitHub Actions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tardis-pipelines">TARDIS Pipelines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-steps">Common Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="update_regression_data.html">Update the Regression Data</a></li>
@@ -166,13 +166,17 @@ commit being pushed to a certain branch.</p>
 <p>Currently, we use GitHub Actions to run all of our pipelines. Making changes to an existing
 pipeline is as easy as making a pull request. To create a new GitHub Action workflow,
 just create a new YAML file in <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.</p>
-</section>
 <section id="tardis-pipelines">
-<h2>TARDIS Pipelines<a class="headerlink" href="#tardis-pipelines" title="Link to this heading">¶</a></h2>
+<h3>TARDIS Pipelines<a class="headerlink" href="#tardis-pipelines" title="Link to this heading">¶</a></h3>
 <p>Brief description of pipelines already implemented on TARDIS</p>
-<p># Streamlined Steps for TARDIS Pipelines</p>
+</section>
+<section id="streamlined-steps-for-tardis-pipelines">
+<h3>Streamlined Steps for TARDIS Pipelines<a class="headerlink" href="#streamlined-steps-for-tardis-pipelines" title="Link to this heading">¶</a></h3>
 <p>We have a common set of steps which are utilized in TARDIS pipelines to streamline the process:</p>
-<p>### Common Steps</p>
+</section>
+</section>
+<section id="common-steps">
+<h2>Common Steps<a class="headerlink" href="#common-steps" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p><strong>Use `setup_lfs` Action</strong>
 - If you need access to regression or atomic data, incorporate the <code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_lfs</span></code> action to ensure proper handling of large file storage.</p></li>
@@ -200,7 +204,7 @@ See the <a class="reference internal" href="documentation_guidelines.html#doc-pr
 </section>
 <section id="id1">
 <h3>Testing pipeline<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://github.com/tardis-sn/tardis/blob/master/azure-pipelines/simple_test_framework.yml">testing pipeline</a> (CI) comprises of six concurrent jobs. Each of these jobs runs three types of tests across two distinct categories—continuum and non-continuum—and supports three different operating system platforms. Additionally, there are extra steps involved in executing the tests and uploading the coverage results</p>
+<p>The <a class="reference external" href="https://github.com/tardis-sn/tardis/blob/master/azure-pipelines/simple_test_framework.yml">testing pipeline</a> (CI) comprises multiple concurrent jobs. Each of these jobs runs tests across two distinct categories—continuum and rpacket tracking—and supports two different operating systems. Additionally, there are extra steps involved in executing the tests and uploading the coverage results</p>
 </section>
 <section id="authors-pipeline">
 <h3>Authors pipeline<a class="headerlink" href="#authors-pipeline" title="Link to this heading">¶</a></h3>
@@ -219,7 +223,7 @@ email address). In both cases update <code class="docutils literal notranslate">
 </section>
 <section id="release-pipeline">
 <h3>Release pipeline<a class="headerlink" href="#release-pipeline" title="Link to this heading">¶</a></h3>
-<p>Publishes a new release of TARDIS every sunday at 00:00 UTC.</p>
+<p>Publishes a new release of TARDIS every Sunday at 00:00 UTC.</p>
 </section>
 <section id="tardis-carsus-compatibility-check">
 <h3>TARDIS Carsus Compatibility Check<a class="headerlink" href="#tardis-carsus-compatibility-check" title="Link to this heading">¶</a></h3>
