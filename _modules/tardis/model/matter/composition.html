@@ -229,7 +229,7 @@ class Composition:
 <a class="viewcode-back" href="../../../../api/tardis.model.matter.composition.html#tardis.model.matter.composition.Composition.assemble_isotope_masses">[docs]</a>
     def assemble_isotope_masses(self):
         isotope_mass_df = pd.Series(
-            index=self.isotopic_mass_fraction.index, data=-1
+            index=self.isotopic_mass_fraction.index, data=-1, dtype=&quot;float64&quot;
         )
         for isotope_tuple in self.isotopic_mass_fraction.index:
             isotope_symbol = int(&quot;{:03d}{:03d}0000&quot;.format(*isotope_tuple))

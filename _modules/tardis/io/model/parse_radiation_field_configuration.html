@@ -307,18 +307,17 @@ def calculate_geometric_dilution_factor(geometry):
     np.array
         The dilution factors for the inout geometry
     &quot;&quot;&quot;
-    return 0.5 * (
+    value = (
         1
-        - np.sqrt(
-            1
-            - (
-                geometry.r_inner[geometry.v_inner_boundary_index] ** 2
-                / geometry.r_middle**2
-            )
-            .to(1)
-            .value
+        - (
+            geometry.r_inner[geometry.v_inner_boundary_index] ** 2
+            / geometry.r_middle**2
         )
-    )</div>
+        .to(1)
+        .value
+    )
+    value = np.clip(value, 0, None)
+    return 0.5 * (1 - np.sqrt(value))</div>
 
 </pre></div>
 
