@@ -169,7 +169,26 @@ just create a new YAML file in <code class="docutils literal notranslate"><span 
 </section>
 <section id="tardis-pipelines">
 <h2>TARDIS Pipelines<a class="headerlink" href="#tardis-pipelines" title="Link to this heading">¶</a></h2>
-<p>Brief description of pipelines already implemented on Tardis</p>
+<p>Brief description of pipelines already implemented on TARDIS</p>
+<p># Streamlined Steps for TARDIS Pipelines</p>
+<p>We have a common set of steps which are utilized in TARDIS pipelines to streamline the process:</p>
+<p>### Common Steps</p>
+<ol class="arabic">
+<li><p><strong>Use `setup_lfs` Action</strong>
+- If you need access to regression or atomic data, incorporate the <code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_lfs</span></code> action to ensure proper handling of large file storage.</p></li>
+<li><p><strong>Use `setup_env` Action</strong>
+- To configure your environment effectively, utilize the <code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_env</span></code> action. This will help establish the necessary variables and settings for your pipeline.</p></li>
+<li><p><strong>Run Configuration</strong>
+- Ensure that your pipeline runs with the appropriate shell settings. You can define this in your YAML configuration as follows:</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash -l {0}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
 <section id="documentation-build-pipeline">
 <h3>Documentation build pipeline<a class="headerlink" href="#documentation-build-pipeline" title="Link to this heading">¶</a></h3>
 <p>A GitHub Actions workflow that builds and deploys the TARDIS documentation website.</p>
