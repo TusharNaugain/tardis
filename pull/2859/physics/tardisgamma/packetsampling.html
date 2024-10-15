@@ -138,7 +138,7 @@
 <h1>Packet Sampling<a class="headerlink" href="#packet-sampling" title="Link to this heading">¶</a></h1>
 <p>In the simulation, we use spherical symmetry where the ejecta is divided into multiple spherical shells. To find the mass of each shell we multiply the mass fractions of each of the elements and isotopes with the density. We can set the timespace for the simulation
 to be between t<sub>start</sub> and t<sub>end</sub> using either a linear or a logarithmic scale.</p>
-<p>We use the radioactivedecay python package to calculate the number of decays in each channel for each shell and at every timestep for each isotope.
+<p>We use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">radioactivedecay</span></code> python package to calculate the number of decays in each channel for each shell and at every timestep for each isotope.
 The composition is also updated after each timestep following <span id="id1">[]</span>.
 Then to calculate the decay energy of each channel, we multiply the total number of decays with the energy of each channel.
 We give weight to the decay energy of each channel of each isotope to sample the packets which takes into account the spatial distribution
