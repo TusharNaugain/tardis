@@ -139,17 +139,49 @@ class RateMatrix:
         self,
         rate_solvers: list,
         levels: pd.DataFrame,
-        electron_number_densities,
     ):
+        &quot;&quot;&quot;Constructs the rate matrix from an arbitrary number of rate solvers.
+
+        Parameters
+        ----------
+        rate_solvers : list
+            List of rate solver objects.
+        levels : pd.DataFrame
+            DataFrame of energy levels.
+        &quot;&quot;&quot;
         self.rate_solvers = rate_solvers
         self.levels = levels
-        self.electron_number_densities = electron_number_densities
 
 <div class="viewcode-block" id="RateMatrix.solve">
 <a class="viewcode-back" href="../../../../api/tardis.plasma.equilibrium.rate_matrix.html#tardis.plasma.equilibrium.rate_matrix.RateMatrix.solve">[docs]</a>
-    def solve(self):
+    def solve(
+        self,
+        radiation_field,
+        electron_distribution,
+    ):
+        &quot;&quot;&quot;Construct the compiled rate matrix dataframe.
+
+        Parameters
+        ----------
+        radiation_field : RadiationField
+            Radiation field containing radiative temperature.
+        electron_distribution : ElectronDistribution
+            Distribution of electrons in the plasma, containing electron
+            temperatures and number densities.
+
+        Returns
+        -------
+        pd.DataFrame
+            A DataFrame of rate matrices indexed by atomic number and ion number,
+            with each column being a cell.
+        &quot;&quot;&quot;
+        required_arg = {
+            &quot;radiative&quot;: radiation_field,
+            &quot;electron&quot;: electron_distribution.temperature,
+        }
+
         rates_df_list = [
-            solver.solve(input) for solver, input in self.rate_solvers
+            solver.solve(required_arg[arg]) for solver, arg in self.rate_solvers
         ]
         # Extract all indexes
         all_indexes = set()
@@ -164,7 +196,16 @@ class RateMatrix:
             df.reindex(all_indexes, fill_value=0) for df in rates_df_list
         ]
 
-        rates_df_list[1] *= self.electron_number_densities
+        # Multiply rates by electron number density where appropriate
+        rates_df_list = [
+            rates_df * electron_distribution.number_density
+            if solver_arg_tuple[1] == &quot;electron&quot;
+            else rates_df
+            for solver_arg_tuple, rates_df in zip(
+                self.rate_solvers, rates_df_list
+            )
+        ]
+
         rates_df = sum(rates_df_list)
 
         grouped_rates_df = rates_df.groupby(
@@ -208,7 +249,7 @@ class RateMatrix:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Oct 2024.
+      <span class="lastupdated">Last updated on 05 Nov 2024.
       </span></p>
   </div>
 

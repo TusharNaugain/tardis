@@ -161,12 +161,42 @@
 <span id="tardis-plasma-equilibrium-rate-matrix-module"></span><h1>tardis.plasma.equilibrium.rate_matrix module<a class="headerlink" href="#module-tardis.plasma.equilibrium.rate_matrix" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tardis.plasma.equilibrium.rate_matrix.RateMatrix">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.equilibrium.rate_matrix.</span></span><span class="sig-name descname"><span class="pre">RateMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_solvers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_number_densities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/equilibrium/rate_matrix.html#RateMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.equilibrium.rate_matrix.RateMatrix" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.plasma.equilibrium.rate_matrix.</span></span><span class="sig-name descname"><span class="pre">RateMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_solvers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/equilibrium/rate_matrix.html#RateMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.equilibrium.rate_matrix.RateMatrix" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Constructs the rate matrix from an arbitrary number of rate solvers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>rate_solvers</strong><span class="classifier">list</span></dt><dd><p>List of rate solver objects.</p>
+</dd>
+<dt><strong>levels</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame of energy levels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.equilibrium.rate_matrix.RateMatrix.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/equilibrium/rate_matrix.html#RateMatrix.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.equilibrium.rate_matrix.RateMatrix.solve" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radiation_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">electron_distribution</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/equilibrium/rate_matrix.html#RateMatrix.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.equilibrium.rate_matrix.RateMatrix.solve" title="Link to this definition">¶</a></dt>
+<dd><p>Construct the compiled rate matrix dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>radiation_field</strong><span class="classifier">RadiationField</span></dt><dd><p>Radiation field containing radiative temperature.</p>
+</dd>
+<dt><strong>electron_distribution</strong><span class="classifier">ElectronDistribution</span></dt><dd><p>Distribution of electrons in the plasma, containing electron
+temperatures and number densities.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>A DataFrame of rate matrices indexed by atomic number and ion number,
+with each column being a cell.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -184,7 +214,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 22 Oct 2024.
+      <span class="lastupdated">Last updated on 05 Nov 2024.
       </span></p>
   </div>
 
