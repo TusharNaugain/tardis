@@ -135,7 +135,7 @@ from numba import cuda
 from tardis.transport.montecarlo.configuration.constants import SIGMA_THOMSON
 
 C_INV = 3.33564e-11
-M_PI = np.arccos(-1)
+PI = np.pi
 KB_CGS = 1.3806488e-16
 H_CGS = 6.62606957e-27
 
@@ -159,7 +159,7 @@ def cuda_vector_integrator(L, I_nu, N, R_max):
     &quot;&quot;&quot;
     nu_idx = cuda.grid(1)
     L[nu_idx] = (
-        8 * M_PI * M_PI * trapezoid_integration_cuda(I_nu[nu_idx], R_max / N)
+        8 * PI * PI * trapezoid_integration_cuda(I_nu[nu_idx], R_max / N)
     )</div>
 
 
@@ -734,7 +734,7 @@ def calculate_p_values(R_max, N):
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Nov 2024.
+      <span class="lastupdated">Last updated on 19 Nov 2024.
       </span></p>
   </div>
 
