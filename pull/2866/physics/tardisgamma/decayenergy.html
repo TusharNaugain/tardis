@@ -176,46 +176,64 @@
 <p class="note-p">You can interact with this notebook online: <a href="https://mybinder.org/v2/gh/tardis-sn/tardis/HEAD?filepath=docs/physics/tardisgamma/decayenergy.ipynb" class="launch-btn" target="_blank" rel="noopener noreferrer">Launch notebook</a></p>
 </div><section id="Radioactive-Decay-Energy">
 <h1>Radioactive Decay Energy<a class="headerlink" href="#Radioactive-Decay-Energy" title="Link to this heading">¶</a></h1>
-<p>Within the ejecta of a supernova, the gammarays largely come from the decay of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> into <span class="math notranslate nohighlight">\(^{56}Co\)</span>. This releases a large amount of energy. To understand how much energy is produced from this decay we look at the amount of energy 1 g of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> produces in 10 days</p>
-<p>The equation for radioactive decay is</p>
-<div class="math notranslate nohighlight">
-\[N(t) = N_\mathrm{0} \exp\left(-\lambda t \right)\]</div>
-<p><span class="math notranslate nohighlight">\(N(t)\)</span> is the number of atoms after time t, <span class="math notranslate nohighlight">\(N_\mathrm{0}\)</span> is the initial number of atoms, and <span class="math notranslate nohighlight">\(\lambda\)</span> is the half life.</p>
-<p>Using the molar mass, we find that 1g of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> has <span class="math notranslate nohighlight">\(1.0767e22\)</span> atoms. The half life of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> is 6.10 days. Plugging these numbers into the equation we can find the number of atoms that have decayed after 10 days.</p>
+<p>Within the ejecta of a supernova, the <span class="math notranslate nohighlight">\(\gamma\)</span>-rays largely come from the decay of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> into <span class="math notranslate nohighlight">\(^{56}Co\)</span>, which releases a significant amount of energy.</p>
+<p>When <span class="math notranslate nohighlight">\(^{56}Ni\)</span> decays into <span class="math notranslate nohighlight">\(^{56}Co\)</span> it can release a <span class="math notranslate nohighlight">\(\gamma\)</span>-ray at several different transition levels. Each transition level has an energy and an associated probability out of 100 decays. For example, the transition from Energy level 9 to Energy level 7 has an energy of 0.270 Mev and a probability of 36.5 out of 100 decays. To find the total energy per decay you multipliy each energy with its associated probability and add them all up.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">const</span>
-
-<span class="c1">#initial number of atoms</span>
-<span class="n">n_0</span> <span class="o">=</span> <span class="mf">1.0767e22</span>
-<span class="c1">#half life</span>
-<span class="n">t_half</span> <span class="o">=</span> <span class="mf">6.10</span>
-<span class="c1">#time in days</span>
-<span class="n">time</span> <span class="o">=</span> <span class="mi">10</span>
-
-<span class="c1">#number of atoms keft after 10 days</span>
-<span class="n">n_final</span> <span class="o">=</span> <span class="n">n_0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t_half</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
-
-<span class="c1">#number of atoms that have decayed</span>
-<span class="n">n_decays</span> <span class="o">=</span> <span class="n">n_0</span> <span class="o">-</span> <span class="n">n_final</span>
 </pre></div>
 </div>
 </div>
-<p>The gammarays that are released during this radiocative decay can be released from a number of energy level transitions. Each transition has an associated energy and a probability out of 100 decays. From the combination of all of these tranisitions and their probabilities, the total energy released per decay is <span class="math notranslate nohighlight">\(1.75 MeV\)</span> <span id="id1">[]</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#energy per decay in eV</span>
-<span class="n">energy_per_decay</span> <span class="o">=</span> <span class="mf">1.75e6</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># energies of each transition</span>
+<span class="n">t_energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.270</span><span class="p">,</span> <span class="mf">0.750</span><span class="p">,</span> <span class="mf">0.480</span><span class="p">,</span> <span class="mf">1.56</span><span class="p">,</span> <span class="mf">0.812</span><span class="p">,</span> <span class="mf">0.158</span><span class="p">])</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meV</span>
+<span class="c1"># probabilities of each transition</span>
+<span class="n">t_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.365</span><span class="p">,</span> <span class="mf">.495</span><span class="p">,</span> <span class="mf">.366</span><span class="p">,</span> <span class="mf">.140</span><span class="p">,</span> <span class="mf">.860</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">])</span>
 
-<span class="n">total_energy</span> <span class="o">=</span> <span class="n">n_decays</span> <span class="o">*</span> <span class="n">energy_per_decay</span>
+<span class="n">energy_per_decay</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">t_energies</span> <span class="o">*</span> <span class="n">t_prob</span><span class="p">)</span>
+<span class="n">energy_per_decay</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="math notranslate nohighlight">
+$1.7202 \; \mathrm{meV}$</div></div>
+</div>
+<p>From the above cell, we get the energy per transition of 1.72 MeV. Note that this comes from a simplified scheme of energies and the real total energy per <span class="math notranslate nohighlight">\(^{56}Ni\)</span> decay we use is 1.75 MeV. <span id="id1">[]</span></p>
+<p>The <span class="math notranslate nohighlight">\(^{56}Co\)</span> produced from the decay of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> is also radioactive and will decay into <span class="math notranslate nohighlight">\(^{56}Fe\)</span> and release more <span class="math notranslate nohighlight">\(\gamma\)</span>-rays, however this decay is more complicated than the decay of <span class="math notranslate nohighlight">\(^{56}Ni\)</span>. Whereas <span class="math notranslate nohighlight">\(^{56}Ni\)</span> only decays through electron capture, <span class="math notranslate nohighlight">\(^{56}Co\)</span> can decay either by electron capture, which occurs for 81 out of 100 cases, or through positron decay, which occurs for 19 out of 100 cases.</p>
+<p>Positron decay produces positrons with a given kinetic energy, that will eventually annihilate with electrons to produce two 0.511 MeV <span class="math notranslate nohighlight">\(\gamma\)</span>-rays. The scheme of decays for <span class="math notranslate nohighlight">\(^{56}Co\)</span> is slightly more complicated than the <span class="math notranslate nohighlight">\(^{56}Ni\)</span> scheme, but to find the total energy per decay, you follow the same process. The total energy per decay from <span class="math notranslate nohighlight">\(\gamma\)</span>-rays is 3.61 MeV and the total kinetic energy of positrons is 0.12 MeV</p>
+<p>The total rate of energy production for a mass of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> at a given time is given by the following equation:</p>
+<div class="math notranslate nohighlight">
+\[\epsilon = \frac{M_\odot}{56m_{u}}\frac{1}{\tau_{\text{Co}}-\tau_{\text{Ni}}}[[Q_{\text{Ni}}(\frac{\tau_{\text{Co}}}{\tau_{\text{Ni}}}-1)-Q_{\text{Co}}]\exp(-t/\tau_{\text{Ni}})+Q_{\text{Co}}\exp(-t/\tau_{\text{Co}})]\frac{M_{Ni0}}{M_\odot}\]</div>
+<p><span class="math notranslate nohighlight">\(M_\odot\)</span> is a solar mass. <span class="math notranslate nohighlight">\(56_{u}\)</span> is 56 atomic mass units.</p>
+<p><span class="math notranslate nohighlight">\(\tau_{Ni}\)</span> is the lifetime of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> which is 8.80 days and <span class="math notranslate nohighlight">\(\tau_{Co}\)</span> is the lifetime of <span class="math notranslate nohighlight">\(^{56}Co\)</span> which is 111.3 days.</p>
+<p><span class="math notranslate nohighlight">\(Q_{\text{Ni}}\)</span> is the energy per decay of <span class="math notranslate nohighlight">\(^{56}Ni\)</span> which is 1.75 MeV and <span class="math notranslate nohighlight">\(Q_{\text{Co}}\)</span> is the sum of the energy per decay pf <span class="math notranslate nohighlight">\(^{56}Co\)</span> from <span class="math notranslate nohighlight">\(\gamma\)</span>-rays and the kinetic energy from positrons which is 3.73 MeV</p>
+<p>If we plug these values into the equation we get the equation:</p>
+<div class="math notranslate nohighlight">
+\[\epsilon = (6.45e43\exp(-t/8.8)+1.45e43\exp(-t/111.3))\frac{M_{Ni0}}{M_\odot} erg/s\]</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#time in days</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">day</span>
+<span class="c1">#mass of Ni56 in solar masses</span>
+<span class="n">m_Ni56</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">M_sun</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total energy released from radioactive decay of 1g of 56Ni after 10 days is:&quot;</span><span class="p">,</span> <span class="n">total_energy</span><span class="p">,</span> <span class="s2">&quot;eV&quot;</span><span class="p">)</span>
+<span class="n">energy_production_rate</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6.45e43</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">time</span><span class="o">/</span><span class="p">(</span><span class="mf">8.8</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">day</span><span class="p">))</span> <span class="o">+</span> <span class="mf">1.45e43</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">time</span><span class="o">/</span><span class="p">(</span><span class="mf">111.3</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">day</span><span class="p">)))</span> <span class="o">*</span> <span class="p">(</span><span class="n">m_Ni56</span><span class="o">/</span> <span class="n">const</span><span class="o">.</span><span class="n">M_sun</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">erg</span> <span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total energy production rate for 1 solar mass of 56Ni after 10 days is: </span><span class="si">{</span><span class="n">energy_production_rate</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -224,8 +242,33 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The total energy released from radioactive decay of 1g of 56Ni after 10 days is: 1.884225e+28 eV
+The total energy production rate for 1 solar mass of 56Ni after 10 days is: 3.40e+43 erg / s
 </pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_energy_production</span> <span class="o">=</span> <span class="mf">1.885e50</span> <span class="o">*</span> <span class="p">(</span><span class="n">m_Ni56</span><span class="o">/</span><span class="n">const</span><span class="o">.</span><span class="n">M_sun</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">erg</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total energy production for 1 solar mass of 56Ni is: </span><span class="si">{</span><span class="n">total_energy_production</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The total energy production for 1 solar mass of 56Ni is: 1.885e+50 erg
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </section>
 
@@ -241,7 +284,7 @@ The total energy released from radioactive decay of 1g of 56Ni after 10 days is:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 28 Oct 2024.
+      <span class="lastupdated">Last updated on 26 Nov 2024.
       </span></p>
   </div>
 
