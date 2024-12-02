@@ -362,17 +362,26 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.plasma_collection">
+<span class="sig-name descname"><span class="pre">plasma_collection</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;module</span> <span class="pre">'tardis.plasma.properties.legacy_property_collections'</span> <span class="pre">from</span> <span class="pre">'/home/runner/work/tardis/tardis/tardis/plasma/properties/legacy_property_collections.py'&gt;</span></em><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.plasma_collection" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.plasma_modules">
 <span class="sig-name descname"><span class="pre">plasma_modules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.plasma_modules" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.plasma.assembly.base.PlasmaSolverFactory.prepare_factory">
-<span class="sig-name descname"><span class="pre">prepare_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_atomic_numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.prepare_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.prepare_factory" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">prepare_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_atomic_numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_collections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/plasma/assembly/base.html#PlasmaSolverFactory.prepare_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.plasma.assembly.base.PlasmaSolverFactory.prepare_factory" title="Link to this definition">¶</a></dt>
 <dd><p>Set up the plasma factory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>selected_atomic_numbers</strong><span class="classifier">list of int</span></dt><dd><p>Selected atomic numbers in the simulation.</p>
+</dd>
+<dt><strong>property_collections</strong><span class="classifier">str</span></dt><dd><p>The property collection module to be used in the plasma assembly.</p>
+</dd>
 <dt><strong>config</strong><span class="classifier">object, optional</span></dt><dd><p>Configuration object containing plasma settings (default: None).</p>
 </dd>
 </dl>

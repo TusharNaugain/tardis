@@ -201,7 +201,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">legacy_plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomic_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/macro_atom/macroatom_solver.html#MacroAtomSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">legacy_plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomic_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_sobolev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/macro_atom/macroatom_solver.html#MacroAtomSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve" title="Link to this definition">¶</a></dt>
 <dd><p>Solved the Macro Atom State</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -225,8 +225,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities">
-<span class="sig-name descname"><span class="pre">solve_transition_probabilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy_plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/macro_atom/macroatom_solver.html#MacroAtomSolver.solve_transition_probabilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_legacy_transition_probabilities">
+<span class="sig-name descname"><span class="pre">solve_legacy_transition_probabilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legacy_plasma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/macro_atom/macroatom_solver.html#MacroAtomSolver.solve_legacy_transition_probabilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_legacy_transition_probabilities" title="Link to this definition">¶</a></dt>
 <dd><p>Solve the basic transition probabilities for the macroatom</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -236,6 +236,33 @@
 <dt><strong>legacy_plasma</strong><span class="classifier">tarids.plasma.BasePlasma</span></dt><dd><p>legacy base plasma</p>
 </dd>
 <dt><strong>tau_sobolev</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Expansion Optical Depths</p>
+</dd>
+<dt><strong>stimulated_emission_factor</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>Transition Probabilities</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities">
+<span class="sig-name descname"><span class="pre">solve_transition_probabilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_sobolev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/macro_atom/macroatom_solver.html#MacroAtomSolver.solve_transition_probabilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities" title="Link to this definition">¶</a></dt>
+<dd><p>Solve the basic transition probabilities for the macroatom</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>atomic_data</strong><span class="classifier">tardis.io.atom_data.AtomData</span></dt><dd><p>Atomic Data</p>
+</dd>
+<dt><strong>mean_intensities</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Mean intensity of the radiation field for each shell</p>
+</dd>
+<dt><strong>tau_sobolev</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Expansion Optical Depths</p>
+</dd>
+<dt><strong>beta_sobolev</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Modified expansion Optical Depths</p>
 </dd>
 <dt><strong>stimulated_emission_factor</strong><span class="classifier">np.ndarray</span></dt><dd></dd>
 </dl>

@@ -160,6 +160,34 @@
   <section id="module-tardis.opacities.tau_sobolev">
 <span id="tardis-opacities-tau-sobolev-module"></span><h1>tardis.opacities.tau_sobolev module<a class="headerlink" href="#module-tardis.opacities.tau_sobolev" title="Link to this heading">¶</a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.BetaSobolev">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.opacities.tau_sobolev.</span></span><span class="sig-name descname"><span class="pre">BetaSobolev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plasma_parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#BetaSobolev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.BetaSobolev" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty" title="tardis.plasma.properties.base.ProcessingPlasmaProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessingPlasmaProperty</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>beta_sobolev</strong><span class="classifier">Numpy Array, dtype float</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.BetaSobolev.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau_sobolevs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#BetaSobolev.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.BetaSobolev.calculate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.BetaSobolev.latex_name">
+<span class="sig-name descname"><span class="pre">latex_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('\\beta_{\\textrm{sobolev}}',)</span></em><a class="headerlink" href="#tardis.opacities.tau_sobolev.BetaSobolev.latex_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.BetaSobolev.outputs">
+<span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('beta_sobolev',)</span></em><a class="headerlink" href="#tardis.opacities.tau_sobolev.BetaSobolev.outputs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.TauSobolev">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tardis.opacities.tau_sobolev.</span></span><span class="sig-name descname"><span class="pre">TauSobolev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plasma_parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#TauSobolev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.TauSobolev" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="tardis.plasma.properties.base.html#tardis.plasma.properties.base.ProcessingPlasmaProperty" title="tardis.plasma.properties.base.ProcessingPlasmaProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessingPlasmaProperty</span></code></a></p>
@@ -174,7 +202,7 @@ Columns as zones.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.TauSobolev.calculate">
-<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_number_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_lower_level_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_lu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength_cm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#TauSobolev.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.TauSobolev.calculate" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_number_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_explosion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimulated_emission_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#TauSobolev.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.TauSobolev.calculate" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate Sobolev line opacity.</p>
 <p>Calculates the Sobolev line opacity based on the provided parameters.</p>
 <dl class="field-list simple">
@@ -203,10 +231,6 @@ Columns as zones.</p>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_sobolev_line_opacity</span><span class="p">(</span><span class="n">lines_data</span><span class="p">,</span> <span class="n">level_density_data</span><span class="p">,</span> <span class="n">time_exp</span><span class="p">,</span> <span class="n">stim_factor</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -224,6 +248,27 @@ Columns as zones.</p>
 <span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('tau_sobolevs',)</span></em><a class="headerlink" href="#tardis.opacities.tau_sobolev.TauSobolev.outputs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tardis.opacities.tau_sobolev.calculate_beta_sobolev">
+<span class="sig-prename descclassname"><span class="pre">tardis.opacities.tau_sobolev.</span></span><span class="sig-name descname"><span class="pre">calculate_beta_sobolev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau_sobolevs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tardis/opacities/tau_sobolev.html#calculate_beta_sobolev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tardis.opacities.tau_sobolev.calculate_beta_sobolev" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the beta Sobolev values based on the provided tau_sobolevs.
+Values from the previous iteration can be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tau_sobolevs</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>Tau Sobolev opacities.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>The latest Beta Sobolev opacities.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

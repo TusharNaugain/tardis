@@ -279,7 +279,6 @@ def calculate_transition_probability(
     transition_probabilities = np.empty(
         (transition_probability_coef.shape[0], beta_sobolev.shape[1])
     )
-    # trans_old = self.calculate_transition_probabilities(macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor)
     transition_type = macro_atom_data.transition_type.values
     lines_idx = macro_atom_data.lines_idx.values
     tpos = macro_atom_data.transition_probability.values
@@ -439,7 +438,6 @@ class TransitionProbabilities(
         transition_probabilities = np.empty(
             (self.transition_probability_coef.shape[0], beta_sobolev.shape[1])
         )
-        # trans_old = self.calculate_transition_probabilities(macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor)
         transition_type = macro_atom_data.transition_type.values
         lines_idx = macro_atom_data.lines_idx.values
         tpos = macro_atom_data.transition_probability.values
@@ -455,17 +453,6 @@ class TransitionProbabilities(
             self.normalize,
         )
         return transition_probabilities
-
-<div class="viewcode-block" id="TransitionProbabilities.calculate_transition_probabilities">
-<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.base.html#tardis.opacities.macro_atom.base.TransitionProbabilities.calculate_transition_probabilities">[docs]</a>
-    def calculate_transition_probabilities(
-        self, macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-    ):
-        transition_probabilities = self.prepare_transition_probabilities(
-            macro_atom_data, beta_sobolev, j_blues, stimulated_emission_factor
-        )
-        return transition_probabilities</div>
-
 
 <div class="viewcode-block" id="TransitionProbabilities.initialize_macro_atom_transition_type_filters">
 <a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.base.html#tardis.opacities.macro_atom.base.TransitionProbabilities.initialize_macro_atom_transition_type_filters">[docs]</a>

@@ -142,6 +142,17 @@ from traitlets import TraitError
 from astropy import units as u
 
 
+# Added the below as a (temporary) workaround to the latex
+# labels on the convergence plots not rendering correctly.
+import plotly
+from IPython.display import display, HTML
+
+plotly.offline.init_notebook_mode()
+display(HTML(
+    &#39;&lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG&quot;&gt;&lt;/script&gt;&#39;
+))
+
+
 <div class="viewcode-block" id="transition_colors">
 <a class="viewcode-back" href="../../../../api/tardis.visualization.tools.convergence_plot.html#tardis.visualization.tools.convergence_plot.transition_colors">[docs]</a>
 def transition_colors(length, name=&quot;jet&quot;):

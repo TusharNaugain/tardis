@@ -136,8 +136,7 @@ from tardis.opacities.macro_atom.macroatom_state import MacroAtomState
 
 <div class="viewcode-block" id="MacroAtomSolver">
 <a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.macroatom_solver.html#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver">[docs]</a>
-class MacroAtomSolver(object):
-
+class MacroAtomSolver:
     initialize: bool = True
     normalize: bool = True
 
@@ -151,7 +150,6 @@ class MacroAtomSolver(object):
         normalize: bool
             Whether or not to normalize the transition probabilities to unity. Default True
         &quot;&quot;&quot;
-
         self.initialize = initialize
         self.normalize = normalize
 
@@ -165,7 +163,6 @@ class MacroAtomSolver(object):
         atomic_data : tardis.io.atom_data.AtomData
             Atomic Data
         &quot;&quot;&quot;
-
         coef_and_block_ref = initialize_transition_probabilities(atomic_data)
         self.transition_probability_coef = coef_and_block_ref[
             &quot;transition_probability_coef&quot;
@@ -174,9 +171,9 @@ class MacroAtomSolver(object):
         self.initialize = False</div>
 
 
-<div class="viewcode-block" id="MacroAtomSolver.solve_transition_probabilities">
-<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.macroatom_solver.html#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities">[docs]</a>
-    def solve_transition_probabilities(
+<div class="viewcode-block" id="MacroAtomSolver.solve_legacy_transition_probabilities">
+<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.macroatom_solver.html#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_legacy_transition_probabilities">[docs]</a>
+    def solve_legacy_transition_probabilities(
         self,
         atomic_data,
         legacy_plasma,
@@ -217,6 +214,52 @@ class MacroAtomSolver(object):
         return transition_probabilities</div>
 
 
+<div class="viewcode-block" id="MacroAtomSolver.solve_transition_probabilities">
+<a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.macroatom_solver.html#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve_transition_probabilities">[docs]</a>
+    def solve_transition_probabilities(
+        self,
+        atomic_data,
+        mean_intensities,
+        tau_sobolev,
+        beta_sobolev,
+        stimulated_emission_factor,
+    ):
+        &quot;&quot;&quot;Solve the basic transition probabilities for the macroatom
+
+        Parameters
+        ----------
+        atomic_data : tardis.io.atom_data.AtomData
+            Atomic Data
+        mean_intensities : pd.DataFrame
+            Mean intensity of the radiation field for each shell
+        tau_sobolev : pd.DataFrame
+            Expansion Optical Depths
+        beta_sobolev : pd.DataFrame
+            Modified expansion Optical Depths
+        stimulated_emission_factor : np.ndarray
+
+        Returns
+        -------
+        pd.DataFrame
+            Transition Probabilities
+        &quot;&quot;&quot;
+        if self.initialize:
+            self.initialize_transition_probabilities(atomic_data)
+
+        transition_probabilities = calculate_transition_probabilities(
+            atomic_data,
+            beta_sobolev,
+            mean_intensities,
+            stimulated_emission_factor,
+            tau_sobolev,
+            self.transition_probability_coef,
+            self.block_references,
+            normalize=self.normalize,
+        )
+
+        return transition_probabilities</div>
+
+
 <div class="viewcode-block" id="MacroAtomSolver.solve">
 <a class="viewcode-back" href="../../../../api/tardis.opacities.macro_atom.macroatom_solver.html#tardis.opacities.macro_atom.macroatom_solver.MacroAtomSolver.solve">[docs]</a>
     def solve(
@@ -225,6 +268,8 @@ class MacroAtomSolver(object):
         atomic_data,
         tau_sobolev,
         stimulated_emission_factor,
+        beta_sobolev=None,
+        legacy_mode=True,
     ):
         &quot;&quot;&quot;Solved the Macro Atom State
 
@@ -243,13 +288,23 @@ class MacroAtomSolver(object):
         tardis.opacities.macroatom_state.MacroAtomState
             State of the macro atom ready to be placed into the OpacityState
         &quot;&quot;&quot;
-
-        transition_probabilities = self.solve_transition_probabilities(
-            atomic_data,
-            legacy_plasma,
-            tau_sobolev,
-            stimulated_emission_factor,
-        )
+        if legacy_mode:
+            transition_probabilities = (
+                self.solve_legacy_transition_probabilities(
+                    atomic_data,
+                    legacy_plasma,
+                    tau_sobolev,
+                    stimulated_emission_factor,
+                )
+            )
+        else:
+            transition_probabilities = self.solve_transition_probabilities(
+                atomic_data,
+                legacy_plasma.j_blues,
+                tau_sobolev,
+                beta_sobolev,
+                stimulated_emission_factor,
+            )
 
         macro_block_references = atomic_data.macro_atom_references[
             &quot;block_references&quot;
