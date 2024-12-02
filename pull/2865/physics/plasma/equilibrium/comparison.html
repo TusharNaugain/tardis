@@ -265,14 +265,14 @@
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">chianti_sim_state</span> <span class="o">=</span> <span class="n">SimulationState</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">atom_data</span><span class="o">=</span><span class="n">chianti_atom_data</span><span class="p">)</span>
 
-<span class="n">reference_coeff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;collisional_rate_coefficients.hdf&quot;</span><span class="p">)</span>
+<span class="n">reference_coeff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;collisional_rate_coefficients.h5&quot;</span><span class="p">)</span>
 <span class="n">reference_rate_coeff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">reference_coeff</span><span class="p">[</span><span class="s2">&quot;coll_exc_coeff&quot;</span><span class="p">],</span> <span class="n">reference_coeff</span><span class="p">[</span><span class="s2">&quot;coll_deexc_coeff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reorder_levels</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])])</span>
 
 <span class="n">temperature</span> <span class="o">=</span> <span class="n">reference_coeff</span><span class="p">[</span><span class="s2">&quot;t_electrons&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span>
@@ -1675,7 +1675,7 @@ Name: (1, 0, 0, 1), dtype: float64
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 12 Nov 2024.
+      <span class="lastupdated">Last updated on 02 Dec 2024.
       </span></p>
   </div>
 
