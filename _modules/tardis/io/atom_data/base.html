@@ -308,7 +308,6 @@ class AtomData:
     # Either all or none of the related dataframes must be given
     related_groups = [
         (&quot;macro_atom_data_all&quot;, &quot;macro_atom_references_all&quot;),
-        (&quot;collision_data&quot;, &quot;collision_data_temperatures&quot;),
     ]
 
 <div class="viewcode-block" id="AtomData.from_hdf">
@@ -342,35 +341,32 @@ class AtomData:
                     store[&quot;metadata&quot;].loc[(&quot;format&quot;, &quot;version&quot;)].value
                 )
                 carsus_version = tuple(map(int, carsus_version_str.split(&quot;.&quot;)))
-                if carsus_version == (1, 0):
-                    # Checks for various collisional data from Carsus files
-                    if &quot;collisions_data&quot; in store:
-                        try:
+                # Checks for various collisional data from Carsus files
+                if &quot;collisions_data&quot; in store:
+                    try:
+                        if carsus_version == (1, 0):
                             dataframes[&quot;collision_data_temperatures&quot;] = store[
                                 &quot;collisions_metadata&quot;
                             ].temperatures
-                            if &quot;cmfgen&quot; in store[&quot;collisions_metadata&quot;].dataset:
-                                dataframes[&quot;yg_data&quot;] = store[&quot;collisions_data&quot;]
-                                dataframes[&quot;collision_data&quot;] = &quot;dummy value&quot;
-                            elif (
-                                &quot;chianti&quot;
-                                in store[&quot;collisions_metadata&quot;].dataset
-                            ):
-                                dataframes[&quot;collision_data&quot;] = store[
-                                    &quot;collisions_data&quot;
-                                ]
-                            else:
-                                raise KeyError(
-                                    &quot;Atomic Data Collisions Not a Valid Chanti or CMFGEN Carsus Data File&quot;
-                                )
-                        except KeyError as e:
-                            logger.warning(
-                                &quot;Atomic Data is not a Valid Carsus Atomic Data File&quot;
+                        if &quot;cmfgen&quot; in store[&quot;collisions_metadata&quot;].dataset:
+                            dataframes[&quot;yg_data&quot;] = store[&quot;collisions_data&quot;]
+                            dataframes[&quot;collision_data&quot;] = &quot;dummy value&quot;
+                        elif &quot;chianti&quot; in store[&quot;collisions_metadata&quot;].dataset:
+                            dataframes[&quot;collision_data&quot;] = store[
+                                &quot;collisions_data&quot;
+                            ]
+                        else:
+                            raise KeyError(
+                                &quot;Atomic Data Collisions Not a Valid Chanti or CMFGEN Carsus Data File&quot;
                             )
-                            raise
-                    dataframes[&quot;levels&quot;] = store[&quot;levels_data&quot;]
-                    dataframes[&quot;lines&quot;] = store[&quot;lines_data&quot;]
-                else:
+                    except KeyError as e:
+                        logger.warning(
+                            &quot;Atomic Data is not a Valid Carsus Atomic Data File&quot;
+                        )
+                        raise
+                dataframes[&quot;levels&quot;] = store[&quot;levels_data&quot;]
+                dataframes[&quot;lines&quot;] = store[&quot;lines_data&quot;]
+                if carsus_version != (1, 0) and carsus_version != (2, 0):
                     raise ValueError(
                         f&quot;Current carsus version, {carsus_version}, is not supported.&quot;
                     )
@@ -679,9 +675,9 @@ class AtomData:
         )
 
         level_idxs2continuum_idx = photo_ion_levels_idx.copy()
-        level_idxs2continuum_idx[
-            &quot;continuum_idx&quot;
-        ] = self.level2continuum_edge_idx
+        level_idxs2continuum_idx[&quot;continuum_idx&quot;] = (
+            self.level2continuum_edge_idx
+        )
         self.level_idxs2continuum_idx = level_idxs2continuum_idx.set_index(
             [&quot;source_level_idx&quot;, &quot;destination_level_idx&quot;]
         )</div>
@@ -718,31 +714,33 @@ class AtomData:
                 self.macro_atom_references = self.macro_atom_references.loc[
                     self.macro_atom_references[&quot;count_down&quot;] &gt; 0
                 ]
-                self.macro_atom_references.loc[
-                    :, &quot;count_total&quot;
-                ] = self.macro_atom_references[&quot;count_down&quot;]
-                self.macro_atom_references.loc[
-                    :, &quot;block_references&quot;
-                ] = np.hstack(
-                    (
-                        0,
-                        np.cumsum(
-                            self.macro_atom_references[&quot;count_down&quot;].values[:-1]
-                        ),
+                self.macro_atom_references.loc[:, &quot;count_total&quot;] = (
+                    self.macro_atom_references[&quot;count_down&quot;]
+                )
+                self.macro_atom_references.loc[:, &quot;block_references&quot;] = (
+                    np.hstack(
+                        (
+                            0,
+                            np.cumsum(
+                                self.macro_atom_references[&quot;count_down&quot;].values[
+                                    :-1
+                                ]
+                            ),
+                        )
                     )
                 )
 
             elif line_interaction_type == &quot;macroatom&quot;:
-                self.macro_atom_references.loc[
-                    :, &quot;block_references&quot;
-                ] = np.hstack(
-                    (
-                        0,
-                        np.cumsum(
-                            self.macro_atom_references[&quot;count_total&quot;].values[
-                                :-1
-                            ]
-                        ),
+                self.macro_atom_references.loc[:, &quot;block_references&quot;] = (
+                    np.hstack(
+                        (
+                            0,
+                            np.cumsum(
+                                self.macro_atom_references[
+                                    &quot;count_total&quot;
+                                ].values[:-1]
+                            ),
+                        )
                     )
                 )
 
@@ -904,7 +902,7 @@ class MoleculeData:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 02 Dec 2024.
+      <span class="lastupdated">Last updated on 03 Dec 2024.
       </span></p>
   </div>
 
