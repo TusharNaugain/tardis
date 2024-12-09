@@ -100,7 +100,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Running tests</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-unit-tests">Running the Unit Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generating-plasma-reference">Generating Plasma Reference</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-integration-tests">Running the Integration Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
@@ -168,6 +167,10 @@ to download the large regression data files in the tardis-regression-data reposi
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">tardis-regression-data</span></code> repository should be located at the same directory level as the main <code class="docutils literal notranslate"><span class="pre">tardis</span></code> repository, rather than being nested within it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We have migrated from <code class="docutils literal notranslate"><span class="pre">tardis-refdata</span></code> to``tardis-regression-data``.</p>
+</div>
 <p>Finally, the tests can be run using the following command</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>tardis<span class="w"> </span>--tardis-regression-data<span class="o">=</span>/path/to/tardis-regression-data/
 </pre></div>
@@ -200,47 +203,6 @@ Cache can also be found under the “Management” Section under “Actions” t
 </pre></div>
 </div>
 </section>
-<section id="running-the-integration-tests">
-<h2>Running the Integration Tests<a class="headerlink" href="#running-the-integration-tests" title="Link to this heading">¶</a></h2>
-<p>These tests require reference files against which the results of the various
-tardis runs are tested. So you first need to either download the current
-reference files (<a class="reference external" href="https://github.com/tardis-sn/tardis-refdata">here</a>)
-or generate new ones.</p>
-<p>Both of these require a configuration file for the integration tests:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">atom_data_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/projects/tardis/integration/&quot;</span>
-
-<span class="c1"># Path to directory where reference HDF files will be generated and</span>
-<span class="c1"># saved during the test run. Use &quot;--generate-reference&quot; flag in command</span>
-<span class="c1"># line args for the purpose, for other cases this will denote path</span>
-<span class="c1"># to the directory containing reference HDF files.</span>
-<span class="nt">reference</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/projects/tardis/integration/&quot;</span>
-
-
-<span class="c1"># Speeds up test execution by reducing amount of packets per iteration,</span>
-<span class="c1"># useful for debugging problems in testing infrastructure itself.</span>
-<span class="c1"># Use &quot;--less-packets&quot; in command line args, for other cases this will be</span>
-<span class="c1"># simply ignored. This section is not mandatory.</span>
-<span class="nt">less_packets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">no_of_packets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400</span>
-<span class="w">  </span><span class="nt">last_no_of_packets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-</pre></div>
-</div>
-<p>Inside the atomic data directory there needs to be atomic data for each of
-the setups that are provided in the <code class="docutils literal notranslate"><span class="pre">test_integration</span></code> folder.
-If no references are given, the first step is to generate them.
-The <code class="docutils literal notranslate"><span class="pre">--less-packets</span></code> option is useful for debugging purposes and will just
-use very few packets to generate the references and thus make the process much
-faster — THIS IS ONLY FOR DEBUGGING PURPOSES. The <code class="docutils literal notranslate"><span class="pre">-s</span></code> option ensures that
-TARDIS prints out the progress:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>--integration<span class="o">=</span>integration.yml<span class="w"> </span>-m<span class="w"> </span>integration<span class="w"> </span>--generate-reference<span class="w"> </span>--less-packets
-</pre></div>
-</div>
-<p>To run the test after having run the <code class="docutils literal notranslate"><span class="pre">--generate-references</span></code>, all that is
-needed is:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pytest<span class="w"> </span>--integration<span class="o">=</span>integration.yml<span class="w"> </span>-m<span class="w"> </span>integration<span class="w"> </span>--less-packets<span class="w"> </span>--remote-data
-</pre></div>
-</div>
-</section>
 </section>
 
 
@@ -255,7 +217,7 @@ needed is:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2013-2024, TARDIS Collaboration.
-      <span class="lastupdated">Last updated on 08 Dec 2024.
+      <span class="lastupdated">Last updated on 09 Dec 2024.
       </span></p>
   </div>
 
